@@ -1,7 +1,7 @@
 # Preamble
 
-require 'coffee-script'
-require 'reactive-coffee'
+cs = require 'coffee-script'
+rc = require 'reactive-coffee'
 
 _.mixin(_.str.exports())
 bind = rx.bind
