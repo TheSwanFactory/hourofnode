@@ -3,8 +3,14 @@ _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
 
-model = require('../lib/model')
-console.log model.items
+class Item
+  constructor: (data) ->
+    @data = rx.cell(data)
+
+items = rx.array([
+  new Item('Item the First')
+  new Item('Item the Second')
+])
 
 # Generic Editor component
 
@@ -27,7 +33,7 @@ editor = (opts) ->
 
 # Define our main view
 
-main = (items) ->
+main = ->
 
   # Reactive cell to track currently selected item
   # Default is the first item
@@ -73,4 +79,4 @@ main = (items) ->
   )
 
 # Instantiate our main view
-$(main(model.items))
+$(main)
