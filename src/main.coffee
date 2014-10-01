@@ -1,8 +1,4 @@
 # Preamble
-
-require 'coffee-script'
-require 'reactive-coffee'
-
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
