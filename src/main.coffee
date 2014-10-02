@@ -1,4 +1,9 @@
 # Preamble
+
+foo = require('./model')
+console.log foo
+console.log foo.bar
+
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
