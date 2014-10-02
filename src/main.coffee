@@ -1,12 +1,12 @@
 # Preamble
 
-model = require('./model')
+{items} = require('./model')
+{rxv} = require('./reactive-svg')
 
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
 
-items = model.items
 
 # Generic Editor component
 
