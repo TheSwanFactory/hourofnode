@@ -1,21 +1,12 @@
 # Preamble
 
-foo = require('./model')
-console.log foo
-console.log foo.bar
+model = require('./model')
 
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
 
-class Item
-  constructor: (data) ->
-    @data = rx.cell(data)
-
-items = rx.array([
-  new Item('Item the First')
-  new Item('Item the Second')
-])
+items = model.items
 
 # Generic Editor component
 
