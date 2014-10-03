@@ -19,10 +19,10 @@ S = _.object([tag, rxt.mktag(tag)] for tag in tags)
 main = ->
 
   $('body').append(
-    T.h1 "Rohan's Teenage Robot Turtles"
+    T.h1 "Rohan's Teenage Robot Turtles v2"
     S.svg {class: 'graphics'}, bind ->[
       S.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke:"red"}, bind -> [
-        S.animatetransform {
+        S.animateTransform {
           attributeName: "transform"
           begin: "0s"
           dur: "20s"
@@ -33,6 +33,7 @@ main = ->
         }
       ] 
     ]
+    T.p "Why is this not working at #{(new Date()).toString()}"
   )
 
 # Instantiate our main view
