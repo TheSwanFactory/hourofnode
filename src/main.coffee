@@ -1,34 +1,19 @@
 # Preamble
 
-{items} = require('./model')
-
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
+
+# Dependencies
+
+{items} = require('./model')
+{editor} = require('./editor')
 
 # Import SVG Tags for reactive-coffee 1.2.2; should be upstreamed in 1.2.4 or so
 
 tags = ['svg','g','rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path', 'marker', 'text', 'tspan', 'tref', 'textpath', 'switch', 'image', 'a', 'defs', 'symbol', 'use', 'animateTransform', 'stop', 'linearGradient', 'radialGradient', 'pattern', 'clipPath', 'mask', 'filter', 'feMerge', 'feOffset', 'feGaussianBlur', 'feMergeNode']
 T = _.object([tag, rxt.mktag(tag)] for tag in tags)
 
-# Generic Editor component
-
-editor = (opts) ->
-  item = -> opts.item.get()
-  theForm = form [
-    h2 'Edit Item'
-    data = input {
-      type: 'text',
-      value: bind -> item().data.get()
-    }
-    button 'Update'
-  ]
-  # Validate/munge submitted data
-  # We could've also made this a `submit`
-  # property on the `form` element above
-  theForm.submit ->
-    opts.onSubmit(data.val().trim())
-    false
 
 # Define our main view
 
