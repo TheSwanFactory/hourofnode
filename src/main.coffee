@@ -1,12 +1,13 @@
 # Preamble
 
 {items} = require('./model')
-{rxv} = require('./reactive-svg')
+
+tags = ['svg','g','rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path', 'marker', 'text', 'tspan', 'tref', 'textpath', 'switch', 'image', 'a', 'defs', 'symbol', 'use', 'animateTransform', 'stop', 'linearGradient', 'radialGradient', 'pattern', 'clipPath', 'mask', 'filter', 'feMerge', 'feOffset', 'feGaussianBlur', 'feMergeNode']
+T = _.object([tag, rxt.mktag(tag)] for tag in tags)
 
 _.mixin(_.str.exports())
 bind = rx.bind
 rxt.importTags()
-
 
 # Generic Editor component
 
@@ -71,6 +72,19 @@ main = ->
         onSubmit: (data) ->
           currentItem.get().data.set(data)
       }
+    ]
+    T.svg {class: 'graphics'},[
+     T.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke: "red"}, [
+       T.animateTransform({
+        attributeName: "transform"
+        begin: "0s"
+        dur: "20s"
+        type: "rotate"
+        from: "0 60 60"
+        to: "360 60 60"
+        repeatCount: "indefinite" 
+       })
+     ] 
     ]
   )
 
