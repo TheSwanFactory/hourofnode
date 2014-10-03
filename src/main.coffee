@@ -75,8 +75,8 @@ main = ->
           currentItem.get().data.set(data)
       }
     ]
-    T.svg {class: 'graphics'},[
-     T.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke: "red"}, [
+    T.svg {class: 'graphics'}, bind ->[
+     T.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke: "red"}, bind -> [
        T.animateTransform({
         attributeName: "transform"
         begin: "0s"
