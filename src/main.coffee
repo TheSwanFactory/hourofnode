@@ -8,6 +8,7 @@ T = rxt.tags
 
 {items} = require('./model')
 {editor} = require('./editor')
+ 
 
 # Import SVG Tags for reactive-coffee 1.2.2; should be upstreamed in 1.2.4 or so
 
@@ -19,7 +20,7 @@ S = _.object([tag, rxt.mktag(tag)] for tag in tags)
 main = ->
 
   $('body').append(
-    T.h1 "Rohan's Teenage Robot Turtles v2"
+    T.h1 "Rohan's Teenage Robot Turtles v4"
     S.svg {class: 'graphics'}, bind ->[
       S.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke:"red"}, bind -> [
         S.animateTransform {
