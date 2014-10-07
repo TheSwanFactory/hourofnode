@@ -2,7 +2,7 @@
 
 _.mixin(_.str.exports())
 bind = rx.bind
-T = rxt.tags
+T = rx.rxt.tags
 
 # Dependencies
 
@@ -13,7 +13,7 @@ T = rxt.tags
 # Import SVG Tags for reactive-coffee 1.2.2; should be upstreamed in 1.2.4 or so
 
 tags = ['svg','g','rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'path', 'marker', 'text', 'tspan', 'tref', 'textpath', 'switch', 'image', 'a', 'defs', 'symbol', 'use', 'animateTransform', 'stop', 'linearGradient', 'radialGradient', 'pattern', 'clipPath', 'mask', 'filter', 'feMerge', 'feOffset', 'feGaussianBlur', 'feMergeNode']
-S = _.object([tag, rxt.mktag(tag)] for tag in tags)
+S = _.object([tag, rx.rxt.mktag(tag)] for tag in tags)
 
 # Define our main view
 
