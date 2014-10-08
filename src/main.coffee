@@ -1,13 +1,15 @@
 # Preamble
 
 _.mixin(_.str.exports())
+rx =  require('../../reactive-coffee/src/reactive')
 bind = rx.bind
 T = rx.rxt.tags
 S = rx.rxt.svg_tags
 
+
 # Dependencies
 
-{items} = require('./model')
+# {items} = require('./model')
 {editor} = require('./editor')
 
 # Define our main view
