@@ -54,6 +54,7 @@ main = ->
       S.text {
         x: 100
         y: 20
+        transform: "rotate(30 20,40)"
       }, "Test Text"
     ]
     T.p {class: "text"}, "This is a non-SVG Element"
