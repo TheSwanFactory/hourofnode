@@ -13,6 +13,9 @@ S = rx.rxt.svg_tags
 {editor} = require('./editor')
 
 # Define our main view
+cell_count = 8
+cell_size = 90
+map_size = cell_count * cell_size 
 
 main = ->
 
@@ -21,54 +24,19 @@ main = ->
     S.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
-      class: 'graphics'
-      width: 500
-      height: 300
+      class: 'map'
+      width: map_size 
+      height: map_size 
     }, bind ->[
-      S.defs [
-        S.g {id: "shape"}, [
-          S.ellipse {
-            cx:60
-            cy:50
-            rx: 10
-            ry: 30
-            fill:"red"
-            stroke:"blue"
-          }
-        ]
-      ]
-      S.use {
-        "xlink:href": "#shape"
-        x: 50
-        y: 50
-      }
       S.rect {
-        x:10
-        y:20
-        height:100
-        width:100
+        height: map_size 
+        width: map_size 
         fill:"green"
-        stroke:"blue"
         rx: 10
         ry: 10
       }
-      S.line {
-        x1:10
-        y1:10
-        x2: 100
-        y2: 300
-        stroke:"blue"
-      }
-      S.text {
-        id: "multi-line"
-        x: 100
-        y: 200
-      }, [
-        S.tspan "Multiple Text"
-        S.tspan {dy: 20}, "More Text"
-      ]
     ]
-    T.p {class: "text"}, "This is a non-SVG Element"
+    T.p {class: "text"}, "This is a post-SVG Element"
   )
 
 # Instantiate our main view
