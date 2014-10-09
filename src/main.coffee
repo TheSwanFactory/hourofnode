@@ -18,9 +18,15 @@ main = ->
 
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
-    S.svg {class: 'graphics', width: 500, height: 300}, bind ->[
+    S.svg {
+      xmlns: "http://www.w3.org/2000/svg"
+      "xmlns:xlink": "http://www.w3.org/1999/xlink"
+      class: 'graphics'
+      width: 500
+      height: 300
+    }, bind ->[
       S.defs [
-        S.g {id: "def"}, [
+        S.g {id: "shape"}, [
           S.ellipse {
             cx:60
             cy:50
@@ -32,7 +38,7 @@ main = ->
         ]
       ]
       S.use {
-        href="def"
+        "xlink:href": "#shape"
         x: 50
         y: 50
       }
