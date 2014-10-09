@@ -10,7 +10,8 @@ S = rx.rxt.svg_tags
 # Dependencies
 
 # {items} = require('./model')
-{editor} = require('./editor')
+# {editor} = require('./editor')
+{grid} = require('./grid')
 
 # Define our main view
 cell_count = 8
