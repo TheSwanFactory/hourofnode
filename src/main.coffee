@@ -52,7 +52,7 @@ main = ->
         stroke:"blue"
       }
     ]
-    T.p "Why is this not animating at #{(new Date()).toString()}"
+    T.p {class: "text"}, "This is a non-SVG Element"
   )
 
 # Instantiate our main view
