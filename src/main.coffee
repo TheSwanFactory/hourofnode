@@ -11,22 +11,10 @@ S = rx.rxt.svg_tags
 
 # {items} = require('./model')
 # {editor} = require('./editor')
-{grid} = require('./grid')
+{draw_grid} = require('./draw_grid')
 
-# Define our main view
-cell_count = 8
-cell_size = 90
-map_size = cell_count * cell_size 
-
-lines = [1,2,3]
-draw_xgrid = (x) ->
-  S.line {
-    x1: x
-    y1: 1
-    x2: x
-    y2: map_size-1
-    stroke: "#ffffff"
-  }
+grid_size = 720
+grid_split = 8
 
 main = ->
 
@@ -35,22 +23,10 @@ main = ->
     S.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
-      class: 'map'
-      width: map_size 
-      height: map_size 
-    }, bind ->[
-      S.rect {
-        height: map_size 
-        width: map_size 
-        fill: "#ccffcc"
-        stroke: "black"
-      }
-      # lines.map (x) -> 
-      S.g {class: "grid-lines"},[
-        draw_xgrid(90)
-        draw_xgrid(180)
-      ]
-    ]
+      class: 'svg_grid'
+      width: grid_size  
+      height: grid_size  
+    }, bind -> draw_grid(S, grid_size, grid_split)
     T.p {class: "text"}, "This is a post-SVG Element"
   )
 
