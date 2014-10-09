@@ -31,9 +31,8 @@ main = ->
       S.rect {
         height: map_size 
         width: map_size 
-        fill:"green"
-        rx: 10
-        ry: 10
+        fill: "#ccffcc"
+        stroke: "black"
       }
     ]
     T.p {class: "text"}, "This is a post-SVG Element"
