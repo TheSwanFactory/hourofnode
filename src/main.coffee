@@ -29,13 +29,6 @@ main = ->
         rx: 10
         ry: 10
       }
-      S.circle {
-        cx:100
-        cy:150
-        r:20
-        fill:"red"
-        stroke:"blue"
-      }
       S.ellipse {
         cx:60
         cy:50
@@ -51,11 +44,6 @@ main = ->
         y2: 300
         stroke:"blue"
       }
-      S.text {
-        x: 100
-        y: 20
-        transform: "rotate(30 20,40)"
-      }, "Test Text"
       S.text {
         id: "multi-line"
         x: 100
