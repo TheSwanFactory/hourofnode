@@ -18,9 +18,7 @@ main = ->
 
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles v4"
-    S.svg {klass: 'graphics'}, bind ->[
-# S.svg({klass: "graphics"})
-# S.rect ({x:10, y:20, height:100, width:100, fill:"blue", stroke:"red"})
+    S.svg {class: 'graphics'}, bind ->[
       S.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke:"red"}, bind -> [
         S.animatetransform {
           attributeName: "transform"
