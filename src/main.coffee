@@ -51,6 +51,10 @@ main = ->
         y2: 300
         stroke:"blue"
       }
+      S.text {
+        x: 100
+        y: 20
+      }, "Test Text"
     ]
     T.p {class: "text"}, "This is a non-SVG Element"
   )
