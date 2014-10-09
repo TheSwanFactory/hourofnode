@@ -11,7 +11,7 @@ S = rx.rxt.svg_tags
 # {items} = require('./model')
 # {editor} = require('./editor')
 {draw_grid} = require('./draw_grid')
-grid_size = 720
+grid_size = 640
 grid_split = 8
 
 main = ->
@@ -24,7 +24,9 @@ main = ->
       class: 'svg_grid'
       width: grid_size  
       height: grid_size  
-    }, bind -> draw_grid(S, grid_size, grid_split)
+    }, bind -> _.flatten [
+      draw_grid(S, grid_size, grid_split)
+    ]
     T.p {class: "text"}, "This is a post-SVG Element"
   )
 

@@ -14,6 +14,7 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     }
   [
     S.rect {
+      class: "grid-background"
       height: grid_size 
       width: grid_size 
       fill: "#ccffcc"
