@@ -36,6 +36,21 @@ main = ->
         fill:"red"
         stroke:"blue"
       }
+      S.ellipse {
+        cx:60
+        cy:50
+        rx: 10
+        ry: 30
+        fill:"red"
+        stroke:"blue"
+      }
+      S.line {
+        x1:10
+        y1:10
+        x2: 100
+        y2: 300
+        stroke:"blue"
+      }
     ]
     T.p "Why is this not animating at #{(new Date()).toString()}"
   )
