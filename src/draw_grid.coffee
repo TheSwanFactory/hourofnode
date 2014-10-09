@@ -13,7 +13,7 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       stroke: "#ffffff"
     }
   draw_leg = (x, y) ->
-    size = cell_size# * 0.5
+    size = cell_size * 0.5
     S.rect {
       x: x
       y: y
@@ -27,7 +27,7 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     x = i*cell_size
     y = j*cell_size
     head = x + length
-    half = width / 2
+    half_width = width / 2
     S.g {class: "turtle"}, [
       S.ellipse {
         class: "body"
@@ -39,9 +39,15 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       S.circle {
         class: "head"
         cx: head, cy: y
-        r: half
+        r: half_width
         fill: "#00aa00"
       }
+      S.g {class: "legs"}, [
+        draw_leg(x+half_width, y+half_width)
+        draw_leg(x-width, y+half_width)
+        draw_leg(x+half_width, y-3*half_width)
+        draw_leg(x-width, y-3*half_width)
+      ]
     ]
   [
     S.rect {
