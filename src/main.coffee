@@ -1,77 +1,74 @@
 # Preamble
 
-model = require('./model')
-
 _.mixin(_.str.exports())
+rx =  require('../../reactive-coffee/src/reactive')
 bind = rx.bind
-rxt.importTags()
+T = rx.rxt.tags
+S = rx.rxt.svg_tags
 
-items = model.items
 
-# Generic Editor component
+# Dependencies
 
-editor = (opts) ->
-  item = -> opts.item.get()
-  theForm = form [
-    h2 'Edit Item'
-    data = input {
-      type: 'text',
-      value: bind -> item().data.get()
-    }
-    button 'Update'
-  ]
-  # Validate/munge submitted data
-  # We could've also made this a `submit`
-  # property on the `form` element above
-  theForm.submit ->
-    opts.onSubmit(data.val().trim())
-    false
+# {items} = require('./model')
+{editor} = require('./editor')
 
 # Define our main view
 
 main = ->
 
-  # Reactive cell to track currently selected item
-  # Default is the first item
-  currentItem = rx.cell(items.at(0)) 
-
   $('body').append(
-    div {class: 'item-manager'}, [
-      h1 bind -> "#{items.length()} Items"
-    
-      # Display list of existing items
-        
-      ul {class: 'items'}, items.map (item) ->
-        li {
-          class: 'item'            
-          # Animate creation with JQuery efffect
-          init: -> _.defer => @slideDown('fast')
-        }, [
-          span {
-            class: 'data'
-          }, bind -> "#{item.data.get()} "
-          a {
-            href: 'javascript: void 0'
-            click: -> currentItem.set(item)
-          }, 'Edit'
+    T.h1 "Rohan's Teenage Robot Turtles"
+    S.svg {
+      xmlns: "http://www.w3.org/2000/svg"
+      "xmlns:xlink": "http://www.w3.org/1999/xlink"
+      class: 'graphics'
+      width: 500
+      height: 300
+    }, bind ->[
+      S.defs [
+        S.g {id: "shape"}, [
+          S.ellipse {
+            cx:60
+            cy:50
+            rx: 10
+            ry: 30
+            fill:"red"
+            stroke:"blue"
+          }
         ]
-
-      # Create a new item
-       
-      button {
-        click: ->
-          title = "Item ##{items.length()+1}"
-          items.push(new Item(title))
-      }, 'Add Item'
-
-      # Edit selected item
-        
-      editor {
-        item: bind -> currentItem.get()
-        onSubmit: (data) ->
-          currentItem.get().data.set(data)
+      ]
+      S.use {
+        "xlink:href": "#shape"
+        x: 50
+        y: 50
       }
+      S.rect {
+        x:10
+        y:20
+        height:100
+        width:100
+        fill:"green"
+        stroke:"blue"
+        rx: 10
+        ry: 10
+      }
+      S.line {
+        x1:10
+        y1:10
+        x2: 100
+        y2: 300
+        stroke:"blue"
+      }
+      S.text {
+        id: "multi-line"
+        x: 100
+        y: 200
+      }, [
+        S.tspan "Multiple Text"
+        S.tspan {dy: 20}, "More Text"
+      ]
     ]
+    T.p {class: "text"}, "This is a non-SVG Element"
   )
 
 # Instantiate our main view
