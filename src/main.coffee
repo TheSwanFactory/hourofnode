@@ -34,14 +34,16 @@ main = ->
         fill: "#ccffcc"
         stroke: "black"
       }
-      x = 90;
-      S.line {
-        x1: x
-        y1: 0
-        x2: x
-        y2: map_size
-        stroke: "grey"
-      }
+      S.g [
+        x = 90;
+        S.line {
+          x1: x
+          y1: 0
+          x2: x
+          y2: map_size
+          stroke: "grey"
+        }
+      ]
     ]
     T.p {class: "text"}, "This is a post-SVG Element"
   )
