@@ -17,6 +17,16 @@ cell_count = 8
 cell_size = 90
 map_size = cell_count * cell_size 
 
+lines = [1,2,3]
+draw_xgrid = (x) ->
+  S.line {
+    x1: x
+    y1: 1
+    x2: x
+    y2: map_size-1
+    stroke: "#ffffff"
+  }
+
 main = ->
 
   $('body').append(
@@ -34,15 +44,10 @@ main = ->
         fill: "#ccffcc"
         stroke: "black"
       }
-      S.g [
-        x = 90;
-        S.line {
-          x1: x
-          y1: 0
-          x2: x
-          y2: map_size
-          stroke: "grey"
-        }
+      # lines.map (x) -> 
+      S.g {class: "grid-lines"},[
+        draw_xgrid(90)
+        draw_xgrid(180)
       ]
     ]
     T.p {class: "text"}, "This is a post-SVG Element"
