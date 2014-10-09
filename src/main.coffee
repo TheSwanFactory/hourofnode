@@ -17,9 +17,16 @@ S = rx.rxt.svg_tags
 main = ->
 
   $('body').append(
-    T.h1 "Rohan's Teenage Robot Turtles v4"
+    T.h1 "Rohan's Teenage Robot Turtles"
     S.svg {class: 'graphics'}, bind ->[
-      S.rect {x:10, y:20, height:100, width:100, fill:"blue", stroke:"red"}, bind -> [
+      S.rect {
+        x:10
+        y:20
+        height:100
+        width:100
+        fill:"green"
+        stroke:"blue"
+      }, bind -> [
         S.animatetransform {
           attributeName: "transform"
           begin: "0s"
@@ -31,7 +38,7 @@ main = ->
         }
       ] 
     ]
-    T.p "Why is this not working at #{(new Date()).toString()}"
+    T.p "Why is this not animating at #{(new Date()).toString()}"
   )
 
 # Instantiate our main view
