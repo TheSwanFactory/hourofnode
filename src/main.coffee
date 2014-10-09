@@ -18,7 +18,7 @@ main = ->
 
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
-    S.svg {class: 'graphics'}, bind ->[
+    S.svg {class: 'graphics', width: 500, height: 300}, bind ->[
       S.rect {
         x:10
         y:20
@@ -26,17 +26,16 @@ main = ->
         width:100
         fill:"green"
         stroke:"blue"
-      }, bind -> [
-        S.animatetransform {
-          attributeName: "transform"
-          begin: "0s"
-          dur: "20s"
-          type: "rotate"
-          from: "0 60 60"
-          to: "360 60 60"
-          repeatCount: "indefinite" 
-        }
-      ] 
+        rx: 10
+        ry: 10
+      }
+      S.circle {
+        cx:100
+        cy:150
+        r:20
+        fill:"red"
+        stroke:"blue"
+      }
     ]
     T.p "Why is this not animating at #{(new Date()).toString()}"
   )
