@@ -6,13 +6,11 @@ bind = rx.bind
 T = rx.rxt.tags
 S = rx.rxt.svg_tags
 
-
 # Dependencies
 
 # {items} = require('./model')
 # {editor} = require('./editor')
 {draw_grid} = require('./draw_grid')
-
 grid_size = 720
 grid_split = 8
 

@@ -19,10 +19,8 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       fill: "#ccffcc"
       stroke: "black"
     }
-    S.g {class: "grid-lines"},[
-      draw_xgrid(cell_size )
-      draw_xgrid(2*cell_size )
-      draw_ygrid(cell_size )
-      draw_ygrid(2*cell_size )
-    ]
+    S.g {class: "xgrid-lines"},[1..grid_split-1].map (n) ->
+      draw_xgrid(n*cell_size)
+    S.g {class: "ygrid-lines"},[1..grid_split-1].map (n) ->
+      draw_ygrid(n*cell_size)
   ]
