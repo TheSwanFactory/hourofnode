@@ -19,6 +19,23 @@ main = ->
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
     S.svg {class: 'graphics', width: 500, height: 300}, bind ->[
+      S.defs [
+        S.g {id: "def"}, [
+          S.ellipse {
+            cx:60
+            cy:50
+            rx: 10
+            ry: 30
+            fill:"red"
+            stroke:"blue"
+          }
+        ]
+      ]
+      S.use {
+        href="def"
+        x: 50
+        y: 50
+      }
       S.rect {
         x:10
         y:20
@@ -28,14 +45,6 @@ main = ->
         stroke:"blue"
         rx: 10
         ry: 10
-      }
-      S.ellipse {
-        cx:60
-        cy:50
-        rx: 10
-        ry: 30
-        fill:"red"
-        stroke:"blue"
       }
       S.line {
         x1:10
