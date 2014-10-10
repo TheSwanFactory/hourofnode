@@ -47,7 +47,8 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     x = i*cell_size
     y = j*cell_size
     path = "M#{x},#{y} "
-    path += draw_flipper(width,  1, 1)
+    for offset in [[1,1], [1,-1], [-1,1], [-1,-1]] 
+      path += draw_flipper(width, offset[0], offset[1])
     S.path {class: "path-turtle", d: path, stroke: "#00ff00", fill: "#88ff88"}
       
   grid_path = ""
