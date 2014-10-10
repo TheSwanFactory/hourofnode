@@ -49,7 +49,10 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     path = "M#{x},#{y} "
     for offset in [[1,1], [1,-1], [-1,1], [-1,-1]] 
       path += draw_flipper(width, offset[0], offset[1])
+    breadth = cell_size * 2 / 3
+    path += "m#{width},0 " + draw_arc(breadth, -3 / 2,0) + draw_arc(breadth, 3 / 2,0)
     S.path {class: "path-turtle", d: path, stroke: "#00ff00", fill: "#88ff88"}
+    
       
   grid_path = ""
   for n in [0..grid_size] by cell_size
