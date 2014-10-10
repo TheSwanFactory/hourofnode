@@ -12,10 +12,8 @@ SVG = rx.rxt.svg_tags
 {config} = require('./config')
 {draw} = require('./draw')
 
-#world = god(rx, config)
+world = god(rx, config)
 
-# {items} = require('./model')
-# {editor} = require('./editor')
 {draw_grid} = require('./draw_grid')
 grid_size = 640
 grid_split = 8
