@@ -17,13 +17,6 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     head = x + length
     half_width = width / 2
     S.g {class: "turtle"}, [
-      S.ellipse {
-        class: "body"
-        cx: x, cy: y
-        rx: length, ry: width
-        fill: "#00ff00"
-        stroke: "#88ff88"
-      }
       S.circle {
         class: "head"
         cx: head, cy: y
@@ -36,7 +29,20 @@ exports.draw_grid = (S, grid_size, grid_split) ->
         draw_leg(x+half_width, y-3*half_width)
         draw_leg(x-width, y-3*half_width)
       ]
+      S.ellipse {
+        class: "body"
+        cx: x, cy: y
+        rx: length, ry: width
+        fill: "#00ff00"
+        stroke: "#88ff88"
+      }
     ]
+  draw_turtle_path = (i, j) ->
+    x = i*cell_size
+    y = j*cell_size
+    path = "M#{x},#{y} H100 V100"
+    S.path {class: "path-turtle", d: path , stroke: "#00ff00"}
+      
   grid_path = ""
   for n in [0..grid_size] by cell_size
     grid_path += "M#{n},1 V#{grid_size-1} M1,#{n} H#{grid_size-1} "
@@ -50,4 +56,5 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     }
     S.path {class: "grid-lines", d: grid_path, stroke: "#ffffff"}
     draw_turtle(2,4)
+    draw_turtle_path(1,2)
   ]
