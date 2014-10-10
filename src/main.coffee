@@ -12,7 +12,7 @@ SVG = rx.rxt.svg_tags
 {config} = require('./config')
 {draw} = require('./draw')
 
-world = god(rx, config)
+#world = god(rx, config)
 
 # {items} = require('./model')
 # {editor} = require('./editor')
@@ -24,7 +24,7 @@ main = ->
 
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
-    draw(SVG, world)
+    #draw(SVG, world)
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
