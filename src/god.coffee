@@ -2,13 +2,18 @@
 
 class World
   constructor: (rx, doc) ->
-    @doc = rx.cell(doc)
+    @doc = rx.map()
+    for key, value of doc
+      @doc.put(key, value)
     
-  get: (path) ->
-    "not implemented yet"
+  get: (key) ->
+    @doc.get(key)
 
-  set: (path, value) ->
-    "not implemented yet"
+  put: (key, value) ->
+    @doc.put(key, value)
+    
+  toString: ->
+    @doc
 
 exports.god = (rx, doc) ->
   new World(rx, doc)

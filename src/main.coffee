@@ -22,6 +22,7 @@ main = ->
 
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
+    T.p "world: #{world.get('size')} pixels in #{ world.get('split')} chunks"
     #draw(SVG, world)
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
