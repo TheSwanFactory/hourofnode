@@ -41,6 +41,9 @@ exports.draw_grid = (S, grid_size, grid_split) ->
         draw_leg(x-width, y-3*half_width)
       ]
     ]
+  grid_path = ""
+  for n in [0..grid_size] by cell_size
+    grid_path += "M#{n},1 V#{grid_size-1} M1,#{n} H#{grid_size-1} "
   [
     S.rect {
       class: "grid-background"
@@ -49,10 +52,6 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       fill: "#ccffcc"
       stroke: "black"
     }
-    S.g {class: "grid-lines"},[1..grid_split-1].map (n) ->
-      S.g {class: "grid-lines n#{n}"}, [
-        draw_xgrid(n*cell_size)
-        draw_ygrid(n*cell_size)
-      ]
+    S.path {class: "grid-lines", d: grid_path, stroke: "#ffffff"}
     draw_turtle(2,4)
   ]
