@@ -39,14 +39,15 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     ]
   draw_arc = (width, x_sign, y_sign) ->
     "a#{width},#{width} 0 0,1 #{x_sign*width},#{y_sign*width} "
-    
+  draw_flipper = (width, x_sign, y_sign) ->
+    draw_arc(width, x_sign, y_sign) + draw_arc(width, -1*x_sign, -1*y_sign)
+        
   draw_turtle_path = (i, j) ->
     width = cell_size / 2
     x = i*cell_size
     y = j*cell_size
     path = "M#{x},#{y} "
-    path += draw_arc(width,  1, 1)
-    path += draw_arc(width, -1,-1)
+    path += draw_flipper(width,  1, 1)
     S.path {class: "path-turtle", d: path, stroke: "#00ff00", fill: "#88ff88"}
       
   grid_path = ""
