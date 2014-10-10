@@ -3,6 +3,8 @@
 class World
   constructor: (rx, doc) ->
     @doc = rx.map()
+    @rx = rx
+    @bind = rx.bind
     for key, value of doc
       @doc.put(key, value)
     

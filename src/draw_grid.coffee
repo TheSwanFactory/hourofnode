@@ -7,11 +7,7 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       stroke: "#ffffff"
     }
   draw_ygrid = (y) ->
-    S.line {
-      x1: 1,           y1: y
-      x2: grid_size-1, y2: y
-      stroke: "#ffffff"
-    }
+    S.path {d: "M1,#{y} L#{grid_size-1},#{y}", stroke: "#ffffff"}
   draw_leg = (x, y) ->
     size = cell_size * 0.5
     S.rect {
