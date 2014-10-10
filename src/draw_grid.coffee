@@ -1,9 +1,5 @@
 exports.draw_grid = (S, grid_size, grid_split) ->
   cell_size = grid_size / grid_split
-  draw_xgrid = (x) ->
-    S.path {d: "M#{x},1 V#{grid_size-1}", stroke: "#ffffff"}
-  draw_ygrid = (y) ->
-    S.path {d: "M1,#{y} H#{grid_size-1}", stroke: "#ffffff"}
   draw_leg = (x, y) ->
     size = cell_size * 0.5
     S.rect {
