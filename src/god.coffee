@@ -16,6 +16,9 @@ class World
   put: (key, value) ->
     @doc.put(key, value)
     
+  bind: (exp) ->
+    @bind exp
+    
   toString: ->
     @doc
 
