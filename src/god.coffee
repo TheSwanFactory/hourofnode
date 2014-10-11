@@ -6,6 +6,8 @@ class World
     @rx = rx
     @bind = rx.bind
     for key, value of doc
+      if value instanceof Object
+        value = new World(rx, value)
       @doc.put(key, value)
     
   get: (key) ->

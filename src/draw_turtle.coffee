@@ -18,5 +18,6 @@ exports.draw_turtle = (SVG, world) ->
     shell = cell_size * 2 / 3
     path += "m#{width / 2},0 " + draw_ellipse(shell , -3 / 2,0)
     SVG.path {class: "path-turtle", d: path, fill: "#88ff88"}
-
-  draw_turtle_path(3,2)
+  me = world.get("ME")
+  console.log(me)
+  draw_turtle_path(me.get("i"), me.get("j"))
