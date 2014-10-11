@@ -49,8 +49,10 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     path = "M#{x},#{y} "
     for offset in [[1,1], [1,-1], [-1,1], [-1,-1]] 
       path += draw_ellipse(width, offset[0], offset[1])
-    breadth = cell_size * 2 / 3
-    path += "m#{width},0 " + draw_ellipse(breadth, -3 / 2,0)
+    head = cell_size / 4
+    path += "m#{width / 3},0 " + draw_ellipse(head, 2,0)
+    shell = cell_size * 2 / 3
+    path += "m#{width / 2},0 " + draw_ellipse(shell , -3 / 2,0)
     S.path {class: "path-turtle", d: path, fill: "#88ff88"}
     
       
