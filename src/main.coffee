@@ -11,6 +11,7 @@ SVG = rx.rxt.svg_tags
 {god} = require('./god')
 {config} = require('./config')
 {draw} = require('./draw')
+{control} = require('./control')
 
 world = god(rx, config)
 
@@ -20,7 +21,7 @@ main = ->
     T.h1 "Rohan's Teenage Robot Turtles"
     T.p "world: #{world.get('size')} pixels in #{ world.get('split')} chunks"
     draw(SVG, world)
-    T.p {class: "text"}, "This is a post-SVG Element"
+    control(T, world)
   )
 
 # Instantiate our main view
