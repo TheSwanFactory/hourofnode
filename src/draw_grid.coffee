@@ -9,34 +9,6 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       width: size / 2
       fill: "#00aa00"
     }
-  draw_turtle = (i, j) ->
-    length = cell_size * 0.7
-    width = cell_size * 0.5
-    x = i*cell_size
-    y = j*cell_size
-    head = x + length
-    half_width = width / 2
-    S.g {class: "turtle"}, [
-      S.circle {
-        class: "head"
-        cx: head, cy: y
-        r: half_width
-        fill: "#00aa00"
-      }
-      S.g {class: "legs"}, [
-        draw_leg(x+half_width, y+half_width)
-        draw_leg(x-width, y+half_width)
-        draw_leg(x+half_width, y-3*half_width)
-        draw_leg(x-width, y-3*half_width)
-      ]
-      S.ellipse {
-        class: "body"
-        cx: x, cy: y
-        rx: length, ry: width
-        fill: "#00ff00"
-        stroke: "#88ff88"
-      }
-    ]
   draw_arc = (width, x_sign, y_sign) ->
     "a#{width},#{width} 0 0,1 #{x_sign*width},#{y_sign*width} "
   draw_ellipse = (width, x_sign, y_sign) ->
@@ -68,6 +40,5 @@ exports.draw_grid = (S, grid_size, grid_split) ->
       stroke: "black"
     }
     S.path {class: "grid-lines", d: grid_path, stroke: "#ffffff"}
-    draw_turtle(2,4)
     draw_turtle_path(1,2)
   ]
