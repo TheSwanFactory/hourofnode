@@ -13,6 +13,6 @@ exports.draw = (SVG, world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    draw_grid(SVG, grid_size, world)
+    draw_grid(SVG, world)
     draw_turtle(SVG, world)
   ]
