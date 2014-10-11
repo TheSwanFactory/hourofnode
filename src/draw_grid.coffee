@@ -1,4 +1,5 @@
-exports.draw_grid = (SVG, grid_size, cell_size) ->
+exports.draw_grid = (SVG, grid_size, world) ->
+  cell_size = world.get('scale')
   draw_leg = (x, y) ->
     size = cell_size * 0.5
     SVG.rect {

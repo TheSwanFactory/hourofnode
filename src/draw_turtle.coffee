@@ -3,7 +3,9 @@ draw_arc = (width, x_sign, y_sign) ->
 draw_ellipse = (width, x_sign, y_sign) ->
   draw_arc(width, x_sign, y_sign) + draw_arc(width, -1*x_sign, -1*y_sign)
 
-exports.draw_turtle = (SVG, cell_size) ->      
+exports.draw_turtle = (SVG, world) ->
+  cell_size = world.get('scale')
+        
   draw_turtle_path = (i, j) ->
     width = cell_size / 2
     x = i*cell_size
