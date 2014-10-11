@@ -39,7 +39,7 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     ]
   draw_arc = (width, x_sign, y_sign) ->
     "a#{width},#{width} 0 0,1 #{x_sign*width},#{y_sign*width} "
-  draw_flipper = (width, x_sign, y_sign) ->
+  draw_ellipse = (width, x_sign, y_sign) ->
     draw_arc(width, x_sign, y_sign) + draw_arc(width, -1*x_sign, -1*y_sign)
         
   draw_turtle_path = (i, j) ->
@@ -48,10 +48,10 @@ exports.draw_grid = (S, grid_size, grid_split) ->
     y = j*cell_size
     path = "M#{x},#{y} "
     for offset in [[1,1], [1,-1], [-1,1], [-1,-1]] 
-      path += draw_flipper(width, offset[0], offset[1])
+      path += draw_ellipse(width, offset[0], offset[1])
     breadth = cell_size * 2 / 3
-    path += "m#{width},0 " + draw_arc(breadth, -3 / 2,0) + draw_arc(breadth, 3 / 2,0)
-    S.path {class: "path-turtle", d: path, stroke: "#00ff00", fill: "#88ff88"}
+    path += "m#{width},0 " + draw_ellipse(breadth, -3 / 2,0)
+    S.path {class: "path-turtle", d: path, fill: "#88ff88"}
     
       
   grid_path = ""
