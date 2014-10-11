@@ -1,4 +1,5 @@
 {draw_grid} = require('./draw_grid')
+{draw_turtle} = require('./draw_turtle')
 
 exports.draw = (SVG, world) ->
   grid_size = world.get('size')
@@ -13,4 +14,5 @@ exports.draw = (SVG, world) ->
     height: grid_size  
   }, _.flatten [
     draw_grid(SVG, grid_size, cell_size)
+    draw_turtle(SVG, cell_size)
   ]
