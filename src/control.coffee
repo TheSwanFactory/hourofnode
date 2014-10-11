@@ -3,7 +3,7 @@ exports.control = (T, world) ->
   T.div {class: "controls"}, [
     T.div {class: "controls"}, [
       T.button {
-        init: -> @click =>
+        click: ->
           console.log(me.get("j"))
           me.put("j", me.get("j") - 1)
           console.log(me.get("j"))
