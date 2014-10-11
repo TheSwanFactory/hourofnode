@@ -11,4 +11,10 @@ exports.config = {
         path  += "M#{n},1 V#{size -1} M1,#{n} H#{size -1} "
       path 
   }
+  ME: {
+    isa: "turtle"
+    i: 1
+    j: 2
+    fill: "#88ff88"
+  }
 }

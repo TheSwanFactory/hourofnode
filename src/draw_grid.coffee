@@ -1,5 +1,4 @@
-exports.draw_grid = (S, grid_size, grid_split) ->
-  cell_size = grid_size / grid_split
+exports.draw_grid = (S, grid_size, cell_size) ->
   draw_leg = (x, y) ->
     size = cell_size * 0.5
     S.rect {
