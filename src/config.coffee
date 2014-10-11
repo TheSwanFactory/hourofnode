@@ -1,6 +1,6 @@
 exports.config = {
-  size: 640
-  split: 8
+  size: 480
+  split: 6
   grid_path: {
     isa: "closure"
     args: ["size", "split"]
