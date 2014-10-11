@@ -1,8 +1,12 @@
 exports.control = (T, world) ->
+  me = world.get("ME")
   T.div {class: "controls"}, [
     T.div {class: "controls"}, [
       T.button {
-        init: -> @click => $(this).text('I been clicked.')
+        init: -> @click =>
+          console.log(me.get("j"))
+          me.put("j", me.get("j") - 1)
+          console.log(me.get("j"))
       }, "West"
       T.button "North"
       T.button "South"
