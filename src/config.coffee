@@ -13,8 +13,8 @@ exports.config = {
   }
   ME: {
     isa: "turtle"
-    i: 1
-    j: 2
+    i: 3
+    j: 3
     fill: "#88ff88"
   }
 }
