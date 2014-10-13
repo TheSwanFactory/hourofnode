@@ -7,22 +7,17 @@ draw_legs = (scale) ->
   draw_leg(scale, 1, -1) + draw_leg(scale, 1, 1) + 
   draw_leg(scale, -1, -1) + draw_leg(scale, -1, 1)
 
-draw_face = (scale, dir) ->
-  "m#{dir*3.5*scale},0 
-   a20,#{10+dir*5} 0 0,0 #{2*dir*scale},0 
-   a20,#{10-dir*5} 0 0,0 #{-2*dir*scale},0 
-   z "
+draw_face = (scale) ->
+  "m#{2.5*scale},0 
+   a3,2 0 0,0 #{2*scale},0 
+   a3,2 0 0,0 #{-2*scale},0 
+   z m#{-3.5*scale},0"
    
-draw_faces = (scale, dir) ->
-  draw_face(scale, 1) + draw_face(scale, -1)
-
-draw_tail = (scale, dir) ->
-  "m#{-3.2*scale},#{dir*0.3}
+draw_eyes = (scale) ->
+  "m#{3.3*scale},0.3
    a3,2 0 1,0 #{-0.4*scale},0
    a3,2 0 1,0 #{0.4*scale},0
    z "
-draw_tails = (scale, dir) ->
-  draw_tail(scale, 1) + draw_tail(scale, -1)
 
 draw_shell = (scale) ->
   "m#{-3*scale},0 a3,2 0 1,0 #{6*scale},0 
@@ -35,7 +30,7 @@ exports.draw_turtle = {
       scale = world.get('scale') / 10
       console.log(scale)
       [
-        draw_legs(scale) #+ draw_faces(scale) + draw_tails(scale)
+        draw_legs(scale) + draw_face(scale)# + draw_eyes(scale)
         draw_shell(scale)
       ] 
     children: {
@@ -45,7 +40,7 @@ exports.draw_turtle = {
         fill: "#88ff88"
         path: (world, args) -> 
           scale = world.get('scale')
-          x = world.get('i') + 0.5 * scale
+          x = world.get('i') + 0.4 * scale
           y = world.get('j') + 0.5 * scale
           rel_paths = world.call('rel_paths', args)
           ("M#{x},#{y} " + path for path in rel_paths)
