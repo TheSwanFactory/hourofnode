@@ -49,7 +49,7 @@ class World
     
 class Root
   get_raw: (key, world) ->
-    console.log "#{key} not found"
+    console.log "#{key} not found from world:"
     console.log world
   toString: ->
     "Root"
