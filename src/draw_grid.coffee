@@ -11,6 +11,8 @@ exports.draw_grid = (SVG, world) ->
       fill: "#00aa00"
     }    
       
+  config_path = world.get('grid_path')
+  console.log(config_path )
   grid_path = ""
   for n in [0..grid_size] by cell_size
     grid_path += "M#{n},1 V#{grid_size-1} M1,#{n} H#{grid_size-1} "
@@ -22,6 +24,6 @@ exports.draw_grid = (SVG, world) ->
       fill: "#ccffcc"
       stroke: "black"
     }
-    SVG.text {x: 100, y:100}, "Test"
+    #SVG.text {x: 100, y:100}, config_path.toString()
     SVG.path {class: "grid-lines", d: grid_path, stroke: "#ffffff"}
   ]

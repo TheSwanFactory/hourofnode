@@ -1,4 +1,11 @@
 # Data model
+normalize_value = (value) ->
+  if typeof(value) == "function"
+    value
+  else if value instanceof Object
+    value = new World(rx, value)
+  else
+    value
 
 class World
   constructor: (rx, doc) ->
@@ -6,8 +13,7 @@ class World
     @rx = rx
     @bind = rx.bind
     for key, value of doc
-      if value instanceof Object
-        value = new World(rx, value)
+      value = normalize_value(value)
       @doc.put(key, value)
     
   get: (key) ->
