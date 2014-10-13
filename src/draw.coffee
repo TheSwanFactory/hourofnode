@@ -25,7 +25,7 @@ exports.draw = (SVG, world) ->
       SVG.g {
         class: 'transform'
         #transform: "rotate(90)"
-      }, _.flatten [
+      }, world.bind -> _.flatten [
         draw_path(label,world)
       ]
   ]

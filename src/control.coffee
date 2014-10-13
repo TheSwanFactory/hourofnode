@@ -1,11 +1,12 @@
 
 exports.control = (T, world) ->
-  me = world.get("ME")
+  me = world.get("turtles").get("children").get("ME")
   size = world.get("size")
   draw_button = (label, dir, delta) ->
     T.button {
       class: ["control", "dir", label]
-      click: -> me.put(dir, me.get(dir) + delta)
+      click: ->
+        me.put(dir, me.get(dir) + delta)
     }, label
   T.div {
     class: "controls"
