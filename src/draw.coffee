@@ -1,5 +1,3 @@
-{draw_turtle} = require('./draw_turtle')
-
 exports.draw = (SVG, world) ->
   grid_size = world.get('size')
   grid_split = world.get('split')
