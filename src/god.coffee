@@ -19,7 +19,7 @@ class World
 
   get_raw: (key, world=this) ->
     value = @get_local(key)
-    if (value? || !@up?) then value else @up.get_raw(key, this)
+    if value? then value else @up.get_raw(key, this)
 
   get: (key) ->
     value = @get_raw(key)

@@ -9,7 +9,7 @@ exports.config = {
       stroke: "black"
       path: (world, args) ->
         size = world.get('size')
-        "M0,0 h#{size / 2 } v#{size} h-#{size} v#{-size}"
+        "M0,0 h#{size} v#{size} h-#{size} v#{-size}"
     }
   }
   grid_path: (world, args) ->
