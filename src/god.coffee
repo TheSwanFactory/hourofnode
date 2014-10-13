@@ -19,11 +19,11 @@ class World
       value = normalize_value(rx, value)
       @doc.put(key, value)
     
-  get: (key) ->
+  get_raw: (key) ->
     @doc.get(key)
 
-  get_value: (key) ->
-    value = @doc.get(key)
+  get: (key) ->
+    value = @get_raw(key)
     if isFunction(value)
       return value(this,{})
     value
@@ -32,7 +32,7 @@ class World
     @doc.put(key, value)
 
   call: (key, args) ->
-    closure = @doc.get(key)
+    closure = @get_raw(key)
     closure(this, args)
     
   bind: (exp) ->
