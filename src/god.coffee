@@ -1,6 +1,9 @@
 # Data model
+isFunction = (value) ->
+  typeof(value) == "function"
+  
 normalize_value = (rx, value) ->
-  if typeof(value) == "function"
+  if isFunction(value)
     value
   else if value instanceof Object
     value = new World(rx, value)
@@ -18,6 +21,10 @@ class World
     
   get: (key) ->
     @doc.get(key)
+
+  get_value: (key) ->
+    value = @doc.get(key)
+    value
 
   put: (key, value) ->
     @doc.put(key, value)
