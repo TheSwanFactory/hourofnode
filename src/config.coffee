@@ -1,27 +1,12 @@
+{draw_turtle} = require('./draw_turtle')
+{draw_grid} = require('./draw_grid')
+
 exports.config = {
   size: 480
   split: 6
   scale: (world, args) ->
     world.get('size') / world.get('split')
-  grid: {
-    background: {
-      fill: "#ccffcc"
-      stroke: "black"
-      path: (world, args) ->
-        size = world.get('size')
-        "M0,0 h#{size} v#{size} h-#{size} v#{-size}"
-    }
-    gridlines: {
-      stroke: "white"
-      path: (world, args) ->
-        size = world.get('size')
-        scale = world.get('scale')
-        path = ""
-        for n in [scale..size-1] by scale 
-          path  += "M#{n},1 V#{size - 1} M1,#{n} H#{size - 1} "
-        path 
-    }
-  }
+  grid: draw_grid
   turtles: {
     stroke: "green"
     path: (world, args) ->
