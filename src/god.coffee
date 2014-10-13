@@ -15,6 +15,10 @@ class World
 
   put: (key, value) ->
     @doc.put(key, value)
+
+  call: (key, args) ->
+    closure = @doc.get(key)
+    closure(this, args)
     
   bind: (exp) ->
     @bind exp
