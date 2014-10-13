@@ -1,10 +1,11 @@
 draw_leg = (scale, offset, dir) ->
+  arc = if dir < 1 then 0 else 1
   "m#{offset*scale},0 l#{scale},#{dir*3*scale}
-   a10,20 0 1,0 #{-1*scale},#{-1*dir*3*scale}z "
+   a1,2 0 1,#{arc} #{-1*scale},#{-1*dir*3*scale}z m#{-offset*scale},0"
   
 draw_legs = (scale) ->
-  draw_leg(scale, 1, -1) + draw_leg(scale, 1, 1) +
-  draw_leg(scale, 1, -1) + draw_leg(scale, 1, 1)
+  draw_leg(scale, 1, -1) + draw_leg(scale, 1, 1) + 
+  draw_leg(scale, -1, -1) + draw_leg(scale, -1, 1)
 
 draw_face = (scale, dir) ->
   "m#{dir*3.5*scale},0 
@@ -23,7 +24,6 @@ draw_tail = (scale, dir) ->
 draw_tails = (scale, dir) ->
   draw_tail(scale, 1) + draw_tail(scale, -1)
 
-# <path stroke="green" fill="#88ff88" d="M43,43 m-24,0 a3,2 0 1,0 48,0 m0,0 a3,2 0 1,0 -48,0z" class="draw_path ME"></path>
 draw_shell = (scale) ->
   "m#{-3*scale},0 a3,2 0 1,0 #{6*scale},0 
    m0,0           a3,2 0 1,0 #{-6*scale},0z
@@ -35,7 +35,7 @@ exports.draw_turtle = {
       scale = world.get('scale') / 10
       console.log(scale)
       [
-        #draw_legs(scale) + draw_faces(scale) + draw_tails(scale)
+        draw_legs(scale) #+ draw_faces(scale) + draw_tails(scale)
         draw_shell(scale)
       ] 
     children: {
