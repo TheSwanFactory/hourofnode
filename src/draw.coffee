@@ -7,7 +7,7 @@ exports.draw = (SVG, world) ->
 
   draw_path = (label, doc) ->
     SVG.path {
-      class: "draw #{label}"
+      class: "draw_path #{label}"
       d: doc['path']
       stroke: doc['stroke']
       fill: doc['fill']

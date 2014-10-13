@@ -20,6 +20,5 @@ exports.draw_grid = (SVG, world) ->
       fill: "#ccffcc"
       stroke: "black"
     }
-    #SVG.text {x: 100, y:100}, config_path.toString()
     SVG.path {class: "grid-lines", d: grid_path, stroke: "#ffffff"}
   ]
