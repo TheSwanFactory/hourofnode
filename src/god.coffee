@@ -10,22 +10,17 @@ class World
     @label = label
     @up = up
     for key, value of doc
-      value = normalize_value(key, value)
+      if value instanceof Object && !isFunction(value)
+        value = new World(rx, key, value, this)
       @doc.put(key, value)
-    
-  normalize_value = (key, value) ->
-    if isFunction(value)
-      value
-    else if value instanceof Object
-      value = new World(@rx, key, value, this)
-    else
-      value
     
   get_local: (key, world) ->
     @doc.get(key)
 
   get_raw: (key) ->
-    @get_local(key, this) or @up.get_local(key, this)
+    value = @get_local(key, this)
+    console.log("get_raw: (#{key},#{value}) -> #{this}")
+    @get_local(key, this) || @up.get_local(key, this)
 
   get: (key) ->
     value = @get_raw(key)
@@ -52,7 +47,7 @@ class World
     result
 
   toString: ->
-    @doc.toString()
+    "World:#{@label}"
     
 class Root
   get_local: (key, world) ->
