@@ -1,21 +1,22 @@
-arc_path = (width, x_sign, y_sign) ->
-  "a#{width},#{width} 0 0,1 #{x_sign*width},#{y_sign*width} "
-ellipse_path = (width, x_sign, y_sign) ->
-  arc_path(width, x_sign, y_sign) + arc_path(width, -1*x_sign, -1*y_sign)
-turtle_path = (cell_size) ->
-  path = ""
-  width = cell_size / 2
-  for offset in [[1,1], [1,-1], [-1,1], [-1,-1]] 
-    path += ellipse_path(width, offset[0], offset[1])
-  head = cell_size / 4
-  path += "m#{width / 3},0 " + ellipse_path(head, 2,0)
-  shell = cell_size * 2 / 3
-  path += "m#{width / 2},0 " + ellipse_path(shell , -3 / 2,0)
-
-exports.draw_turtle = (SVG, world) ->
-  cell_size = world.get('scale')
-  me = world.get("ME")
-  x = me.bind -> me.get("i") * cell_size
-  y = me.bind -> me.get("j") * cell_size
-  path = me.bind -> "M#{x.get()},#{y.get()} " + turtle_path(cell_size)
-  SVG.path {class: "path-turtle", d: path, fill: "#88ff88"}
+exports.draw_turtle = {
+    stroke: "green"
+    path: (world, args) ->
+      size = world.get('size')
+      scale = world.get('scale')
+      path = "M600,500 l100,-300 a10,20 0 1,0 -100,300z
+               M600,500 l100,300  a10,20 0 0,1 -100,-300z
+               M400,500 l100,-300 a10,20 0 1,0 -100,300z
+               M400,500 l100,300  a10,20 0 0,1 -100,-300z
+               M100,500 a20,15 0 0,0 200,0 a20,15 0 0,0 -200,0z
+               M850,500 a20,5 0 0,0 -200,0 a20,5 0 0,0 200,0z
+              M180,530 a3,2 0 1,0 -40,0 a3,2 0 1,0 40,0z
+              M180,470 a3,2 0 1,0 -40,0 a3,2 0 1,0 40,0z
+      " 
+    children: {
+      ME: {
+        i: 3
+        j: 3
+        fill: "#88ff88"
+      }
+    }
+  }
