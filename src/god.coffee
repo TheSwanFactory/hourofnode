@@ -42,7 +42,6 @@ class World
     for key in Object.keys(@doc.x)
       value = @get_raw(key)
       result.push callback(key, value)
-    console.log result
     result
 
   toString: ->
