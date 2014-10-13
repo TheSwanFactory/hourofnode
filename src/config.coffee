@@ -1,7 +1,7 @@
 exports.config = {
   size: 480
   split: 6
-  scale2: (world, args) ->
+  scale: (world, args) ->
     world.get('size') / world.get('split')
   grid_path: (world, args) ->
     size = world.get('size')
