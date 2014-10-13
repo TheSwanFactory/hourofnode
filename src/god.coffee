@@ -51,6 +51,7 @@ class Root
   get_raw: (key, world) ->
     console.log "#{key} not found from world:"
     console.log world
+    undefined
   toString: ->
     "Root"
     

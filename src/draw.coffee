@@ -5,12 +5,16 @@ exports.draw = (SVG, world) ->
   grid_split = world.get('split')
 
   draw_path = (label, world) ->
-    SVG.path {
+    dict = {
       class: "draw_path #{label}"
-      d: world.get 'path'
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
+    paths = world.get 'path'
+    paths = [paths] if paths !instanceof Array
+    for path in paths
+      dict['d'] = path
+      SVG.path dict
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
@@ -19,4 +23,5 @@ exports.draw = (SVG, world) ->
     height: grid_size  
   }, _.flatten [
     world.get('grid').map draw_path
+    draw_turtle(SVG, world)
   ]
