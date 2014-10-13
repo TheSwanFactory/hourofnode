@@ -1,4 +1,3 @@
-{draw_grid} = require('./draw_grid')
 {draw_turtle} = require('./draw_turtle')
 
 exports.draw = (SVG, world) ->
