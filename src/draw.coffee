@@ -23,5 +23,6 @@ exports.draw = (SVG, world) ->
     height: grid_size  
   }, _.flatten [
     world.get('grid').map draw_path
-    draw_turtle(SVG, world)
+    world.get('turtles').get('children').map draw_path
+    #draw_turtle(SVG, world)
   ]
