@@ -11,7 +11,7 @@ exports.draw_grid = (SVG, world) ->
       fill: "#00aa00"
     }    
       
-  grid_path = world.call('grid_path')
+  grid_path = world.get_value('grid_path')
   [
     SVG.rect {
       class: "grid-background"
