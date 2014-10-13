@@ -19,8 +19,8 @@ class World
 
   get_raw: (key) ->
     value = @get_local(key, this)
-    console.log("get_raw: (#{key},#{value}) -> #{this}")
-    @get_local(key, this) || @up.get_local(key, this)
+    console.log("get_raw: #{this}:(#{key},#{value}) -> #{@up}")
+    if value? then value else @up.get_local(key, this)
 
   get: (key) ->
     value = @get_raw(key)
@@ -53,7 +53,9 @@ class Root
   get_local: (key, world) ->
     console.log "#{key} not found"
     console.log world
-  
+  toString: ->
+    "Root"
+    
 exports.god = (rx, doc) ->
   root = new Root()
   new World(rx, "world", doc, root)
