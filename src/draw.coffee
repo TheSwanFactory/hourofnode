@@ -5,14 +5,14 @@ exports.draw = (SVG, world) ->
   grid_size = world.get('size')
   grid_split = world.get('split')
 
-  draw_path = (label, doc) ->
-    console.log(label)
-    console.log(doc)
+  draw_path = (label, world) ->
+    console.log "draw_path #{label}"
+    console.log(world)
     SVG.path {
       class: "draw_path #{label}"
-      d: doc['path']
-      stroke: doc['stroke']
-      fill: doc['fill']
+      d: world.get 'path'
+      stroke: world.get 'stroke'
+      fill: world.get 'fill'
     }
   console.log(world)
   SVG.svg {

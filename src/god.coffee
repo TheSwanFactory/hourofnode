@@ -20,11 +20,10 @@ class World
       @doc.put(key, value)
     
   map: (callback) ->
-    console.log Object.keys(@doc.x)
     result = []
     for key in Object.keys(@doc.x)
       value = @get_raw(key)
-      result += callback(key, value)
+      result.push callback(key, value)
     console.log result
     result
     
