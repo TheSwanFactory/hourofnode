@@ -1,5 +1,5 @@
 # Data model
-normalize_value = (value) ->
+normalize_value = (rx, value) ->
   if typeof(value) == "function"
     value
   else if value instanceof Object
@@ -13,7 +13,7 @@ class World
     @rx = rx
     @bind = rx.bind
     for key, value of doc
-      value = normalize_value(value)
+      value = normalize_value(rx, value)
       @doc.put(key, value)
     
   get: (key) ->

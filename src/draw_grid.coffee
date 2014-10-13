@@ -11,7 +11,7 @@ exports.draw_grid = (SVG, world) ->
       fill: "#00aa00"
     }    
       
-  config_path = world.get('grid_path')
+  config_path = world.call('grid_path')
   console.log(config_path )
   grid_path = ""
   for n in [0..grid_size] by cell_size
