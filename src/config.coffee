@@ -3,6 +3,15 @@ exports.config = {
   split: 6
   scale: (world, args) ->
     world.get('size') / world.get('split')
+  view: {
+    background: {
+      fill: "#ccffcc"
+      stroke: "black"
+      path: (world, args) ->
+        size = world.get('size')
+        "M0,0 h#{size / 2 } v#{size} h-#{size} v#{-size}"
+    }
+  }
   grid_path: (world, args) ->
     size = world.get('size')
     scale = world.get('scale ')
