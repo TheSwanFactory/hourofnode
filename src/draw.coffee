@@ -18,4 +18,6 @@ exports.draw = (SVG, world) ->
     class: 'svg_grid'
     width: grid_size  
     height: grid_size  
-  }, world.get('paths').map draw_path
+  }, _.flatten [
+    world.get('paths').map draw_path
+  ]
