@@ -11,11 +11,7 @@ exports.draw_grid = (SVG, world) ->
       fill: "#00aa00"
     }    
       
-  config_path = world.call('grid_path')
-  console.log(config_path )
-  grid_path = ""
-  for n in [0..grid_size] by cell_size
-    grid_path += "M#{n},1 V#{grid_size-1} M1,#{n} H#{grid_size-1} "
+  grid_path = world.call('grid_path')
   [
     SVG.rect {
       class: "grid-background"
