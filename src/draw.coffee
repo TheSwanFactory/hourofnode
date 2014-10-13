@@ -22,5 +22,10 @@ exports.draw = (SVG, world) ->
   }, _.flatten [
     world.get('grid').map draw_path
     world.get('turtles').get('children').map (label, world) ->
-      draw_path(label,world)
+      SVG.g {
+        class: 'transform'
+        #transform: "rotate(90)"
+      }, _.flatten [
+        draw_path(label,world)
+      ]
   ]
