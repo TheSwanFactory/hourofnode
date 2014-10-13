@@ -24,6 +24,8 @@ class World
 
   get_value: (key) ->
     value = @doc.get(key)
+    if isFunction(value)
+      return value(this,{})
     value
 
   put: (key, value) ->
