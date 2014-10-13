@@ -14,13 +14,12 @@ class World
         value = new World(rx, key, value, this)
       @doc.put(key, value)
     
-  get_local: (key, world) ->
+  get_local: (key) ->
     @doc.get(key)
 
-  get_raw: (key) ->
-    value = @get_local(key, this)
-    console.log("get_raw: #{this}:(#{key},#{value}) -> #{@up}")
-    if value? then value else @up.get_local(key, this)
+  get_raw: (key, world=this) ->
+    value = @get_local(key)
+    if (value? || !@up?) then value else @up.get_raw(key, this)
 
   get: (key) ->
     value = @get_raw(key)
@@ -50,7 +49,7 @@ class World
     "World:#{@label}"
     
 class Root
-  get_local: (key, world) ->
+  get_raw: (key, world) ->
     console.log "#{key} not found"
     console.log world
   toString: ->
