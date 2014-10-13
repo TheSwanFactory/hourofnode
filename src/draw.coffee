@@ -19,5 +19,5 @@ exports.draw = (SVG, world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    world.get('paths').map draw_path
+    world.get('grid').map draw_path
   ]
