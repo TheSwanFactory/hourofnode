@@ -1,5 +1,5 @@
 exports.control = (T, world) ->
-  me = world.get("turtles").get("children").get("ME")
+  me = world.getChildren("turtles").get("ME")
   size = world.get("size")
 
   draw_buttons = (label, world) ->
@@ -14,7 +14,7 @@ exports.control = (T, world) ->
     style: "margin-top: -#{size}px; margin-left: #{size}px;"
   }, [
     T.div {class: "instructions declarative"}, world.bind -> _.flatten [
-      world.get('controls').get('children').map draw_buttons
+      world.getChildren('controls').map draw_buttons
     ]
     T.p "More coming soon..."
   ]

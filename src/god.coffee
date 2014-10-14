@@ -26,6 +26,9 @@ class World
     if isFunction(value)
       return value(this,{})
     value
+    
+  getChildren: (key) ->
+    @get(key).get('_children')
 
   put: (key, value) ->
     @doc.put(key, value)
