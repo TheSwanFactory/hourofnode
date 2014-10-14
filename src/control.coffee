@@ -24,7 +24,7 @@ exports.control = (T, world) ->
       draw_button("East", "i", 1)
     ]
     T.div {class: "instructions relative"}, [
-      draw_caller('forward')
+      draw_caller('go')
       draw_caller('left')
       draw_caller('right')
     ]
