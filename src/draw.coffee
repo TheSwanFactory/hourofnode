@@ -17,7 +17,7 @@ exports.draw = (SVG, world) ->
   draw_world = (label, world) ->
     SVG.g {
       class: 'transform'
-      transform: bind -> world.get('transform')
+      transform: world.get('transform')
     }, world.bind -> _.flatten [
       draw_path(label,world)
     ]
