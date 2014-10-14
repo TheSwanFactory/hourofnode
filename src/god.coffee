@@ -29,11 +29,12 @@ class World
     
   getChildren: (key) ->
     source = if key? then @get(key) else this
-    children = source.get_local('_children')
-    return children if children?
-    children = new World(@rx, '_children', {}, source)
-    source.put('_children', children)
-    children
+    source.get('_children')
+    #children = source.get_local('_children')
+    #return children if children?
+    #children = new World(@rx, '_children', {}, source)
+    #source.put('_children', children)
+    #children
 
   put: (key, value) ->
     @doc.put(key, value)

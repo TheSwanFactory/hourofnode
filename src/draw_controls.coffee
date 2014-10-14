@@ -1,9 +1,11 @@
 exports.draw_controls = {
-  common: "value"
+  queue: {}
   _children: {
     instructions: {
       click: (world, {turtle, key, value}) ->
+        queue = world.get('queue')
         -> turtle.call(key, {dir: value})
+        # activity.create(key, {dir: value})
       _children: {
         Left: {turn: 1}
         Go: {go: 0}
