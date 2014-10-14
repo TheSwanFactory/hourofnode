@@ -1,9 +1,7 @@
 exports.draw_controls = {
   click: (world, {turtle, key, value}) ->
     -> turtle.call(key, {dir: value})
-  queue: {
-    Go: {go: 0}
-  }
+  queue: {}
   _children: {
     instructions: {
       click: (world, {turtle, key, value}) ->

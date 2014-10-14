@@ -5,9 +5,10 @@ exports.control = (T, world) ->
   draw_buttons = (label, args) ->
     console.log args
     T.span {class: [label, "buttons"]}, args.map (key, value) ->
+      dict = {turtle: me, label: label, key: key, value: value}
       T.button {
         class: [key, value]
-        click: args.call('click', {turtle: me, key: key, value: value})
+        click: args.call('click', dict)
       }, label
 
   controls = world.getChildren('controls')
