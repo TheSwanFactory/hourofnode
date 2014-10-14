@@ -1,8 +1,8 @@
 exports.draw_controls = {
-    fill: "grey"
-    stroke: "black"
-    path: (world, args) -> 
-      size = world.get('scale')
-      "M0,0 h#{size} v#{size} h-#{size} v#{-size}"
-      # TODO: Create high-level rect path
+  common: "value"
+  children: {
+    Go: {go: 0}
+    Left: {turn: 1}
+    Right: {turn: -1}    
+  }
 }
