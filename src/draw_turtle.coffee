@@ -43,14 +43,10 @@ exports.draw_turtle = {
     go: (world, args) ->
       world.reset('i', world.get('v_i'))
       world.reset('j', world.get('v_j'))
-    right: (world, args) ->
-      next_v_i = -world.get('v_j')
-      next_v_j =  world.get('v_i')
-      world.put('v_i', next_v_i )
-      world.put('v_j', next_v_j )
-    left: (world, args) ->
-      next_v_i =  world.get('v_j')
-      next_v_j = -world.get('v_i')
+    turn: (world, args) ->
+      {dir} = args
+      next_v_i =  dir*world.get('v_j')
+      next_v_j = -dir*world.get('v_i')
       world.put('v_i', next_v_i )
       world.put('v_j', next_v_j )
     children: {

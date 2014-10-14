@@ -7,12 +7,12 @@ exports.control = (T, world) ->
       class: ["control", dir, label]
       click: -> me.reset(dir, delta)
     }, label
-  draw_caller = (key) ->
+  draw_caller = (key, dir) ->
     label = key[0].toUpperCase() + key[1..-1].toLowerCase()
     T.button {
       class: ["control", key, label]
-      click: -> me.call(key)
-    }, label
+      click: -> me.call(key, {dir: dir})
+    }, "#{label} #{dir}"
   T.div {
     class: "controls"
     style: "margin-top: -#{size}px; margin-left: #{size}px;"
@@ -25,8 +25,8 @@ exports.control = (T, world) ->
     ]
     T.div {class: "instructions relative"}, [
       draw_caller('go')
-      draw_caller('left')
-      draw_caller('right')
+      draw_caller('turn',  1)
+      draw_caller('turn', -1)
     ]
     T.p "More coming soon..."
   ]
