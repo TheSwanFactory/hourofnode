@@ -34,8 +34,7 @@ exports.draw_turtle = {
       angle = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
       angle = -angle if world.get('v_j') == -1
       "translate(#{x},#{y}) rotate(#{angle})"
-      
-    rel_paths: (world, args) -> 
+    path: (world, args) -> 
       scale = world.get('scale') / 10
       console.log(scale)
       [
@@ -49,12 +48,6 @@ exports.draw_turtle = {
         v_i: 1
         v_j: 0
         fill: "#88ff88"
-        path: (world, args) -> 
-          scale = world.get('scale')
-          x = world.get('i') + 0.4 * scale
-          y = world.get('j') + 0.5 * scale
-          rel_paths = world.call('rel_paths', args)
-          ("M#{x},#{y} " + path for path in rel_paths)
       }
     }
   }

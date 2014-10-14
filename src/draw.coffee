@@ -13,6 +13,15 @@ exports.draw = (SVG, world) ->
     for path in paths
       dict['d'] = path
       SVG.path dict
+      
+  draw_world = (label, world) ->
+    SVG.g {
+      class: 'transform'
+      transform: world.get('transform')
+    }, world.bind -> _.flatten [
+      draw_path(label,world)
+    ]
+    
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
@@ -20,12 +29,6 @@ exports.draw = (SVG, world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    world.get('grid').map draw_path
-    world.get('turtles').get('children').map (label, turtle) ->
-      SVG.g {
-        class: 'transform'
-        transform: turtle.get('transform')
-      }, turtle.bind -> _.flatten [
-        draw_path(label,world)
-      ]
+    world.get('grid').map draw_world
+    world.get('turtles').get('children').map draw_world
   ]
