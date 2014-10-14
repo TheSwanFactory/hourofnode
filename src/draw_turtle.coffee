@@ -27,9 +27,11 @@ draw_shell = (scale) ->
 exports.draw_turtle = {
     stroke: "green"
     transform: (world, args) ->
+      console.log("transform #{world}:")
+      console.log world
       scale = world.get('scale')
-      x = scale*(world.get('i') + 0.5)
-      y = scale*(world.get('j') + 0.5)
+      x = scale*(world.get('i')+0.5)
+      y = scale*(world.get('j')+0.5)
       # console.log("turtle.transform #{world}" )
       # TODO: perform real triginometry
       angle = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
@@ -43,8 +45,8 @@ exports.draw_turtle = {
       ]
     children: {
       ME: {
-        i: 4.0
-        j: 4.0
+        i: 2
+        j: 1
         v_i: 0
         v_j: -1
         fill: "#88ff88"
