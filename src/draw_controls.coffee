@@ -3,9 +3,8 @@ exports.draw_controls = {
   _children: {
     instructions: {
       click: (world, args) ->
-        turtle = args.get 'turtle'
-        key = args.get 'key'
-        value = args.get 'value'
+        console.log ("click #{world} #{args}")
+        {turtle, key, value} = args
         -> turtle.call(key, {dir: value})
       _children: {
         Left: {turn: 1}
