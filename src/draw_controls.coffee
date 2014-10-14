@@ -2,9 +2,7 @@ exports.draw_controls = {
   common: "value"
   _children: {
     instructions: {
-      click: (world, args) ->
-        console.log ("click #{world} #{args}")
-        {turtle, key, value} = args
+      click: (world, {turtle, key, value}) ->
         -> turtle.call(key, {dir: value})
       _children: {
         Left: {turn: 1}

@@ -7,7 +7,6 @@ exports.control = (T, world) ->
       T.button {
         class: [key, value]
         click: args.call('click', {turtle: me, key: key, value: value})
-          #-> me.call(key, {dir: value})
       }, label
 
   controls = world.getChildren('controls')
