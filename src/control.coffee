@@ -26,7 +26,7 @@ exports.control = (T, world) ->
       draw_caller('go', 0)
       draw_caller('turn', -1)
     ]
-    T.div {class: "instructions declarative"}, [
+    T.div {class: "instructions declarative"}, world.bind -> _.flatten [
       world.get('controls').get('children').map draw_buttons
     ]
     T.p "More coming soon..."
