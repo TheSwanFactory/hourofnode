@@ -6,7 +6,8 @@ exports.control = (T, world) ->
     T.span {class: [label, "buttons"]}, args.map (key, value) ->
       T.button {
         class: [key, value]
-        click: -> me.call(key, {dir: value})
+        click: args.call('click', {turtle: me, key: key, value: value})
+          #-> me.call(key, {dir: value})
       }, label
 
   controls = world.getChildren('controls')
