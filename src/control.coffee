@@ -3,6 +3,7 @@ exports.control = (T, world) ->
   size = world.get("size")
 
   draw_buttons = (label, args) ->
+    console.log args
     T.span {class: [label, "buttons"]}, args.map (key, value) ->
       T.button {
         class: [key, value]
