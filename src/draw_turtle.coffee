@@ -27,6 +27,8 @@ draw_shell = (scale) ->
 exports.draw_turtle = {
     stroke: "green"
     transform: (world, args) ->
+      console.log('turtle.transform')
+      console.log(world)
       scale = world.get('scale')
       x = world.get('i') + 0.5 * scale
       y = world.get('j') + 0.5 * scale
@@ -36,7 +38,6 @@ exports.draw_turtle = {
       "translate(#{x},#{y}) rotate(#{angle})"
     path: (world, args) -> 
       scale = world.get('scale') / 10
-      console.log(scale)
       [
         draw_legs(scale) + draw_face(scale)# + draw_eyes(scale)
         draw_shell(scale)
