@@ -1,4 +1,4 @@
-exports.controls = {
+exports.draw_controls = {
     fill: "grey"
     stroke: "black"
     path: (world, args) -> 
