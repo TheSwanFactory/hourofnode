@@ -44,15 +44,15 @@ exports.draw_turtle = {
       world.reset('i', world.get('v_i'))
       world.reset('j', world.get('v_j'))
     right: (world, args) ->
-      console.log("right #{world}:")
-      console.log world.doc.x
-      world.put('v_i', -world.get('v_j'))
-      world.put('v_j',  world.get('v_i'))
+      next_v_i = -world.get('v_j')
+      next_v_j =  world.get('v_i')
+      world.put('v_i', next_v_i )
+      world.put('v_j', next_v_j )
     left: (world, args) ->
-      console.log("left #{world}:")
-      console.log world.doc.x
-      world.put('v_i',  world.get('v_j'))
-      world.put('v_j', -world.get('v_i'))
+      next_v_i =  world.get('v_j')
+      next_v_j = -world.get('v_i')
+      world.put('v_i', next_v_i )
+      world.put('v_j', next_v_j )
     children: {
       ME: {
         i: 2
