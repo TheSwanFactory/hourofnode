@@ -43,6 +43,8 @@ exports.draw_turtle = {
         draw_legs(scale) + draw_face(scale)# + draw_eyes(scale)
         draw_shell(scale)
       ]
+    forward: (world, args) ->
+      "Do nothing"
     children: {
       ME: {
         i: 2
