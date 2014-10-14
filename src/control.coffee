@@ -2,19 +2,18 @@ exports.control = (T, world) ->
   me = world.getChildren("turtles").get("ME")
   size = world.get("size")
 
-  draw_buttons = (label, world) ->
-    T.span {class: [label, "buttons"]}, world.map (key, value) ->
+  draw_buttons = (label, args) ->
+    T.span {class: [label, "buttons"]}, args.map (key, value) ->
       T.button {
         class: [key, value]
         click: -> me.call(key, {dir: value})
       }, label
 
+  controls = world.getChildren('controls')
   T.div {
     class: "controls"
     style: "margin-top: -#{size}px; margin-left: #{size}px;"
-  }, [
-    T.div {class: "instructions declarative"}, world.bind -> _.flatten [
-      world.getChildren('controls').map draw_buttons
+  }, controls.map (label, section) ->
+    T.div {class: label}, section.bind -> _.flatten [
+      section.get('_children').map draw_buttons
     ]
-    T.p "More coming soon..."
-  ]
