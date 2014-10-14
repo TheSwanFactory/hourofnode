@@ -44,7 +44,8 @@ exports.draw_turtle = {
         draw_shell(scale)
       ]
     forward: (world, args) ->
-      "Do nothing"
+      world.reset('i', world.get('v_i'))
+      world.reset('j', world.get('v_j'))
     children: {
       ME: {
         i: 2
