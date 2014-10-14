@@ -5,8 +5,7 @@ exports.control = (T, world) ->
   draw_button = (label, dir, delta) ->
     T.button {
       class: ["control", "dir", label]
-      click: ->
-        me.reset(dir, delta)
+      click: -> me.reset(dir, delta)
     }, label
   T.div {
     class: "controls"
