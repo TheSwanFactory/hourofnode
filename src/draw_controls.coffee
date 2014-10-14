@@ -10,6 +10,11 @@ exports.draw_controls = {
         Right: {turn: -1}    
       }
     }
-    activity: {}    
+    activity: {
+      click: (world, {turtle, key, value}) ->
+        -> turtle.call(key, {dir: value})
+      _children: {
+      }
+    }
   }
 }
