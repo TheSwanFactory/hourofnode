@@ -1,13 +1,14 @@
 exports.draw_controls = {
-  click: (world, {turtle, key, value}) ->
-    -> turtle.call(key, {dir: value})
-  queue: {}
   _children: {
     instructions: {
-      click: (world, {turtle, key, value}) ->
-        queue = world.get('queue')
-        -> turtle.call(key, {dir: value})
-        # activity.create(key, {dir: value})
+      click: (world, args) ->
+        {label, key, value, queue} = args
+        dict = {}
+        dict[key] = value
+        -> 
+          console.log "queue.put(#{label}, #{dict})"
+          queue.put(label, dict)
+          console.log queue.doc.x
       _children: {
         Left: {turn: 1}
         Go: {go: 0}
@@ -15,8 +16,9 @@ exports.draw_controls = {
       }
     }
     activity: {
-      _children: (world, args) ->
-        world.get('queue')
+      click: (world, {turtle, key, value}) ->
+        -> turtle.call(key, {dir: value})
+      _children: {}
     }
   }
 }
