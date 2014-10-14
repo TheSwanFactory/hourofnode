@@ -25,6 +25,8 @@ exports.control = (T, world) ->
     ]
     T.div {class: "instructions relative"}, [
       draw_caller('forward')
+      draw_caller('left')
+      draw_caller('right')
     ]
     T.p "More coming soon..."
   ]
