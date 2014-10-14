@@ -29,6 +29,9 @@ class World
 
   put: (key, value) ->
     @doc.put(key, value)
+    
+  reset: (key, delta) ->
+    @put(key, @get(key) + delta)
 
   call: (key, args) ->
     closure = @get_raw(key)
