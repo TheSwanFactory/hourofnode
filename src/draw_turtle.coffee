@@ -28,7 +28,7 @@ exports.draw_turtle = {
     stroke: "green"
     transform: (world, args) ->
       scale = world.get('scale')
-      x = world.get('i') + 0.4 * scale
+      x = world.get('i') + 0.5 * scale
       y = world.get('j') + 0.5 * scale
       # TODO: perform real triginometry
       angle = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
@@ -43,10 +43,10 @@ exports.draw_turtle = {
       ]
     children: {
       ME: {
-        i: 3
-        j: 3
-        v_i: 1
-        v_j: 0
+        i: 4
+        j: 4
+        v_i: 0
+        v_j: -1
         fill: "#88ff88"
       }
     }
