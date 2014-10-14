@@ -14,6 +14,9 @@ exports.control = (T, world) ->
     class: "controls"
     style: "margin-top: -#{size}px; margin-left: #{size}px;"
   }, controls.map (label, section) ->
+    children = section.getChildren()
     T.div {class: label}, section.bind -> _.flatten [
-      section.get('_children').map draw_buttons
+      console.log "section: #{section}"
+      console.log section
+      children.map draw_buttons
     ]
