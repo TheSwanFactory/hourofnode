@@ -2,7 +2,6 @@
 
 _.mixin(_.str.exports())
 rx =  require('../../reactive-coffee/src/reactive')
-bind = rx.bind
 T = rx.rxt.tags
 SVG = rx.rxt.svg_tags
 

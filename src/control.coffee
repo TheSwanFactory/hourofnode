@@ -1,28 +1,28 @@
-
 exports.control = (T, world) ->
-  me = world.get("turtles").get("children").get("ME")
+  me = world.get("turtles").getChild("ME")
   size = world.get("size")
-  draw_button = (label, dir, delta) ->
-    T.button {
-      class: ["control", dir, label]
-      click: -> me.reset(dir, delta)
-    }, label
-  draw_caller = (key, dir) ->
-    label = key[0].toUpperCase() + key[1..-1].toLowerCase()
-    if dir?
-      label += if dir == -1 then ' Right' else ' Left'
-    T.button {
-      class: ["control", key, label]
-      click: -> me.call(key, {dir: dir})
-    }, label
+  controls = world.getChild('controls')
+
+  draw_buttons = (label, args) ->
+    queue = controls.getChild('activity')
+    T.span {class: [label, "buttons"]}, args.map (key, value) ->
+      dict = {turtle: me, label: label, key: key, value: value, queue: queue}
+      T.button {
+        class: [key, value]
+        click: args.call('click', dict)
+      }, label
+
   T.div {
     class: "controls"
     style: "margin-top: -#{size}px; margin-left: #{size}px;"
-  }, [
-    T.div {class: "instructions relative"}, [
-      draw_caller('turn',  1)
-      draw_caller('go')
-      draw_caller('turn', -1)
-    ]
-    T.p "More coming soon..."
-  ]
+  }, controls.map (label, section) ->
+    console.log("section: #{label}")
+    console.log section
+    console.log("children: #{label}")
+    console.log section.getChildren()
+    console.log section.getChildren().doc
+    console.log section.getChildren().doc.x
+    T.div {
+      class: label
+    }, section.getChildren().map(draw_buttons)
+  #world.bind -> 

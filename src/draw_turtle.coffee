@@ -49,8 +49,9 @@ exports.draw_turtle = {
       next_v_j = -dir*world.get('v_i')
       world.put('v_i', next_v_i )
       world.put('v_j', next_v_j )
-    children: {
-      ME: {
+    _children: {
+      0: {
+        label: "ME"
         i: 2
         j: 1
         v_i: 1
