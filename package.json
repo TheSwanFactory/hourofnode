@@ -16,6 +16,9 @@
     "prova": "^1.14.3",
     "watchify": "^1.0.6"
   },
+  "browserify": {
+    "transform": ["coffeeify"]
+  },
   "scripts": {
     "test": "prova test/* -b"
   },
