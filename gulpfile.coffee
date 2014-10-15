@@ -1,6 +1,9 @@
 gulp = require 'gulp'
-browserify = require 'browserify'
 source = require 'vinyl-source-stream'
+browserify = require 'browserify'
+browser_sync = require 'browser-sync'
+
+# Create bundles using browerify
 
 bundle = (name) ->
   browserify({
@@ -13,12 +16,28 @@ bundle = (name) ->
     .pipe(source("#{name}.js"))
     .pipe(gulp.dest('./web/'));
 
-gulp.task 'main', -> bundle('main')
-gulp.task 'test', -> bundle('test')
+all_builds = ['main', 'test']
+for build in all_builds
+  gulp.task build, -> bundle build
 
-build_all = ['main', 'test']
 
-gulp.task 'watch', ->
-  gulp.watch ['src/*', 'src/*/*'], build_all 
+# Reload browser using browser-sync
+
+sync_to = (dir) ->
+  browser_sync {
+    server: {baseDir: ["#{dir}"]}
+    files: ["#{dir}/*"]
+  }
+
+dest = 'web'
+gulp.task 'sync', -> sync_to 'web'  
+
+# Watch and resync
+
+all_src = ['src/*', 'src/*/*']
+gulp.task 'watch', ['sync'], ->
+  gulp.watch all_src, all_builds  
   
-gulp.task 'default', build_all
+# Watch when run
+
+gulp.task 'default', ['watch']
