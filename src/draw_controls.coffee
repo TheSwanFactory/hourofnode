@@ -7,8 +7,8 @@ exports.draw_controls = {
         dict[key] = value
         -> 
           console.log "queue.putChild(#{label}, #{dict})"
-          queue.putChild(label, dict)
-          console.log queue.getChildren()
+          queue.get().putChild(label, dict)
+          console.log queue.get().getChildren()
       _children: {
         Left: {turn: 1}
         Go: {go: 0}
@@ -18,7 +18,9 @@ exports.draw_controls = {
     activity: {
       click: (world, {turtle, key, value}) ->
         -> turtle.call(key, {dir: value})
-      _children: {}
+      _children: {
+        Go: {go: 0}
+      }
     }
   }
 }

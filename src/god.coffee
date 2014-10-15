@@ -6,7 +6,7 @@ isFunction = (value) ->
 class World
   constructor: (rx, label, doc, up) ->
     @rx = rx
-    @doc = rx.map()
+    @doc = rx.map() #TODO: Can we accomplish this via "lift" instead?
     @label = label
     @up = up
     for key, value of doc
@@ -26,22 +26,18 @@ class World
     if isFunction(value)
       return value(this,{})
     value
-    
-  getChildren: (key) ->
-    source = if key? then @get(key) else this
-    source.get('_children')
-    #children = source.get_local('_children')
-    #return children if children?
-    #children = new World(@rx, '_children', {}, source)
-    #source.put('_children', children)
-    #children
+
+  getChildren: ->
+    @get('_children')
+
+  getChild: (key) ->
+    @getChildren().get(key)
 
   put: (key, value) ->
     @doc.put(key, value)
     
   putChild: (key, value) ->
-    children = @getChildren()
-    children.put(key, value)
+    @getChildren().put(key, value)
     
   reset: (key, delta) ->
     @put(key, @get(key) + delta)
