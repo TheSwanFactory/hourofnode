@@ -3,11 +3,14 @@
 _.mixin(_.str.exports())
 rx =  require('../../reactive-coffee/src/reactive')
 T = rx.rxt.tags
-SVG = rx.rxt.svg_tags
+
+{test_god} = require('./test/test_god')
 
 test = ->
-  $('body').prepend(
-    T.h1 "The Hour of Node Test Suite"
+  $('body').append(
+    T.h2 "Running tests..."
+    test_god(rx)
+    T.h2 "...done."
   )
 
 # Instantiate our main view
