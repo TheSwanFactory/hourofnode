@@ -4,16 +4,15 @@
   "description": "Turning event-driven programming into child's play",
   "main": "web/index.js",
   "dependencies": {
-    "coffeeify": "^0.7.0",
+    "coffee-script": "^1.8.0"
     "reactive-coffee": "^1.2.3",
-    "prova": "^1.14.3",
-    "jasmine-node": "^1.14.5",
     "jquery": "^2.1.1",
     "underscore": "^1.7.0",
-    "watchify": "^1.0.6"
   },
   "devDependencies": {
-    "coffee-script": "^1.8.0"
+    "coffeeify": "^0.7.0",
+    "prova": "^1.14.3",
+    "watchify": "^1.0.6"
   },
   "scripts": {
     "test": "prova test/* -b"
@@ -35,5 +34,5 @@
   "bugs": {
     "url": "https://github.com/TheSwanFactory/hourofnode/issues"
   },
-  "homepage": "https://github.com/TheSwanFactory/hourofnode"
+  "homepage": "http://hourofnode.com"
 }
