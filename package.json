@@ -2,7 +2,7 @@
   "name": "hourofnode",
   "version": "0.1.0",
   "description": "Turning event-driven programming into child's play",
-  "main": "web/index.js",
+  "main": "web/main.js",
   "dependencies": {
     "coffee-script": "^1.8.0"
     "reactive-coffee": "^1.2.3",
