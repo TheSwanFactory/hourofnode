@@ -8,7 +8,7 @@ exports.draw_controls = {
         -> 
           console.log "queue.putChild(#{label}, #{dict})"
           queue.putChild(label, dict)
-          console.log queue.doc
+          console.log queue.getChildren()
       _children: {
         Left: {turn: 1}
         Go: {go: 0}

@@ -40,7 +40,7 @@ class World
     @doc.put(key, value)
     
   putChild: (key, value) ->
-    children = @getChildren(key)
+    children = @getChildren()
     children.put(key, value)
     
   reset: (key, delta) ->
