@@ -1,38 +1,39 @@
 {
-    "name": "hourofnode",
-    "version": "0.1.0",
-    "description": "Turning event-driven programming into child's play",
-    "main": "web/main.js",
-    "dependencies": {
-        "coffee-script": "^1.8.0",
-        "reactive-coffee": "^1.2.3",
-        "jquery": "^2.1.1",
-        "underscore": "^1.7.0"
-    },
-    "devDependencies": {
-        "coffeeify": "^0.7.0",
-        "prova": "^1.14.3",
-        "watchify": "^1.0.6"
-    },
-    "scripts": {
-        "test": "prova test/* -b"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/TheSwanFactory/hourofnode.git"
-    },
-    "keywords": [
-        "reactive-coffee",
-        "svg",
-        "education",
-        "children",
-        "programming",
-        "tutorial"
-    ],
-    "author": "The Swan Factory, Inc.",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/TheSwanFactory/hourofnode/issues"
-    },
-    "homepage": "http://hourofnode.com"
+  "name": "hourofnode",
+  "version": "0.1.0",
+  "description": "Turning event-driven programming into child's play",
+  "main": "web/main.js",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "coffeeify": "^0.7.0",
+    "jquery": "^2.1.1",
+    "reactive-coffee": "^1.2.3",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "coffeeify": "^0.7.0",
+    "prova": "^1.14.3",
+    "watchify": "^1.0.6"
+  },
+  "scripts": {
+    "test": "prova test/* -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheSwanFactory/hourofnode.git"
+  },
+  "keywords": [
+    "reactive-coffee",
+    "svg",
+    "education",
+    "children",
+    "programming",
+    "tutorial"
+  ],
+  "author": "The Swan Factory, Inc.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheSwanFactory/hourofnode/issues"
+  },
+  "homepage": "http://hourofnode.com"
 }
