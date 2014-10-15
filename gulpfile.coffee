@@ -16,4 +16,9 @@ bundle = (name) ->
 gulp.task 'main', -> bundle('main')
 gulp.task 'test', -> bundle('test')
 
-gulp.task('default', ['main', 'test']);
+build_all = ['main', 'test']
+
+gulp.task 'watch', ->
+  gulp.watch ['src/*', 'src/*/*'], build_all 
+  
+gulp.task 'default', build_all
