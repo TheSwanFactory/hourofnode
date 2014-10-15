@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "coffeeify": "^0.7.0",
+    "gulp": "^3.8.8",
     "prova": "^1.14.3",
     "watchify": "^1.0.6"
   },
