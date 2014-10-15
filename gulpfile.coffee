@@ -2,17 +2,16 @@ gulp = require 'gulp'
 browserify = require 'browserify'
 source = require 'vinyl-source-stream'
 
-transpile = (name) ->
+bundle = (name) ->
   browserify({
-    entries: ['./src/main.coffee'],
+    entries: ["./src/#{name}.coffee"],
     extensions: ['.coffee']
   })
     .bundle()
-    .pipe(source('main.js'))
+    .pipe(source("#{name}.js"))
     .pipe(gulp.dest('./web/'));
  
-gulp.task('browserify', ->
-  transpile('main')
-);
+gulp.task 'main', -> bundle('main')
+gulp.task 'test', -> bundle('test')
 
-gulp.task('default', ['browserify']);
+gulp.task('default', ['main', 'test']);
