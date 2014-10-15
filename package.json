@@ -4,6 +4,7 @@
   "description": "Turning event-driven programming into child's play",
   "main": "web/main.js",
   "dependencies": {
+    "browserify": "^6.1.0",
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
     "jquery": "^2.1.1",
@@ -14,10 +15,13 @@
     "coffeeify": "^0.7.0",
     "gulp": "^3.8.8",
     "prova": "^1.14.3",
+    "vinyl-source-stream": "^1.0.0",
     "watchify": "^1.0.6"
   },
   "browserify": {
-    "transform": ["coffeeify"]
+    "transform": [
+      "coffeeify"
+    ]
   },
   "scripts": {
     "test": "prova test/* -b"
