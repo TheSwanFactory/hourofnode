@@ -7,8 +7,7 @@ exports.draw_controls = {
         dict[key] = value
         -> 
           console.log "queue.putChild(#{label}, #{dict})"
-          queue.get().putChild(label, dict)
-          console.log queue.get().getChildren()
+          queue.addChild(label, dict)
       _children: {
         Left: {turn: 1}
         Go: {go: 0}

@@ -36,8 +36,11 @@ class World
   put: (key, value) ->
     @doc.put(key, value)
     
-  putChild: (key, value) ->
-    @getChildren().put(key, value)
+  addChild: (key, value) ->
+    children = @getChildren()
+    n = _.size children
+    value['label'] = key
+    children.put(n, value)
     
   reset: (key, delta) ->
     @put(key, @get(key) + delta)

@@ -1,10 +1,10 @@
 exports.control = (T, world) ->
-  me = world.getChildren("turtles").get("ME")
+  me = world.get("turtles").getChild("ME")
   size = world.get("size")
-  controls = world.getChildren('controls')
+  controls = world.getChild('controls')
 
   draw_buttons = (label, args) ->
-    queue = world.bind -> controls.getChildren('activity')
+    queue = controls.getChild('activity')
     T.span {class: [label, "buttons"]}, args.map (key, value) ->
       dict = {turtle: me, label: label, key: key, value: value, queue: queue}
       T.button {
