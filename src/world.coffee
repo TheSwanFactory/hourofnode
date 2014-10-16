@@ -1,7 +1,13 @@
+RX = "_RX"
+
+# Data model
+isFunction = (value) ->
+  typeof(value) == "function"
+
 class World
-  constructor: (@label, @up) ->
-    @up.get()
-    @doc = rx.map()
+  constructor: (@label, @up, @rx) ->
+    @rx = @up.get(RX) unless @rx?
+    @doc = @rx.map()
 
   get_local: (key) ->
     @doc.get(key)
@@ -51,5 +57,7 @@ class World
   toString: ->
     "World:#{@label}"
 
-exports.world = (label, up) ->
-  new World(label, up)
+exports.world = (up, rx) ->
+  root = new World("root", up, rx)
+  root.put(RX, rx)
+  root
