@@ -14,8 +14,7 @@ SVG = rx.rxt.svg_tags
 
 {test} = require('./test')
 
-world = god(rx, config)
-
+#world = god(rx, config)
 
 main = ->
   $('body').append(

@@ -1,14 +1,8 @@
 class World
-  constructor: (rx, label, doc, up) ->
-    @rx = rx
-    @doc = rx.map() #TODO: Can we accomplish this via "lift" instead?
-    @label = label
-    @up = up
-    for key, value of doc
-      if value instanceof Object && !isFunction(value)
-        value = new World(rx, key, value, this)
-      @doc.put(key, value)
-    
+  constructor: (@label, @up) ->
+    @up.get()
+    @doc = rx.map()
+
   get_local: (key) ->
     @doc.get(key)
 
@@ -57,5 +51,5 @@ class World
   toString: ->
     "World:#{@label}"
 
-exports.world = (doc, up) ->
-  new World("world", doc, up)
+exports.world = (label, up) ->
+  new World(label, up)
