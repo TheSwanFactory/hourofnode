@@ -1,14 +1,15 @@
 RX = "_RX"
+LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 
-# Data model
 isFunction = (value) ->
   typeof(value) == "function"
 
 class World
-  constructor: (@label, @up, @rx) ->
+  constructor: (@up, label, @rx) ->
     @rx = @up.get(RX) unless @rx?
     @doc = @rx.map()
+    @doc.put(LABEL, label)
     @doc.put(CHILDREN, [])
 
   put: (key, value) ->
@@ -27,12 +28,23 @@ class World
       return value(this,{})
     value
 
-  make_child: (value) ->
-    value
+  world_from_value: (value) ->
+    label = "#{value}"
+    world = new World(@, label)
+    world.put("value", value)
+    world
+
+  make_world: (value) ->
+    return value if typeof(value) == World
+    return @world_from_dict(value) if typeof(value) == Object
+    @world_from_value(value)
+    
+    label = "#{@get(LABEL)}:#{@get(CHILDREN).length}"
+    new World(@, label)
     
   add_child: (value) ->
-    value = @make_child(value) unless typeof(value) == World
-    @get(CHILDREN).push(value)
+    child = @make_world(value)
+    @get(CHILDREN).push(child)
 
   map_child: (callback) ->
     result = []
@@ -54,7 +66,7 @@ class World
     "World:#{@label}"
 
 exports.world = (up, rx, doc) ->
-  root = new World("root", up, rx)
+  root = new World(up, "root", rx)
   root.put(RX, rx)
   for key, value of doc
     root.put(key, value)
