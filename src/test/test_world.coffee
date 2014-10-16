@@ -19,5 +19,11 @@ exports.test_world = (test, rx) ->
 
   test 'world iterates over children', (t) ->
     t.ok world.add_child, "add_child"
+    value = "Anjali"
+    world.add_child(value)
+    
     t.ok world.map_child, "map_child"
+
+    result = world.map_child (child) -> "#{child} Prabhakar"
+    t.equal result[0], "Anjali Prabhakar"
     t.end()
