@@ -12,6 +12,7 @@ exports.test_world = (test, rx) ->
     t.equal result, value
     
   test 'world stores primitives faithfully', (t) ->
-    t.ok world
-    test_store(t, "one", 2)
+    test_store(t, "number", 2)
+    test_store(t, "string", "okay")
+    test_store(t, "array", [1, "b"])
     t.end()
