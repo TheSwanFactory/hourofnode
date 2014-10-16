@@ -14,9 +14,9 @@ mock_rx = {
 {test_god} = require('./test/test_god')
 
 run_tests = ->
-  test_god(rx, test) 
+  test_god(test, mock_rx) 
 
 exports.test = () ->
   console.log "Running tests..."
-  #run_tests()
+  run_tests()
   console.log "...done!"
