@@ -26,8 +26,12 @@ class World
     if isFunction(value)
       return value(this,{})
     value
+
+  make_child: (value) ->
+    value
     
   add_child: (value) ->
+    value = @make_child(value) unless typeof(value) == World
     @get(CHILDREN).push(value)
 
   map_child: (callback) ->
