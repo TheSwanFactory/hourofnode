@@ -11,10 +11,10 @@ exports.test_world = (test, rx) ->
     test_store = (key, value) ->
       world.put(key, value)
       result = world.get(key)
-      t.equal result, value
-    test_store(t, "number", 2)
-    test_store(t, "string", "okay")
-    test_store(t, "array", [1, "b"])
+      t.equal result, value, "store #{key}"
+    test_store("number", 2)
+    test_store("string", "okay")
+    test_store("array", [1, "b"])
     t.end()
 
   test 'world iterates over children', (t) ->
