@@ -17,10 +17,16 @@ exports.test_world = (test, rx) ->
     test_store("dict", {not: "2b"})
     t.end()
 
+  test 'world contains rx', (t) ->
+    t.ok world.T
+    t.ok world.SVG
+    t.ok world.bind
+    t.end()
+
   test 'world makes sub-worlds', (t) ->
     t.ok world.make_world, "make_world"
     value = 42
-    sub = world.world_from_value(value )
+    sub = world.world_from_value(value)
     t.equal sub.get("value"), value 
     t.equal sub.up, world
     
@@ -28,6 +34,7 @@ exports.test_world = (test, rx) ->
     sub = world.world_from_dict(dict)
     t.equal sub.get("key"), value 
     
+    # TODO: test make_world directly
     t.end()
 
   test 'world has children', (t) ->
