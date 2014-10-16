@@ -6,7 +6,7 @@ test = require 'tape'
 {test_world} = require('./test/test_world')
 
 run_tests = (rx) ->
-  test_god(test, rx)
+  #test_god(test, rx)
   test_world(test, rx)
 
 exports.test = (rx) ->
