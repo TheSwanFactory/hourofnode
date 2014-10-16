@@ -21,6 +21,7 @@ exports.test_world = (test, rx) ->
     t.ok world.T
     t.ok world.SVG
     t.ok world.bind
+    t.fail()
     t.end()
 
   test 'world makes sub-worlds', (t) ->

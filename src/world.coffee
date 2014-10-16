@@ -7,8 +7,8 @@ isFunction = (value) ->
 
 class World
   constructor: (@up, label, rx) ->
-    rx = @up.get(RX) unless rx?
-    @doc = rx.map()
+    cache_rx = rx or @up.get(RX)
+    @doc = cache_rx.map()
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, [])
     @doc.put(RX, rx) if rx?
