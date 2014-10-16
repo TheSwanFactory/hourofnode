@@ -1,13 +1,8 @@
 {god} = require('../god')
-test = require 'tape'
 
-exports.test_god = (rx) ->
-  T = rx.rxt.tags
-  
+exports.test_god = (test) ->
   test 'basic math', (t) ->
     t.equal 2, 2
-    t.fail()
+    t.pass()
     t.end()
-
-  T.h3 "Loaded test_god"
     
