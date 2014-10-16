@@ -18,17 +18,19 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'world contains rx', (t) ->
-    t.ok world.T
-    t.ok world.SVG
-    t.ok world.bind
+    t.ok world.rx(), "rx()"
+    t.ok world.T(), "T"
+    t.ok world.SVG() ,"SVG"
+    t.ok world.bind(), "bind"
     t.end()
 
   test 'world makes sub-worlds', (t) ->
     t.ok world.make_world, "make_world"
     value = 42
     sub = world.world_from_value(value)
-    t.equal sub.get("value"), value 
-    t.equal sub.up, world
+    t.equal sub.get("value"), value, "sub.get"
+    t.equal sub.up, world, "sub.up"
+    t.ok sub.T(), "sub.T"
     
     dict = {key: value}
     sub = world.world_from_dict(dict)

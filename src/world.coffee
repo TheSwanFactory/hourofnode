@@ -14,10 +14,11 @@ class World
     @doc.put(CHILDREN, [])
     @doc.put(RX, rx) if rx?
 
-  # rx accessors
-  T: () -> @get(RX).rxt.tags
-  SVG: () -> @get(RX).rxt.svg_tags
-  bind: () -> @get(RX).bind
+  # reactive-coffee tags and binding
+  rx: () -> @get(RX)
+  T: () -> @rx().rxt.tags
+  SVG: () -> @rx().rxt.svg_tags
+  bind: () -> @rx().bind
   
   put: (key, value) ->
     @doc.put(key, value)
