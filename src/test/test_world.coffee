@@ -17,13 +17,12 @@ exports.test_world = (test, rx) ->
     test_store("array", [1, "b"])
     t.end()
 
-  test 'world iterates over children', (t) ->
-    t.ok world.add_child, "add_child"
-    value = "Anjali"
-    world.add_child(value)
-    
-    t.ok world.map_child, "map_child"
-
+  test 'world has children', (t) ->
+    world.add_child("Anjali")
     result = world.map_child (child) -> "#{child} Prabhakar"
-    t.equal result[0], "Anjali Prabhakar"
+    t.equal result[0], "Anjali Prabhakar", "add/map child"
+    t.end()
+
+  test 'world creates world for dictionaries', (t) ->
+    t.fail()
     t.end()
