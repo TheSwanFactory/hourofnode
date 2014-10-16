@@ -1,4 +1,5 @@
 RX = "_RX"
+CHILDREN = "_CHILDREN"
 
 # Data model
 isFunction = (value) ->
@@ -8,6 +9,10 @@ class World
   constructor: (@label, @up, @rx) ->
     @rx = @up.get(RX) unless @rx?
     @doc = @rx.map()
+    @doc.put(CHILDREN, [])
+
+  put: (key, value) ->
+    @doc.put(key, value)
 
   get_local: (key) ->
     @doc.get(key)
@@ -21,22 +26,16 @@ class World
     if isFunction(value)
       return value(this,{})
     value
-
-  getChildren: ->
-    @get('_children')
-
-  getChild: (key) ->
-    @getChildren().get(key)
-
-  put: (key, value) ->
-    @doc.put(key, value)
     
-  addChild: (key, value) ->
-    children = @getChildren()
-    n = _.size children
-    value['label'] = key
-    children.put(n, value)
-    
+  add_child: (value) ->
+    @get(CHILDREN).push(value)
+
+  map_child: (callback) ->
+    result = []
+    for value in @get(CHILDREN)
+      result.push callback(value)
+    result
+
   reset: (key, delta) ->
     @put(key, @get(key) + delta)
 
@@ -46,13 +45,6 @@ class World
     
   bind: (exp) ->
     @rx.bind exp
-
-  map: (callback) ->
-    result = []
-    for key in Object.keys(@doc.x)
-      value = @get_raw(key)
-      result.push callback(key, value)
-    result
 
   toString: ->
     "World:#{@label}"
