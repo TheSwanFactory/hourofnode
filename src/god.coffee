@@ -10,5 +10,5 @@ class GOD
 exports.god = (rx, doc) ->
   god = new GOD()
   root = world(god, rx)
-  root.import(doc)
+  #root.import(doc)
   root
