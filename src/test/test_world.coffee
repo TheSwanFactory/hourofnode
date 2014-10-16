@@ -22,6 +22,12 @@ exports.test_world = (test, rx) ->
     value = 42
     sub = world.world_from_value(value )
     t.equal sub.get("value"), value 
+    t.equal sub.up, world
+    
+    dict = {key: value}
+    sub = world.world_from_dict(dict)
+    t.equal sub.get("key"), value 
+    
     t.end()
 
   test 'world has children', (t) ->

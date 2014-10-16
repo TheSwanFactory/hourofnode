@@ -6,11 +6,12 @@ isFunction = (value) ->
   typeof(value) == "function"
 
 class World
-  constructor: (@up, label, @rx) ->
-    @rx = @up.get(RX) unless @rx?
-    @doc = @rx.map()
+  constructor: (@up, label, rx) ->
+    rx = @up.get(RX) unless rx?
+    @doc = rx.map()
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, [])
+    @doc.put(RX, rx) if rx?
 
   put: (key, value) ->
     @doc.put(key, value)
@@ -34,13 +35,17 @@ class World
     world.put("value", value)
     world
 
+  world_from_dict: (dict) ->
+    label = dict[LABEL] || "#{@get(LABEL)}:#{@get(CHILDREN).length}"
+    world = new World(@, label)
+    for key, value of dict
+      world.put(key, value)
+    world
+
   make_world: (value) ->
     return value if typeof(value) == World
     return @world_from_dict(value) if typeof(value) == Object
     @world_from_value(value)
-    
-    label = "#{@get(LABEL)}:#{@get(CHILDREN).length}"
-    new World(@, label)
     
   add_child: (value) ->
     child = @make_world(value)
