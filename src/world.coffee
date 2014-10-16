@@ -50,8 +50,8 @@ class World
     world
 
   make_world: (value) ->
-    return value if typeof(value) == World
-    return @world_from_dict(value) if typeof(value) == Object
+    return value if typeof(value) == "World"
+    return @world_from_dict(value) if typeof(value) == "object"
     @world_from_value(value)
     
   add_child: (value) ->
