@@ -57,7 +57,9 @@ class World
   toString: ->
     "World:#{@label}"
 
-exports.world = (up, rx) ->
+exports.world = (up, rx, doc) ->
   root = new World("root", up, rx)
   root.put(RX, rx)
+  for key, value of doc
+    root.put(key, value)
   root
