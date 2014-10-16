@@ -1,20 +1,22 @@
-# Preamble
-_.mixin(_.str.exports())
-rx =  require('../../reactive-coffee/src/reactive')
-T = rx.rxt.tags
+test = require 'tape'
+
+mock_rx = {
+  map: ->
+    {_label: 'map'}
+  rxt: {
+    tags: {}
+    svg_tags: {}
+  }
+}
+
+# Test Modules
 
 {test_god} = require('./test/test_god')
 
-tape = require 'tape'
-test = (arg, f) ->
-  tape arg, f
-  
-main = ->
-  $('body').append(
-    T.h2 "Running tests..."
-    test_god(test)
-    T.h2 "...done."
-  )
+run_tests = ->
+  test_god(rx, test) 
 
-# Instantiate our main view
-$(main)
+exports.test = () ->
+  console.log "Running tests..."
+  #run_tests()
+  console.log "...done!"

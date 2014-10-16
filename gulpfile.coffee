@@ -16,7 +16,7 @@ bundle = (name) ->
     .pipe(source("#{name}.js"))
     .pipe(gulp.dest('./web/'));
 
-all_builds = ['main', 'test']
+all_builds = ['main']
 for build in all_builds
   gulp.task build, -> bundle build
 
