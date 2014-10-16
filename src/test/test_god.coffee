@@ -6,7 +6,6 @@ exports.test_god = (test, rx) ->
     t.end()
 
   test 'god creates root world', (t) ->
-    console.log(rx)
     world = god(rx, {key: "value"})
     t.ok world
     t.equal world.get("key"), "value"
