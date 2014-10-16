@@ -12,9 +12,10 @@ SVG = rx.rxt.svg_tags
 {draw} = require('./draw')
 {control} = require('./control')
 
-#world = god(rx, config)
-
 {test} = require('./test')
+
+world = god(rx, config)
+
 
 main = ->
   $('body').append(
@@ -26,6 +27,6 @@ main = ->
   
 # Run Tests
   console.log "Running tests..."
-test()
+test(rx)
 # Instantiate our main view
 #$(main)

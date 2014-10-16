@@ -1,22 +1,13 @@
 test = require 'tape'
 
-mock_rx = {
-  map: ->
-    {_label: 'map'}
-  rxt: {
-    tags: {}
-    svg_tags: {}
-  }
-}
-
 # Test Modules
 
 {test_god} = require('./test/test_god')
 
-run_tests = ->
-  test_god(test, mock_rx) 
+run_tests = (rx) ->
+  test_god(test, rx) 
 
-exports.test = () ->
+exports.test = (rx) ->
   console.log "Running tests..."
-  run_tests()
+  run_tests(rx)
   console.log "...done!"
