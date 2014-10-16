@@ -6,13 +6,19 @@ isFunction = (value) ->
   typeof(value) == "function"
 
 class World
-  constructor: (@up, label, rx) ->
+  constructor: (up, label, rx) ->
+    @up = up
     cache_rx = rx or @up.get(RX)
     @doc = cache_rx.map()
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, [])
     @doc.put(RX, rx) if rx?
 
+  # rx accessors
+  T: () -> @get(RX).rxt.tags
+  SVG: () -> @get(RX).rxt.svg_tags
+  bind: () -> @get(RX).bind
+  
   put: (key, value) ->
     @doc.put(key, value)
 
