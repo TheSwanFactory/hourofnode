@@ -5,6 +5,10 @@ exports.test_world = (test, rx) ->
   test 'world exists', (t) ->
     t.ok world, "world"
     t.end()
+    
+  test 'world has a label', (t) ->
+    t.equal "#{world}", "World:root", "label"
+    t.end()
 
   test 'world stores values faithfully', (t) ->
     test_store = (key, value) ->

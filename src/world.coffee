@@ -34,17 +34,13 @@ class World
     if isFunction(value)
       return value(this,{})
     value
-###
   reset: (key, delta) ->
     @put(key, @get(key) + delta)
 
   call: (key, args) ->
     closure = @get_raw(key)
     closure(this, args)
-    
-  toString: ->
-    "World:#{@label}"
-###
+
   world_from_value: (value) ->
     label = "#{value}"
     world = new World(@, label)
@@ -73,6 +69,9 @@ class World
     for value in @get(CHILDREN)
       result.push callback(value)
     result
+
+  toString: ->
+    "World:#{@get(LABEL)}"
 
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
