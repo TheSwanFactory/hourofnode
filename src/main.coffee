@@ -21,7 +21,6 @@ main = ->
   )
   
 # Run Tests
-  console.log "Running tests..."
 test(rx)
 # Instantiate our main view
 $(main)
