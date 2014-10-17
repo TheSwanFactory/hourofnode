@@ -34,7 +34,8 @@ class World
     if isFunction(value)
       return value(this,{})
     value
-  reset: (key, delta) ->
+    
+  update: (key, delta) ->
     @put(key, @get(key) + delta)
 
   call: (key, args) ->

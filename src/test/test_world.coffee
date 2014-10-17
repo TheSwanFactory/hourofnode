@@ -49,6 +49,12 @@ exports.test_world = (test, rx) ->
     t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
     t.end()
     
+  test 'world can update properties', (t) ->
+    world.put('x', 2)
+    world.update('x', 1)
+    t.equal world.get('x'), 3
+    t.end()
+    
   test 'world has dynamic properties', (t) ->
     value = "wanna"
     world.put("fun", -> value)
@@ -72,5 +78,4 @@ exports.test_world = (test, rx) ->
     t.equal result[0], "variable", "world parameter"
     t.equal result[1], "value", "args parameter"
     t.end()
-    
 
