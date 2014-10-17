@@ -1,6 +1,6 @@
-{draw_grid} = require('./draw_grid')
-{draw_turtle} = require('./draw_turtle')
-{draw_controls} = require('./draw_controls')
+{grid} = require('./config/grid')
+# {draw_turtle} = require('./draw_turtle')
+# {draw_controls} = require('./draw_controls')
 
 exports.config = {
   size: 480
