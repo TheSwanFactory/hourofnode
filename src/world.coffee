@@ -41,6 +41,11 @@ class World
   call: (key, args) ->
     closure = @get_raw(key)
     closure(this, args)
+    
+  import_dict: (dict) ->
+    for key, value of dict
+      @put(key, value)
+    @
 
   world_from_value: (value) ->
     label = "#{value}"
@@ -51,9 +56,7 @@ class World
   world_from_dict: (dict) ->
     label = dict[LABEL] || "#{@get(LABEL)}:#{@get(CHILDREN).length}"
     world = new World(@, label)
-    for key, value of dict
-      world.put(key, value)
-    world
+    world.import_dict(dict)
 
   make_world: (value) ->
     return value if typeof(value) == "World"
@@ -77,6 +80,4 @@ class World
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
   root.put(RX, rx)
-  for key, value of doc
-    root.put(key, value)
-  root
+  root.import_dict(doc)
