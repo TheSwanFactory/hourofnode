@@ -34,13 +34,22 @@ exports.test_world = (test, rx) ->
     dict = {key: value}
     sub_m = world.make_world(dict)
     t.equal sub_m.get("key"), value, "sub_d.get"
+    
+    sub_w = world.make_world(world)
+    t.equal sub_w, world, "don't wrap worlds"
     t.end()
     
   test 'world imports from dictionaries', (t) ->
     world.import_dict({a: 1, b:2, _CHILDREN:[{c:3}]})
     t.equal world.get('a'), 1, "import properties"
     children = world.get('_CHILDREN')
-    t.equal typeof(children), "array"
+    t.ok children instanceof Array, "children is Array"
+    child = children[0]
+    t.ok child
+    console.log child
+    console.log Object.prototype.toString.call(child)
+    console.log child.__proto__
+    t.equal child.__proto__, world.__proto__
     t.end() 
 
   test 'world has children inherit', (t) ->
@@ -68,10 +77,6 @@ exports.test_world = (test, rx) ->
     t.equal typeof world.get_raw("fun"), 'function', "raw function"
     t.equal world.get("fun"), value, "dynamic property"
     t.end()
-    
-  test 'world has a label', (t) ->
-    t.equal "#{world}", "World:root", "label"
-    t.end()
 
   test 'world can call functions', (t) ->
     world.put("instance", "variable")
@@ -85,3 +90,11 @@ exports.test_world = (test, rx) ->
     t.equal result[1], "value", "args parameter"
     t.end()
 
+  test 'world has a label', (t) ->
+    t.equal "#{world}", "World:root", "label"
+    t.end()
+
+  test 'world knows worlds', (t) ->
+    t.ok world.is_world(world), "non-world"
+    t.notOk world.is_world(1), "non-world"
+    t.end()
