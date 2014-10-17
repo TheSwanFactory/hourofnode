@@ -56,6 +56,7 @@ class World
   add_child: (value) ->
     child = @make_world(value)
     @get(CHILDREN).push(child)
+    child
 
   map_child: (callback) ->
     result = []

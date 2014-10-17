@@ -37,9 +37,11 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'world has children', (t) ->
-    world.add_child("Anjali")
-    result = world.map_child (child) -> "#{child.get('value')} Prabhakar"
+    grandma = world.add_child("Premela")
+    mom = grandma.add_child("Sandhya")
+    daughter = mom.add_child("Anjali")
+    t.ok daughter 
+    result = mom.map_child (child) -> "#{child.get('value')} Prabhakar"
     t.equal result[0], "Anjali Prabhakar", "add/map child"
-    t.fail() #TODO: Test inheritance
     t.end()
 
