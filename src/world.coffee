@@ -11,7 +11,7 @@ class World
     cache_rx = rx or @up.get(RX)
     @doc = cache_rx.map()
     @doc.put(LABEL, label)
-    @doc.put(CHILDREN, [])
+    @doc.put(CHILDREN, cache_rx.array())
     @doc.put(RX, rx) if rx?
 
   # reactive-coffee tags and binding
