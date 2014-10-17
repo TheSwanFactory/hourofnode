@@ -1,6 +1,6 @@
-exports.draw = (SVG, world) ->
+exports.draw = (world) ->
+  SVG = world.SVG()
   grid_size = world.get('size')
-  grid_split = world.get('split')
 
   draw_path = (label, world) ->
     dict = {
@@ -29,6 +29,6 @@ exports.draw = (SVG, world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    world.get('grid').map draw_world
-    world.get('turtles').getChildren().map draw_world
+    #world.get('grid').map_child draw_world
+    #world.get('turtles').getChildren().map draw_world
   ]

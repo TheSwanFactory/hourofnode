@@ -7,7 +7,7 @@ rx =  require('../../reactive-coffee/src/reactive')
 
 {god} = require('./god')
 {config} = require('./config')
-# {draw} = require('./draw')
+{draw} = require('./draw')
 # {control} = require('./control')
 
 {test} = require('./test')
@@ -16,8 +16,7 @@ world = god(rx, config)
 
 main = ->
   $('body').append(
-    render(world)
-    #draw(SVG, world)
+    draw(world)
     #control(T, world)
   )
   
