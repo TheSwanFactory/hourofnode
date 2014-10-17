@@ -37,8 +37,10 @@ exports.test_world = (test, rx) ->
     t.end()
     
   test 'world imports from dictionaries', (t) ->
-    world.import_dict({a: 1, b:2})
+    world.import_dict({a: 1, b:2, _CHILDREN:[{c:3}]})
     t.equal world.get('a'), 1, "import properties"
+    children = world.get('_CHILDREN')
+    t.equal typeof(children), "array"
     t.end() 
 
   test 'world has children inherit', (t) ->

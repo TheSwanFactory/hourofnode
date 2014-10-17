@@ -15,7 +15,6 @@ exports.draw = (world) ->
       SVG.path dict
       
   draw_world = (world) ->
-    console.log("draw_world #{world}")
     SVG.g {
       class: ['draw_world', "#{world}"]
       transform: world.bind() -> world.get('transform')
@@ -23,11 +22,10 @@ exports.draw = (world) ->
       draw_path(world) if world.get('path')?
       world.map_child draw_world
     ]
-  console.log(world)
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }, world.map_child draw_world
+  }#, world.map_child draw_world
