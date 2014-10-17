@@ -2,7 +2,7 @@ exports.draw = (world) ->
   SVG = world.SVG()
   grid_size = world.get('size')
 
-  draw_path = (label, world) ->
+  draw_path = (world) ->
     dict = {
       class: ['draw_path', label]
       stroke: world.get 'stroke'
@@ -14,12 +14,12 @@ exports.draw = (world) ->
       dict['d'] = path
       SVG.path dict
       
-  draw_world = (label, world) ->
+  draw_child = (world) ->
     SVG.g {
-      class: ['draw_world', label]
+      class: ['draw_child', "#{world}"]
       transform: world.bind -> world.get('transform')
     }, world.bind -> _.flatten [
-      draw_path(label,world)
+      draw_path(world)
     ]
     
   SVG.svg {
@@ -29,5 +29,6 @@ exports.draw = (world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    world.map_child draw_world
+    world.map_child (section) ->
+      section.map_child draw_child
   ]
