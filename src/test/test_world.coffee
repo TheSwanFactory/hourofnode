@@ -6,10 +6,6 @@ exports.test_world = (test, rx) ->
     t.ok world, "world"
     t.end()
     
-  test 'world has a label', (t) ->
-    t.equal "#{world}", "World:root", "label"
-    t.end()
-
   test 'world stores values faithfully', (t) ->
     test_store = (key, value) ->
       world.put(key, value)
@@ -60,5 +56,21 @@ exports.test_world = (test, rx) ->
     t.equal world.get("fun"), value, "dynamic property"
     t.end()
     
+  test 'world has a label', (t) ->
+    t.equal "#{world}", "World:root", "label"
+    t.end()
+
+  test 'world can call functions', (t) ->
+    world.put("instance", "variable")
+    args = {key: "value"}
+    
+    callme = (world, args) ->
+      [world.get("instance"), args['key']]
+    world.put('callme', callme)
+    result = world.call('callme', args)
+    console.log(result)
+    t.equal result[0], "variable", "world parameter"
+    t.equal result[1], "value", "args parameter"
+    t.end()
     
 
