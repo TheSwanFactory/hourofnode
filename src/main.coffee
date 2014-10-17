@@ -14,18 +14,18 @@ SVG = rx.rxt.svg_tags
 
 {test} = require('./test')
 
-#world = god(rx, config)
+world = god(rx, config)
 
 main = ->
   $('body').append(
     T.h1 "Rohan's Teenage Robot Turtles"
     T.p "world: #{world.get('size')} pixels in #{ world.get('split')} chunks"
-    draw(SVG, world)
-    control(T, world)
+    #draw(SVG, world)
+    #control(T, world)
   )
   
 # Run Tests
   console.log "Running tests..."
 test(rx)
 # Instantiate our main view
-#$(main)
+$(main)

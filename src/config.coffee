@@ -7,8 +7,8 @@ exports.config = {
   split: 6
   scale: (world, args) ->
     world.get('size') / world.get('split')
-  grid: draw_grid
-  turtles: draw_turtle
-  controls: draw_controls
+#  grid: draw_grid
+#  turtles: draw_turtle
+#  controls: draw_controls
   current: "current"
 }
