@@ -74,7 +74,6 @@ exports.test_world = (test, rx) ->
       [world.get("instance"), args['key']]
     world.put('callme', callme)
     result = world.call('callme', args)
-    console.log(result)
     t.equal result[0], "variable", "world parameter"
     t.equal result[1], "value", "args parameter"
     t.end()
