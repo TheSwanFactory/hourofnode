@@ -36,12 +36,17 @@ exports.test_world = (test, rx) ->
     t.equal sub_m.get("key"), value, "sub_d.get"
     t.end()
 
-  test 'world has children', (t) ->
+  test 'world has children inherit', (t) ->
     grandma = world.add_child("Premela")
     mom = grandma.add_child("Sandhya")
     daughter = mom.add_child("Anjali")
-    t.ok daughter 
+    t.ok daughter, "daughter"
     result = mom.map_child (child) -> "#{child.get('value')} Prabhakar"
     t.equal result[0], "Anjali Prabhakar", "add/map child"
+    
+    t.notOk daughter.get('chocolate'), "No chocolate"
+    t.notOk grandma.put('chocolate', 'dark'), "Give chocolate"
+    t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
+    
     t.end()
 
