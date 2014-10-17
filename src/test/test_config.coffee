@@ -13,10 +13,7 @@ exports.test_config = (test, rx) ->
     count = 0
     world.map_child ->
       count = count + 1
-    t.ok count > 0, "count children"
-    
-    array = world.doc.x
-    t.ok array[0], "children exist"
+    t.equal count, 1, "count children"
     t.end()
 
   test 'config rx', (t) ->

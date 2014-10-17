@@ -45,8 +45,8 @@ exports.test_world = (test, rx) ->
     children = world.get('_CHILDREN')
     t.ok children instanceof Array, "children is Array"
     child = children[0]
-    t.ok world.is_world child
-    t.end() 
+    t.ok world.is_world(child), "child is a world"
+    t.end()
 
   test 'world has children inherit', (t) ->
     grandma = world.add_child("Premela")
