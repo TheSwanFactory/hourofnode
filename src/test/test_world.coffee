@@ -35,6 +35,11 @@ exports.test_world = (test, rx) ->
     sub_m = world.make_world(dict)
     t.equal sub_m.get("key"), value, "sub_d.get"
     t.end()
+    
+  test 'world imports from dictionaries', (t) ->
+    world.import_dict({a: 1, b:2})
+    t.equal world.get('a'), 1, "import properties"
+    t.end() 
 
   test 'world has children inherit', (t) ->
     grandma = world.add_child("Premela")

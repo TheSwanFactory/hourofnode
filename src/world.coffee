@@ -45,7 +45,7 @@ class World
   import_dict: (dict) ->
     for key, value of dict
       @put(key, value)
-    @
+    this
 
   world_from_value: (value) ->
     label = "#{value}"
