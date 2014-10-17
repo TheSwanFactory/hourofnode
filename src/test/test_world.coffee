@@ -45,11 +45,7 @@ exports.test_world = (test, rx) ->
     children = world.get('_CHILDREN')
     t.ok children instanceof Array, "children is Array"
     child = children[0]
-    t.ok child
-    console.log child
-    console.log Object.prototype.toString.call(child)
-    console.log child.__proto__
-    t.equal child.__proto__, world.__proto__
+    t.ok world.is_world child
     t.end() 
 
   test 'world has children inherit', (t) ->

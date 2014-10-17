@@ -63,7 +63,7 @@ class World
     world.import_dict(dict)
 
   make_world: (value) ->
-    return value if typeof(value) == "World"
+    return value if @is_world(value)
     return @world_from_dict(value) if typeof(value) == "object"
     @world_from_value(value)
     
