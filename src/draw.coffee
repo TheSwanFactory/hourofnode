@@ -29,6 +29,5 @@ exports.draw = (world) ->
     width: grid_size  
     height: grid_size  
   }, _.flatten [
-    #world.get('grid').map_child draw_world
-    #world.get('turtles').getChildren().map draw_world
+    world.map_child draw_world
   ]
