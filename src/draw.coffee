@@ -4,7 +4,7 @@ exports.draw = (world) ->
 
   draw_path = (world) ->
     dict = {
-      class: ['draw_path', label]
+      class: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
@@ -16,10 +16,11 @@ exports.draw = (world) ->
       
   draw_world = (world) ->
     SVG.g {
-      class: ['draw_child', "#{world}"]
-      transform: world.bind -> world.get('transform')
-    }, world.bind -> _.flatten [
-      draw_path(world)
+      class: ['draw_world', "#{world}"]
+      transform: world.bind() -> world.get('transform')
+    }, world.bind() -> _.flatten [
+      draw_path(world) if world.get('path')?
+      world.map_child draw_world
     ]
     
   SVG.svg {

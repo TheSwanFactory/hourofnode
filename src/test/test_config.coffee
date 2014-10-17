@@ -14,3 +14,8 @@ exports.test_config = (test, rx) ->
     world.map_child ->
       count = count + 1
     t.ok count > 0, "count children"
+    t.end()
+
+  test 'config rx', (t) ->
+    t.ok world.bind, "bind"
+    t.end()

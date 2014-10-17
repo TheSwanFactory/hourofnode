@@ -16,7 +16,7 @@ world = god(rx, config)
 
 main = ->
   $('body').append(
-    #draw(world)
+    draw(world)
     #control(T, world)
   )
   
