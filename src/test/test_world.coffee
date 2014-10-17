@@ -50,7 +50,10 @@ exports.test_world = (test, rx) ->
     t.end()
     
   test 'world has dynamic properties', (t) ->
-    world.put("fun", -> "wanna")
+    value = "wanna"
+    world.put("fun", -> value)
+    t.equal typeof world.get_raw("fun"), 'function', "raw function"
+    t.equal world.get("fun"), value, "dynamic property"
     t.end()
     
     
