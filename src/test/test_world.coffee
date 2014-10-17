@@ -45,8 +45,13 @@ exports.test_world = (test, rx) ->
     t.equal result[0], "Anjali Prabhakar", "add/map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
-    t.notOk grandma.put('chocolate', 'dark'), "Give chocolate"
+    grandma.put('chocolate', 'dark')
     t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
-    
     t.end()
+    
+  test 'world has dynamic properties', (t) ->
+    world.put("fun", -> "wanna")
+    t.end()
+    
+    
 
