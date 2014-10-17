@@ -4,6 +4,7 @@
 exports.test_config = (test, rx) ->
   world = god(rx, config)
   
-  test 'world exists', (t) ->
-    t.ok world
+  test 'config read', (t) ->
+    t.ok world.get('size'), 'size'
+    t.ok world.get('scale') > 10, 'scale'
     t.end()
