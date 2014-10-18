@@ -23,10 +23,12 @@ exports.draw = (world) ->
       draw_path(world) if path?
       world.map_children draw_world
     ]
+  children = world.map_children(draw_world)
+  console.log children
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }, world.map_children(draw_world).all()
+  }, children 

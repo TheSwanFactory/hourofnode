@@ -91,8 +91,8 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
-    console.log "map_children of #{@toString()}"
-    console.log @get(CHILDREN)
+    #console.log "map_children of #{@toString()}"
+    #console.log @get(CHILDREN)
     @get(CHILDREN).map callback
     
   toString: ->
