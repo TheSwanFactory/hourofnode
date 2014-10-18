@@ -1,3 +1,5 @@
+assert = require 'assert'
+
 RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
@@ -9,6 +11,7 @@ class World
   constructor: (up, label, rx) ->
     @up = up
     cache_rx = rx or @up.get(RX)
+    assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, cache_rx.array())
@@ -27,7 +30,7 @@ class World
     @doc.get(key)
 
   get_raw: (key, world=this) ->
-    value = @get_local(key) or @up.get_raw(key, this)
+    @get_local(key) or @up.get_raw(key, this)
 
   get: (key) ->
     value = @get_raw(key)
@@ -52,6 +55,7 @@ class World
     this
 
   world_from_value: (value) ->
+    assert value, "world_from_value"
     label = "#{value}"
     world = new World(@, label)
     world.put("value", value)
@@ -69,13 +73,19 @@ class World
     
   add_child: (value) ->
     child = @make_world(value)
+    assert child, "add_child"
     @get(CHILDREN).push(child)
     child
 
+  has_children: ->
+    @get(CHILDREN).length() > 0
+    
   map_children: (callback) ->
+    console.log(@)
     result = []
-    for value in @get(CHILDREN)
-      result.push callback(value)
+    for child in @get(CHILDREN)
+      assert child, "child in #{@get(CHILDREN)}"
+      result.push callback(child)
     result
 
   toString: ->

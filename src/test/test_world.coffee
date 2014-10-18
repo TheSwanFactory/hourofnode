@@ -44,19 +44,24 @@ exports.test_world = (test, rx) ->
     t.equal world.get('a'), 1, "import properties"
     children = world.get('_CHILDREN')
     t.ok children instanceof rx.SrcArray, "children is SrcArray"
-    console.log children
+#    console.log children
     child = children.at(0)
-    console.log child
-    t.ok child
+#    console.log child
+    t.ok child, "child exists"
     t.ok world.is_world(child), "child is a world"
     t.end()
 
   test 'world has children inherit', (t) ->
+    t.ok world.has_children(), "world.has_children"
     grandma = world.add_child("Premela")
+    t.notOk grandma.has_children(), "grandma.has_children NOT"
     mom = grandma.add_child("Sandhya")
+    t.ok grandma.has_children(), "grandma.has_children"
     daughter = mom.add_child("Anjali")
+    t.ok mom.has_children(), "grandma.has_children"
     t.ok daughter, "daughter"
     result = mom.map_children (child) -> "#{child.get('value')} Prabhakar"
+    console.log result
     t.equal result[0], "Anjali Prabhakar", "add/map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
