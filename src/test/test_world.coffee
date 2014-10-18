@@ -56,7 +56,7 @@ exports.test_world = (test, rx) ->
     mom = grandma.add_child("Sandhya")
     daughter = mom.add_child("Anjali")
     t.ok daughter, "daughter"
-    result = mom.map_child (child) -> "#{child.get('value')} Prabhakar"
+    result = mom.map_children (child) -> "#{child.get('value')} Prabhakar"
     t.equal result[0], "Anjali Prabhakar", "add/map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"

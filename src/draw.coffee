@@ -21,7 +21,7 @@ exports.draw = (world) ->
     }, _.flatten [
       path = world.get('path')
       draw_path(world) if path?
-      world.map_child draw_world
+      world.map_children draw_world
     ]
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
@@ -29,4 +29,4 @@ exports.draw = (world) ->
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }, world.map_child draw_world
+  }, world.map_children draw_world

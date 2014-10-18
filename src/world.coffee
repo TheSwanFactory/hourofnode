@@ -72,7 +72,7 @@ class World
     @get(CHILDREN).push(child)
     child
 
-  map_child: (callback) ->
+  map_children: (callback) ->
     result = []
     for value in @get(CHILDREN)
       result.push callback(value)
