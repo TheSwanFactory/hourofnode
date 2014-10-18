@@ -91,9 +91,13 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
-    #console.log "map_children of #{@toString()}"
+    #console.log "map_children of #{@}"
     #console.log @get(CHILDREN)
-    @get(CHILDREN).map callback
+    result = @rx().array()
+    for child in @get(CHILDREN)
+      result.push callback(child)
+    result
+  
     
   toString: ->
     "World:#{@get(LABEL)}"
