@@ -15,9 +15,11 @@ isString = (value) ->
 
 class World
   constructor: (up, label, rx) ->
+    console.log(up)
     assert up, "up always exists"
+    assert isObject(up), "up is an object"
     @up = up
-    cache_rx = rx or @up.get(RX)
+    cache_rx = rx or @up.get_raw(RX)
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     assert isString(label), "label is string"
@@ -25,6 +27,9 @@ class World
     @doc.put(CHILDREN, cache_rx.array())
     @doc.put(RX, rx) if rx?
 
+  self: =>
+    this
+    
   # reactive-coffee tags and binding
   rx: () -> @get(RX)
   T: () -> @rx().rxt.tags
@@ -37,12 +42,12 @@ class World
   get_local: (key) ->
     @doc.get(key)
 
-  get_raw: (key, world=this) ->
-    @get_local(key) or @up.get_raw(key, this)
+  get_raw: (key, world) ->
+    @get_local(key) or @up.get_raw(key, world or @self())
 
   get: (key) ->
     value = @get_raw(key)
-    return value(this,{}) if isFunction(value)
+    return value(@self(),{}) if isFunction(value)
     value
     
   update: (key, delta) ->
@@ -51,7 +56,7 @@ class World
   call: (key, args) ->
     closure = @get_raw(key)
     assert isFunction(closure), "#{key} is function"
-    closure(this, args)
+    closure(@self(), args)
     
   import_dict: (dict) ->
     for key, value of dict
@@ -66,13 +71,13 @@ class World
   world_from_value: (value) ->
     assert isString(value), "world_from_value requires string"
     label = "#{value}"
-    world = new World(@, label)
+    world = new World(@self(), label)
     world.put("value", value)
     world
 
   world_from_dict: (dict) ->
     label = dict[LABEL] || "#{@get(LABEL)}:#{@get(CHILDREN).length}"
-    world = new World(@, label)
+    world = new World(@self(), label)
     world.import_dict(dict)
 
   make_world: (value) ->
@@ -90,6 +95,8 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
+    console.log "map_children of #{@toString()}"
+    console.log @get(CHILDREN)
     @get(CHILDREN).map callback
     
   toString: ->

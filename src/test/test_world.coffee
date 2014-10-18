@@ -4,6 +4,10 @@ exports.test_world = (test, rx) ->
   world = god(rx, {key: "value"})
   test 'world exists', (t) ->
     t.ok world, "world"
+    t.ok world.self, "self"
+    t.ok world.self(), "self()"
+    t.ok world.is_world(world.self())
+    t.equal world, world.self(), "world = self()"
     t.end()
     
   test 'world stores values faithfully', (t) ->
