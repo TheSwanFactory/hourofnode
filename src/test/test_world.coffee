@@ -58,9 +58,11 @@ exports.test_world = (test, rx) ->
     daughter = mom.add_child("Anjali")
     t.ok mom.has_children(), "mom.has_children"
     t.ok daughter, "daughter"
+    console.log daughter
     t.equal "#{daughter}", "World:Anjali", "daughter name"
     result = mom.map_children (child) ->
       "#{child.get('_LABEL')} Prabhakar"
+    console.log result
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"

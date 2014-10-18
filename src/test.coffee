@@ -7,7 +7,7 @@ test = require 'tape'
 {test_config} = require('./test/test_config')
 
 run_tests = (rx) ->
-  #test_god(test, rx)
+  test_god(test, rx)
   test_world(test, rx)
   test_config(test, rx)
 
