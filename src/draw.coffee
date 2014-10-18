@@ -29,4 +29,4 @@ exports.draw = (world) ->
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }, world.map_children draw_world
+  }, world.map_children(draw_world).all()

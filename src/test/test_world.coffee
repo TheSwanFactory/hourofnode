@@ -60,10 +60,8 @@ exports.test_world = (test, rx) ->
     t.ok daughter, "daughter"
     t.equal "#{daughter}", "World:Anjali", "daughter name"
     result = mom.map_children (child) ->
-      console.log child.get("_LABEL")
-      "#{child} Prabhakar"
-    console.log result
-    t.equal result.at(0), "World:Anjali Prabhakar", "map child"
+      "#{child.get('_LABEL')} Prabhakar"
+    t.equal result.at(0), "Anjali Prabhakar", "map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
     grandma.put('chocolate', 'dark')

@@ -90,10 +90,7 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
-    console.log "map_children"
-    console.log(@get(CHILDREN))
-    console.log(@get(CHILDREN).all())
-    dep_array = @get(CHILDREN).map callback
+    @get(CHILDREN).map callback
     
   toString: ->
     "World:#{@get(LABEL)}"
