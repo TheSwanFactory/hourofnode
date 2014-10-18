@@ -2,8 +2,7 @@
   
 class GOD
   get_raw: (key, world) ->
-    console.log "key '#{key}' not found: #{world.get('_LABEL')}"
-    console.log world
+    console.log "key '#{key}' not found: #{world}"
     undefined
   toString: ->
     "GOD"
