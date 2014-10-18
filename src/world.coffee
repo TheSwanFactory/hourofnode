@@ -65,9 +65,6 @@ class World
 
   world_from_value: (value) ->
     assert isString(value), "world_from_value requires string"
-    console.log "world_from_value"
-    console.log value
-    assert value, "world_from_value"
     label = "#{value}"
     world = new World(@, label)
     world.put("value", value)
@@ -93,13 +90,11 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
+    console.log "map_children"
     console.log(@get(CHILDREN))
-    result = []
-    for child in @get(CHILDREN)
-      assert child, "child in #{@get(CHILDREN)}"
-      result.push callback(child)
-    result
-
+    console.log(@get(CHILDREN).all())
+    dep_array = @get(CHILDREN).map callback
+    
   toString: ->
     "World:#{@get(LABEL)}"
     

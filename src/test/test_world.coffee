@@ -63,7 +63,7 @@ exports.test_world = (test, rx) ->
       console.log child.get("_LABEL")
       "#{child} Prabhakar"
     console.log result
-    t.equal result[0], "Anjali Prabhakar", "map child"
+    t.equal result.at(0), "World:Anjali Prabhakar", "map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
     grandma.put('chocolate', 'dark')
