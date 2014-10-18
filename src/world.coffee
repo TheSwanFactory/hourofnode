@@ -7,12 +7,20 @@ CHILDREN = "_CHILDREN"
 isFunction = (value) ->
   typeof(value) == "function"
 
+isObject = (value) ->
+  typeof(value) == "object"
+
+isString = (value) ->
+  typeof(value) == "string"
+
 class World
   constructor: (up, label, rx) ->
+    assert up, "up always exists"
     @up = up
     cache_rx = rx or @up.get(RX)
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
+    assert isString(label), "label is string"
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, cache_rx.array())
     @doc.put(RX, rx) if rx?
@@ -34,8 +42,7 @@ class World
 
   get: (key) ->
     value = @get_raw(key)
-    if isFunction(value)
-      return value(this,{})
+    return value(this,{}) if isFunction(value)
     value
     
   update: (key, delta) ->
@@ -43,20 +50,23 @@ class World
 
   call: (key, args) ->
     closure = @get_raw(key)
+    assert isFunction(closure), "#{key} is function"
     closure(this, args)
     
   import_dict: (dict) ->
-    console.log 'import_dict'
-    console.log dict
     for key, value of dict
       if key == CHILDREN
         for child in value
+          assert child, 'import child'
           @add_child child
       else
         @put(key, value)
     this
 
   world_from_value: (value) ->
+    assert isString(value), "world_from_value requires string"
+    console.log "world_from_value"
+    console.log value
     assert value, "world_from_value"
     label = "#{value}"
     world = new World(@, label)
@@ -70,12 +80,10 @@ class World
 
   make_world: (value) ->
     return value if @is_world(value)
-    return @world_from_dict(value) if typeof(value) == "object"
+    return @world_from_dict(value) if isObject(value)
     @world_from_value(value)
     
   add_child: (value) ->
-    console.log "add_child value"
-    console.log value
     child = @make_world(value)
     assert child, "add_child"
     @get(CHILDREN).push(child)
@@ -85,7 +93,7 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
-    console.log(@)
+    console.log(@get(CHILDREN))
     result = []
     for child in @get(CHILDREN)
       assert child, "child in #{@get(CHILDREN)}"

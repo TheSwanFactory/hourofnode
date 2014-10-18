@@ -25,7 +25,7 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'world makes sub-worlds', (t) ->
-    value = 42
+    value = "42"
     sub = world.make_world(value)
     t.equal sub.get("value"), value, "sub.get"
     t.equal sub.up, world, "sub.up"
@@ -44,9 +44,7 @@ exports.test_world = (test, rx) ->
     t.equal world.get('a'), 1, "import properties"
     children = world.get('_CHILDREN')
     t.ok children instanceof rx.SrcArray, "children is SrcArray"
-#    console.log children
     child = children.at(0)
-#    console.log child
     t.ok child, "child exists"
     t.ok world.is_world(child), "child is a world"
     t.end()
@@ -58,11 +56,14 @@ exports.test_world = (test, rx) ->
     mom = grandma.add_child("Sandhya")
     t.ok grandma.has_children(), "grandma.has_children"
     daughter = mom.add_child("Anjali")
-    t.ok mom.has_children(), "grandma.has_children"
+    t.ok mom.has_children(), "mom.has_children"
     t.ok daughter, "daughter"
-    result = mom.map_children (child) -> "#{child.get('value')} Prabhakar"
+    t.equal "#{daughter}", "World:Anjali", "daughter name"
+    result = mom.map_children (child) ->
+      console.log child.get("_LABEL")
+      "#{child} Prabhakar"
     console.log result
-    t.equal result[0], "Anjali Prabhakar", "add/map child"
+    t.equal result[0], "Anjali Prabhakar", "map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
     grandma.put('chocolate', 'dark')
