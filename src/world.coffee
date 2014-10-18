@@ -94,7 +94,7 @@ class World
     #console.log "map_children of #{@}"
     #console.log @get(CHILDREN)
     result = @rx().array()
-    for child in @get(CHILDREN)
+    for child in @get(CHILDREN).all()
       result.push callback(child)
     result
   
