@@ -1,4 +1,4 @@
-exports.draw_grid = {
+exports.grid = {
   _CHILDREN: [
     {
       fill: "#ccffcc"

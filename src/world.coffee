@@ -46,6 +46,8 @@ class World
     closure(this, args)
     
   import_dict: (dict) ->
+    console.log 'import_dict'
+    console.log dict
     for key, value of dict
       if key == CHILDREN
         for child in value
@@ -72,6 +74,8 @@ class World
     @world_from_value(value)
     
   add_child: (value) ->
+    console.log "add_child value"
+    console.log value
     child = @make_world(value)
     assert child, "add_child"
     @get(CHILDREN).push(child)
