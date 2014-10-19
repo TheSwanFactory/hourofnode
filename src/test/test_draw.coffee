@@ -17,6 +17,6 @@ exports.test_draw = (test, rx) ->
 
   test "draw lab", (t) ->
     result = draw(lab)
-    console.log result.toString()
+    console.log result
     t.end()
   

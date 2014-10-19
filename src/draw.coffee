@@ -3,32 +3,32 @@ exports.draw = (world) ->
   grid_size = world.get('size')
 
   draw_path = (world) ->
+    console.log "draw_path #{world}"
     dict = {
       class: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
     paths = world.get 'path'
+    return unless paths?
     paths = [paths] if paths !instanceof Array
     for path in paths
       dict['d'] = path
       SVG.path dict
       
   draw_world = (world) ->
+    console.log "draw_world #{world}"
+    paths = if world.has_children() then world.map_children(draw_world) else draw_path(world)
     SVG.g {
       class: ['draw_world', "#{world}"]
       transform: world.get('transform')
-    }, _.flatten [
-      path = world.get('path')
-      draw_path(world) if path?
-      world.map_children draw_world
-    ]
-  children = world.map_children(draw_world)
-  console.log children
+    }, paths 
+
+  console.log world
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }, children 
+  }#, draw_world(world) 
