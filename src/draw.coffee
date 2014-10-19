@@ -19,10 +19,11 @@ exports.draw = (world) ->
   draw_world = (world) ->
     console.log "draw_world #{world}"
     paths = if world.has_children() then world.map_children(draw_world) else draw_path(world)
+    console.log paths
     SVG.g {
       class: ['draw_world', "#{world}"]
       transform: world.get('transform')
-    }, paths 
+    }, _.flatten [paths] 
 
   console.log world
   SVG.svg {
@@ -31,4 +32,6 @@ exports.draw = (world) ->
     class: "svg_grid #{world}"
     width: grid_size  
     height: grid_size  
-  }#, draw_world(world) 
+  }, [
+    draw_world(world) 
+  ]
