@@ -2,7 +2,7 @@
 {draw} = require('../draw')
 
 exports.test_draw = (test, rx) ->
-  lab = god(rx, {
+  solo = god(rx, {
     size: 480
     scale: 80
     fill: "green"
@@ -10,13 +10,29 @@ exports.test_draw = (test, rx) ->
     path: "M0,0 L100,100"
   })
 
+  family = god(rx, {
+    size: 480
+    scale: 80
+    fill: "red"
+    stroke: "black"
+    _CHILDREN: [
+      {path: "M0,0 L100,100"}
+      {path: "M100,0 L0,100"}
+      {path: ["M50,0 L0,50", "M0,50 L50,0"]}
+    ]
+  })
+
   test "draw exists", (t) ->
     t.ok draw, "draw"
-    t.ok lab , "lab"
+    t.ok solo, "solo"
+    t.ok family, "family"
     t.end()
 
-  test "draw lab", (t) ->
-    result = draw(lab)
-    console.log result
+  test "draw solo", (t) ->
+    result = draw(solo)
+    t.end()
+  
+  test "draw solo", (t) ->
+    result = draw(family)
     t.end()
   
