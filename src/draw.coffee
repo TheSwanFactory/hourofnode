@@ -23,7 +23,7 @@ exports.draw = (world) ->
     SVG.g {
       class: ['draw_world', "#{world}"]
       transform: world.get('transform')
-    }, _.flatten [paths] 
+    }, paths
 
   console.log world
   SVG.svg {
