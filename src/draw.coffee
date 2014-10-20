@@ -25,14 +25,14 @@ exports.draw = (world) ->
     elements
       
   draw_world = (world) ->
-    console.log "draw_world #{world}"
+    #console.log "draw_world #{world}"
     paths = if world.has_children() then world.map_children(draw_world) else draw_path(world)
     SVG.g {
       class: ['draw_world', "#{world}"]
       transform: world.get('transform')
     }, paths
 
-  console.log world
+  #console.log world
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
