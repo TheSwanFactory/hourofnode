@@ -12,8 +12,8 @@ exports.config = {
   angle: 0    
   transform: (world, args) ->
     scale = world.get('scale')
-    x = scale*(world.get('i')+0.5)
-    y = scale*(world.get('j')+0.5)
+    x = scale*(world.get('i'))
+    y = scale*(world.get('j'))
     angle = world.get('angle')
     "translate(#{x},#{y}) rotate(#{angle})"
   current: undefined
