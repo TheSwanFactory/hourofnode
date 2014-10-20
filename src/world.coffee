@@ -47,6 +47,7 @@ class World
     value
 
   owner: (key) ->
+    return @ if @get_local(key)?
     undefined
     
   update: (key, delta) ->

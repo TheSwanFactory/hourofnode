@@ -69,6 +69,7 @@ exports.test_world = (test, rx) ->
 
     t.notOk daughter.owner('chocolate'), "No chocolate owner"
     grandma.put('chocolate', 'dark')
+    t.equal grandma.owner('chocolate'), grandma, "chocolate owner self"
     t.equal daughter.owner('chocolate'), grandma, "chocolate owner"
 
     t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
