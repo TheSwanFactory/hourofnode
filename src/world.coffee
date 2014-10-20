@@ -64,22 +64,22 @@ class World
         @put(key, value)
     this
 
-  world_from_value: (value) ->
-    assert isString(value), "world_from_value requires string"
+  _from_value: (value) ->
+    assert isString(value), "_from_value requires string"
     label = "#{value}"
     world = new World(@, label)
     world.put("value", value)
     world
 
-  world_from_dict: (dict) ->
+  _from_dict: (dict) ->
     label = dict[LABEL] or "#{@get(LABEL)}:#{@get(CHILDREN).length()}"
     world = new World(@, label)
     world.import_dict(dict)
 
   make_world: (value) ->
     return value if @is_world(value)
-    return @world_from_dict(value) if isObject(value)
-    @world_from_value(value)
+    return @_from_dict(value) if isObject(value)
+    @_from_value(value)
     
   add_child: (value) ->
     child = @make_world(value)
