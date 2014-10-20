@@ -24,7 +24,7 @@ exports.draw = (world) ->
       x: 0, y:5, 
       style: {text_anchor: "middle"}
     }, world.bind() ->
-      console.log "rebind name from world #{world}"
+      console.log "rebind name of world #{world}"
       world.get('name')
     elements
     
@@ -39,7 +39,8 @@ exports.draw = (world) ->
       transform: world.get 'transform'
     }
     clicker = world.get_raw 'click'
-    dict['click'] = -> clicker(world) if clicker?
+    #console.log "set clicker for #{world}" if clicker?
+    dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, paths
 
   #console.log world
