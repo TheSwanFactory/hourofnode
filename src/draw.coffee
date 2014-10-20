@@ -15,7 +15,13 @@ exports.draw = (world) ->
     elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
-    elements.push SVG.text({x: 0, y:0}, world.label())
+
+    name = world.get('name')
+    return elements unless name?
+    elements.push SVG.text {
+      x: 0, y:5, 
+      style: {text_anchor: "middle"}
+    }, name
     elements
       
   draw_world = (world) ->

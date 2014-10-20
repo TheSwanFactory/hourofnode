@@ -50,7 +50,7 @@ exports.turtles = {
       world.put('v_i', next_v_i )
       world.put('v_j', next_v_j )
     _CHILDREN: [
-      _LABEL: "ME"
+      name: "ME"
       i: 2
       j: 1
       v_i: 1
