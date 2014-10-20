@@ -15,7 +15,7 @@ exports.draw = (world) ->
     elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
-    elements.push SVG.text({x: 0, y:0},"hello")
+    elements.push SVG.text({x: 0, y:0}, world.label())
     elements
       
   draw_world = (world) ->

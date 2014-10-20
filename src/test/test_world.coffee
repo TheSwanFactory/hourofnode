@@ -61,7 +61,7 @@ exports.test_world = (test, rx) ->
     console.log daughter
     t.equal "#{daughter}", "World:Anjali", "daughter name"
     result = mom.map_children (child) ->
-      "#{child.get('_LABEL')} Prabhakar"
+      "#{child.label()} Prabhakar"
     console.log result
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     
@@ -96,7 +96,8 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'world has a label', (t) ->
-    t.equal "#{world}", "World:root", "label"
+    t.equal world.label(), "root", "label"
+    t.equal "#{world}", "World:root", "toString"
     t.end()
 
   test 'world knows worlds', (t) ->

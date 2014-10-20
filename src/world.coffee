@@ -98,9 +98,11 @@ class World
       result.push callback(child)
     result
   
+  label: ->
+    @get(LABEL)
     
   toString: ->
-    "World:#{@get(LABEL)}"
+    "World:#{@label()}"
     
   is_world: (obj) ->
     obj instanceof World
