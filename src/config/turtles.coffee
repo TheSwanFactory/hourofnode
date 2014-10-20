@@ -29,6 +29,8 @@ exports.turtles = {
   name: (world, args) ->
     world.label()
   stroke: "green"
+  v_i: 1
+  v_j: 0
   angle: (world, args) ->
     # TODO: perform real triginometry
     value = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
@@ -60,6 +62,12 @@ exports.turtles = {
       v_i: 0
       v_j: 1
       fill: "#88ff88"
+    }
+    {
+      _LABEL: "yu"
+      i: 1.5
+      j: 3.5
+      fill: "#008800"
     }
   ]
 }
