@@ -21,11 +21,8 @@ exports.draw = (world) ->
 
     return elements unless world.get('name')?
     elements.push SVG.text {
-      x: 0, y:5, 
-      style: {text_anchor: "middle"}
-    }, world.bind() ->
-      console.log "rebind name of world #{world}"
-      world.get('name')
+      x: 0, y:5
+    }, world.bind() -> world.get('name')
     elements
     
   draw_children = (world) ->
@@ -39,7 +36,7 @@ exports.draw = (world) ->
       transform: world.get 'transform'
     }
     clicker = world.get_raw 'click'
-    #console.log "set clicker for #{world}" if clicker?
+    # TODO: find a more elegant way to inherit generic click behavior
     dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, paths
 
