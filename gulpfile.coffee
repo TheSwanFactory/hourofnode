@@ -34,7 +34,7 @@ gulp.task 'sync', -> sync_to 'web'
 
 # Watch and resync
 
-all_src = ['src/*', 'src/*/*']
+all_src = ['src/*', 'src/*/*', '../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds  
   
