@@ -7,7 +7,6 @@ exports.test_config = (test, rx) ->
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
     t.ok world.get('scale') > 10, 'scale'
-    t.ok world.get('i'), 'i'
     t.end()
 
   test 'config rx', (t) ->
@@ -16,7 +15,7 @@ exports.test_config = (test, rx) ->
 
   test 'config transform', (t) ->
     console.log world.doc.x
-    t.equal 1, world.get('i'), 'i'
+    t.equal 0, world.get('i'), 'i'
     t.ok world.get('transform')
     t.end()
 
