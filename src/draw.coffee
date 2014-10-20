@@ -19,12 +19,13 @@ exports.draw = (world) ->
       dict['d'] = path
       SVG.path dict
 
-    name = world.get('name')
-    return elements unless name?
+    return elements unless world.get('name')?
     elements.push SVG.text {
       x: 0, y:5, 
       style: {text_anchor: "middle"}
-    }, name
+    }, world.bind() ->
+      console.log "rebind name from world #{world}"
+      world.get('name')
     elements
     
   draw_children = (world) ->
@@ -38,11 +39,10 @@ exports.draw = (world) ->
       transform: world.get 'transform'
     }
     clicker = world.get_raw 'click'
-    #console.log clicker if clicker?
     dict['click'] = -> clicker(world) if clicker?
     SVG.g dict, paths
 
-  console.log world
+  #console.log world
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
