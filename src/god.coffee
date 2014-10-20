@@ -1,8 +1,10 @@
 {world} = require('./world')
   
 class GOD
+  debug: false
   get_raw: (key, world) ->
-    console.log "key '#{key}' not found: #{world}"
+    return @debug if key == "debug"
+    console.log "key '#{key}' not found: #{world}" if @debug
     undefined
   owner: (key) ->
     undefined
