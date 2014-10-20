@@ -16,7 +16,7 @@ exports.test_config = (test, rx) ->
   test 'config transform', (t) ->
     console.log world.doc.x
     t.equal 0, world.get('i'), 'i'
-    t.ok world.get('transform')
+    t.equal world.get('transform'), "translate(40,40) rotate(0)"
     t.end()
 
   test 'config children', (t) ->
