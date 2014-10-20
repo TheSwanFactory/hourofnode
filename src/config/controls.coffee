@@ -4,13 +4,20 @@ exports.controls = {
   fill: "lightgrey"
   row: 0
   col: 0
+  i: (world, args) ->
+    world.get('split')+0.5
+  j: 0.5
   path: (world, args) ->
-    size = world.get('size')
     scale = world.get('scale') / 2.5
-    "m#{size+15},0 h#{scale} v#{scale} h-#{scale } v#{-scale}"
+    half = scale / 2
+    "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
     
   _CHILDREN: [
-    {i: 0, j:0}
-    {i: 0.5, j:0}
+    {
+      i: 0.1, j:0
+      name: (world, args) ->
+        world.get("current")
+    }
+    {i: 0.6, j:0}
   ]
 }

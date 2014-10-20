@@ -52,7 +52,8 @@ exports.turtles = {
     world.put('v_i', next_v_i )
     world.put('v_j', next_v_j )
   click: (world, args) ->
-    {label, key, value, queue} = args
+    console.log 'clicked'
+    world.owner('current').put('current', label())
   _CHILDREN: [
     {
       _LABEL: "me"
