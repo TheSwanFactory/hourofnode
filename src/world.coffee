@@ -45,6 +45,9 @@ class World
     value = @get_raw(key)
     return value(@,{}) if isFunction(value)
     value
+
+  owner: (key) ->
+    undefined
     
   update: (key, delta) ->
     @put(key, @get(key) + delta)

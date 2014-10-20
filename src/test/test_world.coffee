@@ -66,8 +66,13 @@ exports.test_world = (test, rx) ->
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     
     t.notOk daughter.get('chocolate'), "No chocolate"
+
+    t.notOk daughter.owner('chocolate'), "No chocolate owner"
     grandma.put('chocolate', 'dark')
+    t.equal daughter.owner('chocolate'), grandma, "chocolate owner"
+
     t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
+    
     t.end()
     
   test 'world can update properties', (t) ->
