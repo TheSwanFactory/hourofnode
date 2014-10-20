@@ -29,14 +29,11 @@ exports.turtles = {
   name: (world, args) ->
     world.label()
   stroke: "green"
-  transform: (world, args) ->
-    scale = world.get('scale')
-    x = scale*(world.get('i')+0.5)
-    y = scale*(world.get('j')+0.5)
+  angle: (world, args) ->
     # TODO: perform real triginometry
-    angle = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
-    angle = -angle if world.get('v_j') == -1
-    "translate(#{x},#{y}) rotate(#{angle})"
+    value = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
+    value = -angle if world.get('v_j') == -1
+    value
   path: (world, args) -> 
     scale = world.get('scale') / 10
     [
@@ -58,10 +55,10 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
-      i: 2
-      j: 1
-      v_i: 1
-      v_j: 0
+      i: 2.5
+      j: 1.5
+      v_i: 0
+      v_j: 1
       fill: "#88ff88"
     }
   ]
