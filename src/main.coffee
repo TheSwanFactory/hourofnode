@@ -16,8 +16,7 @@ world = god(rx, config)
 
 main = ->
   $('body').append(
-    #draw(world)
-    #control(T, world)
+    draw(world)
   )
   
 # Run Tests
