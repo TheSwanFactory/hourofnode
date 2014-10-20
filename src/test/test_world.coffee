@@ -64,15 +64,20 @@ exports.test_world = (test, rx) ->
       "#{child.label()} Prabhakar"
     console.log result
     t.equal result.at(0), "Anjali Prabhakar", "map child"
+    candy = 'chocolate'
     
-    t.notOk daughter.get('chocolate'), "No chocolate"
+    t.notOk daughter.get(candy), "No chocolate"
 
-    t.notOk daughter.owner('chocolate'), "No chocolate owner"
-    grandma.put('chocolate', 'dark')
-    t.equal grandma.owner('chocolate'), grandma, "chocolate owner self"
-    t.equal daughter.owner('chocolate'), grandma, "chocolate owner"
-
-    t.equal daughter.get('chocolate'), 'dark', "Inherit chocolate"
+    t.notOk daughter.owner(candy), "No chocolate owner"
+    grandma.put(candy, 'dark')
+    t.equal grandma.owner(candy), grandma, "chocolate owner self"
+    t.equal daughter.owner(candy), grandma, "chocolate owner"
+    t.equal daughter.get(candy), 'dark', "Inherit chocolate"
+    
+    mom.put(candy, 0)
+    t.equal daughter.owner(candy), mom, "chocolate owner 0"
+    t.equal daughter.get(candy), 0, "Inherit chocolate 0"
+     
     
     t.end()
     

@@ -39,7 +39,9 @@ class World
     @doc.get(key)
 
   get_raw: (key, world) ->
-    @get_local(key) or @up.get_raw(key, world or @)
+    value = @get_local(key)
+    return value if value?
+    @up.get_raw(key, world or @)
 
   get: (key) ->
     value = @get_raw(key)

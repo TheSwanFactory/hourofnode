@@ -7,10 +7,17 @@ exports.test_config = (test, rx) ->
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
     t.ok world.get('scale') > 10, 'scale'
+    t.ok world.get('i'), 'i'
     t.end()
 
   test 'config rx', (t) ->
     t.ok world.bind, "bind"
+    t.end()
+
+  test 'config transform', (t) ->
+    console.log world.doc.x
+    t.equal 1, world.get('i'), 'i'
+    t.ok world.get('transform')
     t.end()
 
   test 'config children', (t) ->
@@ -18,8 +25,4 @@ exports.test_config = (test, rx) ->
     world.map_children ->
       count = count + 1
     t.equal count, 3, "count children"
-    t.end()
-
-  test 'config rx', (t) ->
-    t.ok world.bind, "bind"
     t.end()
