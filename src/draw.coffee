@@ -37,7 +37,9 @@ exports.draw = (world) ->
       class: ['draw_world', "#{world}"]
       transform: world.get 'transform'
     }
-    clicker = world.get 'click'
+    clicker = world.get_raw 'click'
+    #console.log clicker if clicker?
+    dict['click'] = -> clicker(world) if clicker?
     SVG.g dict, paths
 
   console.log world

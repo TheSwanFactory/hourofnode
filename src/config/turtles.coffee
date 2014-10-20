@@ -56,6 +56,7 @@ exports.turtles = {
     owner = world.owner('current')
     console.log owner
     owner.put('current', world.label())
+    console.log world.get 'current'
   _CHILDREN: [
     {
       _LABEL: "me"
