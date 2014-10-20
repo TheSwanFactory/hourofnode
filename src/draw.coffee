@@ -40,7 +40,7 @@ exports.draw = (world) ->
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
-    width: grid_size  
+    width: grid_size*1.5  
     height: grid_size  
   }, [
     draw_world(world) 
