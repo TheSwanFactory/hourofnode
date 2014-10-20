@@ -24,7 +24,7 @@ draw_shell = (scale) ->
    m0,0           a3,2 0 1,0 #{-6*scale},0z
   "
 
-exports.draw_turtle = {
+exports.turtles = {
     stroke: "green"
     transform: (world, args) ->
       scale = world.get('scale')

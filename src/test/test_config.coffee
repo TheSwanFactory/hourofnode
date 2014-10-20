@@ -13,7 +13,7 @@ exports.test_config = (test, rx) ->
     count = 0
     world.map_children ->
       count = count + 1
-    t.equal count, 1, "count children"
+    t.equal count, 2, "count children"
     t.end()
 
   test 'config rx', (t) ->

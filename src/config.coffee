@@ -1,5 +1,5 @@
 {grid} = require('./config/grid')
-# {draw_turtle} = require('./draw_turtle')
+{turtles} = require('./config/turtles')
 # {draw_controls} = require('./draw_controls')
 
 exports.config = {
@@ -9,6 +9,7 @@ exports.config = {
     world.get('size') / world.get('split')
   _CHILDREN: [
     grid
+    turtles
   ]
 #  turtles: draw_turtle
 #  controls: draw_controls
