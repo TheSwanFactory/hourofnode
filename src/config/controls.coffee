@@ -2,16 +2,15 @@ exports.controls = {
   _LABEL: "controls"
   stroke: "black"
   fill: "lightgrey"
-  path: (world, args) ->
-    scale = world.get('scale') / 2
-    "M0,0 h#{scale} v#{scale} h-#{scale } v#{-scale}"
   row: 0
   col: 0
-  i: (world, args) ->
-    console.log world.get('split')
-    world.get('col') + 1
+  path: (world, args) ->
+    size = world.get('size')
+    scale = world.get('scale') / 2.5
+    "m#{size+15},0 h#{scale} v#{scale} h-#{scale } v#{-scale}"
     
   _CHILDREN: [
-    {col: 0, row:0}
+    {i: 0, j:0}
+    {i: 0.5, j:0}
   ]
 }

@@ -53,7 +53,6 @@ exports.turtles = {
     world.put('v_j', next_v_j )
   click: (world, args) ->
     {label, key, value, queue} = args
-  
   _CHILDREN: [
     {
       _LABEL: "me"
