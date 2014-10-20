@@ -6,7 +6,7 @@ exports.draw = (world) ->
 
   draw_path = (world) ->
     assert !world.has_children()
-    console.log "draw_path #{world}"
+    #console.log "draw_path #{world}"
     dict = {
       class: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'
@@ -29,7 +29,7 @@ exports.draw = (world) ->
     world.map_children(draw_world) if world.has_children() 
 
   draw_world = (world) ->
-    console.log "draw_world #{world}"
+    #console.log "draw_world #{world}"
     paths = draw_children(world) or draw_path(world)
     dict = {
       class: ['draw_world', "#{world}"]

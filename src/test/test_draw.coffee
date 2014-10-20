@@ -32,7 +32,7 @@ exports.test_draw = (test, rx) ->
     result = draw(solo)
     t.end()
   
-  test "draw solo", (t) ->
+  test "draw family", (t) ->
     result = draw(family)
     t.end()
   

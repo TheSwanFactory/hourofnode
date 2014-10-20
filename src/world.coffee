@@ -97,8 +97,6 @@ class World
     @get(CHILDREN).length() > 0
     
   map_children: (callback) ->
-    #console.log "map_children of #{@}"
-    #console.log @get(CHILDREN)
     result = @rx().array()
     for child in @get(CHILDREN).all()
       result.push callback(child)
