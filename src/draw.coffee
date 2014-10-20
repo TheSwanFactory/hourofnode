@@ -12,9 +12,11 @@ exports.draw = (world) ->
     paths = world.get 'path'
     return unless paths?
     paths = [paths] if paths !instanceof Array
-    for path in paths
+    elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
+    elements.push SVG.text({x: 0, y:0},"hello")
+    elements
       
   draw_world = (world) ->
     console.log "draw_world #{world}"
