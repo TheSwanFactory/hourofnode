@@ -48,7 +48,7 @@ class World
 
   owner: (key) ->
     return @ if @get_local(key)?
-    undefined
+    @up.owner(key)
     
   update: (key, delta) ->
     @put(key, @get(key) + delta)
