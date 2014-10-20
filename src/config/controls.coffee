@@ -1,5 +1,5 @@
-exports.draw_controls = {
-  _children: {
+exports.controls = {
+  _CHILDREN: {
     instructions: {
       click: (world, args) ->
         {label, key, value, queue} = args
@@ -8,7 +8,7 @@ exports.draw_controls = {
         -> 
           console.log "queue.putChild(#{label}, #{dict})"
           queue.addChild(label, dict)
-      _children: {
+      _CHILDREN: {
         Left: {turn: 1}
         Go: {go: 0}
         Right: {turn: -1}    

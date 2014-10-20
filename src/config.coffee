@@ -1,6 +1,6 @@
 {grid} = require('./config/grid')
 {turtles} = require('./config/turtles')
-# {draw_controls} = require('./draw_controls')
+{controls} = require('./config/controls')
 
 exports.config = {
   size: 480
@@ -10,8 +10,6 @@ exports.config = {
   _CHILDREN: [
     grid
     turtles
+    controls
   ]
-#  turtles: draw_turtle
-#  controls: draw_controls
-  current: "current"
 }
