@@ -57,7 +57,7 @@ class World
 
   call: (key, args) ->
     closure = @get_raw(key)
-    assert isFunction(closure), "#{key} is function"
+    assert isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
   import_dict: (dict) ->

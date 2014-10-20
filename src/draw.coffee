@@ -26,15 +26,18 @@ exports.draw = (world) ->
       style: {text_anchor: "middle"}
     }, name
     elements
-      
+    
+  draw_children = (world) ->
+    world.map_children(draw_world) if world.has_children() 
+
   draw_world = (world) ->
     console.log "draw_world #{world}"
-    paths = if world.has_children() then world.map_children(draw_world) else draw_path(world)
+    paths = draw_children(world) or draw_path(world)
     dict = {
       class: ['draw_world', "#{world}"]
-      transform: world.get('transform')
-      click: world.get_raw('click')
+      transform: world.get 'transform'
     }
+    clicker = world.get 'click'
     SVG.g dict, paths
 
   console.log world
