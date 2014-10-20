@@ -9,6 +9,10 @@ exports.test_config = (test, rx) ->
     t.ok world.get('scale') > 10, 'scale'
     t.end()
 
+  test 'config rx', (t) ->
+    t.ok world.bind, "bind"
+    t.end()
+
   test 'config children', (t) ->
     count = 0
     world.map_children ->

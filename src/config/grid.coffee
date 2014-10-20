@@ -1,4 +1,5 @@
 exports.grid = {
+  _LABEL: "grid"
   _CHILDREN: [
     {
       fill: "#ccffcc"

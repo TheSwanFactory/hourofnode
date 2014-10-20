@@ -3,7 +3,7 @@ exports.draw = (world) ->
   grid_size = world.get('size')
 
   draw_path = (world) ->
-    #console.log "draw_path #{world}"
+    console.log "draw_path #{world}"
     dict = {
       class: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'

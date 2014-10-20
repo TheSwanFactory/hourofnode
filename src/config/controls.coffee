@@ -1,25 +1,18 @@
 exports.controls = {
-  _CHILDREN: {
-    instructions: {
-      click: (world, args) ->
-        {label, key, value, queue} = args
-        dict = {}
-        dict[key] = value
-        -> 
-          console.log "queue.putChild(#{label}, #{dict})"
-          queue.addChild(label, dict)
-      _CHILDREN: {
-        Left: {turn: 1}
-        Go: {go: 0}
-        Right: {turn: -1}    
-      }
-    }
-    activity: {
-      click: (world, {turtle, key, value}) ->
-        -> turtle.call(key, {dir: value})
-      _children: {
-        Go: {go: 0}
-      }
-    }
-  }
+  _LABEL: "controls"
+  stroke: "black"
+  fill: "lightgrey"
+  transform: (world, args) ->
+    size = world.get('size')
+    scale = world.get('scale')
+    x = size + scale*(world.get('i')+0.5)
+    y = scale*(world.get('j')+0.5)
+    "translate(#{x},#{y})"
+  path: (world, args) ->
+    scale = world.get('scale') / 2
+    "M0,0 h#{scale} v#{scale} h-#{scale } v#{-scale}"
+  _CHILDREN: [
+    {i: 0, j:0}
+    
+  ]
 }
