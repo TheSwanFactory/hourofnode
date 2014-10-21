@@ -36,7 +36,7 @@ exports.turtles = {
   angle: (world, args) ->
     # TODO: perform real triginometry
     value = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
-    value = -angle if world.get('v_j') == -1
+    #value = -angle if world.get('v_j') == -1
     value
   path: (world, args) -> 
     scale = world.get('scale') / 10
@@ -53,7 +53,7 @@ exports.turtles = {
     {dir} = args
     assert dir, "expects dir"
     next_v_i =  dir * world.get('v_j')
-    next_v_j = -dir * world.get('v_i')
+    next_v_j = -1 * dir * world.get('v_i')
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   _AUTHORITY: {
