@@ -8,7 +8,7 @@ exports.draw = (world) ->
     assert !world.has_children()
     #console.log "draw_path #{world}"
     dict = {
-      class: ['draw_path', "#{world}"]
+      klass: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
@@ -31,12 +31,12 @@ exports.draw = (world) ->
   draw_world = (world) ->
     #console.log "draw_world #{world}"
     paths = draw_children(world) or draw_path(world)
+    clicker = world.get_raw 'click'
     dict = {
       klass: ['draw_world', "#{world}"] # TODO: use 'class' properly
       transform: world.get 'transform'
+      click: -> clicker(world) if clicker?
     }
-    clicker = world.get_raw 'click'
-    dict['click'] = -> clicker(world) if clicker?# and !world.has_children()
     SVG.g dict, paths
 
   #console.log world
