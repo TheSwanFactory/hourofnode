@@ -1,8 +1,8 @@
 assert = require 'assert'
 
-validate = (n, max) ->
-  return 0 if n < 0
-  return max if n > max
+wraparound = (n, max) ->
+  return max if n < 0
+  return 0.5 if n > max
   n
   
 RX = "_RX"
@@ -60,7 +60,7 @@ class World
     
   update: (key, delta, max) ->
     result = @get(key) + delta
-    result = validate(result, max) if max?
+    result = wraparound(result, max) if max?
     @put(key, result)
 
   call: (key, args) ->

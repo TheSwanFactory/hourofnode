@@ -47,10 +47,11 @@ exports.turtles = {
       draw_shell(scale)
     ]
   go: (world, args) ->
+    split = world.get('split')
     {dir} = args
     assert dir, "expects dir"
-    world.update 'i', dir * world.get('v_i')
-    world.update 'j', dir * world.get('v_j')
+    world.update 'i', dir * world.get('v_i'), split
+    world.update 'j', dir * world.get('v_j'), split
   turn: (world, args) ->
     {dir} = args
     assert dir, "expects dir"
@@ -81,8 +82,8 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
-      i: 0.5
-      j: 0.5
+      i: 4.5
+      j: 4.5
       v_i: 0
       v_j: 1
       fill: "#88ff88"
