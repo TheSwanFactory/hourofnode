@@ -69,7 +69,8 @@ exports.test_world = (test, rx) ->
 
     result = world.find_children("root")
     t.equal result.length, 0
-
+    result = world.find_children("root:0")
+    t.equal result.length, 1
     t.end()
     
   test 'world has children inherit', (t) ->
