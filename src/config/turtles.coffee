@@ -35,8 +35,10 @@ exports.turtles = {
   v_j: 0
   angle: (world, args) ->
     # TODO: perform real triginometry
-    value = 90*(1-world.get('v_i')) #0, 90, 180, 90, 0
-    value = -1*angle if world.get('v_j') == -1
+    v_i = world.get('v_i')
+    v_j = world.get('v_j')
+    value = 90*(1-v_i) #0, 90, 180, 90, 0
+    value = -90 if world.get('v_j') < 0
     value
   path: (world, args) -> 
     scale = world.get('scale') / 10
