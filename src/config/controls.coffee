@@ -7,13 +7,16 @@ exports.controls = {
   row: 0
   col: 0
   i: (world, args) ->
-    return world.get('split')+0.25 if world.label() == "controls"
-    offset(world, 'col')
-  j: (world, args) -> offset(world, 'row')
+    world.get('split')+0.25
+  j: 0.25
   path: (world, args) ->
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
+  _AUTHORITY: {
+    i: (world, args) -> offset(world, 'col')
+    j: (world, args) -> offset(world, 'row')
+  }
   _CHILDREN: [
     {
       _LABEL: "current"
