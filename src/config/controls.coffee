@@ -15,6 +15,11 @@ exports.controls = {
     col: 0
     i: (world, args) -> offset(world, 'col')
     j: (world, args) -> offset(world, 'row')
+    click: (world, args) ->
+      action = world.get('action')
+      current = world.get('current')
+      console.log "click #{world} -> #{current} do #{action}"
+      current.call(action[0], action[1])
   }
   _CHILDREN: [
     {
@@ -28,14 +33,17 @@ exports.controls = {
     {
       row: 1, col: 0
       name: "L"
+      action: ["turn", {dir: 1}]
     }
     {
       row: 1, col: 1
       name: "Go"
+      action: ["go", {dir: 1}]
     }
     {
       row: 1, col: 2
       name: "R"
+      action: ["turn", {dir: -1}]
     }
   ]
 }

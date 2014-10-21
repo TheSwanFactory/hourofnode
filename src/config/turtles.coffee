@@ -43,14 +43,17 @@ exports.turtles = {
       draw_shell(scale)
     ]
   go: (world, args) ->
-    world.reset('i', world.get('v_i'))
-    world.reset('j', world.get('v_j'))
+    {dir} = args
+    assert dir, "expects dir"
+    world.reset 'i', dir * world.get('v_i')
+    world.reset 'j', dir * world.get('v_j')
   turn: (world, args) ->
     {dir} = args
-    next_v_i =  dir*world.get('v_j')
-    next_v_j = -dir*world.get('v_i')
-    world.put('v_i', next_v_i )
-    world.put('v_j', next_v_j )
+    assert dir, "expects dir"
+    next_v_i =  dir * world.get('v_j')
+    next_v_j = -dir * world.get('v_i')
+    world.put 'v_i', next_v_i
+    world.put 'v_j', next_v_j
   _AUTHORITY: {
     click: (world, args) ->
       owner = world.owner('current')
