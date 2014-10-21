@@ -4,16 +4,15 @@ exports.controls = {
   _LABEL: "controls"
   stroke: "black"
   fill: "lightgrey"
-  row: 0
-  col: 0
-  i: (world, args) ->
-    world.get('split')+0.25
+  i: (world, args) -> world.get('split')+0.25
   j: 0.25
   path: (world, args) ->
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
   _AUTHORITY: {
+    row: 0
+    col: 0
     i: (world, args) -> offset(world, 'col')
     j: (world, args) -> offset(world, 'row')
   }
@@ -22,11 +21,10 @@ exports.controls = {
       _LABEL: "current"
       stroke: "white"
       fill: "white"
-      name: (world, args) ->
-        cur = world.get("current")
-        "For: #{cur}"
+      name: (world, args) -> "For: #{world.get('current')}"
     }
     {row: 1, col: 0}
     {row: 1, col: 1}
+    {row: 2, col: 2}
   ]
 }
