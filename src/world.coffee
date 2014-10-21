@@ -108,6 +108,9 @@ class World
     for child in @get(CHILDREN).all()
       result.push child if child.label() == label
     result
+    
+  find_child: (label) ->
+    @find_children(label)[0]
 
   has_children: ->
     @get(CHILDREN).length() > 0

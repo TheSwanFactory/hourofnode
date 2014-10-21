@@ -12,9 +12,9 @@ assert = require 'assert'
 {test} = require('./test')
 
 world = god(rx, config)
-turtles = world.find_children('turtles')[0]
+turtles = world.find_child('turtles')
 assert turtles, "should be one turtles object"
-current = turtles.find_children()[0]
+current = turtles.find_child()
 world.put('current', current)
 
 main = ->
