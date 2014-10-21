@@ -20,6 +20,7 @@ exports.controls = {
       current = world.get('current')
       console.log "click #{world} -> #{current} do #{action}"
       current.call(action[0], action[1])
+      console.log current
   }
   _CHILDREN: [
     {

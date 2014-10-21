@@ -1,3 +1,5 @@
+assert = require 'assert'
+
 draw_leg = (scale, offset, dir) ->
   arc = if dir < 1 then 0 else 1
   "m#{offset*scale},0 l#{scale},#{dir*3*scale}
@@ -45,8 +47,8 @@ exports.turtles = {
   go: (world, args) ->
     {dir} = args
     assert dir, "expects dir"
-    world.reset 'i', dir * world.get('v_i')
-    world.reset 'j', dir * world.get('v_j')
+    world.update 'i', dir * world.get('v_i')
+    world.update 'j', dir * world.get('v_j')
   turn: (world, args) ->
     {dir} = args
     assert dir, "expects dir"

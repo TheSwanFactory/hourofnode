@@ -33,7 +33,7 @@ exports.draw = (world) ->
     paths = draw_children(world) or draw_self(world)
     dict = {
       klass: ['draw_world', "#{world}"] # TODO: use 'class' properly
-      transform: world.get 'transform'
+      transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'
     # TODO: find a more elegant way to inherit generic click behavior
