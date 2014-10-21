@@ -17,6 +17,12 @@ exports.test_world = (test, rx) ->
     test_store("dict", {not: "2b"})
     t.end()
 
+  test 'world can update properties', (t) ->
+    world.put('x', 2)
+    world.update('x', 1)
+    t.equal world.get('x'), 3
+    t.end()
+    
   test 'world contains rx', (t) ->
     t.ok world.rx(), "rx()"
     t.ok world.T(), "T"
@@ -38,7 +44,7 @@ exports.test_world = (test, rx) ->
     sub_w = world.make_world(world)
     t.equal sub_w, world, "don't wrap worlds"
     t.end()
-    
+
   test 'world imports from dictionaries', (t) ->
     world.import_dict({a: 1, b:2, _CHILDREN:[{c:3}]})
     t.equal world.get('a'), 1, "import properties"
@@ -74,14 +80,10 @@ exports.test_world = (test, rx) ->
     mom.put(candy, 0)
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
-     
     
     t.end()
-    
-  test 'world can update properties', (t) ->
-    world.put('x', 2)
-    world.update('x', 1)
-    t.equal world.get('x'), 3
+
+  test 'world has authorities', (t) ->
     t.end()
     
   test 'world has dynamic properties', (t) ->
