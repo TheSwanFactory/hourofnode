@@ -17,11 +17,12 @@ exports.controls = {
     
   _CHILDREN: [
     {
-      stroke: undefined
-      fill: undefined
+      stroke: "white"
+      fill: "white"
       name: (world, args) ->
-        world.get("current")
+        cur = world.get("current")
+        "Current turtle: #{cur}"
     }
-    {col: 1, row: 1}
+    {col: 0, row: 1}
   ]
 }
