@@ -3,6 +3,7 @@ assert = require 'assert'
 RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
+AUTHORITY = "_AUTHORITY"
 
 isFunction = (value) ->
   typeof(value) == "function"
@@ -60,9 +61,14 @@ class World
     assert isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
+  # TODO: refactor import_dict methods somewhere
   import_dict: (dict) ->
     for key, value of dict
-      if key == CHILDREN
+      if key == AUTHORITY
+        assert _.isObject(value), "authority isn't dictionary"
+        authority = @_from_dict(value)
+        @put(AUTHORITY, authority)
+      else if key == CHILDREN
         for child in value
           assert child, 'import child'
           @add_child child
@@ -70,25 +76,27 @@ class World
         @put(key, value)
     this
 
+  _spawn_world: (label) ->
+    new World(@, label)
+    
   _from_value: (value) ->
     assert isString(value), "_from_value requires string"
-    label = "#{value}"
-    world = new World(@, label)
+    world = @_spawn_world "#{value}"
     world.put("value", value)
     world
 
   _from_dict: (dict) ->
     label = dict[LABEL] or "#{@get(LABEL)}:#{@get(CHILDREN).length()}"
-    world = new World(@, label)
-    world.import_dict(dict)
+    world = @_spawn_world label
+    world.import_dict dict
 
   make_world: (value) ->
     return value if @is_world(value)
     return @_from_dict(value) if isObject(value)
-    @_from_value(value)
+    @_from_value value
     
   add_child: (value) ->
-    child = @make_world(value)
+    child = @make_world value
     assert child, "add_child"
     @get(CHILDREN).push(child)
     child
