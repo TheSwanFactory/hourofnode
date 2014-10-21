@@ -1,7 +1,7 @@
 # Preamble
-
 _.mixin(_.str.exports())
 rx =  require('../../reactive-coffee/src/reactive')
+assert = require 'assert'
 
 # Dependencies
 
@@ -12,6 +12,10 @@ rx =  require('../../reactive-coffee/src/reactive')
 {test} = require('./test')
 
 world = god(rx, config)
+turtles = world.find_children('turtles')[0]
+assert turtles, "should be one turtles object"
+current = turtles.find_children()[0]
+world.put('current', current)
 
 main = ->
   $('body').append(
