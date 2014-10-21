@@ -2,6 +2,7 @@ exports.grid = {
   _LABEL: "grid"
   _CHILDREN: [
     {
+      _LABEL: "background"
       fill: "#ccffcc"
       stroke: "black"
       path: (world, args) ->
@@ -9,6 +10,7 @@ exports.grid = {
         "M0,0 h#{size} v#{size} h-#{size} v#{-size}"
     }
     {
+      _LABEL: "gridlines"
       stroke: "white"
       path: (world, args) ->
         size = world.get('size')

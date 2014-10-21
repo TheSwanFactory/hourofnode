@@ -8,7 +8,6 @@ rx =  require('../../reactive-coffee/src/reactive')
 {god} = require('./god')
 {config} = require('./config')
 {draw} = require('./draw')
-# {control} = require('./control')
 
 {test} = require('./test')
 
