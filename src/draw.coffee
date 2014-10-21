@@ -4,11 +4,11 @@ exports.draw = (world) ->
   SVG = world.SVG()
   grid_size = world.get('size')
 
-  draw_path = (world) ->
+  draw_self = (world) ->
     assert !world.has_children()
     #console.log "draw_path #{world}"
     dict = {
-      klass: ['draw_path', "#{world}"]
+      class: ['draw_path', "#{world}"]
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
@@ -30,13 +30,14 @@ exports.draw = (world) ->
 
   draw_world = (world) ->
     #console.log "draw_world #{world}"
-    paths = draw_children(world) or draw_path(world)
-    clicker = world.get_raw 'click'
+    paths = draw_children(world) or draw_self(world)
     dict = {
       klass: ['draw_world', "#{world}"] # TODO: use 'class' properly
       transform: world.get 'transform'
-      click: -> clicker(world) if clicker?
     }
+    clicker = world.get_raw 'click'
+    # TODO: find a more elegant way to inherit generic click behavior
+    dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, paths
 
   #console.log world
