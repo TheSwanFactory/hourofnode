@@ -54,7 +54,7 @@ exports.turtles = {
   _AUTHORITY: {
     click: (world, args) ->
       owner = world.owner('current')
-      owner.put('current', world.label())
+      owner.put('current', world)
   }
   _CHILDREN: [
     {

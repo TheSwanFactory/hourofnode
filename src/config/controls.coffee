@@ -21,7 +21,9 @@ exports.controls = {
       _LABEL: "current"
       stroke: "white"
       fill: "white"
-      name: (world, args) -> "For: #{world.get('current') or 'N/A'}"
+      name: (world, args) ->
+        current = world.get('current')
+        "#{current}"
     }
     {
       row: 1, col: 0
