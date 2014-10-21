@@ -59,16 +59,18 @@ exports.turtles = {
     console.log "turn[#{dir}]: #{next_v_i} x #{next_v_j}"
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
-  actions: [["go", {dir: 1}]]
+  actions: [["go", {dir: 1}],["turn", {dir: 1}],["go", {dir: 1}],["turn", {dir: -1}]]
   action_index: 0
   step: (world, args) ->
     actions = world.get('actions')
     index = world.get('action_index')
-    console.log "#{world} step[#{index}] of #{actions}"
-
     action = actions[index]
+
+    console.log "#{world} step[#{index}/#{actions.length}] #{action}"
     console.log action
-    index = if index > actions.length then 0 else index + 1
+    index = index + 1
+    index = 0 if index >= actions.length
+    world.put('action_index', index)
     world.call(action[0], action[1]) if action?
   
   _AUTHORITY: {
@@ -79,8 +81,8 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
-      i: 2.5
-      j: 1.5
+      i: 0.5
+      j: 0.5
       v_i: 0
       v_j: 1
       fill: "#88ff88"
