@@ -92,7 +92,7 @@ exports.test_world = (test, rx) ->
     world.put("foo", "bar")
     t.equal comply.get('foo'), 'bar', 'comply foo'
     t.equal rebel.get('foo'), 'bar', 'rebel foo'
-    # set authority
+    authority.put('foo', 'baz')
     t.equal comply.get('foo'), 'bar', 'comply foo'
     t.equal rebel.get('foo'), 'baz', 'rebel foo with authority'    
     t.end()

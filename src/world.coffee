@@ -77,7 +77,8 @@ class World
     this
 
   _spawn_world: (label) ->
-    new World(@, label)
+    authority = @get(AUTHORITY)
+    new World(authority or @, label)
     
   _from_value: (value) ->
     assert isString(value), "_from_value requires string"
