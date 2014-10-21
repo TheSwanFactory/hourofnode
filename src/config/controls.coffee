@@ -23,8 +23,17 @@ exports.controls = {
       fill: "white"
       name: (world, args) -> "For: #{world.get('current')}"
     }
-    {row: 1, col: 0}
-    {row: 1, col: 1}
-    {row: 2, col: 2}
+    {
+      row: 1, col: 0
+      name: "L"
+    }
+    {
+      row: 1, col: 1
+      name: "Go"
+    }
+    {
+      row: 1, col: 2
+      name: "R"
+    }
   ]
 }

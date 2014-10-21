@@ -16,7 +16,7 @@ exports.config = {
     y = scale*(world.get('j'))
     angle = world.get('angle')
     "translate(#{x},#{y}) rotate(#{angle})"
-  current: "NA"
+  current: "N/A"
   _CHILDREN: [
     grid
     turtles
