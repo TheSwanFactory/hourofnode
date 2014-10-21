@@ -21,8 +21,14 @@ exports.controls = {
       fill: "white"
       name: (world, args) ->
         cur = world.get("current")
-        "Current turtle: #{cur}"
+        "For: #{cur}"
     }
-    {col: 0, row: 1}
+    {
+      row: 1
+      _CHILDREN: [
+        {col: 0}
+        {col: 1}
+      ]
+    }
   ]
 }
