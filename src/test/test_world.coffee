@@ -84,6 +84,12 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'world has authorities', (t) ->
+    comply = world._spawn_world("compliant")
+    authority = world._spawn_world("authority")
+    world.put("_AUTHORITY", authority)
+    rebel = world._spawn_world("rebellious")
+    t.ok comply
+    t.ok rebel
     t.end()
     
   test 'world has dynamic properties', (t) ->
