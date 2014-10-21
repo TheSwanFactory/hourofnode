@@ -59,6 +59,18 @@ exports.turtles = {
     console.log "turn[#{dir}]: #{next_v_i} x #{next_v_j}"
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
+  actions: [["go", {dir: 1}]]
+  action_index: 0
+  step: (world, args) ->
+    actions = world.get('actions')
+    index = world.get('action_index')
+    console.log "#{world} step[#{index}] of #{actions}"
+
+    action = actions[index]
+    console.log action
+    index = if index > actions.length then 0 else index + 1
+    world.call(action[0], action[1]) if action?
+  
   _AUTHORITY: {
     click: (world, args) ->
       owner = world.owner('current')

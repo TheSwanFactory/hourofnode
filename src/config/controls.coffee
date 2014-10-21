@@ -1,3 +1,5 @@
+{activity} = require('./activity')
+
 offset = (world, key) -> world.get(key)*0.5 + 0.25
   
 exports.controls = {
@@ -20,7 +22,6 @@ exports.controls = {
       current = world.get('current')
       console.log "click #{world} -> #{current} do #{action}"
       current.call(action[0], action[1])
-      console.log current
   }
   _CHILDREN: [
     {
@@ -32,26 +33,34 @@ exports.controls = {
         "#{current} #{current.get('i')}x#{current.get('j')} -> #{current.get('v_i')}x#{current.get('v_j')}"
     }
     {
+      _LABEL: "LEFT"
       row: 1, col: 0
       name: "L"
       action: ["turn", {dir: 1}]
     }
     {
+      _LABEL: "GO"
       row: 1, col: 1
       name: "Go"
       action: ["go", {dir: 1}]
     }
     {
+      _LABEL: "RIGHT"
       row: 1, col: 2
       name: "R"
       action: ["turn", {dir: -1}]
     }
     {
       row: 2, col: 0
-      name: "Play"
+      name: "Step"
+      action: ["step", {n: 1}]
     }
     {
       row: 2, col: 1
+      name: "Play"
+    }
+    {
+      row: 2, col: 2
       name: "Stop"
     }
     
