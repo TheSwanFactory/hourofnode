@@ -103,7 +103,7 @@ class World
     child
     
   find_children: (label) ->
-    return @get(CHILDREN).all()
+    return @get(CHILDREN).all() unless label?
     result = []
     for child in @get(CHILDREN).all()
       result.push child if child.label() == label

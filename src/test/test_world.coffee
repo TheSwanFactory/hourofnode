@@ -66,6 +66,10 @@ exports.test_world = (test, rx) ->
     console.log result
     t.ok result, "finds children"
     t.equal result.length, 1
+
+    result = world.find_children("root")
+    t.equal result.length, 0
+
     t.end()
     
   test 'world has children inherit', (t) ->
