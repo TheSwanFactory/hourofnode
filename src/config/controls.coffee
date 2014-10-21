@@ -14,21 +14,16 @@ exports.controls = {
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
-    
   _CHILDREN: [
     {
+      _LABEL: "current"
       stroke: "white"
       fill: "white"
       name: (world, args) ->
         cur = world.get("current")
         "For: #{cur}"
     }
-    {
-      row: 1
-      _CHILDREN: [
-        {col: 0}
-        {col: 1}
-      ]
-    }
+    {row: 1, col: 0}
+    {row: 1, col: 1}
   ]
 }
