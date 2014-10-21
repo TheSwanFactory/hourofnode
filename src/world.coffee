@@ -1,5 +1,10 @@
 assert = require 'assert'
 
+validate = (n, max) ->
+  return 0 if n < 0
+  return max if n > max
+  n
+  
 RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
@@ -53,8 +58,10 @@ class World
     return @ if @get_local(key)?
     @up.owner(key)
     
-  update: (key, delta) ->
-    @put(key, @get(key) + delta)
+  update: (key, delta, max) ->
+    result = @get(key) + delta
+    result = validate(result, max) if max?
+    @put(key, result)
 
   call: (key, args) ->
     closure = @get_raw(key)
