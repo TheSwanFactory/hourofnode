@@ -46,5 +46,14 @@ exports.controls = {
       name: "R"
       action: ["turn", {dir: -1}]
     }
+    {
+      row: 2, col: 0
+      name: "Play"
+    }
+    {
+      row: 2, col: 1
+      name: "Stop"
+    }
+    
   ]
 }
