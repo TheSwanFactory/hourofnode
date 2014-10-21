@@ -5,7 +5,8 @@ exports.controls = {
   row: 0
   col: 0
   i: (world, args) ->
-    world.get('split')+0.25
+    return world.get('split')+0.25 if world.label() == "controls"
+    world.get('col')*0.5 + 0.25
   j: 0.25
   path: (world, args) ->
     scale = world.get('scale') / 2.5
@@ -14,10 +15,9 @@ exports.controls = {
     
   _CHILDREN: [
     {
-      i: 0.1, j:0
       name: (world, args) ->
         world.get("current")
     }
-    {i: 0.6, j:0}
+    {col: 1}
   ]
 }
