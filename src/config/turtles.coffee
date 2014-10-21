@@ -51,7 +51,7 @@ exports.turtles = {
     next_v_j = -dir*world.get('v_i')
     world.put('v_i', next_v_i )
     world.put('v_j', next_v_j )
-  _PARENT: {
+  _AUTHORITY: {
     click: (world, args) ->
       owner = world.owner('current')
       owner.put('current', world.label())
