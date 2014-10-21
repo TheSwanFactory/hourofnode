@@ -5,8 +5,8 @@ exports.controls = {
   row: 0
   col: 0
   i: (world, args) ->
-    world.get('split')+0.5
-  j: 0.5
+    world.get('split')+0.25
+  j: 0.25
   path: (world, args) ->
     scale = world.get('scale') / 2.5
     half = scale / 2
