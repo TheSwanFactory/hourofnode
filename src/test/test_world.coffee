@@ -55,6 +55,19 @@ exports.test_world = (test, rx) ->
     t.ok world.is_world(child), "child is a world"
     t.end()
 
+  test 'world has a label', (t) ->
+    t.equal world.label(), "root", "label"
+    t.equal "#{world}", "World:root", "toString"
+    t.end()
+    
+  test 'world can find children', (t) ->
+    t.ok world.has_children(), "has some"
+    result = world.find_children()
+    console.log result
+    t.ok result, "finds children"
+    t.equal result.length, 1
+    t.end()
+    
   test 'world has children inherit', (t) ->
     t.ok world.has_children(), "world.has_children"
     grandma = world.add_child("Premela")
@@ -116,10 +129,6 @@ exports.test_world = (test, rx) ->
     t.equal result[1], "value", "args parameter"
     t.end()
 
-  test 'world has a label', (t) ->
-    t.equal world.label(), "root", "label"
-    t.equal "#{world}", "World:root", "toString"
-    t.end()
 
   test 'world knows worlds', (t) ->
     t.ok world.is_world(world), "non-world"

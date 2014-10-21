@@ -101,6 +101,13 @@ class World
     assert child, "add_child"
     @get(CHILDREN).push(child)
     child
+    
+  find_children: (label) ->
+    return @get(CHILDREN).all()
+    result = []
+    for child in @get(CHILDREN).all()
+      result.push child if child.label() == label
+    result
 
   has_children: ->
     @get(CHILDREN).length() > 0
