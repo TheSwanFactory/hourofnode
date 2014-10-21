@@ -29,7 +29,7 @@ exports.controls = {
       fill: "white"
       name: (world, args) ->
         current = world.get('current')
-        "#{current}"
+        "#{current} #{current.get('i')}x#{current.get('j')} -> #{current.get('v_i')}x#{current.get('v_j')}"
     }
     {
       row: 1, col: 0
