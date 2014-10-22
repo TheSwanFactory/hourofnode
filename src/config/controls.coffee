@@ -12,6 +12,14 @@ exports.controls = {
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
+  signals: {
+    left:  {name: "L", do: "turn", dir: 1}
+    right: {name: "R", do: "turn", dir: -1}
+    front: {name: "GO", do: "go", dir: 1}
+    back: {name: "REV", do: "go", dir: -1}
+    step: {name: "1>", do: "step", n: 1}
+  }
+  
   _AUTHORITY: {
     row: 0
     col: 0
