@@ -1,7 +1,7 @@
 assert = require 'assert'
 
 wraparound = (n, max) ->
-  return max if n < 0
+  return max - 0.5 if n < 0
   return 0.5 if n > max
   n
   
