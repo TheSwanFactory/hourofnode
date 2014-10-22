@@ -1,4 +1,5 @@
 gulp = require 'gulp'
+release = require('gulp-release-tasks')(gulp)
 source = require 'vinyl-source-stream'
 browserify = require 'browserify'
 browser_sync = require 'browser-sync'
