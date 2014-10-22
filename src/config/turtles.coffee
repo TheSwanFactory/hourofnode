@@ -14,17 +14,10 @@ draw_face = (scale) ->
    a3,2 0 0,0 #{2*scale},0 
    a3,2 0 0,0 #{-2*scale},0 
    z m#{-3.5*scale},0"
-   
-draw_eyes = (scale) ->
-  "m#{3.3*scale},0.3
-   a3,2 0 1,0 #{-0.4*scale},0
-   a3,2 0 1,0 #{0.4*scale},0
-   z "
 
 draw_shell = (scale) ->
   "m#{-3*scale},0 a3,2 0 1,0 #{6*scale},0 
-   m0,0           a3,2 0 1,0 #{-6*scale},0z
-  "
+   m0,0           a3,2 0 1,0 #{-6*scale},0z"
 
 exports.turtles = {
   _LABEL: "turtles"
@@ -42,10 +35,7 @@ exports.turtles = {
     value
   path: (world, args) -> 
     scale = world.get('scale') / 10
-    [
-      draw_legs(scale) + draw_face(scale)# + draw_eyes(scale)
-      draw_shell(scale)
-    ]
+    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
@@ -57,19 +47,16 @@ exports.turtles = {
     assert dir, "expects dir"
     next_v_i =  dir * world.get('v_j')
     next_v_j = -1 * dir * world.get('v_i')
-    #console.log "turn[#{dir}]: #{next_v_i} x #{next_v_j}"
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
-  actions: [["go", {dir: 1}],["turn", {dir: 1}],["go", {dir: 1}],["turn", {dir: -1}]]
-  program: ['front', 'left', 'front', 'right']
+    
+  program: ['front', 'right', 'front', 'left']
   program_counter: 0
-  action_index: 0
   step: (world, args) ->
     program = world.get('program')
     counter = world.get('program_counter')
     signal = program[counter]
     action = world.get('signals')[signal]
-    
     counter = counter + 1
     counter= 0 if counter >= program.length
     world.put('program_counter', counter)
