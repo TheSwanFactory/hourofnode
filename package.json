@@ -12,6 +12,7 @@
     "underscore": "^1.7.0"
   },
   "devDependencies": {
+    "aws-sdk": "^2.0.21",
     "browser-sync": "^1.5.8",
     "coffeeify": "^0.7.0",
     "gulp": "^3.8.8",
