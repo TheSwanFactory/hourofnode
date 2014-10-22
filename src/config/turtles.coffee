@@ -67,7 +67,9 @@ exports.turtles = {
   step: (world, args) ->
     program = world.get('program')
     counter = world.get('program_counter')
-    action = program[counter]
+    signal = program[counter]
+    action = world.get('signals')[signal]
+    
     counter = counter + 1
     counter= 0 if counter >= program.length
     world.put('program_counter', counter)
