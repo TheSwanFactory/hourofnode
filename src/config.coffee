@@ -17,6 +17,13 @@ exports.config = {
     angle = world.get('angle')
     "translate(#{x},#{y}) rotate(#{angle})"
   current: -> "No world"
+  signals: {
+    left:  {name: "LL", do: "turn", dir: 1}
+    right: {name: "RR", do: "turn", dir: -1}
+    front: {name: "GO", do: "go", dir: 1}
+    back: {name: "REV", do: "go", dir: -1}
+    step: {name: "1>", do: "step", n: 1}
+  }
   _CHILDREN: [
     grid
     turtles

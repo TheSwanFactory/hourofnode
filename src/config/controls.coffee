@@ -12,13 +12,6 @@ exports.controls = {
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
-  signals: {
-    left:  {name: "LL", do: "turn", dir: 1}
-    right: {name: "RR", do: "turn", dir: -1}
-    front: {name: "GO", do: "go", dir: 1}
-    back: {name: "REV", do: "go", dir: -1}
-    step: {name: "1>", do: "step", n: 1}
-  }
   
   _AUTHORITY: {
     row: 0
@@ -45,19 +38,6 @@ exports.controls = {
     {_LABEL: "left", row: 1, col: 0}
     {_LABEL: "front", row: 1, col: 1}
     {_LABEL: "right", row: 1, col: 2}
-    {
-      row: 2, col: 0
-      name: "Step"
-      action: {do: "step", n: 1}
-    }
-    {
-      row: 2, col: 1
-      name: "Play"
-    }
-    {
-      row: 2, col: 2
-      name: "Stop"
-    }
-    
+    {_LABEL: "step", row: 2, col: 0}
   ]
 }
