@@ -69,18 +69,20 @@ class World
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
+  _import_children: (array) ->
+    result = @rx().array()
+    for value in array
+      assert value, 'import child'
+      result.push @make_world(value)
+    result
+    
   import_dict: (dict) ->
     for key, value of dict
-      if key == AUTHORITY
-        assert _.isObject(value), "authority isn't dictionary"
-        authority = @_from_dict(value)
-        @put(AUTHORITY, authority)
-      else if key == CHILDREN and !_.isFunction(value)
-        for child in value
-          assert child, 'import child'
-          @add_child child
-      else
-        @put(key, value)
+      console.log("import_dict #{value} for #{key}")
+      value = @_from_dict(value) if (key == AUTHORITY)
+      value = @_import_children(value) if key == CHILDREN
+      console.log("import_dict #{value} for #{key}")
+      @put(key, value)
     this
 
   _spawn_world: (label) ->
@@ -94,6 +96,7 @@ class World
     world
 
   _from_dict: (dict) ->
+    assert _.isObject(dict), "authority isn't dictionary"
     label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
@@ -111,6 +114,7 @@ class World
   add_child: (value) ->
     child = @make_world value
     assert child, "add_child"
+    assert !_.isFunction @get_raw(CHILDREN)
     @get(CHILDREN).push(child)
     child
     
