@@ -15,6 +15,7 @@
     "browser-sync": "^1.5.8",
     "coffeeify": "^0.7.0",
     "gulp": "^3.8.8",
+    "gulp-release-tasks": "0.0.3",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^1.0.6"
   },
