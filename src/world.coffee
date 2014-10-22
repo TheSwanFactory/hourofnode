@@ -75,7 +75,7 @@ class World
         assert _.isObject(value), "authority isn't dictionary"
         authority = @_from_dict(value)
         @put(AUTHORITY, authority)
-      else if key == CHILDREN
+      else if key == CHILDREN and !_.isFunction(value)
         for child in value
           assert child, 'import child'
           @add_child child
@@ -94,7 +94,7 @@ class World
     world
 
   _from_dict: (dict) ->
-    label = dict[LABEL] or "#{@get(LABEL)}:#{@get(CHILDREN).length()}"
+    label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
 
@@ -103,6 +103,11 @@ class World
     return @_from_dict(value) if isObject(value)
     @_from_value value
     
+  _children: -> @get(CHILDREN)
+  _child_array: -> @_children().all()
+  _child_count: -> @_children().length()
+  has_children: -> @_child_count() > 0
+    
   add_child: (value) ->
     child = @make_world value
     assert child, "add_child"
@@ -110,21 +115,18 @@ class World
     child
     
   find_children: (label) ->
-    return @get(CHILDREN).all() unless label?
+    return @_child_array() unless label?
     result = []
-    for child in @get(CHILDREN).all()
+    for child in @_child_array()
       result.push child if child.label() == label
     result
     
   find_child: (label) ->
     @find_children(label)[0]
 
-  has_children: ->
-    @get(CHILDREN).length() > 0
-    
   map_children: (callback) ->
     result = @rx().array()
-    for child in @get(CHILDREN).all()
+    for child in @_child_array()
       result.push callback(child)
     result
   
