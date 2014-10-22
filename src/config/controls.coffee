@@ -13,8 +13,8 @@ exports.controls = {
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
   signals: {
-    left:  {name: "L", do: "turn", dir: 1}
-    right: {name: "R", do: "turn", dir: -1}
+    left:  {name: "LL", do: "turn", dir: 1}
+    right: {name: "RR", do: "turn", dir: -1}
     front: {name: "GO", do: "go", dir: 1}
     back: {name: "REV", do: "go", dir: -1}
     step: {name: "1>", do: "step", n: 1}
@@ -25,10 +25,12 @@ exports.controls = {
     col: 0
     i: (world, args) -> offset(world, 'col')
     j: (world, args) -> offset(world, 'row')
+    action_key: (world) -> world.get('_LABEL')
+    action: (world) -> world.get('signals')[ world.get('action_key') ]
+    name: (world) -> world.get('action')['name']
     click: (world, args) ->
       action = world.get('action')
       current = world.get('current')
-      #console.log "click #{world} -> #{current} do #{action}"
       current.call(action['do'], action)
   }
   _CHILDREN: [
@@ -40,24 +42,9 @@ exports.controls = {
         current = world.get('current')
         "#{current} #{current.get('i')}x#{current.get('j')} -> #{current.get('v_i')}x#{current.get('v_j')}"
     }
-    {
-      _LABEL: "LEFT"
-      row: 1, col: 0
-      name: "L"
-      action: {do: "turn", dir: 1}
-    }
-    {
-      _LABEL: "GO"
-      row: 1, col: 1
-      name: "Go"
-      action: {do: "go", dir: 1}
-    }
-    {
-      _LABEL: "RIGHT"
-      row: 1, col: 2
-      name: "R"
-      action: {do: "turn", dir: -1}
-    }
+    {_LABEL: "left", row: 1, col: 0}
+    {_LABEL: "front", row: 1, col: 1}
+    {_LABEL: "right", row: 1, col: 2}
     {
       row: 2, col: 0
       name: "Step"
