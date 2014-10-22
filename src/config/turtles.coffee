@@ -57,7 +57,7 @@ exports.turtles = {
     assert dir, "expects dir"
     next_v_i =  dir * world.get('v_j')
     next_v_j = -1 * dir * world.get('v_i')
-    console.log "turn[#{dir}]: #{next_v_i} x #{next_v_j}"
+    #console.log "turn[#{dir}]: #{next_v_i} x #{next_v_j}"
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   actions: [["go", {dir: 1}],["turn", {dir: 1}],["go", {dir: 1}],["turn", {dir: -1}]]
@@ -67,8 +67,7 @@ exports.turtles = {
     index = world.get('action_index')
     action = actions[index]
 
-    console.log "#{world} step[#{index}/#{actions.length}] #{action}"
-    console.log action
+    #console.log "#{world} step[#{index}/#{actions.length}] #{action}"
     index = index + 1
     index = 0 if index >= actions.length
     world.put('action_index', index)

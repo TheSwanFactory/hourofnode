@@ -20,8 +20,8 @@ exports.controls = {
     click: (world, args) ->
       action = world.get('action')
       current = world.get('current')
-      console.log "click #{world} -> #{current} do #{action}"
-      current.call(action[0], action[1])
+      #console.log "click #{world} -> #{current} do #{action}"
+      current.call(action['do'], action)
   }
   _CHILDREN: [
     {
@@ -36,24 +36,24 @@ exports.controls = {
       _LABEL: "LEFT"
       row: 1, col: 0
       name: "L"
-      action: ["turn", {dir: 1}]
+      action: {do: "turn", dir: 1}
     }
     {
       _LABEL: "GO"
       row: 1, col: 1
       name: "Go"
-      action: ["go", {dir: 1}]
+      action: {do: "go", dir: 1}
     }
     {
       _LABEL: "RIGHT"
       row: 1, col: 2
       name: "R"
-      action: ["turn", {dir: -1}]
+      action: {do: "turn", dir: -1}
     }
     {
       row: 2, col: 0
       name: "Step"
-      action: ["step", {n: 1}]
+      action: {do: "step", n: 1}
     }
     {
       row: 2, col: 1
