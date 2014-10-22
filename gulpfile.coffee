@@ -21,7 +21,6 @@ all_builds = ['main']
 for build in all_builds
   gulp.task build, -> bundle build
 
-
 # Reload browser using browser-sync
 
 sync_to = (dir) ->
