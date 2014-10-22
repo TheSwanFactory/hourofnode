@@ -1,0 +1,12 @@
+{
+  "Version":"2014-10-22",
+  "Statement":[{
+	"Sid":"AddPerm",
+        "Effect":"Allow",
+	  "Principal": "*",
+      "Action":["s3:GetObject"],
+      "Resource":["arn:aws:s3:::hourofnode.org/*"
+      ]
+    }
+  ]
+}
