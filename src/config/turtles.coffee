@@ -61,17 +61,17 @@ exports.turtles = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   actions: [["go", {dir: 1}],["turn", {dir: 1}],["go", {dir: 1}],["turn", {dir: -1}]]
+  program: ['front', 'left', 'front', 'right']
+  program_counter: 0
   action_index: 0
   step: (world, args) ->
-    actions = world.get('actions')
-    index = world.get('action_index')
-    action = actions[index]
-
-    #console.log "#{world} step[#{index}/#{actions.length}] #{action}"
-    index = index + 1
-    index = 0 if index >= actions.length
-    world.put('action_index', index)
-    world.call(action[0], action[1]) if action?
+    program = world.get('program')
+    counter = world.get('program_counter')
+    action = program[counter]
+    counter = counter + 1
+    counter= 0 if counter >= program.length
+    world.put('program_counter', counter)
+    world.call(action['do'], action) if action?
   
   _AUTHORITY: {
     click: (world, args) ->
