@@ -11,24 +11,15 @@ CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 INDEX = "_INDEX"
 
-isFunction = (value) ->
-  typeof(value) == "function"
-
-isObject = (value) ->
-  typeof(value) == "object"
-
-isString = (value) ->
-  typeof(value) == "string"
-
 class World
   constructor: (up, label, rx) ->
     assert up, "up always exists"
-    assert isObject(up), "up is an object"
+    assert _.isObject(up), "up is an object"
     @up = up
     cache_rx = rx or @up.get_raw(RX)
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
-    assert isString(label), "label is string"
+    assert _.isString(label), "label is string"
     @doc.put(LABEL, label)
     @doc.put(CHILDREN, cache_rx.array())
     @doc.put(RX, rx) if rx?
@@ -52,7 +43,7 @@ class World
 
   get: (key) ->
     value = @get_raw(key)
-    return value(@,{}) if isFunction(value)
+    return value(@,{}) if _.isFunction(value)
     value
 
   owner: (key) ->
@@ -66,12 +57,13 @@ class World
 
   call: (key, args) ->
     closure = @get_raw(key)
-    assert isFunction(closure), "#{key}: #{closure} is not a function"
+    assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
   _import_children: (array) ->
     result = @rx().array()
+    assert _.isArray(array), "_import_children: #{array} is not an array"
     for value in array
       assert value, 'import child'
       result.push @make_world(value)
@@ -91,7 +83,7 @@ class World
     new World(authority or @, label)
     
   _from_value: (value) ->
-    assert isString(value), "_from_value requires string"
+    assert _.isString(value), "_from_value requires string"
     world = @_spawn_world "#{value}"
     world.put("value", value)
     world
@@ -106,7 +98,7 @@ class World
 
   make_world: (value) ->
     return value if @is_world(value)
-    return @_from_dict(value) if isObject(value)
+    return @_from_dict(value) if _.isObject(value)
     @_from_value value
     
   _children: -> @get(CHILDREN)
