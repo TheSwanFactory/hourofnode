@@ -36,6 +36,16 @@ exports.controls = {
       _CHILDREN: [{_LABEL: "step"}, {_LABEL: "run"}, {_LABEL: "stop"}, {_LABEL: "reset"}]
     }
     {
+      _LABEL: "turtle_controls"
+      _AUTHORITY: (world) -> world.get('BUTTON')
+      _CHILDREN: [{_LABEL: "left"}, {_LABEL: "front"}, {_LABEL: "right"}]
+    }
+    {
+      _LABEL: "active_program"
+      _AUTHORITY: (world) -> world.get('BUTTON')
+      _CHILDREN: [{_LABEL: "step"}, {_LABEL: "run"}, {_LABEL: "stop"}, {_LABEL: "reset"}]
+    }
+    {
       _LABEL: "current_selection"
       stroke: "white"
       fill: "white"
@@ -43,16 +53,6 @@ exports.controls = {
         current = world.get('current')
         "#{current} #{current.get('i')}x#{current.get('j')} -> #{current.get('v_i')}x#{current.get('v_j')}"
     }
-    {
-      _LABEL: "available_commands"
-      _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: [
-        {_LABEL: "left"}
-        {_LABEL: "front"}
-        {_LABEL: "right"}
-      ]
-    }
-    {_LABEL: "active_program"}
     {_LABEL: "program_selector"}
   ]
 }
