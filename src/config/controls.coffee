@@ -30,8 +30,8 @@ exports.controls = {
     {
       _LABEL: "run_mode"
       _CHILDREN: [
-        {_LABEL: "stop"}
-        {_LABEL: "wait"}
+        {_LABEL: "interactive"}
+        {_LABEL: "batch"}
         {_LABEL: "loop"}
       ]
     }
