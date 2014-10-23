@@ -15,11 +15,8 @@ exports.controls = {
   
   _AUTHORITY: {
     i: 0
-    j: (world, args) ->
-      index = args['index']
-      console.log "j: #{args} #{index}"
-      console.log args
-      index
+    j: (world) ->
+      world.get('_INDEX')
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->
