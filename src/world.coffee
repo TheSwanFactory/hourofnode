@@ -64,7 +64,7 @@ class World
   _import_children: (children) ->
     result = @rx().array()
     if !_.isArray(children)
-      console.log "_import_children", children
+      return @_import_children children(@)
       assert _.isFunction(children), "children not array or function: #{children}"
       create_children = (world) -> @_import_children children(world)
       console.log "create_children", create_children
