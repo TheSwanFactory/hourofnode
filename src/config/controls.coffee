@@ -15,8 +15,7 @@ exports.controls = {
   
   _AUTHORITY: {
     i: 0
-    j: (world) ->
-      world.get('_INDEX')
+    j: (world) -> world.get('_INDEX')
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->
@@ -31,6 +30,10 @@ exports.controls = {
   _CHILDREN: [
     {
       _LABEL: "run_mode"
+      _AUTHORITY: {
+        i: (world) -> world.get('_INDEX') / 2.0
+        j: 0
+      }
       _CHILDREN: [
         {_LABEL: "interactive"}
         {_LABEL: "batch"}
