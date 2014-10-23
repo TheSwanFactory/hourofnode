@@ -20,7 +20,9 @@ exports.controls = {
     j: (world, args) -> offset(world, 'row')
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
-    name: (world) -> world.get('action')['name']
+    name: (world) ->
+      action = world.get('action')
+      action['name'] if action?
     click: (world, args) ->
       action = world.get('action')
       current = world.get('current')

@@ -101,6 +101,12 @@ exports.test_world = (test, rx) ->
     
     t.end()
 
+  test 'world passes index when mapping', (t) ->
+    count = 0
+    world.map_children (child) ->
+      t.equal child.get('_INDEX'), count, "#{child} should have index #{count}"
+    t.end()
+
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")
     authority = world._spawn_world("authority")
@@ -133,7 +139,6 @@ exports.test_world = (test, rx) ->
     t.equal result[0], "variable", "world parameter"
     t.equal result[1], "value", "args parameter"
     t.end()
-
 
   test 'world knows worlds', (t) ->
     t.ok world.is_world(world), "non-world"
