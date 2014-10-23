@@ -40,7 +40,7 @@ exports.controls = {
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {
-          _LABEL: "current_selection"
+          _LABEL: "current"
           stroke: "white"
           fill: "white"
           name: (world, args) -> world.get('current').label()
