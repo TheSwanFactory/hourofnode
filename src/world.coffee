@@ -130,8 +130,10 @@ class World
 
   map_children: (callback) ->
     result = @rx().array()
+    index = 0
     for child in @_child_array()
-      result.push callback(child)
+      result.push callback(child, index)
+      index += 1
     result
   
   label: ->
