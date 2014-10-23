@@ -33,21 +33,15 @@ exports.controls = {
   }
   _CHILDREN: [
     {
-      _LABEL: "run_mode"
-      _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: [
-        {_LABEL: "interactive"}
-        {_LABEL: "batch"}
-        {_LABEL: "loop"}
-      ]
-    }
-    {
-      _LABEL: "game_actions"
+      _LABEL: "game_controls"
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {_LABEL: "init"}
         {_LABEL: "restart"}
         {_LABEL: "help"}
+        {_LABEL: "interactive"}
+        {_LABEL: "batch"}
+        {_LABEL: "loop"}
       ]
     }
     {
