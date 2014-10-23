@@ -33,12 +33,7 @@ exports.controls = {
     {
       _LABEL: "game_controls"
       _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: [
-        {_LABEL: "step"}
-        {_LABEL: "run"}
-        {_LABEL: "stop"}
-        {_LABEL: "reset"}
-      ]
+      _CHILDREN: [{_LABEL: "step"}, {_LABEL: "run"}, {_LABEL: "stop"}, {_LABEL: "reset"}]
     }
     {
       _LABEL: "current_selection"
@@ -52,12 +47,12 @@ exports.controls = {
       _LABEL: "available_commands"
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
-        {_LABEL: "left", col: 0}
-        {_LABEL: "front", col: 1}
-        {_LABEL: "right", col: 2}
+        {_LABEL: "left"}
+        {_LABEL: "front"}
+        {_LABEL: "right"}
       ]
     }
-    {_LABEL: "active_program", row: 3}
-    {_LABEL: "program_selector", row: 4}
+    {_LABEL: "active_program"}
+    {_LABEL: "program_selector"}
   ]
 }
