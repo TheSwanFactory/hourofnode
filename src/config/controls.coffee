@@ -14,10 +14,12 @@ exports.controls = {
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
   
   _AUTHORITY: {
-    row: 0
-    col: 0
-    i: (world, args) -> offset(world, 'col')
-    j: (world, args) -> offset(world, 'row')
+    i: 0
+    j: (world, args) ->
+      index = args['index']
+      console.log "j: #{args} #{index}"
+      console.log args
+      index
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->

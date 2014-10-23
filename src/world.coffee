@@ -9,6 +9,7 @@ RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
+INDEX = "_INDEX"
 
 isFunction = (value) ->
   typeof(value) == "function"
@@ -132,7 +133,8 @@ class World
     result = @rx().array()
     index = 0
     for child in @_child_array()
-      result.push callback(child, {index: index})
+      child.put(INDEX, index)
+      result.push callback(child)
       index += 1
     result
   
