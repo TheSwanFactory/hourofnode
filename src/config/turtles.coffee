@@ -64,17 +64,23 @@ exports.turtles = {
     turtles.map_children (child) ->
       child.call(action['do'], action) if action?
   interval: 1000
-  running: false
+  speed: 0
   run: (world, args) ->
     step = world.get_raw('step')
+    {speed} = args
+    console.log "run with args", args, speed
     assert _.isFunction(step), "step is not a function"
+    assert speed?, "run: requires speed"
+    console.log "run with speed", speed
+    world.owner('speed').put('speed', speed)
     step_and_repeat = (self) ->
-      console.log "step_and_repeat", self
-      interval = world.get('interval')
-      running = world.get('running')
-      if running
+      speed = world.get('speed')
+      console.log "called with speed", speed
+      if speed > 0
+        delay = world.get('interval') / speed 
+        console.log "run with delay", delay
         step(world, args)
-        setTimeout(self, interval)
+        setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
   reset: (world, args) ->
     world.put 'program_counter', 0
