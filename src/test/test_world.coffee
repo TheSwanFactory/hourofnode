@@ -35,6 +35,7 @@ exports.test_world = (test, rx) ->
     sub = world.make_world(value)
     t.equal sub.get("value"), value, "sub.get"
     t.equal sub.up, world, "sub.up"
+    t.equal sub.get('up'), world, "sub.get('up')"
     t.ok sub.T(), "sub.T"
     
     dict = {key: value}

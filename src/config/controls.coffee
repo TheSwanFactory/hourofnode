@@ -16,7 +16,6 @@ exports.controls = {
     i: (world) -> world.get('_INDEX') / 2.0
     j: 0
   }
-  
   _AUTHORITY: {
     i: 0
     j: (world) -> world.get('_INDEX')
@@ -36,8 +35,9 @@ exports.controls = {
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {_LABEL: "step"}
-        {_LABEL: "reset"}
         {_LABEL: "run"}
+        {_LABEL: "stop"}
+        {_LABEL: "reset"}
       ]
     }
     {

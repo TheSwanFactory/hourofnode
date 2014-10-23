@@ -61,6 +61,13 @@ exports.turtles = {
     counter= 0 if counter >= program.length
     world.put('program_counter', counter)
     world.call(action['do'], action) if action?
+
+  reset: (world, args) ->
+    console.log 'reset', world, world.get('turtles')
+    world.put 'program_counter', 0
+    world.get('turtles').map_children (child) ->
+      child.put 'i', child.get('i_0')
+      child.put 'j', child.get('j_0')
   
   _AUTHORITY: {
     click: (world, args) ->
@@ -70,6 +77,8 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
+      i_0: 4.5
+      j_0: 4.5
       i: 4.5
       j: 4.5
       v_i: 0
@@ -78,6 +87,8 @@ exports.turtles = {
     }
     {
       _LABEL: "yu"
+      i_0: 1.5
+      j_0: 3.5
       i: 1.5
       j: 3.5
       fill: "#008800"
