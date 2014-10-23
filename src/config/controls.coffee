@@ -54,7 +54,7 @@ exports.controls = {
       _CHILDREN: (world) ->
         turtle = world.get('current')
         program = turtle.get('program')
-        program.map (signal) -> {_LABEL: name}
+        program.map (signal) -> {_LABEL: signal}
     }
     {_LABEL: "program_selector"}
   ]
