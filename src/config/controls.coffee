@@ -51,7 +51,10 @@ exports.controls = {
     {
       _LABEL: "active_program"
       _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: -> [{_LABEL: "step"}, {_LABEL: "run"}, {_LABEL: "stop"}, {_LABEL: "reset"}]
+      _CHILDREN: (world) ->
+        turtle = world.get('current')
+        program = turtle.get('program')
+        program.map (signal) -> {_LABEL: name}
     }
     {_LABEL: "program_selector"}
   ]
