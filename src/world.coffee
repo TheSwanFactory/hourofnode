@@ -63,8 +63,7 @@ class World
   # TODO: refactor import_dict methods somewhere
   _import_children: (children) ->
     result = @rx().array()
-    if !_.isArray(children)
-      assert _.isFunction(children), "children not array or function: #{children}"
+    if _.isFunction(children)
       return (world) -> world._import_children children(world)
     for value in children
       assert value, 'import child'
