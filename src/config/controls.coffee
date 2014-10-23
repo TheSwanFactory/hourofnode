@@ -21,6 +21,7 @@ exports.controls = {
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->
+      return world.get('_LABEL')# TODO: remove
       action = world.get('action')
       action['name'] if action?
     click: (world, args) ->
