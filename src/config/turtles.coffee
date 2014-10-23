@@ -21,9 +21,9 @@ draw_shell = (scale) ->
 
 exports.turtles = {
   _LABEL: "turtles"
-  name: (world, args) ->
-    world.label()
+  name: (world, args) -> world.label()
   stroke: "green"
+  selected: (world) -> world == world.get('current')
   v_i: 1
   v_j: 0
   angle: (world, args) ->

@@ -12,7 +12,7 @@ exports.draw = (world) ->
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
-    dict['stroke'] = 'red' if world.get('selected')
+    dict['stroke'] = 'goldenrod' if world.get('selected')
     paths = world.get 'path'
     return unless paths?
     paths = [paths] if paths !instanceof Array
