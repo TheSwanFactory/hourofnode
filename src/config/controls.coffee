@@ -56,7 +56,7 @@ exports.controls = {
         program = turtle.get('program')
         counter = turtle.get('program_counter')
         index = 0
-        result = []
+        result = [] #world.rx().array()
         for signal in program
           dict = {_LABEL: signal}
           dict['selected'] = true if index == counter
