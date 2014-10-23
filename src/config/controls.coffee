@@ -12,6 +12,10 @@ exports.controls = {
     scale = world.get('scale') / 2.5
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
+  BUTTON: {
+    i: (world) -> world.get('_INDEX') / 2.0
+    j: 0
+  }
   
   _AUTHORITY: {
     i: 0
@@ -30,10 +34,7 @@ exports.controls = {
   _CHILDREN: [
     {
       _LABEL: "run_mode"
-      _AUTHORITY: {
-        i: (world) -> world.get('_INDEX') / 2.0
-        j: 0
-      }
+      _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {_LABEL: "interactive"}
         {_LABEL: "batch"}

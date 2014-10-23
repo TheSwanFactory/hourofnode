@@ -98,6 +98,8 @@ class World
 
   _from_dict: (dict) ->
     assert _.isObject(dict), "authority isn't dictionary"
+    dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
+    assert !_.isFunction(dict), "authority is a function"
     label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
