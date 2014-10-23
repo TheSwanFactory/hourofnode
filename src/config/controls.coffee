@@ -43,6 +43,7 @@ exports.controls = {
     }
     {
       _LABEL: "game_actions"
+      _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {_LABEL: "init"}
         {_LABEL: "restart"}
@@ -59,6 +60,7 @@ exports.controls = {
     }
     {
       _LABEL: "available_commands"
+      _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
         {_LABEL: "left", col: 0}
         {_LABEL: "front", col: 1}
