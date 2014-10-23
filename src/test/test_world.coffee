@@ -105,7 +105,7 @@ exports.test_world = (test, rx) ->
     count = 0
     world.map_children (child, index) ->
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
-      #count = count + 1
+      count = count + 1
     t.end()
 
   test 'world has authorities', (t) ->
