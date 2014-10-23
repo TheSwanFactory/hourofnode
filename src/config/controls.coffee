@@ -23,9 +23,8 @@ exports.controls = {
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->
-      return world.get('_LABEL')# TODO: remove
       action = world.get('action')
-      action['name'] if action?
+      if action? then action['name'] else world.get('_LABEL')
     click: (world, args) ->
       action = world.get('action')
       current = world.get('current')
@@ -36,12 +35,9 @@ exports.controls = {
       _LABEL: "game_controls"
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CHILDREN: [
-        {_LABEL: "init"}
-        {_LABEL: "restart"}
-        {_LABEL: "help"}
-        {_LABEL: "interactive"}
-        {_LABEL: "batch"}
-        {_LABEL: "loop"}
+        {_LABEL: "step"}
+        {_LABEL: "reset"}
+        {_LABEL: "run"}
       ]
     }
     {
