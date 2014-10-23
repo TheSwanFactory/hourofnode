@@ -63,9 +63,10 @@ exports.turtles = {
     world.call(action['do'], action) if action?
 
   reset: (world, args) ->
-    console.log 'reset', world, world.get('turtles')
+    turtles = world.get('up')
+    console.log 'reset', world, turtles 
     world.put 'program_counter', 0
-    world.get('turtles').map_children (child) ->
+    turtles.map_children (child) ->
       child.put 'i', child.get('i_0')
       child.put 'j', child.get('j_0')
   

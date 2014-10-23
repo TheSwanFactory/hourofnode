@@ -131,6 +131,9 @@ class World
   find_child: (label) ->
     @find_children(label)[0]
 
+  find_parent: (label) ->
+    if @up.label() == label then @up else @up.find_parent(label)
+
   map_children: (callback) ->
     result = @rx().array()
     index = 0
