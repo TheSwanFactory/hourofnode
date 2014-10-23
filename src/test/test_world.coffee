@@ -103,7 +103,7 @@ exports.test_world = (test, rx) ->
 
   test 'world passes index when mapping', (t) ->
     count = 0
-    world.map_children (child, index) ->
+    world.map_children (child, {index}) ->
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
       count = count + 1
     t.end()

@@ -132,7 +132,7 @@ class World
     result = @rx().array()
     index = 0
     for child in @_child_array()
-      result.push callback(child, index)
+      result.push callback(child, {index: index})
       index += 1
     result
   
