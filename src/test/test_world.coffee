@@ -120,7 +120,7 @@ exports.test_world = (test, rx) ->
     generator = (world) -> [{b:2}]
     result = world._import_children(generator)
     console.log result
-    child = result.at(0)
+    child = result(world).at(0)
     t.ok world.is_world(child), "creates child from dict"  
     t.end()
     
