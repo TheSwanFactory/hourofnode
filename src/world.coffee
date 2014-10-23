@@ -65,10 +65,7 @@ class World
     result = @rx().array()
     if !_.isArray(children)
       assert _.isFunction(children), "children not array or function: #{children}"
-      create_children = (world) ->
-        console.log "create_children", world, children
-        world._import_children children(world)
-      return create_children
+      return (world) -> world._import_children children(world)
     for value in children
       assert value, 'import child'
       result.push @make_world(value)
