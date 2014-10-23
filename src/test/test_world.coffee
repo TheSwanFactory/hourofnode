@@ -112,6 +112,13 @@ exports.test_world = (test, rx) ->
       count = count + 1
     t.end()
 
+  test 'world imports functions for children', (t) ->
+    result = world._import_children([{a:1}])
+    child = result.at(0)
+    t.ok world.is_world(child), "creates child from dict"
+    console.log result
+    t.end()
+    
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")
     authority = world._spawn_world("authority")

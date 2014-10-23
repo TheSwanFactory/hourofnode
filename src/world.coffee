@@ -61,10 +61,15 @@ class World
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
-  _import_children: (array) ->
+  _import_children: (children) ->
     result = @rx().array()
-    assert _.isArray(array), "_import_children: #{array} is not an array"
-    for value in array
+    if !_.isArray(children)
+      console.log "_import_children", children
+      assert _.isFunction(children), "children not array or function: #{children}"
+      create_children = (world) -> @_import_children children(world)
+      console.log "create_children", create_children
+      return create_children
+    for value in children
       assert value, 'import child'
       result.push @make_world(value)
     result
