@@ -63,7 +63,9 @@ exports.turtles = {
     turtles = world.find_parent 'turtles'
     turtles.map_children (child) ->
       child.call(action['do'], action) if action?
-
+  run: (world, args) ->
+    step = world.get('step')
+    step(world, args)
   reset: (world, args) ->
     world.put 'program_counter', 0
     turtles = world.find_parent 'turtles'
