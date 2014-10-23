@@ -64,13 +64,18 @@ exports.turtles = {
     turtles.map_children (child) ->
       child.call(action['do'], action) if action?
   interval: 1000
-  running: true
+  running: false
   run: (world, args) ->
-    interval = world.get('interval')
     step = world.get_raw('step')
-    #console.log "run", world, interval, step
     assert _.isFunction(step), "step is not a function"
-    setTimeout((() -> step(world, args)), interval)
+    step_and_repeat = (self) ->
+      console.log "step_and_repeat", self
+      interval = world.get('interval')
+      running = world.get('running')
+      if running
+        step(world, args)
+        setTimeout(self, interval)
+    step_and_repeat(step_and_repeat)
   reset: (world, args) ->
     world.put 'program_counter', 0
     turtles = world.find_parent 'turtles'
