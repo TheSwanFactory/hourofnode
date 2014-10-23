@@ -59,7 +59,7 @@ exports.controls = {
         result = []
         for signal in program
           dict = {_LABEL: signal}
-          dict['stroke'] = "yellow" if index == counter
+          dict['selected'] = true if index == counter
           result.push dict
           index = index + 1
         result
