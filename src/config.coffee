@@ -22,7 +22,10 @@ exports.config = {
     right: {name: "RR", do: "turn", dir: -1}
     front: {name: "GO", do: "go", dir: 1}
     back: {name: "REV", do: "go", dir: -1}
-    step: {name: "1>", do: "step", n: 1}
+    step: {name: ">", do: "step", n: 1}
+    run: {name: ">>", do: "run", speed: 1}
+    stop: {name: "||", do: "run", speed: 0}
+    reset: {name: "|<", do: "reset"}
   }
   _CHILDREN: [
     grid

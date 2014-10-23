@@ -60,7 +60,30 @@ exports.turtles = {
     counter = counter + 1
     counter= 0 if counter >= program.length
     world.put('program_counter', counter)
-    world.call(action['do'], action) if action?
+    turtles = world.find_parent 'turtles'
+    turtles.map_children (child) ->
+      child.call(action['do'], action) if action?
+  interval: 1000
+  speed: 0
+  run: (world, args) ->
+    step = world.get_raw('step')
+    {speed} = args
+    assert _.isFunction(step), "step is not a function"
+    assert speed?, "run: requires speed"
+    world.owner('speed').put('speed', speed)
+    step_and_repeat = (self) ->
+      speed = world.get('speed')
+      if speed > 0
+        delay = world.get('interval') / speed 
+        step(world, args)
+        setTimeout((-> self(self)), delay)
+    step_and_repeat(step_and_repeat)
+  reset: (world, args) ->
+    world.put 'program_counter', 0
+    turtles = world.find_parent 'turtles'
+    turtles.map_children (child) ->
+      child.put 'i', child.get('i_0')
+      child.put 'j', child.get('j_0')
   
   _AUTHORITY: {
     click: (world, args) ->
@@ -70,6 +93,8 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
+      i_0: 4.5
+      j_0: 4.5
       i: 4.5
       j: 4.5
       v_i: 0
@@ -78,6 +103,8 @@ exports.turtles = {
     }
     {
       _LABEL: "yu"
+      i_0: 1.5
+      j_0: 3.5
       i: 1.5
       j: 3.5
       fill: "#008800"

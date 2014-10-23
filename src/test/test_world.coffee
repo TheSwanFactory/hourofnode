@@ -35,6 +35,7 @@ exports.test_world = (test, rx) ->
     sub = world.make_world(value)
     t.equal sub.get("value"), value, "sub.get"
     t.equal sub.up, world, "sub.up"
+    t.equal sub.get('up'), world, "sub.get('up')"
     t.ok sub.T(), "sub.T"
     
     dict = {key: value}
@@ -85,6 +86,8 @@ exports.test_world = (test, rx) ->
     t.equal "#{daughter}", "World:Anjali", "daughter name"
     result = mom.map_children (child) -> "#{child.label()} Prabhakar"
     t.equal result.at(0), "Anjali Prabhakar", "map child"
+    t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'
+    t.notOk daughter.find_parent("Abraham"),'Unknown ancestor'
     candy = 'chocolate'
     
     t.notOk daughter.get(candy), "No chocolate"
@@ -99,6 +102,14 @@ exports.test_world = (test, rx) ->
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
     
+    t.end()
+
+  test 'world passes index when mapping', (t) ->
+    count = 0
+    world.map_children (child) ->
+      index = child.get('_INDEX')
+      t.equal index, count, "#{child} should have index #{count}, not #{index}"
+      count = count + 1
     t.end()
 
   test 'world has authorities', (t) ->
@@ -133,7 +144,6 @@ exports.test_world = (test, rx) ->
     t.equal result[0], "variable", "world parameter"
     t.equal result[1], "value", "args parameter"
     t.end()
-
 
   test 'world knows worlds', (t) ->
     t.ok world.is_world(world), "non-world"

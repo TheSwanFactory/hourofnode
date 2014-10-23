@@ -9,6 +9,7 @@ RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
+INDEX = "_INDEX"
 
 isFunction = (value) ->
   typeof(value) == "function"
@@ -78,10 +79,10 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      console.log("import_dict #{value} for #{key}")
+      #console.log("import_dict #{value} for #{key}")
       value = @_from_dict(value) if (key == AUTHORITY)
       value = @_import_children(value) if key == CHILDREN
-      console.log("import_dict #{value} for #{key}")
+      #console.log("import_dict #{value} for #{key}")
       @put(key, value)
     this
 
@@ -97,6 +98,8 @@ class World
 
   _from_dict: (dict) ->
     assert _.isObject(dict), "authority isn't dictionary"
+    dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
+    assert !_.isFunction(dict), "authority is a function"
     label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
@@ -128,10 +131,16 @@ class World
   find_child: (label) ->
     @find_children(label)[0]
 
+  find_parent: (label) ->
+    if @up.label() == label then @up else @up.find_parent(label)
+
   map_children: (callback) ->
     result = @rx().array()
+    index = 0
     for child in @_child_array()
+      child.put(INDEX, index)
       result.push callback(child)
+      index += 1
     result
   
   label: ->
