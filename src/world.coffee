@@ -68,7 +68,7 @@ class World
       assert _.isFunction(children), "children not array or function: #{children}"
       create_children = (world) -> @_import_children children(world)
       console.log "create_children", create_children
-      return create_children
+      return create_children(@)
     for value in children
       assert value, 'import child'
       result.push @make_world(value)
