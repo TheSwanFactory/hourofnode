@@ -60,13 +60,13 @@ exports.turtles = {
     counter = counter + 1
     counter= 0 if counter >= program.length
     world.put('program_counter', counter)
-    world.call(action['do'], action) if action?
+    turtles = world.find_parent 'turtles'
+    turtles.map_children (child) ->
+      child.call(action['do'], action) if action?
 
   reset: (world, args) ->
-    turtles = world.find_parent 'turtles'
-    assert turtles, "can't find parent"
-    console.log 'reset', world, turtles 
     world.put 'program_counter', 0
+    turtles = world.find_parent 'turtles'
     turtles.map_children (child) ->
       child.put 'i', child.get('i_0')
       child.put 'j', child.get('j_0')
