@@ -87,6 +87,7 @@ exports.test_world = (test, rx) ->
     result = mom.map_children (child) -> "#{child.label()} Prabhakar"
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'
+    t.notOk daughter.find_parent("Abraham"),'Unknown ancestor'
     candy = 'chocolate'
     
     t.notOk daughter.get(candy), "No chocolate"
