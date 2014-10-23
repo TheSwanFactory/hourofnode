@@ -54,7 +54,15 @@ exports.controls = {
       _CHILDREN: (world) ->
         turtle = world.get('current')
         program = turtle.get('program')
-        program.map (signal) -> {_LABEL: signal}
+        counter = turtle.get('program_counter')
+        index = 0
+        result = []
+        for signal in program
+          dict = {_LABEL: signal}
+          dict['stroke'] = "yellow" if index == counter
+          result.push dict
+          index = index + 1
+        result
     }
     {_LABEL: "program_selector"}
   ]
