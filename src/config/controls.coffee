@@ -71,6 +71,13 @@ exports.controls = {
     }
     {
       _LABEL: "program_loader"
+      _AUTHORITY: (world) -> world.get('BUTTON')
+      _CHILDREN: (world) ->
+        turtle = world.get('current')
+        program = turtle.get('program')
+        result = program.map (signal) ->
+          {_LABEL: signal}
+        result.all()
     }
   ]
 }
