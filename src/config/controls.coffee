@@ -70,6 +70,9 @@ exports.controls = {
     }
     {
       _LABEL: "program_loader"
+      program: (world) ->
+        world.map_children (child) ->
+          child.label if label.length > 1
       _CHILDREN: [
         {
           _LABEL: 'default'

@@ -24,3 +24,10 @@ exports.test_config = (test, rx) ->
       count = count + 1
     t.equal count, 3, "count children"
     t.end()
+
+  test 'config program', (t) ->
+    count = 0
+    world.map_children ->
+      count = count + 1
+    t.equal count, 3, "count children"
+    t.end()

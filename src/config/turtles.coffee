@@ -62,9 +62,9 @@ exports.turtles = {
     controls = root.find_child('controls')
     loader = controls.find_child('program_loader')
     context = loader.find_child('conflict')
-    console.log "reload_program", context.doc.x
-    assert context  
-    program = world.rx().array ['forward', 'left', 'reverse']
+    program = context.call('program')
+    console.log "reload_program", program
+    assert program   
     world.put 'program', program 
     program
   step: (world, args) ->
