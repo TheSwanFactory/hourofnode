@@ -37,8 +37,7 @@ exports.draw = (world) ->
       transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'
-    # TODO: find a more elegant way to inherit generic click behavior
-    dict['click'] = -> clicker(world) if clicker? and !world.has_children()
+    dict['click'] = -> clicker(world) if clicker?
     SVG.g dict, paths
 
   #console.log world
