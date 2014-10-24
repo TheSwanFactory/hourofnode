@@ -50,7 +50,7 @@ exports.test_world = (test, rx) ->
     world.import_dict({a: 1, b:2, _CHILDREN:[{c:3}]})
     t.equal world.get('a'), 1, "import properties"
     children = world.get('_CHILDREN')
-    t.ok children instanceof rx.SrcArray, "children is SrcArray"
+    t.ok world.is_array(children), "children is SrcArray"
     child = children.at(0)
     t.ok child, "child exists"
     t.ok world.is_world(child), "child is a world"

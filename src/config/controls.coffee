@@ -1,4 +1,4 @@
-{activity} = require('./activity')
+assert = require 'assert'
 
 offset = (world, key) -> world.get(key)*0.5 + 0.25
   
@@ -26,8 +26,12 @@ exports.controls = {
       if action? then action['name'] else world.get('_LABEL')
     click: (world, args) ->
       action = world.get('action')
-      current = world.get('current')
-      current.call(action['do'], action)
+      turtle = world.get('current')
+      program = turtle.get('program')
+      console.log 'click', turtle, action, program.all()
+      assert action
+      turtle.call(action['do'], action)
+      #program.push world.get('action_key')
   }
   _CHILDREN: [
     {
@@ -46,7 +50,7 @@ exports.controls = {
           fill: "white"
           name: (world, args) -> world.get('current').label()
         }
-        {_LABEL: "left"}, {_LABEL: "front"}, {_LABEL: "right"}
+        {_LABEL: "prog_left"}, {_LABEL: "prog_forward"}, {_LABEL: "prog_right"}
       ]
     }
     {
@@ -57,13 +61,13 @@ exports.controls = {
         program = turtle.get('program')
         counter = turtle.get('program_counter')
         index = 0
-        result = [] #world.rx().array()
-        for signal in program
+        result = program.map (signal) ->
           dict = {_LABEL: signal}
           dict['selected'] = true if index == counter
-          result.push dict
           index = index + 1
-        result
+          dict
+        console.log 'active_program', result, result.length()
+        result.all()
     }
     {_LABEL: "program_selector"}
   ]

@@ -50,20 +50,26 @@ exports.turtles = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
     
-  program: ['front', 'right', 'front', 'left']
+  program: ['forward']
   program_counter: 0
+  prog: (world, args) ->
+    {signal} = args
+    program = world.get('program')
+    program.push signal
+    console.log "prog: #{world}", world, args, signal, program
+    
   step: (world, args) ->
     program = world.get('program')
     counter = world.get('program_counter')
-    signal = program[counter]
+    signal = program.at(counter)
     action = world.get('signals')[signal]
     counter = counter + 1
-    counter= 0 if counter >= program.length
+    counter= 0 if counter >= program.length()
     world.put('program_counter', counter)
     turtles = world.find_parent 'turtles'
     turtles.map_children (child) ->
       child.call(action['do'], action) if action?
-  interval: 1000
+  interval: 500
   speed: 0
   run: (world, args) ->
     step = world.get_raw('step')
@@ -108,6 +114,22 @@ exports.turtles = {
       i: 1.5
       j: 3.5
       fill: "#008800"
+    }
+    {
+      _LABEL: "EP"
+      i_0: 2.5
+      j_0: 3.5
+      i: 2.5
+      j: 3.5
+      fill: "#880000"
+    }
+    {
+      _LABEL: "AW"
+      i_0: 5.5
+      j_0: 0.5
+      i: 5.5
+      j: 0.5
+      fill: "#000088"
     }
   ]
 }
