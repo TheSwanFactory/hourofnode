@@ -58,7 +58,7 @@ exports.test_world = (test, rx) ->
 
   test 'world has a label', (t) ->
     t.equal world.label(), "root", "label"
-    t.equal "#{world}", "World:root", "toString"
+    t.equal "#{world}", "World_root", "toString"
     t.end()
     
   test 'world can find children', (t) ->
@@ -83,7 +83,7 @@ exports.test_world = (test, rx) ->
     daughter = mom.add_child("Anjali")
     t.ok mom.has_children(), "mom.has_children"
     t.ok daughter, "daughter"
-    t.equal "#{daughter}", "World:Anjali", "daughter name"
+    t.equal "#{daughter}", "World_Anjali", "daughter name"
     result = mom.map_children (child) -> "#{child.label()} Prabhakar"
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'

@@ -140,7 +140,7 @@ class World
     @get(LABEL)
     
   toString: ->
-    "World:#{@label()}"
+    "World_#{@label()}"
     
   is_world: (obj) ->
     obj instanceof World
