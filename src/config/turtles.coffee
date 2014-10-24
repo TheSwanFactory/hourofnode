@@ -52,6 +52,10 @@ exports.turtles = {
     
   program: ['forward']
   program_counter: 0
+  program_loader: {
+    default: ['forward']
+    conflict: ['reverse']
+  }
   prog: (world, args) ->
     {signal} = args
     program = world.get('program')
