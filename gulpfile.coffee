@@ -40,4 +40,4 @@ gulp.task 'watch', ['sync'], ->
   
 # Watch when run
 
-gulp.task 'default', ['watch']
+gulp.task 'default', ['main', 'watch']
