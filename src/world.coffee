@@ -124,8 +124,16 @@ class World
   find_child: (label) ->
     @find_children(label)[0]
 
-  find_parent: (label) ->
-    if @up.label() == label then @up else @up.find_parent(label)
+  find_parent: (name) ->
+    return @ if @label() == name
+    if @up.label() == name then @up else @up.find_parent(name)
+
+  find: (path) ->
+    path = path.split(".") unless _.isArray(path)
+    current = @
+    current = @find_parent("root") if path[0] == ""
+    console.log "find", path, current, @
+    return current
 
   map_children: (callback) ->
     result = @rx().array()

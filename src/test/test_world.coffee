@@ -99,9 +99,11 @@ exports.test_world = (test, rx) ->
     mom.put(candy, 0)
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
-    t.end()
 
-  test 'world can find path', (t) ->
+    t.ok world.label() == "root", "equals root"
+    t.ok daughter.find_parent("root"), "find_parent root"
+    t.equal world, world.find('.'), "find root"
+    t.equal world, daughter.find('.')
     t.end()
 
   test 'world passes index when mapping', (t) ->
