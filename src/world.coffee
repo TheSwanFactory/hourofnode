@@ -131,10 +131,11 @@ class World
   find: (path) ->
     path = path.split(".") unless _.isArray(path)
     current = @
-    current = @find_parent("root") if path[0] == ""
-    console.log "find", path, current, @
-    return current
-
+    console.log "current", current, path, key
+    for key in path
+      current = if key then @find_parent("root") else current.find_child(key) 
+    current
+    
   map_children: (callback) ->
     result = @rx().array()
     index = 0
