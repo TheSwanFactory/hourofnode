@@ -69,7 +69,7 @@ exports.turtles = {
     turtles = world.find_parent 'turtles'
     turtles.map_children (child) ->
       child.call(action['do'], action) if action?
-  interval: 1000
+  interval: 500
   speed: 0
   run: (world, args) ->
     step = world.get_raw('step')
@@ -114,6 +114,22 @@ exports.turtles = {
       i: 1.5
       j: 3.5
       fill: "#008800"
+    }
+    {
+      _LABEL: "EP"
+      i_0: 2.5
+      j_0: 3.5
+      i: 2.5
+      j: 3.5
+      fill: "#880000"
+    }
+    {
+      _LABEL: "AW"
+      i_0: 5.5
+      j_0: 0.5
+      i: 5.5
+      j: 0.5
+      fill: "#000088"
     }
   ]
 }
