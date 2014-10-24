@@ -103,8 +103,8 @@ exports.test_world = (test, rx) ->
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
     
     css = daughter.labels(["css"])
-    t.equal css.length, 1, "Generate CSS class names"
-    
+    t.ok css.length > 2, "Traverse label hierarchy"
+    t.equal css[css.length-1], "root", "Reach label root"
     t.end()
 
   test 'world passes index when mapping', (t) ->

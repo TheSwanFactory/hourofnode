@@ -140,7 +140,8 @@ class World
     @get(LABEL)
 
   labels: (starter = []) ->
-    starter
+    starter.push @label()
+    if @up.labels? then @up.labels(starter) else starter
     
   toString: ->
     "World_#{@label()}"
