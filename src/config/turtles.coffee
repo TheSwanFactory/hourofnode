@@ -74,10 +74,8 @@ exports.turtles = {
     if counter >= program.length()
       program = turtles.call('reload_program', args)
       counter = 0
-    signal = program.at(counter)
-    assert signal, "No signal"
-    action = world.get('signals')[signal]
-    assert action, "No action"
+    assert signal = program.at(counter), "No signal"
+    assert action = world.get('signals')[signal], "No action"
     turtles.map_children (child) -> child.call(action['do'], action)
     world.put('program_counter', counter + 1)
   interval: 500
