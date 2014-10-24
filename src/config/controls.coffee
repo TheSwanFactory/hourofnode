@@ -13,6 +13,7 @@ exports.controls = {
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
   BUTTON: {
+    _CSS: "button"
     i: (world) -> world.get('_INDEX') / 2.0
     j: 0
   }

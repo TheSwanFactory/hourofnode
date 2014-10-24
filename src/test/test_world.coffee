@@ -161,7 +161,7 @@ exports.test_world = (test, rx) ->
     
   test 'world generates CSS labels', (t) ->
     daughter = world.add_child("daughter ")
-    daughter.put("_CSS", ["klass"])
+    daughter.put("_CSS", "klass")
     css = daughter.labels(["css"])
     t.ok css.length > 2, "Traverse label hierarchy"
     t.ok "klass" in css, "Has explicit class"

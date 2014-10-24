@@ -137,18 +137,19 @@ class World
       index += 1
     result
   
-  label: ->
-    @get(LABEL)
+  label: -> @get(LABEL)
 
   labels: (starter = []) ->
     starter.push @label()
+    klasses = @get(CSS) or []
+    klasses = [klasses] unless _.isArray(klasses)
+    for klass in klasses
+      starter.push klass
     if @up.labels? then @up.labels(starter) else starter
     
-  toString: ->
-    "World_#{@label()}"
+  toString: -> "World_#{@label()}"
     
-  is_world: (obj) ->
-    obj instanceof World
+  is_world: (obj) -> obj instanceof World
 
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
