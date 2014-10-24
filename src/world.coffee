@@ -131,9 +131,11 @@ class World
   find: (path) ->
     path = path.split(".") unless _.isArray(path)
     current = @
-    console.log "current", current, path, key
     for key in path
-      current = if key then @find_parent("root") else current.find_child(key) 
+      if key == ""
+        current = @find_parent("root")
+      else
+        current = current.find_child(key) 
     current
     
   map_children: (callback) ->
