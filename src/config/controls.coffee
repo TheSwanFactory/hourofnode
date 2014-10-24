@@ -74,7 +74,7 @@ exports.controls = {
         {
           _LABEL: 'default'
           _AUTHORITY: (world) -> world.get('BUTTON')
-          _CHILDREN: [{},{_LABEL: 'forward'}]
+          _CHILDREN: [{},{_LABEL: 'forward'},{_LABEL: 'forward'}]
         }
         {
           _LABEL: 'conflict'

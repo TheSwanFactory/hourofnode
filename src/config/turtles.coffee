@@ -50,7 +50,7 @@ exports.turtles = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
     
-  program: ['forward']
+  program: []
   program_counter: 0
   prog: (world, args) ->
     {signal} = args
@@ -62,23 +62,26 @@ exports.turtles = {
     controls = root.find_child('controls')
     loader = controls.find_child('program_loader')
     context = loader.find_child('conflict')
-    console.log "reload_program", context
+    console.log "reload_program", context.doc.x
     assert context  
-    world.put 'program', world.rx().array ['reverse']
+    world.put 'program', world.rx().array ['forward']
+    'forward'
 
   step: (world, args) ->
+    turtles = world.find_parent 'turtles'
     counter = world.get('program_counter')
     program = world.get('program')
-    signal = program.at(counter)
-    action = world.get('signals')[signal]
-    turtles = world.find_parent 'turtles'
-    turtles.map_children (child) ->
-      child.call(action['do'], action) if action?
-    counter = counter + 1
+    console.log "step", counter, program, turtles
     if counter >= program.length()
-      counter = 0
-      turtles.call('reload_program', args)
-    world.put('program_counter', counter)
+      signal = turtles.call('reload_program', args)
+    else
+      signal = program.at(counter)
+    assert signal, "No signal"
+    action = world.get('signals')[signal]
+    assert action, "No action"
+    turtles.map_children (child) ->
+      child.call(action['do'], action)
+    world.put('program_counter', counter + 1)
   interval: 500
   speed: 0
   run: (world, args) ->
