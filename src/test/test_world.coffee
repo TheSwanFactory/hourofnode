@@ -88,19 +88,20 @@ exports.test_world = (test, rx) ->
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'
     t.notOk daughter.find_parent("Abraham"),'Unknown ancestor'
-    candy = 'chocolate'
     
+    candy = 'chocolate'
     t.notOk daughter.get(candy), "No chocolate"
-
     t.notOk daughter.owner(candy), "No chocolate owner"
     grandma.put(candy, 'dark')
     t.equal grandma.owner(candy), grandma, "chocolate owner self"
     t.equal daughter.owner(candy), grandma, "chocolate owner"
     t.equal daughter.get(candy), 'dark', "Inherit chocolate"
-    
     mom.put(candy, 0)
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
+    t.end()
+
+  test 'world can find path', (t) ->
     t.end()
 
   test 'world passes index when mapping', (t) ->
