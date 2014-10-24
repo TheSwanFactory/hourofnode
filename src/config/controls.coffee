@@ -30,7 +30,7 @@ exports.controls = {
       program = turtle.get('program')
       turtle.call(action['do'], action)
       program.push world.get('action_key')
-      console.log 'click', turtle, action, program
+      console.log 'click', turtle, action, program.all()
   }
   _CHILDREN: [
     {
@@ -60,13 +60,11 @@ exports.controls = {
         program = turtle.get('program')
         counter = turtle.get('program_counter')
         index = 0
-        result = [] #world.rx().array()
-        for signal in program
+        program.map (signal) ->
           dict = {_LABEL: signal}
           dict['selected'] = true if index == counter
-          result.push dict
           index = index + 1
-        result
+          dict
     }
     {_LABEL: "program_selector"}
   ]

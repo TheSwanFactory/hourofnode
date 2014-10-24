@@ -149,6 +149,8 @@ class World
   toString: -> "World_#{@label()}"
     
   is_world: (obj) -> obj instanceof World
+  
+  is_array: (obj) -> obj instanceof @rx().ObsArray
 
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
