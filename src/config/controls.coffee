@@ -29,8 +29,8 @@ exports.controls = {
       turtle = world.get('current')
       program = turtle.get('program')
       turtle.call(action['do'], action)
-      program.push world.get('action_key')
-      console.log 'click', turtle, action, program.all()
+      #program.push world.get('action_key')
+      #console.log 'click', turtle, action, program.all()
   }
   _CHILDREN: [
     {
