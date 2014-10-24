@@ -138,6 +138,9 @@ class World
   
   label: ->
     @get(LABEL)
+
+  labels: (starter = []) ->
+    starter
     
   toString: ->
     "World_#{@label()}"

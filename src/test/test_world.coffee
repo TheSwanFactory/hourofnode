@@ -102,6 +102,9 @@ exports.test_world = (test, rx) ->
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
     
+    css = daughter.labels("css")
+    t.equal css, "css", "Generate CSS class names"
+    
     t.end()
 
   test 'world passes index when mapping', (t) ->
