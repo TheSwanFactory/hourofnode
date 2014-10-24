@@ -73,10 +73,9 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      #console.log("import_dict #{value} for #{key}")
       value = @_from_dict(value) if (key == AUTHORITY)
       value = @_import_children(value) if key == CHILDREN
-      #console.log("import_dict #{value} for #{key}")
+      value = @rx().array(value) if _.isArray(value)
       @put(key, value)
     this
 

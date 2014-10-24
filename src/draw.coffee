@@ -15,7 +15,7 @@ exports.draw = (world) ->
     dict['stroke'] = 'goldenrod' if world.get('selected')
     paths = world.get 'path'
     return unless paths?
-    paths = [paths] if paths !instanceof Array
+    paths = [paths] if !_.isArray(paths)
     elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
