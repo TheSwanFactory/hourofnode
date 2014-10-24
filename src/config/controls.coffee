@@ -66,18 +66,22 @@ exports.controls = {
           dict['selected'] = true if index == counter
           index = index + 1
           dict
-        console.log 'active_program', result, result.length()
         result.all()
     }
     {
       _LABEL: "program_loader"
-      _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: (world) ->
-        turtle = world.get('current')
-        program = turtle.get('program')
-        result = program.map (signal) ->
-          {_LABEL: signal}
-        result.all()
+      _CHILDREN: [
+        {
+          _LABEL: 'default'
+          _AUTHORITY: (world) -> world.get('BUTTON')
+          _CHILDREN: [{},{_LABEL: 'forward'}]
+        }
+        {
+          _LABEL: 'conflict'
+          _AUTHORITY: (world) -> world.get('BUTTON')
+          _CHILDREN: [{},{_LABEL: 'reverse'}]
+        }
+      ]
     }
   ]
 }
