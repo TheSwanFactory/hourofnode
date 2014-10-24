@@ -26,8 +26,11 @@ exports.controls = {
       if action? then action['name'] else world.get('_LABEL')
     click: (world, args) ->
       action = world.get('action')
-      current = world.get('current')
-      current.call(action['do'], action)
+      turtle = world.get('current')
+      program = turtle.get('program')
+      turtle.call(action['do'], action)
+      program.push world.get('action_key')
+      console.log 'click', turtle, action, program
   }
   _CHILDREN: [
     {
