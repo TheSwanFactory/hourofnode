@@ -64,23 +64,21 @@ exports.turtles = {
     context = loader.find_child('conflict')
     console.log "reload_program", context.doc.x
     assert context  
-    world.put 'program', world.rx().array ['forward']
-    'forward'
-
+    program = world.rx().array ['forward', 'left', 'reverse']
+    world.put 'program', program 
+    program
   step: (world, args) ->
     turtles = world.find_parent 'turtles'
     counter = world.get('program_counter')
     program = world.get('program')
-    console.log "step", counter, program, turtles
     if counter >= program.length()
-      signal = turtles.call('reload_program', args)
-    else
-      signal = program.at(counter)
+      program = turtles.call('reload_program', args)
+      counter = 0
+    signal = program.at(counter)
     assert signal, "No signal"
     action = world.get('signals')[signal]
     assert action, "No action"
-    turtles.map_children (child) ->
-      child.call(action['do'], action)
+    turtles.map_children (child) -> child.call(action['do'], action)
     world.put('program_counter', counter + 1)
   interval: 500
   speed: 0
