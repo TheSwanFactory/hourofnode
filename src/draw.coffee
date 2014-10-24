@@ -37,7 +37,7 @@ exports.draw = (world) ->
       transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'
-    dict['click'] = -> clicker(world) if clicker?
+    dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, paths
 
   #console.log world

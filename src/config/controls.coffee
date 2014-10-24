@@ -1,4 +1,4 @@
-{activity} = require('./activity')
+assert = require 'assert'
 
 offset = (world, key) -> world.get(key)*0.5 + 0.25
   
@@ -28,9 +28,10 @@ exports.controls = {
       action = world.get('action')
       turtle = world.get('current')
       program = turtle.get('program')
+      console.log 'click', turtle, action, program.all()
+      assert action
       turtle.call(action['do'], action)
       #program.push world.get('action_key')
-      #console.log 'click', turtle, action, program.all()
   }
   _CHILDREN: [
     {
