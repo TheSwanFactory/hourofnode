@@ -101,10 +101,6 @@ exports.test_world = (test, rx) ->
     mom.put(candy, 0)
     t.equal daughter.owner(candy), mom, "chocolate owner 0"
     t.equal daughter.get(candy), 0, "Inherit chocolate 0"
-    
-    css = daughter.labels(["css"])
-    t.ok css.length > 2, "Traverse label hierarchy"
-    t.equal css[css.length-1], "root", "Reach label root"
     t.end()
 
   test 'world passes index when mapping', (t) ->
@@ -162,3 +158,13 @@ exports.test_world = (test, rx) ->
     t.ok world.is_world(world), "non-world"
     t.notOk world.is_world(1), "non-world"
     t.end()
+    
+  test 'world generates CSS labels', (t) ->
+    daughter = world.add_child("daughter ")
+    daughter.put("_CSS", ["klass"])
+    css = daughter.labels(["css"])
+    t.ok css.length > 2, "Traverse label hierarchy"
+    t.ok "klass" in css, "Has explicit class"
+    t.ok "root" in css, "Has root"
+    t.end()
+  

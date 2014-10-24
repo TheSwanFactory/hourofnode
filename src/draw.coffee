@@ -8,7 +8,7 @@ exports.draw = (world) ->
     assert !world.has_children()
     #console.log "draw_path #{world}"
     dict = {
-      class: ['draw', 'path', world.label(), world.up.label()]
+      class: world.labels(['draw', 'path'])
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
@@ -33,7 +33,7 @@ exports.draw = (world) ->
     #console.log "draw_world #{world}"
     paths = draw_children(world) or draw_self(world)
     dict = {
-      class: ['draw', 'world', world.label(), world.up.label()]
+      class: world.labels(['draw', 'world'])
       transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'

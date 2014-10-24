@@ -10,6 +10,7 @@ LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 INDEX = "_INDEX"
+CSS = "_CSS"
 
 class World
   constructor: (up, label, rx) ->
