@@ -6,9 +6,9 @@ exports.draw = (world) ->
 
   draw_self = (world) ->
     assert !world.has_children()
-    #console.log "draw_path #{world}"
+    #console.log "draw_self #{world}"
     dict = {
-      class: world.labels(['draw', 'path'])
+      class: world.labels(['draw', 'self'])
       stroke: world.get 'stroke'
       fill: world.get 'fill'
     }
@@ -30,7 +30,7 @@ exports.draw = (world) ->
     world.map_children(draw_world) if world.has_children() 
 
   draw_world = (world) ->
-    #console.log "draw_world #{world}"
+    #console.log "draw_world #{world} kids:#{world.has_children()}", world
     paths = draw_children(world) or draw_self(world)
     dict = {
       class: world.labels(['draw', 'world'])

@@ -18,9 +18,12 @@ exports.config = {
     "translate(#{x},#{y}) rotate(#{angle})"
   current: -> "No world"
   signals: {
+    prog_left:  {name: "L", do:"prog", signal: "left"}
+    prog_right: {name: "R", do:"prog", signal: "right"}
+    prog_forward: {name: "F", do:"prog", signal: "forward"}
     left:  {name: "<-", do: "turn", dir: 1}
     right: {name: "->", do: "turn", dir: -1}
-    front: {name: "^", do: "go", dir: 1}
+    forward: {name: "^", do: "go", dir: 1}
     back: {name: "v", do: "go", dir: -1}
     step: {name: ">", do: "step", n: 1}
     run: {name: ">>", do: "run", speed: 1}

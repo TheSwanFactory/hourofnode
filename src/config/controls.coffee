@@ -50,7 +50,7 @@ exports.controls = {
           fill: "white"
           name: (world, args) -> world.get('current').label()
         }
-        {_LABEL: "left"}, {_LABEL: "front"}, {_LABEL: "right"}
+        {_LABEL: "prog_left"}, {_LABEL: "prog_forward"}, {_LABEL: "prog_right"}
       ]
     }
     {
@@ -61,11 +61,13 @@ exports.controls = {
         program = turtle.get('program')
         counter = turtle.get('program_counter')
         index = 0
-        program.map (signal) ->
+        result = program.map (signal) ->
           dict = {_LABEL: signal}
           dict['selected'] = true if index == counter
           index = index + 1
           dict
+        console.log 'active_program', result, result.length()
+        result.all()
     }
     {_LABEL: "program_selector"}
   ]

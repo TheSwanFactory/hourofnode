@@ -50,8 +50,14 @@ exports.turtles = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
     
-  program: ['front', 'right', 'front', 'left']
+  program: ['forward']
   program_counter: 0
+  prog: (world, args) ->
+    {signal} = args
+    program = world.get('program')
+    program.push signal
+    console.log "prog: #{world}", world, args, signal, program
+    
   step: (world, args) ->
     program = world.get('program')
     counter = world.get('program_counter')
