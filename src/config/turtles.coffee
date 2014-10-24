@@ -64,7 +64,7 @@ exports.turtles = {
     signal = program.at(counter)
     action = world.get('signals')[signal]
     counter = counter + 1
-    counter= 0 if counter >= program.length()
+    counter = 0 if counter >= program.length()
     world.put('program_counter', counter)
     turtles = world.find_parent 'turtles'
     turtles.map_children (child) ->

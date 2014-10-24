@@ -69,6 +69,8 @@ exports.controls = {
         console.log 'active_program', result, result.length()
         result.all()
     }
-    {_LABEL: "program_selector"}
+    {
+      _LABEL: "program_loader"
+    }
   ]
 }
