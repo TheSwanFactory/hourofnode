@@ -33,7 +33,7 @@ exports.draw = (world) ->
     #console.log "draw_world #{world}"
     paths = draw_children(world) or draw_self(world)
     dict = {
-      klass: ['draw_world', "#{world}"] # TODO: use 'class' properly
+      class: ['draw_world', "#{world}"] # TODO: use 'class' properly
       transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'
