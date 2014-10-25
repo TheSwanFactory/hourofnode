@@ -19,9 +19,7 @@ exports.draw = (world) ->
       SVG.path dict
 
     return elements unless world.get('name')?
-    elements.push SVG.text {
-      x: 0, y:5
-    }, world.bind() -> world.get('name')
+    elements.push SVG.text world.get('name_style'), world.bind() -> world.get('name')
     elements
     
   draw_children = (world) -> world.map_children(draw_world)  

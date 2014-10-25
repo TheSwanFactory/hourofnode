@@ -26,6 +26,10 @@ exports.layout = {
           "translate(#{x},#{y})"
         height: (world) -> world.get('scale') - 2 * world.get('margin')
         width: (world) -> world.get('height')
+        name_style: (world) -> 
+          margin = world.get('margin')
+          middle = world.get('scale') / 2
+          {x: middle - margin, y: middle}
       }
       _CHILDREN: [
         "play"

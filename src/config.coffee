@@ -11,13 +11,14 @@ exports.config = {
     world.get('size') / world.get('split')
   i: 0
   j: 0
-  angle: 0    
+  angle: 0
   transform: (world, args) ->
     scale = world.get('scale')
     x = scale*(world.get('i'))
     y = scale*(world.get('j'))
     angle = world.get('angle')
     "translate(#{x},#{y}) rotate(#{angle})"
+  name_style: (world, args) -> {x: -5, y: 5}
   current: -> "No world"
   signals: {
     prog_left:  {name: "L", do:"prog", signal: "left"}
