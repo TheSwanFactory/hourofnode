@@ -26,8 +26,5 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config program', (t) ->
-    count = 0
-    world.map_children ->
-      count = count + 1
-    t.equal count, 3, "count children"
+    t.ok context = world.find('.controls.program_loader.conflict'), "conflict"
     t.end()

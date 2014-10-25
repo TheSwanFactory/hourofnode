@@ -135,7 +135,8 @@ class World
       if key == ""
         current = @find_parent("root")
       else
-        current = current.find_child(key) 
+        current = current.find_child(key)
+      assert current, "Can not find #{key} for #{path} from #{@}" 
     current
     
   map_children: (callback) ->

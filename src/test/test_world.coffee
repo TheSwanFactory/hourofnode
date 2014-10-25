@@ -106,6 +106,8 @@ exports.test_world = (test, rx) ->
     t.equal world, daughter.find('.'), "find root from below"
     t.equal mom.find('Anjali'), daughter, "find child"
     t.equal daughter.find('.Premela'), grandma, "find ancestor"
+
+    t.equal world.find('.Premela.Sandhya.Anjali'), daughter, "find path"
     t.end()
 
   test 'world passes index when mapping', (t) ->
