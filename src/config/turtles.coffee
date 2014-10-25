@@ -33,9 +33,6 @@ exports.turtles = {
     value = 90*(1-v_i) #0, 90, 180, 90, 0
     value = -90 if world.get('v_j') < 0
     value
-  path: (world, args) -> 
-    scale = world.get('scale') / 10
-    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
@@ -100,6 +97,9 @@ exports.turtles = {
       child.put 'j', child.get('j_0')
   
   _AUTHORITY: {
+    path: (world, args) -> 
+      scale = world.get('scale') / 10
+      [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
     click: (world, args) ->
       owner = world.owner('current')
       owner.put('current', world)
