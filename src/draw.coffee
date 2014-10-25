@@ -4,8 +4,7 @@ exports.draw = (world) ->
   SVG = world.SVG()
 
   draw_self = (world) ->
-    assert !world.has_children()
-    #console.log "draw_self #{world}"
+    console.log "draw_self #{world}"
     dict = {
       class: world.labels(['draw', 'self'])
       stroke: world.get 'stroke'
@@ -13,7 +12,7 @@ exports.draw = (world) ->
     }
     dict['stroke'] = 'goldenrod' if world.get('selected')
     paths = world.get 'path'
-    return unless paths?
+    return undefined unless paths?
     paths = [paths] if !world.is_array(paths)
     elements = paths.map (path) ->
       dict['d'] = path
@@ -25,11 +24,10 @@ exports.draw = (world) ->
     }, world.bind() -> world.get('name')
     elements
     
-  draw_children = (world) ->
-    world.map_children(draw_world) if world.has_children() 
+  draw_children = (world) -> world.map_children(draw_world)  
 
   draw_world = (world) ->
-    #console.log "draw_world #{world} kids:#{world.has_children()}", world
+    console.log "draw_world #{world} kids:#{world.has_children()}", world
     dict = {
       class: world.labels(['draw', 'world'])
       transform: world.bind() -> world.get('transform')
@@ -37,8 +35,13 @@ exports.draw = (world) ->
     clicker = world.get_raw 'click'
     dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, world.bind() ->
-      result = draw_children(world) or draw_self(world)
-      if _.isArray(result) then result else result.all()
+      paths = draw_self(world)
+      paths = [] unless paths?
+      child_paths = draw_children(world)
+      child_paths = child_paths.all() unless _.isArray(child_paths)
+      for child in child_paths
+        paths.push child
+      paths
 
   #console.log world
   device_width = world.get('device_width')
