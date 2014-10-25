@@ -87,6 +87,7 @@ class World
     assert _.isString(value), "_from_value requires string"
     world = @_spawn_world "#{value}"
     world.put("value", value)
+    world.put("name", value)
     world
 
   _from_dict: (dict) ->
