@@ -3,13 +3,9 @@ exports.layout = {
   _LABEL: "layout"
   _CHILDREN: [
     {
-      _LABEL: "background"
+      _LABEL: "controls"
       fill: "#ccffcc"
       stroke: "black"
-    }
-    {
-      _LABEL: "gridlines"
-      stroke: "white"
     }
   ]
 }
