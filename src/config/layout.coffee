@@ -11,10 +11,24 @@ exports.layout = {
       j: (world) -> world.get('split')
       width: (world) -> world.get('size')
       height: 96
-      fill: "#cccccc"
+      margin: 8
+      fill: "#888888"
       stroke: "black"
       path: (world, args) -> world.get('rect_path')
+      _AUTHORITY: {
+        fill: "#cccccc"
+        scale: 96
+        transform: (world, args) ->
+          scale = world.get('scale')
+          margin = world.get('margin')
+          x = world.get("_INDEX") * scale + margin
+          y = margin
+          "translate(#{x},#{y})"
+        height: (world) -> world.get('scale') - 2 * world.get('margin')
+        width: (world) -> world.get('height')
+      }
       _CHILDREN: [
+        "play"
       ]
     }
   ]
