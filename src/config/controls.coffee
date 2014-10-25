@@ -71,9 +71,8 @@ exports.controls = {
     {
       _LABEL: "program_loader"
       program: (world) ->
-        world.map_children (child) ->
-          label = child.label() if child
-          label if label and label.length > 1
+        result = world.map_children (child) -> child.label()
+        result.all()[1..]
       _CHILDREN: [
         {
           _LABEL: 'default'

@@ -64,7 +64,7 @@ exports.turtles = {
     context = loader.find_child('conflict')
     program = context.call('program')
     console.log "reload_program", program
-    assert program   
+    assert program
     world.put 'program', program 
     program
   step: (world, args) ->

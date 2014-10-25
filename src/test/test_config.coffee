@@ -28,8 +28,7 @@ exports.test_config = (test, rx) ->
   test 'config program', (t) ->
     context = world.find('.controls.program_loader.conflict')
     t.ok context, "context"
-    console.log context
     program = context.get('program')
-    console.log program
-    t.ok world.is_array program
+    console.log "program", program
+    t.ok _.isArray(program), "program is array"
     t.end()
