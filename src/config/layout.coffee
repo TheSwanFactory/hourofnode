@@ -32,7 +32,7 @@ exports.layout = {
           {x: middle - margin, y: middle}
       }
       _CHILDREN: [
-        "play"
+        ">", ">>", "||","<>", "|<"
       ]
     }
   ]
