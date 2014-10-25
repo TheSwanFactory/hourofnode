@@ -1,3 +1,4 @@
+{layout} = require('./config/layout')
 {grid} = require('./config/grid')
 {turtles} = require('./config/turtles')
 {controls} = require('./config/controls')
@@ -34,5 +35,6 @@ exports.config = {
     grid
     turtles
     controls
+    layout
   ]
 }
