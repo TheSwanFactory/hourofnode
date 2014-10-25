@@ -4,7 +4,6 @@ var fs = require('fs');
 AWS.config.region = 'us-west-1';
 var s3 = new AWS.S3();
 var bucket = 'hourofnode.org';
-var filename = ;
 
 fs.readFile('web/main.js', function (err, data) {
   var params = {Bucket: bucket, Key: 'main.js', Body: data};
