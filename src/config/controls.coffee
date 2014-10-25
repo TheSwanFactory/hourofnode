@@ -74,19 +74,22 @@ exports.controls = {
         world.map_children (child) ->
           label = child.label() if child
           label if label and label.length > 1
-      _AUTHORITY: (world) -> world.find_parent('program_loader')
-      BUTTON2: {
-        i: (world) -> world.get('_INDEX') / 2.0
-        j: 0
-      }
       _CHILDREN: [
         {
           _LABEL: 'default'
-          _CHILDREN: [{_LABEL: 'forward'},{_LABEL: 'forward'}]
+          _AUTHORITY: (world) -> world.get('BUTTON')
+          _CHILDREN: [
+            {_LABEL: "default",stroke: "white",fill: "white"}
+            'forward','left','forward','right'
+          ]
         }
         {
           _LABEL: 'conflict'
-          _CHILDREN: [{_LABEL: 'reverse'}]
+          _AUTHORITY: (world) -> world.get('BUTTON')
+          _CHILDREN: [
+            {_LABEL: "conflict",stroke: "white",fill: "white"}
+            'reverse','left','left'
+          ]
         }
       ]
     }
