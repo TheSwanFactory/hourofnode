@@ -2,7 +2,6 @@ assert = require 'assert'
 
 exports.draw = (world) ->
   SVG = world.SVG()
-  grid_size = world.get('size')
 
   draw_self = (world) ->
     assert !world.has_children()
@@ -42,12 +41,13 @@ exports.draw = (world) ->
       if _.isArray(result) then result else result.all()
 
   #console.log world
+  device_width = world.get('device_width')
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
-    width: grid_size*1.5  
-    height: grid_size  
+    width: device_width  
+    height: device_width * 3 / 4  
   }, [
     draw_world(world) 
   ]

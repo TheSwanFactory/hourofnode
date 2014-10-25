@@ -4,6 +4,7 @@
 {controls} = require('./config/controls')
 
 exports.config = {
+  device_width: 1024
   size: 480
   split: 6
   scale: (world, args) ->
