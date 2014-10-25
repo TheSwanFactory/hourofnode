@@ -80,7 +80,7 @@ class World
     this
 
   _spawn_world: (label) ->
-    authority = @get(AUTHORITY)
+    authority = @get_local(AUTHORITY)
     new World(authority or @, label)
     
   _from_value: (value) ->

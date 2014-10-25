@@ -72,17 +72,21 @@ exports.controls = {
       _LABEL: "program_loader"
       program: (world) ->
         world.map_children (child) ->
-          child.label if label.length > 1
+          label = child.label() if child
+          label if label and label.length > 1
+      _AUTHORITY: (world) -> world.find_parent('program_loader')
+      BUTTON2: {
+        i: (world) -> world.get('_INDEX') / 2.0
+        j: 0
+      }
       _CHILDREN: [
         {
           _LABEL: 'default'
-          _AUTHORITY: (world) -> world.get('BUTTON')
-          _CHILDREN: [{},{_LABEL: 'forward'},{_LABEL: 'forward'}]
+          _CHILDREN: [{_LABEL: 'forward'},{_LABEL: 'forward'}]
         }
         {
           _LABEL: 'conflict'
-          _AUTHORITY: (world) -> world.get('BUTTON')
-          _CHILDREN: [{},{_LABEL: 'reverse'}]
+          _CHILDREN: [{_LABEL: 'reverse'}]
         }
       ]
     }

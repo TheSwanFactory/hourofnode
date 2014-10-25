@@ -26,5 +26,10 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config program', (t) ->
-    t.ok context = world.find('.controls.program_loader.conflict'), "conflict"
+    context = world.find('.controls.program_loader.conflict')
+    t.ok context, "context"
+    console.log context
+    program = context.get_raw('program')
+    console.log program
+    t.ok _.isArray program
     t.end()
