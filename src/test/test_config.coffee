@@ -29,7 +29,7 @@ exports.test_config = (test, rx) ->
     context = world.find('.controls.program_loader.conflict')
     t.ok context, "context"
     console.log context
-    program = context.get_raw('program')
+    program = context.get('program')
     console.log program
-    t.ok _.isArray program
+    t.ok world.is_array program
     t.end()
