@@ -15,13 +15,14 @@ exports.controls = {
       margin = world.get('margin')
       x = world.get("_INDEX") * scale + margin
       y = margin
-      "translate(#{x},#{y})"
+      "translate(#{x},#{y})" # TODO: Refactor
     height: (world) -> world.get('scale') - 2 * world.get('margin')
     width: (world) -> world.get('height')
     name_style: (world) -> 
       margin = world.get('margin')
       middle = world.get('scale') / 2
       {x: middle - margin, y: middle}
+    click: (world, args) -> world.send('.game', world)
   }
   _CHILDREN: [
     ">", ">>", "||","<>", "|<"
