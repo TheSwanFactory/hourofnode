@@ -51,11 +51,14 @@ class World
     return @ if @get_local(key)?
     @up.owner(key)
     
-  send: (receiver , message) ->
+  send: (receiver, message) ->
     receiver = @find_path(receiver) if _.isString(receiver)
     key = message['key']
-    receiver.call(key, message)
-    true
+    if receiver.get_raw(key)? 
+      receiver.call(key, message)
+      true
+    else
+      assert false, "No event handler"
     
   update: (key, delta, max) ->
     result = @get(key) + delta
