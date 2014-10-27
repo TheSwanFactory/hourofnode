@@ -149,8 +149,7 @@ class World
 
   find_parent: (name) ->
     return @ if @label() == name or @is_root()
-    return @up if @up.label() == name 
-    @up.find_parent(name) unless @is_root()
+    @up.find_parent(name)
 
   find_path: (path) ->
     path = path.split(".") unless _.isArray(path)
