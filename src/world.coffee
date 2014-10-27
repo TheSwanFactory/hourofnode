@@ -52,7 +52,7 @@ class World
 
   owner: (key) ->
     return @ if @get_local(key)?
-    @up.owner(key)
+    @up.owner(key) unless @is_root()
     
   send: (receiver, message) ->
     receiver = @find_path(receiver) if _.isString(receiver)
@@ -149,10 +149,10 @@ class World
 
   find_parent: (name) ->
     return @ if @label() == name
-    if @up.label() == name then @up else @up.find_parent(name)
+    return @up if @up.label() == name 
+    @up.find_parent(name) unless @is_root()
 
   find_path: (path) ->
-    console.log path
     path = path.split(".") unless _.isArray(path)
     current = @
     for key in path
