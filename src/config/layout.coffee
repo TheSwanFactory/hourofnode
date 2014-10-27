@@ -1,3 +1,4 @@
+{controls} = require('./controls')
 exports.layout = {
   path: ""
   rect_path: (world, args) ->

@@ -1,7 +1,6 @@
 {layout} = require('./config/layout')
 {grid} = require('./config/grid')
 {turtles} = require('./config/turtles')
-# {controls} = require('./config/controls')
 {inspector} = require('./config/inspector')
 
 exports.config = {
