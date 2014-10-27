@@ -156,7 +156,7 @@ class World
     current = @
     for key in path
       if key == "" or !key?
-        current = @find_parent("root")
+        current = @find_parent()
       else
         current = current.find_child(key)
     assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
