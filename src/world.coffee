@@ -57,9 +57,7 @@ class World
   handlers_for: (key) ->
     handlers = @get(HANDLERS)
     list = handlers[key]
-    if !list?
-      list = []
-      handlers[key] = list 
+    handlers[key] = list= [] unless list?
     list 
 
   handle: (key, callback) ->
