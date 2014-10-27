@@ -66,14 +66,19 @@ class World
     handlers.push callback
 
   send: (key, args) ->
-    @handlers_for(key).map (handler) -> handler(args)
+    for handler in @handlers_for(key)
+      console.log handler
+      handler(args)
     
   _export_events: ->
     return unless exports = @get(EXPORTS)
     for event in exports.all()
-      #console.log "_export_event: #{event} -> #{@get_raw(event)}"
+      console.log "_export_event: #{event} -> #{@get_raw(event)}"
       assert _.isFunction @get_raw(event), "No function for #{event}"
-      @handle event, (args) -> @call(event, args)
+      world = @
+      @handle event, (args) ->
+        console.log "@handle #{event}", world
+        world.call(event, args)
     
   update: (key, delta, max) ->
     result = @get(key) + delta
