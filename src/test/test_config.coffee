@@ -20,13 +20,13 @@ exports.test_config = (test, rx) ->
 
   test 'config children', (t) ->
     count = 0
-    world.map_children ->
-      count = count + 1
+    world.map_children -> count = count + 1
     t.ok count > 2, "count children"
     t.end()
 
   test 'config game', (t) ->
     t.ok game = world.find_path('.game'), "Got game"
+    t.equal game.get('speed'), 0, 'Speed 0'
     t.end()
 
   test 'config program', (t) ->
