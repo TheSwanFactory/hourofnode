@@ -62,6 +62,7 @@ class World
       true
     else
       assert false, "No event handler"
+      false
     
   update: (key, delta, max) ->
     result = @get(key) + delta
@@ -74,8 +75,11 @@ class World
     closure(@, args)
     
   _export_events: (world) ->
+    assert world, "Need world to export to"
     handlers = world.get(HANDLERS)
-    for event in @get(EXPORTS)
+    exports = @get_raw(EXPORTS)
+    return unless exports
+    for event in exports 
       handlers.put event, (args) -> @call(event, args)
     
   # TODO: refactor import_dict methods somewhere
@@ -94,7 +98,7 @@ class World
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
-    @_export_events @find_path(".")
+    #@_export_events @find_path(".")
     this
 
   _spawn_world: (label) ->
@@ -155,7 +159,7 @@ class World
         current = @find_parent("root")
       else
         current = current.find_child(key)
-      assert current, "Can not find #{key} for #{path} from #{@}" 
+      assert current, "Can not find key: #{key} for path: #{path} in #{@}" 
     current
     
   map_children: (callback) ->
