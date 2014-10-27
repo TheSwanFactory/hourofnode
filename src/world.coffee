@@ -148,7 +148,7 @@ class World
     @find_children(label)[0]
 
   find_parent: (name) ->
-    return @ if @label() == name
+    return @ if @label() == name or @is_root()
     return @up if @up.label() == name 
     @up.find_parent(name) unless @is_root()
 
