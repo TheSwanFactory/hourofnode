@@ -26,8 +26,8 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config game', (t) ->
-    game = world.find_path('.game')
-    t.ok game, "game"
+    t.ok world.find_path('.game'), "game"
+    
     t.end()
 
   test 'config program', (t) ->
