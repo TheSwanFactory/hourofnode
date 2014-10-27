@@ -2,8 +2,8 @@ assert = require 'assert'
 
 offset = (world, key) -> world.get(key)*0.5 + 0.25
   
-exports.controls = {
-  _LABEL: "controls"
+exports.inspector = {
+  _LABEL: "inspector"
   stroke: "black"
   fill: "lightgrey"
   i: (world, args) -> world.get('split')+0.25

@@ -1,7 +1,8 @@
 {layout} = require('./config/layout')
 {grid} = require('./config/grid')
 {turtles} = require('./config/turtles')
-{controls} = require('./config/controls')
+# {controls} = require('./config/controls')
+{inspector} = require('./config/inspector')
 
 exports.config = {
   device_width: 1024
@@ -36,7 +37,7 @@ exports.config = {
   _CHILDREN: [
     grid
     turtles
-    controls
+    inspector
     layout
   ]
 }
