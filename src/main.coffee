@@ -25,4 +25,4 @@ main = ->
 # Run Tests
 test(rx)
 # Instantiate our main view
-$(main)
+# $(main)

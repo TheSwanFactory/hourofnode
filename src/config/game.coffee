@@ -1,1 +1,3 @@
-exports.game = {}
+exports.game = {
+  _LABEL: "game"
+}
