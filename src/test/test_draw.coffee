@@ -11,7 +11,6 @@ exports.test_draw = (test, rx) ->
   })
 
   family = god(rx, {
-    _LABEL: "family"
     size: 480
     scale: 80
     fill: "red"

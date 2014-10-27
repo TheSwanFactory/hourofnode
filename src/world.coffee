@@ -75,7 +75,7 @@ class World
     closure(@, args)
     
   _export_events: (world) ->
-    assert world, "Need world to export to"
+    assert world && world.is_world(world), "Need world to export to"
     handlers = world.get(HANDLERS)
     exports = @get_raw(EXPORTS)
     return unless exports
@@ -98,7 +98,7 @@ class World
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
-    #@_export_events @find_path(".")
+    @_export_events @find_path(".")
     this
 
   _spawn_world: (label) ->
@@ -152,14 +152,15 @@ class World
     if @up.label() == name then @up else @up.find_parent(name)
 
   find_path: (path) ->
+    console.log path
     path = path.split(".") unless _.isArray(path)
     current = @
     for key in path
-      if key == ""
+      if key == "" or !key?
         current = @find_parent("root")
       else
         current = current.find_child(key)
-      assert current, "Can not find key: #{key} for path: #{path} in #{@}" 
+    assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
     current
     
   map_children: (callback) ->
