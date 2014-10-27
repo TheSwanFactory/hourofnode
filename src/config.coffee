@@ -1,4 +1,5 @@
 {layout} = require('./config/layout')
+{game} = require('./config/game')
 {grid} = require('./config/grid')
 {turtles} = require('./config/turtles')
 {inspector} = require('./config/inspector')
@@ -34,6 +35,7 @@ exports.config = {
     reset: {name: "|<", do: "reset"}
   }
   _CHILDREN: [
+    game
     grid
     turtles
     inspector
