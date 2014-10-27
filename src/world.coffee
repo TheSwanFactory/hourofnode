@@ -53,7 +53,9 @@ class World
     
   send: (receiver , message) ->
     receiver = @find_path(receiver) if _.isString(receiver)
-    receiver
+    key = message['key']
+    receiver.call(key, message)
+    true
     
   update: (key, delta, max) ->
     result = @get(key) + delta
