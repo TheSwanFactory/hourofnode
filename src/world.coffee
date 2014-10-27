@@ -180,7 +180,7 @@ class World
     klasses = [klasses] unless _.isArray(klasses)
     for klass in klasses
       starter.push klass
-    if @up.labels? then @up.labels(starter) else starter
+    if @is_root() then starter else @up.labels(starter)
     
   toString: -> "World_#{@label()}"
     
