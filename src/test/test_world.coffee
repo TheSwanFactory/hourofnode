@@ -23,7 +23,7 @@ exports.test_world = (test, rx) ->
     t.equal world.get('x'), 3
     t.end()
     
-  test 'world contains rx', (t) ->
+  test 'world contains reactive extensions', (t) ->
     t.ok world.rx(), "rx()"
     t.ok world.T(), "T"
     t.ok world.SVG() ,"SVG"
