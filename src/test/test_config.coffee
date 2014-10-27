@@ -27,6 +27,7 @@ exports.test_config = (test, rx) ->
 
   test 'config game', (t) ->
     t.ok world.find_path('.game'), "game"
+    t.ok world.send('.game', world), "send game"
     
     t.end()
 
