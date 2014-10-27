@@ -25,7 +25,6 @@ class World
     assert _.isString(label), "label is string"
     @doc.put LABEL, label
     @doc.put CHILDREN, cache_rx.array()
-    @doc.put HANDLERS, cache_rx.map()
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
@@ -195,5 +194,6 @@ class World
 
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
-  root.put(RX, rx)
+  root.put RX, rx
+  root.put HANDLERS, rx.map()
   root.import_dict(doc)

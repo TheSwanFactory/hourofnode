@@ -182,3 +182,14 @@ exports.test_world = (test, rx) ->
     t.ok "root" in css, "Has root"
     t.end()
   
+
+  test 'config handlers', (t) ->
+    t.ok handlers = world.handlers_for('run'), "handlers exist"
+    t.equal handlers.length, 0, "handlers empty"
+    ran = false
+    world.handle 'run', -> ran = true
+    t.equal handlers.length, 1, "handlers increased"
+    t.notOk ran, "Has not ran"
+    world.send 'run'
+    t.ok ran, "Has ran"
+    t.end()
