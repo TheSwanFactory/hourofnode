@@ -51,6 +51,9 @@ class World
     return @ if @get_local(key)?
     @up.owner(key)
     
+  send: (path, sender) ->
+    assert receiver = @find_path(path), "No path #{path}"
+    
   update: (key, delta, max) ->
     result = @get(key) + delta
     result = wraparound(result, max) if max?
