@@ -1,5 +1,9 @@
 assert = require 'assert'
 
+normalize = (paths) ->
+  return [] unless paths
+  if _.isArray(paths) then paths else paths.all()
+  
 exports.draw = (world) ->
   SVG = world.SVG()
 
@@ -32,11 +36,8 @@ exports.draw = (world) ->
     clicker = world.get_raw 'click'
     dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     SVG.g dict, world.bind() ->
-      paths = draw_self(world)
-      paths = [] unless paths?
-      paths = paths .all() unless _.isArray(paths)
-      child_paths = draw_children(world)
-      child_paths = child_paths.all() unless _.isArray(child_paths)
+      paths = normalize draw_self(world)
+      child_paths = normalize draw_children(world)
       for child in child_paths
         paths.push child
       paths
