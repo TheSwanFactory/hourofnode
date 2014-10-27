@@ -25,6 +25,9 @@ exports.test_config = (test, rx) ->
     t.ok count > 2, "count children"
     t.end()
 
+  test 'config game', (t) ->
+    t.end()
+
   test 'config program', (t) ->
     context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
