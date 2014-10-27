@@ -4,7 +4,7 @@ exports.draw = (world) ->
   SVG = world.SVG()
 
   draw_self = (world) ->
-    console.log "draw_self #{world}"
+    #console.log "draw_self #{world}"
     dict = {
       class: world.labels(['draw', 'self'])
       stroke: world.get 'stroke'
@@ -24,7 +24,7 @@ exports.draw = (world) ->
   draw_children = (world) -> world.map_children(draw_world)  
 
   draw_world = (world) ->
-    console.log "draw_world #{world} kids:#{world.has_children()}", world
+    #console.log "draw_world #{world} kids:#{world.has_children()}", world
     dict = {
       class: world.labels(['draw', 'world'])
       transform: world.bind() -> world.get('transform')
@@ -35,7 +35,6 @@ exports.draw = (world) ->
       paths = draw_self(world)
       paths = [] unless paths?
       paths = paths .all() unless _.isArray(paths)
-      console.log paths
       child_paths = draw_children(world)
       child_paths = child_paths.all() unless _.isArray(child_paths)
       for child in child_paths
