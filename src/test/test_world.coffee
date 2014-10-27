@@ -74,6 +74,7 @@ exports.test_world = (test, rx) ->
     t.equal result.length, 1
     t.end()
     
+  # TODO: Break this up into smaller tests somehow
   test 'world has children inherit', (t) ->
     t.ok world.has_children(), "world.has_children"
     grandma = world.add_child("Premela")
