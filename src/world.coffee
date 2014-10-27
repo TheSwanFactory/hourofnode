@@ -129,7 +129,7 @@ class World
     return @ if @label() == name
     if @up.label() == name then @up else @up.find_parent(name)
 
-  find: (path) ->
+  find_path: (path) ->
     path = path.split(".") unless _.isArray(path)
     current = @
     for key in path
