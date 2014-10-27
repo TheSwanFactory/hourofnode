@@ -26,7 +26,7 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config program', (t) ->
-    context = world.find('.inspector.program_loader.conflict')
+    context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
     program = context.get('program')
     console.log "program", program

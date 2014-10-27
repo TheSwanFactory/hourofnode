@@ -18,7 +18,7 @@ exports.test_draw = (test, rx) ->
     _CHILDREN: [
       {path: "M0,0 L100,100"}
       {path: "M100,0 L0,100"}
-      {path: ["M50,0 L0,50", "M0,50 L50,0"]}
+#      {path: ["M50,0 L0,50", "M0,50 L50,0"]}
     ]
   })
 
