@@ -17,7 +17,6 @@ exports.draw = (world) ->
     elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
-
     return elements unless world.get('name')?
     elements.push SVG.text world.get('name_style'), world.bind() -> world.get('name')
     elements
@@ -35,6 +34,8 @@ exports.draw = (world) ->
     SVG.g dict, world.bind() ->
       paths = draw_self(world)
       paths = [] unless paths?
+      paths = paths .all() unless _.isArray(paths)
+      console.log paths
       child_paths = draw_children(world)
       child_paths = child_paths.all() unless _.isArray(child_paths)
       for child in child_paths

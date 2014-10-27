@@ -11,14 +11,15 @@ exports.test_draw = (test, rx) ->
   })
 
   family = god(rx, {
+    _LABEL: "family"
     size: 480
     scale: 80
     fill: "red"
     stroke: "black"
     _CHILDREN: [
+      {path: ["M50,0 L0,50", "M0,50 L50,0"]}
       {path: "M0,0 L100,100"}
       {path: "M100,0 L0,100"}
-#      {path: ["M50,0 L0,50", "M0,50 L50,0"]}
     ]
   })
 
