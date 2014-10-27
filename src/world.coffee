@@ -186,6 +186,8 @@ class World
     
   is_world: (obj) -> obj instanceof World
   
+  is_root: () -> not @is_world(@up)
+  
   is_array: (obj) -> obj instanceof @rx().ObsArray
 
 exports.world = (up, rx, doc) ->

@@ -167,10 +167,13 @@ exports.test_world = (test, rx) ->
   test 'world knows worlds', (t) ->
     t.ok world.is_world(world), "non-world"
     t.notOk world.is_world(1), "non-world"
+    t.ok world.is_root(), "is root"
+    branch = world.add_child("branch")
+    t.notOk branch.is_root(), "is not root"
     t.end()
     
   test 'world generates CSS labels', (t) ->
-    daughter = world.add_child("daughter ")
+    daughter = world.add_child("daughter")
     daughter.put("_CSS", "klass")
     css = daughter.labels(["css"])
     t.ok css.length > 2, "Traverse label hierarchy"
