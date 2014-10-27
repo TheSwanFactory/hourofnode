@@ -181,7 +181,6 @@ exports.test_world = (test, rx) ->
     t.ok "klass" in css, "Has explicit class"
     t.ok "root" in css, "Has root"
     t.end()
-  
 
   test 'config handlers', (t) ->
     t.ok handlers = world.handlers_for('run'), "handlers exist"
