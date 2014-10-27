@@ -9,6 +9,7 @@ RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
+EXPORTS = "_EXPORTS"
 INDEX = "_INDEX"
 CSS = "_CSS"
 
@@ -70,6 +71,8 @@ class World
     assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
+  export_events: ->
+    @
   # TODO: refactor import_dict methods somewhere
   _import_children: (children) ->
     result = @rx().array()
@@ -82,10 +85,11 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      value = @_from_dict(value) if (key == AUTHORITY)
+      value = @_from_dict(value) if key == AUTHORITY
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
+    @export_events()
     this
 
   _spawn_world: (label) ->
