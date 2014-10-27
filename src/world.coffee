@@ -10,6 +10,7 @@ LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 EXPORTS = "_EXPORTS"
+HANDLERS = "_HANDLERS"
 INDEX = "_INDEX"
 CSS = "_CSS"
 
@@ -22,8 +23,9 @@ class World
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     assert _.isString(label), "label is string"
-    @doc.put(LABEL, label)
-    @doc.put(CHILDREN, cache_rx.array())
+    @doc.put LABEL, label
+    @doc.put CHILDREN, cache_rx.array()
+    @doc.put HANDLERS, cache_rx.map()
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
@@ -71,8 +73,11 @@ class World
     assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
-  export_events: ->
-    @
+  _export_events: (world) ->
+    handlers = world.get(HANDLERS)
+    for event in @get(EXPORTS)
+      handlers.put event, (args) -> @call(event, args)
+    
   # TODO: refactor import_dict methods somewhere
   _import_children: (children) ->
     result = @rx().array()
@@ -89,7 +94,7 @@ class World
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
-    @export_events()
+    @_export_events @find_path(".")
     this
 
   _spawn_world: (label) ->
