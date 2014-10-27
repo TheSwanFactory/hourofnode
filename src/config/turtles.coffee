@@ -56,7 +56,7 @@ exports.turtles = {
     console.log "prog: #{world}", world, args, signal, program
   reload_program:  (world, args) ->
     {name} = args
-    loader= world.find '.controls.program_loader'
+    loader= world.find '.inspector.program_loader'
     context = loader.find_child(name)
     program = context.call('program')
     console.log "reload_program #{name}", program
