@@ -26,6 +26,8 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config handlers', (t) ->
+    t.ok handlers = world.handlers_for('run'), "handlers exist"
+    t.equal handlers .length, 0, "handlers  empty"
     ran = false
     world.handle 'run', -> ran = true
     t.notOk ran, "Has not ran"
