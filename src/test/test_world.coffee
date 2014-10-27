@@ -64,7 +64,6 @@ exports.test_world = (test, rx) ->
   test 'world can find children', (t) ->
     t.ok world.has_children(), "has some"
     result = world.find_children()
-    console.log result
     t.ok result, "finds children"
     t.equal result.length, 1
 

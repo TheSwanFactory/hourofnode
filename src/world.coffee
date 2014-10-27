@@ -55,8 +55,10 @@ class World
     
   handlers_for: (key) ->
     handlers = @get(HANDLERS)
-    list = handlers[key]
-    handlers[key] = list= [] unless list?
+    list = handlers.get(key)
+    unless list?
+      list = []
+      handlers.put(key, list)
     list 
 
   handle: (key, callback) ->
@@ -64,8 +66,14 @@ class World
     handlers.push callback
 
   send: (key, args) ->
-    @handlers_for(key).map (handler) ->
-      handler(args)
+    @handlers_for(key).map (handler) -> handler(args)
+    
+  _export_events: ->
+    return unless exports = @get(EXPORTS)
+    for event in exports.all()
+      #console.log "_export_event: #{event} -> #{@get_raw(event)}"
+      assert _.isFunction @get_raw(event), "No function for #{event}"
+      @handle event, (args) -> @call(event, args)
     
   update: (key, delta, max) ->
     result = @get(key) + delta
@@ -76,14 +84,6 @@ class World
     closure = @get_raw(key)
     assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
-    
-  _export_events: (world) ->
-    assert world && world.is_world(world), "Need world to export to"
-    handlers = world.get(HANDLERS)
-    exports = @get_raw(EXPORTS)
-    return unless exports
-    for event in exports 
-      handlers.put event, (args) -> @call(event, args)
     
   # TODO: refactor import_dict methods somewhere
   _import_children: (children) ->
@@ -101,7 +101,7 @@ class World
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
-    @_export_events @find_path(".")
+    @_export_events()
     this
 
   _spawn_world: (label) ->

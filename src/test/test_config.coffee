@@ -26,7 +26,12 @@ exports.test_config = (test, rx) ->
 
   test 'config game', (t) ->
     t.ok game = world.find_path('.game'), "Got game"
+    handlers = world.handlers_for('run')
+    t.equal handlers.length, 1, "run handler exists"
     t.equal game.get('speed'), 0, 'Speed 0'
+    result = world.send('run')
+    t.equal result.length, 1, '1 handler'
+    t.equal game.get('speed'), 1, 'Speed 1'
     t.end()
 
   test 'config program', (t) ->
