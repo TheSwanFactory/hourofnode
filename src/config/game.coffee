@@ -7,7 +7,7 @@ exports.game = {
       speed = world.get('speed')
       if speed > 0
         delay = world.get('interval') / speed 
-        world.send(world,"step")
+        world.send(".turtles", "step")
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
 
