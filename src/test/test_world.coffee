@@ -109,8 +109,8 @@ exports.test_world = (test, rx) ->
 
     t.equal world.find_path('.Premela.Sandhya.Anjali'), daughter, "find path"
 
-    t.equal daughter.find_any('Premela'), grandma, "find any ancestor"
-    t.equal grandma.find_any('Anjali'), daughter, "find any descendant"
+    #t.equal daughter.find_any('Premela'), grandma, "find any ancestor"
+    #t.equal grandma.find_any('Anjali'), daughter, "find any descendant"
     t.end()
 
   test 'world passes index when mapping', (t) ->
