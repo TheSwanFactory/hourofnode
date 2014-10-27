@@ -2,7 +2,7 @@ assert = require 'assert'
 
 draw_leg = (scale, offset, dir) ->
   arc = if dir < 1 then 0 else 1
-  "m#{offset*scale},0 l#{scale},#{dir*3*scale}
+  "M#{offset*scale},0 l#{scale},#{dir*3*scale}
    a1,2 0 1,#{arc} #{-1*scale},#{-1*dir*3*scale}z m#{-offset*scale},0"
   
 draw_legs = (scale) ->
@@ -10,14 +10,14 @@ draw_legs = (scale) ->
   draw_leg(scale, -1, -1) + draw_leg(scale, -1, 1)
 
 draw_face = (scale) ->
-  "m#{2.5*scale},0 
+  "M#{2.5*scale},0 
    a3,2 0 0,0 #{2*scale},0 
    a3,2 0 0,0 #{-2*scale},0 
    z m#{-3.5*scale},0"
 
 draw_shell = (scale) ->
-  "m#{-3*scale},0 a3,2 0 1,0 #{6*scale},0 
-   m0,0           a3,2 0 1,0 #{-6*scale},0z"
+  "M#{-3*scale},0 a3,2 0 1,0 #{6*scale},0 
+                  a3,2 0 1,0 #{-6*scale},0z"
 
 exports.turtles = {
   _LABEL: "turtles"
