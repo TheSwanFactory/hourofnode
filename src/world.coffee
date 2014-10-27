@@ -65,8 +65,8 @@ class World
     handlers.push callback
 
   send: (key, args) ->
-    handlers = @handlers_for(key)
-    false
+    @handlers_for(key).map (handler) ->
+      handler(args)
     
   update: (key, delta, max) ->
     result = @get(key) + delta
