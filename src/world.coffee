@@ -54,15 +54,21 @@ class World
     return @ if @get_local(key)?
     @up.owner(key) unless @is_root()
     
-  send: (receiver, message) ->
-    receiver = @find_path(receiver) if _.isString(receiver)
-    key = message['key']
-    if receiver.get_raw(key)? 
-      receiver.call(key, message)
-      true
-    else
-      assert false, "No event handler"
-      false
+  handlers_for: (key) ->
+    handlers = @get(HANDLERS)
+    list = handlers[key]
+    if !list?
+      list = []
+      handlers[key] = list 
+    list 
+
+  handle: (key, callback) ->
+    handlers = @handlers_for(key)
+    handlers.push callback
+
+  send: (key, args) ->
+    handlers = @handlers_for(key)
+    false
     
   update: (key, delta, max) ->
     result = @get(key) + delta

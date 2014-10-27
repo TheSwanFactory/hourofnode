@@ -25,9 +25,12 @@ exports.test_config = (test, rx) ->
     t.ok count > 2, "count children"
     t.end()
 
-  test 'config game', (t) ->
-    t.ok world.find_path('.game'), "game"
-    t.ok world.send('.game', {key:'run'}), "send run to game"
+  test 'config handlers', (t) ->
+    ran = false
+    world.handle 'run', -> ran = true
+    t.notOk ran, "Has not ran"
+    world.send 'run'
+    t.notOk ran, "Has ran"
     t.end()
 
   test 'config program', (t) ->
