@@ -1,6 +1,6 @@
 {controls} = require('./controls')
 {grid} = require('./grid')
-{sprites} = require('./sprites')
+# {sprites} = require('./sprites')
 exports.layout = {
   path: ""
   rect_path: (world, args) ->
@@ -11,6 +11,6 @@ exports.layout = {
   _CHILDREN: [
     controls
     grid
-    sprites
+#    sprites
   ]
 }

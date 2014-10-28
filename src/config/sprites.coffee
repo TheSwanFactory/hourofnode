@@ -4,9 +4,12 @@ assert = require 'assert'
 exports.sprites = {
   _LABEL: "sprites"
   NewFromTurtle: (world, args) ->
+    console.log "NewFromTurtle: #{world} #{args}"
     _EXPORTS = ["step", "reset"]
-    
-    undefined
+    world.authority = args
+    world.add_child "sprite #{args.label()}"
+  stroke: "black"
+  path: "M0,0 L50,50 H50 V50 Z"
   angle: (world, args) ->
     # TODO: perform real triginometry
     v_i = world.get('v_i')
