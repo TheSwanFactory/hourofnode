@@ -20,13 +20,23 @@ exports.test_config = (test, rx) ->
 
   test 'config children', (t) ->
     count = 0
-    world.map_children ->
-      count = count + 1
-    t.equal count, 3, "count children"
+    world.map_children -> count = count + 1
+    t.ok count > 2, "count children"
+    t.end()
+
+  test 'config game', (t) ->
+    t.ok game = world.find_path('.game'), "Got game"
+    t.equal world.handlers_for('run').length, 1, "1 run handler"
+    t.equal world.handlers_for('stop').length, 1, "1 stop handler"
+    t.equal game.get('speed'), 0, 'Speed 0'
+    result = world.send('run')
+    t.equal result.length, 1, '1 handler'
+    t.equal game.get('speed'), 1, 'Speed 1'
+    result = world.send('stop')
     t.end()
 
   test 'config program', (t) ->
-    context = world.find('.controls.program_loader.conflict')
+    context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
     program = context.get('program')
     console.log "program", program

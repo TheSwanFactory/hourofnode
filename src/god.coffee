@@ -7,8 +7,6 @@ class GOD
     return world.up if key == "up"
     console.log "key '#{key}' not found: #{world}" if @debug
     undefined
-  find_parent: (label) -> undefined
-  owner: (key) -> undefined
   label: -> "GOD"
   toString: -> @label()
     

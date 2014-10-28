@@ -23,7 +23,7 @@ exports.test_world = (test, rx) ->
     t.equal world.get('x'), 3
     t.end()
     
-  test 'world contains rx', (t) ->
+  test 'world contains reactive extensions', (t) ->
     t.ok world.rx(), "rx()"
     t.ok world.T(), "T"
     t.ok world.SVG() ,"SVG"
@@ -64,7 +64,6 @@ exports.test_world = (test, rx) ->
   test 'world can find children', (t) ->
     t.ok world.has_children(), "has some"
     result = world.find_children()
-    console.log result
     t.ok result, "finds children"
     t.equal result.length, 1
 
@@ -74,6 +73,7 @@ exports.test_world = (test, rx) ->
     t.equal result.length, 1
     t.end()
     
+  # TODO: Break this up into smaller tests somehow
   test 'world has children inherit', (t) ->
     t.ok world.has_children(), "world.has_children"
     grandma = world.add_child("Premela")
@@ -87,7 +87,7 @@ exports.test_world = (test, rx) ->
     result = mom.map_children (child) -> "#{child.label()} Prabhakar"
     t.equal result.at(0), "Anjali Prabhakar", "map child"
     t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'
-    t.notOk daughter.find_parent("Abraham"),'Unknown ancestor'
+    t.equal daughter.find_parent("Abraham"), world, 'Unknown ancestor'
     
     candy = 'chocolate'
     t.notOk daughter.get(candy), "No chocolate"
@@ -102,12 +102,15 @@ exports.test_world = (test, rx) ->
 
     t.ok world.label() == "root", "equals root"
     t.ok daughter.find_parent("root"), "find_parent root"
-    t.equal world, world.find('.'), "find root"
-    t.equal world, daughter.find('.'), "find root from below"
-    t.equal mom.find('Anjali'), daughter, "find child"
-    t.equal daughter.find('.Premela'), grandma, "find ancestor"
+    t.equal world, world.find_path('.'), "find root"
+    t.equal world, daughter.find_path('.'), "find root from below"
+    t.equal mom.find_path('Anjali'), daughter, "find child"
+    t.equal daughter.find_path('.Premela'), grandma, "find ancestor"
 
-    t.equal world.find('.Premela.Sandhya.Anjali'), daughter, "find path"
+    t.equal world.find_path('.Premela.Sandhya.Anjali'), daughter, "find path"
+
+    #t.equal daughter.find_any('Premela'), grandma, "find any ancestor"
+    #t.equal grandma.find_any('Anjali'), daughter, "find any descendant"
     t.end()
 
   test 'world passes index when mapping', (t) ->
@@ -164,14 +167,34 @@ exports.test_world = (test, rx) ->
   test 'world knows worlds', (t) ->
     t.ok world.is_world(world), "non-world"
     t.notOk world.is_world(1), "non-world"
+    t.ok world.is_root(), "is root"
+    branch = world.add_child("branch")
+    t.notOk branch.is_root(), "is not root"
     t.end()
     
   test 'world generates CSS labels', (t) ->
-    daughter = world.add_child("daughter ")
+    daughter = world.add_child("daughter")
     daughter.put("_CSS", "klass")
     css = daughter.labels(["css"])
     t.ok css.length > 2, "Traverse label hierarchy"
     t.ok "klass" in css, "Has explicit class"
     t.ok "root" in css, "Has root"
     t.end()
-  
+
+  test 'config handlers', (t) ->
+    t.equal world.handlers_for('run').length, 0, "1 run handler"
+    ran = false
+    stopped = false
+    world.handle 'run', -> ran = true
+    t.equal world.handlers_for('run').length, 1, "1 run handler"
+    t.equal world.handlers_for('stop').length, 0, "0 stop handler"
+    world.handle 'stop', -> stopped = true
+    t.equal world.handlers_for('stop').length, 1, "0 stop handler"
+
+    t.notOk ran, "Has not ran"
+    t.notOk stopped, "Has not stopped"
+    world.send 'run'
+    t.ok ran, "Has ran"
+    world.send 'stop'
+    t.ok stopped, "Has stopped"
+    t.end()

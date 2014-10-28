@@ -9,6 +9,8 @@ RX = "_RX"
 LABEL = "_LABEL"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
+EXPORTS = "_EXPORTS"
+HANDLERS = "_HANDLERS"
 INDEX = "_INDEX"
 CSS = "_CSS"
 
@@ -21,8 +23,8 @@ class World
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     assert _.isString(label), "label is string"
-    @doc.put(LABEL, label)
-    @doc.put(CHILDREN, cache_rx.array())
+    @doc.put LABEL, label
+    @doc.put CHILDREN, cache_rx.array()
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
@@ -49,7 +51,31 @@ class World
 
   owner: (key) ->
     return @ if @get_local(key)?
-    @up.owner(key)
+    @up.owner(key) unless @is_root()
+    
+  handlers_for: (key) ->
+    handlers = @get(HANDLERS)
+    list = handlers.get(key)
+    unless list?
+      list = []
+      handlers.put(key, list)
+    list 
+
+  handle: (key, callback) ->
+    handlers = @handlers_for(key)
+    handlers.push callback
+
+  send: (key, args) ->
+    for handler in @handlers_for(key)
+      handler(key, args)
+    
+  _export_events: ->
+    return unless exports = @get(EXPORTS)
+    for event in exports.all()
+      assert _.isFunction @get_raw(event), "No function for #{event}"
+      world = @
+      @handle event, (key, args) ->
+        world.call(key, args)
     
   update: (key, delta, max) ->
     result = @get(key) + delta
@@ -73,10 +99,11 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      value = @_from_dict(value) if (key == AUTHORITY)
+      value = @_from_dict(value) if key == AUTHORITY
       value = @_import_children(value) if key == CHILDREN
       value = @rx().array(value) if _.isArray(value)
       @put(key, value)
+    @_export_events()
     this
 
   _spawn_world: (label) ->
@@ -126,18 +153,18 @@ class World
     @find_children(label)[0]
 
   find_parent: (name) ->
-    return @ if @label() == name
-    if @up.label() == name then @up else @up.find_parent(name)
+    return @ if @label() == name or @is_root()
+    @up.find_parent(name)
 
-  find: (path) ->
+  find_path: (path) ->
     path = path.split(".") unless _.isArray(path)
     current = @
     for key in path
-      if key == ""
-        current = @find_parent("root")
+      if key == "" or !key?
+        current = @find_parent()
       else
         current = current.find_child(key)
-      assert current, "Can not find #{key} for #{path} from #{@}" 
+    assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
     current
     
   map_children: (callback) ->
@@ -157,15 +184,18 @@ class World
     klasses = [klasses] unless _.isArray(klasses)
     for klass in klasses
       starter.push klass
-    if @up.labels? then @up.labels(starter) else starter
+    if @is_root() then starter else @up.labels(starter)
     
   toString: -> "World_#{@label()}"
     
   is_world: (obj) -> obj instanceof World
   
+  is_root: () -> not @is_world(@up)
+  
   is_array: (obj) -> obj instanceof @rx().ObsArray
 
 exports.world = (up, rx, doc) ->
   root = new World(up, "root", rx)
-  root.put(RX, rx)
+  root.put RX, rx
+  root.put HANDLERS, rx.map()
   root.import_dict(doc)
