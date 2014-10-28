@@ -32,7 +32,7 @@ exports.test_config = (test, rx) ->
     result = world.send('run')
     t.equal result.length, 1, '1 handler'
     t.equal game.get('speed'), 1, 'Speed 1'
-    #result = world.send('stop')
+    result = world.send('stop')
     t.end()
 
   test 'config program', (t) ->
