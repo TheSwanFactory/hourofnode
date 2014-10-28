@@ -134,8 +134,8 @@ exports.test_world = (test, rx) ->
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")
     authority = world._spawn_world("authority")
-    world.put("_AUTHORITY", authority)
     rebel = world._spawn_world("rebellious")
+    rebel.put("_AUTHORITY", authority)
     
     world.put("foo", "bar")
     t.equal comply.get('foo'), 'bar', 'comply foo'
