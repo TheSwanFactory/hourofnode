@@ -4,8 +4,8 @@ assert = require 'assert'
 exports.sprites = {
   _LABEL: "sprites"
   from_turtle: (world, args) ->
-    
-  _AUTHORITY = {
+    undefined
+  _AUTHORITY: {
     angle: (world, args) ->
       # TODO: perform real triginometry
       v_i = world.get('v_i')
