@@ -22,9 +22,12 @@ exports.controls = {
       margin = world.get('margin')
       middle = world.get('scale') / 2
       {x: middle - margin, y: middle}
-    click: (world, args) -> world.send('.game', world)
+    
+    click: (world, args) ->
+      console.log value = world.get('value')
+      world.send value
   }
   _CHILDREN: [
-    ">", ">>", "||","<>", "|<"
+    "step", "run", "stop","loop", "reset"
   ]
 }
