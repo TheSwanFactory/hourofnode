@@ -29,10 +29,6 @@ exports.config = {
     right: {name: "->", do: "turn", dir: -1}
     forward: {name: "^", do: "go", dir: 1}
     reverse: {name: "v", do: "go", dir: -1}
-    step: {name: ">", do: "step", n: 1}
-    run: {name: ">>", do: "run", speed: 1}
-    stop: {name: "||", do: "run", speed: 0}
-    reset: {name: "|<", do: "reset"}
   }
   _CHILDREN: [
     game
