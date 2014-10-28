@@ -2,7 +2,7 @@ exports.game = {
   _LABEL: "game"
   interval: 500
   speed: 0
-  _EXPORTS: ["stop", "run"]
+  _EXPORTS: ["run", "stop"]
   run: (world, args) ->
     world.put('speed', 1)
     step_and_repeat = (self) ->
