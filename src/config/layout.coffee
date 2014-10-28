@@ -10,6 +10,6 @@ exports.layout = {
   _LABEL: "layout"
   _CHILDREN: [
     #controls
-    #grid
+    grid
   ]
 }
