@@ -28,7 +28,6 @@ exports.test_config = (test, rx) ->
     t.ok game = world.find_path('.game'), "Got game"
     t.equal world.handlers_for('run').length, 1, "1 run handler"
     t.equal world.handlers_for('stop').length, 1, "1 stop handler"
-    console.log world.get('_HANDLERS')
     t.equal game.get('speed'), 0, 'Speed 0'
     result = world.send('run')
     t.equal result.length, 1, '1 handler'

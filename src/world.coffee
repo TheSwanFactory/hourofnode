@@ -56,7 +56,6 @@ class World
   handlers_for: (key) ->
     handlers = @get(HANDLERS)
     list = handlers.get(key)
-    console.log "handlers_for: #{key}", handlers, list
     unless list?
       list = []
       handlers.put(key, list)
@@ -68,17 +67,14 @@ class World
 
   send: (key, args) ->
     for handler in @handlers_for(key)
-      console.log handler
       handler(key, args)
     
   _export_events: ->
     return unless exports = @get(EXPORTS)
     for event in exports.all()
-      #console.log "_export_event: #{event} -> #{@get_raw(event)}"
       assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
       @handle event, (key, args) ->
-        console.log "@handle #{key}", world
         world.call(key, args)
     
   update: (key, delta, max) ->
