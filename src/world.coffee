@@ -11,7 +11,6 @@ CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 EXPORTS = "_EXPORTS"
 HANDLERS = "_HANDLERS"
-INDEX = "_INDEX"
 CSS = "_CSS"
 
 class World
@@ -180,7 +179,7 @@ class World
     result = @rx().array()
     index = 0
     for child in @_child_array()
-      child.put(INDEX, index)
+      child.index = index
       result.push callback(child)
       index += 1
     result

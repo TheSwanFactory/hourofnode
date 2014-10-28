@@ -113,10 +113,10 @@ exports.test_world = (test, rx) ->
     #t.equal grandma.find_any('Anjali'), daughter, "find any descendant"
     t.end()
 
-  test 'world passes index when mapping', (t) ->
+  test 'world passes index as property when mapping', (t) ->
     count = 0
     world.map_children (child) ->
-      index = child.get('_INDEX')
+      index = child.index
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
       count = count + 1
     t.end()
