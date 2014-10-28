@@ -9,7 +9,7 @@ exports.layout = {
     "M0,0 h#{width} v#{height} h-#{width} v-#{height}"
   _LABEL: "layout"
   _CHILDREN: [
-    controls
-    grid
+    #controls
+    #grid
   ]
 }

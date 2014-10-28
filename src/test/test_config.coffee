@@ -40,5 +40,5 @@ exports.test_config = (test, rx) ->
     t.ok context, "context"
     program = context.get('program')
     console.log "program", program
-    t.ok world.is_array(program), "program is array"
+    t.ok _.isArray(program), "program is array"
     t.end()
