@@ -42,6 +42,10 @@ class World
   get_raw: (key, world) ->
     value = @get_local(key)
     return value if value?
+    authority = @get_local(AUTHORITY)
+    if authority
+      value = authority.get_local(key)
+      return value if value?
     @up.get_raw(key, world or @)
 
   get: (key) ->
