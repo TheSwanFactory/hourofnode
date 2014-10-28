@@ -82,7 +82,7 @@ exports.turtles = {
       child.put 'j', child.get('j_0')
   
   _AUTHORITY: {
-    _EXPORTS: ["step"]
+    _EXPORTS: ["step", "reset"]
     path: (world, args) -> 
       scale = world.get('scale') / 10
       [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
