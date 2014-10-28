@@ -184,11 +184,17 @@ exports.test_world = (test, rx) ->
   test 'config handlers', (t) ->
     t.equal world.handlers_for('run').length, 0, "1 run handler"
     ran = false
+    stopped = false
     world.handle 'run', -> ran = true
     t.equal world.handlers_for('run').length, 1, "1 run handler"
     t.equal world.handlers_for('stop').length, 0, "0 stop handler"
+    world.handle 'stop', -> stopped = true
+    t.equal world.handlers_for('stop').length, 1, "0 stop handler"
 
     t.notOk ran, "Has not ran"
+    t.notOk stopped, "Has not stopped"
     world.send 'run'
     t.ok ran, "Has ran"
+    world.send 'stop'
+    t.ok stopped, "Has stopped"
     t.end()
