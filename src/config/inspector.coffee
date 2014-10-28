@@ -13,12 +13,12 @@ exports.inspector = {
     half = scale / 2
     "m#{-half},#{-half}  h#{scale} v#{scale} h-#{scale } v#{-scale}"
   BUTTON: {
-    i: (world) -> world.get('_INDEX') / 2.0
+    i: (world) -> world.index / 2.0
     j: 0
   }
   _AUTHORITY: {
     i: 0
-    j: (world) -> world.get('_INDEX') / 1.5
+    j: (world) -> world.index / 1.5
     action_key: (world) -> world.get('_LABEL')
     action: (world) -> world.get('signals')[ world.get('action_key') ]
     name: (world) ->
