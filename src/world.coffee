@@ -73,7 +73,7 @@ class World
   _export_events: ->
     return unless exports = @get(EXPORTS)
     for event in exports.all()
-      console.log "_export_event: #{event} -> #{@get_raw(event)}"
+      #console.log "_export_event: #{event} -> #{@get_raw(event)}"
       assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
       @handle event, (args) ->
