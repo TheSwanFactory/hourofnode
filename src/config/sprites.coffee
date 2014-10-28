@@ -3,6 +3,8 @@ assert = require 'assert'
 # Uses Turtle as an Authority
 exports.sprites = {
   _LABEL: "sprites"
+  from_turtle: (world, args) ->
+    
   angle: (world, args) ->
     # TODO: perform real triginometry
     v_i = world.get('v_i')

@@ -12,10 +12,15 @@ assert = require 'assert'
 {test} = require('./test')
 
 world = god(rx, config)
-turtles = world.find_child('turtles')
-assert turtles, "should be one turtles object"
+assert turtles = world.find_child('turtles'), "can not find turtles"
+assert layout = world.find_child('layout'), "can not find layout"
+assert sprites = world.find_child('sprites'), "can not find sprites"
 current = turtles.find_child()
 world.put('current', current)
+result = turtles.map_children (turtle) ->
+  #sprite = sprites.call('from-turtle', turtle)
+  # 
+  
 
 main = ->
   $('body').append(
