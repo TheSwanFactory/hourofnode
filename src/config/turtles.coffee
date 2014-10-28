@@ -74,21 +74,6 @@ exports.turtles = {
     assert action = world.get('signals')[signal], "No action"
     turtles.map_children (child) -> child.call(action['do'], action)
     world.put('program_counter', counter + 1)
-  interval: 500
-  speed: 0
-  run: (world, args) ->
-    step = world.get_raw('step')
-    {speed} = args
-    assert _.isFunction(step), "step is not a function"
-    assert speed?, "run: requires speed"
-    world.owner('speed').put('speed', speed)
-    step_and_repeat = (self) ->
-      speed = world.get('speed')
-      if speed > 0
-        delay = world.get('interval') / speed 
-        step(world, args)
-        setTimeout((-> self(self)), delay)
-    step_and_repeat(step_and_repeat)
   reset: (world, args) ->
     world.put 'program_counter', 0
     turtles = world.find_parent 'turtles'

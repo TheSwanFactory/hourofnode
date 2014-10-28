@@ -35,11 +35,6 @@ exports.inspector = {
   }
   _CHILDREN: [
     {
-      _LABEL: "game_controls"
-      _AUTHORITY: (world) -> world.get('BUTTON')
-      _CHILDREN: [{_LABEL: "step"}, {_LABEL: "run"}, {_LABEL: "stop"}, {_LABEL: "reset"}]
-    }
-    {
       _LABEL: "turtle_controls"
       _AUTHORITY: (world) -> world.get('BUTTON')
       _CSS: "cloneable"
