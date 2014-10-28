@@ -11,6 +11,5 @@ exports.layout = {
   _CHILDREN: [
     controls
     grid
-#    sprites
   ]
 }
