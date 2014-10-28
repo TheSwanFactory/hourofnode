@@ -60,7 +60,7 @@ class World
   handlers_for: (key) ->
     handlers = @get(HANDLERS)
     list = handlers.get(key)
-    console.log "handlers_for: #{key}", handlers, list
+    #console.log "handlers_for: #{key}", handlers, list
     unless list?
       list = []
       handlers.put(key, list)
