@@ -26,6 +26,7 @@ exports.sprites = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   step: (world, args) ->
+    return unless world.get('_AUTHORITY')
     counter = world.get('program_counter')
     program = world.get('program')
     if counter >= program.length()

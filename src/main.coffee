@@ -17,10 +17,9 @@ assert layout = world.find_child('layout'), "can not find layout"
 assert sprites = world.find_child('sprites'), "can not find sprites"
 current = turtles.find_child()
 world.put('current', current)
-result = turtles.map_children (turtle) ->
-  #sprite = sprites.call('from-turtle', turtle)
-  # 
-  
+turtles.map_children (turtle) ->
+  sprite = sprites.call('from_turtle', turtle)
+  layout.add_child(sprite) if sprite?
 
 main = ->
   $('body').append(
