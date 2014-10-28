@@ -4,7 +4,7 @@ assert = require 'assert'
 exports.sprites = {
   _LABEL: "sprites"
   NewFromTurtle: (world, args) ->
-    console.log "NewFromTurtle: #{world} #{args} #{args.get('path')}"
+    #console.log "NewFromTurtle: #{world} #{args} #{args.get('path')}"
     _EXPORTS = ["step", "reset"]
     world.authority = args
     world.add_child "sprite #{args.label()}"

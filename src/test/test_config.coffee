@@ -39,6 +39,6 @@ exports.test_config = (test, rx) ->
     context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
     program = context.get('program')
-    console.log "program", program
+    #console.log "program", program
     t.ok _.isArray(program), "program is array"
     t.end()
