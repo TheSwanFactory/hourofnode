@@ -1,5 +1,6 @@
 test = require 'tape'
-
+undo = require('tap-browser-color')()
+# undo()
 # Test Modules
 
 {test_god} = require('./test/test_god')
@@ -8,7 +9,7 @@ test = require 'tape'
 {test_draw} = require('./test/test_draw')
 
 run_tests = (rx) ->
-  #test_god(test, rx)
+  test_god(test, rx)
   test_world(test, rx)
   test_config(test, rx)
   test_draw(test, rx)

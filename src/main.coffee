@@ -22,7 +22,7 @@ main = ->
     draw(world)
   )
   
+# Instantiate our main view
+$(main)
 # Run Tests
 test(rx)
-# Instantiate our main view
-# $(main)
