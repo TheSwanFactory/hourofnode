@@ -44,7 +44,7 @@ class World
     authority = @get_local(AUTHORITY)
     if authority
       #console.log "Find #{key} in #{authority}"
-      value = authority.get(key)
+      value = authority.get_raw(key, @)
       return value if value?
     @up.get_raw(key, world or @)
 
@@ -177,10 +177,12 @@ class World
     
   map_children: (callback) ->
     #result = @rx().array()
+    #console.log "map_children[#{@_child_count()}] of #{@}", callback
     result = []
     index = 0
     for child in @_child_array()
       child.index = index
+      console.log child
       result.push callback(child)
       index += 1
     result

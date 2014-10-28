@@ -11,11 +11,11 @@ exports.controls = {
     fill: "#cccccc"
     scale: 96
     transform: (world, args) ->
+      console.log "Use controls transform #{world}", world, world.index
       scale = world.get('scale')
       margin = world.get('margin')
       x = world.index * scale + margin
       y = margin
-      console.log "Use controls transform[#{world.index}] #{scale} -> #{x}", world
       "translate(#{x},#{y})" # TODO: Refactor
     height: (world) -> world.get('scale') - 2 * world.get('margin')
     width: (world) -> world.get('height')
@@ -27,6 +27,6 @@ exports.controls = {
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
-    "step", "run", "stop","loop", "reset"
+    "step", "run"#, "stop","loop", "reset"
   ]
 }
