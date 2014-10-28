@@ -104,17 +104,18 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      value = @_from_dict(value) if key == AUTHORITY
-      value = @_import_children(value) if key == CHILDREN
-      value = @rx().array(value) if _.isArray(value)
-      @put(key, value)
+      if key == AUTHORITY
+        @authority = @_from_dict(value) 
+      else
+        value = @_import_children(value) if key == CHILDREN
+        value = @rx().array(value) if _.isArray(value)
+        @put(key, value)
     @_export_events()
     this
 
   _spawn_world: (label) ->
-    authority = @get_local(AUTHORITY)
     world = new World(@, label)
-    world.put(AUTHORITY, authority)
+    world.put(AUTHORITY, @authority) if @authority?
     world
     
   _from_value: (value) ->
@@ -125,9 +126,9 @@ class World
     world
 
   _from_dict: (dict) ->
-    assert _.isObject(dict), "authority isn't dictionary"
+    assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
-    assert !_.isFunction(dict), "authority is a function"
+    assert !_.isFunction(dict), "_from_dict: dict is a function"
     label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
