@@ -31,8 +31,8 @@ exports.config = {
   }
   _CHILDREN: [
     game
-    layout
     turtles
+    layout
     inspector
   ]
 }
