@@ -113,7 +113,9 @@ class World
 
   _spawn_world: (label) ->
     authority = @get_local(AUTHORITY)
-    new World(authority or @, label)
+    world = new World(@, label)
+    world.put(AUTHORITY, authority)
+    world
     
   _from_value: (value) ->
     assert _.isString(value), "_from_value requires string"
