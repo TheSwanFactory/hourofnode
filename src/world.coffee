@@ -44,7 +44,8 @@ class World
     return value if value?
     authority = @get_local(AUTHORITY)
     if authority
-      value = authority.get_local(key)
+      #console.log "Find #{key} in #{authority}"
+      value = authority.get(key)
       return value if value?
     @up.get_raw(key, world or @)
 
@@ -75,7 +76,7 @@ class World
       handler(key, args)
     
   _export_events: ->
-    return unless exports = @get(EXPORTS)
+    return unless exports = @get_local(EXPORTS)
     for event in exports.all()
       assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
