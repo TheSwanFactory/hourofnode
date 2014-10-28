@@ -23,9 +23,7 @@ exports.controls = {
       middle = world.get('scale') / 2
       {x: middle - margin, y: middle}
     
-    click: (world, args) ->
-      console.log value = world.get('value')
-      world.send value
+    click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
     "step", "run", "stop","loop", "reset"
