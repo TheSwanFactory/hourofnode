@@ -44,5 +44,7 @@ exports.sprites = {
     world.put 'program_counter', 0
     world.put 'i', world.get('i_0')
     world.put 'j', world.get('j_0')
-
+  click: (world, args) ->
+    owner = world.owner('current')
+    owner.put('current', world)
 }

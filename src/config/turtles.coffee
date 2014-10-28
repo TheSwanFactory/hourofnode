@@ -63,38 +63,12 @@ exports.turtles = {
     assert program
     world.put 'program', program 
     program
-  step: (world, args) ->
-    turtles = world.find_parent 'turtles'
-    counter = world.get('program_counter')
-    program = world.get('program')
-    if counter >= program.length()
-      program = world.call('reload_program', {name: 'default'})
-      counter = 1
-    assert signal = program.at(counter), "No signal"
-    assert action = world.get('signals')[signal], "No action"
-    turtles.map_children (child) -> child.call(action['do'], action)
-    world.put('program_counter', counter + 1)
-  reset: (world, args) ->
-    world.put 'program_counter', 0
-    turtles = world.find_parent 'turtles'
-    turtles.map_children (child) ->
-      child.put 'i', child.get('i_0')
-      child.put 'j', child.get('j_0')
-  
-  _AUTHORITY: {
-    _EXPORTS: ["step", "reset"]
-    path: (world, args) -> 
-      scale = world.get('scale') / 10
-      [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
-    click: (world, args) ->
-      owner = world.owner('current')
-      owner.put('current', world)
-  }
+  path: (world, args) -> 
+    scale = world.get('scale') / 10
+    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
   _CHILDREN: [
     {
       _LABEL: "me"
-      i_0: 4.5
-      j_0: 4.5
       i: 4.5
       j: 4.5
       v_i: 0
@@ -103,24 +77,18 @@ exports.turtles = {
     }
     {
       _LABEL: "yu"
-      i_0: 1.5
-      j_0: 3.5
       i: 1.5
       j: 3.5
       fill: "#008800"
     }
     {
       _LABEL: "EP"
-      i_0: 2.5
-      j_0: 3.5
       i: 2.5
       j: 3.5
       fill: "#880000"
     }
     {
       _LABEL: "AW"
-      i_0: 5.5
-      j_0: 0.5
       i: 5.5
       j: 0.5
       fill: "#000088"
