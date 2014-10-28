@@ -1,5 +1,6 @@
 test = require 'tape'
 undo = require('tap-browser-color')()
+# test.createStream().pipe(process.stdout)
 # undo()
 # Test Modules
 

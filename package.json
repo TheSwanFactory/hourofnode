@@ -20,6 +20,7 @@
     "node-aws": "^0.1.2",
     "tap-browser-color": "^0.1.2",
     "tap-spec": "^1.0.1",
+    "tape": "^3.0.1",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^1.0.6"
   },
