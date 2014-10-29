@@ -6,7 +6,7 @@ exports.sprites = {
   _LABEL: "sprites"
   NewFromTurtle: (world, args) ->
     world.authority = args
-    dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS }
+    dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
 
   go: (world, args) ->
