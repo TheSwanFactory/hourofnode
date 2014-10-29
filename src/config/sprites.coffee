@@ -1,13 +1,14 @@
 assert = require 'assert'
+SPRITE_EXPORTS = ["step", "reset"]
 
 # Uses Turtle as an Authority
 exports.sprites = {
   _LABEL: "sprites"
   NewFromTurtle: (world, args) ->
-    #console.log "NewFromTurtle: #{world} #{args} #{args.get('path')}"
-    _EXPORTS = ["step", "reset"]
     world.authority = args
-    world.add_child "sprite #{args.label()}"
+    dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS }
+    child = world.add_child dict
+
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
@@ -23,8 +24,8 @@ exports.sprites = {
     world.put 'v_j', next_v_j
   step: (world, args) ->
     action = world.get('next_action')
+    console.log 'step', action
     world.call(action['do'], action)
-    world.put('program_counter', counter + 1)
   reset: (world, args) ->
     world.put 'program_counter', 0
     for key in ['i', 'j', 'v_i', 'v_j']

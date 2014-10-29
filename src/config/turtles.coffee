@@ -60,6 +60,7 @@ exports.turtles = {
       program = world.call('reload_program', {name: 'default'})
       counter = 1
     assert signal = program.at(counter), "No signal"
+    world.put('program_counter', counter + 1)
     assert action = world.get('signals')[signal], "No action"
     action
   _CHILDREN: [
