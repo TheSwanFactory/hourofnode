@@ -27,6 +27,6 @@ exports.controls = {
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
-    "step", "run"#, "stop","loop", "reset"
+    "step", "run", "stop","loop", "reset"
   ]
 }
