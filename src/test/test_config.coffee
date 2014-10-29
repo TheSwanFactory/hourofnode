@@ -53,6 +53,6 @@ exports.test_config = (test, rx) ->
     t.ok sprite = sprites.call('NewFromTurtle', current), "missing sprite"
     t.equal sprite.get('j'), 4.5, "sprite has position"
     t.equal sprite.get('v_j'), 1, "sprite has direction"
-    #sprite.call('step')
-    t.equal sprite.get('j'), 4.5, "sprite has position"
+    sprite.call('step')
+    t.equal sprite.get('j'), 5.5, "sprite has position"
     t.end()
