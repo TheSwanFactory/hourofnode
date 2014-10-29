@@ -22,13 +22,7 @@ exports.sprites = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   step: (world, args) ->
-    counter = world.get('program_counter')
-    program = world.get('program')
-    if counter >= program.length()
-      program = world.call('reload_program', {name: 'default'})
-      counter = 1
-    assert signal = program.at(counter), "No signal"
-    assert action = world.get('signals')[signal], "No action"
+    action = world.get('next_action')
     world.call(action['do'], action)
     world.put('program_counter', counter + 1)
   reset: (world, args) ->

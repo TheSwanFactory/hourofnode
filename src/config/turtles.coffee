@@ -22,8 +22,6 @@ draw_shell = (scale) ->
 exports.turtles = {
   _LABEL: "turtles"
   name: (world, args) -> world.label()
-  stroke: "green"
-  selected: (world) -> world == world.get('current')
   v_i: 1
   v_j: 0
   angle: (world, args) ->
@@ -33,6 +31,11 @@ exports.turtles = {
     value = 90*(1-v_i) #0, 90, 180, 90, 0
     value = -90 if world.get('v_j') < 0
     value
+  stroke: "green"
+  selected: (world) -> world == world.get('current')
+  path: (world, args) -> 
+    scale = world.get('scale') / 10
+    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
     
   program: []
   program_counter: 0
@@ -50,9 +53,15 @@ exports.turtles = {
     assert program
     world.put 'program', program 
     program
-  path: (world, args) -> 
-    scale = world.get('scale') / 10
-    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
+  next_action: (world, args) ->
+    counter = world.get('program_counter')
+    program = world.get('program')
+    if counter >= program.length()
+      program = world.call('reload_program', {name: 'default'})
+      counter = 1
+    assert signal = program.at(counter), "No signal"
+    assert action = world.get('signals')[signal], "No action"
+    action
   _CHILDREN: [
     {
       _LABEL: "me"
