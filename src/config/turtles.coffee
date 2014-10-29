@@ -52,28 +52,34 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
-      i: 4.5
-      j: 4.5
-      v_i: 0
-      v_j: 1
+      i: 1.5
+      j: 1.5
+      v_i: 1
+      v_j: 0
       fill: "#88ff88"
     }
     {
       _LABEL: "yu"
       i: 1.5
       j: 3.5
+      v_i: 0
+      v_j: 1
       fill: "#008800"
     }
     {
       _LABEL: "EP"
-      i: 2.5
-      j: 3.5
+      i: 3.5
+      j: 1.5
+      v_i: 0
+      v_j: -1
       fill: "#880000"
     }
     {
       _LABEL: "AW"
-      i: 5.5
-      j: 0.5
+      i: 3.5
+      j: 3.5
+      v_i: -1
+      v_j: 0
       fill: "#000088"
     }
   ]

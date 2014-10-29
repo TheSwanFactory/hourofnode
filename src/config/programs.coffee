@@ -30,19 +30,17 @@ exports.programs = {
   next: (world, args) ->
     program = world.get('program')
     counter = world.get('counter')
-    console.log "next", program, counter
     if program? and counter? and counter < program.length()
       action = program.at(counter)
     else
       return world.call('reload', args) unless args?
       assert false, "Infinite Loop: next <-> reload"
-    console.log "next action ", action, world.get('signals')
     assert signal = world.get('signals')[action], "No signal"
     world.put('counter', counter + 1)
     signal
     
   _CHILDREN: [
-    {_LABEL: 'default', value: ["forward"]}
+    {_LABEL: 'default', value: ["forward", "right"]}
   ]
 }
 

@@ -51,8 +51,8 @@ exports.test_config = (test, rx) ->
   test 'config sprite', (t) ->
     t.ok sprites = world.find_child('sprites'), "can not find sprites"
     t.ok sprite = sprites.call('NewFromTurtle', current), "missing sprite"
-    t.equal sprite.get('j'), 4.5, "sprite has position"
-    t.equal sprite.get('v_j'), 1, "sprite has direction"
+    t.equal sprite.get('i'), 1.5, "sprite has position"
+    t.equal sprite.get('v_i'), 1, "sprite has direction"
     sprite.call('step')
-    t.equal sprite.get('j'), 5.5, "sprite has position"
+    t.equal sprite.get('i'), 2.5, "sprite moves position"
     t.end()
