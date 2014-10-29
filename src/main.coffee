@@ -19,7 +19,7 @@ current = turtles.find_child()
 world.put('current', current)
 turtles.map_children (turtle) ->
   sprite = sprites.call('NewFromTurtle', turtle)
-  #layout.add_child sprite
+  layout.add_child sprite
 
 main = ->
   $('body').append(
