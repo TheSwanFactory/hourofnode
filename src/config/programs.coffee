@@ -1,6 +1,7 @@
 assert = require 'assert'
 
 exports.programs = {
+  # TODO: Move to Sprites
   signals: {
     prog_left:  {name: "L", do:"prog", signal: "left"}
     prog_right: {name: "R", do:"prog", signal: "right"}
@@ -29,8 +30,13 @@ exports.programs = {
   next: (world, args) ->
     program = world.get('program')
     counter = world.get('counter')
-    action = program.at(counter) if program? and counter?
-    return world.call('reload', args) unless action? or args?
+    console.log "next", program, counter
+    if program? and counter? and counter < program.length()
+      action = program.at(counter)
+    else
+      return world.call('reload', args) unless args?
+      assert false, "Infinite Loop: next <-> reload"
+    console.log "next action ", action, world.get('signals')
     assert signal = world.get('signals')[action], "No signal"
     world.put('counter', counter + 1)
     signal
