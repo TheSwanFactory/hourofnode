@@ -6,7 +6,7 @@ exports.sprites = {
   _LABEL: "sprites"
   NewFromTurtle: (world, args) ->
     world.authority = args
-    dict = {_LABEL: "S_#{args.label()}", _EXPORTS: SPRITE_EXPORTS}
+    dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
   go: (world, args) ->
     split = world.get('split')
@@ -25,7 +25,7 @@ exports.sprites = {
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
   reset: (world, args) ->
-    world.put 'program_counter', 0
+    # TODO: Reset program counter
     for key in ['i', 'j', 'v_i', 'v_j']
       world.put key, undefined
   click: (world, args) ->
