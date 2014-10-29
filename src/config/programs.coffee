@@ -36,7 +36,6 @@ exports.programs = {
       return world.call('reload', args) unless args?
       assert false, "Infinite Loop: next <-> reload"
     assert signal = world.get('signals')[action], "No signal"
-    console.log "Store counter #{counter} in world #{world}"
     world.put('counter', counter + 1)
     signal
     

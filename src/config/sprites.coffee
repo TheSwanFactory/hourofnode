@@ -22,7 +22,6 @@ exports.sprites = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   step: (world, args) ->
-    console.log "step from world #{world}"
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
   reset: (world, args) ->

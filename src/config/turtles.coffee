@@ -39,7 +39,6 @@ exports.turtles = {
     [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
   _AUTHORITY: {
     programs: (world, args) ->
-      console.log "programs for #{world}", programs
       local = world.get('_local_programs')
       return local if local?
       local = world.make_world(programs)
