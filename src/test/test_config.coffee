@@ -42,8 +42,8 @@ exports.test_config = (test, rx) ->
     t.ok sprite = sprites.call('NewFromTurtle', current)
     console.log sprite 
     t.equal sprite.get('i'), 4.5, "sprite has position"
+    t.equal sprite.get('v_j'), 1, "sprite has direction"
     t.end()
-    
 
   test 'config program', (t) ->
     context = world.find_path('.inspector.program_loader.conflict')
