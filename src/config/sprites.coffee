@@ -8,13 +8,6 @@ exports.sprites = {
     _EXPORTS = ["step", "reset"]
     world.authority = args
     world.add_child "sprite #{args.label()}"
-  angle: (world, args) ->
-    # TODO: perform real triginometry
-    v_i = world.get('v_i')
-    v_j = world.get('v_j')
-    value = 90*(1-v_i) #0, 90, 180, 90, 0
-    value = -90 if world.get('v_j') < 0
-    value
   go: (world, args) ->
     split = world.get('split')
     {dir} = args

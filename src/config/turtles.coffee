@@ -33,19 +33,6 @@ exports.turtles = {
     value = 90*(1-v_i) #0, 90, 180, 90, 0
     value = -90 if world.get('v_j') < 0
     value
-  go: (world, args) ->
-    split = world.get('split')
-    {dir} = args
-    assert dir, "expects dir"
-    world.update 'i', dir * world.get('v_i'), split
-    world.update 'j', dir * world.get('v_j'), split
-  turn: (world, args) ->
-    {dir} = args
-    assert dir, "expects dir"
-    next_v_i =  dir * world.get('v_j')
-    next_v_j = -1 * dir * world.get('v_i')
-    world.put 'v_i', next_v_i
-    world.put 'v_j', next_v_j
     
   program: []
   program_counter: 0
