@@ -38,6 +38,7 @@ class World
   get_local: (key) ->
     @doc.get(key)
 
+  # TODO: make @up a list
   get_raw: (key, world) ->
     value = @get_local(key)
     return value if value?
