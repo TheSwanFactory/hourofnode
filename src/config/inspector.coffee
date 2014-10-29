@@ -1,24 +1,26 @@
 assert = require 'assert'
 
+ROW_SIZE = 64
+
 offset = (world, key) -> world.get(key)*0.5 + 0.25
   
 exports.inspector = {
   _LABEL: "inspector"
   i: (world) -> world.get('split')
   width: (world) -> world.get('size')
-  height: 96
+  height: (world) -> world.get('size')
   margin: 8
   fill: "#888888"
   stroke: "black"
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
     fill: "#cccccc"
-    scale: 96
+    scale: ROW_SIZE
     transform: (world, args) ->
       scale = world.get('scale')
       margin = world.get('margin')
-      x = world.index * scale + margin
-      y = margin
+      x = margin
+      y = world.index * scale + margin
       "translate(#{x},#{y})" # TODO: Refactor
     height: (world) -> world.get('scale') - 2 * world.get('margin')
     width: (world) -> world.get('height')
@@ -30,7 +32,7 @@ exports.inspector = {
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
-    "step", "run", "stop","loop", "reset"
+    "edit", "move", "next","code"
   ]
 
 }
