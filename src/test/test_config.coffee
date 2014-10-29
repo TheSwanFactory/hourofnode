@@ -3,6 +3,8 @@
 
 exports.test_config = (test, rx) ->
   world = god(rx, config)
+  turtles = world.find_child('turtles')
+  current = turtles.find_child()
   
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
@@ -22,6 +24,8 @@ exports.test_config = (test, rx) ->
     count = 0
     world.map_children -> count = count + 1
     t.ok count > 2, "count children"
+    t.ok turtles, "can not find turtles"
+    t.ok current, "require current turtle"
     t.end()
 
   test 'config game', (t) ->
@@ -36,8 +40,6 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config sprite', (t) ->
-    t.ok turtles = world.find_child('turtles'), "can not find turtles"
-    t.ok current = turtles.find_child(), "require current turtle"
     t.ok sprites = world.find_child('sprites'), "can not find sprites"
     t.ok sprite = sprites.call('NewFromTurtle', current)
     console.log sprite 
@@ -45,7 +47,7 @@ exports.test_config = (test, rx) ->
     t.equal sprite.get('v_j'), 1, "sprite has direction"
     t.end()
 
-  test 'config program', (t) ->
+  test 'config turtle', (t) ->
     context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
     program = context.get('program')
