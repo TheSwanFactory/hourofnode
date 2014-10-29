@@ -36,33 +36,38 @@ exports.turtles = {
   path: (world, args) -> 
     scale = world.get('scale') / 10
     [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
-    
-  program: []
-  program_counter: 0
+
+  program_store: {
+    default: ["forward"]
+  }
+
   prog: (world, args) ->
     {signal} = args
     program = world.get('program')
     program.push signal
     console.log "prog: #{world}", world, args, signal, program
-  reload_program:  (world, args) ->
+    
+  restart_program: (world, args) ->
+    args = {name: 'default'} unless args?
     {name} = args
-    loader= world.find_path '.inspector.program_loader'
-    context = loader.find_child(name)
-    program = context.call('program')
-    console.log "reload_program #{name}", program
-    assert program
-    world.put 'program', program 
-    program
+    store = world.get('program_store')
+    program = store[name]
+    console.log "restart_program", store, program
+    assert program, "load_program: #{name} missing"
+    world.put('program', program)
+    world.put('program_counter', 0)
+    world.call('next_action', args)
+     
   next_action: (world, args) ->
-    counter = world.get('program_counter')
     program = world.get('program')
-    if counter >= program.length()
-      program = world.call('reload_program', {name: 'default'})
-      counter = 1
-    assert signal = program.at(counter), "No signal"
-    world.put('program_counter', counter + 1)
+    counter = world.get('program_counter')
+    console.log "next_action:", program, counter
+    signal = program.at(counter) if program? and counter?
+    return world.call('restart_program', args) unless signal? or args?
     assert action = world.get('signals')[signal], "No action"
+    world.put('program_counter', counter + 1)
     action
+    
   _CHILDREN: [
     {
       _LABEL: "me"

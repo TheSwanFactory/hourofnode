@@ -88,6 +88,7 @@ class World
     result = wraparound(result, max) if max?
     @put(key, result)
 
+  # TODO: Require mutating actions to be calls, not gets
   call: (key, args) ->
     closure = @get_raw(key)
     assert _.isFunction(closure), "#{key}: #{closure} is not a function"

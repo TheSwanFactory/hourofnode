@@ -48,9 +48,8 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config turtle', (t) ->
-    context = world.find_path('.inspector.program_loader.conflict')
-    t.ok context, "context"
-    program = context.get('program')
-    #console.log "program", program
-    t.ok _.isArray(program), "program is array"
+    t.ok store = current.get('program_store'), "program store"
+    console.log store
+    t.ok action = current.call('next_action'), "Has a valid action"
+    console.log action, turtles
     t.end()
