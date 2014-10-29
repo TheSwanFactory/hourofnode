@@ -46,9 +46,11 @@ exports.test_config = (test, rx) ->
     t.equal sprite.get('v_j'), 1, "sprite has direction"
     t.end()
 
-  test 'config turtle', (t) ->
+  test 'config turtles', (t) ->
     t.ok store = current.get('programs'), "program store"
-    console.log store
-    t.ok action = current.call('next_action'), "Has a valid action"
+    t.notOk store.get('program'), "No program"
+    t.ok signal_1 = store.call('reload'), "valid signal "
+    t.ok signal_2 = current.call('next_signal'), "next signal"
+    t.equal signal_1['do'], 'go'
     console.log action, turtles
     t.end()

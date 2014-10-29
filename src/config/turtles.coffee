@@ -44,10 +44,10 @@ exports.turtles = {
     world.put '_local_programs', local
     local
     
-  next_action: (world, args) ->
+  next_signal: (world, args) ->
     programs = world.get('programs')
-    assert action = programs.call('next'), "No next action"
-    action
+    assert signal = programs.call('next'), "No next signal"
+    signal
     
   _CHILDREN: [
     {
