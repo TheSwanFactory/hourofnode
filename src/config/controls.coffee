@@ -13,7 +13,7 @@ exports.controls = {
     transform: (world, args) ->
       scale = world.get('scale')
       margin = world.get('margin')
-      x = world.get("_INDEX") * scale + margin
+      x = world.index * scale + margin
       y = margin
       "translate(#{x},#{y})" # TODO: Refactor
     height: (world) -> world.get('scale') - 2 * world.get('margin')

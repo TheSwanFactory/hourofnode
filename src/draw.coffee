@@ -17,7 +17,7 @@ exports.draw = (world) ->
     dict['stroke'] = 'goldenrod' if world.get('selected')
     paths = world.get 'path'
     return undefined unless paths?
-    paths = [paths] if !world.is_array(paths)
+    paths = if world.is_array(paths) then paths.all() else [paths]
     elements = paths.map (path) ->
       dict['d'] = path
       SVG.path dict
@@ -28,7 +28,7 @@ exports.draw = (world) ->
   draw_children = (world) -> world.map_children(draw_world)  
 
   draw_world = (world) ->
-    #console.log "draw_world #{world} kids:#{world.has_children()}", world
+    #console.log "draw_world #{world} kids:#{world.has_children()}", world, world.index
     dict = {
       class: world.labels(['draw', 'world'])
       transform: world.bind() -> world.get('transform')
@@ -43,7 +43,7 @@ exports.draw = (world) ->
       paths
 
   device_width = world.get('device_width') or 1024
-  console.log "draw", device_width, world
+  #console.log "draw", device_width, world
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"

@@ -85,7 +85,7 @@ exports.test_world = (test, rx) ->
     t.ok daughter, "daughter"
     t.equal "#{daughter}", "World_Anjali", "daughter name"
     result = mom.map_children (child) -> "#{child.label()} Prabhakar"
-    t.equal result.at(0), "Anjali Prabhakar", "map child"
+    t.equal result[0], "Anjali Prabhakar", "map child"
     t.equal daughter.find_parent("Premela"), grandma, 'Find ancestor'
     t.equal daughter.find_parent("Abraham"), world, 'Unknown ancestor'
     
@@ -113,10 +113,10 @@ exports.test_world = (test, rx) ->
     #t.equal grandma.find_any('Anjali'), daughter, "find any descendant"
     t.end()
 
-  test 'world passes index when mapping', (t) ->
+  test 'world passes index as property when mapping', (t) ->
     count = 0
     world.map_children (child) ->
-      index = child.get('_INDEX')
+      index = child.index
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
       count = count + 1
     t.end()
@@ -134,8 +134,8 @@ exports.test_world = (test, rx) ->
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")
     authority = world._spawn_world("authority")
-    world.put("_AUTHORITY", authority)
     rebel = world._spawn_world("rebellious")
+    rebel.put("_AUTHORITY", authority)
     
     world.put("foo", "bar")
     t.equal comply.get('foo'), 'bar', 'comply foo'

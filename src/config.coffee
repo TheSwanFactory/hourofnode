@@ -1,7 +1,7 @@
-{layout} = require('./config/layout')
 {game} = require('./config/game')
-{grid} = require('./config/grid')
+{layout} = require('./config/layout')
 {turtles} = require('./config/turtles')
+{sprites} = require('./config/sprites')
 {inspector} = require('./config/inspector')
 
 exports.config = {
@@ -21,24 +21,11 @@ exports.config = {
     "translate(#{x},#{y}) rotate(#{angle})"
   name_style: (world, args) -> {x: -5, y: 5}
   current: -> "No world"
-  signals: {
-    prog_left:  {name: "L", do:"prog", signal: "left"}
-    prog_right: {name: "R", do:"prog", signal: "right"}
-    prog_forward: {name: "F", do:"prog", signal: "forward"}
-    left:  {name: "<-", do: "turn", dir: 1}
-    right: {name: "->", do: "turn", dir: -1}
-    forward: {name: "^", do: "go", dir: 1}
-    reverse: {name: "v", do: "go", dir: -1}
-    step: {name: ">", do: "step", n: 1}
-    run: {name: ">>", do: "run", speed: 1}
-    stop: {name: "||", do: "run", speed: 0}
-    reset: {name: "|<", do: "reset"}
-  }
   _CHILDREN: [
     game
-    grid
-    turtles
-    inspector
     layout
+    turtles
+    sprites
+    inspector
   ]
 }

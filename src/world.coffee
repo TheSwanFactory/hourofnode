@@ -11,7 +11,6 @@ CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 EXPORTS = "_EXPORTS"
 HANDLERS = "_HANDLERS"
-INDEX = "_INDEX"
 CSS = "_CSS"
 
 class World
@@ -39,9 +38,15 @@ class World
   get_local: (key) ->
     @doc.get(key)
 
+  # TODO: make @up a list
   get_raw: (key, world) ->
     value = @get_local(key)
     return value if value?
+    authority = @get_local(AUTHORITY)
+    if authority
+      #console.log "Find #{key} in #{authority}"
+      value = authority.get_raw(key, @)
+      return value if value?
     @up.get_raw(key, world or @)
 
   get: (key) ->
@@ -56,7 +61,6 @@ class World
   handlers_for: (key) ->
     handlers = @get(HANDLERS)
     list = handlers.get(key)
-    console.log "handlers_for: #{key}", handlers, list
     unless list?
       list = []
       handlers.put(key, list)
@@ -71,7 +75,7 @@ class World
       handler(key, args)
     
   _export_events: ->
-    return unless exports = @get(EXPORTS)
+    return unless exports = @get_local(EXPORTS)
     for event in exports.all()
       assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
@@ -83,6 +87,7 @@ class World
     result = wraparound(result, max) if max?
     @put(key, result)
 
+  # TODO: Require mutating actions to be calls, not gets
   call: (key, args) ->
     closure = @get_raw(key)
     assert _.isFunction(closure), "#{key}: #{closure} is not a function"
@@ -100,16 +105,19 @@ class World
     
   import_dict: (dict) ->
     for key, value of dict
-      value = @_from_dict(value) if key == AUTHORITY
-      value = @_import_children(value) if key == CHILDREN
-      value = @rx().array(value) if _.isArray(value)
-      @put(key, value)
+      if key == AUTHORITY
+        @authority = @_from_dict(value) 
+      else
+        value = @_import_children(value) if key == CHILDREN
+        value = @rx().array(value) if _.isArray(value)
+        @put(key, value)
     @_export_events()
     this
 
   _spawn_world: (label) ->
-    authority = @get_local(AUTHORITY)
-    new World(authority or @, label)
+    world = new World(@, label)
+    world.put(AUTHORITY, @authority) if @authority?
+    world
     
   _from_value: (value) ->
     assert _.isString(value), "_from_value requires string"
@@ -119,9 +127,9 @@ class World
     world
 
   _from_dict: (dict) ->
-    assert _.isObject(dict), "authority isn't dictionary"
+    assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
-    assert !_.isFunction(dict), "authority is a function"
+    assert !_.isFunction(dict), "_from_dict: dict is a function"
     label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
@@ -169,10 +177,12 @@ class World
     current
     
   map_children: (callback) ->
-    result = @rx().array()
+    #result = @rx().array()
+    #console.log "map_children[#{@_child_count()}] of #{@}", callback
+    result = []
     index = 0
     for child in @_child_array()
-      child.put(INDEX, index)
+      child.index = index
       result.push callback(child)
       index += 1
     result

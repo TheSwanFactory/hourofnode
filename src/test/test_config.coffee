@@ -3,6 +3,8 @@
 
 exports.test_config = (test, rx) ->
   world = god(rx, config)
+  turtles = world.find_child('turtles')
+  current = turtles.find_child()
   
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
@@ -22,6 +24,8 @@ exports.test_config = (test, rx) ->
     count = 0
     world.map_children -> count = count + 1
     t.ok count > 2, "count children"
+    t.ok turtles, "can not find turtles"
+    t.ok current, "require current turtle"
     t.end()
 
   test 'config game', (t) ->
@@ -35,10 +39,23 @@ exports.test_config = (test, rx) ->
     result = world.send('stop')
     t.end()
 
-  test 'config program', (t) ->
-    context = world.find_path('.inspector.program_loader.conflict')
-    t.ok context, "context"
-    program = context.get('program')
-    console.log "program", program
-    t.ok world.is_array(program), "program is array"
+  test 'config turtles', (t) ->
+    t.ok store = current.get('programs'), "program store"
+    t.notOk store.get('program'), "No program"
+    t.ok signal_1 = store.call('reload'), "valid signal "
+    t.ok signal_2 = current.call('next_signal'), "next signal"
+    t.equal signal_1['do'], 'go'
+    
+    t.ok other = turtles.find_child('EP'), "no other turtle"
+    t.ok store2 = other.get('programs')
+    t.notOk store2 == store, "Same program for both"
+    t.end()
+
+  test 'config sprite', (t) ->
+    t.ok sprites = world.find_child('sprites'), "can not find sprites"
+    t.ok sprite = sprites.call('NewFromTurtle', current), "missing sprite"
+    t.equal sprite.get('i'), 1.5, "sprite has position"
+    t.equal sprite.get('v_i'), 1, "sprite has direction"
+    sprite.call('step')
+    t.equal sprite.get('i'), 2.5, "sprite moves position"
     t.end()
