@@ -8,7 +8,6 @@ exports.sprites = {
     world.authority = args
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
-
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
@@ -23,9 +22,9 @@ exports.sprites = {
     world.put 'v_i', next_v_i
     world.put 'v_j', next_v_j
   step: (world, args) ->
-    action = world.get('next_action')
-    console.log 'step', action
-    world.call(action['do'], action)
+    signal = world.get('next_signal')
+    console.log 'step', signal 
+    world.call(signal['do'], signal)
   reset: (world, args) ->
     world.put 'program_counter', 0
     for key in ['i', 'j', 'v_i', 'v_j']

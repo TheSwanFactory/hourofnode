@@ -39,18 +39,20 @@ exports.test_config = (test, rx) ->
     result = world.send('stop')
     t.end()
 
-  test 'config sprite', (t) ->
-    t.ok sprites = world.find_child('sprites'), "can not find sprites"
-    t.ok sprite = sprites.call('NewFromTurtle', current), "missing sprite"
-    t.equal sprite.get('i'), 4.5, "sprite has position"
-    t.equal sprite.get('v_j'), 1, "sprite has direction"
-    t.end()
-
   test 'config turtles', (t) ->
     t.ok store = current.get('programs'), "program store"
     t.notOk store.get('program'), "No program"
     t.ok signal_1 = store.call('reload'), "valid signal "
     t.ok signal_2 = current.call('next_signal'), "next signal"
     t.equal signal_1['do'], 'go'
-    console.log action, turtles
+    t.end()
+
+
+  test 'config sprite', (t) ->
+    t.ok sprites = world.find_child('sprites'), "can not find sprites"
+    t.ok sprite = sprites.call('NewFromTurtle', current), "missing sprite"
+    t.equal sprite.get('j'), 4.5, "sprite has position"
+    t.equal sprite.get('v_j'), 1, "sprite has direction"
+    #sprite.call('step')
+    t.equal sprite.get('j'), 4.5, "sprite has position"
     t.end()
