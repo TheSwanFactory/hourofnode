@@ -183,7 +183,6 @@ class World
     index = 0
     for child in @_child_array()
       child.index = index
-      console.log child
       result.push callback(child)
       index += 1
     result

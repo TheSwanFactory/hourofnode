@@ -31,9 +31,7 @@ exports.draw = (world) ->
     #console.log "draw_world #{world} kids:#{world.has_children()}", world, world.index
     dict = {
       class: world.labels(['draw', 'world'])
-      transform: world.bind() ->
-        console.log "draw_world transform #{world}", world, world.index
-        world.get('transform')
+      transform: world.bind() -> world.get('transform')
     }
     clicker = world.get_raw 'click'
     dict['click'] = -> clicker(world) if clicker? and !world.has_children()
@@ -45,7 +43,7 @@ exports.draw = (world) ->
       paths
 
   device_width = world.get('device_width') or 1024
-  console.log "draw", device_width, world
+  #console.log "draw", device_width, world
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"

@@ -11,7 +11,6 @@ exports.controls = {
     fill: "#cccccc"
     scale: 96
     transform: (world, args) ->
-      console.log "Use controls transform #{world}", world, world.index
       scale = world.get('scale')
       margin = world.get('margin')
       x = world.index * scale + margin
