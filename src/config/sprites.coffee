@@ -8,8 +8,6 @@ exports.sprites = {
     _EXPORTS = ["step", "reset"]
     world.authority = args
     world.add_child "sprite #{args.label()}"
-  stroke: "black"
-  path: "M0,0 L50,50 H50 V50 Z"
   angle: (world, args) ->
     # TODO: perform real triginometry
     v_i = world.get('v_i')
