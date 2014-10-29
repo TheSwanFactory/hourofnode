@@ -36,7 +36,13 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config sprite', (t) ->
+    t.ok turtles = world.find_child('turtles'), "can not find turtles"
+    t.ok current = turtles.find_child(), "require current turtle"
     t.ok sprites = world.find_child('sprites'), "can not find sprites"
+    t.ok sprite = sprites.call('NewFromTurtle', current)
+    console.log sprite 
+    t.equal sprite.get('i'), 4.5, "sprite has position"
+    t.end()
     
 
   test 'config program', (t) ->
