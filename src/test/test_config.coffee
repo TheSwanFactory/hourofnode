@@ -35,6 +35,10 @@ exports.test_config = (test, rx) ->
     result = world.send('stop')
     t.end()
 
+  test 'config sprite', (t) ->
+    t.ok sprites = world.find_child('sprites'), "can not find sprites"
+    
+
   test 'config program', (t) ->
     context = world.find_path('.inspector.program_loader.conflict')
     t.ok context, "context"
