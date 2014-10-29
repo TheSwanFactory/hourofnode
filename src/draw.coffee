@@ -28,7 +28,7 @@ exports.draw = (world) ->
   draw_children = (world) -> world.map_children(draw_world)  
 
   draw_world = (world) ->
-    console.log "draw_world #{world} kids:#{world.has_children()}", world, world.index
+    #console.log "draw_world #{world} kids:#{world.has_children()}", world, world.index
     dict = {
       class: world.labels(['draw', 'world'])
       transform: world.bind() ->
