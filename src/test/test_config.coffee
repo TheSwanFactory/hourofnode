@@ -45,8 +45,11 @@ exports.test_config = (test, rx) ->
     t.ok signal_1 = store.call('reload'), "valid signal "
     t.ok signal_2 = current.call('next_signal'), "next signal"
     t.equal signal_1['do'], 'go'
+    
+    t.ok other = turtles.find_child('EP'), "no other turtle"
+    t.ok store2 = other.get('programs')
+    t.notOk store2 == store, "Same program for both"
     t.end()
-
 
   test 'config sprite', (t) ->
     t.ok sprites = world.find_child('sprites'), "can not find sprites"

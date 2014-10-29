@@ -37,17 +37,19 @@ exports.turtles = {
   path: (world, args) -> 
     scale = world.get('scale') / 10
     [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
-  programs: (world, args) ->
-    local = world.get('_local_programs')
-    return local if local?
-    local = world.make_world(programs)
-    world.put '_local_programs', local
-    local
-    
-  next_signal: (world, args) ->
-    programs = world.get('programs')
-    assert signal = programs.call('next'), "No next signal"
-    signal
+  _AUTHORITY: {
+    programs: (world, args) ->
+      console.log "programs for #{world}", programs
+      local = world.get('_local_programs')
+      return local if local?
+      local = world.make_world(programs)
+      world.put '_local_programs', local
+      local    
+    next_signal: (world, args) ->
+      local = world.get('programs')
+      assert signal = local.call('next'), "No next signal"
+      signal
+  }
     
   _CHILDREN: [
     {
