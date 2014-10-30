@@ -75,10 +75,12 @@ exports.test_world = (test, rx) ->
     
   test 'world can replace children', (t) ->
     label = 'root:0'
+    original_count = world._child_count()
     t.equal world.find_child(label).get('c'), 3
     replacement = {_LABEL: label, c: 9}
     world.replace_child(replacement)
     t.equal world.find_child(label).get('c'), 9
+    t.equal world._child_count(), original_count, "changed count"
     t.end()
     
   # TODO: Break this up into smaller tests somehow
