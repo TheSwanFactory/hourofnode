@@ -29,6 +29,5 @@ exports.sprites = {
     for key in ['i', 'j', 'v_i', 'v_j']
       world.put key, undefined
   click: (world, args) ->
-    owner = world.owner('current')
-    owner.put('current', world)
+    world.send('inspect', world)
 }

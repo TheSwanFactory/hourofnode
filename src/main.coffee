@@ -16,7 +16,7 @@ assert turtles = world.find_child('turtles'), "can not find turtles"
 assert layout = world.find_child('layout'),  "can not find layout"
 assert sprites = world.find_child('sprites'), "can not find sprites"
 current = turtles.find_child()
-world.put('current', current)
+world.send('inspect', current)
 turtles.map_children (turtle) ->
   sprite = sprites.call('NewFromTurtle', turtle)
   layout.add_child sprite

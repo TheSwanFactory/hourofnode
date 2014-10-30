@@ -10,6 +10,10 @@ BUTTON_AUTHORITY = {
 }
 exports.inspector = {
   _LABEL: "inspector"
+  _EXPORTS: ['inspect']
+  inspect: (world, args) ->
+    world.put('current', args)
+    
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
