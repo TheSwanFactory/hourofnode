@@ -1,9 +1,6 @@
 {my} = require('../my')
 
-ROW_SIZE = 96
-MARGIN = 8
-
-ROW_AUTHORITY = {
+BUTTON_AUTHORITY = {
     fill: my.color.button
     x: (world, args) -> world.index * world.get('scale') + my.margin
     y: (world, args) -> my.margin
@@ -32,7 +29,7 @@ exports.inspector = {
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
     fill: my.color.row
-    scale: ROW_SIZE
+    scale: my.row.size
     transform: (world, args) ->
       scale = world.get('scale')
       margin = world.get('margin')
@@ -51,7 +48,7 @@ exports.inspector = {
   _CHILDREN: [
     {
       _LABEL: 'info'
-      _AUTHORITY: ROW_AUTHORITY
+      _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: [
         {
           name: (world) -> world.get('current').label()
@@ -71,7 +68,7 @@ exports.inspector = {
     }
     {
       _LABEL: 'commands'
-      _AUTHORITY: ROW_AUTHORITY
+      _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: []
     }
   ]
