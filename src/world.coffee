@@ -79,8 +79,7 @@ class World
     for event in exports.all()
       assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
-      @handle event, (key, args) ->
-        world.call(key, args)
+      @handle event, (key, args) -> world.call(key, args)
     
   update: (key, delta, max) ->
     result = @get(key) + delta
@@ -99,7 +98,8 @@ class World
     children = children(@) if _.isFunction(children)
     for value in children
       assert value, 'import child'
-      result.push @make_world(value)
+      child = @make_world(value)
+      result.push child
     result
     
   import_dict: (dict) ->
@@ -116,6 +116,7 @@ class World
   _spawn_world: (label) ->
     world = new World(@, label)
     world.put(AUTHORITY, @authority) if @authority?
+    @handle 'setup', -> world.call('setup') if world.get_raw('setup')
     world
     
   _from_value: (value) ->
