@@ -7,6 +7,8 @@ exports.layout = {
     width = world.get('width')
     height = world.get('height')
     "M0,0 h#{width} v#{height} h-#{width} v-#{height}"
+  name_style: (world) -> 
+    {x: world.get('height') / 2, y: world.get('width') / 2}
   _LABEL: "layout"
   _CHILDREN: [
     controls

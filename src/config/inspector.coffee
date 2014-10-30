@@ -2,21 +2,10 @@
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
-    x: (world, args) -> world.index * world.get('scale') + my.margin
-    y: (world, args) -> my.margin
-    transform: (world, args) ->
-      margin = world.get('margin')
-      scale = world.get('scale')
-      x = world.index * world.get('scale') + my.margin
-      y = my.margin
-      "translate(#{x},#{y})" # TODO: Refactor
-    height: (world) -> world.get('scale') - 4 * world.get('margin')
-    width: (world) -> world.get('height')
-    name_style: (world) -> 
-      margin = world.get('margin')
-      middle = world.get('scale') / 2
-      {x: middle - margin, y: middle}
-    
+    x: (world, args) -> world.index * my.button.spacing + my.margin
+    y: my.margin
+    height: my.button.size
+    width: my.button.size
     click: (world, args) -> world.send world.get('value')
 }
 exports.inspector = {
@@ -32,7 +21,7 @@ exports.inspector = {
     x: my.margin
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
-    width: (world) -> world.get('size') - 2 * my.margin
+    width: (world) -> world.get('size') - 2*my.margin
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
@@ -40,7 +29,7 @@ exports.inspector = {
       _LABEL: 'info'
       _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: [
-        {
+        { # Show turtle icon
           name: (world) -> world.get('current').label()
           path: (world) ->
             paths = world.get('current').get('path')
@@ -50,9 +39,11 @@ exports.inspector = {
             paths
           fill: (world) -> world.get('current').get('fill')
         }
-        'name'
-        'pos'
-        'dir'
+        {name: (world) -> world.get('current').label()}
+        {name: (world) ->
+          c = world.get('current'); "#{c.get('i')},#{c.get('j')}"}
+        {name: (world) ->
+          c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
       ]
     }
     {
