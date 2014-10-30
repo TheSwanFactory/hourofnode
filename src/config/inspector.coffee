@@ -11,7 +11,7 @@ BUTTON_AUTHORITY = {
 exports.inspector = {
   _LABEL: "inspector"
   i: (world) -> world.get('split')
-  width: (world) -> world.get('size')
+  width: (world) -> world.get('device').width - world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
   path: (world, args) -> world.get('rect_path')
   fill: my.color.background
@@ -21,7 +21,7 @@ exports.inspector = {
     x: my.margin
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
-    width: (world) -> world.get('device').width - world.get('size') - 2*my.margin
+    width: (world) ->  world.up.get('width') - 2*my.margin
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
