@@ -13,19 +13,9 @@ assert = require 'assert'
 world = god(rx, config)
 world.send('setup')
 
-assert turtles = world.find_child('turtles'), "can not find turtles"
-assert layout = world.find_child('layout'),  "can not find layout"
-assert sprites = world.find_child('sprites'), "can not find sprites"
-
-
-# TODO: use a 'create' event to automatically make sprites
-#turtles.map_children (turtle) ->
-  #sprite = sprites.call('NewFromTurtle', turtle)
-  #layout.add_child sprite
-
 main = ->
   $('body').append(
-    draw layout
+    draw world.find_child('layout')
   )
   
 # Instantiate our main view
