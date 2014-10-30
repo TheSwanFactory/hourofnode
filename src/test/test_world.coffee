@@ -74,16 +74,11 @@ exports.test_world = (test, rx) ->
     t.end()
     
   test 'world can replace children', (t) ->
-    t.ok world.has_children(), "has some"
-    count = world._child_count()
-    t.ok result = world.find_child("root:0"), "child exists"
-    console.log "result", result
-    t.equal result.get('c'), 3, "c is 3"
-
-    replacement = {_LABEL: 'root:0', c: 9}
-    t.equal result.get('c'), 3, "c is 3"
+    label = 'root:0'
+    t.equal world.find_child(label).get('c'), 3
+    replacement = {_LABEL: label, c: 9}
     world.replace_child(replacement)
-    
+    t.equal world.find_child(label).get('c'), 9
     t.end()
     
   # TODO: Break this up into smaller tests somehow
