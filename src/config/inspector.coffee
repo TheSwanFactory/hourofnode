@@ -54,7 +54,13 @@ exports.inspector = {
       _CHILDREN: [
         {
           name: (world) -> world.get('current').label()
-          path: (world) -> world.get('current').get('path')
+          path: (world) ->
+            paths = world.get('current').get('path')
+            middle = world.get('scale') / 2.5
+            center = "M#{middle},#{middle}"
+            paths.unshift center
+            console.log paths
+            paths
           fill: (world) -> world.get('current').get('fill')
         }
         'name'
