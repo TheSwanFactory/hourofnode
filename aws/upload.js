@@ -4,10 +4,14 @@ var fs = require('fs');
 AWS.config.region = 'us-west-1';
 var s3 = new AWS.S3();
 var bucket = 'hourofnode.org';
-var files = ['main.js', 'index.html']
+var files = {js: 'main.js'};
 
-fs.readFile('web/main.js', function (err, data) {
-  for file in files
+for (key in files) {
+  var file = files[key];
+  console.log("Reading", key, file);
+  var source = 'web/' + file;
+  fs.readFile(source, function (err, data) {
+    console.log("Read", source, file);
     var params = {Bucket: bucket, Key: file, Body: data};
     var result = s3.putObject(params, function(err, data) {
       if (err) {
@@ -16,4 +20,5 @@ fs.readFile('web/main.js', function (err, data) {
         console.log("Successfully uploaded " + file + " to " + bucket);
       }
     });
-});
+  });
+}
