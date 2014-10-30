@@ -2,31 +2,29 @@
 exports.controls = {
   _LABEL: "controls"
   j: (world) -> world.get('split')
-  width: (world) -> world.get('size')
-  height: 96
-  margin: 8
-  fill: "#888888"
+  width: (world) -> world.get('grid').size
+  height: my.control.spacing
+  fill: my.color.background
   stroke: "black"
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
-    fill: "#cccccc"
-    scale: 96
+    fill: my.color.button
+    x: (world, args) -> world.index * my.control.spacing + world.get('margin')
+    y: (world, args) -> world.get('margin')
     transform: (world, args) ->
-      scale = world.get('scale')
-      margin = world.get('margin')
-      x = world.index * scale + margin
-      y = margin
+      x = world.index * my.control.spacing + world.get('margin')
+      y = world.get('margin')
       "translate(#{x},#{y})" # TODO: Refactor
-    height: (world) -> world.get('scale') - 2 * world.get('margin')
-    width: (world) -> world.get('height')
+    height: my.control.size
+    width: my.control.size
     name_style: (world) -> 
+      middle = world.get('height') / 1.8
       margin = world.get('margin')
-      middle = world.get('scale') / 2
       {x: middle - margin, y: middle}
     
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
-    "step", "run", "stop","loop", "reset"
+    "step", "run", "stop", "reset"
   ]
 }

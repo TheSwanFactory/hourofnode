@@ -7,8 +7,10 @@
 
 exports.config = {
   device: my.device
+  grid: my.grid
   size: my.grid.size
   split: my.grid.split
+  margin: my.margin
   scale: (world, args) -> world.get('size') / world.get('split')
   i: 0
   j: 0
