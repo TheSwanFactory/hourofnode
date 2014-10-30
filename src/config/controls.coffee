@@ -14,9 +14,7 @@ exports.controls = {
     height: my.control.size
     width: my.control.size
     name_style: (world) -> 
-      middle = world.get('height') / 1.8
-      margin = world.get('margin')
-      {x: middle - margin, y: middle}
+      {x: world.get('height') / 2, y: world.get('width') / 2}
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
