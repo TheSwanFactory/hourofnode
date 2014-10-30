@@ -53,6 +53,13 @@ exports.inspector = {
       _AUTHORITY: ROW_AUTHORITY
       _CHILDREN: ['curr', 'name', 'pos', 'dir']
     }
+    {
+      _LABEL: 'commands'
+      _AUTHORITY: ROW_AUTHORITY
+      _CHILDREN: (world, args) ->
+        signals = world.get('signals')
+        if signals? then Object.keys signals else []
+    }
   ]
 
 }
