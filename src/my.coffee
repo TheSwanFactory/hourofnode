@@ -13,5 +13,11 @@ exports.my = {
   button: {size: TOUCH, spacing: TOUCH + 2*MARGIN}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   control: {size: 2*TOUCH, spacing: 2*TOUCH + 4*MARGIN}
-  color: {button: "azure", background: "darkgrey", row: "grey"}
+  color: {
+    button: "azure"
+    background: "darkgrey"
+    row: "grey"
+    grid: "#ccffcc"
+    gridline: "white"
+  }
 }

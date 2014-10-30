@@ -1,9 +1,10 @@
+{my} = require('../my')
 exports.grid = {
   _LABEL: "grid"
   _CHILDREN: [
     {
       _LABEL: "background"
-      fill: "#ccffcc"
+      fill: my.color.grid
       stroke: "black"
       path: (world, args) ->
         size = world.get('size')
@@ -11,7 +12,7 @@ exports.grid = {
     }
     {
       _LABEL: "gridlines"
-      stroke: "white"
+      stroke: my.color.gridline
       path: (world, args) ->
         size = world.get('size')
         scale = world.get('scale')
