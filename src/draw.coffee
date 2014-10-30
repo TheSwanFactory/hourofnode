@@ -42,14 +42,13 @@ exports.draw = (world) ->
         paths.push child
       paths
 
-  device_width = world.get('device_width') or 1024
-  #console.log "draw", device_width, world
+  console.log "device", world.get('device')
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
     class: "svg_grid #{world}"
-    width: device_width  
-    height: device_width * 3 / 4  
+    width: world.get('device').width
+    height: world.get('device').height
   }, [
     draw_world(world) 
   ]

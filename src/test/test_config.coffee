@@ -28,6 +28,9 @@ exports.test_config = (test, rx) ->
     t.ok current, "require current turtle"
     t.end()
 
+  test 'config my parameters', (t) ->
+    t.ok world.get('device'), "device"
+
   test 'config game', (t) ->
     t.ok game = world.find_path('.game'), "Got game"
     t.equal world.handlers_for('run').length, 1, "1 run handler"

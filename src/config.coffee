@@ -6,7 +6,7 @@
 {inspector} = require('./config/inspector')
 
 exports.config = {
-  device_width: 1024
+  device: my.device
   size: 480
   split: 6
   scale: (world, args) ->
