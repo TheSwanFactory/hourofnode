@@ -30,12 +30,8 @@ exports.inspector = {
   _AUTHORITY: {
     fill: my.color.row
     scale: my.row.size
-    transform: (world, args) ->
-      scale = world.get('scale')
-      margin = world.get('margin')
-      x = margin
-      y = world.index * scale + margin
-      "translate(#{x},#{y})" # TODO: Refactor
+    x: my.margin
+    y: (world, args) -> world.index * world.get('scale') + my.margin
     height: (world) -> world.get('scale') - 2 * world.get('margin')
     width: (world) -> world.get('size') - 2 * world.get('margin')
     name_style: (world) -> 
