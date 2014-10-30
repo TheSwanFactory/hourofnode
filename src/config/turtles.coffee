@@ -41,6 +41,8 @@ exports.turtles = {
   _AUTHORITY: {
     setup: (world, args) ->
       console.log "Call setup for #{world}",world
+      world.send 'create', world
+      world.send 'inspect', world
     programs: (world, args) ->
       local = world.get('_local_programs')
       return local if local?
