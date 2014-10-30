@@ -96,8 +96,7 @@ class World
   # TODO: refactor import_dict methods somewhere
   _import_children: (children) ->
     result = @rx().array()
-    if _.isFunction(children)
-      return (world) -> world._import_children children(world)
+    children = children(@) if _.isFunction(children)
     for value in children
       assert value, 'import child'
       result.push @make_world(value)

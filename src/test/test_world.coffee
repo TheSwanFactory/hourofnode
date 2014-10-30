@@ -121,13 +121,13 @@ exports.test_world = (test, rx) ->
       count = count + 1
     t.end()
 
-  test 'world imports functions for children', (t) ->
+  test 'world invokes functions for children', (t) ->
     result = world._import_children([{a:1}])
     child = result.at(0)
     t.ok world.is_world(child), "creates child from dict"
     generator = (world) -> [{b:2}]
     result = world._import_children(generator)
-    child = result(world).at(0)
+    child = result.at(0)
     t.ok world.is_world(child), "creates child from dict"  
     t.end()
     
