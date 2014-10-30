@@ -9,13 +9,18 @@ BUTTON_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
 }
 
+ROW_AUTHORITY = {
+    fill: my.color.row
+    x: my.margin
+    y: (world, args) -> world.index * my.row.spacing + my.margin
+    height: (world) -> my.row.size
+    width: (world) ->  world.up.get('width') - 2*my.margin
+    click: (world, args) -> world.send world.get('value')
+  }
+
 list_program = (name, commands) ->
-  children = [{name: name, fill: "white", stroke: "white"}]
-  for command in commands.all()
-    console.log 'list_program command', command
-    children.push command
-    console.log 'list_program children', children
-  console.log "list_program children", children, commands 
+  children = commands.all()
+  children.unshift {name: name, fill: "white", stroke: "white"}
   {
     _LABEL: name
     _AUTHORITY: BUTTON_AUTHORITY
@@ -32,11 +37,10 @@ exports.inspector = {
     strategy = world.find_child('strategy')
     programs = current.get('programs')
     console.log "programs", programs
-    strategy.reset_children()
+    strategy.authority = world.make_world ROW_AUTHORITY
     programs.map_children (child) ->
-      console.log "child #{child.label()}", child.get('value')
       strategy.add_child list_program(child.label(), child.get('value'))
-    console.log "strategy", strategy
+    strategy.put 'height', my.row.spacing*programs._child_count()
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
@@ -44,14 +48,7 @@ exports.inspector = {
   path: (world, args) -> world.get('rect_path')
   fill: my.color.background
   stroke: "black"
-  _AUTHORITY: { # ROW Configuration
-    fill: my.color.row
-    x: my.margin
-    y: (world, args) -> world.index * my.row.spacing + my.margin
-    height: (world) -> my.row.size
-    width: (world) ->  world.up.get('width') - 2*my.margin
-    click: (world, args) -> world.send world.get('value')
-  }
+  _AUTHORITY: ROW_AUTHORITY
   _CHILDREN: [
     {
       _LABEL: 'info'
