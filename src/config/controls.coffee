@@ -9,8 +9,8 @@ exports.controls = {
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
     fill: my.color.button
-    x: (world, args) -> world.index*my.control.spacing + 2*world.get('margin')
-    y: (world, args) -> world.get('margin')
+    x: (world, args) -> world.index*my.control.spacing + my.control.margin
+    y: (world, args) -> my.control.margin
     height: my.control.size
     width: my.control.size
     name_style: (world) -> 
