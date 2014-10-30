@@ -4,12 +4,14 @@ ROW_SIZE = 96
 MARGIN = 8
 
 ROW_AUTHORITY = {
-    fill: "#cccccc"
+    fill: my.color.button
+    x: (world, args) -> world.index * world.get('scale') + my.margin
+    y: (world, args) -> my.margin
     transform: (world, args) ->
       margin = world.get('margin')
       scale = world.get('scale')
-      x = world.index * scale + margin
-      y = margin
+      x = world.index * world.get('scale') + my.margin
+      y = my.margin
       "translate(#{x},#{y})" # TODO: Refactor
     height: (world) -> world.get('scale') - 4 * world.get('margin')
     width: (world) -> world.get('height')
@@ -25,12 +27,11 @@ exports.inspector = {
   i: (world) -> world.get('split')
   width: (world) -> world.get('size')
   height: (world) -> world.get('size')
-  margin: MARGIN
-  fill: "#888888"
+  fill: my.color.background
   stroke: "black"
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
-    fill: "#aaaaaa"
+    fill: my.color.row
     scale: ROW_SIZE
     transform: (world, args) ->
       scale = world.get('scale')

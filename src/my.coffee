@@ -16,7 +16,7 @@ exports.my = {
   color: {
     button: "azure"
     background: "darkgrey"
-    row: "grey"
+    row: "lightgrey"
     grid: "#ccffcc"
     gridline: "white"
   }
