@@ -178,8 +178,11 @@ class World
     current
 
   replace_child: (dict) ->
-    key = dict[LABEL]
-    undefined
+    label = dict[LABEL]
+    children = @get(CHILDREN)
+    child = @find_child(label)
+    replacement = @make_world(dict)
+    children.put(child, replacement)
     
   map_children: (callback) ->
     result = []
