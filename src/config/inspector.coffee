@@ -18,7 +18,7 @@ ROW_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
   }
 
-list_program = (name, commands) ->
+display_program = (name, commands) ->
   children = commands.all()
   children.unshift {name: name, fill: "white", stroke: "white"}
   {
@@ -26,6 +26,12 @@ list_program = (name, commands) ->
     _AUTHORITY: BUTTON_AUTHORITY
     _CHILDREN: children
   }
+
+display_strategy = (strategy, programs) ->
+  strategy.reset_children()
+  programs.map_children (child) ->
+    strategy.add_child display_program(child.label(), child.get('value'))
+  strategy.put 'height', my.row.spacing*programs._child_count()
   
 exports.inspector = {
   _LABEL: "inspector"
@@ -35,12 +41,9 @@ exports.inspector = {
     my.assert world.is_world current, "can only inspect worlds"
     world.put('current', current)
     strategy = world.find_child('strategy')
-    programs = current.get('programs')
     strategy.authority = world.make_world ROW_AUTHORITY
-    strategy.reset_children()
-    programs.map_children (child) ->
-      strategy.add_child list_program(child.label(), child.get('value'))
-    strategy.put 'height', my.row.spacing*programs._child_count()
+    programs = current.get('programs')
+    display_strategy strategy, programs
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
@@ -73,7 +76,7 @@ exports.inspector = {
     }
     'commands'
     'program'
-    'strategy'
+    {_LABEL: 'strategy'}
   ]
 
 }
