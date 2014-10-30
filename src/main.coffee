@@ -11,11 +11,14 @@ assert = require 'assert'
 {test} = require('./test')
 
 world = god(rx, config)
+world.send('setup')
+
 assert turtles = world.find_child('turtles'), "can not find turtles"
 assert layout = world.find_child('layout'),  "can not find layout"
 assert sprites = world.find_child('sprites'), "can not find sprites"
 current = turtles.find_child()
 world.send('inspect', current)
+
 
 # TODO: use a 'create' event to automatically make sprites
 turtles.map_children (turtle) ->
