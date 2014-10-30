@@ -43,7 +43,7 @@ exports.inspector = {
     programs = current.get('programs')
     program = programs.get('program')
     console.log 'current program', program
-    #world.replace_child 'executing', display_program('executing', program)
+    #world.replace_child display_program('executing', program)
         
     strategy = world.find_child('strategy')
     strategy.authority = world.make_world ROW_AUTHORITY

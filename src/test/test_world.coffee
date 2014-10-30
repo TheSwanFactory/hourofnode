@@ -79,6 +79,10 @@ exports.test_world = (test, rx) ->
     t.ok result = world.find_child("root:0"), "child exists"
     console.log "result", result
     t.equal result.get('c'), 3, "c is 3"
+
+    replacement = {_LABEL: 'root:0', c: 9}
+    t.equal result.get('c'), 3, "c is 3"
+    world.replace_child(replacement)
     
     t.end()
     

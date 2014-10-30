@@ -176,6 +176,10 @@ class World
         current = current.find_child(key)
     assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
     current
+
+  replace_child: (dict) ->
+    key = dict[LABEL]
+    undefined
     
   map_children: (callback) ->
     result = []
