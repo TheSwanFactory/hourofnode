@@ -73,6 +73,15 @@ exports.test_world = (test, rx) ->
     t.equal result.length, 1
     t.end()
     
+  test 'world can replace children', (t) ->
+    t.ok world.has_children(), "has some"
+    count = world._child_count()
+    t.ok result = world.find_child("root:0"), "child exists"
+    console.log "result", result
+    t.equal result.get('c'), 3, "c is 3"
+    
+    t.end()
+    
   # TODO: Break this up into smaller tests somehow
   test 'world has children inherit', (t) ->
     t.ok world.has_children(), "world.has_children"
