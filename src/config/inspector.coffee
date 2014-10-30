@@ -12,7 +12,14 @@ exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect']
   inspect: (world, args) ->
-    world.put('current', args)
+    my.assert world.is_world args, "can only inspect worlds"
+    current = args
+    world.put('current', current)
+    strategy = world.find_child('strategy')
+    programs = current.get('programs')
+    console.log "programs", programs
+    programs.map_children (child) ->
+      console.log "child #{child.label()}", child.get('value')
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
