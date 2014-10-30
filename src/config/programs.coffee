@@ -1,16 +1,6 @@
 assert = require 'assert'
 
 exports.programs = {
-  # TODO: Move to Sprites
-  signals: {
-    prog_left:  {name: "L", do:"prog", signal: "left"}
-    prog_right: {name: "R", do:"prog", signal: "right"}
-    prog_forward: {name: "F", do:"prog", signal: "forward"}
-    left:  {name: "<-", do: "turn", dir: 1}
-    right: {name: "->", do: "turn", dir: -1}
-    forward: {name: "^", do: "go", dir: 1}
-    reverse: {name: "v", do: "go", dir: -1}
-  }
   prog: (world, args) ->
     {signal} = args
     program = world.get('program')

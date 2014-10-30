@@ -51,14 +51,21 @@ exports.inspector = {
     {
       _LABEL: 'info'
       _AUTHORITY: ROW_AUTHORITY
-      _CHILDREN: ['curr', 'name', 'pos', 'dir']
+      _CHILDREN: [
+        {
+          name: (world) -> world.get('current').label()
+          path: (world) -> world.get('current').get('path')
+          fill: (world) -> world.get('current').get('fill')
+        }
+        'name'
+        'pos'
+        'dir'
+      ]
     }
     {
       _LABEL: 'commands'
       _AUTHORITY: ROW_AUTHORITY
-      _CHILDREN: (world, args) ->
-        signals = world.get('signals')
-        if signals? then Object.keys signals else []
+      _CHILDREN: []
     }
   ]
 
