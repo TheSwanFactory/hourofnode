@@ -159,6 +159,14 @@ class World
       result.push child if child.label() == label
     result
     
+  find_index: (label) ->
+    return -1 unless label?
+    index = 0
+    for child in @_child_array()
+      return index if child.label() == label
+      index += 1
+    -1
+
   find_child: (label) ->
     @find_children(label)[0]
 
@@ -180,9 +188,10 @@ class World
   replace_child: (dict) ->
     label = dict[LABEL]
     children = @get(CHILDREN)
-    child = @find_child(label)
+    index = @find_index(label)
     replacement = @make_world(dict)
-    children.put(child, replacement)
+    assert index >= 0, "Need valid index"
+    children.put(index, replacement)
     
   map_children: (callback) ->
     result = []

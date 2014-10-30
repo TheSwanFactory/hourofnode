@@ -43,6 +43,7 @@ exports.inspector = {
     programs = current.get('programs')
     program = programs.get('program')
     world.replace_child display_program('executing', program) if program?
+    my.assert world.find_child('info'), "has no info"
         
     strategy = world.find_child('strategy')
     strategy.authority = world.make_world ROW_AUTHORITY
