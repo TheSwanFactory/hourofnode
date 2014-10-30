@@ -26,7 +26,7 @@ exports.inspector = {
   _LABEL: "inspector"
   i: (world) -> world.get('split')
   width: (world) -> world.get('size')
-  height: (world) -> world.get('size')
+  height: (world) -> world.get('size') + my.control.spacing
   fill: my.color.background
   stroke: "black"
   path: (world, args) -> world.get('rect_path')
