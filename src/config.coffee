@@ -36,6 +36,5 @@ exports.config = {
     layout
     turtles
     sprites
-    inspector
   ]
 }

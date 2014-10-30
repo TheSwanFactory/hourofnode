@@ -17,5 +17,5 @@ run_tests = (rx) ->
 
 exports.test = (rx) ->
   console.log "Running tests..."
-  #run_tests(rx)
+  run_tests(rx)
   console.log "...done!"

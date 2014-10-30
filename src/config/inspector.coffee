@@ -31,13 +31,13 @@ exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect']
   inspect: (world, args) ->
-    my.assert world.is_world args, "can only inspect worlds"
     current = args
+    my.assert world.is_world current, "can only inspect worlds"
     world.put('current', current)
     strategy = world.find_child('strategy')
     programs = current.get('programs')
-    console.log "programs", programs
     strategy.authority = world.make_world ROW_AUTHORITY
+    strategy.reset_children()
     programs.map_children (child) ->
       strategy.add_child list_program(child.label(), child.get('value'))
     strategy.put 'height', my.row.spacing*programs._child_count()
