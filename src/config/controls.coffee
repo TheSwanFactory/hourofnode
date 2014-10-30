@@ -1,3 +1,4 @@
+{my} = require('../my')
 exports.controls = {
   _LABEL: "controls"
   j: (world) -> world.get('split')
