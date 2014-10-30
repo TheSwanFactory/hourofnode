@@ -47,7 +47,6 @@ exports.inspector = {
             middle = world.get('scale') / 2.5
             center = "M#{middle},#{middle}"
             paths.unshift center
-            console.log paths
             paths
           fill: (world) -> world.get('current').get('fill')
         }

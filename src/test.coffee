@@ -11,9 +11,9 @@ undo = require('tap-browser-color')()
 
 run_tests = (rx) ->
   test_god(test, rx)
-  test_world(test, rx)
+  #test_world(test, rx)
   test_config(test, rx)
-  test_draw(test, rx)
+  #test_draw(test, rx)
 
 exports.test = (rx) ->
   console.log "Running tests..."

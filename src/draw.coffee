@@ -42,7 +42,6 @@ exports.draw = (world) ->
         paths.push child
       paths
 
-  console.log "device", world.get('device')
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"
     "xmlns:xlink": "http://www.w3.org/1999/xlink"
