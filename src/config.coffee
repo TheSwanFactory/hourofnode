@@ -12,13 +12,12 @@ exports.config = {
   scale: (world, args) -> world.get('size') / world.get('split')
   i: 0
   j: 0
+  x: (world, args) -> world.get('scale') * world.get('i')
+  y: (world, args) -> world.get('scale') * world.get('j')
   angle: 0
-  transform: (world, args) ->
-    scale = world.get('scale')
-    x = scale*(world.get('i'))
-    y = scale*(world.get('j'))
-    angle = world.get('angle')
-    "translate(#{x},#{y}) rotate(#{angle})"
+  translate: (world, args) -> "translate(#{world.get('x')},#{world.get('y')})"
+  rotate: (world, args) -> "rotate(#{world.get('angle')})"
+  transform: (world, args) -> "#{world.get('translate')} #{world.get('rotate')}"
   name_style: (world, args) -> {x: -5, y: 5}
   current: -> "No world"
   signals: {
