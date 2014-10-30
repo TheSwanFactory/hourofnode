@@ -4,6 +4,7 @@ SPRITE_EXPORTS = ["step", "reset"]
 # Uses Turtle as an Authority
 exports.sprites = {
   _LABEL: "sprites"
+  _KIND: "sprite"
   NewFromTurtle: (world, args) ->
     world.authority = args
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}

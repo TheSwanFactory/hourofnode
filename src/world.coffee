@@ -7,6 +7,7 @@ wraparound = (n, max) ->
   
 RX = "_RX"
 LABEL = "_LABEL"
+KIND = "_KIND"
 CHILDREN = "_CHILDREN"
 AUTHORITY = "_AUTHORITY"
 EXPORTS = "_EXPORTS"
@@ -204,6 +205,7 @@ class World
     result
   
   label: -> @get(LABEL)
+  kind: -> @get(KIND) or "World"
 
   labels: (starter = []) ->
     starter.push @label()
@@ -213,7 +215,7 @@ class World
       starter.push klass
     if @is_root() then starter else @up.labels(starter)
     
-  toString: -> "World_#{@label()}"
+  toString: -> "#{@kind()}_#{@label()}"
     
   is_world: (obj) -> obj instanceof World
   

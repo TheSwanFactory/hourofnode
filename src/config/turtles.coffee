@@ -22,6 +22,7 @@ draw_shell = (scale) ->
 
 exports.turtles = {
   _LABEL: "turtles"
+  _KIND: "turtle"
   name: (world, args) -> world.label()
   v_i: 1
   v_j: 0
