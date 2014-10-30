@@ -24,21 +24,15 @@ exports.inspector = {
   i: (world) -> world.get('split')
   width: (world) -> world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
+  path: (world, args) -> world.get('rect_path')
   fill: my.color.background
   stroke: "black"
-  path: (world, args) -> world.get('rect_path')
-  _AUTHORITY: {
+  _AUTHORITY: { # ROW Configuration
     fill: my.color.row
-    scale: my.row.size
     x: my.margin
-    y: (world, args) -> world.index * world.get('scale') + my.margin
-    height: (world) -> world.get('scale') - 2 * world.get('margin')
-    width: (world) -> world.get('size') - 2 * world.get('margin')
-    name_style: (world) -> 
-      margin = world.get('margin')
-      middle = world.get('scale') / 2
-      {x: middle - margin, y: middle}
-    
+    y: (world, args) -> world.index * my.row.spacing + my.margin
+    height: (world) -> my.row.size
+    width: (world) -> world.get('size') - 2 * my.margin
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
