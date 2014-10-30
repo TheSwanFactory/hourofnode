@@ -2,17 +2,16 @@ assert = require 'assert'
 
 ROW_SIZE = 96
 MARGIN = 8
-BUTTON_SIZE = 
 
 ROW_AUTHORITY = {
-    fill: "#aaaaaa"
+    fill: "#cccccc"
     transform: (world, args) ->
       margin = world.get('margin')
       scale = world.get('scale')
       x = world.index * scale + margin
       y = margin
       "translate(#{x},#{y})" # TODO: Refactor
-    height: (world) -> world.get('scale') - 2 * world.get('margin')
+    height: (world) -> world.get('scale') - 4 * world.get('margin')
     width: (world) -> world.get('height')
     name_style: (world) -> 
       margin = world.get('margin')
