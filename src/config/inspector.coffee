@@ -9,20 +9,18 @@ BUTTON_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
 }
 
-list_program = (program) ->
-  result = {
-    _LABEL: program.label()
+list_program = (name, commands) ->
+  children = [{name: name, fill: "white", stroke: "white"}]
+  for command in commands.all()
+    console.log 'list_program command', command
+    children.push command
+    console.log 'list_program children', children
+  console.log "list_program children", children, commands 
+  {
+    _LABEL: name
     _AUTHORITY: BUTTON_AUTHORITY
-    _CHILDREN: [
-      { # Show turtle icon
-        name: program.label()
-        fill: "white"
-        stroke: "white"
-      }
-    ]
+    _CHILDREN: children
   }
-  commands = program.get('value')
-  result
   
 exports.inspector = {
   _LABEL: "inspector"
@@ -37,7 +35,7 @@ exports.inspector = {
     strategy.reset_children()
     programs.map_children (child) ->
       console.log "child #{child.label()}", child.get('value')
-      strategy.add_child list_program(child)
+      strategy.add_child list_program(child.label(), child.get('value'))
     console.log "strategy", strategy
     
   i: (world) -> world.get('split')
