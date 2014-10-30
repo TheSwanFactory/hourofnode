@@ -142,6 +142,8 @@ class World
   _child_array: -> @_children().all()
   _child_count: -> @_children().length()
   has_children: -> @_child_count() > 0
+  
+  reset_children: -> @put CHILDREN, @rx().array()
     
   add_child: (value) ->
     child = @make_world value
@@ -176,8 +178,6 @@ class World
     current
     
   map_children: (callback) ->
-    #result = @rx().array()
-    #console.log "map_children[#{@_child_count()}] of #{@}", callback
     result = []
     index = 0
     for child in @_child_array()

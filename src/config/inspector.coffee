@@ -8,6 +8,22 @@ BUTTON_AUTHORITY = {
     width: my.button.size
     click: (world, args) -> world.send world.get('value')
 }
+
+list_program = (program) ->
+  result = {
+    _LABEL: program.label()
+    _AUTHORITY: BUTTON_AUTHORITY
+    _CHILDREN: [
+      { # Show turtle icon
+        name: program.label()
+        fill: "white"
+        stroke: "white"
+      }
+    ]
+  }
+  commands = program.get('value')
+  result
+  
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect']
@@ -18,8 +34,11 @@ exports.inspector = {
     strategy = world.find_child('strategy')
     programs = current.get('programs')
     console.log "programs", programs
+    strategy.reset_children()
     programs.map_children (child) ->
       console.log "child #{child.label()}", child.get('value')
+      strategy.add_child list_program(child)
+    console.log "strategy", strategy
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
