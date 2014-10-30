@@ -1,4 +1,4 @@
-assert = require 'assert'
+{my} = require('../my')
 
 ROW_SIZE = 96
 MARGIN = 8
