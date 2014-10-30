@@ -8,7 +8,6 @@ assert = require 'assert'
 {god} = require('./god')
 {config} = require('./config')
 {draw} = require('./draw')
-
 {test} = require('./test')
 
 world = god(rx, config)

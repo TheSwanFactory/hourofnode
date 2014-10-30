@@ -50,11 +50,9 @@ exports.inspector = {
           c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
       ]
     }
-    {
-      _LABEL: 'commands'
-      _AUTHORITY: BUTTON_AUTHORITY
-      _CHILDREN: []
-    }
+    'commands'
+    'program'
+    'strategy'
   ]
 
 }
