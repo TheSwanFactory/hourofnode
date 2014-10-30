@@ -30,6 +30,7 @@ exports.test_config = (test, rx) ->
 
   test 'config my parameters', (t) ->
     t.ok world.get('device'), "device"
+    t.end()
 
   test 'config game', (t) ->
     t.ok game = world.find_path('.game'), "Got game"
