@@ -1,3 +1,4 @@
+{my} = require('./my')
 {game} = require('./config/game')
 {layout} = require('./config/layout')
 {turtles} = require('./config/turtles')
