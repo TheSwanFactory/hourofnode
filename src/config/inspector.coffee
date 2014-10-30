@@ -21,7 +21,7 @@ exports.inspector = {
     x: my.margin
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
-    width: (world) -> world.get('size') - 2*my.margin
+    width: (world) -> world.get('device').width - world.get('size') - 2*my.margin
     click: (world, args) -> world.send world.get('value')
   }
   _CHILDREN: [
