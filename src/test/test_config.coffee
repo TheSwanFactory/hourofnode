@@ -5,6 +5,7 @@ exports.test_config = (test, rx) ->
   world = god(rx, config)
   turtles = world.find_child('turtles')
   current = turtles.find_child()
+  world.send('inspect', current)
   
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'

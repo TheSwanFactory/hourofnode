@@ -35,11 +35,12 @@ display_strategy = (strategy, programs) ->
   
 exports.inspector = {
   _LABEL: "inspector"
-  _EXPORTS: ['inspect']
+  _EXPORTS: ['inspect', 'step']
+  step: (world, args) -> world.call('inspect') 
   inspect: (world, args) ->
-    current = args
-    my.assert world.is_world current, "can only inspect worlds"
-    world.put('current', current)
+    current = args or world.get('current')
+    my.assert current, "No current turtle"
+    world.put('current', current) if args
     programs = current.get('programs')
     program = programs.get('program')
     world.replace_child display_program('executing', program) if program?
