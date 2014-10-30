@@ -40,10 +40,14 @@ exports.inspector = {
     current = args
     my.assert world.is_world current, "can only inspect worlds"
     world.put('current', current)
+    programs = current.get('programs')
+    program = programs.get('program')
+    console.log 'current program', program
+    #world.replace_child 'executing', display_program('executing', program)
+        
     strategy = world.find_child('strategy')
     strategy.authority = world.make_world ROW_AUTHORITY
-    programs = current.get('programs')
-    display_strategy strategy, programs
+    display_strategy strategy, programs 
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
@@ -75,7 +79,7 @@ exports.inspector = {
       ]
     }
     'commands'
-    'program'
+    'executing'
     {_LABEL: 'strategy'}
   ]
 

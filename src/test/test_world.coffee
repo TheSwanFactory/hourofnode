@@ -155,9 +155,7 @@ exports.test_world = (test, rx) ->
   test 'world can call functions', (t) ->
     world.put("instance", "variable")
     args = {key: "value"}
-    
-    callme = (world, args) ->
-      [world.get("instance"), args['key']]
+    callme = (world, args) -> [world.get("instance"), args['key']]
     world.put('callme', callme)
     result = world.call('callme', args)
     t.equal result[0], "variable", "world parameter"
