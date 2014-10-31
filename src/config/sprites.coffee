@@ -17,12 +17,8 @@ exports.sprites = {
     assert dir, "expects dir"
     p = world.get('p')
     v = world.get('v')
-    
-    #world.update 'i', dir * world.get('v_i'), split
-    #world.update 'j', dir * world.get('v_j'), split
-    next_i = (p.at(0) + dir * v.at(0)) % split
-    next_j = (p.at(1) + dir * v.at(1)) % split
-    world.put 'p', [next_i, next_j]
+    next_p = [0,1].map (i) -> (p.at(i) + dir*v.at(i)) % split
+    world.put 'p', next_p
     
   turn: (world, args) ->
     {dir} = args
@@ -33,6 +29,7 @@ exports.sprites = {
     world.put 'v', [next_v_i, next_v_j]
     
   step: (world, args) ->
+    #console.log "+step", world.get('p').all(), world.get('v').all(), 
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
   reset: (world, args) ->
