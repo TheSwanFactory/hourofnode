@@ -15,8 +15,16 @@ exports.sprites = {
     split = world.get('split')
     {dir} = args
     assert dir, "expects dir"
-    world.update 'i', dir * world.get('v_i'), split
-    world.update 'j', dir * world.get('v_j'), split
+    p = world.get('p')
+    v = world.get('v')
+    
+    #world.update 'i', dir * world.get('v_i'), split
+    #world.update 'j', dir * world.get('v_j'), split
+    next_i = (p.at(0) + dir * v.at(0)) % split
+    next_j = (p.at(1) + dir * v.at(1)) % split
+    p.put 0, next_i
+    p.put 1, next_j
+    
   turn: (world, args) ->
     {dir} = args
     assert dir, "expects dir"
@@ -29,9 +37,10 @@ exports.sprites = {
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
   reset: (world, args) ->
-    # TODO: Reset program counter
     for key in ['i', 'j', 'v_i', 'v_j']
       world.put key, undefined
+    for key in ['p', 'v']
+      world.put key, world.rx().array()
   click: (world, args) ->
     world.send('inspect', world)
 }

@@ -1,6 +1,7 @@
 assert = require 'assert'
 
 exports.programs = {
+  _EXPORTS: ['reset']
   prog: (world, args) ->
     {signal} = args
     program = world.get('program')
@@ -13,6 +14,8 @@ exports.programs = {
     assert child, "reload: #{name} missing"
     assert program = child.get('value'), "reload: program value missing"
     program.push command
+
+  reset: (world, args) -> world.call('load', args)
 
   load: (world, args) ->
     args = {name: 'default'} unless args?
