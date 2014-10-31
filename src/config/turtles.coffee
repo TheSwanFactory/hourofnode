@@ -23,13 +23,13 @@ exports.turtles = {
   _LABEL: "turtles"
   _KIND: "turtle"
   name: (world, args) -> world.label()
+  i: (world, args) -> world.get('p').at(0) + 0.5
+  j: (world, args) -> world.get('p').at(1) + 0.5
   v_i: (world, args) -> world.get('v').at(0)
   v_j: (world, args) -> world.get('v').at(1)
   angle: (world, args) ->
     # TODO: perform real triginometry
-    v_i = world.get('v_i')
-    v_j = world.get('v_j')
-    value = 90*(1-v_i) #0, 90, 180, 90, 0
+    value = 90*(1 - world.get('v_i')) #0, 90, 180, 90, 0
     value = -90 if world.get('v_j') < 0
     value
   stroke: "green"
@@ -56,32 +56,24 @@ exports.turtles = {
       _LABEL: "me"
       p: [1,1]
       v: [1,0]
-      i: 1.5
-      j: 1.5
       fill: "#88ff88"
     }
     {
       _LABEL: "yu"
       p: [1,3]
       v: [0,1]
-      i: 1.5
-      j: 3.5
       fill: "#008800"
     }
     {
       _LABEL: "EP"
       p: [3,1]
       v: [0,-1]
-      i: 3.5
-      j: 1.5
       fill: "#880000"
     }
     {
       _LABEL: "AW"
       p: [3,3]
       v: [-1,0]
-      i: 3.5
-      j: 3.5
       fill: "#000088"
     }
   ]
