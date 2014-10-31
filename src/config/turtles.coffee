@@ -29,8 +29,9 @@ exports.turtles = {
   v_j: (world, args) -> world.get('v').at(1)
   angle: (world, args) ->
     # TODO: perform real triginometry
-    value = 90*(1 - world.get('v_i')) #0, 90, 180, 90, 0
-    value = -90 if world.get('v_j') < 0
+    v = world.get('v')
+    value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
+    value = -90 if v.at(1) < 0
     value
   stroke: "green"
   path: (world, args) -> 

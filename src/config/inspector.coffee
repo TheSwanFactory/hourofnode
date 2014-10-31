@@ -62,6 +62,7 @@ set_current = (world, args) ->
   current
 
 set_selection = (world, counter) ->
+  counter += 1
   world.map_children (child) ->
     child.put('selected', true) if child.index == counter
   

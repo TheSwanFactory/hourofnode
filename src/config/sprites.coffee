@@ -22,8 +22,10 @@ exports.sprites = {
     assert dir, "expects dir"
     next_v_i =  dir * world.get('v_j')
     next_v_j = -1 * dir * world.get('v_i')
-    world.put 'v_i', next_v_i
-    world.put 'v_j', next_v_j
+    console.log "#{world} post-v", world.get('v_i'), world.get('v_j'),next_v_i, next_v_j   
+    #world.put 'v_i', next_v_i
+    #world.put 'v_j', next_v_j
+    world.put 'v', world.rx().array [next_v_i, next_v_j]
   step: (world, args) ->
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
