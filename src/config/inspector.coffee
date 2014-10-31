@@ -39,7 +39,7 @@ exports.inspector = {
   step: (world, args) -> world.call('inspect') 
   inspect: (world, args) ->
     current = world.get('current')
-    console.log "inspect current", current, "args", args
+    #console.log "inspect current", current, "args", args
     if args?
       current.put('selected', false) if current?
       current = args
