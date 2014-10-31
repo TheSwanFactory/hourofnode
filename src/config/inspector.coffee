@@ -13,7 +13,7 @@ BUTTON_AUTHORITY = {
     y: my.margin
     height: my.button.size
     width: my.button.size
-    click: (world, args) -> world.send world.get('value')
+    #click: (world, args) -> world.send world.get('value')
 }
 
 ROW_AUTHORITY = {
@@ -22,7 +22,7 @@ ROW_AUTHORITY = {
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
     width: (world) ->  world.up.get('width') - 2*my.margin
-    click: (world, args) -> world.send world.get('value')
+    #click: (world, args) -> world.send world.get('value')
   }
 
 display_commands = (name, programs) ->
