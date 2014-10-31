@@ -1,14 +1,14 @@
 # Preamble
 _.mixin(_.str.exports())
 rx =  require('../../reactive-coffee/src/reactive')
-assert = require 'assert'
 
 # Dependencies
 
+{my} = require('./my')
 {god} = require('./god')
 {config} = require('./config')
 {draw} = require('./draw')
-{test} = require('./test')
+{test} = require('./test') if my.test
 
 world = god(rx, config)
 
@@ -20,4 +20,4 @@ main = ->
 # Instantiate our main view
 $(main)
 # Run Tests
-test(rx)
+test(rx) if my.test
