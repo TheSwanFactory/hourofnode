@@ -59,20 +59,15 @@ exports.test_config = (test, rx) ->
     t.ok sprite = sprites.find_child(), "missing sprite"
     
     t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
-    console.log "1 sprite #{sprite}", sprite, sprite.get('p').all(), sprite.get('i')
     world.send('reset')
     t.equal sprite.get('i'), 1.5, "sprite has position"
     t.equal sprite.get('v_i'), 1, "sprite has direction"
-    sprite.call('step')
-    console.log "2 sprite", sprite, sprite.get('p').all(), sprite.get('i')
+    sprite.call('go', {dir:1})
     t.equal sprite.get('i'), 2.5, "sprite moves position"
-    sprite.call('step')
-    console.log "3 sprite", sprite, sprite.get('p').all(), sprite.get('i')
+    sprite.call('turn', {dir:-1})
     t.equal sprite.get('v_j'), 1, "sprite changes direction"
     
     world.send('reset')
-    console.log "4 sprite", sprite, sprite.get('p').all(), sprite.get('i')
     t.equal sprite.get('i'), 1.5, "sprite has original position"
     t.equal sprite.get('v_i'), 1, "sprite has original direction"
-    
     t.end()
