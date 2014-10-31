@@ -68,7 +68,10 @@ set_selection = (world, counter) ->
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
-  step: (world, args) -> world.call('inspect')
+  time: 0
+  step: (world, args) ->
+    world.update('time', 1)
+    world.call('inspect')
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
@@ -111,6 +114,7 @@ exports.inspector = {
           c = world.get('current'); "#{c.get('i')},#{c.get('j')}"}
         {name: (world) ->
           c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
+        {name: (world) -> "T: #{world.get('time')}"}
       ]
     }
     COMMANDS
