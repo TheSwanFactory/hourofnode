@@ -57,7 +57,6 @@ exports.test_config = (test, rx) ->
   test 'config sprite', (t) ->
     t.ok sprites = world.find_child('sprites'), "can not find sprites"
     t.ok sprite = sprites.find_child(), "missing sprite"
-    console.log "directin vector", sprite, sprite.get('d')
     
     t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
     t.equal sprite.get('i'), 2.5, "sprite has position"
