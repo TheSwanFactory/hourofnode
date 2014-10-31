@@ -34,7 +34,7 @@ exports.programs = {
     
   _CHILDREN: [
     {_LABEL: 'default', value: ["forward", "right"]}
-    {_LABEL: 'collision', value: ["backward", "left", "left"]}
+    {_LABEL: 'collision', value: ["reverse", "left", "left"]}
   ]
 }
 
