@@ -100,7 +100,6 @@ exports.inspector = {
       _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: [
         { # Show turtle icon
-          name: (world) -> world.get('current').label()
           path: (world) ->
             paths = world.get('current').get('path')
             middle = world.get('scale') / 2.5
