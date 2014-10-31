@@ -18,8 +18,8 @@ ROW_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
   }
 
-display_program = (name, commands) ->
-  children = commands.all()
+display_program = (name, children) ->
+  children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
   {
     _LABEL: name
@@ -55,8 +55,15 @@ exports.inspector = {
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
+    
+    signals = programs.get('signals')
+    my.assert signals, "no current program"
+    names = Object.keys signals
+    world.replace_child display_program('commands', names)
+    
     program = programs.get('program')
-    world.replace_child display_program('executing', program) if program?
+    my.assert program, "no current program"
+    world.replace_child display_program('executing', program)
     set_selection world.find_child('executing'), programs.get('counter')
         
     strategy = world.find_child('strategy')
