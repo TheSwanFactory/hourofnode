@@ -25,19 +25,13 @@ ROW_AUTHORITY = {
 display_commands = (name, signals) ->
   my.assert signals, "no current signals"
   names = Object.keys signals
-  commands = display_program(COMMANDS, names)
-  commands._CHILDREN.map (child) ->
-    child
-  commands
+  children = names.map (name) -> {_LABEL: name, name: name}
+  {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
-  {
-    _LABEL: name
-    _AUTHORITY: BUTTON_AUTHORITY
-    _CHILDREN: children
-  }
+  {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
 
 display_strategy = (strategy, programs) ->
   strategy.reset_children()
