@@ -17,8 +17,7 @@ draw_face = (scale) ->
    z m#{-3.5*scale},0"
 
 draw_shell = (scale) ->
-  "m#{-2*scale},0 a3,2 0 1,0 #{6*scale},0 
-                  a3,2 0 1,0 #{-6*scale},0z"
+  "m#{-2*scale},0 a3,2 0 1,0 #{6*scale},0 a3,2 0 1,0 #{-6*scale},0z"
 
 exports.turtles = {
   _LABEL: "turtles"
@@ -36,7 +35,7 @@ exports.turtles = {
   stroke: "green"
   path: (world, args) -> 
     scale = world.get('scale') / 10
-    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
+    [draw_legs(scale)+draw_face(scale), draw_shell(scale)]
   _AUTHORITY: {
     _SETUP: (world, args) ->
       return if world.label().length > 2
