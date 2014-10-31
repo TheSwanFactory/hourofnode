@@ -11,7 +11,6 @@ assert = require 'assert'
 {test} = require('./test')
 
 world = god(rx, config)
-world.send('setup')
 
 main = ->
   $('body').append(

@@ -41,7 +41,9 @@ exports.inspector = {
     current = args or world.get('current')
     my.assert current, "No current turtle"
     world.put('current', current) if args
+    console.log "inspect current", current
     programs = current.get('programs')
+    my.assert programs, "No programs"
     program = programs.get('program')
     world.replace_child display_program('executing', program) if program?
     my.assert world.find_child('info'), "has no info"

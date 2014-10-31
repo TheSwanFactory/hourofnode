@@ -5,7 +5,6 @@ exports.test_config = (test, rx) ->
   world = god(rx, config)
   turtles = world.find_child('turtles')
   current = turtles.find_child()
-  world.send('inspect', current)
   
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
@@ -46,7 +45,6 @@ exports.test_config = (test, rx) ->
 
   test 'config turtles', (t) ->
     t.ok store = current.get('programs'), "program store"
-    t.notOk store.get('program'), "No program"
     t.ok signal_1 = store.call('reload'), "valid signal "
     t.ok signal_2 = current.call('next_signal'), "next signal"
     t.equal signal_1['do'], 'go'
