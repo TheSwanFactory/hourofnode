@@ -8,7 +8,7 @@
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
     "jquery": "^2.1.1",
-    "reactive-coffee": "^1.2.3",
+    "reactive-coffee": "git://github.com/TheSwanFactory/reactive-coffee",
     "underscore": "^1.7.0"
   },
   "devDependencies": {

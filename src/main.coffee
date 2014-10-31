@@ -1,6 +1,7 @@
 # Preamble
 _.mixin(_.str.exports())
-rx =  require('../../reactive-coffee/src/reactive')
+#rx =  require('../../reactive-coffee/src/reactive')
+rx = require 'reactive-coffee'
 
 # Dependencies
 

@@ -17,7 +17,11 @@ exports.sprites = {
     assert dir, "expects dir"
     p = world.get('p')
     v = world.get('v')
-    next_p = [0,1].map (i) -> (p.at(i) + dir*v.at(i)) % split
+    next_p = [0,1].map (i) ->
+      value = p.at(i) + dir*v.at(i)
+      value = 0 if value >= split
+      value = (split - 1) if value < 0
+      value
     world.put 'p', next_p
     
   turn: (world, args) ->
