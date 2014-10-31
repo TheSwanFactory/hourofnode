@@ -2,7 +2,8 @@ assert = require 'assert'
 
 normalize = (paths) ->
   return [] unless paths
-  if _.isArray(paths) then paths else paths.all()
+  paths = paths.all() unless _.isArray(paths) 
+  paths
   
 exports.draw = (world) ->
   SVG = world.SVG()

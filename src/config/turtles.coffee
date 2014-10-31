@@ -17,26 +17,26 @@ draw_face = (scale) ->
    z m#{-3.5*scale},0"
 
 draw_shell = (scale) ->
-  "m#{-2*scale},0 a3,2 0 1,0 #{6*scale},0 
-                  a3,2 0 1,0 #{-6*scale},0z"
+  "m#{-2*scale},0 a3,2 0 1,0 #{6*scale},0 a3,2 0 1,0 #{-6*scale},0z"
 
 exports.turtles = {
   _LABEL: "turtles"
   _KIND: "turtle"
   name: (world, args) -> world.label()
-  v_i: 1
-  v_j: 0
+  i: (world, args) -> world.get('p').at(0) + 0.5
+  j: (world, args) -> world.get('p').at(1) + 0.5
+  v_i: (world, args) -> world.get('v').at(0)
+  v_j: (world, args) -> world.get('v').at(1)
   angle: (world, args) ->
     # TODO: perform real triginometry
-    v_i = world.get('v_i')
-    v_j = world.get('v_j')
-    value = 90*(1-v_i) #0, 90, 180, 90, 0
-    value = -90 if world.get('v_j') < 0
+    v = world.get('v')
+    value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
+    value = -90 if v.at(1) < 0
     value
   stroke: "green"
   path: (world, args) -> 
     scale = world.get('scale') / 10
-    [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
+    [draw_legs(scale)+draw_face(scale), draw_shell(scale)]
   _AUTHORITY: {
     _SETUP: (world, args) ->
       return if world.label().length > 2
@@ -55,34 +55,26 @@ exports.turtles = {
   _CHILDREN: [
     {
       _LABEL: "me"
-      i: 1.5
-      j: 1.5
-      v_i: 1
-      v_j: 0
+      p: [1,1]
+      v: [1,0]
       fill: "#88ff88"
     }
     {
       _LABEL: "yu"
-      i: 1.5
-      j: 3.5
-      v_i: 0
-      v_j: 1
+      p: [1,3]
+      v: [0,1]
       fill: "#008800"
     }
     {
       _LABEL: "EP"
-      i: 3.5
-      j: 1.5
-      v_i: 0
-      v_j: -1
+      p: [3,1]
+      v: [0,-1]
       fill: "#880000"
     }
     {
       _LABEL: "AW"
-      i: 3.5
-      j: 3.5
-      v_i: -1
-      v_j: 0
+      p: [3,3]
+      v: [-1,0]
       fill: "#000088"
     }
   ]

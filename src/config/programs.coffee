@@ -1,11 +1,21 @@
 assert = require 'assert'
 
 exports.programs = {
+  _EXPORTS: ['reset']
   prog: (world, args) ->
     {signal} = args
     program = world.get('program')
     program.push signal
     console.log "prog: #{world}", world, args, signal, program
+
+  add: (world, args) ->
+    {name, command} = args
+    child = world.find_child(name)
+    assert child, "reload: #{name} missing"
+    assert program = child.get('value'), "reload: program value missing"
+    program.push command
+
+  reset: (world, args) -> world.call('load', args)
 
   load: (world, args) ->
     args = {name: 'default'} unless args?
@@ -33,8 +43,8 @@ exports.programs = {
     signal
     
   _CHILDREN: [
-    {_LABEL: 'default', value: ["forward", "right"]}
-    {_LABEL: 'collision', value: ["backward", "left", "left"]}
+    {_LABEL: 'default', value: ["forward"]}
+    {_LABEL: 'collision', value: ["reverse", "left", "left"]}
   ]
 }
 

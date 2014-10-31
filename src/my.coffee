@@ -7,6 +7,7 @@ CONTROL = 96
 MARGIN = 8
 
 exports.my = {
+  test: false
   assert: require 'assert'
   device: IPAD
   margin: MARGIN

@@ -1,12 +1,19 @@
 {my} = require('../my')
 
+#TODO: Add SVG scrollbars a la http://www.carto.net/svg/gui/scrollbar/
+
+COMMANDS = 'commands'
+EXECUTING = 'executing'
+STRATEGY = 'strategy'
+DEFAULT = 'default'
+
 BUTTON_AUTHORITY = {
     fill: my.color.button
     x: (world, args) -> world.index * my.button.spacing + my.margin
     y: my.margin
     height: my.button.size
     width: my.button.size
-    click: (world, args) -> world.send world.get('value')
+    #click: (world, args) -> world.send world.get('value')
 }
 
 ROW_AUTHORITY = {
@@ -15,17 +22,27 @@ ROW_AUTHORITY = {
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
     width: (world) ->  world.up.get('width') - 2*my.margin
-    click: (world, args) -> world.send world.get('value')
+    #click: (world, args) -> world.send world.get('value')
   }
 
-display_program = (name, commands) ->
-  children = commands.all()
+display_commands = (name, programs) ->
+  signals = programs.get('signals')
+  my.assert signals, "no current signals"
+  children = Object.keys(signals).map (command) -> 
+    {
+      _LABEL: command, name: command
+      click: ->
+        console.log "send #{command}"
+        programs.call('add', {name: DEFAULT, command: command})
+        programs.send 'inspect'
+    }
+  {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
+  
+# TODO: Use ICON authority for smaller command display
+display_program = (name, children) ->
+  children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
-  {
-    _LABEL: name
-    _AUTHORITY: BUTTON_AUTHORITY
-    _CHILDREN: children
-  }
+  {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
 
 display_strategy = (strategy, programs) ->
   strategy.reset_children()
@@ -45,21 +62,29 @@ set_current = (world, args) ->
   current
 
 set_selection = (world, counter) ->
+  counter += 1
   world.map_children (child) ->
     child.put('selected', true) if child.index == counter
   
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
-  step: (world, args) -> world.call('inspect')
+  time: 0
+  step: (world, args) ->
+    world.update('time', 1)
+    world.call('inspect')
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
+    
+    world.replace_child display_commands(COMMANDS, programs)
+    
     program = programs.get('program')
-    world.replace_child display_program('executing', program) if program?
-    set_selection world.find_child('executing'), programs.get('counter')
+    my.assert program, "no current program"
+    world.replace_child display_program(EXECUTING, program)
+    set_selection world.find_child(EXECUTING), programs.get('counter')
         
-    strategy = world.find_child('strategy')
+    strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
     display_strategy strategy, programs 
     
@@ -76,7 +101,6 @@ exports.inspector = {
       _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: [
         { # Show turtle icon
-          name: (world) -> world.get('current').label()
           path: (world) ->
             paths = world.get('current').get('path')
             middle = world.get('scale') / 2.5
@@ -90,11 +114,12 @@ exports.inspector = {
           c = world.get('current'); "#{c.get('i')},#{c.get('j')}"}
         {name: (world) ->
           c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
+        {name: (world) -> "T: #{world.get('time')}"}
       ]
     }
-    'commands'
-    'executing'
-    {_LABEL: 'strategy'}
+    COMMANDS
+    EXECUTING
+    {_LABEL: STRATEGY}
   ]
 
 }

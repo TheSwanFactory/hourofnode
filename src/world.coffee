@@ -36,6 +36,7 @@ class World
   bind: () -> @rx().bind
   
   put: (key, value) ->
+    value = @rx().array value if _.isArray(value)
     @doc.put(key, value)
 
   get_local: (key) ->

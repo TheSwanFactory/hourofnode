@@ -13,8 +13,15 @@ exports.test_world = (test, rx) ->
       t.equal result, value, "store #{key}"
     test_store("number", 2)
     test_store("string", "okay")
-    test_store("array", [1, "2b"])
     test_store("dict", {not: "2b"})
+    t.end()
+
+  test 'world stores arrays as reactive', (t) ->
+    key = "array"
+    value = [1, "2b"]
+    world.put(key, value)
+    result = world.get(key)
+    t.equal result.all().toString(), value.toString(), "store #{key}"
     t.end()
 
   test 'world can update properties', (t) ->
