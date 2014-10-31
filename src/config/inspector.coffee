@@ -1,5 +1,9 @@
 {my} = require('../my')
 
+COMMANDS = 'commands'
+EXECUTING = 'executing'
+STRATEGY = 'strategy'
+
 BUTTON_AUTHORITY = {
     fill: my.color.button
     x: (world, args) -> world.index * my.button.spacing + my.margin
@@ -18,6 +22,11 @@ ROW_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
   }
 
+display_commands = (name, signals) ->
+  my.assert signals, "no current program"
+  names = Object.keys signals
+  display_program(COMMANDS, names)
+  
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
@@ -57,16 +66,14 @@ exports.inspector = {
     programs = current.get('programs')
     
     signals = programs.get('signals')
-    my.assert signals, "no current program"
-    names = Object.keys signals
-    world.replace_child display_program('commands', names)
+    world.replace_child display_commands(COMMANDS, signals)
     
     program = programs.get('program')
     my.assert program, "no current program"
-    world.replace_child display_program('executing', program)
-    set_selection world.find_child('executing'), programs.get('counter')
+    world.replace_child display_program(EXECUTING , program)
+    set_selection world.find_child(EXECUTING ), programs.get('counter')
         
-    strategy = world.find_child('strategy')
+    strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
     display_strategy strategy, programs 
     
@@ -99,9 +106,9 @@ exports.inspector = {
           c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
       ]
     }
-    'commands'
-    'executing'
-    {_LABEL: 'strategy'}
+    COMMANDS
+    EXECUTING 
+    {_LABEL: STRATEGY}
   ]
 
 }
