@@ -33,25 +33,26 @@ display_strategy = (strategy, programs) ->
     strategy.add_child display_program(child.label(), child.get('value'))
   strategy.put 'height', my.row.spacing*programs._child_count()
   
+set_current = (world, args) ->
+  current = world.get('current')
+  #console.log "inspect current", current, "args", args
+  if args?
+    current.put('selected', false) if current?
+    current = args
+    current.put('selected', true)
+    world.put('current', current) 
+  my.assert current, "No current turtle"
+  current
+  
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
-  step: (world, args) -> world.call('inspect') 
+  step: (world, args) -> world.call('inspect')
   inspect: (world, args) ->
-    current = world.get('current')
-    #console.log "inspect current", current, "args", args
-    if args?
-      current.put('selected', false) if current?
-      current = args
-      current.put('selected', true)
-      world.put('current', current) 
-    
-    my.assert current, "No current turtle"
+    current = set_current(world, args)
     programs = current.get('programs')
-    my.assert programs, "No programs"
     program = programs.get('program')
     world.replace_child display_program('executing', program) if program?
-    my.assert world.find_child('info'), "has no info"
         
     strategy = world.find_child('strategy')
     strategy.authority = world.make_world ROW_AUTHORITY
