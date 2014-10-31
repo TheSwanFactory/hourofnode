@@ -7,7 +7,7 @@ CONTROL = 96
 MARGIN = 8
 
 exports.my = {
-  test: false
+  test: window.location.hostname == "localhost"
   assert: require 'assert'
   device: IPAD
   margin: MARGIN
