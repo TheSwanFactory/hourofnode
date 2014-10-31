@@ -34,7 +34,6 @@ exports.turtles = {
     value = -90 if world.get('v_j') < 0
     value
   stroke: "green"
-  selected: (world) -> world == world.get('current')
   path: (world, args) -> 
     scale = world.get('scale') / 10
     [draw_legs(scale) + draw_face(scale), draw_shell(scale)]

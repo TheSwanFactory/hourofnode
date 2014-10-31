@@ -38,10 +38,15 @@ exports.inspector = {
   _EXPORTS: ['inspect', 'step']
   step: (world, args) -> world.call('inspect') 
   inspect: (world, args) ->
-    current = args or world.get('current')
+    current = world.get('current')
+    console.log "inspect current", current, "args", args
+    if args?
+      current.put('selected', false) if current?
+      current = args
+      current.put('selected', true)
+      world.put('current', current) 
+    
     my.assert current, "No current turtle"
-    world.put('current', current) if args
-    console.log "inspect current", current
     programs = current.get('programs')
     my.assert programs, "No programs"
     program = programs.get('program')

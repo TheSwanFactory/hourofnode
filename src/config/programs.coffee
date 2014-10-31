@@ -6,7 +6,7 @@ exports.programs = {
     program = world.get('program')
     program.push signal
     console.log "prog: #{world}", world, args, signal, program
-  _SETUP: (world, args) -> world.load({name: 'default'})
+
   load: (world, args) ->
     args = {name: 'default'} unless args?
     {name} = args

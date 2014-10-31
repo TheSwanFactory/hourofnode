@@ -21,7 +21,6 @@ exports.config = {
   rotate: (world, args) -> "rotate(#{world.get('angle')})"
   transform: (world, args) -> "#{world.get('translate')} #{world.get('rotate')}"
   name_style: (world, args) -> {x: -5, y: 5}
-  current: -> "No world"
   signals: {
     prog_left:  {name: "L", do:"prog", signal: "left"}
     prog_right: {name: "R", do:"prog", signal: "right"}
