@@ -42,14 +42,9 @@ exports.turtles = {
     setup: (world, args) ->
       return if world.label().length > 2
       console.log "Call setup for #{world}",world
+      world.put 'programs', world.make_world(programs)
       world.send 'create', world
       world.send 'inspect', world
-    programs: (world, args) ->
-      local = world.get('_local_programs')
-      return local if local?
-      local = world.make_world(programs)
-      world.put '_local_programs', local
-      local    
     next_signal: (world, args) ->
       local = world.get('programs')
       assert signal = local.call('next'), "No next signal"
