@@ -7,7 +7,7 @@ exports.programs = {
     program.push signal
     console.log "prog: #{world}", world, args, signal, program
     
-  reload: (world, args) ->
+  load: (world, args) ->
     args = {name: 'default'} unless args?
     {name} = args
     child = world.find_child(name)
@@ -15,6 +15,9 @@ exports.programs = {
     assert program = child.get('value'), "reload: program value missing"
     world.put('program', program)
     world.put('counter', 0)
+
+  reload: (world, args) ->
+    world.call('load', args)
     world.call('next', args)
     
   next: (world, args) ->
