@@ -39,7 +39,7 @@ exports.turtles = {
     scale = world.get('scale') / 10
     [draw_legs(scale) + draw_face(scale), draw_shell(scale)]
   _AUTHORITY: {
-    setup: (world, args) ->
+    _SETUP: (world, args) ->
       return if world.label().length > 2
       console.log "Call setup for #{world}",world
       world.put 'programs', world.make_world(programs)

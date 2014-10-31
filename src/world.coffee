@@ -14,6 +14,8 @@ EXPORTS = "_EXPORTS"
 HANDLERS = "_HANDLERS"
 CSS = "_CSS"
 
+SETUP = '_SETUP'
+
 class World
   constructor: (up, label, rx) ->
     assert up, "up always exists"
@@ -117,7 +119,7 @@ class World
   _spawn_world: (label) ->
     world = new World(@, label)
     world.put(AUTHORITY, @authority) if @authority?
-    @handle 'setup', -> world.call('setup') if world.get_raw('setup')
+    @handle SETUP, -> world.call(SETUP) if world.get_raw(SETUP)
     world
     
   _from_value: (value) ->
@@ -228,5 +230,5 @@ exports.world = (up, rx, doc) ->
   root.put RX, rx
   root.put HANDLERS, rx.map()
   root.import_dict(doc)
-  root.send('setup')
+  root.send(SETUP)
   root
