@@ -43,6 +43,10 @@ set_current = (world, args) ->
     world.put('current', current) 
   my.assert current, "No current turtle"
   current
+
+set_selection = (world, counter) ->
+  world.map_children (child) ->
+    child.put('selected', true) if child.index == counter
   
 exports.inspector = {
   _LABEL: "inspector"
@@ -53,6 +57,7 @@ exports.inspector = {
     programs = current.get('programs')
     program = programs.get('program')
     world.replace_child display_program('executing', program) if program?
+    set_selection world.find_child('executing'), programs.get('counter')
         
     strategy = world.find_child('strategy')
     strategy.authority = world.make_world ROW_AUTHORITY
