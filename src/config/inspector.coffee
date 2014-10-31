@@ -23,9 +23,12 @@ ROW_AUTHORITY = {
   }
 
 display_commands = (name, signals) ->
-  my.assert signals, "no current program"
+  my.assert signals, "no current signals"
   names = Object.keys signals
-  display_program(COMMANDS, names)
+  commands = display_program(COMMANDS, names)
+  commands._CHILDREN.map (child) ->
+    child
+  commands
   
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
@@ -70,8 +73,8 @@ exports.inspector = {
     
     program = programs.get('program')
     my.assert program, "no current program"
-    world.replace_child display_program(EXECUTING , program)
-    set_selection world.find_child(EXECUTING ), programs.get('counter')
+    world.replace_child display_program(EXECUTING, program)
+    set_selection world.find_child(EXECUTING), programs.get('counter')
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
@@ -107,7 +110,7 @@ exports.inspector = {
       ]
     }
     COMMANDS
-    EXECUTING 
+    EXECUTING
     {_LABEL: STRATEGY}
   ]
 
