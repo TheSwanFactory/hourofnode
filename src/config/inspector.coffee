@@ -3,6 +3,7 @@
 COMMANDS = 'commands'
 EXECUTING = 'executing'
 STRATEGY = 'strategy'
+DEFAULT = 'default'
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
@@ -22,12 +23,20 @@ ROW_AUTHORITY = {
     click: (world, args) -> world.send world.get('value')
   }
 
-display_commands = (name, signals) ->
+display_commands = (name, programs) ->
+  signals = programs.get('signals')
   my.assert signals, "no current signals"
-  names = Object.keys signals
-  children = names.map (name) -> {_LABEL: name, name: name}
+  children = Object.keys(signals).map (command) -> 
+    {
+      _LABEL: command, name: command
+      click: ->
+        console.log "send #{command}"
+        programs.call('add', {name: DEFAULT, command: command})
+        programs.send 'inspect'
+    }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
+# TODO: Use ICON authority for smaller command display
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
@@ -62,8 +71,7 @@ exports.inspector = {
     current = set_current(world, args)
     programs = current.get('programs')
     
-    signals = programs.get('signals')
-    world.replace_child display_commands(COMMANDS, signals)
+    world.replace_child display_commands(COMMANDS, programs)
     
     program = programs.get('program')
     my.assert program, "no current program"

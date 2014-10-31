@@ -7,6 +7,13 @@ exports.programs = {
     program.push signal
     console.log "prog: #{world}", world, args, signal, program
 
+  add: (world, args) ->
+    {name, command} = args
+    child = world.find_child(name)
+    assert child, "reload: #{name} missing"
+    assert program = child.get('value'), "reload: program value missing"
+    program.push command
+
   load: (world, args) ->
     args = {name: 'default'} unless args?
     {name} = args
