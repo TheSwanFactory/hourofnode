@@ -66,4 +66,9 @@ exports.test_config = (test, rx) ->
     t.equal sprite.get('i'), 3.5, "sprite moves position"
     sprite.call('step')
     t.equal sprite.get('v_j'), 1, "sprite changes direction"
+    
+    world.send('reset')
+    t.equal sprite.get('i'), 2.5, "sprite has original position"
+    t.equal sprite.get('v_i'), 1, "sprite has original direction"
+    
     t.end()

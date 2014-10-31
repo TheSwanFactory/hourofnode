@@ -22,8 +22,7 @@ exports.sprites = {
     #world.update 'j', dir * world.get('v_j'), split
     next_i = (p.at(0) + dir * v.at(0)) % split
     next_j = (p.at(1) + dir * v.at(1)) % split
-    p.put 0, next_i
-    p.put 1, next_j
+    world.put 'p', [next_i, next_j]
     
   turn: (world, args) ->
     {dir} = args
@@ -31,16 +30,14 @@ exports.sprites = {
     v = world.get('v')
     next_v_i =  dir * v.at(1)
     next_v_j = -1 * dir * v.at(0)
-    v.put 0, next_v_i
-    v.put 1, next_v_j
+    world.put 'v', [next_v_i, next_v_j]
+    
   step: (world, args) ->
     signal = world.get('next_signal')
     world.call(signal['do'], signal)
   reset: (world, args) ->
-    for key in ['i', 'j', 'v_i', 'v_j']
-      world.put key, undefined
     for key in ['p', 'v']
-      world.put key, world.rx().array()
+      world.put key, undefined
   click: (world, args) ->
     world.send('inspect', world)
 }
