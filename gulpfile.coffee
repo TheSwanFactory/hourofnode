@@ -1,4 +1,5 @@
 gulp = require 'gulp'
+shell = require 'gulp-shell'
 release = require('gulp-release-tasks')(gulp)
 source = require 'vinyl-source-stream'
 browserify = require 'browserify'
@@ -38,6 +39,10 @@ all_src = ['src/*', 'src/*/*', '../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds  
   
+# Upload to S3
+
+gulp.task 'upload', shell.task(['node aws/upload.js'])
+
 # Watch when run
 
 gulp.task 'default', ['main', 'watch']
