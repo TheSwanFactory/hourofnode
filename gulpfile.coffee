@@ -10,7 +10,7 @@ UPLOAD = 'node aws/upload.js'
 
 # Git functions
 
-branch = -> git.revParse('HEAD', args("--abbrev-ref"))
+branch = -> git.revParse 'HEAD', {args: "--abbrev-ref"}
 
 # Create bundles using browerify
 
@@ -63,6 +63,6 @@ gulp.task 'merge', ->
   current = branch()
   git.checkout 'master'
   git.merge current
-  shell.task["gulp tag -m 'Merge #{current} into master"]
+  shell.task ["gulp tag"]
   git.checkout current
 
