@@ -1,9 +1,12 @@
 gulp = require 'gulp'
 shell = require 'gulp-shell'
+git = require 'gulp-git'
 release = require('gulp-release-tasks')(gulp)
 source = require 'vinyl-source-stream'
 browserify = require 'browserify'
 browser_sync = require 'browser-sync'
+
+UPLOAD = 'node aws/upload.js'
 
 # Create bundles using browerify
 
