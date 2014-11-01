@@ -38,11 +38,15 @@ gulp.task 'sync', -> sync_to 'web'
 all_src = ['src/*', 'src/*/*', '../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds  
+
+# Watch when run
+
+gulp.task 'default', ['main', 'watch']
   
 # Upload to S3
 
 gulp.task 'upload', shell.task(['node aws/upload.js'])
 
-# Watch when run
+# Tag and upload new feature
 
-gulp.task 'default', ['main', 'watch']
+gulp.task 'ship', ['tag', 'upload']
