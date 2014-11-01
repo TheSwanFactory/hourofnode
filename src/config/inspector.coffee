@@ -60,7 +60,6 @@ set_current = (world, args) ->
 set_selection = (world, counter) ->
   counter += 1
   world.map_children (child) ->
-    console.log "set_selection", counter, child.index
     child.put('selected', true) if child.index == counter
   
 exports.inspector = {

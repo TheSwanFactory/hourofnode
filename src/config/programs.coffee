@@ -34,7 +34,6 @@ exports.programs = {
     program = world.get('program')
     counter = world.get('counter')
     if program? and counter? and counter < program.length()
-      console.log "next counter #{counter} < #{program.length()}"
       action = program.at(counter)
     else
       return world.call('reload', args) unless args?
