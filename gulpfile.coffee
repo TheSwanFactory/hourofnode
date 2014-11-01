@@ -62,7 +62,6 @@ gulp.task 'ship', ['tag', 'upload']
 gulp.task 'merge', ->
   current = branch()
   git.checkout 'master'
-  git.merge current
-  #shell.task ["gulp tag"]
+  git.merge current, (err) -> if (err) throw err
   git.checkout current
 
