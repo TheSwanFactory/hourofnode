@@ -8,6 +8,10 @@ browser_sync = require 'browser-sync'
 
 UPLOAD = 'node aws/upload.js'
 
+# Git functions
+
+branch = -> git.revParse('HEAD', args("--abbrev-ref"))
+
 # Create bundles using browerify
 
 bundle = (name) ->
@@ -53,3 +57,12 @@ gulp.task 'upload', shell.task(['node aws/upload.js'])
 # Tag and upload new feature
 
 gulp.task 'ship', ['tag', 'upload']
+
+# Push branch changes to master and github
+gulp.task 'merge', ->
+  current = branch()
+  git.checkout 'master'
+  git.merge current
+  shell.task["gulp tag -m 'Merge #{current} into master"]
+  git.checkout current
+
