@@ -34,12 +34,17 @@ exports.programs = {
     program = world.get('program')
     counter = world.get('counter')
     if program? and counter? and counter < program.length()
+      console.log "next counter #{counter} < #{program.length()}"
       action = program.at(counter)
     else
       return world.call('reload', args) unless args?
       assert false, "Infinite Loop: next <-> reload"
     assert signal = world.get('signals')[action], "No signal"
-    world.put('counter', counter + 1)
+    counter += 1
+    if counter >= program.length()
+      world.call('load', args)
+    else
+      world.put('counter', counter)
     signal
     
   _CHILDREN: [
