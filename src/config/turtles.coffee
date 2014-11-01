@@ -40,7 +40,6 @@ exports.turtles = {
   _AUTHORITY: {
     _SETUP: (world, args) ->
       return if world.label().length > 2
-      console.log "Call setup for #{world}",world
       store = world.make_world(programs)
       store.call('load')
       world.put 'programs', store  
