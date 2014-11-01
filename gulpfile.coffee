@@ -51,10 +51,10 @@ gulp.task 'watch', ['sync'], ->
 
 gulp.task 'default', ['main', 'watch']
   
-# Upload to S3
-
-gulp.task 'upload', shell.task(['node aws/upload.js'])
 
 # Tag and upload new feature
 
-gulp.task 'ship', ['tag', 'upload']
+gulp.task 'ship', shell.task [
+  'gulp tag --minor'
+  'node aws/upload.js'
+]
