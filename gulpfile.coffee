@@ -63,6 +63,6 @@ gulp.task 'merge', ->
   current = branch()
   git.checkout 'master'
   git.merge current
-  shell.task ["gulp tag"]
+  #shell.task ["gulp tag"]
   git.checkout current
 
