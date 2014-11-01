@@ -2,8 +2,6 @@
 {grid} = require('./grid')
 {inspector} = require('./inspector')
 exports.layout = {
-  _EXPORTS: ['created']
-  created: (world, args) -> world.add_child args
   path: ""
   rect_path: (world, args) ->
     width = world.get('width')

@@ -23,6 +23,12 @@ exports.grid = {
     }
     {
       _LABEL: "sprites"
+      _EXPORTS: ['created']
+      created: (world, args) ->
+        child = args
+        my.assert world.is_world child
+        #index = child.p_index
+        world.add_child args
     }
   ]
 }

@@ -58,12 +58,14 @@ exports.test_config = (test, rx) ->
     t.ok sprites = world.find_child('sprites'), "can not find sprites"
     t.ok sprite = sprites.find_child(), "missing sprite"
     
-    t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
     world.send('reset')
-    t.equal sprite.get('i'), 1.5, "sprite has position"
-    t.equal sprite.get('v_i'), 1, "sprite has direction"
+    t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
+    t.equal sprite.get('p').all().toString(), "1,1", "sprite has direction vector"
+    t.equal sprite.get('p_index'), 9, "creates index for p"
+    
     sprite.call('go', {dir:1})
     t.equal sprite.get('i'), 2.5, "sprite moves position"
+    t.equal sprite.get('p_index'), 10, "updates index for p"
     sprite.call('turn', {dir:-1})
     t.equal sprite.get('v_j'), 1, "sprite changes direction"
     

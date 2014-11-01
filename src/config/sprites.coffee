@@ -11,6 +11,12 @@ exports.sprites = {
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     world.send 'created', child
+  p_index: (world, args) ->
+    n_cols = world.get('split')
+    p = world.get('p')
+    assert world.is_array(p), "is reactive array"
+    p.at(1)*n_cols + p.at(0)
+    
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
