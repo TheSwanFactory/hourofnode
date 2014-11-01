@@ -39,7 +39,11 @@ exports.programs = {
       return world.call('reload', args) unless args?
       assert false, "Infinite Loop: next <-> reload"
     assert signal = world.get('signals')[action], "No signal"
-    world.put('counter', counter + 1)
+    counter += 1
+    if counter >= program.length()
+      world.call('load', args)
+    else
+      world.put('counter', counter)
     signal
     
   _CHILDREN: [

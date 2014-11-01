@@ -1,8 +1,16 @@
 gulp = require 'gulp'
+shell = require 'gulp-shell'
+git = require 'gulp-git'
 release = require('gulp-release-tasks')(gulp)
 source = require 'vinyl-source-stream'
 browserify = require 'browserify'
 browser_sync = require 'browser-sync'
+
+UPLOAD = 'node aws/upload.js'
+
+# Git functions
+
+branch = -> git.revParse 'HEAD', {args: "--abbrev-ref"}
 
 # Create bundles using browerify
 
@@ -37,7 +45,24 @@ gulp.task 'sync', -> sync_to 'web'
 all_src = ['src/*', 'src/*/*', '../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds  
-  
+
 # Watch when run
 
 gulp.task 'default', ['main', 'watch']
+  
+# Upload to S3
+
+gulp.task 'upload', shell.task(['node aws/upload.js'])
+
+# Tag and upload new feature
+
+gulp.task 'ship', ['tag', 'upload']
+
+# Push branch changes to master and github
+gulp.task 'merge', ->
+  current = branch()
+  git.checkout 'master'
+  git.merge current
+  #shell.task ["gulp tag"]
+  git.checkout current
+

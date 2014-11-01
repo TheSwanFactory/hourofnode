@@ -50,8 +50,8 @@ exports.test_config = (test, rx) ->
     t.equal signal_1['do'], 'go'
     
     t.ok other = turtles.find_child('EP'), "no other turtle"
-    t.ok store2 = other.get('programs')
-    t.notOk store2 == store, "Same program for both"
+    t.ok store2 = other.get('programs'), "no other program"
+    t.notOk store2 == store, "Reused program"
     t.end()
 
   test 'config sprite', (t) ->

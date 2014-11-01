@@ -13,7 +13,6 @@ BUTTON_AUTHORITY = {
     y: my.margin
     height: my.button.size
     width: my.button.size
-    #click: (world, args) -> world.send world.get('value')
 }
 
 ROW_AUTHORITY = {
@@ -22,7 +21,6 @@ ROW_AUTHORITY = {
     y: (world, args) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
     width: (world) ->  world.up.get('width') - 2*my.margin
-    #click: (world, args) -> world.send world.get('value')
   }
 
 display_commands = (name, programs) ->
@@ -32,13 +30,12 @@ display_commands = (name, programs) ->
     {
       _LABEL: command, name: command
       click: ->
-        console.log "send #{command}"
         programs.call('add', {name: DEFAULT, command: command})
         programs.send 'inspect'
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
-# TODO: Use ICON authority for smaller command display
+# TODO: Add ICON authority for smaller command display
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
@@ -52,7 +49,6 @@ display_strategy = (strategy, programs) ->
   
 set_current = (world, args) ->
   current = world.get('current')
-  #console.log "inspect current", current, "args", args
   if args?
     current.put('selected', false) if current?
     current = args
@@ -110,10 +106,15 @@ exports.inspector = {
           fill: (world) -> world.get('current').get('fill')
         }
         {name: (world) -> world.get('current').label()}
+        {
+          path: (world) -> world.get('rect_path')
+          fill: (world) -> world.get('current').get('fill')
+          name: (world) -> world.get('current').get('fill')
+          name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
+        }
+        {name: (world) -> world.get('current').get('p').all().toString()}
         {name: (world) ->
-          c = world.get('current'); "#{c.get('i')},#{c.get('j')}"}
-        {name: (world) ->
-          c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
+          v = world.get('current').get('v').all(); "#{v[0]}x#{v[1]}"}
         {name: (world) -> "T: #{world.get('time')}"}
       ]
     }
