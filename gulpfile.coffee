@@ -50,11 +50,7 @@ gulp.task 'watch', ['sync'], ->
 # Watch when run
 
 gulp.task 'default', ['main', 'watch']
-  
 
 # Tag and upload new feature
 
-gulp.task 'ship', shell.task [
-  'gulp tag --minor'
-  'node aws/upload.js'
-]
+gulp.task 'upload', shell.task ['node aws/upload.js']
