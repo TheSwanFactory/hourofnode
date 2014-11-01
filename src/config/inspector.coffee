@@ -107,10 +107,15 @@ exports.inspector = {
           fill: (world) -> world.get('current').get('fill')
         }
         {name: (world) -> world.get('current').label()}
+        {
+          path: (world) -> world.get('rect_path')
+          fill: (world) -> world.get('current').get('fill')
+          name: (world) -> world.get('current').get('fill')
+          name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
+        }
+        {name: (world) -> world.get('current').get('p').all().toString()}
         {name: (world) ->
-          c = world.get('current'); "#{c.get('i')},#{c.get('j')}"}
-        {name: (world) ->
-          c = world.get('current'); "#{c.get('v_i')}x#{c.get('v_j')}"}
+          v = world.get('current').get('v').all(); "#{v[0]}x#{v[1]}"}
         {name: (world) -> "T: #{world.get('time')}"}
       ]
     }
