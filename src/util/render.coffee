@@ -1,10 +1,11 @@
 my = require '../my'
+exports.render = (root) ->
+  T = root.T()
+  render_children = (world) ->
+    world.map_children (child) ->
+        "#{child} "
 
-render_world = (world) ->
-  world.map_children (child) ->
-      "#{child} "
-      
-exports.render = (world) ->
-  T = world.T()
-  T.div {id: world}, world.bind() -> render_world(world)
+  render_world = (world) ->
+    T.div {id: world}, world.bind() -> render_children(world)  
   
+  render_world(root)
