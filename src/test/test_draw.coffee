@@ -1,5 +1,5 @@
 {god} = require('../god')
-{draw} = require('../draw')
+{draw} = require('../config/draw')
 
 exports.test_draw = (test, rx) ->
   solo = god(rx, {

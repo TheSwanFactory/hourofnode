@@ -1,4 +1,4 @@
-{draw} = require('../draw')
+{draw} = require('./draw')
 {controls} = require('./controls')
 {grid} = require('./grid')
 {inspector} = require('./inspector')
