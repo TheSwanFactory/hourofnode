@@ -1,3 +1,4 @@
+{render} = require('../util/render')
 {draw} = require('../util/draw')
 {controls} = require('./controls')
 {grid} = require('./grid')
@@ -16,7 +17,6 @@ exports.layout = {
       div {id: "controls"}
       div {id: "grid"}, draw world.find_child('grid')
       div {id: "inspector"}
-      
     ]
     
   _LABEL: "layout"
