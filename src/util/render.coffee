@@ -1,4 +1,4 @@
-my = require '../my'
+{my} = require '../my'
 exports.render = (root) ->
   T = root.T()
   get_style = (world) ->

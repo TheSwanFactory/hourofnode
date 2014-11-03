@@ -11,12 +11,9 @@ rx = require 'reactive-coffee'
 {test} = require('./test') if my.test
 
 world = god(rx, config)
-layout = world.find_child('layout')
-
-div = rx.rxt.tags.div
 main = ->
   $('body').append(
-    layout.call('render')
+    world.call('render')
   )
   
 # Instantiate our main view

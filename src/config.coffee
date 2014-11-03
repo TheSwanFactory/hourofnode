@@ -28,6 +28,7 @@ exports.config = {
     forward: {name: "^", do: "go", dir: 1}
     reverse: {name: "v", do: "go", dir: -1}
   }
+  render: (world, args) -> world.find_child('layout').call('render')
   _CHILDREN: [
     game
     layout
