@@ -6,5 +6,5 @@ render_world = (world) ->
       
 exports.render = (world) ->
   T = world.T()
-  T.div {id: world}, render_world(world)
+  T.div {id: world}, world.bind() -> render_world(world)
   
