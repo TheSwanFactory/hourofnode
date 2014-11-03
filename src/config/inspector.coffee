@@ -87,7 +87,6 @@ exports.inspector = {
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
-  path: (world, args) -> world.get('rect_path')
   fill: my.color.background
   stroke: "black"
   _AUTHORITY: ROW_AUTHORITY
@@ -107,7 +106,6 @@ exports.inspector = {
         }
         {name: (world) -> world.get('current').label()}
         {
-          path: (world) -> world.get('rect_path')
           fill: (world) -> world.get('current').get('fill')
           name: (world) -> world.get('current').get('fill')
           name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
