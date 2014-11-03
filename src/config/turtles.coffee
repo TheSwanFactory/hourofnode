@@ -59,19 +59,7 @@ exports.turtles = {
       fill: "#88ff88"
     }
     {
-      _LABEL: "yu"
-      p: [1,3]
-      v: [0,1]
-      fill: "#008800"
-    }
-    {
       _LABEL: "EP"
-      p: [3,1]
-      v: [0,-1]
-      fill: "#880000"
-    }
-    {
-      _LABEL: "AW"
       p: [3,3]
       v: [-1,0]
       fill: "#000088"
