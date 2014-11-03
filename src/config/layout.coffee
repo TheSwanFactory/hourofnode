@@ -14,9 +14,9 @@ exports.layout = {
     div = world.T().div
     div {id: "layout"}, [
       div {id: "controls"}
-      div {id: "grid"}
+      div {id: "grid"}, draw world.find_child('grid')
       div {id: "inspector"}
-      draw world.find_child('grid')
+      
     ]
     
   _LABEL: "layout"
