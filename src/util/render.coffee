@@ -26,6 +26,9 @@ exports.render = (root) ->
       class: world.labels(['render', 'world'])
       style: get_style(world)
     }
+    # TODO: De-Duplicate from Draw
+    clicker = world.get_raw 'click'
+    dict['click'] = -> clicker(world) if clicker? and !world.has_children()
     T.div dict, render_children(world) #world.bind() -> 
   
   render_world(root)
