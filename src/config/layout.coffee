@@ -14,6 +14,7 @@ exports.layout = {
   name_style: (world) -> 
     {x: world.get('height') / 2, y: world.get('width') / 2}
   render: (world) ->
+    return render(world)
     div = world.T().div
     right_column = world.get 'size'
     div {id: "layout"}, [

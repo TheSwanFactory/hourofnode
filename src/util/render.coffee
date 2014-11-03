@@ -1,4 +1,6 @@
 {my} = require '../my'
+{draw} = require './draw'
+
 exports.render = (root) ->
   T = root.T()
   get_style = (world) ->
@@ -10,8 +12,9 @@ exports.render = (root) ->
     }
   render_children = (world) ->
     world.map_children (child) ->
-        "#{child} "
-
+      return draw(child) if child.get('path')?
+      render_world(child)
+      
   render_world = (world) ->
     dict = {
       id: world
