@@ -14,15 +14,15 @@ exports.layout = {
   render: (world) ->
     div = world.T().div
     div {id: "layout"}, [
-      div {id: "controls"}
+      div {id: "controls"}, render world.find_child('controls')
       div {id: "grid"}, draw world.find_child('grid')
-      div {id: "inspector"}
+      div {id: "inspector"}, render world.find_child('inspector')
     ]
     
   _LABEL: "layout"
   _CHILDREN: [
-    #controls
+    controls
     grid
-    #inspector
+    inspector
   ]
 }
