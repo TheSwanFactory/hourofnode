@@ -16,7 +16,7 @@ exports.layout = {
       div {id: "controls"}
       div {id: "grid"}
       div {id: "inspector"}
-      draw world
+      draw world.find_child('grid')
     ]
     
   _LABEL: "layout"
