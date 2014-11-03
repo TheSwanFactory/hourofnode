@@ -8,6 +8,7 @@ exports.controls = {
   stroke: "black"
   path: (world, args) -> world.get('rect_path')
   _AUTHORITY: {
+    _KIND: "Control"
     fill: my.color.button
     x: (world, args) -> world.index*my.control.spacing + my.control.margin
     y: (world, args) -> my.control.margin
