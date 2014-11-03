@@ -17,7 +17,6 @@ div = rx.rxt.tags.div
 main = ->
   $('body').append(
     layout.call('render')
-    #render world.find_child('ui')
   )
   
 # Instantiate our main view
