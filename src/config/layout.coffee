@@ -12,10 +12,12 @@ exports.layout = {
     {x: world.get('height') / 2, y: world.get('width') / 2}
   render: (world) ->
     div = world.T().div
-    div {id: "controls"}
-    div {id: "grid"}
-    div {id: "inspector"}
-    draw world
+    div {id: "layout"}, [
+      div {id: "controls"}
+      div {id: "grid"}
+      div {id: "inspector"}
+      draw world
+    ]
     
   _LABEL: "layout"
   _CHILDREN: [
