@@ -4,7 +4,7 @@
 exports.render = (root) ->
   T = root.T()
   get_style = (world) ->
-    {
+    style = {
       border: "1px solid #{world.get('stroke')}"
       background: world.get 'fill'
       height: world.get 'height'
@@ -13,6 +13,8 @@ exports.render = (root) ->
       left: world.get 'x'
       top: world.get 'y'
     }
+    style['border'] = "3px solid goldenrod" if world.get('selected')
+    style
   render_children = (world) ->
     results = world.map_children (child) ->
       return draw(child) if child.get('path')?
