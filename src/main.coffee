@@ -8,18 +8,15 @@ rx = require 'reactive-coffee'
 {my} = require('./my')
 {god} = require('./god')
 {config} = require('./config')
-{draw} = require('./draw')
 {test} = require('./test') if my.test
 
 world = god(rx, config)
+layout = world.find_child('layout')
 
 div = rx.rxt.tags.div
 main = ->
   $('body').append(
-    div {id: "controls"}
-    div {id: "grid"}
-    div {id: "inspector"}
-    draw world.find_child('layout')
+    layout.call('render')
     #render world.find_child('ui')
   )
   
