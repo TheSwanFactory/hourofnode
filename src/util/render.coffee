@@ -9,18 +9,23 @@ exports.render = (root) ->
       background: world.get 'fill'
       height: world.get 'height'
       width: world.get 'width'
+      position: 'absolute'
+      left: world.get 'x'
+      top: world.get 'y'
     }
   render_children = (world) ->
-    world.map_children (child) ->
+    results = world.map_children (child) ->
       return draw(child) if child.get('path')?
       render_world(child)
-      
+    name = world.get('name')
+    results.push T.span(name) if name?
+    results
   render_world = (world) ->
     dict = {
       id: world
       class: world.labels(['render', 'world'])
       style: get_style(world)
     }
-    T.div dict, world.bind() -> render_children(world)  
+    T.div dict, render_children(world) #world.bind() -> 
   
   render_world(root)
