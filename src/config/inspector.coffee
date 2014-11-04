@@ -5,7 +5,7 @@
 COMMANDS = 'commands'
 EXECUTING = 'executing'
 STRATEGY = 'strategy'
-DEFAULT = 'buffer'
+TARGET = 'buffer'
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
@@ -24,6 +24,7 @@ ROW_AUTHORITY = {
   }
 
 # TODO: Add ICON authority for smaller command display
+
 PROGRAM_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
 PROGRAM_AUTHORITY['selected'] = (world) ->
   return false unless world.up.get('selected')
@@ -35,11 +36,12 @@ display_commands = (name, programs) ->
     {
       _LABEL: command, name: command
       click: (world) ->
-        programs.call('add', {name: DEFAULT, command: command})
+        programs.call('add', {name: TARGET, command: command})
         world.get('current').call 'perform', signals[command]
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
-  
+
+ 
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
