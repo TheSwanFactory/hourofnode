@@ -81,7 +81,6 @@ exports.inspector = {
     
     program = programs.get('program')
     my.assert program, "no current program"
-    world.replace_child display_program(EXECUTING, program)
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
@@ -122,7 +121,6 @@ exports.inspector = {
       ]
     }
     COMMANDS
-    EXECUTING
     {_LABEL: STRATEGY}
   ]
 
