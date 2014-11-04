@@ -13,7 +13,7 @@ rx = require 'reactive-coffee'
 world = god(rx, config)
 main = ->
   $('body').append(
-    world.call('render')
+    world.send('render')
   )
   
 # Instantiate our main view

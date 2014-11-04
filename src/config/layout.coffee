@@ -6,6 +6,7 @@
 {inspector} = require('./inspector')
   
 exports.layout = {
+  _EXPORTS: ["render"]
   rect_path: (world, args) ->
     width = world.get('width')
     height = world.get('height')
