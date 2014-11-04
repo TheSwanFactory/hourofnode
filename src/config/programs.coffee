@@ -1,17 +1,15 @@
 assert = require 'assert'
 
 exports.programs = {
-  _EXPORTS: ['reset']
+  _EXPORTS: ['reset', 'command']
 
-  add: (world, args) ->
+  reset: (world, args) -> world.call('load', args)
+  command: (world, args) ->
     {name, command} = args
     child = world.find_child(name)
     assert child, "reload: #{name} missing"
     assert program = child.get('value'), "reload: program value missing"
     program.push command
-    console.log "programs.add", command, program.all()
-
-  reset: (world, args) -> world.call('load', args)
 
   load: (world, args) ->
     args = {name: 'default'} unless args?

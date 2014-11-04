@@ -36,12 +36,12 @@ display_commands = (name, programs) ->
     {
       _LABEL: command, name: command
       click: (world) ->
-        programs.call('add', {name: TARGET, command: command})
+        world.send 'command', {name: TARGET, command: command}
         world.get('current').call 'perform', signals[command]
+        # TODO: Make this a command event on sprites
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
 
- 
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
@@ -65,7 +65,7 @@ set_current = (world, current) ->
   
 exports.inspector = {
   _LABEL: "inspector"
-  _EXPORTS: ['inspect', 'step']
+  _EXPORTS: ['inspect', 'step', 'command']
   time: 0
   step: (world, args) -> world.update('time', 1)
   inspect: (world, args) ->
@@ -73,6 +73,13 @@ exports.inspector = {
     programs = current.get('programs')
     world.replace_child display_commands(COMMANDS, programs)
     display_strategy world.find_child(STRATEGY), programs
+  command: (world, args) ->
+    {name, command} = args  
+    program = world.find_child(STRATEGY).find_child(name)
+    program.add_child command
+    console.log 'append_program', program, command, world.find_child(STRATEGY)
+    # TODO: Force Buffer to Update Visually
+    world.send 'render'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
