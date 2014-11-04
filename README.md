@@ -33,6 +33,14 @@ Please join us! We can use all the help we can get. :-)
     $ open http://howtonode.org/how-to-install-nodejs # Install Node
     $ npm install # Install all required node packages, from package.json
     $ gulp # builds, watches, and launches browser
+
+### Design Notes
+
+The design of the Hour of Node is driven by two key principles:
+  * Express code semantics in documents rather than language
+  * Communicate between modules using events rather than direct invocation
   
+Note that while we use node and browserify to build our application, we are not currently using node streams for our in-app event architecture.  Instead, we use a mix of [Reactive Coffee](http://yang.github.io/reactive-coffee/) and custom event handlers.
 
 
+  
