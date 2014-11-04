@@ -23,9 +23,6 @@ ROW_AUTHORITY = {
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
 
-is_selected = (world) -> 
-  world.index == world.get('current').get('programs').get('counter')
-
 display_commands = (name, programs) ->
   signals = programs.get('signals')
   my.assert signals, "no current signals"
@@ -42,7 +39,14 @@ display_commands = (name, programs) ->
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
-  {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
+  {
+    _LABEL: name,
+    selected: (world) -> 
+      counter = world.get('current').get('programs').get('counter')
+      counter + 1 == world.index
+    _AUTHORITY: BUTTON_AUTHORITY,
+    _CHILDREN: children
+  }
 
 display_strategy = (strategy, programs) ->
   strategy.reset_children()
@@ -67,9 +71,7 @@ exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
   time: 0
-  step: (world, args) ->
-    world.update('time', 1)
-    world.call('inspect')
+  step: (world, args) -> world.update('time', 1)
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
