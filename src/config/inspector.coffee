@@ -112,7 +112,6 @@ exports.inspector = {
           name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
         }
         {
-          update_on: 'inspected'
           name: (world) -> world.get('current').get('p').all().toString()
         }
         {name: (world) ->
