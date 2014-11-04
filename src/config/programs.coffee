@@ -48,6 +48,7 @@ exports.programs = {
     signal
     
   _CHILDREN: [
+    {_LABEL: 'buffer', value: []}
     {_LABEL: 'default', value: ["forward", "right"]}
     {_LABEL: 'collision', value: ["reverse", "left", "left"]}
   ]
