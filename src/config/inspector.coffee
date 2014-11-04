@@ -58,13 +58,9 @@ display_strategy = (strategy, programs) ->
     strategy.add_child display_program(child.label(), child.get('value'))
   strategy.put 'height', my.row.spacing*programs._child_count()
   
-set_current = (world, args) ->
-  current = world.get('current')
-  if args?
-    current = args
-    world.put('current', current) 
-  my.assert current, "No current turtle"
-  current
+set_current = (world, current) ->
+  world.put('current', current) if current?
+  world.get('current')
   
 exports.inspector = {
   _LABEL: "inspector"
