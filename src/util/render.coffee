@@ -37,7 +37,7 @@ exports.render = (root) ->
       return draw(child) if child.get('path')?
       render_world(child)
     name = world.get('name')
-    results.push T.span({class: 'name'}, name) if name?
+    results.push T.p({class: 'name'}, name) if name?
     results
     
   render_world = (world) ->
