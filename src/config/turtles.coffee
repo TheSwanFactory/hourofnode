@@ -44,7 +44,6 @@ exports.turtles = {
       store.call('load')
       world.put 'programs', store  
       world.send 'create', world
-      world.send 'inspect', world
     next_signal: (world, args) ->
       local = world.get('programs')
       assert signal = local.call('next'), "No next signal"

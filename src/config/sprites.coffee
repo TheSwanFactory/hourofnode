@@ -46,5 +46,5 @@ exports.sprites = {
     for key in ['p', 'v']
       world.put key, undefined
   click: (world, args) ->
-    world.send('inspect', world)
+    world.send 'inspect', world
 }

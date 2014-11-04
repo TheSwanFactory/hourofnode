@@ -23,6 +23,9 @@ ROW_AUTHORITY = {
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
 
+is_selected = (world) -> 
+  world.index == world.get('current').get('programs').get('counter')
+
 display_commands = (name, programs) ->
   signals = programs.get('signals')
   my.assert signals, "no current signals"
@@ -31,7 +34,7 @@ display_commands = (name, programs) ->
       _LABEL: command, name: command
       click: ->
         programs.call('add', {name: DEFAULT, command: command})
-        programs.send 'inspect'
+        #programs.send 'inspect'
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
@@ -76,12 +79,10 @@ exports.inspector = {
     program = programs.get('program')
     my.assert program, "no current program"
     world.replace_child display_program(EXECUTING, program)
-    set_selection world.find_child(EXECUTING), programs.get('counter')
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
     display_strategy strategy, programs
-    world.send 'inspected'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
@@ -93,8 +94,6 @@ exports.inspector = {
     {
       _LABEL: 'info'
       _AUTHORITY: BUTTON_AUTHORITY
-      selected: (world) -> 
-        world.index == world.get('current').get('programs').get('counter') if current?
       _CHILDREN: [
         { # Show turtle icon
           path: (world) ->

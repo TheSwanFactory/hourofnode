@@ -28,8 +28,8 @@ exports.grid = {
       created: (world, args) ->
         child = args
         my.assert world.is_world child
-        #index = child.p_index
-        world.add_child args
+        world.add_child child 
+        world.send 'inspect', child
     }
   ]
 }
