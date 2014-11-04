@@ -36,8 +36,10 @@ exports.render = (root) ->
     results = world.map_children (child) ->
       return draw(child) if child.get('path')?
       render_world(child)
-    name = world.get('name')
-    results.push T.p({class: 'name'}, name) if name?
+    if world.get_local('name')?
+      results.push T.p {
+        class: ['name', world.get('selected')]
+      }, world.bind() -> world.get('name')
     results
     
   render_world = (world) ->
@@ -47,7 +49,7 @@ exports.render = (root) ->
       style: get_style(world)
     }
     add_behavior(attrs, world)
-    children = update_as_needed(world, render_children)
+    children = render_children(world)
     T.div attrs, children 
   
   T.div {id: 'root'}, render_world(root)
