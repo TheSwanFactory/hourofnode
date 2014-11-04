@@ -34,9 +34,9 @@ display_commands = (name, programs) ->
   children = Object.keys(signals).map (command) -> 
     {
       _LABEL: command, name: command
-      click: ->
+      click: (world) ->
         programs.call('add', {name: DEFAULT, command: command})
-        #programs.send 'inspect'
+        world.get('current').call 'perform', signals[command]
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
@@ -47,8 +47,7 @@ display_program = (name, children) ->
   {
     _LABEL: name,
     selected: (world) -> 
-      programs = world.get('current').get('programs')
-      name == programs.get('current')
+      name == world.get('current').get('programs').get('current')
     _AUTHORITY: PROGRAM_AUTHORITY
     _CHILDREN: children
   }

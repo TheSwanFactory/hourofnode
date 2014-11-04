@@ -20,7 +20,7 @@ exports.sprites = {
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
-    assert dir, "expects dir"
+    assert dir?, "expects dir"
     p = world.get('p')
     v = world.get('v')
     next_p = [0,1].map (i) ->
