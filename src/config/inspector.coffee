@@ -65,6 +65,7 @@ set_selection = (world, counter) ->
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
+  will_mutate: 'inspected'
   time: 0
   step: (world, args) ->
     world.update('time', 1)
@@ -82,7 +83,8 @@ exports.inspector = {
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
-    display_strategy strategy, programs 
+    display_strategy strategy, programs
+    world.send 'inspected'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')

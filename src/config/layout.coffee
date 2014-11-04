@@ -12,7 +12,8 @@ exports.layout = {
     "M0,0 h#{width} v#{height} h-#{width} v-#{height}"
   name_style: (world) -> 
     {x: world.get('height') / 2, y: world.get('width') / 2}
-  render: (world) -> render(world)
+  render: (world) ->
+    render(world)
   _LABEL: "layout"
   _CHILDREN: [
     controls

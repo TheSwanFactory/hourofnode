@@ -31,6 +31,14 @@ exports.render = (root) ->
     # TODO: De-Duplicate from Draw
     clicker = world.get_raw 'click'
     dict['click'] = -> clicker(world) if clicker? and !world.has_children()
-    T.div dict, render_children(world) #world.bind() -> 
+    children = render_children(world)
+    mutation_signal = world.get_local('will_mutate')
+    if mutation_signal?
+      console.log "render_children: will_mutate #{world}"
+      results_cell = world.rx().cell children
+      world.handle mutation_signal, ->
+        results_cell.set render_children(world)
+      
+    T.div dict, children 
   
-  render_world(root)
+  T.div {id: 'root'}, render_world(root)
