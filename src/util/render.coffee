@@ -19,6 +19,16 @@ add_behavior = (attrs, world) ->
   clicker = world.get_raw 'click'
   attrs['click'] = -> clicker(world) if clicker? and !world.has_children()
   
+update_as_needed = (world, callee) ->
+  return callee(world)    
+  mutation_signal = world.get_local('update_on')
+  if mutation_signal?
+    console.log "render_children: update_on #{world}"
+    results_cell = world.rx().cell children
+    # TODO: make this work
+    # world.handle mutation_signal, ->  results_cell.set render_children(world)
+
+  
 exports.render = (root) ->
   T = root.T()
   
@@ -37,13 +47,7 @@ exports.render = (root) ->
       style: get_style(world)
     }
     add_behavior(attrs, world)
-    children = render_children(world)
-    mutation_signal = world.get_local('update_on')
-    if mutation_signal?
-      console.log "render_children: update_on #{world}"
-      results_cell = world.rx().cell children
-      # TODO: make this work
-      # world.handle mutation_signal, ->  results_cell.set render_children(world)
+    children = update_as_needed(world, render_children)
       
     T.div attrs, children 
   
