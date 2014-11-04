@@ -82,12 +82,12 @@ exports.inspector = {
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
-    display_strategy strategy, programs 
+    display_strategy strategy, programs
+    world.send 'inspected'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
-  path: (world, args) -> world.get('rect_path')
   fill: my.color.background
   stroke: "black"
   _AUTHORITY: ROW_AUTHORITY
@@ -107,12 +107,14 @@ exports.inspector = {
         }
         {name: (world) -> world.get('current').label()}
         {
-          path: (world) -> world.get('rect_path')
           fill: (world) -> world.get('current').get('fill')
           name: (world) -> world.get('current').get('fill')
           name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
         }
-        {name: (world) -> world.get('current').get('p').all().toString()}
+        {
+          update_on: 'inspected'
+          name: (world) -> world.get('current').get('p').all().toString()
+        }
         {name: (world) ->
           v = world.get('current').get('v').all(); "#{v[0]}x#{v[1]}"}
         {name: (world) -> "T: #{world.get('time')}"}

@@ -1,6 +1,7 @@
 {my} = require('../my')
 exports.grid = {
   _LABEL: "grid"
+  path: ""
   _CHILDREN: [
     {
       _LABEL: "background"
