@@ -4,7 +4,7 @@
 
 get_style = (world) ->
   style = {
-    border: "1px solid #{world.get('stroke')}"
+    border: world.get 'border'
     background: world.get 'fill'
     height: world.get 'height'
     width: world.get 'width'
