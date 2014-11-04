@@ -23,6 +23,13 @@ ROW_AUTHORITY = {
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
 
+PROGRAM_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
+PROGRAM_AUTHORITY['selected'] = (world) ->
+  name = world.up.label()
+  programs = world.get('current').get('programs')
+  return false unless world.up.get('selected')
+  world.index == programs.get('counter') + 1 
+
 display_commands = (name, programs) ->
   signals = programs.get('signals')
   my.assert signals, "no current signals"
@@ -43,9 +50,8 @@ display_program = (name, children) ->
     _LABEL: name,
     selected: (world) -> 
       programs = world.get('current').get('programs')
-      return false unless name == programs.get('current') or name == EXECUTING
-      world.index == programs.get('counter') + 1 
-    _AUTHORITY: BUTTON_AUTHORITY,
+      name == programs.get('current')
+    _AUTHORITY: PROGRAM_AUTHORITY
     _CHILDREN: children
   }
 
@@ -81,6 +87,7 @@ exports.inspector = {
     
     program = programs.get('program')
     my.assert program, "no current program"
+
         
     strategy = world.find_child(STRATEGY)
     strategy.authority = world.make_world ROW_AUTHORITY
