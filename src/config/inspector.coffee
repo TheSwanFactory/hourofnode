@@ -42,8 +42,9 @@ display_program = (name, children) ->
   {
     _LABEL: name,
     selected: (world) -> 
-      counter = world.get('current').get('programs').get('counter')
-      counter + 1 == world.index
+      programs = world.get('current').get('programs')
+      return false unless name == programs.get('current') or name == EXECUTING
+      world.index == programs.get('counter') + 1 
     _AUTHORITY: BUTTON_AUTHORITY,
     _CHILDREN: children
   }

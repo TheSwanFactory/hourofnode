@@ -24,6 +24,7 @@ exports.programs = {
     assert child, "reload: #{name} missing"
     assert program = child.get('value'), "reload: program value missing"
     world.put('program', program)
+    world.put('current', name)
     world.put('counter', 0)
 
   reload: (world, args) ->
