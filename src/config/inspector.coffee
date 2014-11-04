@@ -25,10 +25,8 @@ ROW_AUTHORITY = {
 
 PROGRAM_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
 PROGRAM_AUTHORITY['selected'] = (world) ->
-  name = world.up.label()
-  programs = world.get('current').get('programs')
   return false unless world.up.get('selected')
-  world.index == programs.get('counter') + 1 
+  world.index == world.get('current').get('programs').get('counter') + 1 
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
