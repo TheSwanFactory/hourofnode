@@ -65,11 +65,6 @@ set_current = (world, args) ->
     world.put('current', current) 
   my.assert current, "No current turtle"
   current
-
-set_selection = (world, counter) ->
-  counter += 1
-  world.map_children (child) ->
-    child.put('selected', true) if child.index == counter
   
 exports.inspector = {
   _LABEL: "inspector"
@@ -79,12 +74,7 @@ exports.inspector = {
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
-    
     world.replace_child display_commands(COMMANDS, programs)
-    
-    program = programs.get('program')
-    my.assert program, "no current program"
-
     display_strategy world.find_child(STRATEGY), programs
     
   i: (world) -> world.get('split')
