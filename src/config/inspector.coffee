@@ -65,7 +65,7 @@ set_selection = (world, counter) ->
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
-  will_mutate: 'inspected'
+  update_on: 'inspected'
   time: 0
   step: (world, args) ->
     world.update('time', 1)
