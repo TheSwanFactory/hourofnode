@@ -23,6 +23,7 @@ ROW_AUTHORITY = {
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
 
+# TODO: Add ICON authority for smaller command display
 PROGRAM_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
 PROGRAM_AUTHORITY['selected'] = (world) ->
   return false unless world.up.get('selected')
@@ -30,7 +31,6 @@ PROGRAM_AUTHORITY['selected'] = (world) ->
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
-  my.assert signals, "no current signals"
   children = Object.keys(signals).map (command) -> 
     {
       _LABEL: command, name: command
@@ -40,7 +40,6 @@ display_commands = (name, programs) ->
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
   
-# TODO: Add ICON authority for smaller command display
 display_program = (name, children) ->
   children = children.all() unless _.isArray(children)
   children.unshift {name: name, fill: "white", stroke: "white"}
