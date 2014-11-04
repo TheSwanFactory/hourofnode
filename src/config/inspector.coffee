@@ -50,9 +50,7 @@ display_strategy = (strategy, programs) ->
 set_current = (world, args) ->
   current = world.get('current')
   if args?
-    current.put('selected', false) if current?
     current = args
-    current.put('selected', true)
     world.put('current', current) 
   my.assert current, "No current turtle"
   current
@@ -95,6 +93,8 @@ exports.inspector = {
     {
       _LABEL: 'info'
       _AUTHORITY: BUTTON_AUTHORITY
+      selected: (world) -> 
+        world.index == world.get('current').get('programs').get('counter') if current?
       _CHILDREN: [
         { # Show turtle icon
           path: (world) ->
