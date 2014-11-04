@@ -85,10 +85,7 @@ exports.inspector = {
     program = programs.get('program')
     my.assert program, "no current program"
 
-        
-    strategy = world.find_child(STRATEGY)
-    strategy.authority = world.make_world ROW_AUTHORITY
-    display_strategy strategy, programs
+    display_strategy world.find_child(STRATEGY), programs
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
@@ -125,7 +122,10 @@ exports.inspector = {
       ]
     }
     COMMANDS
-    {_LABEL: STRATEGY}
+    {
+      _LABEL: STRATEGY
+      _AUTHORITY: ROW_AUTHORITY
+    }
   ]
 
 }
