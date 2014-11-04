@@ -39,13 +39,8 @@ exports.sprites = {
     world.put 'v', [next_v_i, next_v_j]
     
   perform: (world, signal) -> world.call(signal['do'], signal)
-    
-  step: (world, args) ->
-    #console.log "+step", world.get('p').all(), world.get('v').all(), 
-    world.call 'perform', world.get('next_signal')
+  step: (world, args) -> world.call 'perform', world.get('next_signal')
   reset: (world, args) ->
-    for key in ['p', 'v']
-      world.put key, undefined
-  click: (world, args) ->
-    world.send 'inspect', world
+    ['p', 'v'].map (key) -> world.put key, undefined
+  click: (world, args) -> world.send 'inspect', world
 }
