@@ -22,11 +22,11 @@ exports.config = {
   transform: (world, args) -> "#{world.get('translate')} #{world.get('rotate')}"
   name_style: {x: -5, y: 5, fill: "white", stroke: "white"}
   signals: {
+    forward: {name: "^", do: "go", dir: 1}
+    reverse: {name: "v", do: "go", dir: -1}
     left:    {name: "<-", do: "turn", dir: 1}
     right:   {name: "->", do: "turn", dir: -1}
     idle:    {name: "v", do: "go", dir: 0}
-    forward: {name: "^", do: "go", dir: 1}
-    reverse: {name: "v", do: "go", dir: -1}
   }
   _CHILDREN: [
     game
