@@ -65,7 +65,6 @@ set_selection = (world, counter) ->
 exports.inspector = {
   _LABEL: "inspector"
   _EXPORTS: ['inspect', 'step']
-  update_on: 'inspected'
   time: 0
   step: (world, args) ->
     world.update('time', 1)
@@ -112,7 +111,10 @@ exports.inspector = {
           name: (world) -> world.get('current').get('fill')
           name_style: {x: 30, y: 30, fill: "white", stroke: "white"}
         }
-        {name: (world) -> world.get('current').get('p').all().toString()}
+        {
+          update_on: 'inspected'
+          name: (world) -> world.get('current').get('p').all().toString()
+        }
         {name: (world) ->
           v = world.get('current').get('v').all(); "#{v[0]}x#{v[1]}"}
         {name: (world) -> "T: #{world.get('time')}"}

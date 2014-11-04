@@ -20,7 +20,9 @@ add_behavior = (attrs, world) ->
   attrs['click'] = -> clicker(world) if clicker? and !world.has_children()
   
 update_as_needed = (world, callee) ->
-  callback = -> callee(world)
+  callback = ->
+    console.log 'update_as_needed', world
+    callee(world)
   must_update = world.get_local('update_on')
   return callback() unless must_update?
   console.log "update_as_needed: update_on #{must_update}"

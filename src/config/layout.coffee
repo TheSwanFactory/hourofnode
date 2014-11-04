@@ -14,6 +14,7 @@ exports.layout = {
   name_style: (world) -> 
     {x: world.get('height') / 2, y: world.get('width') / 2}
   render: (world) ->
+#    world.rx().transaction =>
     render(world)
   _LABEL: "layout"
   _CHILDREN: [
