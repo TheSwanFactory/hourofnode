@@ -5,7 +5,7 @@
 COMMANDS = 'commands'
 EXECUTING = 'executing'
 STRATEGY = 'strategy'
-DEFAULT = 'default'
+DEFAULT = 'buffer'
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
