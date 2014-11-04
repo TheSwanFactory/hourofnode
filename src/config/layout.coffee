@@ -14,7 +14,11 @@ exports.layout = {
   name_style: (world) -> 
     {x: world.get('height') / 2, y: world.get('width') / 2}
   render: (world) -> render(world)
-  border: (world) -> "1px solid #{world.get('stroke')}"
+  border: (world) -> 
+    if world.get('selected')
+      "3px solid goldenrod" 
+    else
+      "1px solid #{world.get('stroke')}"
   _LABEL: "layout"
   _CHILDREN: [
     controls

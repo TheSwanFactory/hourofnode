@@ -12,8 +12,6 @@ get_style = (world) ->
     left: world.get 'x'
     top: world.get 'y'
   }
-  style['border'] = "3px solid goldenrod" if world.get('selected')
-  style
 
 add_behavior = (attrs, world) ->
   clicker = world.get_raw 'click'
