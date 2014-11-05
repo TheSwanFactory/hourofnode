@@ -37,7 +37,6 @@ exports.render = (root) ->
       style: world.bind() -> get_style(world)
     }
     add_behavior(attrs, world)
-    children = render_children(world)
-    T.div attrs, children 
+    T.div attrs, render_children(world) 
   
   T.div {id: 'root'}, render_world(root)

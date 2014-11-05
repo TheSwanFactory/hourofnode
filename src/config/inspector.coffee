@@ -36,8 +36,8 @@ display_commands = (name, programs) ->
       _LABEL: command, name: command
       click: (world) ->
         world.send 'command', {name: TARGET, command: command}
+        # TODO: Make this call a command event on sprites
         world.get('current').call 'perform', signals[command]
-        # TODO: Make this a command event on sprites
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
 
@@ -90,7 +90,8 @@ exports.inspector = {
     program = world.find_child(STRATEGY).find_child().find_child(name)
     my.assert program, "No program for #{name}"
     program.add_child command
-    #world.send 'render'
+    console.log "command #{name} -> ", program._child_array()
+    world.send 'render'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
