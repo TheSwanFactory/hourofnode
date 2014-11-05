@@ -5,7 +5,7 @@
 COMMANDS = 'commands'
 EXECUTING = 'executing'
 STRATEGY = 'strategy'
-TARGET = 'buffer'
+TARGET = 'buffer:'
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
@@ -87,9 +87,10 @@ exports.inspector = {
     
   command: (world, args) ->
     {name, command} = args  
-    program = world.find_child(STRATEGY).find_child(name)
+    program = world.find_child(STRATEGY).find_child().find_child(name)
+    console.log 'command', name, command, world.find_child(STRATEGY), program
+    my.assert program, "No program for #{name}"
     program.add_child command
-    console.log 'append_program', program, command, world.find_child(STRATEGY)
     # TODO: Force Buffer to Update Visually
     world.send 'render'
     
