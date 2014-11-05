@@ -59,6 +59,8 @@ display_strategy = (strategy, programs) ->
   return if programs.get_local('height')
   programs.put 'height', (world) ->
     my.row.spacing * world._child_count()
+  programs.put 'i', 0
+  programs.put 'j', 0
 
   render_row = programs.make_world ROW_AUTHORITY
   render_command = programs.make_world COMMAND_AUTHORITY
