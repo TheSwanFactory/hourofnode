@@ -20,28 +20,34 @@ ROW_AUTHORITY = {
     x: my.margin
     y: (world) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
-    width: (world) ->  world.up.get('width') - 2*my.margin
+    width: (world) -> world.up.get('width') - 2*my.margin
   }
 
 COMMAND_SIZE = my.button.size * 0.8
 COMMAND_SPACE = COMMAND_SIZE + my.margin / 2
+COMMAND_BORDER = '1px dotted grey'
+COMMAND_SELECTED = '3px solid goldenrod'
 COMMAND_AUTHORITY = {
   height: COMMAND_SIZE
   width: (world) ->  world.get('height')
-  fill: my.color.command
-  stroke: 'red'
-  
   x:(world) -> world.index * COMMAND_SPACE + my.margin
-  selected: (world) ->
-    return false unless world.up.get('selected')
-    world.index == world.get('current').get('programs').get('counter') + 1 
+  fill: my.color.command
+  border: (world) ->
+    program = world.up
+    label = program.label()
+    programs = program.up
+    current = programs.get('current')
+    counter = programs.get('counter')
+    console.log "COMMAND_BORDER #{program}, #{programs}", label, current
+    console.log "COMMAND_SELECTED index counter ", world.index, counter
+    return COMMAND_SELECTED if label == current and world.index == counter  
+    COMMAND_BORDER 
 }
 
 PROGRAM_SPACE = COMMAND_SPACE + my.margin
 PROGRAM_AUTHORITY = $.extend {}, ROW_AUTHORITY
 PROGRAM_AUTHORITY['y'] = (world) -> world.index * PROGRAM_SPACE + my.margin
-
-
+# TODO: implement selected
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
@@ -60,15 +66,15 @@ display_strategy = (strategy, programs) ->
   strategy.add_child programs
   strategy.put 'height', (world) -> programs.get 'height'
   return if programs.get_local('height')
-  programs.put 'height', (world) ->
-     PROGRAM_SPACE * world._child_count() + 2*my.margin
   programs.put 'i', 0
   programs.put 'j', 0
+  programs.put 'height', (world) ->
+     PROGRAM_SPACE * world._child_count() + 2*my.margin
 
   render_row = programs.make_world PROGRAM_AUTHORITY
   render_command = programs.make_world COMMAND_AUTHORITY
   programs.map_children (program) ->
-    program.put '_AUTHORITY', render_row
+    program.put '_AUTHORITY', render_row # TODO: Fix width
     program.authority = render_command
     program.map_children (command) ->
      command.put '_AUTHORITY', render_command 
@@ -95,7 +101,6 @@ exports.inspector = {
     program = world.find_child(STRATEGY).find_child().find_child(name)
     my.assert program, "No program for #{name}"
     program.add_child command
-    console.log "command #{name} -> ", program._child_array()
 
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
