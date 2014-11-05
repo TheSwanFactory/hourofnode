@@ -3,6 +3,8 @@ assert = require 'assert'
 DEFAULT = 'default:'
 
 exports.programs = {
+  _LABEL: 'programs'
+  _KIND: 'program'
   _EXPORTS: ['reset']
   path: (world) -> undefined
   reset: (world, args) -> world.call('load', args)

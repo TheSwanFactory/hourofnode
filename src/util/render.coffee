@@ -5,7 +5,7 @@
 get_style = (world) ->
   style = {
     border: world.get 'border'
-    background: world.get('fill')
+    background: world.get 'fill'
     height: world.get 'height'
     width: world.get 'width'
     position: 'absolute'
@@ -31,9 +31,10 @@ exports.render = (root) ->
     results
     
   render_world = (world) ->
+    labels = world.labels(['render', 'world'])
     attrs = {
-      id: world
-      class: world.labels(['render', 'world'])
+      id: "#{labels.length}_#{world}"
+      class: labels 
       style: world.bind() -> get_style(world)
     }
     add_behavior(attrs, world)
