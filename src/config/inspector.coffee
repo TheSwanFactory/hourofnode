@@ -59,12 +59,10 @@ display_strategy = (strategy, programs) ->
   strategy.put 'height', (world) -> programs.get 'height'
   return if programs.get_local('height')
   programs.put 'height', (world) ->
-    console.log "calculate height #{world}", world
     my.row.spacing * world._child_count()
-  console.log "display_strategy programs", programs.doc.x
-  return
+  authority = programs.make_world PROGRAM_AUTHORITY
   programs.map_children (program) ->
-    program.put '_AUTHORITY', PROGRAM_AUTHORITY
+    program.put '_AUTHORITY', authority
   
 set_current = (world, current) ->
   world.put('current', current) if current?
