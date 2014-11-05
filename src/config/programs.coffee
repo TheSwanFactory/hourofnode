@@ -7,7 +7,7 @@ exports.programs = {
   _KIND: 'program'
   _EXPORTS: ['reset']
   path: (world) -> undefined
-  reset: (world, args) -> world.call('load', args)
+  reset: (world, args) -> world.call('load', {name: 'buffer:'})
   load: (world, args) ->
     args = {name: DEFAULT} unless args?
     {name} = args
