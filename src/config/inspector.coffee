@@ -25,12 +25,16 @@ ROW_AUTHORITY = {
 
 COMMAND_SIZE = my.button.size * 0.8
 COMMAND_SPACE = COMMAND_SIZE + my.margin / 2
-COMMAND_AUTHORITY = $.extend {}, BUTTON_AUTHORITY
-COMMAND_AUTHORITY['height'] = COMMAND_SIZE 
-COMMAND_AUTHORITY['x'] = (world) -> world.index * COMMAND_SPACE + my.margin
-COMMAND_AUTHORITY['selected'] = (world) ->
+COMMAND_AUTHORITY = {
+  height: COMMAND_SIZE
+  width: (world) ->  world.get('height')
+  fill: my.color.button
+  
+  x:(world) -> world.index * COMMAND_SPACE + my.margin
+  selected: (world) ->
     return false unless world.up.get('selected')
     world.index == world.get('current').get('programs').get('counter') + 1 
+}
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
