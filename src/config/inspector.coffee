@@ -9,10 +9,10 @@ TARGET = 'buffer:'
 
 BUTTON_AUTHORITY = {
     fill: my.color.button
-    x: (world, args) -> world.index * my.button.spacing + my.margin
+    x: (world) -> world.index * my.button.spacing + my.margin
     y: my.margin
     height: my.button.size
-    width: my.button.size
+    width: (world) ->  world.get('height')
 }
 
 ROW_AUTHORITY = {
@@ -23,12 +23,14 @@ ROW_AUTHORITY = {
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
 
-# TODO: Add ICON authority for smaller command display
-COMMAND_AUTHORITY = $.extend {
-  selected: (world) ->
+COMMAND_SIZE = my.button.size * 0.8
+COMMAND_SPACE = COMMAND_SIZE + my.margin / 2
+COMMAND_AUTHORITY = $.extend {}, BUTTON_AUTHORITY
+COMMAND_AUTHORITY['height'] = COMMAND_SIZE 
+COMMAND_AUTHORITY['x'] = (world) -> world.index * COMMAND_SPACE + my.margin
+COMMAND_AUTHORITY['selected'] = (world) ->
     return false unless world.up.get('selected')
     world.index == world.get('current').get('programs').get('counter') + 1 
-}, BUTTON_AUTHORITY # shallow copy
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
