@@ -25,7 +25,7 @@ ROW_AUTHORITY = {
 
 COMMAND_SIZE = my.button.size * 0.8
 COMMAND_SPACE = COMMAND_SIZE + my.margin
-COMMAND_BORDER = '2px dotted grey'
+COMMAND_BORDER = "2px solid #{my.color.row}"
 COMMAND_SELECTED = '2px solid goldenrod'
 COMMAND_AUTHORITY = {
   height: COMMAND_SIZE
@@ -77,7 +77,10 @@ display_strategy = (strategy, programs) ->
     program.put '_AUTHORITY', render_row # TODO: Fix width
     program.authority = render_command
     program.map_children (command) ->
-     command.put '_AUTHORITY', render_command 
+     command.put '_AUTHORITY', render_command
+     if command.label() == program.label()
+       command.put 'fill', my.color.row
+       command.put 'border', ""
   
 set_current = (world, current) ->
   world.put('current', current) if current?
