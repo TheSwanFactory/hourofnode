@@ -135,6 +135,7 @@ exports.inspector = {
     {
       _LABEL: STRATEGY
       _AUTHORITY: ROW_AUTHORITY
+      width: ROW_AUTHORITY['width']
     }
   ]
 
