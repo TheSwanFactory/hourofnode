@@ -32,26 +32,18 @@ exports.test_config = (test, rx) ->
     t.ok world.get('device'), "device"
     t.end()
 
-  test 'config game', (t) ->
-    t.ok game = world.find_path('.game'), "Got game"
-    t.equal world.handlers_for('run').length, 1, "1 run handler"
-    t.equal world.handlers_for('stop').length, 1, "1 stop handler"
-    t.equal game.get('speed'), 0, 'Speed 0'
-    result = world.send('run')
-    t.equal result.length, 1, '1 handler'
-    t.equal game.get('speed'), 1, 'Speed 1'
-    result = world.send('stop')
+  test 'config program', (t) ->
+    t.ok store = current.get('programs'), "program store"
+    t.ok signal_1 = store.call('load'), "load program"
+    t.ok signal_2 = store.call('reload'), "reload program "
+    t.ok signal_3 = current.call('next_signal'), "next signal"
+    t.equal signal_1['do'], 'go'
     t.end()
 
   test 'config turtles', (t) ->
-    t.ok store = current.get('programs'), "program store"
-    t.ok signal_1 = store.call('reload'), "valid signal "
-    t.ok signal_2 = current.call('next_signal'), "next signal"
-    t.equal signal_1['do'], 'go'
-    
-    t.ok other = turtles.find_child('EP'), "no other turtle"
-    t.ok store2 = other.get('programs'), "no other program"
-    t.notOk store2 == store, "Reused program"
+    t.ok other = turtles.find_child('EP'), "other turtle"
+    t.ok store2 = other.get('programs'), "other program"
+    t.notOk store2 == store, "Don't reuse program"
     t.end()
 
   test 'config sprite', (t) ->
@@ -72,4 +64,15 @@ exports.test_config = (test, rx) ->
     world.send('reset')
     t.equal sprite.get('i'), 1.5, "sprite has original position"
     t.equal sprite.get('v_i'), 1, "sprite has original direction"
+    t.end()
+
+  test 'config game', (t) ->
+    t.ok game = world.find_path('.game'), "Got game"
+    t.equal world.handlers_for('run').length, 1, "1 run handler"
+    t.equal world.handlers_for('stop').length, 1, "1 stop handler"
+    t.equal game.get('speed'), 0, 'Speed 0'
+    result = world.send('run')
+    t.equal result.length, 1, '1 handler'
+    t.equal game.get('speed'), 1, 'Speed 1'
+    result = world.send('stop')
     t.end()

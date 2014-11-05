@@ -1,5 +1,7 @@
 assert = require 'assert'
 
+DEFAULT = 'default:'
+
 exports.programs = {
   _EXPORTS: ['reset', 'command']
 
@@ -12,12 +14,14 @@ exports.programs = {
     program.push command
 
   load: (world, args) ->
-    args = {name: 'default'} unless args?
+    args = {name: DEFAULT} unless args?
     {name} = args
     program = world.find_child(name)
-    world.put('program', program)
-    world.put('current', name)
+    assert program, "No program #{name} in #{world}"
     world.put('counter', 1)
+    world.put('current', name)
+    world.put('program', program)
+    program 
 
   reload: (world, args) ->
     world.call('load', args)
@@ -41,10 +45,8 @@ exports.programs = {
     
   # TODO: Break this out into a test config
   _CHILDREN: [
-    {_LABEL: 'buffer', value: []}
-    {_LABEL: 'default', value: ["forward", "right"]}
     {_CHILDREN: ['buffer:'], value: []}
-    {_CHILDREN: ['default:', "forward", "right"], value: []}
+    {_CHILDREN: [DEFAULT, "forward", "right"], value: []}
   ]
 }
 
