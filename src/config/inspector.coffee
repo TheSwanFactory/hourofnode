@@ -24,9 +24,8 @@ ROW_AUTHORITY = {
   }
 
 # TODO: Add ICON authority for smaller command display
-
-PROGRAM_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
-PROGRAM_AUTHORITY['selected'] = (world) ->
+COMMAND_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
+COMMAND_AUTHORITY['selected'] = (world) ->
   return false unless world.up.get('selected')
   world.index == world.get('current').get('programs').get('counter') + 1 
 
@@ -49,7 +48,7 @@ display_program = (name, children) ->
     _LABEL: name,
     selected: (world) -> 
       name == world.get('current').get('programs').get('current')
-    _AUTHORITY: PROGRAM_AUTHORITY
+    _AUTHORITY: COMMAND_AUTHORITY
     _CHILDREN: children
   }
 
@@ -60,9 +59,13 @@ display_strategy = (strategy, programs) ->
   return if programs.get_local('height')
   programs.put 'height', (world) ->
     my.row.spacing * world._child_count()
-  authority = programs.make_world PROGRAM_AUTHORITY
+
+  render_row = programs.make_world ROW_AUTHORITY
+  render_command = programs.make_world COMMAND_AUTHORITY
   programs.map_children (program) ->
-    program.put '_AUTHORITY', authority
+    program.put '_AUTHORITY', render_row 
+    program.map_children (command) ->
+     command.put '_AUTHORITY', render_command 
   
 set_current = (world, current) ->
   world.put('current', current) if current?
