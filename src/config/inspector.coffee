@@ -55,17 +55,6 @@ display_commands = (name, programs) ->
     }
   {_LABEL: name, _AUTHORITY: BUTTON_AUTHORITY, _CHILDREN: children}
 
-display_program = (name, children) ->
-  children = children.all() unless _.isArray(children)
-  children.unshift {name: name, fill: "white", stroke: "white"}
-  {
-    _LABEL: name,
-    selected: (world) -> 
-      name == world.get('current').get('programs').get('current')
-    _AUTHORITY: COMMAND_AUTHORITY
-    _CHILDREN: children
-  }
-
 display_strategy = (strategy, programs) ->
   strategy.reset_children()
   strategy.add_child programs
