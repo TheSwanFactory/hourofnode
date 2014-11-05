@@ -31,7 +31,7 @@ exports.programs = {
     program = world.get('program')
     counter = world.get('counter')
     if program? and counter? and counter < program._child_count()
-      action = program._child_array()[counter]
+      action = program._child_array()[counter].label()
     else
       return world.call('reload', args) unless args?
       assert false, "Infinite Loop: next <-> reload"
