@@ -106,7 +106,6 @@ exports.inspector = {
     my.assert program, "No program for #{name}"
     program.add_child command
     console.log "command #{name} -> ", program._child_array()
-    world.send 'inspect'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
