@@ -44,9 +44,8 @@ exports.programs = {
   _CHILDREN: [
     {_LABEL: 'buffer', value: []}
     {_LABEL: 'default', value: ["forward", "right"]}
-    {_LABEL: 'collision', value: ["reverse", "left", "left"]}
     {_CHILDREN: ['buffer:'], value: []}
-    {_CHILDREN: ['default:'], value: []}
+    {_CHILDREN: ['default:', "forward", "right"], value: []}
   ]
 }
 
