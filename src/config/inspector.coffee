@@ -94,6 +94,7 @@ exports.inspector = {
   time: 0
   step: (world, args) -> world.update('time', 1)
   
+  # TODO: Make this faster on the iPad 1
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
@@ -106,7 +107,7 @@ exports.inspector = {
     my.assert program, "No program for #{name}"
     program.add_child command
     console.log "command #{name} -> ", program._child_array()
-    
+
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
   height: (world) -> world.get('size') + my.control.spacing
