@@ -24,7 +24,7 @@ class World
     cache_rx = rx or @up.get_raw(RX)
     assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
-    assert _.isString(label), "label is string"
+    assert _.isString(label), "label not a string: #{label}"
     @doc.put LABEL, label
     @doc.put CHILDREN, cache_rx.array()
     @doc.put(RX, rx) if rx?
