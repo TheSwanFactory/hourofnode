@@ -7,7 +7,8 @@ CONTROL = 96
 MARGIN = 8
 
 exports.my = {
-  test: window.location.hostname == "localhost"
+  test: window.location.hostname == "localhost
+  "
   assert: require 'assert'
   device: IPAD
   margin: MARGIN
@@ -21,5 +22,6 @@ exports.my = {
     row: "lightgrey"
     grid: "#ccffcc"
     gridline: "white"
+    command: "beige"
   }
 }

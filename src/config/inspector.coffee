@@ -18,7 +18,7 @@ BUTTON_AUTHORITY = {
 ROW_AUTHORITY = {
     fill: my.color.row
     x: my.margin
-    y: (world, args) -> world.index * my.row.spacing + my.margin
+    y: (world) -> world.index * my.row.spacing + my.margin
     height: (world) -> my.row.size
     width: (world) ->  world.up.get('width') - 2*my.margin
   }
@@ -28,13 +28,20 @@ COMMAND_SPACE = COMMAND_SIZE + my.margin / 2
 COMMAND_AUTHORITY = {
   height: COMMAND_SIZE
   width: (world) ->  world.get('height')
-  fill: my.color.button
+  fill: my.color.command
+  stroke: 'red'
   
   x:(world) -> world.index * COMMAND_SPACE + my.margin
   selected: (world) ->
     return false unless world.up.get('selected')
     world.index == world.get('current').get('programs').get('counter') + 1 
 }
+
+PROGRAM_SPACE = COMMAND_SPACE + my.margin
+PROGRAM_AUTHORITY = $.extend {}, ROW_AUTHORITY
+PROGRAM_AUTHORITY['y'] = (world) -> world.index * PROGRAM_SPACE + my.margin
+
+
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
@@ -64,11 +71,12 @@ display_strategy = (strategy, programs) ->
   strategy.add_child programs
   strategy.put 'height', (world) -> programs.get 'height'
   return if programs.get_local('height')
-  programs.put 'height', (world) -> my.row.spacing * world._child_count()
+  programs.put 'height', (world) ->
+     PROGRAM_SPACE * world._child_count() + 2*my.margin
   programs.put 'i', 0
   programs.put 'j', 0
 
-  render_row = programs.make_world ROW_AUTHORITY
+  render_row = programs.make_world PROGRAM_AUTHORITY
   render_command = programs.make_world COMMAND_AUTHORITY
   programs.map_children (program) ->
     program.put '_AUTHORITY', render_row
