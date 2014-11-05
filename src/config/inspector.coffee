@@ -88,11 +88,9 @@ exports.inspector = {
   command: (world, args) ->
     {name, command} = args  
     program = world.find_child(STRATEGY).find_child().find_child(name)
-    console.log 'command', name, command, world.find_child(STRATEGY), program
     my.assert program, "No program for #{name}"
     program.add_child command
-    # TODO: Force Buffer to Update Visually
-    world.send 'render'
+    #world.send 'render'
     
   i: (world) -> world.get('split')
   width: (world) -> world.get('device').width - world.get('size')
