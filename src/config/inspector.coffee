@@ -55,9 +55,16 @@ display_program = (name, children) ->
 
 display_strategy = (strategy, programs) ->
   strategy.reset_children()
-  programs.map_children (child) ->
-    strategy.add_child display_program(child.label(), child.get('value'))
-  strategy.put 'height', my.row.spacing*programs._child_count()
+  strategy.add_child programs
+  strategy.put 'height', (world) -> programs.get 'height'
+  return if programs.get_local('height')
+  programs.put 'height', (world) ->
+    console.log "calculate height #{world}", world
+    my.row.spacing * world._child_count()
+  console.log "display_strategy programs", programs.doc.x
+  return
+  programs.map_children (program) ->
+    program.put '_AUTHORITY', PROGRAM_AUTHORITY
   
 set_current = (world, current) ->
   world.put('current', current) if current?
@@ -68,11 +75,13 @@ exports.inspector = {
   _EXPORTS: ['inspect', 'step', 'command']
   time: 0
   step: (world, args) -> world.update('time', 1)
+  
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
     world.replace_child display_commands(COMMANDS, programs)
-    #display_strategy world.find_child(STRATEGY), programs
+    display_strategy world.find_child(STRATEGY), programs
+    
   command: (world, args) ->
     {name, command} = args  
     program = world.find_child(STRATEGY).find_child(name)

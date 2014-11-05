@@ -4,7 +4,7 @@ DEFAULT = 'default:'
 
 exports.programs = {
   _EXPORTS: ['reset', 'command']
-
+  path: (world) -> undefined
   reset: (world, args) -> world.call('load', args)
   command: (world, args) ->
     {name, command} = args
