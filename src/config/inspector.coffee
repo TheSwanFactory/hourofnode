@@ -24,10 +24,11 @@ ROW_AUTHORITY = {
   }
 
 # TODO: Add ICON authority for smaller command display
-COMMAND_AUTHORITY = $.extend {}, BUTTON_AUTHORITY # shallow copy
-COMMAND_AUTHORITY['selected'] = (world) ->
-  return false unless world.up.get('selected')
-  world.index == world.get('current').get('programs').get('counter') + 1 
+COMMAND_AUTHORITY = $.extend {
+  selected: (world) ->
+    return false unless world.up.get('selected')
+    world.index == world.get('current').get('programs').get('counter') + 1 
+}, BUTTON_AUTHORITY # shallow copy
 
 display_commands = (name, programs) ->
   signals = programs.get('signals')
