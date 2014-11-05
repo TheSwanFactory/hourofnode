@@ -72,7 +72,7 @@ exports.inspector = {
     current = set_current(world, args)
     programs = current.get('programs')
     world.replace_child display_commands(COMMANDS, programs)
-    display_strategy world.find_child(STRATEGY), programs
+    #display_strategy world.find_child(STRATEGY), programs
   command: (world, args) ->
     {name, command} = args  
     program = world.find_child(STRATEGY).find_child(name)
