@@ -31,9 +31,9 @@ exports.render = (root) ->
     results
     
   render_world = (world) ->
-    labels = world.labels(['render', 'world'])
+    labels = world.labels([world, 'render', 'world'])
     attrs = {
-      id: "#{labels.length}_#{world}"
+      id: "#{labels.length}_#{labels.join '_'}"
       class: labels 
       style: world.bind() -> get_style(world)
     }
