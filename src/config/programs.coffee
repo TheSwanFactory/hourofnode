@@ -44,9 +44,10 @@ exports.programs = {
     signal
     
   # TODO: Break this out into a test config
+  # TODO: Find a more elegant way to match the label and display name
   _CHILDREN: [
-    {_CHILDREN: ['buffer:'], value: []}
-    {_CHILDREN: [DEFAULT, "forward", "right"], value: []}
+    {_LABEL: 'buffer:', _CHILDREN: ['buffer:']}
+    {_LABEL: DEFAULT, _CHILDREN: [DEFAULT, "forward", "right"]}
   ]
 }
 
