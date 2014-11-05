@@ -25,8 +25,8 @@ ROW_AUTHORITY = {
 
 COMMAND_SIZE = my.button.size * 0.8
 COMMAND_SPACE = COMMAND_SIZE + my.margin
-COMMAND_BORDER = '3px dotted grey'
-COMMAND_SELECTED = '3px solid goldenrod'
+COMMAND_BORDER = '2px dotted grey'
+COMMAND_SELECTED = '2px solid goldenrod'
 COMMAND_AUTHORITY = {
   height: COMMAND_SIZE
   width: (world) ->  world.get('height')
