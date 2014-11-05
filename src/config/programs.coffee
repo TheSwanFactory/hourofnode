@@ -45,6 +45,8 @@ exports.programs = {
     {_LABEL: 'buffer', value: []}
     {_LABEL: 'default', value: ["forward", "right"]}
     {_LABEL: 'collision', value: ["reverse", "left", "left"]}
+    {_CHILDREN: ['buffer:'], value: []}
+    {_CHILDREN: ['default:'], value: []}
   ]
 }
 
