@@ -25,8 +25,10 @@ exports.sprites = {
     child = world.add_child dict
     world.authority = undefined
     world.send 'created', child
+    world.send 'inspect', child
   i: (world) -> world.get('p').at(0)
   j: (world) -> world.get('p').at(1)
+  p: [0, 0]
   v: [1, 0]
   v_i: (world) -> world.get('v').at(0)
   v_j: (world) -> world.get('v').at(1)

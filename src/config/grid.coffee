@@ -1,4 +1,5 @@
 {my} = require('../my')
+{sprites} = require './sprites'
 exports.grid = {
   _LABEL: "grid"
   path: ""
@@ -22,14 +23,6 @@ exports.grid = {
           path  += "M#{n},1 V#{size - 1} M1,#{n} H#{size - 1} "
         path 
     }
-    {
-      _LABEL: "sprites"
-      _EXPORTS: ['created']
-      created: (world, args) ->
-        child = args
-        my.assert world.is_world child
-        world.add_child child 
-        world.send 'inspect', child unless world.get('current')
-    }
+    sprites
   ]
 }

@@ -2,7 +2,6 @@
 {timer} = require './config/timer'
 {layout} = require './config/layout'
 {turtles} = require './config/turtles'
-{sprites} = require './config/sprites'
 {inspector} = require './config/inspector'
 {game} = require './games/game-testing'
 
@@ -30,7 +29,6 @@ baseline = {
     timer
     layout
     turtles
-    sprites
   ]
 }
 

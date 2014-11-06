@@ -115,13 +115,8 @@ exports.inspector = {
       _LABEL: 'info'
       _AUTHORITY: BUTTON_AUTHORITY
       _CHILDREN: [
-        { # Show turtle icon
-          path: (world) ->
-            paths = world.get('current').get('path')
-            middle = world.get('scale') / 2.5
-            center = "M#{middle},#{middle}"
-            #paths.unshift center if paths
-            paths
+        { # Show sprite icon
+          path: (world) -> world.get('current').get('path')
           fill: (world) -> world.get('current').get('fill')
         }
         {name: (world) -> world.get('current').label()}

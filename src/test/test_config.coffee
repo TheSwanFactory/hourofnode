@@ -3,6 +3,7 @@
 
 exports.test_config = (test, rx) ->
   world = god(rx, config)
+  layout = world.find_child 'layout'
   turtles = world.find_child('turtles')
   current = turtles.find_child()
   
@@ -16,7 +17,6 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config transform', (t) ->
-    layout = world.find_child 'layout'
     t.equal 0, layout.get('i'), 'i'
     t.equal layout.get('transform'), "translate(0,0) rotate(0)"
     t.end()
@@ -46,22 +46,22 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config sprite', (t) ->
-    t.ok sprites = world.find_child('sprites'), "can not find sprites"
+    t.ok sprites = layout.find_path 'grid.sprites', "can not find sprites"
     t.ok sprite = sprites.find_child(), "missing sprite"
     
     world.send('reset')
     t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
-    t.equal sprite.get('p').all().toString(), "1,1", "sprite has direction vector"
-    t.equal sprite.get('p_index'), 9, "creates index for p"
+    t.equal sprite.get('p').all().toString(), "1,3", "sprite has direction vector"
+    t.equal sprite.get('p_index'), 25, "creates index for p"
     
     sprite.call('go', {dir:1})
-    t.equal sprite.get('i'), 2.5, "sprite moves position"
+    t.equal sprite.get('i'), 2, "sprite moves position"
     t.equal sprite.get('p_index'), 10, "updates index for p"
     sprite.call('turn', {dir:-1})
     t.equal sprite.get('v_j'), 1, "sprite changes direction"
     
     world.send('reset')
-    t.equal sprite.get('i'), 1.5, "sprite has original position"
+    t.equal sprite.get('i'), 1, "sprite has original position"
     t.equal sprite.get('v_i'), 1, "sprite has original direction"
     t.end()
 
