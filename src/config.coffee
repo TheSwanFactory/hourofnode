@@ -15,8 +15,6 @@ baseline = {
   scale: (world) -> world.get('size') / world.get('split')
   
   # TODO: Who is calling these values?!?
-  i: 0
-  j: 0
   x: (world) -> world.get('scale') * world.get('i')
   y: (world) -> world.get('scale') * world.get('j')
   angle: 0

@@ -25,9 +25,8 @@ exports.sprites = {
     child = world.add_child dict
     world.authority = undefined
     world.send 'created', child
-  stroke: "green"
-  i: (world, args) -> world.get('p').at(0) + 0.5
-  j: (world, args) -> world.get('p').at(1) + 0.5
+  i: (world, args) -> world.get('p').at(0)
+  j: (world, args) -> world.get('p').at(1)
   v: [1, 0]
   v_i: (world, args) -> world.get('v').at(0)
   v_j: (world, args) -> world.get('v').at(1)
