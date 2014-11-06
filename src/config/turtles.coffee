@@ -34,11 +34,8 @@ exports.turtles = {
     value = -90 if v.at(1) < 0
     value
   stroke: "green"
-  path: (world, args) ->
-    #paths = world.find_path('.game.kinds.turtle.paths')
-    #console.log 'turtle paths', paths, world
-    scale = 7
-    [draw_legs(scale)+draw_face(scale), draw_shell(scale)]
+  path: (world, args) -> world.get('game').kinds.turtle.paths
+
   _AUTHORITY: {
     _SETUP: (world, args) ->
       return if world.label().length > 2
