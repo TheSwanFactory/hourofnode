@@ -35,7 +35,7 @@ exports.turtles = {
     value
   stroke: "green"
   path: (world, args) -> 
-    scale = world.get('scale') / 10
+    scale = 7
     [draw_legs(scale)+draw_face(scale), draw_shell(scale)]
   _AUTHORITY: {
     _SETUP: (world, args) ->
