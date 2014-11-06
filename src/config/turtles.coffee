@@ -3,6 +3,13 @@ assert = require 'assert'
 exports.turtles = {
   _LABEL: "turtles"
   _KIND: "turtle"
+  # TODO: Who is calling these values?!?
+  x: (world) -> world.get('scale') * world.get('i')
+  y: (world) -> world.get('scale') * world.get('j')
+  angle: 0
+  translate: (world) -> "translate(#{world.get('x')},#{world.get('y')})"
+  rotate: (world) -> "rotate(#{world.get('angle')})"
+  transform: (world) -> "#{world.get('translate')} #{world.get('rotate')}"
   name: (world, args) -> world.label()
   i: (world, args) -> world.get('p').at(0) + 0.5
   j: (world, args) -> world.get('p').at(1) + 0.5
