@@ -64,13 +64,13 @@ exports.test_config = (test, rx) ->
     t.equal sprite.get('v_i'), 1, "sprite has original direction"
     t.end()
 
-  test 'config game', (t) ->
-    t.ok game = world.find_path('.game'), "Got game"
+  test 'config timer', (t) ->
+    t.ok timer = world.find_path('.timer'), "Got timer"
     t.equal world.handlers_for('run').length, 1, "1 run handler"
     t.equal world.handlers_for('stop').length, 1, "1 stop handler"
-    t.equal game.get('speed'), 0, 'Speed 0'
+    t.equal timer.get('speed'), 0, 'Speed 0'
     result = world.send('run')
     t.equal result.length, 1, '1 handler'
-    t.equal game.get('speed'), 1, 'Speed 1'
+    t.equal timer.get('speed'), 1, 'Speed 1'
     result = world.send('stop')
     t.end()

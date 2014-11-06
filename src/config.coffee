@@ -1,5 +1,5 @@
 {my} = require('./my')
-{game} = require('./config/game')
+{timer} = require('./config/timer')
 {layout} = require('./config/layout')
 {turtles} = require('./config/turtles')
 {sprites} = require('./config/sprites')
@@ -29,7 +29,7 @@ baseline = {
     idle:    {name: "v", do: "go", dir: 0}
   }
   _CHILDREN: [
-    game
+    timer
     layout
     turtles
     sprites
