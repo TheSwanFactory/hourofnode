@@ -26,6 +26,7 @@ exit = (n) -> {
 }
 
 exports.game = {
+  _LABEL: 'game'
   name: 'Test Game'
   kinds: {
     # paths center on 0, x,y = +-10

@@ -1,9 +1,10 @@
-{my} = require('./my')
-{timer} = require('./config/timer')
-{layout} = require('./config/layout')
-{turtles} = require('./config/turtles')
-{sprites} = require('./config/sprites')
-{inspector} = require('./config/inspector')
+{my} = require './my'
+{timer} = require './config/timer'
+{layout} = require './config/layout'
+{turtles} = require './config/turtles'
+{sprites} = require './config/sprites'
+{inspector} = require './config/inspector'
+{game} = require './games/game-testing'
 
 baseline = {
   device: my.device
@@ -33,11 +34,11 @@ baseline = {
     layout
     turtles
     sprites
+    game
   ]
 }
 
 setup = ->
-  baseline.game = require './games/game-testing'
   baseline
 
 exports.config = setup()

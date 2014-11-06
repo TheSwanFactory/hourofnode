@@ -76,4 +76,6 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config game', (t) ->
+    t.ok game = world.find_child('game'), 'loaded game'
+    console.log game, world._child_array()
     t.end()
