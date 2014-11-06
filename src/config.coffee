@@ -12,18 +12,23 @@ baseline = {
   size: my.grid.size
   split: my.grid.split
   margin: my.margin
-  scale: (world, args) -> world.get('size') / world.get('split')
+  scale: (world) -> world.get('size') / world.get('split')
   
   # TODO: Move geometry methods into layout
   i: 0
   j: 0
-  x: (world, args) -> world.get('scale') * world.get('i')
-  y: (world, args) -> world.get('scale') * world.get('j')
+  x: (world) -> world.get('scale') * world.get('i')
+  y: (world) -> world.get('scale') * world.get('j')
   angle: 0
-  translate: (world, args) -> "translate(#{world.get('x')},#{world.get('y')})"
-  rotate: (world, args) -> "rotate(#{world.get('angle')})"
-  transform: (world, args) -> "#{world.get('translate')} #{world.get('rotate')}"
+  translate: (world) -> "translate(#{world.get('x')},#{world.get('y')})"
+  rotate: (world) -> "rotate(#{world.get('angle')})"
+  transform: (world) -> "#{world.get('translate')} #{world.get('rotate')}"
   name_style: {x: -5, y: 5, fill: "white", stroke: "white"}
+  current_level: (world) ->
+    game = world.get 'game'
+    level = world.get 'level'
+    game.levels[level]
+
   signals: {
     forward: {name: "^", do: "go", dir: 1}
     reverse: {name: "v", do: "go", dir: -1}

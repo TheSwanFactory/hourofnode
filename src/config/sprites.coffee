@@ -7,9 +7,7 @@ exports.sprites = {
   _KIND: "sprite"
   _EXPORTS: ['create']
   _SETUP: (world) ->
-    game = world.get 'game'
-    level = world.get 'level'
-    this_level = game.levels[level]
+    this_level = world.get 'current_level'
     return
     console.log 'this_level', this_level.name
     for sprite in this_level.sprites
