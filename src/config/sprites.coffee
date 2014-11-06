@@ -25,12 +25,15 @@ exports.sprites = {
     child = world.add_child dict
     world.authority = undefined
     world.send 'created', child
-  i: (world, args) -> world.get('p').at(0)
-  j: (world, args) -> world.get('p').at(1)
+  i: (world) -> world.get('p').at(0)
+  j: (world) -> world.get('p').at(1)
   v: [1, 0]
-  v_i: (world, args) -> world.get('v').at(0)
-  v_j: (world, args) -> world.get('v').at(1)
-  angle: (world, args) ->
+  v_i: (world) -> world.get('v').at(0)
+  v_j: (world) -> world.get('v').at(1)
+  name_style: (world) ->
+    scale = world.get 'scale'
+    {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
+  angle: (world) ->
     # TODO: perform real triginometry
     v = world.get('v')
     value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
