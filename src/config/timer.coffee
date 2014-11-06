@@ -10,8 +10,7 @@ exports.timer = {
       speed = world.get('speed')
       if speed > 0
         delay = world.get('interval') / speed 
-        world
-        ('step')
+        world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
 }
