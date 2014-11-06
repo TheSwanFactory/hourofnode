@@ -3,7 +3,7 @@
 me = {
   kind: 'turtle'
   name: 'me'
-  p: [1,1], v:[1, 0]
+  p: [1,3], v:[1, 0]
   fill: "limegreen"
   programs: {default: ['forward']}
 }
@@ -11,7 +11,7 @@ me = {
 yu = (prog=[]) -> {
   kind: 'turtle'
   name: 'yu'
-  p: [3,3], v:[-1, 0]
+  p: [1,3], v:[-1, 0]
   fill: "darkgreen"
   programs: {default: prog}
 }

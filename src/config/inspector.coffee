@@ -94,6 +94,7 @@ exports.inspector = {
   inspect: (world, args) ->
     current = set_current(world, args)
     programs = current.get('programs')
+    return unless world.is_world programs
     world.replace_child display_commands(COMMANDS, programs)
     display_strategy world.find_child(STRATEGY), programs
     

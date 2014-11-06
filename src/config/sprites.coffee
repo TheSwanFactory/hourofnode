@@ -8,7 +8,6 @@ exports.sprites = {
   _EXPORTS: ['create']
   _SETUP: (world) ->
     this_level = world.get 'current_level'
-    return
     console.log 'this_level', this_level.name
     for sprite in this_level.sprites
       world.call 'sprite', sprite
@@ -64,7 +63,11 @@ exports.sprites = {
     world.put 'v', [next_v_i, next_v_j]
     
   perform: (world, signal) -> world.call(signal['do'], signal)
-  step: (world, args) -> world.call 'perform', world.get('next_signal')
+  step: (world, args) ->
+    local = world.get('programs')
+    return unless world.is_world local
+    assert signal = local.call('next'), "No next signal"
+    world.call 'perform', signal
   reset: (world, args) ->
     ['p', 'v'].map (key) -> world.put key, undefined
   click: (world, args) -> world.send 'inspect', world
