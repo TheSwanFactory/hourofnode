@@ -5,7 +5,7 @@
 {sprites} = require('./config/sprites')
 {inspector} = require('./config/inspector')
 
-exports.config = {
+baseline = {
   device: my.device
   grid: my.grid
   size: my.grid.size
@@ -35,3 +35,8 @@ exports.config = {
     sprites
   ]
 }
+
+setup = ->
+  baseline
+
+exports.config = setup()
