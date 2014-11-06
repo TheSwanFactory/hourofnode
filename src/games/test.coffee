@@ -8,28 +8,35 @@ me = {
   programs: {default: ['forward']}
 }
 
-yu = {
+yu = (prog=[]) -> {
   kind: 'turtle'
   name: 'yu'
   p: [3,3], v:[-1, 0]
   fill: "darkgreen"
-  programs: {default: ['back']}
+  programs: {default: prog}
 }
 
-exit = {
+sentry = yu ['forward', 'forward', 'reverse', 'reverse']
+
+exit = (n) -> {
   kind: 'gate'
   name: 'yu'
-  p: [6,6]
+  p: [6,n]
   fill: "maroon"
   programs: {turtle: ['victory']}
 }
 
 exports.game = {
-  defs: {
+  name: 'Test Game'
+  kinds: {
+    # Assume drawin in a 10x10 box
     turtle: {path: ""}
     gate: {path: ""}
   }
   levels: [
-    {config: {}, sprites: [me, yu, exit]}
+    {name: 'End of the Line', sprites: [me, exit(1)]}
+    {name: 'Diagonal Thinking', sprites: [me, exit(6)]}
+    {name: 'Avoid Obstacle', sprites: [me, yu(), exit(6)]}
+    {name: 'Avoid Sentry', sprites: [me, sentry, exit(6)]}
   ]
 }
