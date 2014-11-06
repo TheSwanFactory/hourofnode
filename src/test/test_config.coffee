@@ -78,5 +78,6 @@ exports.test_config = (test, rx) ->
   test 'config game', (t) ->
     t.ok game = world.get('game'), 'loaded game'
     console.log game, world._child_array()
+    t.ok paths = game.kinds.turtle.paths, 'paths'
     
     t.end()
