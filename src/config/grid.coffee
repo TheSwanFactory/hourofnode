@@ -29,7 +29,7 @@ exports.grid = {
         child = args
         my.assert world.is_world child
         world.add_child child 
-        world.send 'inspect', child
+        world.send 'inspect', child unless world.get('current')
     }
   ]
 }

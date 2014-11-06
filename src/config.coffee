@@ -14,9 +14,7 @@ baseline = {
   margin: my.margin
   scale: (world) -> world.get('size') / world.get('split')
   
-  # TODO: Move geometry methods into layout
-  i: 0
-  j: 0
+  # TODO: Who is calling these values?!?
   x: (world) -> world.get('scale') * world.get('i')
   y: (world) -> world.get('scale') * world.get('j')
   angle: 0
