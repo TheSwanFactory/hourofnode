@@ -38,8 +38,6 @@ COMMAND_AUTHORITY = {
     programs = program.up
     current = programs.get('current')
     counter = programs.get('counter')
-    console.log "COMMAND_BORDER #{program}, #{programs}", label, current
-    console.log "COMMAND_SELECTED index counter ", world.index, counter
     return COMMAND_SELECTED if label == current and world.index == counter  
     COMMAND_BORDER 
 }
