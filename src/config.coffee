@@ -13,6 +13,8 @@ baseline = {
   split: my.grid.split
   margin: my.margin
   scale: (world, args) -> world.get('size') / world.get('split')
+  
+  # TODO: Move geometry methods into layout
   i: 0
   j: 0
   x: (world, args) -> world.get('scale') * world.get('i')
@@ -29,6 +31,13 @@ baseline = {
     right:   {name: "->", do: "turn", dir: -1}
     idle:    {name: "v", do: "go", dir: 0}
   }
+  _SETUP: (world) ->
+    game = world.get 'game'
+    level = world.get 'level'
+    this_level = game.levels[level]
+    for sprite in this_level.sprites
+      console.log 'sprite', sprite
+    
   _CHILDREN: [
     timer
     layout
@@ -39,6 +48,7 @@ baseline = {
 
 setup = ->
   baseline.game = game
+  baseline.level = 0
   baseline
 
 exports.config = setup()

@@ -5,7 +5,12 @@ SPRITE_EXPORTS = ["step", "reset"]
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
-  _EXPORTS: ['create']
+  _EXPORTS: ['sprite', 'create']
+  sprite: (world, args) ->
+    world.authority = world.make_world(args)
+    dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
+    child = world.add_child dict
+    world.send 'created', child
   create: (world, args) ->
     world.authority = args
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
