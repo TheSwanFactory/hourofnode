@@ -34,11 +34,11 @@ baseline = {
     layout
     turtles
     sprites
-    game
   ]
 }
 
 setup = ->
+  baseline._CHILDREN.push game
   baseline
 
 exports.config = setup()
