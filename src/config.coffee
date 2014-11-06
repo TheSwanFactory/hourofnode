@@ -38,6 +38,7 @@ baseline = {
 }
 
 setup = ->
+  game._LABEL = 'game'
   baseline._CHILDREN.push game
   baseline
 
