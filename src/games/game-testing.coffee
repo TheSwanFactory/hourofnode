@@ -1,5 +1,5 @@
 # The game used in the test suite
-
+SCALE = 30
 me = {
   kind: 'turtle'
   name: 'me'
@@ -18,7 +18,7 @@ yu = (prog=[]) -> {
 
 sentry = yu ['forward', 'forward', 'reverse', 'reverse']
 
-diamond = (n) -> "M-#{n},0 l#{n},#{n} l#{n},-#{n} l-#{n},-#{n} Z"
+diamond = (n) -> "M0,#{n / 2} l#{n},#{n} l#{n},-#{n} l-#{n},-#{n} Z"
 exit = (col) -> {
   path: [diamond(30)]
   name: 'exit'
