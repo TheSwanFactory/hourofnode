@@ -16,8 +16,9 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config transform', (t) ->
-    t.equal 0, world.get('i'), 'i'
-    t.equal world.get('transform'), "translate(0,0) rotate(0)"
+    layout = world.find_child 'layout'
+    t.equal 0, layout.get('i'), 'i'
+    t.equal layout.get('transform'), "translate(0,0) rotate(0)"
     t.end()
 
   test 'config children', (t) ->

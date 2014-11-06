@@ -17,15 +17,18 @@ exports.sprites = {
     console.log 'sprite:', world.authority.doc.x
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
+    world.authority = undefined
     world.send 'created', child
   create: (world, args) ->
     world.authority = args
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
+    world.authority = undefined
     world.send 'created', child
   stroke: "green"
-  #i: (world, args) -> world.get('p').at(0) + 0.5
-  #j: (world, args) -> world.get('p').at(1) + 0.5
+  i: (world, args) -> world.get('p').at(0) + 0.5
+  j: (world, args) -> world.get('p').at(1) + 0.5
+  v: [1, 0]
   v_i: (world, args) -> world.get('v').at(0)
   v_j: (world, args) -> world.get('v').at(1)
   angle: (world, args) ->
