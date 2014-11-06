@@ -7,6 +7,14 @@
   
 exports.layout = {
   _EXPORTS: ["render"]
+  i: 0
+  j: 0
+  x: (world) -> world.get('scale') * world.get('i')
+  y: (world) -> world.get('scale') * world.get('j')
+  angle: 0
+  translate: (world) -> "translate(#{world.get('x')},#{world.get('y')})"
+  rotate: (world) -> "rotate(#{world.get('angle')})"
+  transform: (world) -> "#{world.get('translate')} #{world.get('rotate')}"
   rect_path: (world, args) ->
     width = world.get('width')
     height = world.get('height')
