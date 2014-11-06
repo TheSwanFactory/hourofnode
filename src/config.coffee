@@ -37,6 +37,7 @@ baseline = {
 }
 
 setup = ->
+  baseline.game = require './games/test-game'
   baseline
 
 exports.config = setup()
