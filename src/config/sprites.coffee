@@ -5,9 +5,19 @@ SPRITE_EXPORTS = ["step", "reset"]
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
-  _EXPORTS: ['sprite', 'create']
+  _EXPORTS: ['create']
+  _SETUP: (world) ->
+    game = world.get 'game'
+    level = world.get 'level'
+    this_level = game.levels[level]
+    return
+    console.log 'this_level', this_level.name
+    for sprite in this_level.sprites
+      world.call 'sprite', sprite
+    
   sprite: (world, args) ->
     world.authority = world.make_world(args)
+    console.log 'sprite:', world.authority.doc.x
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     world.send 'created', child

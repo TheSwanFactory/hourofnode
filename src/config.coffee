@@ -31,13 +31,6 @@ baseline = {
     right:   {name: "->", do: "turn", dir: -1}
     idle:    {name: "v", do: "go", dir: 0}
   }
-  _SETUP: (world) ->
-    game = world.get 'game'
-    level = world.get 'level'
-    this_level = game.levels[level]
-    for sprite in this_level.sprites
-      console.log 'sprite', sprite
-    
   _CHILDREN: [
     timer
     layout
