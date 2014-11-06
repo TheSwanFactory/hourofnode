@@ -4,7 +4,16 @@ exports.turtles = {
   _LABEL: "turtles"
   _KIND: "turtle"
   name: (world, args) -> world.label()
-  stroke: "green"
+  i: (world, args) -> world.get('p').at(0) + 0.5
+  j: (world, args) -> world.get('p').at(1) + 0.5
+  v_i: (world, args) -> world.get('v').at(0)
+  v_j: (world, args) -> world.get('v').at(1)
+  angle: (world, args) ->
+    # TODO: perform real triginometry
+    v = world.get('v')
+    value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
+    value = -90 if v.at(1) < 0
+    value
   path: (world, args) -> world.get('game').kinds.turtle.paths
 
   _AUTHORITY: {

@@ -11,6 +11,7 @@ exports.sprites = {
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     world.send 'created', child
+  stroke: "green"
   i: (world, args) -> world.get('p').at(0) + 0.5
   j: (world, args) -> world.get('p').at(1) + 0.5
   v_i: (world, args) -> world.get('v').at(0)
