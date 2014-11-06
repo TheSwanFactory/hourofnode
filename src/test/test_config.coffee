@@ -77,5 +77,5 @@ exports.test_config = (test, rx) ->
 
   test 'config game', (t) ->
     t.ok game = world.get('game'), 'loaded game'
-    t.ok paths = game.kinds.turtle.paths, 'paths'
+    t.ok paths = game.kinds.turtle.path, 'paths'
     t.end()

@@ -120,7 +120,7 @@ exports.inspector = {
             paths = world.get('current').get('path')
             middle = world.get('scale') / 2.5
             center = "M#{middle},#{middle}"
-            paths.unshift center
+            #paths.unshift center if paths
             paths
           fill: (world) -> world.get('current').get('fill')
         }

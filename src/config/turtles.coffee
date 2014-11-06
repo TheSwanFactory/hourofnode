@@ -14,7 +14,7 @@ exports.turtles = {
     value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
     value = -90 if v.at(1) < 0
     value
-  path: (world, args) -> world.get('game').kinds.turtle.paths
+  path: (world, args) -> world.get('game').kinds.turtle.path
 
   _AUTHORITY: {
     _SETUP: (world, args) ->
