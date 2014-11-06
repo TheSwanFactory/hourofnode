@@ -74,3 +74,6 @@ exports.test_config = (test, rx) ->
     t.equal timer.get('speed'), 1, 'Speed 1'
     result = world.send('stop')
     t.end()
+
+  test 'config game', (t) ->
+    t.end()
