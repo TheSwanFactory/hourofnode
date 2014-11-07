@@ -46,7 +46,7 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config sprite', (t) ->
-    t.ok sprites = layout.find_path('grid.sprites'), "can not find sprites"
+    t.ok sprites = layout.find_path('grid.sprites'), "find sprites"
     t.ok sprite = sprites.find_child(), "missing sprite"
     
     world.send('reset')
