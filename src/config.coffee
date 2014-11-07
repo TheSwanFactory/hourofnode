@@ -2,6 +2,7 @@
 {timer} = require './config/timer'
 {layout} = require './config/layout'
 {programs} = require './config/programs'
+{formatter} = require './config/formatter'
 {inspector} = require './config/inspector'
 {game} = require './games/game-testing'
 
@@ -31,6 +32,7 @@ baseline = {
     timer
     layout
     programs
+    #formatter
   ]
 }
 
