@@ -66,7 +66,7 @@ exports.test_config = (test, rx) ->
     world.send('reset')
     t.equal sprite.get('v').all().toString(), "1,0", "sprite has direction vector"
     t.equal sprite.get('p').all().toString(), "1,1", "sprite has direction vector"
-    t.equal sprite.get('p_index'), 25, "creates index for p"
+    t.equal sprite.get('p_index'), 9, "creates index for p"
     
     sprite.call('go', {dir:1})
     t.equal sprite.get('i'), 2, "sprite moves position"
