@@ -9,14 +9,14 @@ exports.grid = {
       _LABEL: "background"
       fill: my.color.grid
       stroke: "black"
-      path: (world, args) ->
+      path: (world) ->
         size = world.get('size')
         "M0,0 h#{size} v#{size} h-#{size} v#{-size}"
     }
     {
       _LABEL: "gridlines"
       stroke: my.color.gridline
-      path: (world, args) ->
+      path: (world) ->
         size = world.get('size')
         scale = world.get('scale')
         path = ""
