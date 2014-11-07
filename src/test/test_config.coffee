@@ -41,6 +41,11 @@ exports.test_config = (test, rx) ->
     t.end()
 
   test 'config program', (t) ->
+    dict = {default: ['forward'], buffer: []}
+    r = {programs: ''}
+    world.send 'programs', dict, (value) -> r.programs = value
+    t.ok r.programs, 'Returns programs'
+    store = r.programs
     t.ok store = current.get('programs'), "program store"
     t.ok signal_1 = store.call('load'), "load program"
     t.ok signal_2 = store.call('reload'), "reload program "

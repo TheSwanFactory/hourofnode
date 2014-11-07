@@ -5,7 +5,8 @@ DEFAULT = 'default:'
 exports.programs = {
   _LABEL: 'programs'
   _KIND: 'program'
-  _EXPORTS: ['reset']
+  _EXPORTS: ['reset', 'programs']
+  programs: (world) -> undefined
   path: (world) -> undefined
   reset: (world, args) -> world.call('load', {name: 'buffer:'})
   load: (world, args) ->
