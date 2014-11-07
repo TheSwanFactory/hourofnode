@@ -1,7 +1,7 @@
 {my} = require './my'
 {timer} = require './config/timer'
 {layout} = require './config/layout'
-{turtles} = require './config/turtles'
+{programs} = require './config/programs'
 {inspector} = require './config/inspector'
 {game} = require './games/game-testing'
 
@@ -30,6 +30,7 @@ baseline = {
   _CHILDREN: [
     timer
     layout
+    programs
   ]
 }
 

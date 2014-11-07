@@ -7,10 +7,10 @@ exports.programs = {
   _KIND: 'program'
   _EXPORTS: ['reset', 'programs']
   programs: (world, args) ->
-    console.log 'programs', world, args
     for key in Object.keys(args)
       name = "#{key}:"
       list = args[key]
+      console.log 'programs',args, key, list
       list.unshift name
       world.add_child {_LABEL: name , _CHILDREN: list}
     world
