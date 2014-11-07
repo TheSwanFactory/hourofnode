@@ -15,9 +15,12 @@ exports.sprites = {
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     child.put my.key.authority, world.make_world(args)
-    world.send 'programs', args.programs, (value) -> world.put 'programs', value
+    world.call 'reprogram', args
     world.send 'inspect', child
-
+  reprogram: (world, args) ->
+    setter = (value) -> world.put 'programs', value
+    world.send 'programs', args.programs, setter
+    
   p: [0, 0]
   v: [1, 0]
   i: (world) -> world.get('p').at(0)
@@ -34,12 +37,12 @@ exports.sprites = {
     value = -90 if v.at(1) < 0
     value
 
-  p_index: (world, args) ->
+    p_index: (world, args) ->
     n_cols = world.get('split')
     p = world.get('p')
     my.assert world.is_array(p), "is reactive array"
     p.at(1)*n_cols + p.at(0)
-    
+        
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
@@ -52,7 +55,7 @@ exports.sprites = {
       value = (split - 1) if value < 0
       value
     world.put 'p', next_p
-    
+
   turn: (world, args) ->
     {dir} = args
     my.assert dir, "expects dir"
