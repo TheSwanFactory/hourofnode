@@ -24,6 +24,8 @@ baseline = {
     left:    {name: "<-", do: "turn", dir: 1}
     right:   {name: "->", do: "turn", dir: -1}
     idle:    {name: "v", do: "go", dir: 0}
+    victory:    {name: "+", do: "done", dir: 1}
+    failure:    {name: "-", do: "done", dir: -1}
   }
   _CHILDREN: [
     timer

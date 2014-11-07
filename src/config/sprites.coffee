@@ -18,7 +18,8 @@ exports.sprites = {
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     world.authority = undefined
-    world.send 'created', child
+    world.send 'programs', args, (value) -> world.put 'programs', value
+    
   create: (world, args) ->
     world.authority = args
     dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
