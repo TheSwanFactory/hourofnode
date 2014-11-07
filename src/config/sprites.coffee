@@ -15,11 +15,12 @@ exports.sprites = {
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     child.put my.key.authority, world.make_world(args)
-    world.call 'reprogram', args
+    world.call 'setup_programs', args.programs
     world.send 'inspect', child
-  reprogram: (world, args) ->
-    setter = (value) -> world.put 'programs', value
-    world.send 'programs', args.programs, setter
+  setup_programs: (world, programs) ->
+    world.send 'format_programs', programs, (value) ->
+      world.send 'store_programs', value, (value) ->
+        world.put 'programs', value
     
   p: [0, 0]
   v: [1, 0]
