@@ -1,32 +1,25 @@
-assert = require 'assert'
+{my} = require '../my'
 
 wraparound = (n, max) ->
   return max - 0.5 if n < 0
   return 0.5 if n > max
   n
   
-RX = "_RX"
-LABEL = "_LABEL"
-KIND = "_KIND"
-CHILDREN = "_CHILDREN"
-AUTHORITY = "_AUTHORITY"
-EXPORTS = "_EXPORTS"
-HANDLERS = "_HANDLERS"
-CSS = "_CSS"
-
-SETUP = '_SETUP'
+RX = '_RX'
+HANDLERS = '_HANDLERS'
+CSS = '_CSS'
 
 class World
   constructor: (up, label, rx) ->
-    assert up, "up always exists"
-    assert _.isObject(up), "up is an object"
+    my.assert up, "up always exists"
+    my.assert _.isObject(up), "up is an object"
     @up = up
     cache_rx = rx or @up.get_raw(RX)
-    assert cache_rx, "cache_rx"
+    my.assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
-    assert _.isString(label), "label not a string: #{label}"
-    @doc.put LABEL, label
-    @doc.put CHILDREN, cache_rx.array()
+    my.assert _.isString(label), "label not a string: #{label}"
+    @doc.put my.key.label, label
+    @doc.put my.key.children, cache_rx.array()
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
@@ -46,7 +39,7 @@ class World
   get_raw: (key, world) ->
     value = @get_local(key)
     return value if value?
-    authority = @get_local(AUTHORITY)
+    authority = @get_local(my.key.authority)
     if authority
       #console.log "Find #{key} in #{authority}"
       value = authority.get_raw(key, @)
@@ -82,9 +75,9 @@ class World
       value
     
   _export_events: ->
-    return unless exports = @get_local(EXPORTS)
+    return unless exports = @get_local(my.key.exports)
     for event in exports.all()
-      assert _.isFunction @get_raw(event), "No function for #{event}"
+      my.assert _.isFunction @get_raw(event), "No function for #{event}"
       world = @
       @handle event, (key, args) -> world.call(key, args)
     
@@ -96,7 +89,7 @@ class World
   # TODO: Require mutating actions to be calls, not gets
   call: (key, args) ->
     closure = @get_raw(key)
-    assert _.isFunction(closure), "#{key}: #{closure} is not a function"
+    my.assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
@@ -104,17 +97,17 @@ class World
     result = @rx().array()
     children = children(@) if _.isFunction(children)
     for value in children
-      assert value, 'import child'
+      my.assert value, 'import child'
       child = @make_world(value)
       result.push child
     result
     
   import_dict: (dict) ->
     for key, value of dict
-      if key == AUTHORITY
+      if key == my.key.authority
         @authority = @_from_dict(value) 
       else
-        value = @_import_children(value) if key == CHILDREN
+        value = @_import_children(value) if key == my.key.children
         value = @rx().array(value) if _.isArray(value)
         @put(key, value)
     @_export_events()
@@ -122,22 +115,22 @@ class World
 
   _spawn_world: (label) ->
     world = new World(@, label)
-    world.put(AUTHORITY, @authority) if @authority?
-    @handle SETUP, -> world.call(SETUP) if world.get_raw(SETUP)
+    world.put(my.key.authority, @authority) if @authority?
+    @handle my.key.setup, -> world.call(my.key.setup) if world.get_raw(my.key.setup)
     world
     
   _from_value: (value) ->
-    assert _.isString(value), "_from_value requires string"
+    my.assert _.isString(value), "_from_value requires string"
     world = @_spawn_world "#{value}"
     world.put("value", value)
     world.put("name", value)
     world
 
   _from_dict: (dict) ->
-    assert _.isObject(dict), "_from_dict: dict isn't dictionary"
+    my.assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
-    assert !_.isFunction(dict), "_from_dict: dict is a function"
-    label = dict[LABEL] or "#{@get(LABEL)}:#{@_child_count()}"
+    my.assert !_.isFunction(dict), "_from_dict: dict is a function"
+    label = dict[my.key.label] or "#{@get(my.key.label)}:#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
 
@@ -146,18 +139,18 @@ class World
     return @_from_dict(value) if _.isObject(value)
     @_from_value value
     
-  _children: -> @get(CHILDREN)
+  _children: -> @get(my.key.children)
   _child_array: -> @_children().all()
   _child_count: -> @_children().length()
   has_children: -> @_child_count() > 0
   
-  reset_children: -> @put CHILDREN, @rx().array()
+  reset_children: -> @put my.key.children, @rx().array()
     
   add_child: (value) ->
     child = @make_world value
-    assert child, "add_child"
-    assert !_.isFunction @get_raw(CHILDREN)
-    @get(CHILDREN).push(child)
+    my.assert child, "add_child"
+    my.assert !_.isFunction @get_raw(my.key.children)
+    @get(my.key.children).push(child)
     child
     
   find_children: (label) ->
@@ -190,15 +183,15 @@ class World
         current = @find_parent()
       else
         current = current.find_child(key)
-    assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
+    my.assert current, "Can not find key: [#{key}] for path: [#{path}] in #{@}" 
     current
 
   replace_child: (dict) ->
-    label = dict[LABEL]
-    children = @get(CHILDREN)
+    label = dict[my.key.label]
+    children = @get(my.key.children)
     index = @find_index(label)
     replacement = @make_world(dict)
-    assert index >= 0, "Need valid index"
+    my.assert index >= 0, "Need valid index"
     children.put(index, replacement)
     
   map_children: (callback) ->
@@ -210,8 +203,8 @@ class World
       index += 1
     result
   
-  label: -> @get(LABEL)
-  kind: -> @get(KIND) or "World"
+  label: -> @get(my.key.label)
+  kind: -> @get(my.key.kind) or "World"
 
   labels: (starter = []) ->
     starter.push @label()
@@ -234,5 +227,5 @@ exports.world = (up, rx, doc) ->
   root.put RX, rx
   root.put HANDLERS, rx.map()
   root.import_dict(doc)
-  root.send(SETUP)
+  root.send(my.key.setup)
   root

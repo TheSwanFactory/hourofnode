@@ -1,4 +1,5 @@
-assert = require 'assert'
+{my} = require '../my'
+
 SPRITE_EXPORTS = ["step", "reset"]
 
 # Uses Turtle as an Authority
@@ -36,13 +37,13 @@ exports.sprites = {
   p_index: (world, args) ->
     n_cols = world.get('split')
     p = world.get('p')
-    assert world.is_array(p), "is reactive array"
+    my.assert world.is_array(p), "is reactive array"
     p.at(1)*n_cols + p.at(0)
     
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
-    assert dir?, "expects dir"
+    my.assert dir?, "expects dir"
     p = world.get('p')
     v = world.get('v')
     next_p = [0,1].map (i) ->
@@ -54,7 +55,7 @@ exports.sprites = {
     
   turn: (world, args) ->
     {dir} = args
-    assert dir, "expects dir"
+    my.assert dir, "expects dir"
     v = world.get('v')
     next_v_i =  dir * v.at(1)
     next_v_j = -1 * dir * v.at(0)
@@ -64,7 +65,7 @@ exports.sprites = {
   step: (world, args) ->
     local = world.get('programs')
     return unless world.is_world local
-    assert signal = local.call('next'), "No next signal"
+    my.assert signal = local.call('next'), "No next signal"
     world.call 'perform', signal
   reset: (world, args) ->
     ['p', 'v'].map (key) -> world.put key, undefined
