@@ -1,4 +1,5 @@
-assert = require 'assert'
+{my} = require '../my'
+
 {programs} = require('./programs')
 exports.turtles = {
   _LABEL: "turtles"

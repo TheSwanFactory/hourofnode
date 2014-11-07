@@ -1,9 +1,9 @@
 {my} = require '../my'
-{render} = require('../util/render')
-{draw} = require('../util/draw')
-{controls} = require('./controls')
-{grid} = require('./grid')
-{inspector} = require('./inspector')
+{render} = require '../util/render'
+{draw} = require '../util/draw'
+{controls} = require './controls'
+{grid} = require './grid'
+{inspector} = require './inspector'
   
 exports.layout = {
   _EXPORTS: ["render"]

@@ -1,5 +1,6 @@
-{my} = require('../my')
+{my} = require '../my'
 {sprites} = require './sprites'
+
 exports.grid = {
   _LABEL: "grid"
   path: ""

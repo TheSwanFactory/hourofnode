@@ -1,6 +1,4 @@
-{my} = require('../my')
-
-#TODO: Add SVG scrollbars a la http://www.carto.net/svg/gui/scrollbar/
+{my} = require '../my'
 
 COMMANDS = 'commands'
 EXECUTING = 'executing'

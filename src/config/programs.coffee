@@ -1,4 +1,4 @@
-assert = require 'assert'
+{my} = require '../my'
 
 DEFAULT = 'default:'
 
@@ -21,7 +21,7 @@ exports.programs = {
     args = {name: DEFAULT} unless args?
     {name} = args
     program = world.find_child(name)
-    assert program, "No program #{name} in #{world}"
+    my.assert program, "No program #{name} in #{world}"
     world.put('counter', 1)
     world.put('current', name)
     world.put('program', program)
@@ -38,8 +38,8 @@ exports.programs = {
       action = program._child_array()[counter].label()
     else
       return world.call('reload', args) unless args?
-      assert false, "Infinite Loop: next <-> reload"
-    assert signal = world.get('signals')[action], "No signal"
+      my.assert false, "Infinite Loop: next <-> reload"
+    my.assert signal = world.get('signals')[action], "No signal"
     counter += 1
     if counter >= program._child_count()
       world.call('load', args)

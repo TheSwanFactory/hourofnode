@@ -1,3 +1,5 @@
+{my} = require '../my'
+
 exports.timer = {
   _LABEL: "timer"
   interval: 500
