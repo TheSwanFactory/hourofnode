@@ -4,8 +4,16 @@
 exports.test_config = (test, rx) ->
   world = god(rx, config)
   layout = world.find_child 'layout'
-  turtles = world.find_child('turtles')
-  current = turtles.find_child()
+  sprites = layout.find_path('grid.sprites')
+  current = sprites.find_child()
+  sprite = current
+
+  test 'config init', (t) ->
+    t.ok world, 'world'
+    t.ok layout, 'layout'
+    t.ok sprites , 'sprites'
+    t.ok current, 'current '
+    t.end()
   
   test 'config read', (t) ->
     t.ok world.get('size'), 'size'
@@ -24,8 +32,7 @@ exports.test_config = (test, rx) ->
   test 'config children', (t) ->
     count = 0
     world.map_children -> count = count + 1
-    t.ok count > 2, "count children"
-    t.ok turtles, "can not find turtles"
+    t.ok count > 1, "count children"
     t.ok current, "require current turtle"
     t.end()
 

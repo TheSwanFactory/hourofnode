@@ -14,11 +14,11 @@ exports.sprites = {
     
   sprite: (world, args) ->
     world.authority = world.make_world(args)
-    console.log 'sprite:', world.authority.doc.x
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
     world.authority = undefined
     world.send 'programs', args, (value) -> world.put 'programs', value
+    world.send 'inspect', child
     
   create: (world, args) ->
     world.authority = args

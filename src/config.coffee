@@ -30,7 +30,6 @@ baseline = {
   _CHILDREN: [
     timer
     layout
-    turtles
   ]
 }
 
