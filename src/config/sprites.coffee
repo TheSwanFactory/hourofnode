@@ -5,13 +5,11 @@ SPRITE_EXPORTS = ["step", "reset"]
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
-  _EXPORTS: ['create']
   _SETUP: (world) ->
     this_level = world.get 'current_level'
     console.log 'this_level', this_level.name
     for sprite in this_level.sprites
       world.call 'sprite', sprite
-    
   sprite: (world, args) ->
     world.authority = world.make_world(args)
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
@@ -19,18 +17,11 @@ exports.sprites = {
     world.authority = undefined
     world.send 'programs', args, (value) -> world.put 'programs', value
     world.send 'inspect', child
-    
-  create: (world, args) ->
-    world.authority = args
-    dict = {_LABEL: args.label(), _EXPORTS: SPRITE_EXPORTS}
-    child = world.add_child dict
-    world.authority = undefined
-    world.send 'created', child
-    world.send 'inspect', child
-  i: (world) -> world.get('p').at(0)
-  j: (world) -> world.get('p').at(1)
+
   p: [0, 0]
   v: [1, 0]
+  i: (world) -> world.get('p').at(0)
+  j: (world) -> world.get('p').at(1)
   v_i: (world) -> world.get('v').at(0)
   v_j: (world) -> world.get('v').at(1)
   name_style: (world) ->
