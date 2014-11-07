@@ -11,10 +11,9 @@ exports.sprites = {
     for sprite in this_level.sprites
       world.call 'sprite', sprite
   sprite: (world, args) ->
-    world.authority = world.make_world(args)
     dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
     child = world.add_child dict
-    world.authority = undefined
+    child.put my.key.authority, world.make_world(args)
     world.send 'programs', args.programs, (value) -> world.put 'programs', value
     world.send 'inspect', child
 
