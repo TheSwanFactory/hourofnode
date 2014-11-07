@@ -74,6 +74,7 @@ class World
     handlers = @handlers_for(key)
     handlers.push callback
 
+  # TODO: Figure out who is expecting a return value from send
   send: (key, args, callback) ->
     for handler in @handlers_for(key)
       console.log "send: #{key}, #{args}} to handler", handler
