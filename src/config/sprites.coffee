@@ -39,7 +39,7 @@ exports.sprites = {
     console.log 'angle', value, 'v', v.all()
     value
 
-    p_index: (world, args) ->
+p_index: (world, args) ->
     n_cols = world.get('split')
     p = world.get('p')
     my.assert world.is_array(p), "is reactive array"
