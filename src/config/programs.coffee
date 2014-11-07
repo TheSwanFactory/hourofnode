@@ -6,7 +6,15 @@ exports.programs = {
   _LABEL: 'programs'
   _KIND: 'program'
   _EXPORTS: ['reset', 'programs']
-  programs: (world) -> undefined
+  programs: (world, args) ->
+    console.log 'programs', world, args
+    for key in Object.keys(args)
+      name = "#{key}:"
+      list = args[key]
+      list.unshift name
+      world.add_child {_LABEL: name , _CHILDREN: list}
+    world
+
   path: (world) -> undefined
   reset: (world, args) -> world.call('load', {name: 'buffer:'})
   load: (world, args) ->

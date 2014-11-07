@@ -47,6 +47,7 @@ exports.test_config = (test, rx) ->
     t.ok r.programs, 'Returns programs'
     store = r.programs
     t.ok store = current.get('programs'), "program store"
+
     t.ok signal_1 = store.call('load'), "load program"
     t.ok signal_2 = store.call('reload'), "reload program "
     t.ok signal_3 = current.call('next_signal'), "next signal"
