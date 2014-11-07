@@ -46,6 +46,7 @@ exports.test_config = (test, rx) ->
     world.send 'programs', dict, (value) -> r.programs = value
     t.ok r.programs, 'Returns programs'
     store = r.programs
+    console.log 'program store', store
     t.ok store = current.get('programs'), "program store"
 
     t.ok signal_1 = store.call('load'), "load program"
