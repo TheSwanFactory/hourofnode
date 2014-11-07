@@ -13,7 +13,9 @@ exports.layout = {
   y: (world) -> world.get('scale') * world.get('j')
   angle: 0
   translate: (world) -> "translate(#{world.get('x')},#{world.get('y')})"
-  rotate: (world) -> "rotate(#{world.get('angle')})"
+  rotate: (world) ->
+    center = world.get('scale') / 2
+    "rotate(#{world.get('angle')} #{center} #{center})"
   transform: (world) -> "#{world.get('translate')} #{world.get('rotate')}"
   rect_path: (world, args) ->
     width = world.get('width')
