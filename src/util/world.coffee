@@ -79,6 +79,7 @@ class World
       console.log "send: #{key}, #{args}} to handler", handler
       value = handler(key, args)
       callback(value) if callback
+      value
     
   _export_events: ->
     return unless exports = @get_local(EXPORTS)
