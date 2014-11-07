@@ -74,9 +74,11 @@ class World
     handlers = @handlers_for(key)
     handlers.push callback
 
-  send: (key, args) ->
+  send: (key, args, callback) ->
     for handler in @handlers_for(key)
-      handler(key, args)
+      console.log "send: #{key}, #{args}} to handler", handler
+      value = handler(key, args)
+      callback(value) if callback
     
   _export_events: ->
     return unless exports = @get_local(EXPORTS)

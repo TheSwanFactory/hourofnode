@@ -218,7 +218,7 @@ exports.test_world = (test, rx) ->
   test 'event callbacks', (t) ->
     val = 42
     t.notOk world.get('property'), "no property yet"
-    world.handle 'value', (args) -> args
+    world.handle 'value', (key, args) -> args
     world.send 'value', val, (value) -> world.put('property', value)
-    t.skip world.get('property'), val, "property not set"
+    t.equal world.get('property'), val, "property not set"
     t.end()
