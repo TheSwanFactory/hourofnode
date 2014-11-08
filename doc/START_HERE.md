@@ -77,6 +77,12 @@ Our runtime is contained in the World object, defined in `god/world.coffee`.  Th
 
 ### Games
 
+All of the above is just the game engine.  The actual games that our users will play and create live in the `games` folder. Games consist of:
+
+* _Sprites_: objects that are drawn and can interact
+* _Levels_: the list of sprites that defines each level
+* _Language_: the interface describing what the users will actually program
+
 ### Test
 _[still under construction]_
 
