@@ -13,7 +13,7 @@ The CoffeeScript is compiled into _JavaScript_, the language that runs inside we
 * http://en.wikipedia.org/wiki/JavaScript
 * http://www.w3schools.com/js/default.asp
 
-The compilation is done using a system called _node_ that allows JavaScript tools to run outside the browser. We use _npm_ to install the modules we rely upon as described in the package.json file, and _Gulp_ to coordinate the compilation:
+The compilation is done using a system called _node_ that allows JavaScript tools to run outside the browser. We use _npm_ to install the modules we rely upon as described in the package.json file, and _Gulp_ to coordinate the compilation and other development tasks:
 
 * http://nodejs.org
 * https://www.npmjs.org
