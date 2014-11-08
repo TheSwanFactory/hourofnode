@@ -77,4 +77,19 @@ Our runtime is contained in the World object, defined in `god/world.coffee`.  Th
 
 ### Games
 
+### Test
+_[still under construction]_
+
+#### Unit Testing
+
+
+#### Components
+* tape test harness
+* tap file format & formatters
+* in-browser execution
+* conditional running
+  * my.test if not in production
+* Uses games/game-testing.coffee as a 'fixture'
+  
+
 
