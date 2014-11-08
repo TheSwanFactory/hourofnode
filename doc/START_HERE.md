@@ -13,6 +13,12 @@ The CoffeeScript is compiled into _JavaScript_, the language that runs inside we
 * http://en.wikipedia.org/wiki/JavaScript
 * http://www.w3schools.com/js/default.asp
 
+The compilation is done using a system called _node_ that allows JavaScript tools to run outside the browser. We use _npm_ to install the modules we rely upon as described in the package.json file, and _Gulp_ to coordinate the compilation:
+
+* http://nodejs.org
+* https://www.npmjs.org
+* http://gulpjs.com
+
 The good news is that you don't need to know a lot about these languages.  The main thing you need to know is that we are creating _methods_ that perform various _actions_ using _arguments_. The syntax used by CoffeeScript to create methods is:
 
   method = (arguments) -> actions
