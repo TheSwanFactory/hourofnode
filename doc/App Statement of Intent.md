@@ -53,6 +53,6 @@ _[Whom I look to for help]_
 
 - Daniel: Developer Experience
 - Andrew: Educator Experience
-- David: Viewer Experience
+- David: Newbie Experience
 
 
