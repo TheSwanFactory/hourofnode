@@ -1,3 +1,15 @@
+#
+# world.coffee
+# Role: define our object model on top of Reactive Coffee
+# Responsibility: loosely bind names to signals ('runtime')
+#  * wrap Reactive Coffee primitives
+#  * Manage scope and inheritance
+#  * Send and handle events
+#  * Construct worlds from dictionaries
+#  * Distirbute events among child worlds
+#  * Locate child and parent worlds
+#  TODO: break this sub-roles into seperate files or modules
+
 {my} = require '../my'
 
 wraparound = (n, max) ->

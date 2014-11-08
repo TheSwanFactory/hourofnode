@@ -55,7 +55,7 @@ The main methods we are using will be:
   
 ### Object Model
 
-However, we do not actually write very much of our code in those idioms.  Instead, for various reasons we touch upon in DESIGN.md, we create our own _object model_ on top of Reactive Coffee.  An object model is a way of organizing our methods to make it easier to see what we are doing. This requires three main things:
+However, we do not write very much reactive coffee directly. Instead, for various reasons we touch upon in DESIGN.md, we create our own _object model_ on top of Reactive Coffee.  An object model is a way of organizing our methods to make it easier to see what we are doing. This requires three main things:
 
 * a _data format_ for describe our objects
 * _factories_ for creating the objects
@@ -70,3 +70,11 @@ Our data format is CoffeeScript dictionaries, which look like:
     callable_method: (world, args) -> actions
   }
 These dictionaries live under 'config' in the source code.
+
+Our primary factory is the 'god' object, which stands for _Global Object Domain_.  
+
+Our runtime is contained in the World object, defined in `god/world.coffee`.  The primary job of the runtime is to loosely map names (or 'keys') to values and actions.  
+
+### Games
+
+
