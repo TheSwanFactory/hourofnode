@@ -28,8 +28,23 @@ Please join us! We can use all the help we can get. :-)
 
 ### Getting Started
 
-[Note: *these instructions are preliminary and haven't been tested*]
+#### Setup Git
 
-    $ open http://howtonode.org/how-to-install-nodejs # Install Node
-    $ npm install # Install all required node packages, from package.json
-    $ gulp # builds, watches, and launches browser
+* Sign up for a Github account: https://github.com
+* Launch a Terminal (Mac: Utilities, Windows: CMD Prompt or CygWin)
+* Install GIT on your machine: 
+  * https://help.github.com/articles/set-up-git/
+  * http://www.git-scm.com/downloads
+
+#### Download the project
+
+* Fork the project: "Fork" button on upper right of this page
+* Use the "Clone in Desktop" button or:
+
+  $ git clone git@github.com:TheSwanFactory/hourofnode.git
+  $ cd hourofnode # or equivalent on windows
+  
+#### Build and run the project
+
+  $ npm install # Install all required node packages, from package.json
+  $ gulp # builds, watches, and launches browser
