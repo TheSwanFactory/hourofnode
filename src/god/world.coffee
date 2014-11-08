@@ -8,6 +8,7 @@
 #  * Construct worlds from dictionaries
 #  * Distirbute events among child worlds
 #  * Locate child and parent worlds
+#
 #  TODO: break this sub-roles into seperate files or modules
 
 {my} = require '../my'
