@@ -1,6 +1,15 @@
+#
+# render.coffee
+# Role: display the world and its children on a web page
+# Responsibility: 
+# * extract displayable attributes of worlds
+# * render in an updateable way as HTML using Reactive Coffee's `bind` method
+# * call out to 'draw' to render SVG graphics
+#
+# TODO: merge/refactor with draw code
+
 {my} = require '../my'
 {draw} = require './draw'
-# TODO: De-Duplicate/Merge Draw
 
 get_style = (world) ->
   style = {

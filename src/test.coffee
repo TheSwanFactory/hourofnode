@@ -1,3 +1,10 @@
+#
+# test.coffee
+# Role: Ensure the code does what we think it does
+# Responsibility: 
+# * load and run test modules
+# * turn screen green if succesful, red if failed, yellow if not run
+
 test = require 'tape'
 undo = require('tap-browser-color')()
 # test.createStream().pipe(process.stdout)
