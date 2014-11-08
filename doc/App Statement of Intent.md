@@ -51,7 +51,7 @@ _[What do I not yet know enough about to be confident I can get it to work]_
 ### Dependencies
 _[Whom I look to for help]_
 
-- Daniel: Developer Experience
+- Daniel: Programmer Experience
 - Andrew: Educator Experience
 - David: Newbie Experience
 
