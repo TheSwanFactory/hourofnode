@@ -1,4 +1,15 @@
-assert = require 'assert'
+#
+# draw.coffee
+# Role: display the world and its children as SVG graphics
+# Responsibility: 
+# * extract displayable attributes of worlds
+# * use `g` transforms to create local coordinate systems
+# * use SVG paths to draw the images
+# * display the name as text using the specified style
+#
+# TODO: merge/refactor with render code
+
+{my} = require '../my'
 
 normalize = (paths) ->
   return [] unless paths
