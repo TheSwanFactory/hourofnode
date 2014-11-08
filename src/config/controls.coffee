@@ -10,8 +10,8 @@ exports.controls = {
   _AUTHORITY: {
     _KIND: "Control"
     fill: my.color.button
-    x: (world, args) -> world.index*my.control.spacing + my.control.margin
-    y: (world, args) -> my.control.margin
+    x: (world) -> world.index*my.control.spacing + my.control.margin
+    y: (world) -> my.control.margin
     height: my.control.size
     width: my.control.size
     click: (world, args) -> world.send world.get('value')
