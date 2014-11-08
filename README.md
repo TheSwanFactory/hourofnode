@@ -48,3 +48,7 @@ Please join us! We can use all the help we can get. :-)
 
   $ npm install # Install all required node packages, from package.json
   $ gulp # builds, watches, and launches browser
+
+#### Getting Started
+
+See the file START_HERE.md in the 'doc' directory.
