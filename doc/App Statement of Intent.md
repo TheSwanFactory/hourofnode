@@ -34,13 +34,25 @@ cf. https://github.com/TheSwanFactory/hourofnode/milestones
 
 I intend to have a version usable enough for meaningful use by the following audiences at the specified dates:
 
+- *Alpha*, Nov 14: Team Members who know what we’re doing
+- *Internal Beta*, Nov 21: Supervised friends & family, we can talk through the app
+- *Private Beta*, Nov 24: Remote friends & family, who will forgive the pain
+- *Public Beta*, Nov 27: Early adopters, who enjoy the bleeding edge
+- *Release 0.9*, Dec 1: Teachers and Media who will decided whether to recommend us
+- *Release 1.0*, Dec 7: Kids can use and rely on to be stable
 
-- *Alpha*, Nov 14: Team Members, who know what we’re doing
-- *Internal Beta*, Nov 21: Supervised friends & family
-- *Private Beta*, Nov 24: Remote friends & family
-- *Public Beta*, Nov 27: Early adopters
+### Risks
+_[What do I not yet know enough about to be confident I can get it to work]_
 
+- The signal evaluation model
+- Level design
+- UI animation
 
+### Dependencies
+_[Whom I look to for help]_
 
+- Daniel: Developer Experience
+- Andrew: Educator Experience
+- David: Viewer Experience
 
 
