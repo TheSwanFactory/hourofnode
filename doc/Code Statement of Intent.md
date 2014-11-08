@@ -39,12 +39,3 @@ _[What do I not yet know enough about to be confident I can get it to work]_
 
 - Ernie doesn't have the time
 - Daniel may not remember what newbies need
-
-### Dependencies
-_[Whom I look to for help]_
-
-- Daniel: Programmer Experience
-- David: Newbie Experience
-- Andrew: Educator Experience
-
-
