@@ -1,5 +1,9 @@
 {vector} = require './god/vector'
 
+games = [
+  require("./game/example").game
+]
+
 IPAD = [1024, 690]
 HALF_WIDTH = IPAD[0] / 2
 SCALE = 30
@@ -65,7 +69,7 @@ baseline = {
   ]
 }
 
-exports.game = (file) ->
-  {example} = require './game/example'
-  console.log example
+exports.game = (name) ->
+  new_game = games[0]
+  console.log new_game
   baseline
