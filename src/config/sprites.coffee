@@ -32,9 +32,7 @@ exports.sprites = {
   name_style: (world) ->
     scale = world.get 'scale'
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
-  angle: (world) ->
-    v = world.get('v')
-    vector.angle v.all()
+  angle: (world) -> vector.angle world.get('v')
 
 p_index: (world, args) ->
     n_cols = world.get('split')
