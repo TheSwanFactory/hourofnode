@@ -34,7 +34,11 @@ exports.test_god = (test, rx) ->
 
     v_equal vector.turn(a, vector.to.left), b, "turn left"
     v_equal vector.turn(b, vector.to.right), a, "turn right"
-    
+
+    fired = false
+    err = -> fired = true
+    v_equal vector.bound([4,-1], 3, err), [3,0], "bounds check"
+    t.ok fired, "error callback fired"
     
     t.end()
     
