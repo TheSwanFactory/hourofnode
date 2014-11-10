@@ -17,12 +17,9 @@ exports.vector = {
   # Compare two vectors and return the result
   equal: (a, b) -> 
     (a[X_INDEX] == b[X_INDEX]) and (a[Y_INDEX] == b[Y_INDEX])
-  
+
   # Add two vectors and return the result
-  add: (a, b) -> [
-    a[X_INDEX] + b[X_INDEX]
-    a[Y_INDEX] + b[Y_INDEX]
-  ]
+  add: (a, b) -> [a[X_INDEX] + b[X_INDEX], a[Y_INDEX] + b[Y_INDEX]]
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90
