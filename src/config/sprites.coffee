@@ -34,7 +34,7 @@ exports.sprites = {
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
   angle: (world) -> vector.angle world.get('v')
 
-p_index: (world, args) ->
+  p_index: (world, args) ->
     n_cols = world.get('split')
     p = world.get('p')
     my.assert world.is_array(p), "is reactive array"
@@ -56,10 +56,7 @@ p_index: (world, args) ->
   turn: (world, args) ->
     {dir} = args
     my.assert dir, "expects dir"
-    v = world.get('v')
-    next_v_i =  dir * v.at(1)
-    next_v_j = -1 * dir * v.at(0)
-    world.put 'v', [next_v_i, next_v_j]
+    world.put 'v', vector.turn(world.get('v'), dir)
     
   perform: (world, signal) -> world.call(signal['do'], signal)
   step: (world, args) ->
