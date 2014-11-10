@@ -5,7 +5,8 @@ HALF_WIDTH = IPAD[0] / 2
 SCALE = 30
 
 exports.game = {
-  name: "The Hour of Node"
+  name: "Example Game"
+  comment: "For testing purposes only"
 
   # Geometry
   screen_dimensions: IPAD
