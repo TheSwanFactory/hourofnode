@@ -15,4 +15,6 @@ exports.timer = {
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
+  error: "N/A"   # TODO: Implement error sound
+
 }
