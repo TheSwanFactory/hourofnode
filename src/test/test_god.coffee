@@ -17,9 +17,14 @@ exports.test_god = (test, rx) ->
 
     a = [0, 1]
     b = [1, 0]
+    ra = rx.array a
     
     v_equal a,a, "vector equality"
     t.notOk vector.equal(a,b), "vector inequality"
+
+    v_equal ra,a, "rx vector equality"
+    t.notOk vector.equal(ra,b), "rx vector inequality"
+    
     v_equal vector.add(a,b), [1,1], 'vector add'
 
     t.equal vector.angle([ 1, 0]),   0, 'vector angle'
@@ -29,5 +34,7 @@ exports.test_god = (test, rx) ->
 
     v_equal vector.turn(a, vector.to.left), b, "turn left"
     v_equal vector.turn(b, vector.to.right), a, "turn right"
+    
+    
     t.end()
     

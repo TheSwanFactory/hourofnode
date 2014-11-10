@@ -33,11 +33,8 @@ exports.sprites = {
     scale = world.get 'scale'
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
   angle: (world) ->
-    # TODO: perform real triginometry
     v = world.get('v')
-    value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
-    value = -90 if v.at(1) < 0
-    value
+    vector.angle v.all()
 
 p_index: (world, args) ->
     n_cols = world.get('split')

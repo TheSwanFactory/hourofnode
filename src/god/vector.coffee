@@ -12,6 +12,9 @@ Y_INDEX = 1
 DIR_LEFT  =  1
 DIR_RIGHT = -1
 
+x = (v) -> if _.isArray(v) then v[X_INDEX] else v.at(X_INDEX)
+y = (v) -> if _.isArray(v) then v[Y_INDEX] else v.at(Y_INDEX)
+
 exports.vector = {
 
   # Enumerations for accessing components
@@ -20,24 +23,17 @@ exports.vector = {
   to: {left: DIR_LEFT, right: DIR_RIGHT }
 
   # Compare two vectors and return the result
-  equal: (a, b) -> 
-    (a[X_INDEX] == b[X_INDEX]) and (a[Y_INDEX] == b[Y_INDEX])
+  equal: (a, b) -> (x(a) == x(b)) and (y(a) == y(b))
 
   # Add two vectors and return the result
   add: (a, b) -> [a[X_INDEX] + b[X_INDEX], a[Y_INDEX] + b[Y_INDEX]]
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90
-  angle: (v) ->
-    # assume it is already normalized
-    # TODO: perform real triginometry
-    x = v[X_INDEX] # -1 to 1
-    y = v[Y_INDEX] # -1 to 1
-    if y < 0 then -90 else 90*(1 - x)
+  # assume it is already normalized
+  # TODO: perform real triginometry
+  angle: (v) -> if y(v) < 0 then -90 else 90*(1 - x(v))
 
   # Rotate by +/- 90 degrees
-  turn: (v, dir) ->
-    x = v[X_INDEX] # -1 to 1
-    y = v[Y_INDEX] # -1 to 1
-    [dir * y, -1 * dir * x]
+  turn: (v, dir) -> [dir * y(v), -1 * dir * x(v)]
 }
