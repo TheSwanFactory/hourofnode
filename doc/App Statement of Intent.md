@@ -6,10 +6,10 @@
 ### Intent
 _[What I plan to do]_
 
-Give kids a meaningful experience of programming
+Give kids a meaningful experience of programming for the Dec 8 Hour of Code
 
 ### Affirmers
-_[Who will hold me account for doing that]_
+_[Who will hold me accountable for doing that]_
 
 - Andrew Williams, Educator Experience
 - Daniel Ma, Programmer Experience
@@ -51,7 +51,13 @@ I intend to have a version usable enough for meaningful use by the following aud
 ### Visibility:
 _[Where can you see how things are going]_
 
-### Risks
-_[What do I not yet know enough about to be confident I can get it to work]_
+- Live coding sessions on https://www.youtube.com/user/AwesomeStuffBadly/
+- Daily code merges at https://github.com/TheSwanFactory/hourofnode
+- Twice-per-week app updates at http://hourofnode.org
 
-- UI animation
+### Opportunities
+_[Where other people might be able to help]_
+- CoffeeScript coding of the low-level runtime
+- Creating sample games via the high-level game description files
+- Designing UI icons using SVG
+- Animating the turtles using JavaScript and CSS
