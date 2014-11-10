@@ -1,5 +1,5 @@
 {god} = require('../god')
-{vector} = require('../vector')
+{vector} = require('../god/vector')
 
 exports.test_god = (test, rx) ->
   test 'god exists', (t) ->
@@ -13,5 +13,9 @@ exports.test_god = (test, rx) ->
     t.end()
 
   test 'vector', (t) ->
+    a = [0, 1]
+    b = [1, 0]
+    t.ok vector.equal(a,a), "vector equality"
+    t.notOk vector.equal(a,b), "vector inequality"
     t.end()
     
