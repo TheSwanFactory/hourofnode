@@ -21,6 +21,9 @@ exports.vector = {
   axis: {x: X_INDEX, y: Y_INDEX}
   size: {width: X_INDEX, height: Y_INDEX}
   to: {left: DIR_LEFT, right: DIR_RIGHT }
+  
+  x: x
+  y: y
 
   # Compare two vectors and return the result
   equal: (a, b) -> (x(a) == x(b)) and (y(a) == y(b))
@@ -29,7 +32,10 @@ exports.vector = {
   add: (a, b) -> [a[X_INDEX] + b[X_INDEX], a[Y_INDEX] + b[Y_INDEX]]
   
   # Ensure vector is in bounds
-  bound: (v, n) -> v
+  bound: (v, n, error_callback) ->
+    [X_INDEX, Y_INDEX].map (index) ->
+      v[index]
+      
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90
