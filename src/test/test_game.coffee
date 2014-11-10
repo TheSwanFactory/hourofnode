@@ -12,6 +12,9 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'game merge', (t) ->
+    t.ok example.grid_size, 'from source'
+    t.ok example.comment, 'from destination'
+    t.notOk example.statement, 'no false positive'
     t.end()
 
   test 'game override', (t) ->

@@ -8,12 +8,6 @@ exports.game = {
   name: "Example Game"
   comment: "For testing purposes only"
 
-  # Geometry
-  screen_dimensions: IPAD
-  grid_size: HALF_WIDTH
-  cell_count: 8
-  cell_size: (world) -> world.get('grid_size') / world.get('cell_count')
-
   goal: {
     clicks: 1
     ticks: 4
