@@ -49,7 +49,7 @@ export.game = {
           shape: 'turtle'
           position: [0,0]
           color: 'limegreen'
-          programs: {once: [], repeat: ['forward']}
+          programs: {first: [], repeat: ['forward']}
           editable: true
         }
         {
@@ -57,7 +57,7 @@ export.game = {
           shape: 'diamond'
           position: [0,4]
           color: 'red'
-          programs: {once: [], repeat: []}
+          programs: {turtle: ['victory']}
         }
       ]
     }
