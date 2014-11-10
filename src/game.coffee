@@ -1,10 +1,10 @@
-{vector} = require('../god/vector')
+{vector} = require('./god/vector')
 
 IPAD = [1024, 690]
 HALF_WIDTH = IPAD[0] / 2
 SCALE = 30
 
-default = {
+baseline = {
   name: "The Hour of Node"
 
   # Geometry
@@ -68,4 +68,4 @@ default = {
 exports.game = (file) ->
   example = require "../game/example"
   console.log example
-  default
+  baseline
