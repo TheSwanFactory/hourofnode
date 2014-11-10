@@ -21,7 +21,11 @@ exports.test_god = (test, rx) ->
     v_equal a,a, "vector equality"
     t.notOk vector.equal(a,b), "vector inequality"
     v_equal vector.add(a,b), [1,1], 'vector add'
-    t.equal vector.angle([1,0]), 0, 'vector angle'
+
+    t.equal vector.angle([ 1, 0]), 0, 'vector angle'
+    t.equal vector.angle([ 0, 1]), 0, 'vector angle'
+    t.equal vector.angle([-1, 0]), 0, 'vector angle'
+    t.equal vector.angle([ 0,-1]), 0, 'vector angle'
     
     t.end()
     
