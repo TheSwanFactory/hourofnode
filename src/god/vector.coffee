@@ -20,7 +20,7 @@ exports.vector = {
   # Enumerations for accessing components
   axis: {x: X_INDEX, y: Y_INDEX}
   size: {width: X_INDEX, height: Y_INDEX}
-  to: {left: DIR_LEFT, right: DIR_RIGHT }
+  to: {front: 1, back: -1, left: DIR_LEFT, right: DIR_RIGHT}
   x: x
   y: y
 
