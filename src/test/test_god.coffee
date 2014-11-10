@@ -20,7 +20,7 @@ exports.test_god = (test, rx) ->
     v_equal a,a, "vector equality"
     t.notOk vector.equal(a,b), "vector inequality"
 
-    sum = vector.add(a,b)
+    v_equal vector.add(a,b), [1,1], 'vector add'
     
     t.end()
     
