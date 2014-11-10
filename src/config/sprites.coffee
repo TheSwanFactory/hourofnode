@@ -36,7 +36,6 @@ exports.sprites = {
     v = world.get('v')
     value = 90*(1 - v.at(0)) #0, 90, 180, 90, 0
     value = -90 if v.at(1) < 0
-    console.log 'angle', value, 'v', v.all()
     value
 
 p_index: (world, args) ->
