@@ -34,10 +34,9 @@ exports.vector = {
   bound: (v, n, error_callback) ->
     [x, y].map (coordinate) ->
       i = coordinate(v)
-      return 0 if i < 0
-      return n - 1 if i >= n
-      i
-      
+      return i if i >= 0 and i < n
+      error_callback(i, n) if error_callback?
+      if i < 0 then 0 else n - 1
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90
