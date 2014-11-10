@@ -23,7 +23,6 @@ baseline = {
     bricks: 0
   }
 
-  # TODO: Do sub-worlds override the language or append?
   language: {
     # Array of Operation, key, argument
     idle:    ['.call', 'go', 0]
@@ -69,7 +68,15 @@ baseline = {
   ]
 }
 
-exports.game = (name) ->
-  new_game = games[0]
-  console.log new_game
-  baseline
+choose_game = -> games[0]
+
+extensible = ['language', 'shapes']
+
+merge = (stock, custom) ->
+  addons = extensible.map (key) ->
+    $.extend stock[key], custom[key]
+  $.extend stock, custom, addons
+
+exports.game = (query) ->
+  new_game = choose_game query
+  merge baseline, new_game
