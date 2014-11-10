@@ -8,11 +8,16 @@
 
 X_INDEX = 0
 Y_INDEX = 1
+
+DIR_LEFT  =  1
+DIR_RIGHT = -1
+
 exports.vector = {
 
-  # Enumerations for accessing the components
+  # Enumerations for accessing components
   axis: {x: X_INDEX, y: Y_INDEX}
   size: {width: X_INDEX, height: Y_INDEX}
+  to: {left: DIR_LEFT, right: DIR_RIGHT }
 
   # Compare two vectors and return the result
   equal: (a, b) -> 
