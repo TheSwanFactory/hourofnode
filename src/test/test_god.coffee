@@ -1,5 +1,5 @@
 {god} = require('../god')
-{point} = require('../point')
+{vector} = require('../vector')
 
 exports.test_god = (test, rx) ->
   test 'god exists', (t) ->
@@ -12,6 +12,6 @@ exports.test_god = (test, rx) ->
     t.equal world.get("key"), "value"
     t.end()
 
-  test 'points', (t) ->
+  test 'vector', (t) ->
     t.end()
     
