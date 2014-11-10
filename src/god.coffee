@@ -1,4 +1,4 @@
-{world} = require('./util/world')
+{world} = require('./god/world')
   
 class GOD
   debug: false
