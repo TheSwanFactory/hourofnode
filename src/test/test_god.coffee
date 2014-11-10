@@ -39,7 +39,7 @@ exports.test_god = (test, rx) ->
 
     fired = false
     err = -> fired = true
-    v_equal vector.bound([4,-1], 3, err), [3,0], "bounds check"
+    v_equal vector.bound([4,-1], 3, err), [2,0], "bounds check"
     t.ok fired, "error callback fired"
     
     t.end()

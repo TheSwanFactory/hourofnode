@@ -21,7 +21,6 @@ exports.vector = {
   axis: {x: X_INDEX, y: Y_INDEX}
   size: {width: X_INDEX, height: Y_INDEX}
   to: {left: DIR_LEFT, right: DIR_RIGHT }
-  
   x: x
   y: y
 
@@ -33,8 +32,11 @@ exports.vector = {
   
   # Ensure vector is in bounds
   bound: (v, n, error_callback) ->
-    [X_INDEX, Y_INDEX].map (index) ->
-      v[index]
+    [x, y].map (coordinate) ->
+      i = coordinate(v)
+      return 0 if i < 0
+      return n - 1 if i >= n
+      i
       
   
   # Add two vectors and return the result
