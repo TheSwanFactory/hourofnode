@@ -4,7 +4,7 @@ IPAD = [1024, 690]
 HALF_WIDTH = IPAD[0] / 2
 SCALE = 30
 
-export.game = {
+exports.game = {
   name: "The Hour of Node"
 
   # Geometry

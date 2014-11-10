@@ -2,10 +2,10 @@
 {game} = require('../game')
 
 exports.test_game = (test, rx) ->
-  world = god(rx, config)
+  #world = god(rx, config)
 
   test 'game load', (t) ->
     t.ok game, 'game'
-    t.ok example = game 'example', 'example'
+    t.ok example = game('example'), 'example'
     t.end()
   
