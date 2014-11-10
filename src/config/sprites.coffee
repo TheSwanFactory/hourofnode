@@ -46,8 +46,10 @@ exports.sprites = {
     my.assert dir?, "expects dir"
     p = world.get('p')
     v = world.get('v')
-    #result = vector.check vector.add(p,v), -> world.send 'error'
-
+    result = vector.add(p, v)
+    console.log 'go: result', result, p.all(), v.all(), split
+    result = vector.bound result, split, -> world.send 'error'
+#    world.put 'p', result 
     next_p = [0,1].map (i) ->
       value = p.at(i) + dir*v.at(i)
       value = 0 if value >= split

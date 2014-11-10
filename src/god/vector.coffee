@@ -28,9 +28,9 @@ exports.vector = {
   equal: (a, b) -> (x(a) == x(b)) and (y(a) == y(b))
 
   # Add two vectors and return the result
-  add: (a, b) -> [a[X_INDEX] + b[X_INDEX], a[Y_INDEX] + b[Y_INDEX]]
+  add: (a, b) -> [x(a) + x(b), y(a) + y(b)]
   
-  # Ensure vector is in bounds
+  # Ensure vector is inside [0,n) , else call error_callback
   bound: (v, n, error_callback) ->
     [x, y].map (coordinate) ->
       i = coordinate(v)
