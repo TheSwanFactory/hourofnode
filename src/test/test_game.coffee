@@ -23,12 +23,13 @@ exports.test_game = (test, rx) ->
 
   test 'game extend language', (t) ->
     language = example.language
-    console.log "language", language
     t.ok language.victory, 'language from destination'
     t.ok language.left, 'language from source'
     t.end()
   
   test 'game extend shapes', (t) ->
     shapes = example.shapes
+    t.ok shapes.diamond, 'shapes from destination'
+    t.ok shapes.turtle, 'shapes from source'
     t.end()
   
