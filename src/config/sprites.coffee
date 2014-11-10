@@ -1,4 +1,5 @@
 {my} = require '../my'
+{vector} = require('../god/vector')
 
 SPRITE_EXPORTS = ["step", "reset"]
 
