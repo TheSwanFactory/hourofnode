@@ -66,6 +66,6 @@ baseline = {
 }
 
 exports.game = (file) ->
-  example = require "../game/example"
+  #example = require "./game/example"
   console.log example
   baseline
