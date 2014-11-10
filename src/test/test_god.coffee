@@ -28,5 +28,6 @@ exports.test_god = (test, rx) ->
     t.equal vector.angle([ 0,-1]), -90, 'vector angle'
 
     v_equal vector.turn(a, vector.to.left), b, "turn left"
+    v_equal vector.turn(b, vector.to.right), a, "turn right"
     t.end()
     
