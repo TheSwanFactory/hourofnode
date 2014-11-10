@@ -61,8 +61,10 @@ choose_game = -> games[0]
 extensible = ['language', 'shapes']
 
 merge = (stock, custom) ->
-  addons = extensible.map (key) ->
-    $.extend stock[key], custom[key]
+  addons = {}
+  extensible.map (key) ->
+    addons[key] = $.extend stock[key], custom[key]
+  console.log 'addons', extensible, addons
   $.extend stock, custom, addons
 
 exports.game = (query) ->

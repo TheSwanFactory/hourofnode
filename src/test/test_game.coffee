@@ -18,8 +18,17 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'game override', (t) ->
+    t.equal example.levels.length, 2, 'dest levels'
     t.end()
 
-  test 'game extend', (t) ->
+  test 'game extend language', (t) ->
+    language = example.language
+    console.log "language", language
+    t.ok language.victory, 'language from destination'
+    t.ok language.left, 'language from source'
+    t.end()
+  
+  test 'game extend shapes', (t) ->
+    shapes = example.shapes
     t.end()
   
