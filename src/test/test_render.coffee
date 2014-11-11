@@ -16,7 +16,7 @@ svg_dict = {
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
 
-  render_dict = (dict) ->
+  render_mock = (dict) ->
     contents = god(rx_mock(rx), dict)
     render(contents)
 
@@ -27,22 +27,22 @@ exports.test_render = (test, rx) ->
     t.ok world.SVG().path, 'Has SVG path'
     t.end()
 
-  test "render_dict", (t) ->
-    result = render_dict({})
+  test "render_mock", (t) ->
+    result = render_mock({})
     t.ok result.tag, "mock tag"
     t.ok result.attr, "mock attr"
     t.ok result.body, "mock body"
     t.end()
 
   test "render root", (t) ->
-    result = render_dict({})
+    result = render_mock({})
     t.equal result.tag, 'div', 'root tag'
     t.equal result.attr.id, 'root', 'root id'
     t.end()
 
   test "render header", (t) ->
     t.ok header, 'header'
-    body = render_dict(header).body
+    body = render_mock(header).body
     t.end()
 
   test "render children", (t) ->
