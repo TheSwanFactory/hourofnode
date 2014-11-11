@@ -1,9 +1,9 @@
 {god} = require '../god'
+{rx_mock} = require './rx_mock'
+
 {layout} = require '../layout'
 {render} = require '../layout/render'
-
-{rx_mock}= require './rx_mock'
-
+{header} = require '../layout/header'
 
 svg_dict = {
   size: 480
@@ -40,7 +40,9 @@ exports.test_render = (test, rx) ->
     t.equal result.attr.id, 'root', 'root id'
     t.end()
 
-  test "render world", (t) ->
+  test "render header", (t) ->
+    t.ok header, 'header'
+    body = render_dict(header).body
     t.end()
 
   test "render children", (t) ->
