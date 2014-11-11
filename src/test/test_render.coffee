@@ -29,11 +29,9 @@ exports.test_render = (test, rx) ->
 
   test "render_dict", (t) ->
     result = render_dict({})
-    console.log result
-    t.equal result.tag, "div", "mock div"
-    t.end()
-
-  test "render root", (t) ->
+    t.ok result.tag, "mock tag"
+    t.ok result.attr, "mock attr"
+    t.ok result.body, "mock body"
     t.end()
 
   test "render world", (t) ->
