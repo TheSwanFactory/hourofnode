@@ -15,19 +15,15 @@ exports.test_game = (test, rx) ->
     t.ok example.grid_size, 'from source'
     t.ok example.comment, 'from destination'
     t.notOk example.statement, 'no false positive'
-    t.end()
 
-  test 'game override', (t) ->
     t.equal example.levels.length, 2, 'dest levels'
     t.end()
 
-  test 'game extend language', (t) ->
+  test 'game extend', (t) ->
     language = example.language
     t.ok language.victory, 'language from destination'
     t.ok language.left, 'language from source'
-    t.end()
-  
-  test 'game extend shapes', (t) ->
+
     shapes = example.shapes
     t.ok shapes.diamond, 'shapes from destination'
     t.ok shapes.turtle, 'shapes from source'
