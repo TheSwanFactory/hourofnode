@@ -14,13 +14,13 @@ svg_dict = {
 }
 
 exports.test_render = (test, rx) ->
+  world = god(rx_mock(rx), {})
 
   render_dict = (dict) ->
-    world = god(rx_mock(rx), dict)
-    render(world)
+    contents = god(rx_mock(rx), dict)
+    render(contents)
 
   test "rx_mock exists", (t) ->
-    world = god(rx_mock(rx), {})
     t.ok world.T, 'Has HTML Tags'
     t.ok world.T().div, 'Has HTML div'
     t.ok world.SVG, 'Has SVG Tags'
