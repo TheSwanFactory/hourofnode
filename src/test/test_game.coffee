@@ -38,6 +38,6 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'game world', (t) ->
-    world = god({}, example)
+    #world = god({}, example)
     t.end()
   
