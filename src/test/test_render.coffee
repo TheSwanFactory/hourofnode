@@ -20,6 +20,14 @@ exports.test_render = (test, rx) ->
     render(world)
 
   test "rx_mock exists", (t) ->
+    world = god(rx_mock(rx), {})
+    t.ok world.T, 'Has HTML Tags'
+    t.ok world.T().div, 'Has HTML div'
+    t.ok world.SVG, 'Has SVG Tags'
+    t.ok world.SVG().path, 'Has SVG path'
+    t.end()
+
+  test "render_dict", (t) ->
     result = render_dict({})
     console.log result
     t.equal result.tag, "div", "mock div"
