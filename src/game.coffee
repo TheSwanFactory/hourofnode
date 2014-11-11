@@ -1,6 +1,7 @@
 {vector} = require './god/vector'
 
 games = {
+  baseline: require("./game/baseline").game
   example: require("./game/example").game
 }
 
