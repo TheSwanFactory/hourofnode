@@ -3,6 +3,9 @@ exports.rx_mock = () -> {
     tags: {
       div: (args, children) -> {args: args, children: children}
     }
+    svg_tags: {
+      path: (args, children) -> {args: args, children: children}
+    }
   }
 }
 
