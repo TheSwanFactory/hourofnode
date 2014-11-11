@@ -23,5 +23,7 @@ load_game = (name) ->
 
 exports.game = (query) ->
   new_game = load_game query.name
-  new_game[my.key.children] = []
+  level = query.level or 0
+  my.assert new_game.levels and _.isArray(new_game.levels)
+  new_game[my.key.children] = [ new_game.levels[level] ]
   new_game
