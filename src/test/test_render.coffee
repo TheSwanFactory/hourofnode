@@ -34,6 +34,12 @@ exports.test_render = (test, rx) ->
     t.ok result.body, "mock body"
     t.end()
 
+  test "render root", (t) ->
+    result = render_dict({})
+    t.equal result.tag, 'div', 'root tag'
+    t.equal result.attr.id, 'root', 'root id'
+    t.end()
+
   test "render world", (t) ->
     t.end()
 
