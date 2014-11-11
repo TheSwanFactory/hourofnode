@@ -18,7 +18,7 @@ y = (v) -> if _.isArray(v) then v[Y_INDEX] else v.at(Y_INDEX)
 exports.vector = {
 
   # Enumerations for accessing components
-  axis: {x: X_INDEX, y: Y_INDEX}
+  axis: {x: X_INDEX, y: Y_INDEX, across: X_INDEX, down: Y_INDEX}
   size: {width: X_INDEX, height: Y_INDEX}
   to: {front: 1, back: -1, left: DIR_LEFT, right: DIR_RIGHT}
   x: x
