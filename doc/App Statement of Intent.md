@@ -6,7 +6,7 @@
 ### Intent
 _[What I plan to do]_
 
-Give kids a meaningful experience of programming for the Dec 8 Hour of Code
+Give kids a "meaningful experience" of programming for the Dec 8 Hour of Code -- defined as being able to design, develop and deploy their own games after completing the tutorial.
 
 ### Affirmers
 _[Who will hold me accountable for doing that]_

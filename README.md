@@ -2,13 +2,11 @@
 
 ## Turning event-driven programming into child's play
 
+http://hourofnode.org
+
 ### Introduction
 
-The Hour of Node is a single-page web application designed to teach event-driven programming to kids of all ages, backgrounds, and experience levels.
-
-    http://hourofnode.org
-
-It includes:
+The Hour of Node is a single-page web application designed to teach event-driven programming to kids of all ages, backgrounds, and experience levels.  It includes:
 
  * **TurtleVerse 2D**, a simple yet extensible game engine 
  * A **Graphical Command Interface** (GCI) that seamlessly incorporates both playing and programming the game engine
@@ -18,7 +16,7 @@ We believe this is the first comprehensive programming environment -- GUI, game 
 
 We began development on October 1st, 2014, and plan to launch on December 8th, 2014 for CS Education Week (aka The Hour of Code). We are live-casting our coding sessions at:
 
-    https://plus.google.com/u/0/b/114923971860716198524/events
+    https://www.youtube.com/user/AwesomeStuffBadly
 
 and publishing our code at:
 
