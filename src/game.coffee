@@ -1,8 +1,8 @@
 {vector} = require './god/vector'
 
-games = [
-  require("./game/example").game
-]
+games = {
+  example: require("./game/example").game
+}
 
 IPAD = [1024, 690]
 HALF_WIDTH = IPAD[0] / 2
@@ -56,7 +56,7 @@ baseline = {
   ]
 }
 
-choose_game = -> games[0]
+choose_game = (query) -> games[query.name]
 
 extensible = ['language', 'shapes']
 
