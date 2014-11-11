@@ -43,13 +43,7 @@ exports.game = {
   }
 
   levels: [
-    {
-      name: 'Move the Turtle to the Exit'
-      sprites: [me, exit]
-    }
-    {
-      name: 'Double Time'
-      sprites: [me, me2, exit]
-    }
+    {name: 'Move the Turtle to the Exit', sprites: [me, exit]}
+    {name: 'Double Time', sprites: [me, me2, exit]}
   ]
 }

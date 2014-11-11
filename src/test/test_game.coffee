@@ -3,7 +3,7 @@
 
 exports.test_game = (test, rx) ->
   #world = god(rx, config)
-  example = game({name: 'example'})
+  example = game({name: 'example', level: 1})
 
   test 'game load', (t) ->
     t.ok game, 'game'
@@ -20,6 +20,16 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'game extend', (t) ->
+    language = example.language
+    t.ok language.victory, 'language from destination'
+    t.ok language.left, 'language from source'
+
+    shapes = example.shapes
+    t.ok shapes.diamond, 'shapes from destination'
+    t.ok shapes.turtle, 'shapes from source'
+    t.end()
+
+  test 'level select', (t) ->
     language = example.language
     t.ok language.victory, 'language from destination'
     t.ok language.left, 'language from source'
