@@ -1,15 +1,14 @@
+{my} = require '../my'
 {vector} = require '../god/vector'
 
-IPAD = [1024, 690]
-HALF_WIDTH = IPAD[0] / 2
-SCALE = 30
+SCALE = my.cell_width
 
 exports.game = {
   name: "The Hour of Node"
 
   # Geometry
-  screen_dimensions: IPAD
-  grid_size: HALF_WIDTH
+  page_dimensions: my.page_dimensions
+  grid_size: my.column_1_width
   cell_count: 8
   cell_size: (world) -> world.get('grid_size') / world.get('cell_count')
 
