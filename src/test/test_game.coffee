@@ -2,7 +2,6 @@
 {game} = require('../game')
 
 exports.test_game = (test, rx) ->
-  #world = god(rx, config)
   example = game({name: 'example', level: 1})
 
   test 'game load', (t) ->
@@ -33,5 +32,12 @@ exports.test_game = (test, rx) ->
     t.equal example.levels.length, 2, 'two levels present'
     t.ok example._CHILDREN, 'children present'
     t.equal example._CHILDREN.length, 1, 'one level selected'
+    
+    level = example._CHILDREN[0]
+    t.equal level.sprites.length, 3, 'level 1 selected'
+    t.end()
+
+  test 'game world', (t) ->
+    world = god({}, example)
     t.end()
   
