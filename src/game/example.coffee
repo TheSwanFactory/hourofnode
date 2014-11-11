@@ -22,6 +22,7 @@ me2 = $.extend me, {position: [2,2]}
 
 exports.game = {
   name: "Example Game"
+  based_on: 'baseline'
   comment: "For testing purposes only"
 
   goal: {
