@@ -9,6 +9,7 @@
 # TODO: merge/refactor with draw code
 
 {my} = require '../my'
+{draw} = require './draw'
 
 get_style = (world) ->
   style = {
@@ -30,7 +31,7 @@ exports.render = (root) ->
   
   render_children = (world) ->
     results = world.map_children (child) ->
-      #return draw(child) if child.get('path')?
+      return draw(child) if child.get('path')?
       render_world(child)
     if world.get_local('name')?
       results.push T.p {

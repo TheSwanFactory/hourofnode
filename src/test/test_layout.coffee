@@ -4,9 +4,6 @@
 
 {rx_mock}= require './rx_mock'
 
-render_dict = (dict) ->
-  world = god(rx_mock(), dict)
-  render(world)
 
 svg_dict = {
   size: 480
@@ -17,6 +14,10 @@ svg_dict = {
 }
 
 exports.test_layout = (test, rx) ->
+
+  render_dict = (dict) ->
+    world = god(rx_mock(rx), dict)
+    render(world)
 
   test "rx_mock exists", (t) ->
     result = render_dict({})
