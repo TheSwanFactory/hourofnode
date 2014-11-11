@@ -6,10 +6,10 @@ exports.rx_mock = (rx) ->
     bind: (args) -> {args: args}
     rxt: {
       tags: {
-        div: (args, children) -> {tag: 'div', args: args, children: children}
+        div: (attr, body) -> {tag: 'div', attr: attr, body: body}
       }
       svg_tags: {
-        path: (args, children) -> {args: args, children: children}
+        path: (attr, body) -> {tag: 'path', attr: attr, body: body}
       }
     }
   }
