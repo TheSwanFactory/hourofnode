@@ -20,8 +20,8 @@ load_game = (name) ->
   return new_game unless basis
   merge load_game(basis), new_game
 
-choose_game = (query) ->
-  load_game query.name
 
 exports.game = (query) ->
-  choose_game query
+  new_game = load_game query.name
+  new_game[my.key.children] = []
+  new_game
