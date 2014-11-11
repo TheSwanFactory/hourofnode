@@ -30,12 +30,8 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'level select', (t) ->
-    language = example.language
-    t.ok language.victory, 'language from destination'
-    t.ok language.left, 'language from source'
-
-    shapes = example.shapes
-    t.ok shapes.diamond, 'shapes from destination'
-    t.ok shapes.turtle, 'shapes from source'
+    t.equal example.levels.length, 2, 'two levels present'
+    t.ok example._CHILDREN, 'children present'
+    t.equal example._CHILDREN.length, 1, 'one level selected'
     t.end()
   
