@@ -21,4 +21,6 @@ exports.test_layout = (test, rx) ->
 
   test "rx_mock exists", (t) ->
     result = render_dict({})
+    console.log result
+    t.equal result.tag, "div", "mock div"
     t.end()
