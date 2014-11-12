@@ -49,9 +49,12 @@ exports.test_render = (test, rx) ->
     body = render_mock(header).body
     t.equal body.tag, 'div', 'body.tag'
     t.equal body.attr.class[0], header._LABEL, 'header label'
+      
     t.ok body.body, "header rows"
     t.ok child = body.body[0], "first child"
     t.equal child.attr.class[0], 'game', 'child label'
+
+    t.ok cols = body.body[3], 'last row'
     t.end()
 
   test "render children", (t) ->
