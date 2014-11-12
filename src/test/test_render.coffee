@@ -110,5 +110,8 @@ exports.test_render = (test, rx) ->
     
     button = body.body[0] 
     t.equal button.tag, 'span', 'button span'
+    t.ok style = button.attr.style, 'button style'
+    t.ok style.border, 'button border'
+    t.ok style.margin, 'button margin'
     t.end()
 
