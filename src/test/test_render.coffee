@@ -57,6 +57,7 @@ exports.test_render = (test, rx) ->
 
     t.ok cols = body.body[3], 'last row'
     t.ok col = cols.body[0], 'first col'
+    t.equal col.tag, 'span', 'col tag'
     t.end()
 
   test "render children", (t) ->
