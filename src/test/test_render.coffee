@@ -47,12 +47,12 @@ exports.test_render = (test, rx) ->
     t.ok result.body, 'root body'
     t.end()
 
-  test "render group", (t) ->
+  test "render rows", (t) ->
     t.ok rows, 'group rows'
     t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
     t.ok row_tags = render_mock(row_dict).body.body, 'render rows'
-
     t.ok tags = render_mock(row_dict).body, 'render rows'
+    t.equal get_label(tags), 'rows', 'row label'
     t.ok row_tags = tags.body, 'extract rows'
     t.ok row = row_tags[0], "first row"
     t.equal row.tag, 'div', 'row tag'
