@@ -7,11 +7,11 @@ exports.rx_mock = (rx) ->
     rxt: {
       tags: {
         div: (attr, body) -> {tag: 'div', attr: attr, body: body}
-        span: (attr, body) -> {tag: 'div', attr: attr, body: body}
-        p: (attr, body) -> {tag: 'div', attr: attr, body: body}
+        span: (attr, body) -> {tag: 'span', attr: attr, body: body}
+        p: (attr, body) -> {tag: 'p', attr: attr, body: body}
       }
       svg_tags: {
-        g: (attr, body) -> {tag: 'path', attr: attr, body: body}
+        g: (attr, body) -> {tag: 'g', attr: attr, body: body}
         path: (attr, body) -> {tag: 'path', attr: attr, body: body}
       }
     }

@@ -1,10 +1,12 @@
+{my} = require '../my'
 {vector} = require '../god/vector'
 
 exports.render_html = (world) ->
   T = world.T()
-  dir = world.layout
+  dir = world.get 'layout'
+  tag = if (dir == vector.axis.across) then T.span else T.div
   {
-    tag: if dir == vector.axis.across then T.span else T.div
+    tag: tag
     name_tag: T.p
     style: {
       border: world.get 'border'
