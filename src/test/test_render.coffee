@@ -77,8 +77,8 @@ exports.test_render = (test, rx) ->
   test "render grid", (t) ->
     t.ok grid, 'grid'
     body = render_mock(grid).body
-    #t.equal body.tag, 'div', 'body.tag'
-    #t.equal get_label(body), header._LABEL, 'header label'
+    t.equal body.tag, 'svg', 'body.tag'
+    t.equal get_label(body.body), grid._LABEL, 'grid label'
     t.end()
 
   test "render svg", (t) ->

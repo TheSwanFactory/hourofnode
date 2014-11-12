@@ -11,7 +11,7 @@ exports.render_svg = (world) ->
   # TODO: allow named paths?
 
   path_tags = (paths) ->
-    return unless paths
+    return [] unless paths
     path_dict = {stroke: world.get 'stroke', fill: world.get 'fill'}
     paths.map (path) ->
       path_dict['d'] = path

@@ -3,7 +3,7 @@
 
 exports.grid = {
   _LABEL: "grid"
-  paths: ""
+  paths: []
   _CHILDREN: [
     {
       _LABEL: "background"
