@@ -23,7 +23,10 @@ exports.test_render = (test, rx) ->
   test "rx_mock exists", (t) ->
     t.ok world.T, 'Has HTML Tags'
     t.ok world.T().div, 'Has HTML div'
+    t.ok world.T().span, 'Has HTML span'
+    t.ok world.T().p, 'Has HTML p'
     t.ok world.SVG, 'Has SVG Tags'
+    t.ok world.SVG().g, 'Has SVG g'
     t.ok world.SVG().path, 'Has SVG path'
     t.end()
 

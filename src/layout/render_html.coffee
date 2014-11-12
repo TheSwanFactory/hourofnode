@@ -2,7 +2,7 @@ exports.render_html = (world) ->
   T = world.T()
   {
     tag: T.div
-    name_tag: T.p 
+    name_tag: T.p
     style: {
       border: world.get 'border'
       background: world.get 'fill'
