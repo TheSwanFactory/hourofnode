@@ -38,11 +38,14 @@ exports.test_render = (test, rx) ->
     result = render_mock({})
     t.equal result.tag, 'div', 'root tag'
     t.equal result.attr.id, 'root', 'root id'
+    t.ok result.body, 'root body'
     t.end()
 
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
+    t.equal body.tag, 'div', 'body.tag'
+    t.equal body.attr.class[0], header._LABEL, 'label'
     t.end()
 
   test "render children", (t) ->

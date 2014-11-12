@@ -39,7 +39,7 @@ exports.render = (root) ->
     results
     
   render_world = (world) ->
-    labels = world.labels([world, 'render', 'world'])
+    labels = world.labels([world.label(), 'render', 'world'])
     attrs = {
       id: "#{labels.length}_#{labels.join '_'}"
       class: labels 
