@@ -1,7 +1,7 @@
 {vector} = require '../god/vector'
 
 group = (label, items, direction) -> {
-  layout: direction
+  _AUTHORITY: {layout: direction}
   _LABEL: label
   _CHILDREN: items
 }
