@@ -53,7 +53,7 @@ exports.test_render = (test, rx) ->
     t.ok body.body, "header rows"
     console.log body.body
     t.ok child = body.body[0], "first child"
-    t.equal child.attr.class[0], header._LABEL, 'child label'
+    t.equal child.attr.class[0], 'game', 'child label'
     t.end()
 
   test "render children", (t) ->
