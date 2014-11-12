@@ -59,6 +59,18 @@ exports.test_render = (test, rx) ->
     t.equal get_label(row), 'alpha', 'row label'
     t.end()
 
+  test "render cols", (t) ->
+    t.ok cols, 'group cols'
+    t.ok col_dict = cols('cols', ['alpha', 'beta']), 'create cols'
+    t.ok col_tags = render_mock(col_dict).body.body, 'render cols'
+    t.ok tags = render_mock(col_dict).body, 'render cols'
+    t.equal get_label(tags), 'cols', 'col label'
+    t.ok col_tags = tags.body, 'extract cols'
+    t.ok col = col_tags[0], "first col"
+    t.equal col.tag, 'span', 'col tag'
+    t.equal get_label(col), 'alpha', 'col label'
+    t.end()
+
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
