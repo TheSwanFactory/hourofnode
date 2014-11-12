@@ -1,3 +1,4 @@
+{my} = require '../my'
 {rows, cols} = require './rows_cols'
 
 exports.header =
