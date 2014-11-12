@@ -67,6 +67,26 @@ exports.test_render = (test, rx) ->
     t.equal get_label(col), 'alpha', 'col label'
     t.end()
 
+  test "render svg", (t) ->
+    t.ok svg_dict = {paths: ['M0,0']}
+    body = render_mock(svg_dict ).body
+    console.log body
+    t.equal body.tag, 'svg', 'svg tag'
+    t.equal body.body.tag, 'g', 'g tag'
+    children = body.body.body
+    t.equal children[0].tag, 'path', 'path tag'
+    t.end()
+
+  test "render buttons", (t) ->
+    t.end()
+
+  test "render selection", (t) ->
+    t.end()
+
+  test "render name", (t) ->
+    t.end()
+
+  # TODO: Remove these as redundant
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
@@ -79,20 +99,4 @@ exports.test_render = (test, rx) ->
     body = render_mock(grid).body
     t.equal body.tag, 'svg', 'body.tag'
     t.equal get_label(body.body), grid._LABEL, 'grid label'
-    t.end()
-
-  test "render svg", (t) ->
-    t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
-    t.equal row_dict.layout, vector.axis.down, 'y axis'
-
-    t.ok tags = render_mock(row_dict).body, 'render rows'
-    t.end()
-
-  test "render buttons", (t) ->
-    t.end()
-
-  test "render selection", (t) ->
-    t.end()
-
-  test "render name", (t) ->
     t.end()
