@@ -80,6 +80,9 @@ exports.test_render = (test, rx) ->
     t.ok tags = render_mock(row_dict).body, 'render rows'
     t.end()
 
+  test "render buttons", (t) ->
+    t.end()
+
   test "render selection", (t) ->
     t.end()
 
