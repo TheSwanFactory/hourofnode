@@ -66,13 +66,7 @@ exports.test_render = (test, rx) ->
     t.equal get_label(body), header._LABEL, 'header label'
     t.end()
 
-  test "render children", (t) ->
-    t.end()
-
-  test "render html", (t) ->
-    # rows
-    # columns
-    # buttons
+  test "render buttons", (t) ->
     t.end()
 
   test "render svg", (t) ->
