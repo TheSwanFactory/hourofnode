@@ -1,4 +1,4 @@
-{rows, cols} = require './group'
+{rows, cols} = require './rows_cols'
 
 exports.header =
   rows 'header', [

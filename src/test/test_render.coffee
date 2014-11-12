@@ -5,7 +5,7 @@
 {layout} = require '../layout'
 {render} = require '../layout/render'
 {header} = require '../layout/header'
-{rows,cols} = require '../layout/group'
+{rows,cols} = require '../layout/rows_cols'
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
