@@ -13,8 +13,9 @@
 
 add_behavior = (attrs, world) ->
   clicker = world.get_raw 'click'
-  attrs['click'] = -> clicker(world) if clicker? and !world.has_children()
-  attrs['touchend'] = -> clicker(world) if clicker? and !world.has_children()
+  if clicker? and !world.has_children()
+    attrs['click'] = -> clicker(world) 
+    attrs['touchend'] = -> clicker(world)
   attrs
 
 create_attrs = (world, style) ->
@@ -24,7 +25,7 @@ create_attrs = (world, style) ->
     class: labels 
     style: world.bind() -> style
   }
-  #TODO: add_behavior(attrs, world)
+  add_behavior(attrs, world)
   
 text_attrs = (world) -> {
   class: ['name', 'text', world.get 'selected']
