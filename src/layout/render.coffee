@@ -33,7 +33,9 @@ text_attrs = (world) -> {
 }
 
 render_children = (world, dict) ->
-  array = world.map_children (child) -> render_world(child)
+  paths = dict.path_tags or []
+  children = world.map_children (child) -> render_world(child)
+  array = paths.concat children
   if world.get_local('name')?
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
     array.push tag 
