@@ -78,6 +78,15 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render buttons", (t) ->
+    body = render_mock(controls).body
+    t.equal body.tag, 'div', 'body.tag'
+    t.equal get_label(body), controls._LABEL, 'controls label'
+    
+    button = body.body[0] 
+    t.equal button.tag, 'span', 'button span'
+    t.ok style = button.attr.style, 'button style'
+    t.ok style.border, 'button border'
+    t.ok style.margin, 'button margin'
     t.end()
 
   test "render selection", (t) ->
