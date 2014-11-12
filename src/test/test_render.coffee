@@ -49,6 +49,9 @@ exports.test_render = (test, rx) ->
     t.ok rows, 'group rows'
     t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
     t.ok row_tags = render_mock(row_dict).body.body, 'render rows'
+    t.ok row = row_tags[0], "first row"
+    t.equal row.tag, 'div', 'row tag'
+    t.equal row.attr.class[0], 'alpha', 'row label'
     t.end()
 
   test "render header", (t) ->
