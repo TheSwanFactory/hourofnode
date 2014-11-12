@@ -1,13 +1,4 @@
-{vector} = require '../god/vector'
-
-group = (label, items, direction) -> {
-  layout: direction
-  _LABEL: label
-  _CHILDREN: items
-}
-
-rows = (label, items) -> group(label, items, vector.axis.down)
-cols = (label, items) -> group(label, items, vector.axis.across)
+{rows, cols} = require './group'
 
 exports.header =
   rows 'header', [
