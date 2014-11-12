@@ -1,19 +1,22 @@
 {vector} = require '../god/vector'
 
-exports.header = {
-  _LABEL: 'header'
-  going: vector.axis.down
-  _CHILDREN: [
+group = (label, items, direction) -> {
+  layout: direction
+  _LABEL: label
+  _CHILDREN: items
+}
+
+rows = (label, items) -> group(label, items, vector.axis.down)
+cols = (label, items) -> group(label, items, vector.axis.across)
+
+exports.header =
+  rows 'header', [
     {_LABEL: 'game', name: "Example Game", name_style: "24pt"}
     {_LABEL: 'level', name: "Move the Turtle to the Exit", name_style: "18pt"}
     {_LABEL: 'progress', name: "1 of 2"}
-    {
-      going: vector.axis.across
-      _CHILDREN: [
-        {_LABEL: 'ticks', name: "ticks: 0"}
-        {_LABEL: 'clicks', name: "clicks: 0"}
-        {_LABEL: 'bricks', name: "bricks: 0"}
-      ]
-    }
+    cols 'status', [
+      {_LABEL: 'ticks', name: "ticks: 0"}
+      {_LABEL: 'clicks', name: "clicks: 0"}
+      {_LABEL: 'bricks', name: "bricks: 0"}
+    ]
   ]
-}
