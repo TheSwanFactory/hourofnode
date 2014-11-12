@@ -1,4 +1,6 @@
-
+tag = (name) ->
+  (attr, body) -> {tag: name, attr: attr, body: body}
+  
 exports.rx_mock = (rx) ->
   {
     map: rx.map
@@ -6,13 +8,14 @@ exports.rx_mock = (rx) ->
     bind: (callback) -> callback()
     rxt: {
       tags: {
-        div: (attr, body) -> {tag: 'div', attr: attr, body: body}
-        span: (attr, body) -> {tag: 'span', attr: attr, body: body}
-        p: (attr, body) -> {tag: 'p', attr: attr, body: body}
+        div: tag 'div'
+        span: tag 'span'
+        p: tag 'p'
       }
       svg_tags: {
-        g: (attr, body) -> {tag: 'g', attr: attr, body: body}
-        path: (attr, body) -> {tag: 'path', attr: attr, body: body}
+        svg: tag 'svg'
+        g: tag 'g'
+        path: tag 'path'
       }
     }
   }

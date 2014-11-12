@@ -24,6 +24,6 @@ exports.grid = {
           path  += "M#{n},1 V#{size - 1} M1,#{n} H#{size - 1} "
         [path] 
     }
-    sprites
+    #sprites
   ]
 }
