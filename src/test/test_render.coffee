@@ -1,18 +1,11 @@
 {god} = require '../god'
 {rx_mock} = require './rx_mock'
+{vector} = require '../god/vector'
 
 {layout} = require '../layout'
 {render} = require '../layout/render'
 {header} = require '../layout/header'
 {rows,cols} = require '../layout/group'
-
-svg_dict = {
-  size: 480
-  scale: 80
-  fill: "green"
-  stroke: "black"
-  path: "M0,0 L100,100"
-}
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
@@ -50,6 +43,8 @@ exports.test_render = (test, rx) ->
   test "render rows", (t) ->
     t.ok rows, 'group rows'
     t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
+    t.equal row_dict.layout, vector.axis.down, 'y axis'
+
     t.ok row_tags = render_mock(row_dict).body.body, 'render rows'
     t.ok tags = render_mock(row_dict).body, 'render rows'
     t.equal get_label(tags), 'rows', 'row label'
@@ -62,12 +57,14 @@ exports.test_render = (test, rx) ->
   test "render cols", (t) ->
     t.ok cols, 'group cols'
     t.ok col_dict = cols('cols', ['alpha', 'beta']), 'create cols'
+    t.equal col_dict.layout, vector.axis.across, 'x axis'
+
     t.ok col_tags = render_mock(col_dict).body.body, 'render cols'
     t.ok tags = render_mock(col_dict).body, 'render cols'
     t.equal get_label(tags), 'cols', 'col label'
     t.ok col_tags = tags.body, 'extract cols'
     t.ok col = col_tags[0], "first col"
-    t.equal col.tag, 'span', 'col tag'
+    #t.equal col.tag, 'span', 'col tag'
     t.equal get_label(col), 'alpha', 'col label'
     t.end()
 
