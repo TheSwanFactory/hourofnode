@@ -53,6 +53,7 @@ exports.draw = (world) ->
       for child in child_paths
         paths.push child
       paths
+      
   device = world.get('device') or {width: 500, height: 500}
   SVG.svg {
     xmlns: "http://www.w3.org/2000/svg"

@@ -11,6 +11,11 @@
 {render_html} = require './render_html'
 {render_svg} = require './render_svg'
 
+normalize = (paths) ->
+  return [] unless paths
+  paths = paths.all() unless _.isArray(paths) 
+  paths
+
 add_behavior = (attrs, world) ->
   clicker = world.get_raw 'click'
   if clicker? and !world.has_children()
@@ -33,13 +38,16 @@ text_attrs = (world) -> {
 }
 
 render_children = (world, dict) ->
-  array = world.map_children (child) -> render_world(child)
-  name = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
-  array.push name if world.get_local('name')?
-  array
+  paths = normalize dict.path_tags
+  children = world.map_children (child) -> render_world(child)
+  paths = paths.concat children
+  if world.get_local('name')?
+    tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
+    paths.push tag 
+  paths
 
 render_world = (world) ->
-  is_svg = false # world.get('path')
+  is_svg = world.get('paths')?
   dict = if is_svg then render_svg(world) else render_html(world)
   attrs = create_attrs(world, dict.style)
   dict.tag attrs, world.bind() -> render_children(world, dict)
