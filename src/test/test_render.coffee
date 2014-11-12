@@ -47,7 +47,8 @@ exports.test_render = (test, rx) ->
 
   test "render group", (t) ->
     t.ok rows, 'group rows'
-    t.ok cols, 'group cols'
+    t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
+    t.ok row_tags = render_mock(row_dict).body.body, 'render rows'
     t.end()
 
   test "render header", (t) ->
