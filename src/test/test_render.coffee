@@ -6,6 +6,7 @@
 {render} = require '../layout/render'
 {header} = require '../layout/header'
 {grid} = require '../layout/grid'
+{controls} = require '../layout/controls'
 {rows,cols} = require '../layout/rows_cols'
 
 exports.test_render = (test, rx) ->
@@ -87,6 +88,7 @@ exports.test_render = (test, rx) ->
     t.end()
 
   # TODO: Remove these as redundant
+  
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
@@ -100,3 +102,8 @@ exports.test_render = (test, rx) ->
     t.equal body.tag, 'svg', 'body.tag'
     t.equal get_label(body.body), grid._LABEL, 'grid label'
     t.end()
+
+  test "render controls", (t) ->
+    t.ok controls, 'controls'
+    t.end()
+
