@@ -105,5 +105,8 @@ exports.test_render = (test, rx) ->
 
   test "render controls", (t) ->
     t.ok controls, 'controls'
+    body = render_mock(controls).body
+    t.equal body.tag, 'div', 'body.tag'
+    t.equal get_label(body), controls._LABEL, 'controls label'
     t.end()
 

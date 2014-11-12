@@ -26,6 +26,7 @@ exports.my = {
     grid: '#ccffcc'
     gridline: 'white'
     command: 'beige'
+    line: 'black'
   }
   key: {
     authority: '_AUTHORITY'
