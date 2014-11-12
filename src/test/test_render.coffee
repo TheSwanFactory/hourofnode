@@ -4,6 +4,7 @@
 {layout} = require '../layout'
 {render} = require '../layout/render'
 {header} = require '../layout/header'
+{rows,cols} = require '../layout/group'
 
 svg_dict = {
   size: 480
@@ -42,6 +43,11 @@ exports.test_render = (test, rx) ->
     t.equal result.tag, 'div', 'root tag'
     t.equal result.attr.id, 'root', 'root id'
     t.ok result.body, 'root body'
+    t.end()
+
+  test "render group", (t) ->
+    t.ok rows, 'group rows'
+    t.ok cols, 'group cols'
     t.end()
 
   test "render header", (t) ->
