@@ -2,50 +2,46 @@
 # render.coffee
 # Role: display the world and its children on a web page
 # Responsibility: 
-# * extract displayable attributes of worlds
-# * render in an updateable way as HTML using Reactive Coffee's `bind` method
-# * call out to 'draw' to render SVG graphics
+# * nest elements
+# * switch between HTML and SVG
+# * add clickability
 #
-# TODO: merge/refactor with draw code
 
 {my} = require '../my'
-
-get_style = (world) ->
-  style = {
-    border: world.get 'border'
-    background: world.get 'fill'
-    height: world.get 'height'
-    width: world.get 'width'
-    position: 'absolute'
-    left: world.get 'x'
-    top: world.get 'y'
-  }
+{render_html} = require './render_html'
+{render_svg} = require './render_svg'
 
 add_behavior = (attrs, world) ->
   clicker = world.get_raw 'click'
   attrs['click'] = -> clicker(world) if clicker? and !world.has_children()
+  attrs['touchend'] = -> clicker(world) if clicker? and !world.has_children()
+  attrs
+
+create_attrs = (world, style) ->
+  labels = world.labels [world.label()]
+  attrs = {
+    id: "#{labels.length}_#{labels.join '_'}"
+    class: labels 
+    style: world.bind() -> style
+  }
+  #TODO: add_behavior(attrs, world)
   
+text_attrs = (world) -> {
+  class: ['name', 'text', world.get 'selected']
+  style: world.get('name_style')
+}
+
+render_children = (world, dict) ->
+  array = world.map_children (child) -> render_world(child)
+  name = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
+  array.push name if world.get_local('name')?
+  array
+
+render_world = (world) ->
+  is_svg = false # world.get('path')
+  dict = if is_svg then render_svg(world) else render_html(world)
+  attrs = create_attrs(world, dict.style)
+  dict.tag attrs, world.bind() -> render_children(world, dict)
+        
 exports.render = (root) ->
-  T = root.T()
-  
-  render_children = (world) ->
-    results = world.map_children (child) ->
-      #return draw(child) if child.get('path')?
-      render_world(child)
-    if world.get_local('name')?
-      results.push T.p {
-        class: ['name', world.get('selected')]
-      }, world.bind() -> world.get('name')
-    results
-    
-  render_world = (world) ->
-    labels = world.labels([world.label(), 'render', 'world'])
-    attrs = {
-      id: "#{labels.length}_#{labels.join '_'}"
-      class: labels 
-      style: world.bind() -> get_style(world)
-    }
-    add_behavior(attrs, world)
-    T.div attrs, world.bind() -> render_children(world) 
-  
-  T.div {id: 'root'}, render_world(root)
+  root.T().div {id: 'root'}, render_world(root)
