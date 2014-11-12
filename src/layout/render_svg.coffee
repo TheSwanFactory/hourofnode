@@ -8,6 +8,8 @@ exports.render_svg = (world) ->
   SVG = world.SVG()
   
   # TODO: handle selection
+  # TODO: allow named paths?
+
   path_tags = (paths) ->
     return unless paths
     path_dict = {stroke: world.get 'stroke', fill: world.get 'fill'}

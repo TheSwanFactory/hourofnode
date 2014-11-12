@@ -5,6 +5,7 @@
 {layout} = require '../layout'
 {render} = require '../layout/render'
 {header} = require '../layout/header'
+{grid} = require '../layout/grid'
 {rows,cols} = require '../layout/rows_cols'
 
 exports.test_render = (test, rx) ->
@@ -71,6 +72,13 @@ exports.test_render = (test, rx) ->
     body = render_mock(header).body
     t.equal body.tag, 'div', 'body.tag'
     t.equal get_label(body), header._LABEL, 'header label'
+    t.end()
+
+  test "render grid", (t) ->
+    t.ok grid, 'grid'
+    body = render_mock(grid).body
+    #t.equal body.tag, 'div', 'body.tag'
+    #t.equal get_label(body), header._LABEL, 'header label'
     t.end()
 
   test "render svg", (t) ->
