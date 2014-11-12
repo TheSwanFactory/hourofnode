@@ -51,10 +51,12 @@ exports.test_render = (test, rx) ->
     t.equal body.attr.class[0], header._LABEL, 'header label'
       
     t.ok body.body, "header rows"
-    t.ok child = body.body[0], "first child"
-    t.equal child.attr.class[0], 'game', 'child label'
+    t.ok row = body.body[0], "first row"
+    t.equal row.tag, 'div', 'row tag'
+    t.equal row.attr.class[0], 'game', 'row label'
 
     t.ok cols = body.body[3], 'last row'
+    t.ok col = cols.body[0], 'first col'
     t.end()
 
   test "render children", (t) ->
