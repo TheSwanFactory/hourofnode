@@ -3,7 +3,7 @@ exports.rx_mock = (rx) ->
   {
     map: rx.map
     array: rx.array
-    bind: (args) -> {args: args}
+    bind: (callback) -> callback()
     rxt: {
       tags: {
         div: (attr, body) -> {tag: 'div', attr: attr, body: body}

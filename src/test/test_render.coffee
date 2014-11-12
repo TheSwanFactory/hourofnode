@@ -44,8 +44,13 @@ exports.test_render = (test, rx) ->
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
+    console.log body
     t.equal body.tag, 'div', 'body.tag'
-    t.equal body.attr.class[0], header._LABEL, 'label'
+    t.equal body.attr.class[0], header._LABEL, 'header label'
+    t.ok body.body, "header rows"
+    console.log body.body
+    t.ok child = body.body[0], "first child"
+    t.equal child.attr.class[0], header._LABEL, 'child label'
     t.end()
 
   test "render children", (t) ->
