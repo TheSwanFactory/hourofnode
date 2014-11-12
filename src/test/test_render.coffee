@@ -21,6 +21,8 @@ exports.test_render = (test, rx) ->
     contents = god(rx_mock(rx), dict)
     render(contents)
 
+  get_label = (tag) -> tag.attr.class[0]
+    
   test "rx_mock exists", (t) ->
     t.ok world.T, 'Has HTML Tags'
     t.ok world.T().div, 'Has HTML div'
@@ -49,25 +51,19 @@ exports.test_render = (test, rx) ->
     t.ok rows, 'group rows'
     t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
     t.ok row_tags = render_mock(row_dict).body.body, 'render rows'
+
+    t.ok tags = render_mock(row_dict).body, 'render rows'
+    t.ok row_tags = tags.body, 'extract rows'
     t.ok row = row_tags[0], "first row"
     t.equal row.tag, 'div', 'row tag'
-    t.equal row.attr.class[0], 'alpha', 'row label'
+    t.equal get_label(row), 'alpha', 'row label'
     t.end()
 
   test "render header", (t) ->
     t.ok header, 'header'
     body = render_mock(header).body
     t.equal body.tag, 'div', 'body.tag'
-    t.equal body.attr.class[0], header._LABEL, 'header label'
-      
-    t.ok body.body, "header rows"
-    t.ok row = body.body[0], "first row"
-    t.equal row.tag, 'div', 'row tag'
-    t.equal row.attr.class[0], 'game', 'row label'
-
-    t.ok cols = body.body[3], 'last row'
-    t.ok col = cols.body[0], 'first col'
-    t.skip col.tag, 'span', 'col tag'
+    t.equal get_label(body), header._LABEL, 'header label'
     t.end()
 
   test "render children", (t) ->
