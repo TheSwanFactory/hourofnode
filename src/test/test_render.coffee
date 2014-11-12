@@ -105,7 +105,16 @@ exports.test_render = (test, rx) ->
   test "render controls", (t) ->
     t.ok controls, 'controls'
     body = render_mock(controls).body
+    
+    t.ok col_tags = body.body, 'extract cols'
+    
+    t.ok col = col_tags[0], "first col"
+    t.equal col.tag, 'span', 'col tag'
+    
     t.equal body.tag, 'div', 'body.tag'
     t.equal get_label(body), controls._LABEL, 'controls label'
+    button = body.body[0] 
+    t.equal button.tag, 'span', 'button span'
+    console.log 'button', button
     t.end()
 

@@ -6,7 +6,9 @@ body.padding = my.control.spacing
 body.stroke = my.color.line
 body.fill = my.color.background
 
-body._AUTHORITY = {
+# TODO: Invent a more elegant inheritance mechanism
+
+_.extend body._AUTHORITY, {
   _KIND: "Control"
   fill: my.color.button
   margin: my.control.margin
