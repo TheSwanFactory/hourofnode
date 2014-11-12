@@ -34,8 +34,10 @@ text_attrs = (world) -> {
 
 render_children = (world, dict) ->
   array = world.map_children (child) -> render_world(child)
-  name = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
-  array.push name if world.get_local('name')?
+  console.log 'render_children', dict, dict.name_tag
+  if world.get_local('name')?
+    tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
+    array.push tag 
   array
 
 render_world = (world) ->
