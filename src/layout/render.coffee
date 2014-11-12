@@ -42,7 +42,7 @@ render_children = (world, dict) ->
   array
 
 render_world = (world) ->
-  is_svg = false # world.get('path')
+  is_svg = world.get('paths')
   dict = if is_svg then render_svg(world) else render_html(world)
   attrs = create_attrs(world, dict.style)
   dict.tag attrs, world.bind() -> render_children(world, dict)
