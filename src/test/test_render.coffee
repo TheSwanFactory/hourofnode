@@ -76,7 +76,7 @@ exports.test_render = (test, rx) ->
     t.equal body.body.tag, 'g', 'g tag'
     children = body.body.body
     t.equal children[0].tag, 'path', 'path tag'
-    t.equal children[1].tag, 'name', 'name tag'
+    t.equal children[1].tag, 'text', 'name tag'
     t.end()
 
   test "render buttons", (t) ->
