@@ -37,7 +37,7 @@ exports.layout = (game_dict) ->
   
   level_dict._CHILDREN = [
     header(level_dict)
-    # controls(level_dict)
+    controls(level_dict)
     # grid(level_dict)
     # sprites?
     # inspector?
