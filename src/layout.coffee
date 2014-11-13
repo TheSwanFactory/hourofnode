@@ -33,6 +33,7 @@ exports.layout = (game_dict) ->
   console.log "!! layout level_dict", level_dict
   level_dict.name_style = {font_size: 24}
   level_dict._AUTHORITY = {name_style: {font_size: 18}}
+  level_dict.width = game_dict.width / 2
   
   level_dict._CHILDREN = [
     header(level_dict)

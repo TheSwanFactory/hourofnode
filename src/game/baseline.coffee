@@ -7,7 +7,7 @@ exports.game = {
   name: "The Hour of Node"
 
   # Geometry
-  height: my.page_dimensions[vector.size.height]
+#  height: my.page_dimensions[vector.size.height]
   width: my.page_dimensions[vector.size.width]
   fill: 'white'
   name_style: {font_size: 36}
