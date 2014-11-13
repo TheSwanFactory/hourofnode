@@ -25,7 +25,6 @@
 #       sprite2...
 #     <-- state...
 
-
 exports.layout = (game_dict) ->
   level_dict = game_dict[my.key.children]
   level_dict._CHILDREN = [
