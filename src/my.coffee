@@ -14,8 +14,11 @@
 sys = require 'sys'
 assert = require 'assert'
 
+is_local = window.location.hostname == 'localhost'
+
 inspect = (world, n=1) ->
   console.log "inspect #{world} #{n}"
+  return unless is_local
   result = "\n#{Array(n+1).join '!'} inspect #{world}:"
   result = "#{result}\n#{sys.inspect world.doc.x}"
   
@@ -39,7 +42,7 @@ COMMAND_COLOR = 'beige'
 COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
-  test: window.location.hostname == 'localhost'
+  test: is_local
   inspect: inspect
   assert: assert
   page_dimensions: PAGE
