@@ -8,7 +8,7 @@ exports.render_html = (world) ->
   has_position = world.get('x') or world.get('y')
   {
     tag: tag
-    name_tag: T.p
+    name_tag: T.span
     style: {
       border: world.get 'stroke'
       background: world.get 'fill'
