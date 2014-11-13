@@ -24,7 +24,7 @@ add_behavior = (attrs, world) ->
   attrs
 
 create_attrs = (world, style) ->
-  labels = world.labels [world.label()]
+  labels = world.labels()
   attrs = {
     id: "#{labels.length}_#{labels.join '_'}"
     class: labels 
