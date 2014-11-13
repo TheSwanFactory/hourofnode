@@ -29,14 +29,16 @@
 #     <-- state...
 
 exports.layout = (game_dict) ->
+  game_dict.name = undefined
   size = game_dict.page_dimensions
+  game_dict.height = size[vector.size.height]
+  game_dict.width = size[vector.size.width]
+  game_dict.fill = 'azure'
+  game_dict.stroke = 'black'
+
   level_dict = game_dict[my.key.children][0]
   console.log "!! layout level_dict", level_dict
 
-  level_dict.height = size[vector.size.height]
-  level_dict.width = size[vector.size.width]
-  level_dict.fill = 'azure'
-  level_dict.stroke = 'black'
   
   level_dict._AUTHORITY = {height: 'auto', width: 'auto', stroke: ''}
   level_dict._CHILDREN = [
