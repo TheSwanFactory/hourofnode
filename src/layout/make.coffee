@@ -8,5 +8,5 @@ group = (label, items, direction) -> {
 
 exports.make = {
   rows: (label, items) -> group(label, items, vector.axis.down)
-  cols: (label, items) -> group(label, items, vector.axis.across)
+  columns: (label, items) -> group(label, items, vector.axis.across)
 }

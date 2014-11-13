@@ -7,7 +7,7 @@
 {header} = require '../layout/header'
 {grid} = require '../layout/grid'
 {controls} = require '../layout/controls'
-{make} = require './make'
+{make} = require '../layout/make'
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
