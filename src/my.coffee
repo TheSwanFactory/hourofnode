@@ -9,7 +9,10 @@ CONTROL = 96
 MARGIN = 8
 
 BUTTON_COLOR = 'azure'
+BUTTON_BACKGROUND = 'grey'
 ROW_BACKGROUND = 'darkgrey'
+COMMAND_COLOR = 'beige'
+COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   test: window.location.hostname == 'localhost'
@@ -21,8 +24,23 @@ exports.my = {
   device: IPAD
   margin: MARGIN
   grid: {size: HALF, split: 8}
-  button: {size: TOUCH, spacing: TOUCH + 2*MARGIN}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
+  button: {
+    size: TOUCH
+    spacing: TOUCH + 2*MARGIN
+    padding: 2*MARGIN
+    margin: MARGIN
+    color: BUTTON_COLOR
+    background: BUTTON_BACKGROUND 
+  }
+  command: {
+    size: TOUCH
+    spacing: TOUCH + 2*MARGIN
+    padding: 2*MARGIN
+    margin: MARGIN
+    color: BUTTON_COLOR
+    background: BUTTON_BACKGROUND 
+  }
   control: {
     size: CONTROL
     spacing: CONTROL + 4*MARGIN
@@ -34,10 +52,10 @@ exports.my = {
   color: {
     button: BUTTON_COLOR
     background: ROW_BACKGROUND 
-    row: 'lightgrey'
-    grid: '#ccffcc'
+    row: BUTTON_BACKGROUND
+    grid: '#ccffcc' # pale_green
     gridline: 'white'
-    command: 'beige'
+    command: COMMAND_COLOR
     line: 'black'
   }
   key: {
