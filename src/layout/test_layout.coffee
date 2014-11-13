@@ -7,7 +7,7 @@
 {controls} = require '../layout/controls'
 
 exports.test_layout = (test, rx) ->
-  #game_dict = game({name: 'example', level: 1})
+  # game_dict = game({name: 'example', level: 1})
   #config = layout(game_dict)
 
   test "layout exists", (t) ->
