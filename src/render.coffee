@@ -1,6 +1,6 @@
 #
 # render.coffee
-# Role: display the world and its children on a web page
+# Role: generate HTML or SVG from a world 
 # Responsibility: 
 # * nest elements
 # * switch between HTML and SVG

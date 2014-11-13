@@ -1,3 +1,9 @@
+# layout.coffee
+# Role: describe the user interface for a game
+# Responsibility:
+# * export and invoke a render method
+# * display the state from the game
+
 # TODO: Move views into a different folder than layout tools
 
 {my} = require './my'
