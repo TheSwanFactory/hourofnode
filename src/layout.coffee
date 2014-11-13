@@ -38,7 +38,7 @@ exports.layout = (game_dict) ->
   level_dict.fill = 'azure'
   level_dict.stroke = 'black'
   
-  level_dict._AUTHORITY = {height: 'auto', width: 'auto', stroke: undefined}
+  level_dict._AUTHORITY = {height: 'auto', width: 'auto', stroke: ''}
   level_dict._CHILDREN = [
     header(level_dict)
     # controls(level_dict)
