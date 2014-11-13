@@ -10,8 +10,8 @@ rx = require 'reactive-coffee'
 {config} = require('./config')
 {test} = require('./test') if my.test
 
-# game_level = game({name: 'example', level: 1})
-# config = layout(game_level)
+# game_dict = game({name: 'example', level: 1})
+# config = layout(game_dict)
 
 world = god(rx, config)
 main = ->

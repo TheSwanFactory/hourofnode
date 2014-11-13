@@ -1,6 +1,6 @@
 # layout.coffee
 #
-# Role: generate the user interface for a game level
+# Role: generate interface dictionary for a game dictionary
 #
 # Responsibility:
 # * export and invoke a render method
@@ -26,6 +26,19 @@ views = {
   ]
 }
 
-exports.layout = (game_level) ->
+# Desired Structure
+# game
+#   level
+#     header
+#     controls
+#     grid
+#       sprite1
+#       sprite2...
+#     <-- state...
+
+
+exports.layout = (game_dict) ->
+  level = game_dict [my.key.children]
+  
   game_level._CHILDREN = [views]
   
