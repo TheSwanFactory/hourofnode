@@ -1,3 +1,4 @@
+{my} = require '../my'
 {god} = require '../god'
 {rx_mock} = require './rx_mock'
 {vector} = require '../god/vector'
@@ -78,11 +79,9 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render buttons", (t) ->
-    body = render_mock(controls).body
-    t.equal body.tag, 'div', 'body.tag'
-    t.equal get_label(body), controls._LABEL, 'controls label'
-    
-    button = body.body[0] 
+    dict = make.buttons('button',["a", "b"], my.control)
+    buttons = render_mock(dict).body.body
+    button = buttons[0] 
     t.equal button.tag, 'span', 'button span'
     t.ok style = button.attr.style, 'button style'
     t.ok style.border, 'button border'
