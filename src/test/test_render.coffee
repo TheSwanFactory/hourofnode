@@ -76,6 +76,7 @@ exports.test_render = (test, rx) ->
     t.equal body.body.tag, 'g', 'g tag'
     children = body.body.body
     t.equal children[0].tag, 'path', 'path tag'
+    t.skip 'name tag'
     t.end()
 
   test "render buttons", (t) ->
@@ -86,12 +87,13 @@ exports.test_render = (test, rx) ->
     t.ok style = button.attr.style, 'button style'
     t.ok style.border, 'button border'
     t.ok style.margin, 'button margin'
+
+    child = button.body[0]
+    console.log "buttons child #{child}", child
+    t.equal child.tag, 'p', 'name tag'
     t.end()
 
   test "render selection", (t) ->
-    t.end()
-
-  test "render name", (t) ->
     t.end()
 
   # TODO: Remove these as redundant
