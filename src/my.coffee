@@ -1,3 +1,5 @@
+# TODO: Make 'my' kinds inherit values somehow
+
 # iPad sizes based on https://stackoverflow.com/questions/3375706/ipad-browser-width-height-standard/9049670#9049670
 PAGE = [1024, 690]
 IPAD = {width: 1024, height: 690}
