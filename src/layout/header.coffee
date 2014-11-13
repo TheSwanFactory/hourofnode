@@ -17,7 +17,7 @@ exports.header = (level_dict) ->
       "of"
       "#{level_dict.level_count}"
     ]
-    make.columns 'status', [
+    make.columns 'stats', [
       metric 'ticks'
       metric 'clicks'
       metric 'bricks'

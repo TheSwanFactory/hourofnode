@@ -23,7 +23,6 @@ sys = require 'sys'
 {game} = require './game'
 {layout} = require './layout'
 {render} = require './render'
-# {config} = require('./config')
 
 game_dict = game({name: 'example', level: 1})
 config = layout(game_dict)
