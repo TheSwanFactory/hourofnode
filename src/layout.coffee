@@ -1,7 +1,7 @@
 # TODO: Move views into a different folder than layout tools
 
 {my} = require './my'
-{render} = require './layout/render'
+{render} = require './render'
 {header} = require './layout/header'
 {controls} = require './layout/controls'
 {grid} = require './layout/grid'
