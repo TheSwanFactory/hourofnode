@@ -2,13 +2,13 @@
 {god} = require '../god'
 {rx_mock} = require './rx_mock'
 {vector} = require '../god/vector'
+{render} = require '../render'
+{make} = require '../render/make'
 
 {layout} = require '../layout'
-{render} = require '../layout/render'
 {header} = require '../layout/header'
 {grid} = require '../layout/grid'
 {controls} = require '../layout/controls'
-{make} = require '../layout/make'
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})

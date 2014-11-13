@@ -7,7 +7,7 @@
 # * add clickability
 #
 
-{my} = require '../my'
+{my} = require './my'
 {render_html} = require './render_html'
 {render_svg} = require './render_svg'
 

@@ -1,5 +1,5 @@
 {my} = require '../my'
-{make} = require './make'
+{make} = require '../render/make'
 
 exports.header =
   make.rows 'header', [
