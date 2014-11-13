@@ -1,7 +1,7 @@
 {my} = require '../my'
-{rows, cols} = require './rows_cols'
+{make} = require './make'
 
-body = cols 'status', ["step", "run", "stop", "reset"]
+body = make.columns 'controls', ["step", "run", "stop", "reset"]
 body.padding = my.control.spacing
 body.stroke = my.color.line
 body.fill = my.color.background

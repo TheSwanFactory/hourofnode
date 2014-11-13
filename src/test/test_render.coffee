@@ -7,7 +7,7 @@
 {header} = require '../layout/header'
 {grid} = require '../layout/grid'
 {controls} = require '../layout/controls'
-{rows,cols} = require '../layout/rows_cols'
+{make} = require './make'
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
@@ -43,8 +43,8 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render rows", (t) ->
-    t.ok rows, 'group rows'
-    t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
+    t.ok make.rows, 'group rows'
+    t.ok row_dict = make.rows('rows', ['alpha', 'beta']), 'create rows'
 
     t.ok tags = render_mock(row_dict).body, 'render rows'
     t.equal get_label(tags), 'rows', 'row label'
@@ -55,8 +55,8 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render cols", (t) ->
-    t.ok cols, 'group cols'
-    t.ok col_dict = cols('cols', ['alpha', 'beta']), 'create cols'
+    t.ok make.columns, 'group cols'
+    t.ok col_dict = make.columns('cols', ['alpha', 'beta']), 'create cols'
 
     t.ok tags = render_mock(col_dict).body, 'render cols'
     t.equal tags.tag, 'div', 'cols tag'
