@@ -34,10 +34,10 @@ load_game = (name) ->
 exports.game = (query) ->
   game_dict = load_game query.name
   level = query.level or 0
-  my.assert new_game.levels and _.isArray(game_dict.levels)
+  my.assert game_dict.levels and _.isArray(game_dict.levels)
   level_dict = game_dict.levels[level]
   level_dict.level_index = level
-  level_dict.level_count = levels.length
-  level_dict.game = game.name 
-  new_game[my.key.children] = [level_dict]
-  new_game
+  level_dict.level_count = game_dict.levels.length
+  level_dict.game = game_dict.name 
+  game_dict[my.key.children] = [level_dict]
+  game_dict
