@@ -1,12 +1,14 @@
+{my} = require '../my'
 {god} = require '../god'
 {rx_mock} = require './rx_mock'
 {vector} = require '../god/vector'
+{render} = require '../render'
+{make} = require '../render/make'
 
 {layout} = require '../layout'
-{render} = require '../layout/render'
 {header} = require '../layout/header'
 {grid} = require '../layout/grid'
-{rows,cols} = require '../layout/rows_cols'
+{controls} = require '../layout/controls'
 
 exports.test_render = (test, rx) ->
   world = god(rx_mock(rx), {})
@@ -42,9 +44,8 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render rows", (t) ->
-    t.ok rows, 'group rows'
-    t.ok row_dict = rows('rows', ['alpha', 'beta']), 'create rows'
-    t.equal row_dict.layout, vector.axis.down, 'y axis'
+    t.ok make.rows, 'group rows'
+    t.ok row_dict = make.rows('rows', ['alpha', 'beta']), 'create rows'
 
     t.ok tags = render_mock(row_dict).body, 'render rows'
     t.equal get_label(tags), 'rows', 'row label'
@@ -55,48 +56,41 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render cols", (t) ->
-    t.ok cols, 'group cols'
-    t.ok col_dict = cols('cols', ['alpha', 'beta']), 'create cols'
-    t.equal col_dict.layout, vector.axis.across, 'x axis'
+    t.ok make.columns, 'group cols'
+    t.ok col_dict = make.columns('cols', ['alpha', 'beta']), 'create cols'
 
     t.ok tags = render_mock(col_dict).body, 'render cols'
+    t.equal tags.tag, 'div', 'cols tag'
     t.equal get_label(tags), 'cols', 'col label'
     t.ok col_tags = tags.body, 'extract cols'
+    
     t.ok col = col_tags[0], "first col"
     t.equal col.tag, 'span', 'col tag'
     t.equal get_label(col), 'alpha', 'col label'
     t.end()
 
   test "render svg", (t) ->
-    t.ok svg_dict = {paths: ['M0,0']}
-    body = render_mock(svg_dict ).body
-    console.log body
+    svg_dict = {paths: ['M0,0'], name: 'ME'}
+    body = render_mock(svg_dict).body
     t.equal body.tag, 'svg', 'svg tag'
     t.equal body.body.tag, 'g', 'g tag'
     children = body.body.body
     t.equal children[0].tag, 'path', 'path tag'
+    t.equal children[1].tag, 'text', 'name tag'
     t.end()
 
   test "render buttons", (t) ->
+    dict = make.buttons('button',["a", "b"], my.control)
+    buttons = render_mock(dict).body.body
+    button = buttons[0] 
+    t.equal button.tag, 'span', 'button span'
+    t.ok style = button.attr.style, 'button style'
+    t.ok style.border, 'button border'
+    t.ok style.margin, 'button margin'
+
+    child = button.body[0]
+    t.equal child.tag, 'p', 'name tag'
     t.end()
 
   test "render selection", (t) ->
-    t.end()
-
-  test "render name", (t) ->
-    t.end()
-
-  # TODO: Remove these as redundant
-  test "render header", (t) ->
-    t.ok header, 'header'
-    body = render_mock(header).body
-    t.equal body.tag, 'div', 'body.tag'
-    t.equal get_label(body), header._LABEL, 'header label'
-    t.end()
-
-  test "render grid", (t) ->
-    t.ok grid, 'grid'
-    body = render_mock(grid).body
-    t.equal body.tag, 'svg', 'body.tag'
-    t.equal get_label(body.body), grid._LABEL, 'grid label'
     t.end()

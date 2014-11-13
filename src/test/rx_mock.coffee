@@ -16,6 +16,7 @@ exports.rx_mock = (rx) ->
         svg: tag 'svg'
         g: tag 'g'
         path: tag 'path'
+        text: tag 'text'
       }
     }
   }

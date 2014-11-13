@@ -9,11 +9,13 @@ exports.render_html = (world) ->
     tag: tag
     name_tag: T.p
     style: {
-      border: world.get 'border'
+      border: world.get 'stroke'
       background: world.get 'fill'
+      margin: world.get 'margin'
+      padding: world.get 'padding'
+      position: 'absolute'
       height: world.get 'height'
       width: world.get 'width'
-      position: 'absolute'
       left: world.get 'x'
       top: world.get 'y'
     }

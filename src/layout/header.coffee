@@ -1,13 +1,25 @@
-{rows, cols} = require './rows_cols'
+{my} = require '../my'
+{make} = require '../render/make'
 
-exports.header =
-  rows 'header', [
-    {_LABEL: 'game', name: "Example Game", name_style: "24pt"}
-    {_LABEL: 'level', name: "Move the Turtle to the Exit", name_style: "18pt"}
-    {_LABEL: 'progress', name: "1 of 2"}
-    cols 'status', [
-      {_LABEL: 'ticks', name: "ticks: 0"}
-      {_LABEL: 'clicks', name: "clicks: 0"}
-      {_LABEL: 'bricks', name: "bricks: 0"}
+exports.header = (level_dict) ->
+  metric = (key) ->
+    make.columns 'key', [
+      "#{key}: "
+      {_LABEL: key, name: (world) -> world.get(key) or 0}
+      "/"
+      "#{level_dict.goal[key]}"
+    ]
+  make.rows 'header', [
+    {_LABEL: 'game', name: level_dict.game, name_style: "24pt"}
+    {_LABEL: 'level', name: level_dict.name, name_style: "18pt"}
+    make.columns 'progress', [
+      "#{level_dict.level_index}"
+      "of"
+      "#{level_dict.level_count}"
+    ]
+    make.columns 'status', [
+      metric 'ticks'
+      metric 'clicks'
+      metric 'bricks'
     ]
   ]

@@ -25,12 +25,6 @@ exports.game = {
   based_on: 'baseline'
   comment: "For testing purposes only"
 
-  goal: {
-    clicks: 1
-    ticks: 4
-    bricks: 1
-  }
-
   language: {
     # Array of Operation, key, argument
     victory: ['.send', 'done',  1]
@@ -44,7 +38,23 @@ exports.game = {
   }
 
   levels: [
-    {name: 'Move the Turtle to the Exit', sprites: [me, exit]}
-    {name: 'Double Time', sprites: [me, me2, exit]}
+    {
+      name: 'Move the Turtle to the Exit'
+      sprites: [me, exit]
+      goal: {
+        clicks: 1
+        ticks: 4
+        bricks: 1
+      }
+    }
+    {
+      name: 'Double Time'
+      sprites: [me, me2, exit]
+      goal: {
+        clicks: 10
+        ticks: 8
+        bricks: 6
+      }
+    }
   ]
 }

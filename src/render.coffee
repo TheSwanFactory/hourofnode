@@ -1,15 +1,15 @@
 #
 # render.coffee
-# Role: display the world and its children on a web page
+# Role: generate HTML or SVG from a world 
 # Responsibility: 
 # * nest elements
 # * switch between HTML and SVG
 # * add clickability
 #
 
-{my} = require '../my'
-{render_html} = require './render_html'
-{render_svg} = require './render_svg'
+{my} = require './my'
+{render_html} = require './render/render_html'
+{render_svg} = require './render/render_svg'
 
 normalize = (paths) ->
   return [] unless paths

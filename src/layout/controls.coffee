@@ -1,22 +1,11 @@
 {my} = require '../my'
+{make} = require '../render/make'
 
-exports.controls = {
-  _LABEL: "controls"
-  j: (world) -> world.get('split')
-  width: (world) -> world.get('grid').size
-  height: my.control.spacing
-  fill: my.color.background
-  stroke: "black"
-  _AUTHORITY: {
-    _KIND: "Control"
-    fill: my.color.button
-    x: (world) -> world.index*my.control.spacing + my.control.margin
-    y: (world) -> my.control.margin
-    height: my.control.size
-    width: my.control.size
-    click: (world, args) -> world.send world.get('value')
-  }
-  _CHILDREN: [
-    "step", "run", "stop", "reset"
-  ]
-}
+exports.controls = (level_dict) ->
+  make.buttons(
+    'control',
+    ["step", "run", "stop", "reset"],
+    my.control,
+    (world, args) -> world.send world.get('value')
+  )
+
