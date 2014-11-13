@@ -3,6 +3,8 @@
 
 exports.grid = (level_dict) -> {
   _LABEL: "grid"
+  height: (world) -> world.get('grid_size')
+  width: (world) -> world.get('grid_size')
   paths: []
   _CHILDREN: [
     {
