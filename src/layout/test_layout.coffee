@@ -7,11 +7,13 @@
 {controls} = require '../layout/controls'
 
 exports.test_layout = (test, rx) ->
-  # game_dict = game({name: 'example', level: 1})
-  #config = layout(game_dict)
+  game_dict = game({name: 'example', level: 1})
+  config = layout(game_dict)
 
-  test "layout exists", (t) ->
-    t.ok layout, 'layout'
+  test "config exists", (t) ->
+    t.ok game_dict, 'game_dict'
+    t.ok config, 'config'
+    console.log config
     t.end()
   
   test "layout header", (t) ->
