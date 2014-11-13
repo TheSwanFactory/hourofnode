@@ -5,21 +5,23 @@ rx = require 'reactive-coffee'
 
 # Dependencies
 
-{my} = require('./my')
-{god} = require('./god')
-{config} = require('./config')
-{test} = require('./test') if my.test
+{my} = require './my'
+{god} = require './god'
+{game} = require './game'
+{layout} = require './layout'
+# {config} = require('./config')
 
-# game_dict = game({name: 'example', level: 1})
-# config = layout(game_dict)
-
+game_dict = game({name: 'example', level: 1})
+config = layout(game_dict)
 world = god(rx, config)
+
 main = ->
   $('body').append(
-    world.send('render')
+    # world.call('render')
   )
   
 # Instantiate our main view
 # $(main)
 # Run Tests
+{test} = require('./test') if my.test
 test(rx) if my.test

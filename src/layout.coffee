@@ -30,8 +30,8 @@ exports.layout = (game_dict) ->
   console.log "!! layout level_dict", level_dict
   level_dict._CHILDREN = [
     header(level_dict)
-    #controls(level_dict)
-    #grid(level_dict)
+    controls(level_dict)
+    grid(level_dict)
     # sprites?
     # inspector?
   ]

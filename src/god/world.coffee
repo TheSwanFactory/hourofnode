@@ -133,7 +133,7 @@ class World
     world
     
   _from_value: (value) ->
-    my.assert _.isString(value), "_from_value requires string"
+    my.assert _.isString(value), "_from_value #{value} not a string"
     world = @_spawn_world "#{value}"
     world.put("value", value)
     world.put("name", value)

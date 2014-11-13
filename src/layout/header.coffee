@@ -7,7 +7,7 @@ exports.header = (level_dict) ->
       "#{key}: "
       {_LABEL: key, name: (world) -> world.get(key) or 0}
       "/"
-      level_dict.goal[key]
+      "#{level_dict.goal[key]}"
     ]
   make.rows 'header', [
     {_LABEL: 'game', name: level_dict.game, name_style: "24pt"}
