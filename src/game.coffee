@@ -1,3 +1,14 @@
+# game.coffee
+#
+# Role: concisely capture the unique properties of a game
+#
+# Responsibility:
+# * require all valid game files 
+# * load a game based on the query 
+# * merge properties from baseline
+# * set current level as the game's child
+# * return the game dictionary 
+
 {my} = require './my'
 
 games = {
@@ -19,7 +30,6 @@ load_game = (name) ->
   basis = new_game.based_on
   return new_game unless basis
   merge load_game(basis), new_game
-
 
 exports.game = (query) ->
   new_game = load_game query.name
