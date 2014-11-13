@@ -38,6 +38,7 @@ text_attrs = (world) -> {
 }
 
 render_children = (world, dict) ->
+  console.log "render_children #{world}", dict
   paths = normalize dict.path_tags
   if world.get_local('name')?
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
