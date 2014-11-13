@@ -10,6 +10,9 @@ rx = require 'reactive-coffee'
 {config} = require('./config')
 {test} = require('./test') if my.test
 
+# game_level = game({name: 'example', level: 1})
+# config = layout(game_level)
+
 world = god(rx, config)
 main = ->
   $('body').append(

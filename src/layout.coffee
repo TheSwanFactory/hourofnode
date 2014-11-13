@@ -1,11 +1,12 @@
 # layout.coffee
-# Role: describe the user interface for a game
+#
+# Role: generate the user interface for a game level
+#
 # Responsibility:
 # * export and invoke a render method
-# * display the state of the game
-# * display the state of the current sprite
-
-# TODO: Move views into a different folder than layout tools
+# * create game state objects
+# * create sprite state objects for each sprite
+# * ensure only the currently-selected sprite's state is ddisplay
 
 {my} = require './my'
 {render} = require './render'
@@ -14,7 +15,7 @@
 {grid} = require './layout/grid'
 {inspector} = require './layout/inspector'
   
-exports.layout = {
+views = {
   _EXPORTS: ["render"]
   render: (world) -> render(world)
   _CHILDREN: [
@@ -24,3 +25,7 @@ exports.layout = {
     inspector # select which sprite_state to display
   ]
 }
+
+exports.layout = (game_level) ->
+  game_level._CHILDREN = [views]
+  
