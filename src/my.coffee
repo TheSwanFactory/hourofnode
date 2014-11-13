@@ -15,11 +15,14 @@ sys = require 'sys'
 assert = require 'assert'
 
 inspect = (world, n=1) ->
-  console.log "#{Array(n+1).join '!'} inspect #{world}"
-  sys.inspect world.doc.x
+  console.log "inspect #{world} #{n}"
+  result = "\n#{Array(n+1).join '!'} inspect #{world}:"
+  result = "#{result}\n#{sys.inspect world.doc.x}"
+  
   children = world._child_array() or []
   for child in children
-    inspect(child, n+1)
+    result = "#{result}\n #{inspect(child, n+1)}"
+  result
 
 # iPad sizes based on https://stackoverflow.com/questions/3375706/ipad-browser-width-height-standard/9049670#9049670
 PAGE = [1024, 690]
@@ -37,7 +40,7 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   test: window.location.hostname == 'localhost'
-  inspect: (world) -> sys.inspect world.doc.x
+  inspect: inspect
   assert: assert
   page_dimensions: PAGE
   column_1_width: HALF

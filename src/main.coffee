@@ -28,7 +28,7 @@ sys = require 'sys'
 game_dict = game({name: 'example', level: 1})
 config = layout(game_dict)
 world = god(rx, config)
-console.log "root world", sys.inspect(world.doc.x)
+#console.log "root world", my.inspect(world)
 main = ->
   $('body').append(
     # render(world)
