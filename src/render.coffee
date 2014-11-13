@@ -39,11 +39,11 @@ text_attrs = (world) -> {
 
 render_children = (world, dict) ->
   paths = normalize dict.path_tags
-  children = world.map_children (child) -> render_world(child)
-  paths = paths.concat children
   if world.get_local('name')?
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
     paths.push tag 
+  children = world.map_children (child) -> render_world(child)
+  paths = paths.concat children
   paths
 
 render_world = (world) ->

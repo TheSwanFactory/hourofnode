@@ -10,8 +10,6 @@ exports.header = (level_dict) ->
       "#{level_dict.goal[key]}"
     ]
   make.rows 'header', [
-    {_LABEL: 'game', name: level_dict.game, name_style: {font_size: 36}}
-    {_LABEL: 'level', name: level_dict.name, name_style: {font_size: 24}}
     make.columns 'progress', [
       "#{level_dict.level_index}"
       "of"
