@@ -14,17 +14,6 @@
 {controls} = require './layout/controls'
 {grid} = require './layout/grid'
 {inspector} = require './layout/inspector'
-  
-views = {
-  _EXPORTS: ["render"]
-  render: (world) -> render(world)
-  _CHILDREN: [
-    header
-    controls
-    grid
-    inspector # select which sprite_state to display
-  ]
-}
 
 # Desired Structure
 # game
@@ -38,7 +27,12 @@ views = {
 
 
 exports.layout = (game_dict) ->
-  level = game_dict [my.key.children]
-  
-  game_level._CHILDREN = [views]
-  
+  level_dict = game_dict[my.key.children]
+  level_dict._CHILDREN = [
+    header(game_dict.name, level_dict)
+    controls
+    grid
+    # sprites?
+    # inspector?
+  ]
+  game_dict
