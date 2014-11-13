@@ -26,16 +26,19 @@ merge = (stock, custom) ->
     addons[key] = $.extend stock[key], custom[key]
   $.extend stock, custom, addons
 
+find_game = (name) -> game_cache[name] or load_game(name)
+
 load_game = (name) ->
   new_game = game_files[name]
   my.assert new_game, "Can not load game #{name}"
   basis = new_game.based_on
   return new_game unless basis
-  merge load_game(basis), new_game
+  result = merge find_game(basis), new_game
+  game_cache[name] = result
+  result
 
 exports.game = (query) ->
-  name = query.name
-  game_dict = game_cache[name] or load_game(name)
+  game_dict = find_game query.name
   level = query.level or 0
   my.assert game_dict.levels and _.isArray(game_dict.levels)
   level_dict = game_dict.levels[level]
