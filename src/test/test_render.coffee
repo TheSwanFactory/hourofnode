@@ -1,3 +1,5 @@
+# TODO: Run SVG tests with rx instead of rx_mock
+
 {my} = require '../my'
 {god} = require '../god'
 {rx_mock} = require './rx_mock'
@@ -15,6 +17,10 @@ exports.test_render = (test, rx) ->
 
   render_mock = (dict) ->
     contents = god(rx_mock(rx), dict)
+    render(contents)
+
+  render_real = (dict) ->
+    contents = god(rx, dict)
     render(contents)
 
   get_label = (tag) -> tag.attr.class[0]
@@ -90,6 +96,11 @@ exports.test_render = (test, rx) ->
 
     child = button.body[0]
     t.equal child.tag, 'span', 'name tag'
+    t.end()
+
+  test "render non-mock", (t) ->
+    svg_dict = {paths: ['M0,0'], name: 'ME'}
+    t.ok body = render_real(svg_dict).body, "real svg"
     t.end()
 
   test "render selection", (t) ->

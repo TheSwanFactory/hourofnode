@@ -38,14 +38,14 @@ text_attrs = (world) -> {
 }
 
 render_children = (world, dict) ->
-  console.log "render_children #{world}", dict
+  #console.log "render_children #{world}", dict
   paths = normalize dict.path_tags
   if world.get_local('name')?
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
     paths.push tag 
   children = world.map_children (child) -> render_world(child)
   paths = paths.concat children if children
-  console.log "render_children paths", paths if paths
+  #console.log "render_children paths", paths if paths
   paths
 
 render_world = (world) ->
