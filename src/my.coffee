@@ -6,6 +6,9 @@ TOUCH = 64
 CONTROL = 96
 MARGIN = 8
 
+BUTTON_COLOR = 'azure'
+ROW_BACKGROUND = 'darkgrey'
+
 exports.my = {
   test: window.location.hostname == 'localhost'
   assert: require 'assert'
@@ -18,10 +21,17 @@ exports.my = {
   grid: {size: HALF, split: 8}
   button: {size: TOUCH, spacing: TOUCH + 2*MARGIN}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
-  control: {size: CONTROL, spacing: CONTROL + 4*MARGIN, margin: 2*MARGIN}
+  control: {
+    size: CONTROL
+    spacing: CONTROL + 4*MARGIN
+    padding: 4*MARGIN
+    margin: 2*MARGIN
+    color: BUTTON_COLOR
+    background: ROW_BACKGROUND 
+  }
   color: {
-    button: 'azure'
-    background: 'darkgrey'
+    button: BUTTON_COLOR
+    background: ROW_BACKGROUND 
     row: 'lightgrey'
     grid: '#ccffcc'
     gridline: 'white'
