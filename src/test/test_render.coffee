@@ -99,7 +99,7 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render non-mock", (t) ->
-    svg_dict = {paths: ['M0,0'], name: 'ME'}
+    svg_dict = {paths: ['M0,0'], name: 'ME', width: 100, height:100}
     t.ok body = render_real(svg_dict).body, "real svg"
     t.end()
 
