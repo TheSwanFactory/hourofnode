@@ -20,6 +20,6 @@ main = ->
   )
   
 # Instantiate our main view
-$(main)
+# $(main)
 # Run Tests
 test(rx) if my.test
