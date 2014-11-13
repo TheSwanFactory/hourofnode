@@ -89,7 +89,7 @@ exports.test_render = (test, rx) ->
     t.ok style.margin, 'button margin'
 
     child = button.body[0]
-    t.equal child.tag, 'p', 'name tag'
+    t.equal child.tag, 'span', 'name tag'
     t.end()
 
   test "render selection", (t) ->
