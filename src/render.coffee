@@ -34,7 +34,7 @@ create_attrs = (world, style) ->
   
 text_attrs = (world) -> {
   class: ['name', 'text', world.get 'selected']
-  style: world.get('name_style')
+  style: world.get 'name_style'
 }
 
 render_children = (world, dict) ->
@@ -44,7 +44,8 @@ render_children = (world, dict) ->
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
     paths.push tag 
   children = world.map_children (child) -> render_world(child)
-  paths = paths.concat children
+  paths = paths.concat children if children
+  console.log "render_children paths", paths if paths
   paths
 
 render_world = (world) ->
