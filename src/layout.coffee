@@ -29,9 +29,9 @@
 exports.layout = (game_dict) ->
   level_dict = game_dict[my.key.children]
   level_dict._CHILDREN = [
-    header(game_dict.name, level_dict)
-    controls
-    grid
+    header(level_dict)
+    controls(level_dict)
+    grid(level_dict)
     # sprites?
     # inspector?
   ]

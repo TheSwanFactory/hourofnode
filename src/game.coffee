@@ -32,8 +32,12 @@ load_game = (name) ->
   merge load_game(basis), new_game
 
 exports.game = (query) ->
-  new_game = load_game query.name
+  game_dict = load_game query.name
   level = query.level or 0
-  my.assert new_game.levels and _.isArray(new_game.levels)
-  new_game[my.key.children] = [ new_game.levels[level] ]
+  my.assert new_game.levels and _.isArray(game_dict.levels)
+  level_dict = game_dict.levels[level]
+  level_dict.level_index = level
+  level_dict.level_count = levels.length
+  level_dict.game = game.name 
+  new_game[my.key.children] = [level_dict]
   new_game
