@@ -70,13 +70,13 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "render svg", (t) ->
-    svg_dict = {paths: ['M0,0']}
+    svg_dict = {paths: ['M0,0'], name: 'ME'}
     body = render_mock(svg_dict ).body
     t.equal body.tag, 'svg', 'svg tag'
     t.equal body.body.tag, 'g', 'g tag'
     children = body.body.body
     t.equal children[0].tag, 'path', 'path tag'
-    t.skip 'name tag'
+    t.equal children[1].tag, 'name', 'name tag'
     t.end()
 
   test "render buttons", (t) ->
@@ -89,7 +89,6 @@ exports.test_render = (test, rx) ->
     t.ok style.margin, 'button margin'
 
     child = button.body[0]
-    console.log "buttons child #{child}", child
     t.equal child.tag, 'p', 'name tag'
     t.end()
 
