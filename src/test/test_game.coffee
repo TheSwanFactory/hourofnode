@@ -3,6 +3,7 @@
 
 exports.test_game = (test, rx) ->
   example = game({name: 'example', level: 1})
+  #example2 = game({name: 'example', level: 1})
 
   test 'game load', (t) ->
     t.ok game, 'game'

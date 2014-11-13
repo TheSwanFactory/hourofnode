@@ -11,10 +11,12 @@
 
 {my} = require './my'
 
-games = {
+game_files = {
   baseline: require("./game/baseline").game
   example: require("./game/example").game
 }
+
+game_cache = {}
 
 extensible = ['language', 'shapes']
 
@@ -25,14 +27,15 @@ merge = (stock, custom) ->
   $.extend stock, custom, addons
 
 load_game = (name) ->
-  new_game = games[name]
+  new_game = game_files[name]
   my.assert new_game, "Can not load game #{name}"
   basis = new_game.based_on
   return new_game unless basis
   merge load_game(basis), new_game
 
 exports.game = (query) ->
-  game_dict = load_game query.name
+  name = query.name
+  game_dict = game_cache[name] or load_game(name)
   level = query.level or 0
   my.assert game_dict.levels and _.isArray(game_dict.levels)
   level_dict = game_dict.levels[level]
