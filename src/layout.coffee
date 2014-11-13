@@ -2,7 +2,8 @@
 # Role: describe the user interface for a game
 # Responsibility:
 # * export and invoke a render method
-# * display the state from the game
+# * display the state of the game
+# * display the state of the current sprite
 
 # TODO: Move views into a different folder than layout tools
 
@@ -20,6 +21,6 @@ exports.layout = {
     header
     controls
     grid
-    inspector
+    inspector # select which sprite_state to display
   ]
 }

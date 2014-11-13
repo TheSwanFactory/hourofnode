@@ -1,9 +1,10 @@
-# inspect.coffee
+# sprite_state.coffee
+#
 # Role: display and edit the state of the current sprite
 # Responsibility:
 # * display and edit status fields
-# * display valid commands for this sprite
-# * record and display programs made using those commands
+# * display language used for this sprite
+# * record and display programs made using those languages
 # * update program display based on current action
 #
 # TODO: should this be recreated OR selected for new turtles
@@ -18,11 +19,11 @@ program_row = (program) ->
     program.name # edit the name
     program._children() # delete the action
   ]
-  my.command,
+  my.language,
   (world, args) -> world.send 'edit', world.get('value')
 )
 
-exports.inspect = (sprite) ->
+exports.sprite_state = (sprite) ->
 
   status_row = make.buttons('status', [
       "shape"
@@ -34,18 +35,18 @@ exports.inspect = (sprite) ->
     (world, args) -> world.send 'edit', world.get('value')
   )
 
-  command_row = make.buttons(
-    'commands',
-    sprite.get 'commands'
+  language_row = make.buttons(
+    'language',
+    sprite.get 'words'
     my.button,
     (world, args) -> world.send 'do', world.get('value')
   )
 
-  strategy_table = 
-    make.rows 'inspect', sprites.programs.map(program_row)
+  programs = 
+    make.rows 'programs', sprites.programs.map(program_row)
 
-  make.rows 'inspect', [
+  make.rows 'sprite_state', [
     status_row
-    command_row
+    language_row
     strategy_table
   ]
