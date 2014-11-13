@@ -1,3 +1,4 @@
+#
 # layout.coffee
 #
 # Role: generate interface dictionary for a game dictionary

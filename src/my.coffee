@@ -6,6 +6,7 @@
 # Responsibility:
 # * isolate hard-coded values in one place
 # * provide namespace for other helper functions
+#
 
 # TODO: Make 'my' kinds inherit values somehow
 # TODO: Pull element colors into their own namespace

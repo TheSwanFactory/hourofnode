@@ -1,3 +1,15 @@
+#
+# main.coffee
+#
+# Role: start the app
+#
+# Responsibility:
+# * load top-level modules
+# * initalize game based on query string
+# * render and append to body of HTML
+# * run tests if local
+#
+
 # Preamble
 _.mixin(_.str.exports())
 #rx =  require('../../reactive-coffee/src/reactive')
