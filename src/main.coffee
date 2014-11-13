@@ -2,6 +2,7 @@
 _.mixin(_.str.exports())
 #rx =  require('../../reactive-coffee/src/reactive')
 rx = require 'reactive-coffee'
+sys = require 'sys'
 
 # Dependencies
 
@@ -9,19 +10,20 @@ rx = require 'reactive-coffee'
 {god} = require './god'
 {game} = require './game'
 {layout} = require './layout'
+{render} = require './render'
 # {config} = require('./config')
 
 game_dict = game({name: 'example', level: 1})
 config = layout(game_dict)
 world = god(rx, config)
-
+console.log "root world", sys.inspect(world.doc.x)
 main = ->
   $('body').append(
-    # world.call('render')
+    # render(world)
   )
   
 # Instantiate our main view
-# $(main)
+$(main)
 # Run Tests
 {test} = require('./test') if my.test
 test(rx) if my.test
