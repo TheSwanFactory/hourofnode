@@ -9,13 +9,14 @@ browser_sync = require 'browser-sync'
 sourcemaps = require 'gulp-sourcemaps'
 
 UPLOAD = 'node aws/upload.js'
+dest = 'web'
 
 # Git functions
 handler = (err) -> throw err if err
 
 branch = -> git.revParse 'HEAD', {args: "--abbrev-ref"}, handler
 
-# Create bundles using browerify
+# Create bundles using browserify
 
 bundle = (name) ->
   browserify({
@@ -29,7 +30,7 @@ bundle = (name) ->
     .pipe(buffer())
     .pipe(sourcemaps.init loadMaps: true)
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./web/'));
+    .pipe(gulp.dest "./#{dest}/")
 
 all_builds = ['main']
 for build in all_builds
@@ -38,19 +39,19 @@ for build in all_builds
 # Reload browser using browser-sync
 
 sync_to = (dir) ->
-  browser_sync {
-    server: {baseDir: ["#{dir}"]}
-    files: ["#{dir}/*"]
-  }
+  browser_sync
+    server:
+      baseDir: ["#{dir}"]
+    files:  ["#{dir}/**/*.js", "#{dir}/**/*.css", "#{dir}/**/*.html"]
+    open:   false
 
-dest = 'web'
-gulp.task 'sync', -> sync_to 'web'  
+gulp.task 'sync', -> sync_to dest
 
 # Watch and resync
 
-all_src = ['src/*', 'src/*/*', '../reactive-coffee/src/*']
+all_src = ['src/*', 'src/*/*']
 gulp.task 'watch', ['sync'], ->
-  gulp.watch all_src, all_builds  
+  gulp.watch all_src, all_builds
 
 # Watch when run
 

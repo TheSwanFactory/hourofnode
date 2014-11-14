@@ -14,7 +14,6 @@
 _.mixin(_.str.exports())
 #rx =  require('../../reactive-coffee/src/reactive')
 rx = require 'reactive-coffee'
-sys = require 'sys'
 
 # Dependencies
 
@@ -32,7 +31,7 @@ main = ->
   $('body').append(
     render(world)
   )
-  
+
 # Instantiate our main view
 $(main)
 # Run Tests
