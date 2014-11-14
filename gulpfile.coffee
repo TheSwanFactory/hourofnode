@@ -3,8 +3,10 @@ shell = require 'gulp-shell'
 git = require 'gulp-git'
 release = require('gulp-release-tasks')(gulp)
 source = require 'vinyl-source-stream'
+buffer = require 'vinyl-buffer'
 browserify = require 'browserify'
 browser_sync = require 'browser-sync'
+sourcemaps = require 'gulp-sourcemaps'
 
 UPLOAD = 'node aws/upload.js'
 
@@ -24,6 +26,9 @@ bundle = (name) ->
   })
     .bundle()
     .pipe(source("#{name}.js"))
+    .pipe(buffer())
+    .pipe(sourcemaps.init loadMaps: true)
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./web/'));
 
 all_builds = ['main']
