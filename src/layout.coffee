@@ -25,7 +25,8 @@
 #     grid
 #       sprite1
 #       sprite2...
-#     <-- state...
+#     inspector
+#       active_sprite.state...
 
 exports.layout = (game_dict) ->
   level_dict = game_dict[my.key.children][0]
@@ -39,6 +40,6 @@ exports.layout = (game_dict) ->
     controls(level_dict)
     # grid(level_dict)
     # sprites?
-    # inspector?
+    inspector
   ]
   game_dict
