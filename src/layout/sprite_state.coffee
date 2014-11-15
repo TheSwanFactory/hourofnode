@@ -4,7 +4,7 @@
 # Responsibility:
 # * display and edit status fields
 # * display language used for this sprite
-# * record and display programs made using those languages
+# * record and display behavior made using those languages
 # * update program display based on current action
 #
 # TODO: should this be recreated OR selected for new turtles
@@ -42,8 +42,7 @@ exports.sprite_state = (sprite) ->
     (world, args) -> world.send 'do', world.get('value')
   )
 
-  programs = 
-    make.rows 'programs', sprites.programs.map(program_row)
+  behavior = make.rows 'behavior', sprites.behavior.map(program_row)
 
   make.rows 'sprite_state', [
     status_row
