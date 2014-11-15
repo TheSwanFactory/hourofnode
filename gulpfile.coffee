@@ -8,6 +8,8 @@ browser_sync = require 'browser-sync'
 
 UPLOAD = 'node aws/upload.js'
 
+# TODO: Add gulp test offline test task
+
 # Git functions
 handler = (err) -> throw err if err
 
