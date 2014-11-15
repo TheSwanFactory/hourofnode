@@ -11,7 +11,6 @@
 
 {my} = require './my'
 {vector} = require './god/vector'
-{render} = require './render'
 
 {header} = require './layout/header'
 {controls} = require './layout/controls'
