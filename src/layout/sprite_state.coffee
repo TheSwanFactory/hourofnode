@@ -16,8 +16,8 @@ program_row = (program) ->
  make.buttons(
   program.name,
   make.columns 'program', [
-    program.name # edit the name
-    program._children() # delete the action
+    program.name # action: edit the name
+    program._children() # action: delete the action?
   ]
   my.language,
   (world, args) -> world.send 'edit', world.get('value')
