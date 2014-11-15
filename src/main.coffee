@@ -13,14 +13,18 @@
 # Preamble
 # TODO: server-side include underscore, underscore.string, jquery
 
-_.mixin(_.str.exports())
-#rx =  require('../../reactive-coffee/src/reactive')
-rx = require 'reactive-coffee'
+{my} = require './my'
+
+if my.online
+  _.mixin(_.str.exports())
+  #rx =  require('../../reactive-coffee/src/reactive')
+  rx = require 'reactive-coffee'
+else
+  rx = require './test/rx_mock'
 sys = require 'sys'
 
 # Dependencies
 
-{my} = require './my'
 {god} = require './god'
 {game} = require './game'
 {layout} = require './layout'
