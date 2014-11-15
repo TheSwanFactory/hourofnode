@@ -11,6 +11,8 @@
 #
 
 # Preamble
+# TODO: server-side include underscore, underscore.string, jquery
+
 _.mixin(_.str.exports())
 #rx =  require('../../reactive-coffee/src/reactive')
 rx = require 'reactive-coffee'
@@ -28,9 +30,10 @@ game_dict = game({name: 'example', level: 1})
 config = layout(game_dict)
 world = god(rx, config)
 #console.log "root world", my.inspect(world)
+
 main = ->
   $('body').append(
-    render(world)
+    render(world) if my.online
   )
   
 # Instantiate our main view

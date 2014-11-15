@@ -43,6 +43,7 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   test: is_local
+  online: _?
   inspect: inspect
   assert: assert
   page_dimensions: PAGE
