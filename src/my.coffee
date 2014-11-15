@@ -43,9 +43,11 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   test: is_local
-  online: if _ then true else false
+  online: _?
   inspect: inspect
   assert: assert
+  extend: $.extend
+  dup: (x) -> $.extend({}, x)
   page_dimensions: PAGE
   column_1_width: HALF
   column_2_width: HALF
