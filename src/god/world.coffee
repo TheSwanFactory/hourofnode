@@ -157,6 +157,7 @@ class World
   _child_count: -> @_children().length()
   has_children: -> @_child_count() > 0
   
+  # TODO: Compare performance of emptying vs. replacement
   reset_children: -> @put my.key.children, @rx().array()
     
   add_child: (value) ->
