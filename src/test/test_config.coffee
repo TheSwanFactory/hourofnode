@@ -42,7 +42,7 @@ exports.test_config = (test, rx) ->
 
   test 'config program', (t) ->
     dict = {default: ['forward'], buffer: []}
-    r = {programs: ''}
+    r = {behavior: ''}
     world.send 'programs', dict, (value) -> r.programs = value
     t.ok r.programs, 'Returns programs'
     store = r.programs

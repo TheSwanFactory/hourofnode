@@ -18,7 +18,7 @@ exports.sprites = {
     child.put my.key.authority, world.make_world(args)
     world.call 'setup_programs', args.programs
     world.send 'inspect', child
-  setup_programs: (world, programs) ->
+  setup_behavior: (world, programs) ->
     world.send 'format_programs', programs, (value) ->
       world.send 'store_programs', value, (value) ->
         world.put 'programs', value

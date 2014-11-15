@@ -6,7 +6,7 @@ me = {
   shape: 'turtle'
   position: [0,0]
   color: 'blue'
-  programs: {first: [], repeat: ['forward']}
+  behavior: {first: [], repeat: ['forward']}
   editable: true
 }
 
@@ -15,7 +15,7 @@ exit = {
   shape: 'diamond'
   position: [0,4]
   color: 'red'
-  programs: {turtle: ['victory']}
+  behavior: {turtle: ['victory']}
 }  
 
 me2 = $.extend me, {position: [2,2]}

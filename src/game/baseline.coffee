@@ -47,7 +47,7 @@ exports.game = {
           shape: 'turtle'
           position: [0,0]
           color: 'limegreen'
-          programs: {first: [], repeat: ['forward']}
+          behavior: {first: [], repeat: ['forward']}
           editable: true
         }
       ]

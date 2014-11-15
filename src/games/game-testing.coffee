@@ -9,7 +9,7 @@ turtle = (color, x, y, prog) -> {
   name: 'me'
   p: [x,y], v:[1, 0]
   fill: color
-  programs: {default: prog, buffer: []}
+  behavior: {default: prog, buffer: []}
 }
 
 me = turtle("limegreen", 1, 1, ['forward'])
@@ -22,7 +22,7 @@ exit = (col) -> {
   name: 'exit'
   p: [6,col]
   fill: "maroon"
-  programs: {turtle: ['victory']}
+  behavior: {turtle: ['victory']}
 }
 
 exports.game = {
