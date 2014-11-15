@@ -1,3 +1,6 @@
+{my} = require '../my'
+{vector} = require '../god/vector'
+
 # TODO: Normalize to 100 or 1.00
 SCALE = 30
 
@@ -18,7 +21,7 @@ exit = {
   programs: {turtle: ['victory']}
 }  
 
-me2 = me#$.extend me, {position: [2,2]}
+me2 = my.extend me, {position: [2,2]}
 
 exports.game = {
   name: "Example Game"
