@@ -18,7 +18,7 @@ exit = {
   programs: {turtle: ['victory']}
 }  
 
-me2 = $.extend me, {position: [2,2]}
+me2 = me#$.extend me, {position: [2,2]}
 
 exports.game = {
   name: "Example Game"
