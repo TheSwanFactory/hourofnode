@@ -1,34 +1,22 @@
 {my} = require '../my'
 {vector} = require('../god/vector')
+{sprite_state} = require './sprite_state'
 
-SPRITE_EXPORTS = ["step", "reset"]
-
-# Uses Turtle as an Authority
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
+  _EXPORTS = ["step", "reset"]
   _SETUP: (world) ->
-    this_level = world.get 'current_level'
-    console.log 'this_level', this_level.name
-    for sprite in this_level.sprites
+    paths = world.get 'paths'
+    sprites = world.get 'sprites'
+    sprites.map (sprite) ->
+      sprite.paths = paths[sprite.kind]
+      my.assert paths, "No paths for #{sprite.kind} of #{sprite}"
       world.call 'sprite', sprite
   sprite: (world, args) ->
-    dict = {_LABEL: args.name, _EXPORTS: SPRITE_EXPORTS}
-    child = world.add_child dict
-    child.put my.key.authority, world.make_world(args)
-    world.call 'setup_programs', args.programs
+    sprite.state = sprite_state(sprite)
     world.send 'inspect', child
-  setup_behavior: (world, programs) ->
-    world.send 'format_programs', programs, (value) ->
-      world.send 'store_programs', value, (value) ->
-        world.put 'programs', value
     
-  p: [0, 0]
-  v: [1, 0]
-  i: (world) -> world.get('p').at(0)
-  j: (world) -> world.get('p').at(1)
-  v_i: (world) -> world.get('v').at(0)
-  v_j: (world) -> world.get('v').at(1)
   name_style: (world) ->
     scale = world.get 'scale'
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}

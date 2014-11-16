@@ -16,7 +16,7 @@ buttons = (kind, items, my_kind, action) ->
   body.padding = my_kind.padding
   body.fill = my_kind.background
 
-  _.extend body._AUTHORITY, {
+  my.extend body._AUTHORITY, {
     _KIND: kind
     fill: my_kind.color
     margin: my_kind.margin

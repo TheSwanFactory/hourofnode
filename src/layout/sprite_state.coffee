@@ -7,7 +7,6 @@
 # * record and display behavior made using those languages
 # * update program display based on current action
 #
-# TODO: should this be recreated OR selected for new turtles
 
 {my} = require '../my'
 {make} = require '../render/make'
@@ -24,8 +23,7 @@ program_row = (program) ->
 )
 
 exports.sprite_state = (sprite) ->
-
-  status_row = make.buttons('status', [
+  status_buttons = make.buttons('status', [
       "shape"
       "name"
       "color"
@@ -34,6 +32,11 @@ exports.sprite_state = (sprite) ->
     ], my.button,
     (world, args) -> world.send 'edit', world.get('value')
   )
+  is_paths = (world) -> 'paths' == world.get('_LABEL')
+  my.extend status_buttons._AUTHORITY, {
+    name: (world) -> sprite[world.get '_LABEL'] unless is_paths(world)
+    paths: (world) -> sprite.paths if is_paths(world)
+  }
 
   language_row = make.buttons(
     'language',
@@ -45,7 +48,7 @@ exports.sprite_state = (sprite) ->
   behavior = make.rows 'behavior', sprites.behavior.map(program_row)
 
   make.rows 'sprite_state', [
-    status_row
+    status_buttons
     language_row
     strategy_table
   ]

@@ -1,5 +1,4 @@
 {my} = require '../my'
-{sprites} = require './sprites'
 
 exports.grid = (level_dict) -> {
   _LABEL: "grid"
