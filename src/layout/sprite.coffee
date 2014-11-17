@@ -2,8 +2,8 @@
 {vector} = require('../god/vector')
 {sprite_state} = require './sprite_state'
 
-exports.sprites = {
-  _LABEL: "sprites"
+exports.sprite = {
+  _LABEL: "sprite"
   _KIND: "sprite"
   _EXPORTS = ["step", "reset"]
   _SETUP: (world) ->
@@ -16,6 +16,7 @@ exports.sprites = {
   sprite: (world, args) ->
     sprite.state = sprite_state(sprite)
     world.send 'inspect', child
+    # TODO: add child here? grid?
     
   name_style: (world) ->
     scale = world.get 'scale'
