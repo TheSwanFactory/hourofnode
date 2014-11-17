@@ -28,8 +28,12 @@ exports.sprite = {
       # world.call 'sprite', sprite
   sprite: (world, sprite) ->
     sprite.put 'state', sprite_state(sprite)
-    world.add_child sprite
+    # world.add_child sprite
     world.send 'inspect', child
+  
+  # defaults
+  position:  [0,0]
+  direction: [1,0]
     
   name_style: (world) ->
     scale = world.get 'scale'
@@ -38,9 +42,9 @@ exports.sprite = {
 
   p_index: (world, args) ->
     n_cols = world.get('split')
-    direction = world.get('position')
+    position = world.get('position')
     my.assert world.is_array(direction), "is reactive array"
-    direction.at(1)*n_cols + p.at(0)
+    position.at(1)*n_cols + position.at(0)
         
   go: (world, args) ->
     split = world.get('split')
