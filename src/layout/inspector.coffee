@@ -5,7 +5,7 @@ exports.inspector = {
   _EXPORTS: ['inspect']
   
   inspect: (world, args) ->
-    active = args
+    active_sprite = args
     world.reset_children()
-    world.add_child active.get('state')
+    world.add_child active_sprite.get('state')
 }

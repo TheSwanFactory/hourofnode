@@ -10,13 +10,14 @@ exports.sprite = {
     paths = world.get 'paths'
     sprites = world.get 'sprites'
     sprites.map (sprite) ->
-      sprite.paths = paths[sprite.kind]
+      paths = paths[sprite.kind]
       my.assert paths, "No paths for #{sprite.kind} of #{sprite}"
+      sprite.put 'paths', paths 
       world.call 'sprite', sprite
   sprite: (world, args) ->
-    sprite.state = sprite_state(sprite)
+    sprite.put 'state', sprite_state(sprite)
+    world.add_child sprite
     world.send 'inspect', child
-    # TODO: add child here? grid?
     
   name_style: (world) ->
     scale = world.get 'scale'
