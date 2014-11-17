@@ -5,7 +5,7 @@
 exports.sprite = {
   _LABEL: "sprite"
   _KIND: "sprite"
-  _EXPORTS = ["step", "reset"]
+  _EXPORTS: ["step", "reset"]
   _SETUP: (world) ->
     paths = world.get 'paths'
     sprites = world.get 'sprites'
