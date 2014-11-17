@@ -12,7 +12,7 @@ exports.render_svg = (world) ->
 
   path_tags = (paths) ->
     return [] unless paths
-    path_dict = {stroke: world.get 'stroke', fill: world.get 'fill'}
+    path_dict = {stroke: world.get('stroke'), fill: world.get('fill')}
     paths.map (path) ->
       path_dict['d'] = path
       SVG.path path_dict 
