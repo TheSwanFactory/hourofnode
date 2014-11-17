@@ -79,8 +79,9 @@ exports.test_render = (test, rx) ->
     svg_dict = {paths: ['M0,0'], name: 'ME'}
     body = render_mock(svg_dict).body
     t.equal body.tag, 'svg', 'svg tag'
-    t.equal body.body.tag, 'g', 'g tag'
-    children = body.body.body
+    g = body.body[0]
+    t.equal g.tag, 'g', 'g tag'
+    children = g.body
     t.equal children[0].tag, 'path', 'path tag'
     t.equal children[1].tag, 'text', 'name tag'
     t.end()
