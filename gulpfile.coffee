@@ -45,7 +45,7 @@ sync_to = (dir) ->
     server:
       baseDir: ["#{dir}"]
     files:  ["#{dir}/**/*.js", "#{dir}/**/*.css", "#{dir}/**/*.html"]
-    open:   false
+    open:   true
 
 gulp.task 'sync', -> sync_to dest
 
