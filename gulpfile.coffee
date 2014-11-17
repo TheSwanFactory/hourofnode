@@ -11,6 +11,8 @@ sourcemaps = require 'gulp-sourcemaps'
 UPLOAD = 'node aws/upload.js'
 dest = 'web'
 
+# TODO: Add gulp test offline test task
+
 # Git functions
 handler = (err) -> throw err if err
 

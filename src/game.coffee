@@ -23,8 +23,8 @@ extensible = ['language', 'shapes']
 merge = (stock, custom) ->
   addons = {}
   extensible.map (key) ->
-    addons[key] = $.extend {}, stock[key], custom[key]
-  $.extend {}, stock, custom, addons
+    addons[key] = my.extend {}, stock[key], custom[key]
+  my.extend {}, stock, custom, addons
 
 find_game = (name) -> game_cache[name] or load_game(name)
 
