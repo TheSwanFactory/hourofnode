@@ -22,7 +22,7 @@ if my.online
   else
     rx = require 'reactive-coffee'
 else
-  rx = require './test/rx_mock'
+  rx = require './render/rx_mock'
 sys = require 'sys'
 
 # Dependencies
