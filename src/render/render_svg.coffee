@@ -25,7 +25,7 @@ exports.render_svg = (world) ->
       class: "render_svg #{world}"
       width: world.get 'width'
       height: world.get 'height'
-    }, SVG.g attrs, body
+    }, [SVG.g attrs, body]
   {
     tag: svg_tag
     name_tag: SVG.text
