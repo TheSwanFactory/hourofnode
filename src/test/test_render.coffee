@@ -24,7 +24,7 @@ exports.test_render = (test, rx) ->
     render(contents)
 
   get_label = (tag) -> tag.attr.class[0]
-    
+
   test "rx_mock exists", (t) ->
     t.ok world.T, 'Has HTML Tags'
     t.ok world.T().div, 'Has HTML div'
@@ -100,7 +100,10 @@ exports.test_render = (test, rx) ->
 
   test "render non-mock", (t) ->
     svg_dict = {paths: ['M0,0'], name: 'ME', width: 100, height:100}
-    t.ok body = render_real(svg_dict).body, "real svg"
+    t.ok body  = render_real(svg_dict), "real svg"
+    t.ok group = body.find('g'), 'has group'
+    t.equal group.find('> path').attr('d'), svg_dict.paths[0]
+    t.equal group.find('> text').text(), svg_dict.name
     t.end()
 
   test "render selection", (t) ->

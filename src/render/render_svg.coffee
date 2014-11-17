@@ -1,8 +1,8 @@
 transform = (world) ->
   center = world.get('scale') / 2
-  translate = "translate(#{world.get('x')},#{world.get('y')})"
-  rotate = "rotate(#{world.get('angle')} #{center} #{center})"
-  "#{translate} #{rotate}"
+  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
+  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
+  "#{translate} #{rotate || ''}"
 
 exports.render_svg = (world) ->
   SVG = world.SVG()

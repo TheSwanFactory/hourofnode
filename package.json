@@ -24,7 +24,9 @@
     "tap-spec": "^1.0.1",
     "tape": "^3.0.1",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^1.0.6"
+    "watchify": "^1.0.6",
+    "gulp-sourcemaps": "~1.2",
+    "vinyl-buffer": "~1.0"
   },
   "browserify": {
     "transform": [
