@@ -14,18 +14,18 @@ exports.test_layout = (test, rx) ->
   test "config exists", (t) ->
     t.ok game_dict, 'game_dict'
     t.ok config, 'config'
-    console.log config
+    console.log 'game config', config
     t.end()
   
   test "layout header", (t) ->
     t.ok header, 'header'
     t.end()
 
-  test "layout grid", (t) ->
-    t.ok grid, 'grid'
-    t.end()
-
   test "layout controls", (t) ->
     t.ok controls, 'controls'
+    t.end()
+
+  test "layout grid", (t) ->
+    t.ok grid, 'grid'
     t.end()
 
