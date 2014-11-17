@@ -23,5 +23,9 @@ exports.test_layout = (test, rx) ->
   
   test "layout sprites in world", (t) ->
     t.ok world = god(rx, config), 'world'
+    t.ok shapes = world.get('shapes'), 'shapes'
+    t.ok levels = world.get('levels'), 'levels'
+    t.ok world.is_array(levels), 'levels  rx_array'
+    t.ok level = levels.at(0), 'level'
     t.end()
 
