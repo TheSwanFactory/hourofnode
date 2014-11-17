@@ -16,12 +16,9 @@ normalize = (paths) ->
   paths = paths.all() unless _.isArray(paths) 
   paths
 
-add_behavior = (attrs, world) ->
-  clicker = world.get_raw 'click'
-  if clicker? and !world.has_children()
-    attrs['click'] = -> clicker(world) 
-    attrs['touchend'] = -> clicker(world)
-  attrs
+clicker = (world) ->
+  action = world.get_raw 'click'
+  return -> action(world) if action? and !world.has_children()
 
 create_attrs = (world, style) ->
   labels = world.labels()
@@ -29,8 +26,9 @@ create_attrs = (world, style) ->
     id: "#{labels.length}_#{labels.join '_'}"
     class: labels 
     style: world.bind() -> style
+    click: clicker(world)
+    #touchend: clicker(world)
   }
-  add_behavior(attrs, world)
   
 text_attrs = (world) -> {
   class: ['name', 'text', world.get 'selected']
