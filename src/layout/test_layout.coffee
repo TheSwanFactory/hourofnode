@@ -1,5 +1,6 @@
 {my} = require '../my'
 {game} = require '../game'
+{god} = require '../god'
 
 {layout} = require '../layout'
 {header} = require './header'
@@ -20,6 +21,7 @@ exports.test_layout = (test, rx) ->
     console.log 'game config', config
     t.end()
   
-  test "layout sprites", (t) ->
+  test "layout sprites in world", (t) ->
+    t.ok world = god(rx, config), 'world'
     t.end()
 

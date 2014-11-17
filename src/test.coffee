@@ -13,16 +13,16 @@ undo = require('tap-browser-color')()
 
 {test_god} = require './god/test_god'
 {test_world} = require './god/test_world'
+{test_render} = require './render/test_render'
 {test_game} = require './game/test_game'
 {test_layout} = require './layout/test_layout'
-{test_render} = require './render/test_render'
 
 run_tests = (rx) ->
   # test_god(test, rx)
   # test_world(test, rx)
+  test_render(test, rx)
   test_game(test, rx)
   test_layout(test, rx)
-  test_render(test, rx)
 
 exports.test = (rx) ->
   console.log "Running tests..."
