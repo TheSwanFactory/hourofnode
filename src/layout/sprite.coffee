@@ -34,28 +34,28 @@ exports.sprite = {
   name_style: (world) ->
     scale = world.get 'scale'
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
-  angle: (world) -> vector.angle world.get('v')
+  angle: (world) -> vector.angle world.get('direction')
 
   p_index: (world, args) ->
     n_cols = world.get('split')
-    p = world.get('p')
-    my.assert world.is_array(p), "is reactive array"
-    p.at(1)*n_cols + p.at(0)
+    direction = world.get('position')
+    my.assert world.is_array(direction), "is reactive array"
+    direction.at(1)*n_cols + p.at(0)
         
   go: (world, args) ->
     split = world.get('split')
     {dir} = args
     my.assert dir?, "expects dir"
-    p = world.get('p')
-    v = world.get('v')
-    sum = vector.add(p, v)
+    position = world.get('position')
+    direction = world.get('direction')
+    sum = vector.add(position, direction)
     result = vector.bound sum, split, -> world.send 'error'
-    world.put 'p', result 
+    world.put 'position', result 
 
   turn: (world, args) ->
     {dir} = args
     my.assert dir, "expects dir"
-    world.put 'v', vector.turn(world.get('v'), dir)
+    world.put 'direction', vector.turn(world.get('direction'), dir)
     
   perform: (world, signal) -> world.call(signal['do'], signal)
   step: (world, args) ->
@@ -64,6 +64,6 @@ exports.sprite = {
     my.assert signal = local.call('next'), "No next signal"
     world.call 'perform', signal
   reset: (world, args) ->
-    ['p', 'v'].map (key) -> world.put key, undefined
+    ['position', 'direction'].map (key) -> world.put key, undefined
   click: (world, args) -> world.send 'inspect', world
 }
