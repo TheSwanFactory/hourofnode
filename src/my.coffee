@@ -43,6 +43,7 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   test: is_local
+  reactive_debug: false
   online: _?
   inspect: inspect
   assert: assert

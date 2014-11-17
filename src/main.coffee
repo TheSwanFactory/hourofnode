@@ -17,8 +17,10 @@
 
 if my.online
   _.mixin(_.str.exports())
-  #rx =  require('../../reactive-coffee/src/reactive')
-  rx = require 'reactive-coffee'
+  if my.reactive_debug
+    rx =  require '../../reactive-coffee/src/reactive'
+  else
+    rx = require 'reactive-coffee'
 else
   rx = require './test/rx_mock'
 sys = require 'sys'
