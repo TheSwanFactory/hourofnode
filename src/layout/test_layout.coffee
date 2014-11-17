@@ -11,21 +11,15 @@ exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
   config = layout(game_dict)
 
-  test "config exists", (t) ->
+  test "layout config", (t) ->
     t.ok game_dict, 'game_dict'
+    t.ok header, 'header'
+    t.ok controls, 'controls'
     t.ok config, 'config'
+    t.ok grid, 'grid'
     console.log 'game config', config
     t.end()
   
-  test "layout header", (t) ->
-    t.ok header, 'header'
-    t.end()
-
-  test "layout controls", (t) ->
-    t.ok controls, 'controls'
-    t.end()
-
-  test "layout grid", (t) ->
-    t.ok grid, 'grid'
+  test "layout sprites", (t) ->
     t.end()
 
