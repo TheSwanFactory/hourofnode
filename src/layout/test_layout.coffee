@@ -1,10 +1,11 @@
 {my} = require '../my'
-
 {game} = require '../game'
+
 {layout} = require '../layout'
-{header} = require '../layout/header'
-{grid} = require '../layout/grid'
-{controls} = require '../layout/controls'
+{header} = require './header'
+{controls} = require './controls'
+{grid} = require './grid'
+{sprite} = require './sprite'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
