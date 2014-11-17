@@ -14,11 +14,11 @@
 # TODO: server-side include underscore, underscore.string, jquery
 
 {my} = require './my'
-
 if my.online
   _.mixin(_.str.exports())
   if my.reactive_debug
-    rx =  require '../../reactive-coffee/src/reactive'
+    rx = require '../../reactive-coffee/src/reactive'
+    console.log "WARNING: Loading local copy of reactive-coffee"
   else
     rx = require 'reactive-coffee'
 else
