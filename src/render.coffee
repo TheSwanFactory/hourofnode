@@ -27,7 +27,8 @@ create_attrs = (world, style) ->
     class: labels 
     style: world.bind() -> style
     click: clicker(world)
-    #touchend: clicker(world)
+    # TODO: add touch events that do not mess up mutation
+    # touchend: clicker(world)
   }
   
 text_attrs = (world) -> {
