@@ -39,6 +39,7 @@ exports.test_game = (test, rx) ->
     t.end()
 
   test 'game world', (t) ->
-    #world = god({}, example)
+    t.ok world = god(rx, example), 'world'
+    t.ok shapes = world.get('shapes'), 'shapes'
     t.end()
   

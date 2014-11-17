@@ -1,6 +1,8 @@
 #
 # test.coffee
+#
 # Role: Ensure the code does what we think it does
+#
 # Responsibility: 
 # * load and run test modules
 # * turn screen green if succesful, red if failed, yellow if not run

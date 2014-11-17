@@ -1,3 +1,13 @@
+#
+# sprite.coffee
+#
+# Role: Draw and control objects that live in the grid
+#
+# Responsibility: 
+# * create sprites from game description
+# * associate with a path
+# * associate with a state representation
+
 {my} = require '../my'
 {vector} = require('../god/vector')
 {sprite_state} = require './sprite_state'
@@ -7,14 +17,16 @@ exports.sprite = {
   _KIND: "sprite"
   _EXPORTS: ["step", "reset"]
   _SETUP: (world) ->
-    paths = world.get 'paths'
+    shapes = world.get 'shapes'
     sprites = world.get 'sprites'
-    sprites.map (sprite) ->
-      paths = paths[sprite.kind]
-      my.assert paths, "No paths for #{sprite.kind} of #{sprite}"
-      sprite.put 'paths', paths 
-      world.call 'sprite', sprite
-  sprite: (world, args) ->
+    console.log 'sprite _SETUP', world, shapes, sprites
+    for sprite in sprites.all()
+      console.log 'sprite', sprite, paths
+      paths = shapes[sprite.shape]
+      my.assert paths, "No paths for #{sprite.shape} of #{sprite}"
+      # sprite.put 'paths', paths 
+      # world.call 'sprite', sprite
+  sprite: (world, sprite) ->
     sprite.put 'state', sprite_state(sprite)
     world.add_child sprite
     world.send 'inspect', child
