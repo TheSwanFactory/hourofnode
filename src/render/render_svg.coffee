@@ -1,6 +1,6 @@
 transform = (world) ->
   center = world.get('scale') / 2
-  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
+  translate = "translate(#{world.get('column') || 0},#{world.get('row') || 0})"
   rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
   "#{translate} #{rotate || ''}"
 

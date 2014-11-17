@@ -34,6 +34,8 @@ exports.sprite = {
   # defaults
   position:  [0,0]
   direction: [1,0]
+  x: (world) -> 0
+  y: (world) -> 0
     
   name_style: (world) ->
     scale = world.get 'scale'
