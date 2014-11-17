@@ -12,8 +12,10 @@ Y_INDEX = 1
 DIR_LEFT  =  1
 DIR_RIGHT = -1
 
-get_x = (v) -> if _.isArray(v) then v[X_INDEX] else v.at(X_INDEX)
-get_y = (v) -> if _.isArray(v) then v[Y_INDEX] else v.at(Y_INDEX)
+check = (v) -> if v then _.isArray(v) else throw 'invalid vector'
+  
+get_x = (v) -> if check(v) then v[X_INDEX] else v.at(X_INDEX)
+get_y = (v) -> if check(v) then v[Y_INDEX] else v.at(Y_INDEX)
 
 exports.vector = {
 
