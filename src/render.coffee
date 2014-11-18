@@ -31,10 +31,12 @@ create_attrs = (world, style) ->
     # touchend: clicker(world)
   }
   
-text_attrs = (world) -> {
-  class: ['name', 'text', world.get 'selected']
-  style: world.get 'name_style'
-}
+text_attrs = (world) ->
+  style = world.get 'name_style'
+  attrs = my.dup style 
+  attrs['class'] = ['name', 'text', world.get 'selected']
+  attrs['style'] = style
+  attrs
 
 render_children = (world, dict) ->
   #console.log "render_children #{world}", dict
