@@ -116,7 +116,7 @@ class World
     result
     
   import_dict: (dict) ->
-    console.log 'import_dict', dict
+    # console.log 'import_dict', dict
     for key, value of dict
       if key == my.key.authority
         # console.log 'import_dict @authority', @authority

@@ -36,9 +36,7 @@ exports.test_layout = (test, rx) ->
 
   test "layout children", (t) ->
     t.ok level = world.find_child(), 'active level'
-    console.log 'level', level  .doc.x, level  ._child_array()
     t.ok grid = level.find_child('grid'), 'grid'
-    console.log 'grid', grid.doc.x, grid._child_array()
     t.ok sprite = grid.find_child('sprite'), 'sprite'
     t.end()
 
