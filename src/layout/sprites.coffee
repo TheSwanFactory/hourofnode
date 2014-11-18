@@ -1,5 +1,5 @@
 #
-# sprite.coffee
+# sprites.coffee
 #
 # Role: Draw and control objects that live in the grid
 #
