@@ -14,6 +14,10 @@ me = {
   editable: true
 }
 
+me2 = my.dup me
+my.name = 'yu'
+me2.position = [2,2]
+
 exit = {
   name: 'exit'
   shape: 'diamond'
@@ -22,9 +26,6 @@ exit = {
   fill: 'red'
   behavior: {turtle: ['victory']}
 }  
-
-me2 = my.dup me
-me2.position = [2,2]
 
 exports.game = {
   name: "Example Game"
