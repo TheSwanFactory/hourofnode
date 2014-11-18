@@ -49,8 +49,7 @@ exports.test_layout = (test, rx) ->
     t.ok sprite.get('y') > 0, 'non-zero y'
     t.equal sprite.get('transform'), transform_result , 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
-    t.equal sprite.get('fill'), 'green', 'fill'
-    t.ok text_style = sprite.get('text_style'), 'text_style'
+    t.equal sprite.get('fill'), 'blue', 'fill'
     # TODO:text-style x, y
     t.end()
 
