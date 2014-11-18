@@ -31,5 +31,6 @@ exports.test_layout = (test, rx) ->
     t.ok sprites = level.get('sprites'), 'sprites'
     t.ok world.is_array(sprites), 'sprites rx_array'
     t.ok sprite = sprites.at(0), 'sprite'
+    t.ok sprite.get('paths'), 'paths'
     t.end()
 

@@ -140,6 +140,7 @@ class World
     world
 
   _from_dict: (dict) ->
+    console.log '_from_dict', dict
     my.assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
     my.assert !_.isFunction(dict), "_from_dict: dict is a function"
@@ -148,6 +149,7 @@ class World
     world.import_dict dict
 
   make_world: (value) ->
+    my.assert value, "make_world: missing value"
     return value if @is_world(value)
     return @_from_dict(value) if _.isObject(value)
     @_from_value value

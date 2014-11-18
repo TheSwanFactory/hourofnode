@@ -5,8 +5,8 @@
 #
 # Responsibility: 
 # * create sprites from game description
-# * associate with a path
-# * associate with a state representation
+# * associate with a path and state representation
+# * define actions the sprite can perform
 
 {my} = require '../my'
 {vector} = require('../god/vector')
@@ -20,15 +20,16 @@ exports.sprite = {
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
     console.log 'sprite _SETUP', world, shapes, sprites
-    for sprite in sprites.all()
-      console.log 'sprite', sprite, paths
-      paths = shapes[sprite.shape]
-      my.assert paths, "No paths for #{sprite.shape} of #{sprite}"
-      # sprite.put 'paths', paths 
-      # world.call 'sprite', sprite
-  sprite: (world, sprite) ->
-    sprite.put 'state', sprite_state(sprite)
-    # world.add_child sprite
+    for sprite_dict in sprites.all()
+      shape = sprite_dict.shape
+      paths = shapes[shape]
+      my.assert paths, "No paths for #{shape} of #{sprite_dict}"
+      sprite_dict.paths = paths
+      world.call 'make_sprite', sprite_dict
+  make_sprite: (world, sprite_dict) ->
+    # sprite_dict.state = sprite_state(sprite_dict.behavior)
+    console.log 'make_sprite sprite_dict', sprite_dict, _.isObject(sprite_dict)
+    child = world.add_child sprite_dict
     world.send 'inspect', child
   
   # defaults
@@ -42,7 +43,7 @@ exports.sprite = {
     {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
   angle: (world) -> vector.angle world.get('direction')
 
-  p_index: (world, args) ->
+  position_index: (world, args) ->
     n_cols = world.get('split')
     position = world.get('position')
     my.assert world.is_array(direction), "is reactive array"
