@@ -40,7 +40,7 @@ exports.test_layout = (test, rx) ->
     t.ok all_sprites = grid.find_child('sprites'), 'sprites'
     t.ok sprite = all_sprites.find_child(), 'sprite'
     console.log 'sprite', sprite, my.inspect(sprite)
-    t.equal sprite.get('position').all().toString(), "[1,1]", 'sprite position'
+    t.equal sprite.get('position').all().toString(), "2,2", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.end()
 
