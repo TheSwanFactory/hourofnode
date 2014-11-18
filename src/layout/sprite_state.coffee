@@ -22,7 +22,7 @@ program_row = (program) ->
   (world, args) -> world.send 'edit', world.get('value')
 )
 
-exports.sprite_state = (sprite) ->
+exports.sprite_state = (sprite_dict) ->
   status_buttons = make.buttons('status', [
       "shape"
       "name"
@@ -32,15 +32,17 @@ exports.sprite_state = (sprite) ->
     ], my.button,
     (world, args) -> world.send 'edit', world.get('value')
   )
-  is_paths = (world) -> 'paths' == world.get('_LABEL')
-  my.extend status_buttons._AUTHORITY, {
-    name: (world) -> sprite[world.get '_LABEL'] unless is_paths(world)
-    paths: (world) -> sprite.paths if is_paths(world)
+  status_buttons._AUTHORITY = my.dup status_buttons._AUTHORITY, {
+    name: (world) -> text_for(world) unless is_paths(world)
+    paths: (world) -> sprite_dict.paths if is_paths(world)
   }
+
+  is_paths = (world) -> 'paths' == world.get('_LABEL')
+  text_for = (world) -> sprite_dict[ world.get '_LABEL' ] 
 
   language_row = make.buttons(
     'language',
-    sprite.get 'words'
+    Object.keys sprite_dict.behavior
     my.button,
     (world, args) -> world.send 'do', world.get('value')
   )

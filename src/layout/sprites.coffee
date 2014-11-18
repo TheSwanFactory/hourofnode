@@ -38,8 +38,8 @@ exports.sprites = {
       sprite_dict.paths = paths
       world.call 'make_sprite', sprite_dict
   make_sprite: (world, sprite_dict) ->
+    console.log 'make_sprite sprite_dict', sprite_dict
     # sprite_dict.state = sprite_state(sprite_dict.behavior)
-    console.log 'make_sprite sprite_dict', sprite_dict, _.isObject(sprite_dict)
     child = world.add_child sprite_dict
     world.send 'inspect', child
   

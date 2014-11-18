@@ -49,6 +49,7 @@ exports.test_layout = (test, rx) ->
     size = 64
     c = size / 2
     transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
+
     t.equal sprite.get('position').all().toString(), "1,1", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
@@ -57,6 +58,12 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('fill'), 'blue', 'fill'
     t.end()
 
+  test "sprite state", (t) ->
+    t.ok sprite.get('words'), 'sprite words'
+    t.ok sprite.get('state'), 'sprite state'
+    t.end()
+
   test "layout inspector", (t) ->
+    t.ok sprite.get('state'), 'sprite state'
     t.end()
 
