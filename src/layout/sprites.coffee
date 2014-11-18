@@ -13,9 +13,11 @@
 {sprite_state} = require './sprite_state'
 
 scale_position = (world, axis) ->
-  scale = world.get 'scale'
+  cell_size = world.get 'cell_size'
   position = world.get 'position'
-  scale * position.at(axis)
+  value = position.at(axis)
+  console.log 'scale_position', cell_size, position, value
+  cell_size * position.at(axis)
 
 exports.sprites = {
   _LABEL: "sprites"
