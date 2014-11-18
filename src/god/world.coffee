@@ -107,7 +107,7 @@ class World
     
   # TODO: refactor import_dict methods somewhere
   make_children: (children) ->
-    console.log 'make_children', children
+    # console.log 'make_children', children
     result = @rx().array()
     # children = children(@) if _.isFunction(children)
     for value in children
@@ -117,7 +117,7 @@ class World
     result
     
   import_dict: (dict) ->
-    console.log 'import_dict', dict
+    # console.log 'import_dict', dict
     for key, value of dict
       if key == my.key.authority
         # console.log 'import_dict @authority', @authority
@@ -153,7 +153,7 @@ class World
     world.import_dict dict
 
   make_world: (value) ->
-    console.log 'make_world', @.doc.x, value
+    # console.log 'make_world', @.doc.x, value
     my.assert value, "make_world: missing value"
     return value if @is_world(value)
     return @_from_dict(value) if _.isObject(value)
