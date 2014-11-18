@@ -50,7 +50,7 @@ exports.my = {
   inspect: inspect
   assert: assert
   extend: if $? then $.extend else (a,b,c) -> b
-  dup: (a) -> if $? then $.extend({}, a) else a
+  dup: (a, b) -> if $? then $.extend({}, a, b) else a
   page_dimensions: PAGE
   column_1_width: HALF
   column_2_width: HALF

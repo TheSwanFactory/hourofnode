@@ -14,7 +14,7 @@ me = {
   editable: true
 }
 
-yu = my.extend {}, me, {
+yu = my.dup me, {
   name: 'yu'
   position: [2,2]
   fill: 'green'
