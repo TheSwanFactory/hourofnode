@@ -12,6 +12,10 @@ exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
   config = layout(game_dict)
   world = god(rx, config)
+  level = world.find_child()
+  grid = level.find_child('grid')
+  all_sprites = grid.find_child('sprites')
+  sprite = all_sprites.find_child()
 
   test "layout config", (t) ->
     t.ok game_dict, 'game_dict'
@@ -34,15 +38,15 @@ exports.test_layout = (test, rx) ->
     t.ok sprite_dict = sprites.at(0), 'sprite'
     t.end()
 
-  test "layout children", (t) ->
+  test "layout sprite", (t) ->
     size = 64
     c = size / 2
     transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
     
-    t.ok level = world.find_child(), 'active level'
-    t.ok grid = level.find_child('grid'), 'grid'
-    t.ok all_sprites = grid.find_child('sprites'), 'sprites'
-    t.ok sprite = all_sprites.find_child(), 'sprite'
+    t.ok level, 'active level'
+    t.ok grid, 'grid'
+    t.ok all_sprites, 'sprites'
+    t.ok sprite, 'sprite'
     console.log 'sprite', sprite, sprite.get_raw('x'), my.inspect(sprite)
     t.equal sprite.get('position').all().toString(), "1,1", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
