@@ -106,9 +106,10 @@ class World
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
-  _import_children: (children) ->
+  make_children: (children) ->
+    console.log 'make_children', children
     result = @rx().array()
-    children = children(@) if _.isFunction(children)
+    # children = children(@) if _.isFunction(children)
     for value in children
       my.assert value, 'import child'
       child = @make_world(value)
@@ -116,14 +117,14 @@ class World
     result
     
   import_dict: (dict) ->
-    # console.log 'import_dict', dict
+    console.log 'import_dict', dict
     for key, value of dict
       if key == my.key.authority
         # console.log 'import_dict @authority', @authority
         @authority = @_from_dict(value) 
       else
         # console.log 'import_dict not authority', key, value 
-        value = @_import_children(value) if key == my.key.children
+        value = @make_children(value) if key == my.key.children
         value = @rx().array(value) if _.isArray(value)
         @put(key, value)
     @_export_events()
