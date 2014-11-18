@@ -1,9 +1,3 @@
-transform = (world) ->
-  center = world.get('scale') / 2
-  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
-  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
-  "#{translate} #{rotate || ''}"
-
 exports.render_svg = (world) ->
   SVG = world.SVG()
   
@@ -18,7 +12,7 @@ exports.render_svg = (world) ->
       SVG.path path_dict 
 
   svg_tag = (attrs, body) ->
-    attrs['transform'] = transform(world)
+    attrs['transform'] = world.get('transform') || ''
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"

@@ -43,6 +43,6 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('position').all().toString(), "2,2", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
-    t.equal sprite.get('transform'), "transform", 'transform'
+    t.equal sprite.get('transform'), 'translate(128,128) rotate(0 32 32)', 'transform'
     t.end()
 

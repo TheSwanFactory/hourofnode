@@ -12,11 +12,15 @@
 {vector} = require('../god/vector')
 {sprite_state} = require './sprite_state'
 
-scale_position = (world, axis) ->
+transform = (world) ->
+  center = world.get('cell_size') / 2
+  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
+  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
+  "#{translate} #{rotate || ''}"
+
+cell_position = (world, axis) ->
   cell_size = world.get 'cell_size'
   position = world.get 'position'
-  value = position.at(axis)
-  console.log 'scale_position', cell_size, position, value
   cell_size * position.at(axis)
 
 exports.sprites = {
@@ -42,13 +46,18 @@ exports.sprites = {
   # defaults
   position:  [0,0]
   direction: [1,0]
-  x: (world) -> scale_position(world, vector.axis.x)
-  y: (world) -> scale_position(world, vector.axis.y)
-    
-  name_style: (world) ->
-    scale = world.get 'scale'
-    {x: 0.5 * scale, y: 0.5 * scale, fill: "white", stroke: "white"}
+  x: (world) -> cell_position(world, vector.axis.x)
+  y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
+  transform: (world) ->
+    my.assert center = world.get('cell_size') / 2
+    translate = "translate(#{world.get('x')},#{world.get('y')})"
+    rotate = "rotate(#{world.get('angle')} #{center} #{center})"
+    "#{translate} #{rotate}"
+
+  name_style: (world) ->
+    cell_size = world.get 'cell_size'
+    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
 
   position_index: (world, args) ->
     n_cols = world.get('split')
