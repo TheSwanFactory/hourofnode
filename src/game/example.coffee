@@ -15,8 +15,9 @@ me = {
 }
 
 me2 = my.dup me
-my.name = 'yu'
+me2.name = 'yu'
 me2.position = [2,2]
+me2.fill = 'green'
 
 exit = {
   name: 'exit'
