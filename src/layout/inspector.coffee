@@ -14,7 +14,7 @@ exports.inspector = {
     {
       _LABEL: 'status'
       _EXPORTS: ['inspect']
-      inspect: (world, sprite) -> world.put 'target', sprite
+      inspect: (world, sprite) -> world.put 'inspected', sprite
     }
     {
       _LABEL: 'behavior'

@@ -30,9 +30,9 @@ set_shape = (sprite_dict, shapes) ->
   sprite_dict.paths = paths
 
 exports.sprites = {
-  _LABEL: "sprites"
-  _KIND: "sprite"
-  _EXPORTS: ["step", "reset"]
+  _LABEL: 'sprites'
+  _KIND: 'sprite'
+  _EXPORTS: ['inspect', 'step', 'reset']
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
@@ -41,7 +41,9 @@ exports.sprites = {
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
       world.send 'inspect', child
-  
+  inspect: (world, sprite) -> world.put 'inspected', sprite
+  selected: (world) -> world == world.get('inspected')
+
   # defaults
   position:  [0,0]
   direction: [1,0]
