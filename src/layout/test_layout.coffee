@@ -6,7 +6,7 @@
 {header} = require './header'
 {controls} = require './controls'
 {grid} = require './grid'
-{sprite} = require './sprite'
+{sprites} = require './sprites'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
@@ -37,6 +37,6 @@ exports.test_layout = (test, rx) ->
   test "layout children", (t) ->
     t.ok level = world.find_child(), 'active level'
     t.ok grid = level.find_child('grid'), 'grid'
-    t.ok sprite = grid.find_child('sprite'), 'sprite'
+    t.ok sprites = grid.find_child('sprites'), 'sprites'
     t.end()
 

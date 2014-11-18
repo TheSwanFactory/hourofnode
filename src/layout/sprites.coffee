@@ -13,7 +13,7 @@
 {sprite_state} = require './sprite_state'
 
 exports.sprite = {
-  _LABEL: "sprite"
+  _LABEL: "sprites"
   _KIND: "sprite"
   _EXPORTS: ["step", "reset"]
   _SETUP: (world) ->
