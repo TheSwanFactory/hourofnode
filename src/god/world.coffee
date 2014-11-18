@@ -116,17 +116,16 @@ class World
     result
     
   import_dict: (dict) ->
-    console.log '_from_dict', dict
+    console.log 'import_dict', dict
     for key, value of dict
       if key == my.key.authority
-        console.log '_from_dict @authority', @authority
+        # console.log 'import_dict @authority', @authority
         @authority = @_from_dict(value) 
       else
-        console.log '_from_dict not authority', key, value 
+        # console.log 'import_dict not authority', key, value 
         value = @_import_children(value) if key == my.key.children
         value = @rx().array(value) if _.isArray(value)
         @put(key, value)
-        console.log '_from_dict not authority done', key, value 
     @_export_events()
     this
 
@@ -144,7 +143,7 @@ class World
     world
 
   _from_dict: (dict) ->
-    console.log '_from_dict', dict
+    # console.log '_from_dict', dict
     my.assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
     my.assert !_.isFunction(dict), "_from_dict: dict is a function"
