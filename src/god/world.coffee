@@ -116,13 +116,17 @@ class World
     result
     
   import_dict: (dict) ->
+    console.log '_from_dict', dict
     for key, value of dict
       if key == my.key.authority
+        console.log '_from_dict @authority', @authority
         @authority = @_from_dict(value) 
       else
+        console.log '_from_dict not authority', key, value 
         value = @_import_children(value) if key == my.key.children
         value = @rx().array(value) if _.isArray(value)
         @put(key, value)
+        console.log '_from_dict not authority done', key, value 
     @_export_events()
     this
 
@@ -149,6 +153,7 @@ class World
     world.import_dict dict
 
   make_world: (value) ->
+    console.log 'make_world', @.doc.x, value
     my.assert value, "make_world: missing value"
     return value if @is_world(value)
     return @_from_dict(value) if _.isObject(value)

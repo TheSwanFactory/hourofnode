@@ -39,6 +39,6 @@ exports.layout = (game_dict) ->
     header(level_dict)
     controls(level_dict)
     grid(level_dict)
-    inspector
+    # inspector
   ]
   game_dict
