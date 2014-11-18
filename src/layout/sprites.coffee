@@ -23,6 +23,12 @@ cell_position = (world, axis) ->
   position = world.get 'position'
   cell_size * position.at(axis)
 
+set_shape = (sprite_dict, shapes) ->
+  shape = sprite_dict.shape
+  paths = shapes[shape]
+  my.assert paths, "No paths for #{shape} of #{sprite_dict}"
+  sprite_dict.paths = paths
+
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
@@ -30,17 +36,14 @@ exports.sprites = {
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
-    console.log 'sprite _SETUP', world, shapes, sprites
+    # console.log 'sprite _SETUP', world, shapes, sprites
     for sprite_dict in sprites.all()
-      shape = sprite_dict.shape
-      paths = shapes[shape]
-      my.assert paths, "No paths for #{shape} of #{sprite_dict}"
-      sprite_dict.paths = paths
+      set_shape(sprite_dict, shapes)
       world.call 'make_sprite', sprite_dict
   make_sprite: (world, sprite_dict) ->
     console.log 'make_sprite sprite_dict', sprite_dict
-    # sprite_dict.state = sprite_state(sprite_dict.behavior)
     child = world.add_child sprite_dict
+    # child.put 'state', world.make_world sprite_state(child)
     world.send 'inspect', child
   
   # defaults
