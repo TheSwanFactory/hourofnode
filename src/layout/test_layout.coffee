@@ -59,11 +59,9 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "sprite state", (t) ->
-    t.ok sprite.get('words'), 'sprite words'
-    t.ok sprite.get('state'), 'sprite state'
+    # t.ok sprite.get('state'), 'sprite state'
     t.end()
 
   test "layout inspector", (t) ->
-    t.ok sprite.get('state'), 'sprite state'
     t.end()
 
