@@ -23,7 +23,8 @@ exit = {
   behavior: {turtle: ['victory']}
 }  
 
-me2 = my.extend me, {position: [2,2]}
+me2 = my.dup me
+me2.position = [2,2]
 
 exports.game = {
   name: "Example Game"

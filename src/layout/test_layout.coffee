@@ -35,8 +35,8 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "layout children", (t) ->
-    size = 128
-    c = size / 4
+    size = 64
+    c = size / 2
     transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
     
     t.ok level = world.find_child(), 'active level'
@@ -44,7 +44,7 @@ exports.test_layout = (test, rx) ->
     t.ok all_sprites = grid.find_child('sprites'), 'sprites'
     t.ok sprite = all_sprites.find_child(), 'sprite'
     console.log 'sprite', sprite, sprite.get_raw('x'), my.inspect(sprite)
-    t.equal sprite.get('position').all().toString(), "2,2", 'sprite position'
+    t.equal sprite.get('position').all().toString(), "1,1", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
     t.equal sprite.get('transform'), transform_result , 'transform'
