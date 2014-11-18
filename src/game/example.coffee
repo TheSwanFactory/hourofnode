@@ -14,10 +14,11 @@ me = {
   editable: true
 }
 
-me2 = my.dup me
-me2.name = 'yu'
-me2.position = [2,2]
-me2.fill = 'green'
+yu = my.extend {}, me, {
+  name: 'yu'
+  position: [2,2]
+  fill: 'green'
+}
 
 exit = {
   name: 'exit'
@@ -57,7 +58,7 @@ exports.game = {
     }
     {
       name: 'Double Time'
-      sprites: [me, me2, exit]
+      sprites: [me, yu, exit]
       goal: {
         clicks: 10
         ticks: 8
