@@ -39,12 +39,8 @@ exports.sprites = {
     # console.log 'sprite _SETUP', world, shapes, sprites
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
-      world.call 'make_sprite', sprite_dict
-  make_sprite: (world, sprite_dict) ->
-    console.log 'make_sprite sprite_dict', sprite_dict
-    child = world.add_child sprite_dict
-    # child.put 'state', world.make_world sprite_state(child)
-    world.send 'inspect', child
+      child = world.add_child sprite_dict
+      world.send 'inspect', child
   
   # defaults
   position:  [0,0]
