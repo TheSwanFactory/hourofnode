@@ -8,7 +8,8 @@ me = {
   name: 'me'
   shape: 'turtle'
   position: [1,1]
-  color: 'blue'
+  stroke: 'black'
+  fill: 'blue'
   behavior: {first: [], repeat: ['forward']}
   editable: true
 }
@@ -17,7 +18,8 @@ exit = {
   name: 'exit'
   shape: 'diamond'
   position: [1,4]
-  color: 'red'
+  stroke: 'gold'
+  fill: 'red'
   behavior: {turtle: ['victory']}
 }  
 

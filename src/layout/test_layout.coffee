@@ -35,6 +35,10 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "layout children", (t) ->
+    size = 128
+    c = size / 4
+    transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
+    
     t.ok level = world.find_child(), 'active level'
     t.ok grid = level.find_child('grid'), 'grid'
     t.ok all_sprites = grid.find_child('sprites'), 'sprites'
@@ -43,6 +47,10 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('position').all().toString(), "2,2", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
-    t.equal sprite.get('transform'), 'translate(128,128) rotate(0 32 32)', 'transform'
+    t.equal sprite.get('transform'), transform_result , 'transform'
+    t.equal sprite.get('stroke'), 'black', 'stroke'
+    t.equal sprite.get('fill'), 'green', 'fill'
+    t.ok text_style = sprite.get('text_style'), 'text_style'
+    # TODO:text-style x, y
     t.end()
 
