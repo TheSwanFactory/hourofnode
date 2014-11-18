@@ -16,14 +16,14 @@ me = {
 
 yu = my.dup me, {
   name: 'yu'
-  position: [2,2]
+  position: [3,1]
   fill: 'green'
 }
 
 exit = {
   name: 'exit'
   shape: 'diamond'
-  position: [1,4]
+  position: [5,1]
   stroke: 'gold'
   fill: 'red'
   behavior: {turtle: ['victory']}
