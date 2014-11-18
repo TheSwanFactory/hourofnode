@@ -1,13 +1,11 @@
 #
 # layout.coffee
 #
-# Role: generate interface dictionary for a game dictionary
+# Role: configure the interface for a level
 #
 # Responsibility:
-# * export and invoke a render method
-# * create game state objects
-# * create sprite state objects for each sprite
-# * ensure only the currently-selected sprite's state is ddisplay
+# * create dictionaries describing the interface elements
+# * associate them as children of the level
 
 {my} = require './my'
 {vector} = require './god/vector'
