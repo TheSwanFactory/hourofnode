@@ -7,7 +7,7 @@ SCALE = 30
 me = {
   name: 'me'
   shape: 'turtle'
-  position: [0,0]
+  position: [1,1]
   color: 'blue'
   behavior: {first: [], repeat: ['forward']}
   editable: true
@@ -16,7 +16,7 @@ me = {
 exit = {
   name: 'exit'
   shape: 'diamond'
-  position: [0,4]
+  position: [1,4]
   color: 'red'
   behavior: {turtle: ['victory']}
 }  

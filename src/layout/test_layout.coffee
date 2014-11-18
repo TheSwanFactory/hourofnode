@@ -37,7 +37,10 @@ exports.test_layout = (test, rx) ->
   test "layout children", (t) ->
     t.ok level = world.find_child(), 'active level'
     t.ok grid = level.find_child('grid'), 'grid'
-    t.ok sprites = grid.find_child('sprites'), 'sprites'
-    t.ok sprite = sprites.find_child(), 'sprite'
+    t.ok all_sprites = grid.find_child('sprites'), 'sprites'
+    t.ok sprite = all_sprites.find_child(), 'sprite'
+    console.log 'sprite', sprite, my.inspect(sprite)
+    t.equal sprite.get('position').all().toString(), "[1,1]", 'sprite position'
+    t.ok sprite.get('x') > 0, 'non-zero x'
     t.end()
 

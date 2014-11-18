@@ -12,6 +12,11 @@
 {vector} = require('../god/vector')
 {sprite_state} = require './sprite_state'
 
+scale_position = (world, axis) ->
+  scale = world.get 'scale'
+  position = world.get 'position'
+  scale * position.at(axis)
+
 exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
@@ -35,8 +40,8 @@ exports.sprites = {
   # defaults
   position:  [0,0]
   direction: [1,0]
-  x: (world) -> world.get('scale') * position.at(vector.axis.x)
-  y: (world) -> world.get('scale') * position.at(vector.axis.y)
+  x: (world) -> scale_position(world, vector.axis.x)
+  y: (world) -> scale_position(world, vector.axis.y)
     
   name_style: (world) ->
     scale = world.get 'scale'
