@@ -5,7 +5,7 @@ class GOD
   get_raw: (key, world) ->
     return @debug if key == "debug"
     return world.up if key == "up"
-    console.log "key '#{key}' not found: #{world}" if @debug
+    console.log "key '#{key}' not found: #{world.label()}" if @debug
     undefined
   label: -> "GOD"
   toString: -> @label()
