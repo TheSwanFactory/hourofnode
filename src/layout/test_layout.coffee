@@ -42,5 +42,7 @@ exports.test_layout = (test, rx) ->
     console.log 'sprite', sprite, sprite.get_raw('x'), my.inspect(sprite)
     t.equal sprite.get('position').all().toString(), "2,2", 'sprite position'
     t.ok sprite.get('x') > 0, 'non-zero x'
+    t.ok sprite.get('y') > 0, 'non-zero y'
+    t.equal sprite.get('transform'), "transform", 'transform'
     t.end()
 
