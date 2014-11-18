@@ -12,7 +12,7 @@
 {vector} = require('../god/vector')
 {sprite_state} = require './sprite_state'
 
-exports.sprite = {
+exports.sprites = {
   _LABEL: "sprites"
   _KIND: "sprite"
   _EXPORTS: ["step", "reset"]
