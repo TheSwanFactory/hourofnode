@@ -11,6 +11,7 @@
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
   config = layout(game_dict)
+  world = god(rx, config)
 
   test "layout config", (t) ->
     t.ok game_dict, 'game_dict'
@@ -18,11 +19,11 @@ exports.test_layout = (test, rx) ->
     t.ok controls, 'controls'
     t.ok config, 'config'
     t.ok grid, 'grid'
-    console.log 'game config', config
+    t.ok world, 'world'
+    console.log 'game config', config, world
     t.end()
   
-  test "layout as world", (t) ->
-    t.ok world = god(rx, config), 'world'
+  test "layout properties", (t) ->
     t.ok shapes = world.get('shapes'), 'shapes'
     t.ok levels = world.get('levels'), 'levels'
     t.ok world.is_array(levels), 'levels rx_array'
@@ -30,7 +31,13 @@ exports.test_layout = (test, rx) ->
     t.ok level = world._child_array()[0], 'active level'
     t.ok sprites = level.get('sprites'), 'sprites'
     t.ok world.is_array(sprites), 'sprites rx_array'
-    t.ok sprite = sprites.at(0), 'sprite'
-    t.ok sprite.get('paths'), 'paths'
+    t.ok sprite_dict = sprites.at(0), 'sprite'
+    t.end()
+
+  test "layout children", (t) ->
+    t.ok level = world.find_child(), 'active level'
+    t.ok layout = level.find_child(), 'layout'
+    t.ok grid = level.find_child('grid'), 'grid'
+    t.ok sprite = level.find_child('sprite'), 'grid'
     t.end()
 
