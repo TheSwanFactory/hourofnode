@@ -1,8 +1,9 @@
+#
 # inspect_status.coffee
 #
 # Role: show and edit status of current sprite
-# Responsibility:
-# * track current sprite
+#
+# Responsibility: display and edit status
 #
 
 {my} = require '../my'
