@@ -1,15 +1,16 @@
+{my} = require '../my'
+
 exports.render_svg = (world) ->
   SVG = world.SVG()
-  
-  # TODO: handle selection
-  # TODO: allow named paths?
+
+  path_dict = (path) ->
+    stroke = world.get('stroke')
+    stroke = my.color.selection if world.get('selected')
+    { d: path, stroke: stroke, fill: world.get('fill') }
 
   path_tags = (paths) ->
     return [] unless paths
-    path_dict = {stroke: world.get('stroke'), fill: world.get('fill')}
-    paths.map (path) ->
-      path_dict['d'] = path
-      SVG.path path_dict 
+    paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
     attrs['transform'] = world.get('transform') || ''
