@@ -8,24 +8,36 @@
 {my} = require '../my'
 {make} = require '../render/make'
 
+add_paths = (dict, paths) ->
+  dict.paths = paths
+
+extract = (sprite, button) ->
+  key = button.get 'value'
+  value = sprite.get key
+  value = value.all() if sprite.is_array(value)
+  "#{value}"
+  
 exports.inspect_status = (sprite) ->
 
   status_buttons = make.buttons('stat', [
-      "shape"
       "name"
-      "color"
+      "fill"
       "position"
       "direction"
+      "shape"
     ], my.button,
     (button, args) -> button.editing = true
     # TODO: Implement editable status
   )
 
-  for dict in [] #status_buttons._CHILDREN
-    console.log 'status dict', status_buttons, dict
+  console.log 'status sprite', sprite.doc.x
+  for dict in status_buttons._CHILDREN
+    key = dict.value
+    console.log 'status dict key', key , sprite.get(key)
     if dict.value == 'shape'
-      dict.paths = sprite.get('paths').all()
+      add_paths dict, sprite.get('paths').all()
     else
-      dict.name = (button) -> sprite.get(dict._LABEL) or "N/A"
+      dict.name = (button) -> extract(sprite, button) # run time
+    console.log '-> status dict', dict
 
   status_buttons
