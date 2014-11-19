@@ -15,6 +15,7 @@ exports.inspector = {
   x: (world) -> world.get('width')
   y: 2*my.margin
   height:(world) -> world.get('screen').at vector.size.height
+  stroke: my.color.line
   fill: my.color.background
   _AUTHORITY: {x:0}
   _CHILDREN: [
