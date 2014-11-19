@@ -18,7 +18,10 @@ exports.inspector = {
   height:(world) -> world.get('screen').at vector.size.height
   stroke: my.color.line
   fill: my.color.background
-  _AUTHORITY: {x:0, height: 'auto'}
+  _AUTHORITY: {
+    x: () -> 0
+    height: () -> 0
+  }
   _CHILDREN: [
     status
     {

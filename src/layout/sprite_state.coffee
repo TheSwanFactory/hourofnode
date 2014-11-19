@@ -1,3 +1,6 @@
+# NO LONGER USED - BEING REFACTORED
+
+#
 # sprite_state.coffee
 #
 # Role: return a dictionary UI to view & edit sprite state

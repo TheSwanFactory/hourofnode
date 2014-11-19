@@ -13,7 +13,6 @@ columns = (label, items) -> group(label, items, vector.axis.across)
 buttons = (kind, items, my_kind, action) ->
   body = columns "#{kind}s", items
   body.stroke = my.color.line
-  body['stroke-width'] = 1
   body.padding = my_kind.padding
   body.fill = my_kind.background
   body.height = my_kind.size
