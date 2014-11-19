@@ -82,7 +82,7 @@ exports.test_world = (test, rx) ->
     t.end()
     
   test 'world can replace children', (t) ->
-    label = 'root:0'
+    label = 'root-0'
     t.equal world.find_index(label), 0, "find_index"
     original_count = world._child_count()
     t.equal world.find_child(label).get('c'), 3
