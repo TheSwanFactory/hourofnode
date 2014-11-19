@@ -74,7 +74,7 @@ exports.test_layout = (test, rx) ->
     forward = sprite.get('language')['forward']
     message = {target: sprite, action: forward}
     t.ok sprite.call('apply', message), "apply message"
-    # test_position t, [2,1]
+    test_position t, [2,1]
     t.end()
 
   test "layout inspector", (t) ->
