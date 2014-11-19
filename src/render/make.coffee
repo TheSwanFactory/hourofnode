@@ -1,15 +1,15 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 
-group = (label, items, direction) -> {
+group = (label, items, tag_name) -> {
   _KIND: label
-  _AUTHORITY: {layout: direction}
+  _AUTHORITY: {tag_name: tag_name}
   _LABEL: label
   _CHILDREN: items
 }
 
-rows = (label, items) -> group(label, items, vector.axis.down)
-columns = (label, items) -> group(label, items, vector.axis.across)
+rows = (label, items) -> group(label, items, 'div')
+columns = (label, items) -> group(label, items, 'span')
 buttons = (kind, items, my_kind, action) ->
   body = columns "#{kind}s", items
   body.stroke = my.color.line

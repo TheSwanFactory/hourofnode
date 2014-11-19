@@ -3,8 +3,9 @@
 
 exports.render_html = (world) ->
   T = world.T()
-  dir = world.get 'layout'
-  tag = if (dir == vector.axis.across) then T.span else T.div
+  tag_name = world.get('tag_name') or 'div'
+  tag = T[tag_name]
+  my.assert tag, "No tag for #{tag_name} in #{world}"
   has_position = world.get('x') or world.get('y')
   has_border = world.get('stroke')
   {
