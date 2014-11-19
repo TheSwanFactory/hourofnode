@@ -8,10 +8,10 @@ group = (label, items, tag_name) -> {
   _CHILDREN: items
 }
 
-rows = (label, items) -> group(label, items, 'div')
-columns = (label, items) -> group(label, items, 'span')
+rows = (label, items) -> group label, items, 'div'
+columns = (label, items) -> group label, items, 'span'
 buttons = (kind, items, my_kind, action) ->
-  body = columns "#{kind}s", items
+  body = group "#{kind}s", items, 'button'
   body.stroke = my.color.line
   body.padding = my_kind.padding
   body.fill = my_kind.background
