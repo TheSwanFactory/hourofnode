@@ -1,36 +1,42 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
-{status} = require './status'
+{inspect_status} = require './inspect_status'
 
-make_inspector = (sprite) ->
-  "the sprite's behavior will go here"
+sprite_inspector = (sprite) ->
+  {
+    _LABEL: "inspector_#{sprite.get 'name'}"
+    _CHILDREN: [
+      "heading"
+      "status"
+      inspect_status(sprite)
+      "commands"
+      "behavior"
+    ]
+  }
   
-get_inspector = (sprite) ->
-  inspector = sprite.get 'inspector'
-  return inspector if inspector
-  make_inspector(sprite)
+make_inspector = (world, sprite) ->
+  inspector = world.make_world sprite_inspector(sprite)
+  sprite.put 'inspector', inspector
+  inspector
   
-# TODO: Simplify by adding private _members
 exports.inspector = {
   _LABEL: 'inspector'
-  x: (world) -> world.get('width')
+  _EXPORTS: ['inspect']
+  inspect: (world, sprite) ->
+    world.reset_children()
+    inspector = sprite.get('inspector') or make_inspector(world, sprite)
+    world.add_child inspector 
+
+  x: (world) -> world.get('width') - 4
   y: 2*my.margin
   position: 'absolute'
   height: (world) -> world.get('screen').at vector.size.height
   stroke: my.color.line
   fill: my.color.background
+
+# TODO: Simplify by adding private _members
   _AUTHORITY: {
     x: () -> 0
     height: () -> 0
   }
-  _CHILDREN: [
-    status
-    {
-      _LABEL: 'behavior'
-      _EXPORTS: ['inspect']
-      inspect: (world, sprite) ->
-        world.reset_children()
-        world.add_child get_inspector(sprite)
-    }
-  ]
 }
