@@ -66,9 +66,9 @@ exports.sprites = {
     my.assert world.is_array(direction), "is reactive array"
     position.at(1)*n_cols + position.at(0)
         
-  go: (world, args) ->
+  go: (world, dir) ->
+    console.log 'go', world, dir
     split = world.get('split')
-    {dir} = args
     my.assert dir?, "expects dir"
     position = world.get('position')
     direction = world.get('direction')
@@ -85,6 +85,7 @@ exports.sprites = {
     {target, action} = args
     return false unless world == target
     [method, key, value] = action
+    console.log 'apply', method, key, value
     my.assert f = world[method], "#{world}: no method #{method}"
     f(key, value)
     
