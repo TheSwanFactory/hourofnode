@@ -10,13 +10,11 @@
 {make} = require '../render/make'
   
 exports.inspect_commands = (sprite) ->
-  command_buttons = make.buttons('command', [
-      "shape"
-      "name"
-      "fill"
-      "position"
-      "direction"
-    ], my.button,
-    (button, args) -> button.editing = true
-    # TODO: Implement editable command
+  language = sprite.get('language')
+  words = Object.keys language
+  command_buttons = make.buttons(
+    'command',
+    words,
+    my.button,
+    (button, args) -> button.send('command', button)
   )
