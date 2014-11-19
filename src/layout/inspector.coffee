@@ -13,10 +13,10 @@ get_inspector = (sprite) ->
 exports.inspector = {
   _LABEL: 'inspector'
   x: (world) -> world.get('width')
-  y: my.margin
-  height: (world) -> world.get('screen')[vector.size.height]
+  y: 2*my.margin
+  height:(world) -> world.get('screen').at vector.size.height
   fill: my.color.background
-  _AUTHORITY: {x:0, y:0, height: 'auto'}
+  _AUTHORITY: {x:0}
   _CHILDREN: [
     {
       _LABEL: 'status'
