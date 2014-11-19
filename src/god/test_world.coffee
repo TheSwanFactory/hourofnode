@@ -72,12 +72,13 @@ exports.test_world = (test, rx) ->
     t.ok world.has_children(), "has some"
     result = world.find_children()
     t.ok result, "finds children"
-    t.equal result.length, 1
+    t.equal result.length, 1, "1 child"
 
     result = world.find_children("root")
-    t.equal result.length, 0
-    result = world.find_children("root:0")
-    t.equal result.length, 1
+    t.equal result.length, 0, "0 child"
+    console.log 'find children', world, world._child_array()
+    result = world.find_children("root-0")
+    t.equal result.length, 1, "1 child"
     t.end()
     
   test 'world can replace children', (t) ->
