@@ -18,7 +18,7 @@ exports.render_html = (world) ->
       background: world.get 'fill'
       margin: world.get 'margin'
       padding: world.get 'padding'
-      position: 'absolute' if has_position
+      position: world.get_local 'position'
       height: world.get 'height'
       width: world.get 'width'
       left: world.get 'x'

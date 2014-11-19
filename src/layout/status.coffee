@@ -29,7 +29,6 @@ text_for = (button) ->
   inspected.get button.get('_LABEL')
 
 my.extend status_buttons._AUTHORITY, {
-  x: (button) -> button.get 'offset'
   name: (button) -> text_for(button) unless show_paths(button)
   paths: (button) -> show_paths(button)
 }
