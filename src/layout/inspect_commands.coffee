@@ -15,6 +15,6 @@ exports.inspect_commands = (sprite) ->
   command_buttons = make.buttons(
     'command',
     words,
-    my.button,
+    my.command,
     (button, args) -> button.send('command', button)
   )
