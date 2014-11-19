@@ -11,6 +11,7 @@ exports.rx_mock = (rx) ->
         div: tag 'div'
         span: tag 'span'
         p: tag 'p'
+        button: tag 'button'
       }
       svg_tags: {
         svg: tag 'svg'

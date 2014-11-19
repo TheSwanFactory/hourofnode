@@ -90,7 +90,7 @@ exports.test_render = (test, rx) ->
     dict = make.buttons('button',["a", "b"], my.control)
     buttons = render_mock(dict).body.body
     button = buttons[0] 
-    t.equal button.tag, 'span', 'button span'
+    t.equal button.tag, 'button', 'button span'
     t.ok style = button.attr.style, 'button style'
     t.ok style.border, 'button border'
     t.ok style.margin, 'button margin'
