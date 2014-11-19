@@ -15,7 +15,8 @@ status_buttons = make.buttons('status', [
     "position"
     "direction"
   ], my.button,
-  (button, args) -> button.editable = true
+  (button, args) -> button.editing = true
+  # TODO: Implement editable status
 )
 
 show_paths = (button) ->
@@ -27,7 +28,8 @@ text_for = (button) ->
   inspected = button.get 'inspected'
   inspected.get button.get('_LABEL')
 
-status_buttons._AUTHORITY = my.dup status_buttons._AUTHORITY, {
+my.extend status_buttons._AUTHORITY, {
+  x: (button) -> button.get 'offset'
   name: (button) -> text_for(button) unless show_paths(button)
   paths: (button) -> show_paths(button)
 }

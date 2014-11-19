@@ -31,6 +31,7 @@ setup_geometry = (dict) ->
     margin: my.margin
     outer_width: (world) -> world.get('width') + 2 * world.get('padding')
     inner_width: (world) -> world.get('width') - 2 * world.get('margin')
+    offset: (world) -> world.index * world.get('outer_width')
     available_width: (world) ->
       world.up.get('inner_width') - 2 * world.get('padding')
     set_outer_width: (world, outer_width) ->
