@@ -22,5 +22,8 @@ exports.inspect_commands = (sprite) ->
     my.command,
     (button, args) ->
       word = button.get 'value'
-      world.send('apply', [sprite, language[word]])
+      world.send('apply', {
+        target: sprite
+        action: language[word]
+      })
   )
