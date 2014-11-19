@@ -83,6 +83,8 @@ exports.sprites = {
     
   apply: (world, args) ->
     {target, action} = args
+    return false unless world == target
+    true
     #world.call(signal['do'], signal)
     
   step: (world, args) ->

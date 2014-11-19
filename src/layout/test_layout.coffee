@@ -62,7 +62,8 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
 
-    
+    t.notOk sprite.call('apply', {target: grid}), "only apply to self"
+    t.ok sprite.call('apply', {target: sprite}), "apply self"
 
     t.end()
 
