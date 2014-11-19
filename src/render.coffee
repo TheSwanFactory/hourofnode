@@ -22,9 +22,10 @@ clicker = (world) ->
 
 create_attrs = (world, style) ->
   labels = world.labels()
+  label = labels[0]
   attrs = {
     id: "#{labels.length}_#{labels.join '_'}"
-    class: labels 
+    class: "#{label} #{labels.length}_#{label}"
     style: world.bind() -> style
     click: clicker(world)
     # TODO: add touch events that do not mess up mutation

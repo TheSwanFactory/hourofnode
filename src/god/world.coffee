@@ -148,7 +148,7 @@ class World
     my.assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
     my.assert !_.isFunction(dict), "_from_dict: dict is a function"
-    label = dict[my.key.label] or "#{@get(my.key.label)}:#{@_child_count()}"
+    label = dict[my.key.label] or "#{@get(my.key.label)}-#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
 

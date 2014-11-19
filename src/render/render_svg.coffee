@@ -13,6 +13,7 @@ exports.render_svg = (world) ->
       dict['stroke']= my.color.selection
       dict['stroke-width'] = 3
     dict 
+
   path_tags = (paths) ->
     return [] unless paths
     paths.map (path) -> SVG.path path_dict(path)
