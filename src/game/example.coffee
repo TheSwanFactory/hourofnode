@@ -35,9 +35,10 @@ exports.game = {
   comment: "For testing purposes only"
 
   language: {
-    # Array of Operation, key, argument
-    victory: ['.send', 'done',  1]
-    failure: ['.send', 'done', -1]
+    # Admin commands have '_'
+    # TODO: hide Admin commands if not in design mode
+    _victory: ['.send', 'done',  1]
+    _failure: ['.send', 'done', -1]
   }
 
   shapes: {

@@ -16,5 +16,8 @@ exports.inspect_commands = (sprite) ->
     'command',
     words,
     my.command,
-    (button, args) -> button.send('command', button)
+    (button, args) ->
+      value = button.get 'value'
+      console.log 'send command', value
+      button.send('command', button)
   )
