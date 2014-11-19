@@ -4,10 +4,15 @@ exports.render_svg = (world) ->
   SVG = world.SVG()
 
   path_dict = (path) ->
-    stroke = world.get('stroke')
-    stroke = my.color.selection if world.get('selected')
-    { d: path, stroke: stroke, fill: world.get('fill') }
-
+    dict = {
+      d: path
+      stroke: world.get('stroke')
+      fill: world.get('fill')
+    }
+    if world.get('selected')
+      dict['stroke']= my.color.selection
+      dict['stroke-width'] = 3
+    dict 
   path_tags = (paths) ->
     return [] unless paths
     paths.map (path) -> SVG.path path_dict(path)

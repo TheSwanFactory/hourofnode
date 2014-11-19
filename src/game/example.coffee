@@ -24,7 +24,7 @@ exit = {
   name: 'exit'
   shape: 'diamond'
   position: [5,1]
-  stroke: 'gold'
+  stroke: 'maroon'
   fill: 'red'
   behavior: {turtle: ['victory']}
 }  

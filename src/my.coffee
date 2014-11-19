@@ -91,6 +91,7 @@ exports.my = {
     gridline: 'white'
     command: COMMAND_COLOR
     line: 'black'
+    selection: 'gold'
   }
   key: {
     authority: '_AUTHORITY'
