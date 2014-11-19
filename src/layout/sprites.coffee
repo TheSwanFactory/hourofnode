@@ -68,13 +68,16 @@ exports.sprites = {
         
   go: (world, dir) ->
     console.log 'go', world, dir
-    split = world.get('split')
+    cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
-    # TODO: invert via direction
     position = world.get('position')
+
+    # TODO: invert via direction
     direction = world.get('direction')
     sum = vector.add(position, direction)
-    result = vector.bound sum, split, -> world.send 'error'
+
+    # TODO: handle error
+    result = vector.bound sum, cell_count, -> world.send 'error'
     world.put 'position', result 
 
   turn: (world, args) ->
