@@ -30,8 +30,8 @@ inspect = (world, n=1) ->
   result
 
 # iPad sizes based on https://stackoverflow.com/questions/3375706/ipad-browser-width-height-standard/9049670#9049670
-PAGE = [1024, 690]
-IPAD = {width: 1024, height: 690}
+PAGE = [1024, 720]
+IPAD = {width: PAGE[0], height: PAGE[1]}
 HALF = IPAD.width / 2
 TOUCH = 64
 CONTROL = 96

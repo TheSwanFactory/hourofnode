@@ -25,7 +25,8 @@ exports.inspector = {
     inspector = sprite.get('inspector') or make_inspector(world, sprite)
     world.add_child inspector 
 
-  x: (world) -> world.get('width') - 4
+  width: (world) -> world.up.get('width') - 4 * my.margin
+  x: (world) -> world.up.get('width') + my.margin
   y: 2*my.margin
   position: 'absolute'
   height: (world) -> world.get('screen').at vector.size.height
