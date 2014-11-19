@@ -1,13 +1,14 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 {inspect_status} = require './inspect_status'
+{inspect_commands} = require './inspect_commands'
 
 sprite_inspector = (sprite) ->
   {
     _LABEL: "inspector_#{sprite.get 'name'}"
     _CHILDREN: [
       inspect_status(sprite)
-      "commands"
+      inspect_commands(sprite)
       "behavior"
     ]
   }
