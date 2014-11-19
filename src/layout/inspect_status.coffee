@@ -3,7 +3,7 @@
 #
 # Role: show and edit status of current sprite
 #
-# Responsibility: display and edit status
+# Responsibility: populate status pane of sprite inspector
 #
 
 {my} = require '../my'
