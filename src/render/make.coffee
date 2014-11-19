@@ -14,17 +14,16 @@ buttons = (kind, items, my_kind, action) ->
   body = columns "#{kind}s", items
   body.stroke = my.color.line
   body['stroke-width'] = 1
-  body.padding = 8
+  body.padding = my_kind.padding
   body.fill = my_kind.background
   body.height = my_kind.size
-  
+  body.width = (world) -> world.up.get('width') - 2 * my_kind.padding - 2
   my.extend body._AUTHORITY, {
     _KIND: kind
     fill: my_kind.color
     margin: my_kind.margin
-    height: my_kind.size - 2 * my_kind.margin - 2 * my_kind.padding
+    height: my_kind.size
     width: my_kind.size
-    #(world) -> world.up.get('width') / items.length - 2*my_kind.margin
     click: action
     _AUTHORITY: {padding: 0, height: 0, width: 0}
   }
