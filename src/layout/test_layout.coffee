@@ -60,5 +60,9 @@ exports.test_layout = (test, rx) ->
 
   test "layout inspector", (t) ->
     t.ok inspector = sprite.get('inspector'), 'made inspector'
+    t.ok language = sprite.get('language'), 'language'
+    t.ok words = Object.keys(language), 'words'
+    t.ok "forward" in words, 'has a command'
+    
     t.end()
 
