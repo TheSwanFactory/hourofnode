@@ -56,6 +56,7 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('transform'), transform_result , 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
+
     t.end()
 
   test "layout inspector", (t) ->

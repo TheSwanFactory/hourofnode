@@ -21,7 +21,6 @@ exports.inspect_commands = (sprite) ->
     words,
     my.command,
     (button, args) ->
-      command = button.get 'value'
-      sprite.call('execute', command)
-      # TODO: update current behavior
+      word = button.get 'value'
+      world.send('apply', [sprite, language[word]])
   )

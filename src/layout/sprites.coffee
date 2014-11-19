@@ -80,8 +80,7 @@ exports.sprites = {
     {dir} = args
     my.assert dir, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
-    
-  perform: (world, signal) -> world.call(signal['do'], signal)
+
   step: (world, args) ->
     local = world.get('programs')
     return unless world.is_world local
