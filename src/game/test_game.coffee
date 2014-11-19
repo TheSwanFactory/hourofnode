@@ -20,7 +20,7 @@ exports.test_game = (test, rx) ->
 
   test 'game extend', (t) ->
     language = example.language
-    t.ok language.victory, 'language from destination'
+    t.ok language._victory, 'language from destination'
     t.ok language.left, 'language from source'
 
     shapes = example.shapes

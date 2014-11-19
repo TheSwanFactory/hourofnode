@@ -38,14 +38,11 @@ exports.inspect_status = (sprite) ->
     # TODO: Implement editable status
   )
 
-  console.log 'status sprite', sprite.doc.x
   for dict in status_buttons._CHILDREN
     key = dict.value
-    console.log 'status dict key', key , sprite.get(key)
     if dict.value == 'shape'
       add_paths dict, sprite
     else
       dict.name = (button) -> extract(sprite, button) # run time
-    console.log '-> status dict', dict
 
   status_buttons
