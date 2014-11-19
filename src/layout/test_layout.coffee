@@ -58,10 +58,7 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('fill'), 'blue', 'fill'
     t.end()
 
-  test "sprite state", (t) ->
-    # t.ok sprite.get('state'), 'sprite state'
-    t.end()
-
   test "layout inspector", (t) ->
+    t.ok inspector = sprite.get('inspector'), 'made inspector'
     t.end()
 
