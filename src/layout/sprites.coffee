@@ -32,7 +32,7 @@ set_shape = (sprite_dict, shapes) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['inspect', 'apply', 'step', 'reset']
+  _EXPORTS: ['inspect', 'step', 'reset']
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
@@ -40,6 +40,7 @@ exports.sprites = {
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
+      # TODO: child. export 'apply
       world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
@@ -88,7 +89,9 @@ exports.sprites = {
     
   apply: (world, args) ->
     {target, action} = args
+    console.log "#{world}: apply #{target}", action
     return false unless world == target
+    console.log 'apply', target, action
     [method, key, value] = action
     world[method](key, value)
     

@@ -23,8 +23,7 @@ exports.inspect_commands = (sprite) ->
     my.command,
     (button, args) ->
       word = button.get 'value'
-      button.send('apply', {
-        target: sprite
-        action: language[word]
-      })
+      message = { target: sprite, action: language[word] }
+      console.log 'send apply', word, message
+      button.send('apply', message)
   )
