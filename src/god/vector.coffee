@@ -32,6 +32,9 @@ exports.vector = {
   # Add two vectors and return the result
   add: (a, b) -> [get_x(a) + get_x(b), get_y(a) + get_y(b)]
   
+  # Subtract b from a
+  subtract: (a, b) -> [get_x(a) - get_x(b), get_y(a) - get_y(b)]
+  
   # Ensure vector is inside [0,n) , else call error_callback
   bound: (v, n, error_callback) ->
     [get_x, get_y].map (coordinate) ->

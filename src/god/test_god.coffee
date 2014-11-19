@@ -28,6 +28,7 @@ exports.test_god = (test, rx) ->
     t.notOk vector.equal(ra,b), "rx vector inequality"
     
     v_equal vector.add(ra,b), [1,1], 'vector add'
+    v_equal vector.subtract(ra,b), [1,1], 'vector add'
 
     fired = false
     err = -> fired = true
