@@ -10,13 +10,11 @@ group = (label, items, tag_name) -> {
 
 rows = (label, items) -> group label, items, 'div'
 columns = (label, items) -> group label, items, 'span'
+
 buttons = (kind, items, my_kind, action) ->
-  body = group "#{kind}s", items, 'button'
-  body.stroke = my.color.line
-  body.fill = my_kind.background
-  body.height = my_kind.size
-  body.width = (button) -> button.get('available_width')
-  my.extend body._AUTHORITY, {
+  label = "#{kind}s"
+  authority = {
+    tag_name: 'button'
     _KIND: kind
     fill: my_kind.color
     padding: my_kind.padding
@@ -26,9 +24,21 @@ buttons = (kind, items, my_kind, action) ->
     x: (button) -> button.get 'offset'
     y: 0
     click: action
-    # _AUTHORITY: {padding: 0, height: 0, width: 0}
   }
-  body
-
+  children = items.map (item) -> {
+    _LABEL: item
+    name: item
+    value: item
+  }
+  {
+    _KIND: label
+    _AUTHORITY: authority
+    _LABEL: label
+    _CHILDREN: children
+    stroke: my.color.line
+    fill: my_kind.background
+    height: my_kind.size
+    width: (button) -> button.get('available_width')
+  }
 
 exports.make = {rows: rows, columns: columns, buttons: buttons}

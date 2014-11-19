@@ -8,7 +8,7 @@
 {my} = require '../my'
 {make} = require '../render/make'
 
-status_buttons = make.buttons('status', [
+status_buttons = make.buttons('stat', [
     "shape"
     "name"
     "color"
@@ -20,18 +20,21 @@ status_buttons = make.buttons('status', [
 )
 
 show_paths = (button) ->
-  return unless 'shape' == button.get('_LABEL')
+  return  unless 'shape' == button.get('_LABEL')
   inspected = button.get 'inspected'
   inspected.get 'paths'
   
 text_for = (button) ->
+  return button.get('_LABEL')
   inspected = button.get 'inspected'
-  inspected.get button.get('_LABEL')
+  inspected.get (button.get('_LABEL'))
 
-my.extend status_buttons._AUTHORITY, {
-  name: (button) -> text_for(button) unless show_paths(button)
-  paths: (button) -> show_paths(button)
-}
+for dict in status_buttons._CHILDREN
+  console.log 'status dict', status_buttons, dict
+  my.extend dict, {
+    name: (button) -> text_for(button)# unless show_paths(button)?
+    #paths: (button) -> show_paths(button)
+  }
 
 status_buttons._EXPORTS = ['inspect']
 status_buttons.inspect = (world, sprite) -> world.put 'inspected', sprite
