@@ -61,12 +61,14 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('transform'), transform_result , 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
+    t.end()
 
+  test "invoke sprite", (t) ->
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"
     forward = sprite.get('language')['forward']
     message = {target: sprite, action: forward}
     t.ok sprite.call('apply', message), "apply message"
-    test_position t, [2,1]
+    # test_position t, [2,1]
     t.end()
 
   test "layout inspector", (t) ->

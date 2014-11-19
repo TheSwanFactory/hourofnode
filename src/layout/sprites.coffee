@@ -70,6 +70,7 @@ exports.sprites = {
     console.log 'go', world, dir
     split = world.get('split')
     my.assert dir?, "expects dir"
+    # TODO: invert via direction
     position = world.get('position')
     direction = world.get('direction')
     sum = vector.add(position, direction)
@@ -85,9 +86,7 @@ exports.sprites = {
     {target, action} = args
     return false unless world == target
     [method, key, value] = action
-    console.log 'apply', method, key, value
-    my.assert f = world[method], "#{world}: no method #{method}"
-    f(key, value)
+    world[method](key, value)
     
   step: (world, args) ->
     local = world.get('programs')
