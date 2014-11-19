@@ -139,16 +139,6 @@ exports.test_world = (test, rx) ->
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
       count = count + 1
     t.end()
-
-  test 'world invokes functions for children', (t) ->
-    result = world._import_children([{a:1}])
-    child = result.at(0)
-    t.ok world.is_world(child), "creates child from dict"
-    generator = (world) -> [{b:2}]
-    result = world._import_children(generator)
-    child = result.at(0)
-    t.ok world.is_world(child), "creates child from dict"  
-    t.end()
     
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")

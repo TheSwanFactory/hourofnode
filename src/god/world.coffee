@@ -109,7 +109,6 @@ class World
   make_children: (children) ->
     # console.log 'make_children', children
     result = @rx().array()
-    # children = children(@) if _.isFunction(children)
     for value in children
       my.assert value, 'import child'
       child = @make_world(value)
