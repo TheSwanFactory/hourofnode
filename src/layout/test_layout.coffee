@@ -6,12 +6,16 @@
 {header} = require './header'
 {controls} = require './controls'
 {grid} = require './grid'
-{sprite} = require './sprite'
+{sprites} = require './sprites'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
   config = layout(game_dict)
   world = god(rx, config)
+  level = world.find_child()
+  grid = level.find_child('grid')
+  all_sprites = grid.find_child('sprites')
+  sprite = all_sprites.find_child()
 
   test "layout config", (t) ->
     t.ok game_dict, 'game_dict'
@@ -33,10 +37,31 @@ exports.test_layout = (test, rx) ->
     t.ok world.is_array(sprites), 'sprites rx_array'
     t.ok sprite_dict = sprites.at(0), 'sprite'
     t.end()
+  
+  test "layout world", (t) ->
+    t.ok level, 'active level'
+    t.ok grid, 'grid'
+    t.ok all_sprites, 'sprites'
+    t.ok sprite, 'sprite'
+    t.end()
 
-  test "layout children", (t) ->
-    t.ok level = world.find_child(), 'active level'
-    t.ok grid = level.find_child('grid'), 'grid'
-    t.ok sprite = grid.find_child('sprite'), 'sprite'
+  test "layout sprite", (t) ->
+    size = 64
+    c = size / 2
+    transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
+
+    t.equal sprite.get('position').all().toString(), "1,1", 'sprite position'
+    t.ok sprite.get('x') > 0, 'non-zero x'
+    t.ok sprite.get('y') > 0, 'non-zero y'
+    t.equal sprite.get('transform'), transform_result , 'transform'
+    t.equal sprite.get('stroke'), 'black', 'stroke'
+    t.equal sprite.get('fill'), 'blue', 'fill'
+    t.end()
+
+  test "sprite state", (t) ->
+    # t.ok sprite.get('state'), 'sprite state'
+    t.end()
+
+  test "layout inspector", (t) ->
     t.end()
 

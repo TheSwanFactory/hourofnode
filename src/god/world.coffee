@@ -106,9 +106,10 @@ class World
     closure(@, args)
     
   # TODO: refactor import_dict methods somewhere
-  _import_children: (children) ->
+  make_children: (children) ->
+    # console.log 'make_children', children
     result = @rx().array()
-    children = children(@) if _.isFunction(children)
+    # children = children(@) if _.isFunction(children)
     for value in children
       my.assert value, 'import child'
       child = @make_world(value)
@@ -123,7 +124,7 @@ class World
         @authority = @_from_dict(value) 
       else
         # console.log 'import_dict not authority', key, value 
-        value = @_import_children(value) if key == my.key.children
+        value = @make_children(value) if key == my.key.children
         value = @rx().array(value) if _.isArray(value)
         @put(key, value)
     @_export_events()
@@ -147,12 +148,12 @@ class World
     my.assert _.isObject(dict), "_from_dict: dict isn't dictionary"
     dict = dict(@) if _.isFunction(dict) # TODO: Verify edge cases
     my.assert !_.isFunction(dict), "_from_dict: dict is a function"
-    label = dict[my.key.label] or "#{@get(my.key.label)}:#{@_child_count()}"
+    label = dict[my.key.label] or "#{@get(my.key.label)}-#{@_child_count()}"
     world = @_spawn_world label
     world.import_dict dict
 
   make_world: (value) ->
-    console.log 'make_world', @.doc.x, value
+    # console.log 'make_world', @.doc.x, value
     my.assert value, "make_world: missing value"
     return value if @is_world(value)
     return @_from_dict(value) if _.isObject(value)

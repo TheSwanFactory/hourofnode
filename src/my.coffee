@@ -16,6 +16,8 @@ assert = require 'assert'
 
 is_local = window.location.hostname == 'localhost'
 
+console.log 'window.location.hostname', window.location.hostname, window.location
+
 inspect = (world, n=1) ->
   console.log "inspect #{world} #{n}"
   return unless is_local
@@ -48,7 +50,7 @@ exports.my = {
   inspect: inspect
   assert: assert
   extend: if $? then $.extend else (a,b,c) -> b
-  dup: (a) -> if $? then $.extend({}, a) else a
+  dup: (a, b) -> if $? then $.extend({}, a, b) else a
   page_dimensions: PAGE
   column_1_width: HALF
   column_2_width: HALF
@@ -60,7 +62,7 @@ exports.my = {
   button: {
     size: TOUCH
     spacing: TOUCH + 2*MARGIN
-    padding: 2*MARGIN
+    padding: MARGIN
     margin: MARGIN
     color: BUTTON_COLOR
     background: BUTTON_BACKGROUND 
@@ -68,7 +70,7 @@ exports.my = {
   command: {
     size: TOUCH
     spacing: TOUCH + 2*MARGIN
-    padding: 2*MARGIN
+    padding: MARGIN
     margin: MARGIN
     color: BUTTON_COLOR
     background: BUTTON_BACKGROUND 
@@ -76,7 +78,7 @@ exports.my = {
   control: {
     size: CONTROL
     spacing: CONTROL + 4*MARGIN
-    padding: 4*MARGIN
+    padding: MARGIN
     margin: 2*MARGIN
     color: BUTTON_COLOR
     background: ROW_BACKGROUND 
@@ -89,6 +91,7 @@ exports.my = {
     gridline: 'white'
     command: COMMAND_COLOR
     line: 'black'
+    selection: 'gold'
   }
   key: {
     authority: '_AUTHORITY'

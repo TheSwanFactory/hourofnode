@@ -1,24 +1,25 @@
-transform = (world) ->
-  center = world.get('scale') / 2
-  translate = "translate(#{world.get('column') || 0},#{world.get('row') || 0})"
-  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
-  "#{translate} #{rotate || ''}"
+{my} = require '../my'
 
 exports.render_svg = (world) ->
   SVG = world.SVG()
-  
-  # TODO: handle selection
-  # TODO: allow named paths?
+
+  path_dict = (path) ->
+    dict = {
+      d: path
+      stroke: world.get('stroke')
+      fill: world.get('fill')
+    }
+    if world.get('selected')
+      dict['stroke']= my.color.selection
+      dict['stroke-width'] = 3
+    dict 
 
   path_tags = (paths) ->
     return [] unless paths
-    path_dict = {stroke: world.get('stroke'), fill: world.get('fill')}
-    paths.map (path) ->
-      path_dict['d'] = path
-      SVG.path path_dict 
+    paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    attrs['transform'] = transform(world)
+    attrs['transform'] = world.get('transform') || ''
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"

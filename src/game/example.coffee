@@ -7,21 +7,27 @@ SCALE = 30
 me = {
   name: 'me'
   shape: 'turtle'
-  position: [0,0]
-  color: 'blue'
+  position: [1,1]
+  stroke: 'black'
+  fill: 'blue'
   behavior: {first: [], repeat: ['forward']}
   editable: true
+}
+
+yu = my.dup me, {
+  name: 'yu'
+  position: [3,1]
+  fill: 'green'
 }
 
 exit = {
   name: 'exit'
   shape: 'diamond'
-  position: [0,4]
-  color: 'red'
+  position: [5,1]
+  stroke: 'maroon'
+  fill: 'red'
   behavior: {turtle: ['victory']}
 }  
-
-me2 = my.extend me, {position: [2,2]}
 
 exports.game = {
   name: "Example Game"
@@ -52,7 +58,7 @@ exports.game = {
     }
     {
       name: 'Double Time'
-      sprites: [me, me2, exit]
+      sprites: [me, yu, exit]
       goal: {
         clicks: 10
         ticks: 8

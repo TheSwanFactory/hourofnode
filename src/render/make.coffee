@@ -15,6 +15,8 @@ buttons = (kind, items, my_kind, action) ->
   body.stroke = my.color.line
   body.padding = my_kind.padding
   body.fill = my_kind.background
+  body.height = my_kind.size
+  body.width = (world) -> world.up.get('width') - 2 * my_kind.padding - 2
   my.extend body._AUTHORITY, {
     _KIND: kind
     fill: my_kind.color
@@ -22,6 +24,7 @@ buttons = (kind, items, my_kind, action) ->
     height: my_kind.size
     width: my_kind.size
     click: action
+    _AUTHORITY: {padding: 0, height: 0, width: 0}
   }
   body
 

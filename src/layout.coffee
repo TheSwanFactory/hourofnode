@@ -32,11 +32,12 @@ exports.layout = (game_dict) ->
   level_dict.name_style = {font_size: 24}
   level_dict._AUTHORITY = {name_style: {font_size: 18}}
   level_dict.width = game_dict.width / 2
+  level_dict['stroke-width'] = 1
   
   level_dict._CHILDREN = [
     header(level_dict)
     controls(level_dict)
     grid(level_dict)
-    # inspector
+    inspector
   ]
   game_dict

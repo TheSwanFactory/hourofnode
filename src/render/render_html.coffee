@@ -12,6 +12,7 @@ exports.render_html = (world) ->
     name_tag: T.span
     style: {
       border: world.get 'stroke'
+      border_width: world.get 'stroke-width' if has_border
       border_style: 'solid' if has_border
       background: world.get 'fill'
       margin: world.get 'margin'

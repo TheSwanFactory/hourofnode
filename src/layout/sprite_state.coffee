@@ -1,6 +1,9 @@
+# NO LONGER USED - BEING REFACTORED
+
+#
 # sprite_state.coffee
 #
-# Role: display and edit the state of the current sprite
+# Role: return a dictionary UI to view & edit sprite state
 # Responsibility:
 # * display and edit status fields
 # * display language used for this sprite
@@ -23,6 +26,7 @@ program_row = (program) ->
 )
 
 exports.sprite_state = (sprite) ->
+  
   status_buttons = make.buttons('status', [
       "shape"
       "name"
@@ -30,17 +34,23 @@ exports.sprite_state = (sprite) ->
       "position"
       "direction"
     ], my.button,
-    (world, args) -> world.send 'edit', world.get('value')
+    (button, args) -> button.editable = true
   )
-  is_paths = (world) -> 'paths' == world.get('_LABEL')
-  my.extend status_buttons._AUTHORITY, {
-    name: (world) -> sprite[world.get '_LABEL'] unless is_paths(world)
-    paths: (world) -> sprite.paths if is_paths(world)
+  
+  show_paths = (button) -> 'shape' == button.get('_LABEL')
+  text_for = (button) -> sprite_dict[ button.get '_LABEL' ] 
+
+  status_buttons._AUTHORITY = my.dup status_buttons._AUTHORITY, {
+    name: (button) -> text_for(button) unless show_paths(button)
+    paths: (button) -> sprite_dict.paths if is_paths(world)
   }
+
+  behavior_dict = sprite.get 'behavior'
+  
 
   language_row = make.buttons(
     'language',
-    sprite.get 'words'
+    Object.keys behavior_dict 
     my.button,
     (world, args) -> world.send 'do', world.get('value')
   )

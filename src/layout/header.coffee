@@ -12,7 +12,7 @@ exports.header = (level_dict) ->
   make.rows 'header', [
     make.columns 'progress', [
       "Level"
-      "#{level_dict.level_index}"
+      "#{level_dict.level_index + 1}"
       "of"
       "#{level_dict.level_count}"
     ]
