@@ -3,7 +3,11 @@
 #
 # Role: show commands available for this turtle
 #
-# Responsibility: populate commands pane of sprite inspector
+# Responsibility: 
+# * populate commands pane of sprite inspector
+# * generate command events
+#   * move the active turtle
+#   * update the current behavior
 #
 
 {my} = require '../my'
@@ -17,7 +21,7 @@ exports.inspect_commands = (sprite) ->
     words,
     my.command,
     (button, args) ->
-      value = button.get 'value'
-      console.log 'send command', value
-      button.send('command', button)
+      command = button.get 'value'
+      sprite.call('execute', command)
+      # TODO: update current behavior
   )
