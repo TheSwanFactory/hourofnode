@@ -28,7 +28,6 @@
 
 setup_geometry = (dict) ->
   my.extend dict, {
-    padding: my.padding
     margin: my.margin
     outer_width: (world) -> world.get('width') + 2 * world.get('padding')
     inner_width: (world) -> world.get('width') - 2 * world.get('margin')

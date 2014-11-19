@@ -35,7 +35,7 @@ IPAD = {width: 1024, height: 690}
 HALF = IPAD.width / 2
 TOUCH = 64
 CONTROL = 96
-MARGIN = 8
+MARGIN = 4
 
 BUTTON_COLOR = 'azure'
 BUTTON_BACKGROUND = 'grey'

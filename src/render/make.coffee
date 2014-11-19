@@ -13,13 +13,13 @@ columns = (label, items) -> group label, items, 'span'
 buttons = (kind, items, my_kind, action) ->
   body = group "#{kind}s", items, 'button'
   body.stroke = my.color.line
-  body.padding = my_kind.padding
   body.fill = my_kind.background
   body.height = my_kind.size
   body.width = (world) -> world.up.get('width') - 2 * my_kind.padding - 2
   my.extend body._AUTHORITY, {
     _KIND: kind
     fill: my_kind.color
+    padding: my_kind.padding / 2
     margin: my_kind.margin
     height: my_kind.size
     width: my_kind.size

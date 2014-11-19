@@ -4,7 +4,7 @@
 exports.header = (level_dict) ->
   metric = (key) ->
     make.columns key, [
-      "#{key}: "
+      _.capitalize "#{key}: "
       {_LABEL: key, name: (world) -> world.get(key) or 0}
       "/"
       "#{level_dict.goal[key]}"
