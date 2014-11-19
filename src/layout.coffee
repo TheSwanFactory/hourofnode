@@ -35,7 +35,7 @@ setup_geometry = (dict) ->
     available_width: (world) ->
       world.up.get('inner_width') - 2 * world.get('padding')
     set_outer_width: (world, outer_width) ->
-      world.put 'width', (outer_width - 2 * world.get('padding'))
+      world.put 'width', outer_width - 2 * world.get('padding')
   }
 
 set_font_size = (dict, size) -> dict.name_style = {font_size: size}
