@@ -10,13 +10,14 @@
 
 add_paths = (dict, sprite) ->
   paths = sprite.get('paths').all()
-  dict.name = ""
-  dict._CHILDREN = [{
-    x:0, y:-50
-    paths: paths
-    fill: sprite.get 'fill'
-  }]
-
+  my.extend dict, {
+    name_style: {font_size: 0}
+    _CHILDREN: [{
+      transform: 'translate(0,0) scale(0.5)'
+      paths: paths
+      fill: sprite.get 'fill'
+    }]
+  }
 extract = (sprite, button) ->
   key = button.get 'value'
   value = sprite.get key
@@ -26,11 +27,11 @@ extract = (sprite, button) ->
 exports.inspect_status = (sprite) ->
 
   status_buttons = make.buttons('stat', [
+      "shape"
       "name"
       "fill"
       "position"
       "direction"
-      "shape"
     ], my.button,
     (button, args) -> button.editing = true
     # TODO: Implement editable status
