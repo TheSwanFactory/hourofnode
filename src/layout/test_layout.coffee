@@ -45,19 +45,24 @@ exports.test_layout = (test, rx) ->
     t.ok sprite, 'sprite'
     t.end()
 
+  test_position = (t, pos) ->
+    position_string = sprite.get('position').all().toString()
+    pos_string = pos.toString()
+    t.equal position_string, pos_string, "sprite position should be: #{pos}"
+
   test "layout sprite", (t) ->
     size = 64
     c = size / 2
     transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
 
-    t.equal sprite.get('position').all().toString(), "1,1", 'sprite position'
+    test_position(t, [1,1])
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
     t.equal sprite.get('transform'), transform_result , 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
 
-    t.ok sprite.get_raw('apply')
+    
 
     t.end()
 

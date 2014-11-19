@@ -32,7 +32,7 @@ set_shape = (sprite_dict, shapes) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['inspect', 'step', 'reset']
+  _EXPORTS: ['inspect', 'apply', 'step', 'reset']
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
