@@ -7,7 +7,6 @@ sprite_inspector = (sprite) ->
     _LABEL: "inspector_#{sprite.get 'name'}"
     _CHILDREN: [
       "heading"
-      "status"
       inspect_status(sprite)
       "commands"
       "behavior"
