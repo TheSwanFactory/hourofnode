@@ -1,5 +1,6 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
+{status} = require './status'
 
 make_inspector = (sprite) ->
   "the sprite's behavior will go here"
@@ -19,12 +20,7 @@ exports.inspector = {
   fill: my.color.background
   _AUTHORITY: {x:0, height: 'auto'}
   _CHILDREN: [
-    {
-      _LABEL: 'status'
-      _EXPORTS: ['inspect']
-      name: 'status'
-      inspect: (world, sprite) -> world.put 'inspected', sprite
-    }
+    status
     {
       _LABEL: 'behavior'
       _EXPORTS: ['inspect']
