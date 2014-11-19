@@ -36,11 +36,10 @@ exports.sprites = {
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
-    # console.log 'sprite _SETUP', world, shapes, sprites
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
-      # TODO: child. export 'apply
+      child.handle_event 'apply'
       world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')

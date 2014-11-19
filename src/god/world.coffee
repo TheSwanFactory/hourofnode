@@ -80,6 +80,10 @@ class World
     handlers = @handlers_for(key)
     handlers.push callback
 
+  handle_event: (event) ->
+    world = @
+    @handle event, (key, args) -> world.call(key, args)
+
   # TODO: Figure out who is expecting a return value from send
   send: (key, args, callback) ->
     for handler in @handlers_for(key)
@@ -91,8 +95,7 @@ class World
     return unless exports = @get_local(my.key.exports)
     for event in exports.all()
       my.assert _.isFunction @get_raw(event), "No function for #{event}"
-      world = @
-      @handle event, (key, args) -> world.call(key, args)
+      @handle_event event
     
   update: (key, delta, max) ->
     result = @get(key) + delta
