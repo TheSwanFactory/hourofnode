@@ -67,6 +67,8 @@ exports.test_layout = (test, rx) ->
     test_position t, [1,1]
     sprite.call('go', 1)
     test_position t, [2,1]
+    sprite.call('go', -1)
+    test_position t, [1,1]
     
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"
     forward = sprite.get('language')['forward']

@@ -74,7 +74,8 @@ exports.sprites = {
 
     # TODO: invert via direction
     direction = world.get('direction')
-    sum = vector.add(position, direction)
+    sum = if dir > 0 then vector.add(position, direction) else
+      vector.subtract(position, direction)
 
     # TODO: handle error
     result = vector.bound sum, cell_count, -> world.send 'error'
