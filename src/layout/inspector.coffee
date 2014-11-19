@@ -2,7 +2,7 @@
 {vector} = require '../god/vector'
 
 make_inspector = (sprite) ->
-  "inspect behavior"
+  "the sprite's behavior will go here"
   
 get_inspector = (sprite) ->
   inspector = sprite.get 'inspector'
@@ -17,11 +17,12 @@ exports.inspector = {
   height:(world) -> world.get('screen').at vector.size.height
   stroke: my.color.line
   fill: my.color.background
-  _AUTHORITY: {x:0}
+  _AUTHORITY: {x:0, height: 'auto'}
   _CHILDREN: [
     {
       _LABEL: 'status'
       _EXPORTS: ['inspect']
+      name: 'status'
       inspect: (world, sprite) -> world.put 'inspected', sprite
     }
     {
