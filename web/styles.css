@@ -4,6 +4,9 @@ div#root {
   position: absolute;
 }
 
+div.inspector div div {
+  overflow: auto;
+}
 span.text {
   text-align: center;
   padding: 2px;
