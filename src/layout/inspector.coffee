@@ -1,4 +1,5 @@
 {my} = require '../my'
+{vector} = require '../god/vector'
 
 make_inspector = (sprite) ->
   "inspect behavior"
@@ -8,8 +9,14 @@ get_inspector = (sprite) ->
   return inspector if inspector
   make_inspector(sprite)
   
+# TODO: Simplify by adding private _members
 exports.inspector = {
   _LABEL: 'inspector'
+  x: (world) -> world.get('width')
+  y: my.margin
+  height: (world) -> world.get('screen')[vector.size.height]
+  fill: my.color.background
+  _AUTHORITY: {x:0, y:0, height: 'auto'}
   _CHILDREN: [
     {
       _LABEL: 'status'
