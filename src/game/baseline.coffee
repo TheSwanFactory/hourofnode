@@ -24,11 +24,11 @@ exports.game = {
 
   language: {
     # Array of Operation, key, argument
-    forward: ['.call', 'go', vector.to.front]
-    reverse: ['.call', 'go', vector.to.back]
-    left:    ['.call', 'turn', vector.to.left ]
-    right:   ['.call', 'turn', vector.to.right]
-    idle:    ['.call', 'go', 0]
+    forward: ['call', 'go', vector.to.front]
+    reverse: ['call', 'go', vector.to.back]
+    left:    ['call', 'turn', vector.to.left ]
+    right:   ['call', 'turn', vector.to.right]
+    idle:    ['call', 'go', 0]
   }
 
   shapes: {

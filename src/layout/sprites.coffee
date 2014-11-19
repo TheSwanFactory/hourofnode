@@ -84,8 +84,9 @@ exports.sprites = {
   apply: (world, args) ->
     {target, action} = args
     return false unless world == target
-    true
-    #world.call(signal['do'], signal)
+    [method, key, value] = action
+    my.assert f = world[method], "#{world}: no method #{method}"
+    f(key, value)
     
   step: (world, args) ->
     local = world.get('programs')
