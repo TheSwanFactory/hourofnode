@@ -55,7 +55,7 @@ exports.test_layout = (test, rx) ->
     c = size / 2
     transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
 
-    test_position(t, [1,1])
+    test_position t, [1,1]
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
     t.equal sprite.get('transform'), transform_result , 'transform'
@@ -63,7 +63,10 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('fill'), 'blue', 'fill'
 
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"
-    t.ok sprite.call('apply', {target: sprite}), "apply self"
+    forward = sprite.get('language')['forward']
+    message = {target: sprite, action: forward}
+    t.ok sprite.call('apply', message), "apply message"
+    test_position t, [1,1]
 
     t.end()
 
