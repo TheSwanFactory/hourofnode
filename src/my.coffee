@@ -62,7 +62,7 @@ exports.my = {
   button: {
     size: TOUCH
     spacing: TOUCH + 2*MARGIN
-    padding: 2*MARGIN
+    padding: MARGIN
     margin: MARGIN
     color: BUTTON_COLOR
     background: BUTTON_BACKGROUND 
@@ -70,7 +70,7 @@ exports.my = {
   command: {
     size: TOUCH
     spacing: TOUCH + 2*MARGIN
-    padding: 2*MARGIN
+    padding: MARGIN
     margin: MARGIN
     color: BUTTON_COLOR
     background: BUTTON_BACKGROUND 
@@ -78,7 +78,7 @@ exports.my = {
   control: {
     size: CONTROL
     spacing: CONTROL + 4*MARGIN
-    padding: 4*MARGIN
+    padding: MARGIN
     margin: 2*MARGIN
     color: BUTTON_COLOR
     background: ROW_BACKGROUND 
