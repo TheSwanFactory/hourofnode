@@ -109,3 +109,10 @@ exports.test_render = (test, rx) ->
 
   test "render selection", (t) ->
     t.end()
+
+  test "render class attribute", (t) ->
+    t.ok body = render_real
+      name: 'ME'
+      class: 'testclass'
+    t.equal body.find('.testclass').length, 1
+    t.end()

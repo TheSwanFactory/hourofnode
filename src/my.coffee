@@ -64,32 +64,32 @@ exports.my = {
     size: TOUCH
     padding: MARGIN
     margin: MARGIN
-    color: BUTTON_COLOR
-    background: BUTTON_BACKGROUND 
+    class: 'button'
   }
   command: {
     size: TOUCH
     padding: MARGIN
     margin: MARGIN
-    color: BUTTON_COLOR
-    background: BUTTON_BACKGROUND 
+    class: 'command'
   }
   control: {
     size: CONTROL
     padding: MARGIN
     margin: 2*MARGIN
     color: BUTTON_COLOR
-    background: ROW_BACKGROUND 
+    class: 'control'
   }
   color: {
     button: BUTTON_COLOR
-    background: ROW_BACKGROUND 
     row: BUTTON_BACKGROUND
     grid: '#ccffcc' # pale_green
     gridline: 'white'
     command: COMMAND_COLOR
     line: 'black'
     selection: 'gold'
+  }
+  program: {
+    class: 'program'
   }
   key: {
     authority: '_AUTHORITY'

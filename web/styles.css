@@ -2,6 +2,7 @@ div#root {
   left: 0;
   top: 0;
   position: absolute;
+  background-color: #fff;
 }
 
 div.inspector div div {
@@ -14,4 +15,24 @@ span.text {
 
 text {
   text-anchor: middle;
+}
+
+.inspector {
+  float: right;
+}
+
+.program-name {
+  font-size: 1.2em;
+  color: white;
+}
+
+.inspector,
+.controls {
+  background-color: darkgrey;
+}
+
+.button,
+.command,
+.control {
+  background-color: azure;
 }

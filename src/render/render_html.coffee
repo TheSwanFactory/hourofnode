@@ -15,7 +15,7 @@ exports.render_html = (world) ->
       border: world.get 'stroke'
       border_width: world.get 'stroke-width' if has_border
       border_style: 'solid' if has_border
-      background: world.get 'fill'
+      background: world.get_local 'fill'
       margin: world.get 'margin'
       padding: world.get 'padding'
       position: world.get_local 'position'
