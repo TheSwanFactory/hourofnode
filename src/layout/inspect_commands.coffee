@@ -22,6 +22,9 @@ exports.inspect_commands = (sprite) ->
     words,
     my.command,
     (button, args) ->
+      unless sprite.get 'editable'
+        return sprite.send 'error', "#{sprite} not editable"
+
       word = button.get 'value'
       message = { target: sprite, action: language[word] }
       console.log 'send apply', word, message
