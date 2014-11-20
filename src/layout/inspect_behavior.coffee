@@ -1,6 +1,10 @@
 #
 # inspect_behavior.coffee
 #
+# A Behavior is a dictionary of Programs
+# A Program is a sequence of Commands
+# A Command is a word in the Language
+#
 # Role: create and display program objects
 #
 # Responsibility: 
@@ -8,10 +12,6 @@
 # * display the current behavior and command
 # * apply command events to the selected program
 # * send next commmand on step events
-#
-# A Behavior is a dictionary of Programs
-# A Program is a sequence of Commands
-# A Command is a word in the Language
 
 {my} = require '../my'
 {make} = require '../render/make'
