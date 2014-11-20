@@ -75,6 +75,7 @@ exports.sprites = {
   
   perform: (world, action) ->
     [method, key, value] = action
+    my.assert world.get_raw(method), "#{world.label()}: no method #{method}"
     world[method](key, value)
     
   apply: (world, args) ->
