@@ -2,9 +2,9 @@
 {vector} = require '../god/vector'
 
 group = (label, items, tag_name) -> {
+  _LABEL: label
   _KIND: label
   _AUTHORITY: {tag_name: tag_name}
-  _LABEL: label
   _CHILDREN: items
 }
 

@@ -1,6 +1,10 @@
 #
 # inspect_behavior.coffee
 #
+# A Behavior is a dictionary of Programs
+# A Program is a sequence of Commands
+# A Command is a word in the Language
+#
 # Role: create and display program objects
 #
 # Responsibility: 
@@ -8,10 +12,11 @@
 # * display the current behavior and command
 # * apply command events to the selected program
 # * send next commmand on step events
-#
 
 {my} = require '../my'
 {make} = require '../render/make'
+{processor} = require './processor'
+{programs} = require './programs'
 
 # TODO: Display Issues
 # * get the second row to display
@@ -37,35 +42,20 @@
 #   * finishing levels
 # 
 
-program_row = (name, program) ->
-  make.columns "program-#{name}", [
-    {
-      _LABEL: 'name'
-      name: name
-      background: 'white'
-      height: my.button.size
-      width: my.button.size
-    }
-    make.buttons(
-      name,
-      program
-      my.command,
-      (world, args) -> console.log 'TODO: rearrange'
-    )
-  ]
+editor = (initial_label) -> {
+  open_program: initial_label
+}
 
-programs = (sprite) ->
-  behavior = sprite.get('behavior')
-  my.assert _.isObject behavior, 'has behavior dict'
-  console.log 'inspect_behavior', behavior
-  children = []
-  for name, program of behavior
-    console.log 'inspect_behavior name program', name, program
-    children.push program_row(name, program)
-  children
-  
 exports.inspect_behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
-  my.extend rows, {
-    y: (world) -> world.index * my.row.spacing
-  }
+  default_program = rows._CHILDREN[0]
+  my.assert default_program, "no default_program"
+
+  initial_label = default_program._LABEL
+  my.extend rows,
+    processor(initial_label),
+    editor(initial_label),
+    {
+      _EXPORTS: ['step']
+      y: (world) -> world.index * my.row.spacing
+    }
