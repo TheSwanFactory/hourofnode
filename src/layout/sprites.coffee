@@ -72,12 +72,14 @@ exports.sprites = {
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
+  
+  perform: (world, action) ->
+    [method, key, value] = action
+    world[method](key, value)
     
   apply: (world, args) ->
     {target, action} = args
-    return false unless world == target
-    [method, key, value] = action
-    world[method](key, value)
+    world.call('perform', action) if world == target
     
   step: (world, args) ->
     local = world.get('programs')

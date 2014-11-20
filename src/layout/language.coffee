@@ -19,7 +19,7 @@ exports.language = (sprite) ->
   words = words.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
-    message = { target: sprite, action: language[word] }
+    message = { target: sprite, name: word, action: language[word] }
     console.log 'send_message', word, message, sprite
     sprite.send('apply', message)
   
