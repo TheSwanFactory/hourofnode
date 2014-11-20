@@ -16,7 +16,6 @@ buttons = (kind, items, my_kind, action) ->
   authority = {
     tag_name: 'button'
     _KIND: kind
-    fill: my_kind.color
     padding: my_kind.padding
     margin: my_kind.margin
     height: my_kind.size - 4 * my_kind.padding
@@ -29,6 +28,7 @@ buttons = (kind, items, my_kind, action) ->
     _LABEL: item
     name: item
     value: item
+    class: my_kind.class
   }
   {
     _KIND: label
@@ -36,7 +36,6 @@ buttons = (kind, items, my_kind, action) ->
     _LABEL: label
     _CHILDREN: children
     stroke: my.color.line
-    fill: my_kind.background
     height: my_kind.size
     width: (button) -> button.get('available_width')
   }

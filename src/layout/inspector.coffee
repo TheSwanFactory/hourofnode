@@ -49,5 +49,6 @@ exports.inspector = {
   _AUTHORITY: {
     x: () -> 0
     height: () -> 0
+    class: 'inspector'
   }
 }
