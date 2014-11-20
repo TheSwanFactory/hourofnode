@@ -1,10 +1,12 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
+{events} = require './events'
 
 SCALE = my.cell_width
 
 exports.game = {
   name: "The Hour of Node"
+  events: events
 
   # Geometry
   screen: my.page_dimensions
@@ -15,7 +17,6 @@ exports.game = {
   grid_size: my.column_1_width
   cell_count: 8
   cell_size: (world) -> world.get('grid_size') / world.get('cell_count')
-
   goal: {
     clicks: 0
     ticks: 0
