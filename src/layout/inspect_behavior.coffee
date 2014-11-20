@@ -15,6 +15,7 @@
 
 {my} = require '../my'
 {make} = require '../render/make'
+{processor} = require './processor'
 
 # TODO: Display Issues
 # * get the second row to display
@@ -67,10 +68,8 @@ programs = (sprite) ->
     children.push program_row(name, program)
   children
   
-processor = (label) -> {
-  current_program: label
-  target_program: label
-  next_command: 0
+editor = (initial_label) -> {
+  target_program: initial_label
 }
 
 exports.inspect_behavior = (sprite) ->
@@ -78,6 +77,10 @@ exports.inspect_behavior = (sprite) ->
   default_program = rows._CHILDREN[0]
   my.assert default_program, "no default_program"
 
-  my.extend rows, processor(default_program._LABEL), {
-    y: (world) -> world.index * my.row.spacing
-  }
+  initial_label = default_program._LABEL
+  my.extend rows,
+    processor(initial_label),
+    editor(initial_label),
+    {
+      y: (world) -> world.index * my.row.spacing
+    }
