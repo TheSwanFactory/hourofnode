@@ -10,6 +10,8 @@
 #   * update the current behavior
 #
 
+# TODO: rename to inspect language
+
 {my} = require '../my'
 {make} = require '../render/make'
   
@@ -17,6 +19,12 @@ exports.inspect_commands = (sprite) ->
   language = sprite.get('language')
   words = Object.keys language
   words = words.filter (x) -> x[0] != '_' unless my.design
+  
+  send_message = (word) ->
+    message = { target: sprite, action: language[word] }
+    console.log 'send_message', word, message, sprite
+    sprite.send('apply', message)
+      
   make.buttons(
     'command',
     words,
@@ -24,9 +32,5 @@ exports.inspect_commands = (sprite) ->
     (button, args) ->
       unless sprite.get 'editable'
         return sprite.send 'error', "#{sprite} not editable"
-
-      word = button.get 'value'
-      message = { target: sprite, action: language[word] }
-      console.log 'send apply', word, message
-      button.send('apply', message)
+      send_message button.get('value')
   )
