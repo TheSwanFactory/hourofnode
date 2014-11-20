@@ -8,6 +8,8 @@
 {grid} = require './grid'
 {sprites} = require './sprites'
 
+{inspect_behavior} = require './inspect_behavior'
+
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
   config = layout(game_dict)
@@ -77,11 +79,16 @@ exports.test_layout = (test, rx) ->
     test_position t, [2,1]
     t.end()
 
-  test "layout inspector", (t) ->
+  test "find words", (t) ->
     t.ok inspector = sprite.get('inspector'), 'made inspector'
     t.ok language = sprite.get('language'), 'language'
     t.ok words = Object.keys(language), 'words'
     t.ok "forward" in words, 'has a command'
-    
+    t.end()
+
+  test "find behavior", (t) ->
+    t.ok behavior = sprite.get('behavior'), 'behavior'
+    t.ok dict = inspect_behavior(sprite)
+    console.log "find behavior", dict
     t.end()
 
