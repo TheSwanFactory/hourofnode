@@ -25,9 +25,12 @@ program_row = (name, program) ->
   ]
 
 programs = (sprite) ->
+  behavior = sprite.get('behavior')
+  my.assert _.isObject behavior, 'has behavior dict'
+  console.log 'inspect_behavior', behavior
   children = []
-  for name, program in sprite.get('behavior')
-    console.log 'inspect_behavior', name, program
+  for name, program of behavior
+    console.log 'inspect_behavior name program', name, program
     children.push program_row(name, program)
   children
   
