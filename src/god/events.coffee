@@ -13,13 +13,10 @@ beep = ->
 
     speaker = context.createOscillator()
     speaker.type = type
-
     speaker.connect context.destination
     speaker.noteOn 0
-    
     turn_off = -> speaker.noteOff(0); on_end();
     setTimeout turn_off, duration
-
 
 exports.events = {
   _LABEL: "events"
