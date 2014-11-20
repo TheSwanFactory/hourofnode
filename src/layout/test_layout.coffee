@@ -89,6 +89,6 @@ exports.test_layout = (test, rx) ->
   test "find behavior", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
     t.ok dict = inspect_behavior(sprite)
-    console.log "find behavior", dict
+    console.log "find behavior", behavior, dict
     t.end()
 
