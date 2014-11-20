@@ -198,12 +198,12 @@ exports.test_world = (test, rx) ->
     world.handle 'finish', -> finished = true
     t.equal world.handlers_for('finish').length, 1, "0 finish handler"
 
-    t.notOk ran, "Has not ran"
-    t.notOk finishped, "Has not finishped"
+    t.notOk begun, "Has not ran"
+    t.notOk finished , "Has not finished"
     world.send 'begin'
-    t.ok ran, "Has ran"
+    t.ok begun, "Has begun"
     world.send 'finish'
-    t.ok finishped, "Has finishped"
+    t.ok finished, "Has finished"
     t.end()
 
   test 'event callbacks', (t) ->
