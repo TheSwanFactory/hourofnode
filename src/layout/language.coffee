@@ -1,5 +1,5 @@
 #
-# inspect_commands.coffee
+# language.coffee
 #
 # Role: show commands available for this turtle
 #
@@ -15,7 +15,7 @@
 {my} = require '../my'
 {make} = require '../render/make'
   
-exports.inspect_commands = (sprite) ->
+exports.language = (sprite) ->
   language = sprite.get('language')
   words = Object.keys language
   words = words.filter (x) -> x[0] != '_' unless my.design

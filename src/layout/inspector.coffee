@@ -10,7 +10,7 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 {inspect_status} = require './inspect_status'
-{inspect_commands} = require './inspect_commands'
+{language} = require './language'
 {inspect_behavior} = require './inspect_behavior'
 
 sprite_inspector = (sprite) ->
@@ -19,7 +19,7 @@ sprite_inspector = (sprite) ->
     _LABEL: "inspector_#{sprite.get 'name'}"
     _CHILDREN: [
       inspect_status(sprite)
-      inspect_commands(sprite)
+      language(sprite)
       inspect_behavior(sprite)
     ]
   }
