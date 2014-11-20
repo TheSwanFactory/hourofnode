@@ -9,6 +9,9 @@
 # * apply command events to the selected program
 # * send next commmand on step events
 #
+# A Behavior is a dictionary of Programs
+# A Program is a sequence of Commands
+# A Command is a word in the Language
 
 {my} = require '../my'
 {make} = require '../render/make'
@@ -38,26 +41,27 @@
 # 
 
 program_row = (name, program) ->
-  make.columns "program-#{name}", [
+  make.columns "program", [
     {
-      _LABEL: 'name'
+      _LABEL: 'program_name'
       name: name
-      background: 'white'
-      height: my.button.size
-      width: my.button.size
     }
     make.buttons(
-      name,
+      "instructions",
       program
       my.command,
       (world, args) -> console.log 'TODO: rearrange'
     )
   ]
 
+program_label = (row) -> 
+
+  
 programs = (sprite) ->
   behavior = sprite.get('behavior')
   my.assert _.isObject behavior, 'has behavior dict'
   console.log 'inspect_behavior', behavior
+  
   children = []
   for name, program of behavior
     console.log 'inspect_behavior name program', name, program
@@ -66,6 +70,13 @@ programs = (sprite) ->
   
 exports.inspect_behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
+  default_program = rows._CHILDREN[0]
+  my.assert default_program, "no default_program"
+
+  label = default_program._LABEL
   my.extend rows, {
+    current_program: label
+    target_program: label
+    next_command: 0
     y: (world) -> world.index * my.row.spacing
   }
