@@ -39,7 +39,7 @@ exports.sprites = {
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
       child.handle_event 'apply'
-      world.send 'inspect', child
+      # world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
 

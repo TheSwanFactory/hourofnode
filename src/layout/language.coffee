@@ -10,8 +10,6 @@
 #   * update the current behavior
 #
 
-# TODO: rename to inspect language
-
 {my} = require '../my'
 {make} = require '../render/make'
   
@@ -24,8 +22,8 @@ exports.language = (sprite) ->
     message = { target: sprite, action: language[word] }
     console.log 'send_message', word, message, sprite
     sprite.send('apply', message)
-      
-  make.buttons(
+  
+  buttons = make.buttons(
     'command',
     words,
     my.command,
@@ -34,3 +32,6 @@ exports.language = (sprite) ->
         return sprite.send 'error', "#{sprite} not editable"
       send_message button.get('value')
   )
+  
+  my.extend buttons, {
+  }
