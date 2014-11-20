@@ -17,6 +17,15 @@ text {
   text-anchor: middle;
 }
 
+.inspector {
+  float: right;
+}
+
+.program-name {
+  font-size: 1.2em;
+  color: white;
+}
+
 .inspector,
 .controls {
   background-color: darkgrey;
@@ -27,4 +36,3 @@ text {
 .control {
   background-color: azure;
 }
-

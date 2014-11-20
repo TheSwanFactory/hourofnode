@@ -1,15 +1,20 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 
-group = (label, items, tag_name) -> {
-  _LABEL: label
-  _KIND: label
-  _AUTHORITY: {tag_name: tag_name}
-  _CHILDREN: items
-}
+group = (label, items, tag_name, options = {}) ->
+  my.extend({},
+    {
+      _KIND: label
+      _AUTHORITY: {tag_name: tag_name}
+      _LABEL: label
+      _CHILDREN: items
+    },
+    options
+  )
 
-rows = (label, items) -> group label, items, 'div'
-columns = (label, items) -> group label, items, 'span'
+rows = (label, items, options) -> group label, items, 'div', options
+columns = (label, items) ->
+  group label, items, 'span'
 
 buttons = (kind, items, my_kind, action) ->
   label = "#{kind}s"

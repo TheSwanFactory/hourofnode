@@ -58,4 +58,5 @@ exports.inspect_behavior = (sprite) ->
     {
       _EXPORTS: ['step']
       y: (world) -> world.index * my.row.spacing
+      class: 'program'
     }

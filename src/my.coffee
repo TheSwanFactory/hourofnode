@@ -88,6 +88,9 @@ exports.my = {
     line: 'black'
     selection: 'gold'
   }
+  program: {
+    class: 'program'
+  }
   key: {
     authority: '_AUTHORITY'
     children: '_CHILDREN'
