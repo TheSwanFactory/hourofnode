@@ -16,8 +16,18 @@
 {my} = require '../my'
 
 exports.processor = (initial_label, sprite) -> {
-  current_program: initial_label
-  target_program: initial_label
-  next_command: 0
+  running: initial_label
+  running_program: (world) -> world.find_child(world.get 'running')
+
+  next_index: 0
+  next_command: (world) ->
+    program = world.get 'running_program'
+  
+  step: (world, args) ->
+    program = world.get 'current_program'
+    local = world.get('programs')
+    return unless world.is_world local
+    my.assert signal = local.call('next'), "No next signal"
+    world.call 'perform', signal
 }
 

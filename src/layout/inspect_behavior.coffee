@@ -16,6 +16,7 @@
 {my} = require '../my'
 {make} = require '../render/make'
 {processor} = require './processor'
+{programs} = require './programs'
 
 # TODO: Display Issues
 # * get the second row to display
@@ -41,33 +42,6 @@
 #   * finishing levels
 # 
 
-program_row = (name, program) ->
-  make.columns "program", [
-    {
-      _LABEL: 'program_name'
-      name: name
-    }
-    make.buttons(
-      "instructions",
-      program
-      my.command,
-      (world, args) -> console.log 'TODO: rearrange'
-    )
-  ]
-
-program_label = (row) -> 
-
-programs = (sprite) ->
-  behavior = sprite.get('behavior')
-  my.assert _.isObject behavior, 'has behavior dict'
-  console.log 'inspect_behavior', behavior
-  
-  children = []
-  for name, program of behavior
-    console.log 'inspect_behavior name program', name, program
-    children.push program_row(name, program)
-  children
-  
 editor = (initial_label) -> {
   open_program: initial_label
 }
@@ -82,5 +56,6 @@ exports.inspect_behavior = (sprite) ->
     processor(initial_label),
     editor(initial_label),
     {
+      _EXPORTS: ['step']
       y: (world) -> world.index * my.row.spacing
     }
