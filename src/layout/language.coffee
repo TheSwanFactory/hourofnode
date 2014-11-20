@@ -21,7 +21,7 @@ exports.language = (sprite) ->
   send_message = (word) ->
     message = { target: sprite, name: word, action: language[word] }
     console.log 'send_message', word, message, sprite
-    sprite.send('apply', message)
+    sprite.call('apply', message)
   
   buttons = make.buttons(
     'command',
