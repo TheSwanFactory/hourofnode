@@ -189,21 +189,21 @@ exports.test_world = (test, rx) ->
     t.end()
 
   test 'config handlers', (t) ->
-    t.equal world.handlers_for('run').length, 0, "1 run handler"
-    ran = false
-    stopped = false
-    world.handle 'run', -> ran = true
-    t.equal world.handlers_for('run').length, 1, "1 run handler"
-    t.equal world.handlers_for('stop').length, 0, "0 stop handler"
-    world.handle 'stop', -> stopped = true
-    t.equal world.handlers_for('stop').length, 1, "0 stop handler"
+    t.equal world.handlers_for('begin').length, 0, "1 begin handler"
+    begun = false
+    finished = false
+    world.handle 'begin', -> begun = true
+    t.equal world.handlers_for('begin').length, 1, "1 begin handler"
+    t.equal world.handlers_for('finish').length, 0, "0 finish handler"
+    world.handle 'finish', -> finished = true
+    t.equal world.handlers_for('finish').length, 1, "0 finish handler"
 
     t.notOk ran, "Has not ran"
-    t.notOk stopped, "Has not stopped"
-    world.send 'run'
+    t.notOk finishped, "Has not finishped"
+    world.send 'begin'
     t.ok ran, "Has ran"
-    world.send 'stop'
-    t.ok stopped, "Has stopped"
+    world.send 'finish'
+    t.ok finishped, "Has finishped"
     t.end()
 
   test 'event callbacks', (t) ->

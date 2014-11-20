@@ -1,4 +1,5 @@
-{world} = require('./god/world')
+{world} = require './god/world'
+{events} = require './god/events'
   
 class GOD
   debug: false
@@ -13,4 +14,5 @@ class GOD
 exports.god = (rx, doc) ->
   god = new GOD()
   root = world(god, rx, doc)
+  root.put 'events', root.make_world(events)
   root
