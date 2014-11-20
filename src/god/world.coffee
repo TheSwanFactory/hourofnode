@@ -9,7 +9,11 @@
 #  * Distirbute events among child worlds
 #  * Locate child and parent worlds
 #
-#  TODO: break this sub-roles into seperate files or modules
+#  TODO: break this into roles use my.extend
+#  * properties
+#  * event handling
+#  * import
+#  * children
 
 {my} = require '../my'
 
@@ -108,7 +112,6 @@ class World
     my.assert _.isFunction(closure), "#{key}: #{closure} is not a function"
     closure(@, args)
     
-  # TODO: refactor import_dict methods somewhere
   make_children: (children) ->
     # console.log 'make_children', children
     result = @rx().array()
