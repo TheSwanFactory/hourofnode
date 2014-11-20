@@ -35,4 +35,9 @@ programs = (sprite) ->
   children
   
 exports.inspect_behavior = (sprite) ->
-  make.rows 'behavior', programs(sprite)
+  rows = make.rows 'behavior', programs(sprite)
+  my.extend rows, {
+    height: my.row.size
+    y: (world) -> world.index * my.row.spacing
+    
+  }
