@@ -17,7 +17,7 @@ exports.inspect_commands = (sprite) ->
   language = sprite.get('language')
   words = Object.keys language
   words = words.filter (x) -> x[0] != '_' unless my.design
-  command_buttons = make.buttons(
+  make.buttons(
     'command',
     words,
     my.command,
