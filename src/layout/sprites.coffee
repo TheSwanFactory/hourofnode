@@ -10,7 +10,6 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
-{sprite_state} = require './sprite_state'
 
 transform = (world) ->
   center = world.get('cell_size') / 2
@@ -59,31 +58,19 @@ exports.sprites = {
   name_style: (world) ->
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
-
-  position_index: (world, args) ->
-    n_cols = world.get('split')
-    position = world.get('position')
-    my.assert world.is_array(direction), "is reactive array"
-    position.at(1)*n_cols + position.at(0)
         
   go: (world, dir) ->
-    console.log 'go', world, dir
     cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
     position = world.get('position')
-
-    # TODO: invert via direction
     direction = world.get('direction')
     sum = if dir > 0 then vector.add(position, direction) else
       vector.subtract(position, direction)
-
-    # TODO: handle error
     result = vector.bound sum, cell_count, -> world.send 'error'
     world.put 'position', result 
 
-  turn: (world, args) ->
-    {dir} = args
-    my.assert dir, "expects dir"
+  turn: (world, dir) ->
+    my.assert dir?, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
     
   apply: (world, args) ->

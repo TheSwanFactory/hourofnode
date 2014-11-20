@@ -24,7 +24,6 @@
 #       sprite1
 #       sprite2...
 #     inspector
-#       active_sprite.state...
 
 setup_geometry = (dict) ->
   my.extend dict, {
