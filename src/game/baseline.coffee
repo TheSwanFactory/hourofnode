@@ -1,12 +1,10 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
-{events} = require './events'
 
 SCALE = my.cell_width
 
 exports.game = {
   name: "The Hour of Node"
-  events: events
 
   # Geometry
   screen: my.page_dimensions
