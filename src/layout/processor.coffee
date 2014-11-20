@@ -18,11 +18,11 @@
 exports.processor = (initial_label, sprite) -> {
   running: initial_label
   running_program: (world) -> world.find_child(world.get 'running')
+  is_running: (world) -> world.label() == world.get('running')
   
   step: (world, args) ->
-    program = world.get 'current_program'
-    local = world.get('programs')
-    return unless world.is_world local
+    program = world.get 'running_program'
+
     my.assert signal = local.call('next'), "No next signal"
     world.call 'perform', signal
 }
