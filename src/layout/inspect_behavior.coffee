@@ -15,7 +15,13 @@
 
 program_row = (name, program) ->
   make.columns "program-#{name}", [
-    name # action: select this behavior/ edit name
+    {
+      _LABEL: 'name'
+      name: name
+      background: 'white'
+      height: my.button.size
+      width: my.button.size
+    }
     make.buttons(
       name,
       program
