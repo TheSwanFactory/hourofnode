@@ -69,7 +69,7 @@ programs = (sprite) ->
   children
   
 editor = (initial_label) -> {
-  target_program: initial_label
+  open_program: initial_label
 }
 
 exports.inspect_behavior = (sprite) ->

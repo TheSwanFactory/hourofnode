@@ -86,9 +86,11 @@ exports.test_layout = (test, rx) ->
     t.ok "forward" in words, 'has a command'
     t.end()
 
-  test "find behavior", (t) ->
+  test "inspect behavior dict", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
     t.ok dict = inspect_behavior(sprite)
     console.log "find behavior", behavior, dict
+    
+    t.ok label = dict.current_program, 'current_program'
+    t.ok label = dict.open_program, 'open_program'
     t.end()
-
