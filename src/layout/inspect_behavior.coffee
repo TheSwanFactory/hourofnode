@@ -68,7 +68,7 @@ programs = (sprite) ->
     children.push program_row(name, program)
   children
   
-processor = {
+processor = (label) -> {
   current_program: label
   target_program: label
   next_command: 0
@@ -79,7 +79,6 @@ exports.inspect_behavior = (sprite) ->
   default_program = rows._CHILDREN[0]
   my.assert default_program, "no default_program"
 
-  label = default_program._LABEL
-  my.extend rows, processor, {
+  my.extend rows, processor(default_program._LABEL), {
     y: (world) -> world.index * my.row.spacing
   }
