@@ -18,10 +18,6 @@
 exports.processor = (initial_label, sprite) -> {
   running: initial_label
   running_program: (world) -> world.find_child(world.get 'running')
-
-  next_index: 0
-  next_command: (world) ->
-    program = world.get 'running_program'
   
   step: (world, args) ->
     program = world.get 'current_program'

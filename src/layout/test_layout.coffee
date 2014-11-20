@@ -91,6 +91,5 @@ exports.test_layout = (test, rx) ->
     t.ok dict = inspect_behavior(sprite)
     console.log "find behavior", behavior, dict
     
-    t.ok dict.current_program, 'current_program'
-    t.ok dict.open_program, 'open_program'
+    t.equal dict.running, 'first', 'running program'
     t.end()

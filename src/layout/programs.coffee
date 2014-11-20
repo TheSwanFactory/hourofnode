@@ -15,19 +15,27 @@
 {my} = require '../my'
 {make} = require '../render/make'
 
-program_row = (name, program) ->
-  make.columns "program", [
+program_behavior = (name) -> {
+  next_index: 0
+  next_command: (world) ->
+    program = world.get 'running_program'
+}
+
+program_row = (name, contents) ->
+  program = make.columns name, [
     {
       _LABEL: 'program_name'
       name: name
     }
     make.buttons(
       "instructions",
-      program
+      contents
       my.command,
       (world, args) -> console.log 'TODO: rearrange'
     )
   ]
+  my.extend program, program_behavior()
+  
 
 exports.programs = (sprite) ->
   behavior = sprite.get('behavior')
@@ -35,8 +43,8 @@ exports.programs = (sprite) ->
   console.log 'programs', behavior
   
   children = []
-  for name, program of behavior
-    console.log 'programs name program', name, program
-    children.push program_row(name, program)
+  for name, contents of behavior
+    console.log 'programs name program', name, contents
+    children.push program_row(name, contents)
   children
   
