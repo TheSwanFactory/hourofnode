@@ -1,3 +1,12 @@
+#
+# inspector.coffee
+#
+# Role: display and modify sprite state
+#
+# Responsibility: 
+# * create inspector panes for each sprite
+# * load the current inspector
+
 {my} = require '../my'
 {vector} = require '../god/vector'
 {inspect_status} = require './inspect_status'

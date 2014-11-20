@@ -56,7 +56,6 @@ program_row = (name, program) ->
 
 program_label = (row) -> 
 
-  
 programs = (sprite) ->
   behavior = sprite.get('behavior')
   my.assert _.isObject behavior, 'has behavior dict'
