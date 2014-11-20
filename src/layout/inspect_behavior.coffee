@@ -27,6 +27,7 @@ program_row = (name, program) ->
 programs = (sprite) ->
   children = []
   for name, program in sprite.get('behavior')
+    console.log 'inspect_behavior', name, program
     children.push program_row(name, program)
   children
   

@@ -75,9 +75,7 @@ exports.sprites = {
     
   apply: (world, args) ->
     {target, action} = args
-    console.log "#{world}: apply #{target}", action
     return false unless world == target
-    console.log 'apply', target, action
     [method, key, value] = action
     world[method](key, value)
     
