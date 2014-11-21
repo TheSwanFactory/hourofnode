@@ -64,10 +64,12 @@ exports.sprites = {
     my.assert dir?, "expects dir"
     position = world.get('position')
     direction = world.get('direction')
-    sum = if dir > 0 then vector.add(position, direction) else
-      vector.subtract(position, direction)
-    result = vector.bound sum, cell_count, -> world.send 'error'
-    world.put 'position', result 
+    if dir > 0
+      sum = vector.add(position, direction)
+    else
+      sum = vector.subtract(position, direction)
+    valid = vector.inside sum, cell_count
+    world.put 'position', sum 
 
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
