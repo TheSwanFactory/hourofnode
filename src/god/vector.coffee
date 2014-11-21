@@ -59,7 +59,6 @@ exports.vector = {
     inside = true
     ['x', 'y'].map (key) ->
       value = access[key] v
-      console.log 'inside', inside , v, value, settor[key]
       if value < 0
         settor[key](v, 0) 
         inside = false

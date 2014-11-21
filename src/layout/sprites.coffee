@@ -74,7 +74,8 @@ exports.sprites = {
     my.assert dir?, "expects dir"
     sum = combine world.get('position'), world.get('direction'), dir
     if vector.inside(sum, cell_count)
-      world.call 'propose', sum
+      world.put 'position', sum
+      # world.call 'propose', sum
     else
       world.send 'error', "#{world} attempted to move out of bounds"
 

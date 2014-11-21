@@ -21,7 +21,7 @@ exports.game = {
     bricks: 0
   }
 
-  behavior: {
+  language: {
     # String of operation, key, number
     forward: ['call', 'go', vector.to.front].join " "
     reverse: ['call', 'go', vector.to.back].join " "
