@@ -50,7 +50,10 @@ class World
     @doc.put(key, value)
 
   get_local: (key) ->
-    @doc.get(key)
+    if @has_local(key) then @doc.get(key) else null
+
+  has_local: (key) ->
+    @doc.has key
 
   # TODO: make @up a list
   get_raw: (key, world) ->
