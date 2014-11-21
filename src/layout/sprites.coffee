@@ -88,7 +88,7 @@ exports.sprites = {
     [method, key, value] = action
     my.assert world[method], "#{world.label()}: no '#{method}' property"
     world[method](key, value)
-    
+
   apply: (world, args) ->
     {target, action} = args
 #    console.log "apply world #{world}, target #{target}"
