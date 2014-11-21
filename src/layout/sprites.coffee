@@ -75,13 +75,12 @@ exports.sprites = {
   
   perform: (world, action) ->
     [method, key, value] = action
-    console.log "perform world #{world}, method #{method}", method
     my.assert world[method], "#{world.label()}: no '#{method}' property"
     world[method](key, value)
     
   apply: (world, args) ->
     {target, action} = args
-    console.log "apply world #{world}, target #{target}"
+#    console.log "apply world #{world}, target #{target}"
     world.call('perform', action) if world == target
     
   step: (world, args) ->
