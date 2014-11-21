@@ -15,7 +15,7 @@
 
 {my} = require '../my'
 {make} = require '../render/make'
-{processor} = require './processor'
+# {processor} = require './processor'
 {programs} = require './programs'
 
 # 
@@ -42,7 +42,7 @@ exports.inspect_behavior = (sprite) ->
   my.assert default_program, "no default_program"
 
   initial_label = default_program._LABEL
-  my.extend rows, processor(initial_label, sprite),
+  my.extend rows, # processor(initial_label, sprite),
     {
       _EXPORTS: ['step']
       y: (world) -> world.index * my.row.spacing

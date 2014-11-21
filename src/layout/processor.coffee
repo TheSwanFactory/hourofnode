@@ -15,7 +15,6 @@
 
 {my} = require '../my'
 
-
 exports.processor = (initial_label, sprite) ->
   my.assert sprite, "missing sprite" 
   find_program = (world, key) -> world.find_child sprite.get(key)
@@ -23,10 +22,5 @@ exports.processor = (initial_label, sprite) ->
     running_program: (world) -> find_program world, 'running'
     editing_program: (world) -> find_program world, 'editing'
   
-    step: (world, args) ->
-      program = world.get 'running_program'
-      action = program.get 'next_action'
-      success = sprite.call 'perform', action
-      program.call 'advance' if success
   }
 

@@ -27,6 +27,10 @@ set_shape = (sprite_dict, shapes) ->
   paths = shapes[shape]
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
+  
+combine = (a, b, dir) ->
+  if dir > 0 then vector.add a, b else vector.subtract a, b
+  
 
 exports.sprites = {
   _LABEL: 'sprites'
@@ -58,22 +62,27 @@ exports.sprites = {
   name_style: (world) ->
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
-        
+
+  # TODO: Make less order-dependent
+  
+  propose: (world, proposal) ->
+    others = world.send 'at_position', proposal
+    results = obstacles.map (others) -> others.call 'bumps', world
+    world.put 'position', proposal unless results
+    
   go: (world, dir) ->
     cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
-    position = world.get('position')
-    direction = world.get('direction')
-    if dir > 0
-      sum = vector.add(position, direction)
+    sum = combine(world.get 'position', world.get 'direction', dir)
+    if vector.inside(sum, cell_count)
+      world.call 'propose', sum
     else
-      sum = vector.subtract(position, direction)
-    valid = vector.inside sum, cell_count
-    world.put 'position', sum 
+      world.send 'error', "#{world} attempted to move out of bounds"
 
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
+    true # always a valid move
   
   perform: (world, action) ->
     [method, key, value] = action
