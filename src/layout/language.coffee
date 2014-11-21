@@ -19,7 +19,9 @@ exports.language = (sprite) ->
   words = words.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
-    message = { target: sprite, name: word, action: language[word] }
+    action = language[word].split " "
+    action[2] = parseInt action[2]
+    message = { target: sprite, name: word, action: action }
     console.log 'send_message',message, sprite
     sprite.call('apply', message)
   

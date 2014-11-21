@@ -11,7 +11,7 @@
 {vector} = require '../god/vector'
 {inspect_status} = require './inspect_status'
 {language} = require './language'
-{inspect_behavior} = require './inspect_behavior'
+{behavior} = require './behavior'
 
 sprite_inspector = (sprite) ->
   {
@@ -20,7 +20,7 @@ sprite_inspector = (sprite) ->
     _CHILDREN: [
       inspect_status(sprite)
       language(sprite)
-      inspect_behavior(sprite)
+      behavior(sprite)
     ]
   }
   

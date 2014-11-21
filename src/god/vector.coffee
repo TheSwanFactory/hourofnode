@@ -14,7 +14,9 @@ Y_INDEX = 1
 DIR_LEFT  =  1
 DIR_RIGHT = -1
 
-check = (v) -> if v then _.isArray(v) else throw 'invalid vector'
+check = (v) -> 
+  my.assert v, "missing vector"
+  _.isArray(v) if v
   
 get_x = (v) -> if check(v) then v[X_INDEX] else v.at(X_INDEX)
 get_y = (v) -> if check(v) then v[Y_INDEX] else v.at(Y_INDEX)
@@ -57,7 +59,6 @@ exports.vector = {
     inside = true
     ['x', 'y'].map (key) ->
       value = access[key] v
-      console.log 'inside', inside , v, value, settor[key]
       if value < 0
         settor[key](v, 0) 
         inside = false

@@ -22,12 +22,12 @@ exports.game = {
   }
 
   language: {
-    # Array of Operation, key, argument
-    forward: ['call', 'go', vector.to.front]
-    reverse: ['call', 'go', vector.to.back]
-    left:    ['call', 'turn', vector.to.left ]
-    right:   ['call', 'turn', vector.to.right]
-    idle:    ['call', 'go', 0]
+    # String of operation, key, number
+    forward: ['call', 'go', vector.to.front].join " "
+    reverse: ['call', 'go', vector.to.back].join " "
+    left:    ['call', 'turn', vector.to.left ].join " "
+    right:   ['call', 'turn', vector.to.right].join " "
+    idle:    ['call', 'go', 0].join " "
   }
 
   shapes: {
