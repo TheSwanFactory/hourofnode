@@ -66,6 +66,7 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "command sprite", (t) ->
+    t.ok sprite.get('position'), "sprite position"
     test_position t, [1,1]
     sprite.call('go', 1)
     test_position t, [2,1]

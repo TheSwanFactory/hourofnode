@@ -29,8 +29,7 @@ set_shape = (sprite_dict, shapes) ->
   sprite_dict.paths = paths
   
 combine = (a, b, dir) ->
-  if dir > 0 then vector.add a, b else vector.subtract a, b
-  
+  if dir > 0 then vector.add(a, b) else vector.subtract(a, b)
 
 exports.sprites = {
   _LABEL: 'sprites'
@@ -67,13 +66,13 @@ exports.sprites = {
   
   propose: (world, proposal) ->
     others = world.send 'at_position', proposal
-    results = obstacles.map (others) -> others.call 'bumps', world
+    results = others.map (other) -> other.call 'bumps', world
     world.put 'position', proposal unless results
     
   go: (world, dir) ->
     cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
-    sum = combine(world.get 'position', world.get 'direction', dir)
+    sum = combine world.get('position'), world.get('direction'), dir
     if vector.inside(sum, cell_count)
       world.call 'propose', sum
     else
