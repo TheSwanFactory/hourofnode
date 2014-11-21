@@ -89,11 +89,11 @@ exports.test_layout = (test, rx) ->
   test "behavior dict", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
     t.ok dict = inspect_behavior(sprite)
-    t.equal dict.running, 'first', 'running program'
-    
-    t.ok inspect = god(rx, dict), 'create inspector world'
-    t.equal inspect.get('running'), 'first', 'running label'
-    t.ok program = inspect.get('running_program'), 'get running_program'
-    t.ok program.get('is_running'), 'is-running'
+    t.skip ->
+      t.equal dict.running, 'first', 'running program'    
+      t.ok inspect = god(rx, dict), 'create inspector world'
+      t.equal inspect.get('running'), 'first', 'running label'
+      t.ok program = inspect.get('running_program'), 'get running_program'
+      t.ok program.get('is_running'), 'is-running'
     t.end()
 

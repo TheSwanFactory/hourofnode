@@ -53,17 +53,18 @@ exports.vector = {
       if i < 0 then 0 else n - 1
 
   # limit vector to be inside [0,n). Return status
-  limit: (v, n) ->
-    limited = false
+  inside: (v, n) ->
+    inside = true
     ['x', 'y'].map (key) ->
       value = access[key] v
+      console.log 'inside', inside , v, value, settor[key]
       if value < 0
         settor[key](v, 0) 
-        limited = true
+        inside = false
       if value >= n
         settor[key](v, n - 1) 
-        limited = true
-    limited
+        inside = false
+    inside
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90
