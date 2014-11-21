@@ -40,7 +40,7 @@ class World
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
-  rx: () -> @get(RX)
+  rx: () -> @get_plain(RX)
   T: () -> @rx().rxt.tags
   SVG: () -> @rx().rxt.svg_tags
   bind: () -> @rx().bind
