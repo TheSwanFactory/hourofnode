@@ -96,7 +96,12 @@ exports.test_render = (test, rx) ->
     t.ok style.margin, 'button margin'
 
     child = button.body[0]
-    t.equal child.tag, 'span', 'name tag'
+    t.equal child, 'a', 'button renders just text'
+    t.end()
+
+  test "name tag not button", (t) ->
+    t.ok body = render_real name: 'me'
+    t.equal body.find('span').length, 1
     t.end()
 
   test "render non-mock", (t) ->
