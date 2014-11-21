@@ -71,6 +71,23 @@ class World
     return value(@,{}) if _.isFunction(value)
     value
 
+  get_local_plain: (key) ->
+    @doc.x[key]
+
+  get_raw_plain: (key, world) ->
+    value = @get_local_plain(key)
+    return value if value?
+    authority = @get_local_plain(my.key.authority)
+    if authority
+      value = authority.get_raw_plain(key, @)
+      return value if value?
+    @up.get_raw_plain(key, world or @)
+
+  get_plain: (key) ->
+    value = @get_raw_plain(key)
+    return value(@,{}) if _.isFunction(value)
+    value
+
   owner: (key) ->
     return @ if @get_local(key)?
     @up.owner(key) unless @is_root()
