@@ -98,7 +98,7 @@ class World
   _export_events: ->
     return unless exports = @get_local(my.key.exports)
     for event in exports.all()
-      my.assert _.isFunction @get_raw(event), "No function for #{event}"
+      my.assert _.isFunction(@get_raw(event)), "No function for #{event}"
       @handle_event event
     
   update: (key, delta, max) ->
