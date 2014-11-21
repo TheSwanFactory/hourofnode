@@ -42,6 +42,20 @@ exports.vector = {
       return i if i >= 0 and i < n
       error_callback(i, n) if error_callback?
       if i < 0 then 0 else n - 1
+
+  # limit vector to be inside [0,n). Return status
+  limit: (v, n) ->
+    my.assert v.at(0), "not reactive array"
+    limited = false
+    [axis.x, axis.y].map (index) ->
+      value = v.at(index)
+      if value < 0
+        v.put(index, 0)
+        limited = true
+      if value >= n
+        v.put(index, n - 1)
+        limited = true
+    limited
   
   # Add two vectors and return the result
   # 1,0 -> 0, 0,1 -> 90, -1,0 -> 180, 0,-1 -> -90

@@ -19,18 +19,18 @@ program_behavior = (name) -> {
   next_index: 0
   next_command: (world) ->
     program = world.get 'running_program'
+    
+  apply: (world, args) ->
+    {target, action} = args
+#    console.log "apply world #{world}, target #{target}"
+    world.call('perform', action) if world == target
+    
 }
 
 program_row = (name, contents) ->
   program = make.columns name, [
-    {
-      _LABEL: 'program_name'
-      name: name
-    }
-    make.buttons(
-      "instructions",
-      contents
-      my.command,
+    { _LABEL: 'program_name', name: name }
+    make.buttons("instructions", contents, my.command,
       (world, args) -> console.log 'TODO: rearrange'
     )
   ]
