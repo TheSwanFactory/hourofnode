@@ -8,7 +8,7 @@
 {grid} = require './grid'
 {sprites} = require './sprites'
 
-{inspect_behavior} = require './inspect_behavior'
+{behavior} = require './behavior'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
@@ -66,6 +66,7 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "command sprite", (t) ->
+    t.ok sprite.get('position'), "sprite position"
     test_position t, [1,1]
     sprite.call('go', 1)
     test_position t, [2,1]
@@ -73,10 +74,8 @@ exports.test_layout = (test, rx) ->
     test_position t, [1,1]
     
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"
-    forward = sprite.get('language')['forward']
-    message = {target: sprite, action: forward}
-    t.ok sprite.call('apply', message), "apply message"
-    test_position t, [2,1]
+    t.ok forward = sprite.get('language')['forward'], 'forward'
+    # TODO: redo as behavior
     t.end()
 
   test "find words", (t) ->
@@ -88,8 +87,8 @@ exports.test_layout = (test, rx) ->
 
   test "behavior dict", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
-    t.ok dict = inspect_behavior(sprite)
     t.skip ->
+      t.ok dict = behavior(sprite)
       t.equal dict.running, 'first', 'running program'    
       t.ok inspect = god(rx, dict), 'create inspector world'
       t.equal inspect.get('running'), 'first', 'running label'
