@@ -70,9 +70,9 @@ exports.sprites = {
     world.put 'position', proposal unless results
     
   go: (world, dir) ->
-    cell_count = world.get('cell_count')
+    cell_count = world.get_plain('cell_count')
     my.assert dir?, "expects dir"
-    sum = combine world.get('position'), world.get('direction'), dir
+    sum = combine world.get_plain('position'), world.get_plain('direction'), dir
     if vector.inside(sum, cell_count)
       world.put 'position', sum
       # world.call 'propose', sum
@@ -81,7 +81,7 @@ exports.sprites = {
 
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
-    world.put 'direction', vector.turn(world.get('direction'), dir)
+    world.put 'direction', vector.turn(world.get_plain('direction'), dir)
     true # always a valid move
   
   perform: (world, action) ->

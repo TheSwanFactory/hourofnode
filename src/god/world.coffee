@@ -31,7 +31,7 @@ class World
     my.assert up, "up always exists"
     my.assert _.isObject(up), "up is an object"
     @up = up
-    cache_rx = rx or @up.get_raw(RX)
+    cache_rx = rx or @up.get_raw_plain(RX)
     my.assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     my.assert _.isString(label), "label not a string: #{label}"
@@ -249,8 +249,8 @@ class World
       index += 1
     result
   
-  label: -> @get(my.key.label)
-  kind: -> @get(my.key.kind) or "World"
+  label: -> @get_plain(my.key.label)
+  kind:  -> @get_plain(my.key.kind) or "World"
 
   labels: (starter = []) ->
     starter.push @label()
