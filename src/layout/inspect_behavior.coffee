@@ -18,12 +18,6 @@
 {processor} = require './processor'
 {programs} = require './programs'
 
-# TODO: Display Issues
-# * get the second row to display
-# * make the haders fully visible
-# * make the backgrounds full-width
-# * highlight the current command
-# * indicate the target program somehow
 # 
 # TODO: Editing Issues
 # * add new programs

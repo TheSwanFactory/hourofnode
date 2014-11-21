@@ -28,9 +28,10 @@ exports.language = (sprite) ->
     words,
     my.command,
     (button, args) ->
-      unless sprite.get 'editable'
-        return sprite.send 'error', "#{sprite} not editable"
-      send_message button.get('value')
+      if sprite.get 'editable'
+        send_message button.get('value')
+      else
+        button.send 'error', "#{sprite} not editable"
   )
   
   my.extend buttons, {
