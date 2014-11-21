@@ -31,7 +31,7 @@ class World
     my.assert up, "up always exists"
     my.assert _.isObject(up), "up is an object"
     @up = up
-    cache_rx = rx or @up.get_raw(RX)
+    cache_rx = rx or @up.get_raw_plain(RX)
     my.assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     my.assert _.isString(label), "label not a string: #{label}"
@@ -40,7 +40,7 @@ class World
     @doc.put(RX, rx) if rx?
     
   # reactive-coffee tags and binding
-  rx: () -> @get(RX)
+  rx: () -> @get_plain(RX)
   T: () -> @rx().rxt.tags
   SVG: () -> @rx().rxt.svg_tags
   bind: () -> @rx().bind
@@ -50,7 +50,10 @@ class World
     @doc.put(key, value)
 
   get_local: (key) ->
-    @doc.get(key)
+    if @has_local(key) then @doc.get(key) else null
+
+  has_local: (key) ->
+    @doc.has key
 
   # TODO: make @up a list
   get_raw: (key, world) ->
@@ -65,6 +68,23 @@ class World
 
   get: (key) ->
     value = @get_raw(key)
+    return value(@,{}) if _.isFunction(value)
+    value
+
+  get_local_plain: (key) ->
+    @doc.x[key]
+
+  get_raw_plain: (key, world) ->
+    value = @get_local_plain(key)
+    return value if value?
+    authority = @get_local_plain(my.key.authority)
+    if authority
+      value = authority.get_raw_plain(key, @)
+      return value if value?
+    @up.get_raw_plain(key, world or @)
+
+  get_plain: (key) ->
+    value = @get_raw_plain(key)
     return value(@,{}) if _.isFunction(value)
     value
 
@@ -229,8 +249,8 @@ class World
       index += 1
     result
   
-  label: -> @get(my.key.label)
-  kind: -> @get(my.key.kind) or "World"
+  label: -> @get_plain(my.key.label)
+  kind:  -> @get_plain(my.key.kind) or "World"
 
   labels: (starter = []) ->
     starter.push @label()

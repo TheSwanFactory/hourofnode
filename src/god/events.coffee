@@ -27,9 +27,9 @@ exports.events = {
   run: (world, args) ->
     world.put('speed', 1)
     step_and_repeat = (self) ->
-      speed = world.get('speed')
+      speed = world.get_plain('speed')
       if speed > 0
-        delay = world.get('interval') / speed 
+        delay = world.get_plain('interval') / speed 
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
