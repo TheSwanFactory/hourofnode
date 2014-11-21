@@ -12,7 +12,6 @@
 add_paths = (dict, sprite) ->
   paths = sprite.get('paths').all()
   my.extend dict, {
-    name_style: { display: 'none' }
     _CHILDREN: [{
       transform: 'translate(0,0) scale(0.5)'
       paths: paths
@@ -28,7 +27,7 @@ extract = (sprite, button) ->
 exports.inspect_status = (sprite) ->
 
   status_buttons = make.buttons('stat', [
-      "shape"
+      "-"
       "name"
       "fill"
       "position"
@@ -40,7 +39,7 @@ exports.inspect_status = (sprite) ->
 
   for dict in status_buttons._CHILDREN
     key = dict.value
-    if dict.value == 'shape'
+    if dict.value == '-'
       add_paths dict, sprite
     else
       dict.name = (button) -> extract(sprite, button) # run time
