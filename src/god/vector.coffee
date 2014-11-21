@@ -6,6 +6,8 @@
 #  TODO: find a better name
 #  Alternatives: point, vector, math, geometry, coordinates
 
+{my} = require '../my'
+
 X_INDEX = 0
 Y_INDEX = 1
 
@@ -17,6 +19,13 @@ check = (v) -> if v then _.isArray(v) else throw 'invalid vector'
 get_x = (v) -> if check(v) then v[X_INDEX] else v.at(X_INDEX)
 get_y = (v) -> if check(v) then v[Y_INDEX] else v.at(Y_INDEX)
 
+put_x = (v, i) -> if check(v) then v[X_INDEX]=i else v.put(X_INDEX,i)
+put_y = (v, i) -> if check(v) then v[Y_INDEX]=i else v.put(Y_INDEX,i)
+
+access = {x: get_x, y: get_y}
+settor = {x: put_x, y: put_y}
+axis = {x: X_INDEX, y: Y_INDEX}
+ 
 exports.vector = {
 
   # Enumerations for accessing components
@@ -45,15 +54,14 @@ exports.vector = {
 
   # limit vector to be inside [0,n). Return status
   limit: (v, n) ->
-    my.assert v.at(0), "not reactive array"
     limited = false
-    [axis.x, axis.y].map (index) ->
-      value = v.at(index)
+    ['x', 'y'].map (key) ->
+      value = access[key] v
       if value < 0
-        v.put(index, 0)
+        settor[key](v, 0) 
         limited = true
       if value >= n
-        v.put(index, n - 1)
+        settor[key](v, n - 1) 
         limited = true
     limited
   

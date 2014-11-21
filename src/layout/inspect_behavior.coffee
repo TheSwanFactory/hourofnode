@@ -36,19 +36,13 @@
 #   * finishing levels
 # 
 
-editor = (initial_label) -> {
-  open_program: initial_label
-}
-
 exports.inspect_behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
   default_program = rows._CHILDREN[0]
   my.assert default_program, "no default_program"
 
   initial_label = default_program._LABEL
-  my.extend rows,
-    processor(initial_label),
-    editor(initial_label),
+  my.extend rows, processor(initial_label, sprite),
     {
       _EXPORTS: ['step']
       y: (world) -> world.index * my.row.spacing

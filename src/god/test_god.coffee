@@ -35,8 +35,7 @@ exports.test_god = (test, rx) ->
     v_equal vector.bound([4,-1], 3, err), [2,0], "bounds check"
     t.ok fired, "error callback fired"
     
-    v.ok vector.limit([4,-1], 4), "limit check"
-    
+    t.ok vector.limit([4,-1], 4), "limit check"
     
     t.equal vector.angle([ 1, 0]),   0, 'vector angle'
     t.equal vector.angle([ 0, 1]),  90, 'vector angle'

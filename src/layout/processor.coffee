@@ -16,7 +16,8 @@
 {my} = require '../my'
 
 
-exports.processor = (initial_label, sprite) -> 
+exports.processor = (initial_label, sprite) ->
+  my.assert sprite, "missing sprite" 
   find_program = (world, key) -> world.find_child sprite.get(key)
   {
     running_program: (world) -> find_program world, 'running'
