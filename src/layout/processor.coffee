@@ -15,15 +15,12 @@
 
 {my} = require '../my'
 
-exports.processor = (initial_label, sprite) -> {
-  running: initial_label
-  running_program: (world) -> world.find_child(world.get 'running')
+exports.processor = (initial_label, sprite) ->
+  my.assert sprite, "missing sprite" 
+  find_program = (world, key) -> world.find_child sprite.get(key)
+  {
+    running_program: (world) -> find_program world, 'running'
+    editing_program: (world) -> find_program world, 'editing'
   
-  step: (world, args) ->
-    program = world.get 'current_program'
-    local = world.get('programs')
-    return unless world.is_world local
-    my.assert signal = local.call('next'), "No next signal"
-    world.call 'perform', signal
-}
+  }
 

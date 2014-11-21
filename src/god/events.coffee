@@ -33,5 +33,7 @@ exports.events = {
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
-  error: (world, args) -> beep(my.duration.tone, 2)
+  error: (world, message) ->
+    console.error message
+    beep(my.duration.tone, 2)
 }

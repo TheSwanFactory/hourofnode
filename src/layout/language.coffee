@@ -1,5 +1,5 @@
 #
-# inspect_commands.coffee
+# language.coffee
 #
 # Role: show commands available for this turtle
 #
@@ -13,20 +13,26 @@
 {my} = require '../my'
 {make} = require '../render/make'
   
-exports.inspect_commands = (sprite) ->
+exports.language = (sprite) ->
   language = sprite.get('language')
   words = Object.keys language
   words = words.filter (x) -> x[0] != '_' unless my.design
-  command_buttons = make.buttons(
+  
+  send_message = (word) ->
+    message = { target: sprite, name: word, action: language[word] }
+    console.log 'send_message',message, sprite
+    sprite.call('apply', message)
+  
+  buttons = make.buttons(
     'command',
     words,
     my.command,
     (button, args) ->
-      unless sprite.get 'editable'
-        return sprite.send 'error', "#{sprite} not editable"
-
-      word = button.get 'value'
-      message = { target: sprite, action: language[word] }
-      console.log 'send apply', word, message
-      button.send('apply', message)
+      if sprite.get 'editable'
+        send_message button.get('value')
+      else
+        button.send 'error', "#{sprite} not editable"
   )
+  
+  my.extend buttons, {
+  }

@@ -80,16 +80,20 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test "find words", (t) ->
-    t.ok inspector = sprite.get('inspector'), 'made inspector'
+    #t.ok inspector = sprite.get('inspector'), 'made inspector'
     t.ok language = sprite.get('language'), 'language'
     t.ok words = Object.keys(language), 'words'
     t.ok "forward" in words, 'has a command'
     t.end()
 
-  test "inspect behavior", (t) ->
+  test "behavior dict", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
     t.ok dict = inspect_behavior(sprite)
-    console.log "find behavior", behavior, dict
-    
-    t.equal dict.running, 'first', 'running program'
+    t.skip ->
+      t.equal dict.running, 'first', 'running program'    
+      t.ok inspect = god(rx, dict), 'create inspector world'
+      t.equal inspect.get('running'), 'first', 'running label'
+      t.ok program = inspect.get('running_program'), 'get running_program'
+      t.ok program.get('is_running'), 'is-running'
     t.end()
+

@@ -27,6 +27,10 @@ set_shape = (sprite_dict, shapes) ->
   paths = shapes[shape]
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
+  
+combine = (a, b, dir) ->
+  if dir > 0 then vector.add a, b else vector.subtract a, b
+  
 
 exports.sprites = {
   _LABEL: 'sprites'
@@ -39,7 +43,7 @@ exports.sprites = {
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
       child.handle_event 'apply'
-      world.send 'inspect', child
+      # world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
 
@@ -58,26 +62,37 @@ exports.sprites = {
   name_style: (world) ->
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
-        
+
+  # TODO: Make less order-dependent
+  
+  propose: (world, proposal) ->
+    others = world.send 'at_position', proposal
+    results = obstacles.map (others) -> others.call 'bumps', world
+    world.put 'position', proposal unless results
+    
   go: (world, dir) ->
     cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
-    position = world.get('position')
-    direction = world.get('direction')
-    sum = if dir > 0 then vector.add(position, direction) else
-      vector.subtract(position, direction)
-    result = vector.bound sum, cell_count, -> world.send 'error'
-    world.put 'position', result 
+    sum = combine(world.get 'position', world.get 'direction', dir)
+    if vector.inside(sum, cell_count)
+      world.call 'propose', sum
+    else
+      world.send 'error', "#{world} attempted to move out of bounds"
 
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
+    true # always a valid move
+  
+  perform: (world, action) ->
+    [method, key, value] = action
+    my.assert world[method], "#{world.label()}: no '#{method}' property"
+    world[method](key, value)
     
   apply: (world, args) ->
     {target, action} = args
-    return false unless world == target
-    [method, key, value] = action
-    world[method](key, value)
+#    console.log "apply world #{world}, target #{target}"
+    world.call('perform', action) if world == target
     
   step: (world, args) ->
     local = world.get('programs')
