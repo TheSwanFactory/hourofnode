@@ -21,13 +21,16 @@ exports.game = {
     bricks: 0
   }
 
+  # TODO: rename as behavior
+  # have sprite behavior extend this
+  # bind words at run-time
   language: {
     # String of operation, key, number
     forward: ['call', 'go', vector.to.front].join " "
     reverse: ['call', 'go', vector.to.back].join " "
     left:    ['call', 'turn', vector.to.left ].join " "
     right:   ['call', 'turn', vector.to.right].join " "
-    idle:    ['call', 'go', 0].join " "
+    idle:    "call go 0"
   }
 
   shapes: {
