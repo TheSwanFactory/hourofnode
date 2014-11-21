@@ -31,8 +31,18 @@ text {
   background-color: darkgrey;
 }
 
-.button,
+.button {
+  border-radius: 50%;
+}
+
 .command,
 .control {
   background-color: azure;
+  font-size: 1em;
+}
+
+.render_svg[class^="render_svg stat"] {
+  position: absolute;
+  left: 35px;
+  top: 23px;
 }
