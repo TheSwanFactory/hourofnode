@@ -8,7 +8,7 @@
 {grid} = require './grid'
 {sprites} = require './sprites'
 
-{inspect_behavior} = require './inspect_behavior'
+{behavior} = require './behavior'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
@@ -88,7 +88,7 @@ exports.test_layout = (test, rx) ->
 
   test "behavior dict", (t) ->
     t.ok behavior = sprite.get('behavior'), 'behavior'
-    t.ok dict = inspect_behavior(sprite)
+    t.ok dict = behavior(sprite)
     t.skip ->
       t.equal dict.running, 'first', 'running program'    
       t.ok inspect = god(rx, dict), 'create inspector world'
