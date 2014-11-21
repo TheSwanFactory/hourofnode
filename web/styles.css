@@ -31,7 +31,10 @@ text {
   background-color: darkgrey;
 }
 
-.button,
+.button {
+  border-radius: 50%;
+}
+
 .command,
 .control {
   background-color: azure;
