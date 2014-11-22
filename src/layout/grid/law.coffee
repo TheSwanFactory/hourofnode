@@ -1,5 +1,5 @@
-{vector} = require './vector'
-{my}     = require '../my'
+{vector} = require '../../god/vector'
+{my}     = require '../../my'
 
 ###
 
@@ -19,14 +19,12 @@ it's the law
 
 collision_check = (proposals, cell_count) ->
   _.each proposals, (proposal, index) ->
-    proposal          = proposal.get()
     sprite            = proposal.sprite
     collision_subject = null
 
     # check for collisions
     # compare this proposal's coordinates to all the other proposals
     _.each _.rest(proposals, index + 1), (other_proposal, inner_index) ->
-      other_proposal = other_proposal.get()
       # if we're about to collide, say no
       if _.isEqual(proposal.coordinates, other_proposal.coordinates)
         drop_index = index + inner_index + 1
@@ -44,11 +42,10 @@ collision_check = (proposals, cell_count) ->
       proposal.sprite.call 'commit', proposal.coordinates
 
 law =
-  _EXPORTS:  ['prepare', 'propose', 'decide']
-  proposals: []
-
-  prepare: (world, args) ->
-    world.put 'proposals', []
+  _EXPORTS:  ['decide']
+  proposals: (world, args) ->
+    world.up.find_child('sprites').map_children (sprite) ->
+      { sprite: sprite, coordinates: sprite.get('determine_next_position').all() }
 
   propose: (world, args) ->
     [sprite, coordinates] = args
@@ -59,20 +56,14 @@ law =
 
   decide: (world, args) ->
     console.log 'law decide'
-    proposals = world.get_local_plain('proposals')
-    cell_count = world.get_local_plain('cell_count')
-    collision_check proposals.cells, cell_count
+    proposals = world.get_plain 'proposals'
+    cell_count = world.get_plain 'cell_count'
+    collision_check proposals, cell_count
 
   resolve: (world, args) ->
-    proposals = world.get_local_plain 'proposals'
+    proposals = world.get_local 'proposals'
     _.each proposals, (proposal) ->
       proposal.sprite.call 'approve', proposal.coordinates
-
-  cell_count: (world, args) ->
-    world.get_plain('sprites')[0].get_plain 'cell_count'
-
-  sprites: (world, args) ->
-    world.get_local_plain('proposals').all().map (p) -> p.sprite
 
   coordinates: (world, args) ->
     world.get_local_plain('proposals').all().map (p) -> p.coordinates

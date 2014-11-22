@@ -10,7 +10,7 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
-{law} = require '../god/law'
+{law} = require './grid/law'
 
 transform = (world) ->
   center = world.get('cell_size') / 2
@@ -52,6 +52,8 @@ exports.sprites = {
 
   # defaults
   position:  [0,0]
+  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
+  next_position: null
   direction: [1,0]
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
@@ -76,6 +78,7 @@ exports.sprites = {
     # this is bad. it should be getting this from language.coffee
     signal = word.split " "
     signal[2] = parseInt signal[2]
+
     world.call 'perform', signal
 
   perform: (world, action) ->
@@ -84,7 +87,7 @@ exports.sprites = {
     world[method](key, value)
 
   commit: (world, args) ->
-    world.put 'position', args # proposed coordinates
+    world.put 'position', world.get('determine_next_position') # proposed coordinates
 
   #propose: (world, proposal) ->
     #others = world.send 'at_position', proposal
@@ -95,7 +98,7 @@ exports.sprites = {
     cell_count = world.get_plain('cell_count')
     my.assert dir?, "expects dir"
     sum = get_location_for_move world, dir
-    world.send 'propose', [world, sum]
+    world.put 'next_position', sum
     #if vector.inside(sum, cell_count)
       #world.call 'propose', sum
     #else

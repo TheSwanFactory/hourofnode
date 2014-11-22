@@ -27,6 +27,7 @@ exit = {
   stroke: 'maroon'
   fill: 'red'
   behavior: {turtle: ['victory']}
+  accepts_collision: true
 }  
 
 exports.game = {
