@@ -3,7 +3,6 @@
 # 
 
 {my} = require '../my'
-{law} = require './law'
 
 beep = ->
   context = new(window.audioContext || window.webkitAudioContext)
@@ -24,7 +23,6 @@ exports.events = {
   interval: my.duration.step
   speed: 0
   _EXPORTS: ['stop', 'run', 'error', 'step']
-  _CHILDREN: [law]
   step: (world, args) ->
     console.log 'stepping'
     world.send 'prepare'

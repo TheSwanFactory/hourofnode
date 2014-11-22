@@ -1,5 +1,6 @@
 {my} = require '../my'
 {sprites} = require './sprites'
+{law} = require './grid/law'
 
 exports.grid = (level_dict) -> {
   _LABEL: "grid"
@@ -27,5 +28,6 @@ exports.grid = (level_dict) -> {
         [path] 
     }
     sprites
+    law
   ]
 }
