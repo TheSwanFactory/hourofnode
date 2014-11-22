@@ -10,6 +10,7 @@
 # Role: create and run a single program
 #
 # Responsibility: 
+# Responsibility:
 # * create behavior row
 # * track and return next command
 # * advance counter (or fault)
@@ -22,14 +23,22 @@ exports.programs = (sprite) ->
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
+    _EXPORTS: ['tick']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
-    
+
     next_index: 0
     next_command: (world) ->
-      program = world.get 'running_program'
+      next_index = world.get('next_index')
+      instructions = world.find_child('instructions').find_children()
 
-    step: (world, args) ->
+      next_index = 0 if instructions.length < next_index + 1
+
+      world.put 'next_index', next_index + 1
+
+      instructions[next_index]
+
+    tick: (world, args) ->
       return unless world.get 'selected'
       action = world.get 'next_command'
       valid_action = sprite.call 'perform', action
@@ -49,9 +58,8 @@ exports.programs = (sprite) ->
 
   behavior = sprite.get('behavior')
   my.assert _.isObject(behavior), "#{sprite} has no behavior property"
-  
+
   children = []
   for name, contents of behavior
     children.push program_row(name, contents)
   children
-  
