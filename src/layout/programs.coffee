@@ -28,26 +28,34 @@ exports.programs = (sprite) ->
 
     next_index: 0
     next_command: (world) ->
-      next_index = world.get('next_index')
+      current_index = world.get('next_index')
+      next_index = current_index + 1
+
       instructions = world.find_child('instructions').find_children()
 
-      next_index = 0 if instructions.length < next_index + 1
+      # if this is our last instruction
+      if instructions.length <= next_index
+        next_index = 0
+        sprite.put 'running', 'repeat'
 
-      world.put 'next_index', next_index + 1
+      world.put 'next_index', next_index
 
-      instructions[next_index]
+      instructions[current_index]
 
     tick: (world, args) ->
       return unless world.get 'selected'
       action = world.get 'next_command'
-      valid_action = sprite.call 'prepare', action.get('value')
+      sprite.call 'prepare', action.get('value') if action
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
       return unless proposing_sprite == sprite # if this is my sprite to handle
 
+      world.put 'next_index', 0 # reset
+      sprite.put 'running', 'interrupt'
+
       if collision_subject == my.kind.wall
-        return # world.put 'next_index', 0 # reset
+        return
       if not collision_subject.get('obstruction')
         sprite.call 'commit', coordinates
 

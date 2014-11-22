@@ -10,7 +10,7 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  behavior: {first: [], repeat: ['forward']}
+  behavior: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
   editable: true
 }
 
@@ -18,6 +18,7 @@ yu = my.dup me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
+  behavior: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {
