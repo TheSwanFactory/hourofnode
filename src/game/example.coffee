@@ -28,6 +28,7 @@ exit = {
   fill: 'red'
   behavior: {turtle: ['victory']}
   accepts_collision: true
+  obstruction: false
 }  
 
 exports.game = {

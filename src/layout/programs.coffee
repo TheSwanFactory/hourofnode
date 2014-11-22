@@ -43,12 +43,12 @@ exports.programs = (sprite) ->
       valid_action = sprite.call 'prepare', action.get('value')
 
     collision: (world, args) ->
-      [proposed_subject, collision_subject, coordinates] = args
-      return unless proposed_subject == sprite # if this is my sprite to handle
+      [proposing_sprite, collision_subject, coordinates] = args
+      return unless proposing_sprite == sprite # if this is my sprite to handle
 
       if collision_subject == my.kind.wall
         return # world.put 'next_index', 0 # reset
-      if collision_subject.get('accepts_collision')
+      if not collision_subject.get('obstruction')
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->

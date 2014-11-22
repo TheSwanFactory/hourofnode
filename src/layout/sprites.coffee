@@ -49,12 +49,13 @@ exports.sprites = {
       world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
+  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
   # defaults
   position:  [0,0]
-  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
   next_position: null
   direction: [1,0]
+  obstruction: true
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
