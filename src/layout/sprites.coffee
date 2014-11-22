@@ -46,7 +46,6 @@ exports.sprites = {
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
       child.handle_event 'apply'
-      child.handle_event 'prepare'
       world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
@@ -83,6 +82,9 @@ exports.sprites = {
     [method, key, value] = action
     my.assert world[method], "#{world.label()}: no '#{method}' property"
     world[method](key, value)
+
+  commit: (world, args) ->
+    world.put 'position', args # proposed coordinates
 
   #propose: (world, proposal) ->
     #others = world.send 'at_position', proposal
