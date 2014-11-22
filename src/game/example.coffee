@@ -27,7 +27,7 @@ exit = {
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
-  behavior: {turtle: ['victory']}
+  behavior: {interrupt: ['victory']}
   obstruction: false
 }  
 

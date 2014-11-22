@@ -27,6 +27,7 @@ exports.programs = (sprite) ->
     editable: (world) -> world.label() == sprite.get 'editing'
 
     next_index: 0
+    reset_index: (world) -> world.put 'next_index', 0
     next_command: (world) ->
       current_index = world.get('next_index')
       next_index = current_index + 1
@@ -51,12 +52,10 @@ exports.programs = (sprite) ->
       [proposing_sprite, collision_subject, coordinates] = args
       return unless proposing_sprite == sprite # if this is my sprite to handle
 
-      world.put 'next_index', 0 # reset
-      sprite.put 'running', 'interrupt'
-
-      if collision_subject == my.kind.wall
-        return
-      if not collision_subject.get('obstruction')
+      if collision_subject.get('obstruction')
+        world.call 'reset_index'
+        sprite.put 'running', 'interrupt'
+      else
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->

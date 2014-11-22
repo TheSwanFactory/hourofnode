@@ -17,7 +17,7 @@ it's the law
 
 ###
 
-collision_check = (proposals, cell_count) ->
+collision_check = (proposals, cell_count, grid) ->
   _.each proposals, (proposal, index) ->
     sprite            = proposal.sprite
     collision_subject = null
@@ -34,7 +34,7 @@ collision_check = (proposals, cell_count) ->
         collision_subject = other_proposal.sprite
 
     if not vector.inside(proposal.coordinates, cell_count)
-      collision_subject = my.kind.wall
+      collision_subject = grid
 
     if collision_subject? # proposal.sprite ran into something
       proposal.sprite.send 'collision', [proposal.sprite, collision_subject, proposal.coordinates]
@@ -47,18 +47,12 @@ law =
     world.up.find_child('sprites').map_children (sprite) ->
       { sprite: sprite, coordinates: sprite.get('determine_next_position').all() }
 
-  propose: (world, args) ->
-    [sprite, coordinates] = args
-    proposals = world.get_plain 'proposals'
-    proposals.push {sprite: sprite, coordinates: coordinates}
-    console.log 'law add proposal', sprite
-    world.put 'proposals', proposals
-
   decide: (world, args) ->
     console.log 'law decide'
     proposals = world.get_plain 'proposals'
     cell_count = world.get_plain 'cell_count'
-    collision_check proposals, cell_count
+    grid = world.up
+    collision_check proposals, cell_count, grid
 
   resolve: (world, args) ->
     proposals = world.get_local 'proposals'

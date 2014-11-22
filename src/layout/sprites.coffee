@@ -64,9 +64,12 @@ exports.sprites = {
     translate = "translate(#{world.get('x')},#{world.get('y')})"
     rotate = "rotate(#{world.get('angle')} #{center} #{center})"
     "#{translate} #{rotate}"
+  behavior:
+    first:     []
+    repeat:    []
+    interrupt: []
 
-  running: (world, args) ->
-    'repeat'
+  running: 'first'
 
   name_style: (world) ->
     cell_size = world.get 'cell_size'
