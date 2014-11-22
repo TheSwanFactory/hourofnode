@@ -17,7 +17,7 @@ exports.test_layout = (test, rx) ->
   level = world.find_child()
   grid = level.find_child('grid')
   all_sprites = grid.find_child('sprites')
-  sprite = all_sprites.find_child()
+  sprite = all_sprites.find_children()[1]
 
   test "layout config", (t) ->
     t.ok game_dict, 'game_dict'
@@ -69,8 +69,10 @@ exports.test_layout = (test, rx) ->
     t.ok sprite.get('position'), "sprite position"
     test_position t, [1,1]
     sprite.call('go', 1)
+    sprite.call 'commit'
     test_position t, [2,1]
     sprite.call('go', -1)
+    sprite.call 'commit'
     test_position t, [1,1]
     
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"

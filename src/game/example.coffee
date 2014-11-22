@@ -27,7 +27,6 @@ exit = {
   stroke: 'maroon'
   fill: 'red'
   behavior: {turtle: ['victory']}
-  accepts_collision: true
   obstruction: false
 }  
 
@@ -61,7 +60,7 @@ exports.game = {
     }
     {
       name: 'Double Time'
-      sprites: [me, yu, exit]
+      sprites: [exit, me, yu]
       goal: {
         clicks: 10
         ticks: 8
