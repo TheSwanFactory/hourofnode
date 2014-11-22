@@ -10,6 +10,7 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
+{law} = require '../god/law'
 
 transform = (world) ->
   center = world.get('cell_size') / 2
@@ -27,14 +28,17 @@ set_shape = (sprite_dict, shapes) ->
   paths = shapes[shape]
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
-  
+
 combine = (a, b, dir) ->
   if dir > 0 then vector.add(a, b) else vector.subtract(a, b)
+
+get_location_for_move = (world, dir) ->
+  combine world.get_plain('position'), world.get_plain('direction'), dir
 
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['inspect', 'step', 'reset']
+  _EXPORTS: ['inspect', 'reset']
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
@@ -42,7 +46,8 @@ exports.sprites = {
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
       child.handle_event 'apply'
-      # world.send 'inspect', child
+      child.handle_event 'prepare'
+      world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
 
@@ -58,42 +63,52 @@ exports.sprites = {
     rotate = "rotate(#{world.get('angle')} #{center} #{center})"
     "#{translate} #{rotate}"
 
+  running: (world, args) ->
+    'repeat'
+
   name_style: (world) ->
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
 
-  # TODO: Make less order-dependent
-  
-  propose: (world, proposal) ->
-    others = world.send 'at_position', proposal
-    results = others.map (other) -> other.call 'bumps', world
-    world.put 'position', proposal unless results
-    
-  go: (world, dir) ->
-    cell_count = world.get_plain('cell_count')
-    my.assert dir?, "expects dir"
-    sum = combine world.get_plain('position'), world.get_plain('direction'), dir
-    if vector.inside(sum, cell_count)
-      world.put 'position', sum
-      # world.call 'propose', sum
-    else
-      world.send 'error', "#{world} attempted to move out of bounds"
+  prepare: (world, args) ->
+    word = world.get('language')[args]
+    console.log args
+    # TODO: use language.coffee
+    # this is bad. it should be getting this from language.coffee
+    signal = word.split " "
+    signal[2] = parseInt signal[2]
+    world.call 'perform', signal
 
-  turn: (world, dir) ->
-    my.assert dir?, "expects dir"
-    world.put 'direction', vector.turn(world.get_plain('direction'), dir)
-    true # always a valid move
-  
   perform: (world, action) ->
     [method, key, value] = action
     my.assert world[method], "#{world.label()}: no '#{method}' property"
     world[method](key, value)
 
+  #propose: (world, proposal) ->
+    #others = world.send 'at_position', proposal
+    #results = others.map (other) -> other.call 'bumps', world
+    #world.put 'position', proposal unless results
+
+  go: (world, dir) ->
+    cell_count = world.get_plain('cell_count')
+    my.assert dir?, "expects dir"
+    sum = get_location_for_move world, dir
+    world.send 'propose', [world, sum]
+    #if vector.inside(sum, cell_count)
+      #world.call 'propose', sum
+    #else
+      #world.send 'error', "#{world} attempted to move out of bounds"
+
+  turn: (world, dir) ->
+    my.assert dir?, "expects dir"
+    world.put 'direction', vector.turn(world.get_plain('direction'), dir)
+    true # always a valid move
+
   apply: (world, args) ->
     {target, action} = args
 #    console.log "apply world #{world}, target #{target}"
     world.call('perform', action) if world == target
-    
+
   step: (world, args) ->
     local = world.get('programs')
     return unless world.is_world local
