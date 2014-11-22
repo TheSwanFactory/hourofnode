@@ -25,12 +25,13 @@ collision_check = (proposals, cell_count) ->
 
     # check for collisions
     # compare this proposal's coordinates to all the other proposals
-    _.each _.rest(proposals, index), (other_proposal, inner_index) ->
+    _.each _.rest(proposals, index + 1), (other_proposal, inner_index) ->
       other_proposal = other_proposal.get()
       # if we're about to collide, say no
       if _.isEqual(proposal.coordinates, other_proposal.coordinates)
+        drop_index = index + inner_index + 1
         other_proposal.sprite.send 'collision', [other_proposal.sprite, proposal.sprite, other_proposal.coordinates]
-        proposals.slice inner_index + 1, 1 # remove this from the chain to be considered
+        proposals.splice drop_index, 1 # remove this from the chain to be considered
 
         collision_subject = other_proposal.sprite
 
