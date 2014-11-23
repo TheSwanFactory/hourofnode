@@ -19,8 +19,8 @@ add_paths = (dict, sprite) ->
     }]
   }
 extract = (sprite, button) ->
-  key = button.get_plain 'value'
-  value = sprite.get_plain key
+  key = button.get 'value'
+  value = sprite.get key
   value = value.all() if sprite.is_array(value)
   "#{value}"
   
