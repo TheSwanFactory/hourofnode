@@ -39,6 +39,14 @@ setup_geometry = (dict) ->
 
 set_font_size = (dict, size) -> dict.name_style = {font_size: size}
 
+done = (world, args) ->
+  success = args > 0
+
+  if success
+    alert 'victory'
+  else
+    alert 'failure'
+
 exports.layout = (game_dict) ->
   setup_geometry(game_dict)
   level_dict = game_dict[my.key.children][0]
@@ -54,4 +62,6 @@ exports.layout = (game_dict) ->
     grid(level_dict)
     inspector
   ]
+  game_dict._EXPORTS = ['done']
+  game_dict.done = done
   game_dict

@@ -38,6 +38,10 @@ class World
     @doc.put my.key.label, label
     @doc.put my.key.children, cache_rx.array()
     @doc.put(RX, rx) if rx?
+    # this property is just for debugging. it's helpful in the console to see
+    # what world you are dealing with as other properties are not immediately
+    # available
+    @uid = _.uniqueId()
     
   # reactive-coffee tags and binding
   rx: () -> @get_plain(RX)

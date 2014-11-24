@@ -35,7 +35,7 @@ create_attrs = (world, style) ->
   }
   
 text_attrs = (world) ->
-  style = world.get_plain 'name_style'
+  style = world.get 'name_style'
   attrs = my.dup style 
   attrs['class'] = ['name', 'text', world.get 'selected']
   attrs['style'] = style

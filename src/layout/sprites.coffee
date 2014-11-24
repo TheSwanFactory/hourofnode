@@ -93,24 +93,15 @@ exports.sprites = {
   commit: (world, args) ->
     world.put 'position', world.get('determine_next_position') # proposed coordinates
 
-  #propose: (world, proposal) ->
-    #others = world.send 'at_position', proposal
-    #results = others.map (other) -> other.call 'bumps', world
-    #world.put 'position', proposal unless results
-
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
     my.assert dir?, "expects dir"
     sum = get_location_for_move world, dir
     world.put 'next_position', sum
-    #if vector.inside(sum, cell_count)
-      #world.call 'propose', sum
-    #else
-      #world.send 'error', "#{world} attempted to move out of bounds"
 
   turn: (world, dir) ->
     my.assert dir?, "expects dir"
-    world.put 'direction', vector.turn(world.get_plain('direction'), dir)
+    world.put 'direction', vector.turn(world.get('direction'), dir)
     true # always a valid move
 
   apply: (world, args) ->

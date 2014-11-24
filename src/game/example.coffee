@@ -27,7 +27,7 @@ exit = {
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
-  behavior: {interrupt: ['victory']}
+  behavior: {interrupt: ['_victory']}
   obstruction: false
 }  
 
@@ -39,8 +39,8 @@ exports.game = {
   language: {
     # Admin commands have '_'
     # TODO: hide Admin commands if not in design mode
-    _victory: ['.send', 'done',  1]
-    _failure: ['.send', 'done', -1]
+    _victory: ['send', 'done',  1].join ' '
+    _failure: ['send', 'done', -1].join ' '
   }
 
   shapes: {
@@ -52,7 +52,7 @@ exports.game = {
   levels: [
     {
       name: 'Move the Turtle to the Exit'
-      sprites: [me, exit]
+      sprites: [exit, me]
       goal: {
         clicks: 1
         ticks: 4
