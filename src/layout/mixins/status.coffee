@@ -24,7 +24,7 @@ extract = (sprite, button) ->
   value = value.all() if sprite.is_array(value)
   "#{value}"
   
-exports.inspect_status = (sprite) ->
+exports.status = (sprite) ->
 
   status_buttons = make.buttons('stat', [
       "-"
