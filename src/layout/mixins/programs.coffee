@@ -15,7 +15,7 @@
 # * advance counter (or fault)
 
 {my} = require '../my'
-{make} = require '../render/make'
+{make} = require '../../render/make' # TODO: find better path-ing
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {

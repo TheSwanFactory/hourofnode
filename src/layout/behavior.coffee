@@ -15,7 +15,7 @@
 
 {my} = require '../my'
 {make} = require '../render/make'
-{programs} = require './programs'
+{programs} = require './mixins/programs'
 
 # TODO: Editing Issues
 # * add new programs
