@@ -25,7 +25,7 @@ exports.events = {
   _EXPORTS: ['stop', 'run', 'error', 'step']
   step: (world, args) ->
     console.log 'stepping'
-    world.send 'prepare'
+    world.send 'prepare' # TODO: remove this if unused
     world.send 'tick'
     world.send 'decide'
   stop: (world, args) -> world.put('speed', 0)

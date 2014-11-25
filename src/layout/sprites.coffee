@@ -46,15 +46,22 @@ exports.sprites = {
       child = world.add_child sprite_dict
       child.handle_event 'apply'
       world.send 'inspect', child
+
+  # selection
+  
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
-  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
+  click: (world, args) -> world.send 'inspect', world
 
   # defaults
+  
   position:  [0,0]
   next_position: null
   direction: [1,0]
   obstruction: true
+
+  # geometry
+  
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
@@ -63,6 +70,12 @@ exports.sprites = {
     translate = "translate(#{world.get('x')},#{world.get('y')})"
     rotate = "rotate(#{world.get('angle')} #{center} #{center})"
     "#{translate} #{rotate}"
+  name_style: (world) ->
+    cell_size = world.get 'cell_size'
+    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+
+  # behavior
+
   behavior:
     first:     []
     repeat:    []
@@ -70,9 +83,7 @@ exports.sprites = {
 
   running: 'first'
 
-  name_style: (world) ->
-    cell_size = world.get 'cell_size'
-    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
   prepare: (world, args) ->
     word = world.get('language')[args]
@@ -92,6 +103,8 @@ exports.sprites = {
   commit: (world, args) ->
     world.put 'position', world.get('determine_next_position') # proposed coordinates
 
+  # sprite methods
+  
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
     my.assert dir?, "expects dir"
@@ -103,17 +116,19 @@ exports.sprites = {
     world.put 'direction', vector.turn(world.get('direction'), dir)
     true # always a valid move
 
+  # TODO: remove this if unused
   apply: (world, args) ->
     {target, action} = args
 #    console.log "apply world #{world}, target #{target}"
     world.call('perform', action) if world == target
+
+  reset: (world, args) ->
+    ['position', 'direction'].map (key) -> world.put key, undefined
+
 
   step: (world, args) ->
     local = world.get('programs')
     return unless world.is_world local
     my.assert signal = local.call('next'), "No next signal"
     world.call 'perform', signal
-  reset: (world, args) ->
-    ['position', 'direction'].map (key) -> world.put key, undefined
-  click: (world, args) -> world.send 'inspect', world
 }
