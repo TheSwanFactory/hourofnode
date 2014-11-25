@@ -6,8 +6,8 @@
 # Responsibility: populate status pane of sprite inspector
 #
 
-{my} = require '../my'
-{make} = require '../render/make'
+{my} = require '../../my'
+{make} = require '../../render/make'
 
 add_paths = (dict, sprite) ->
   paths = sprite.get('paths').all()
@@ -24,7 +24,7 @@ extract = (sprite, button) ->
   value = value.all() if sprite.is_array(value)
   "#{value}"
   
-exports.inspect_status = (sprite) ->
+exports.status = (sprite) ->
 
   status_buttons = make.buttons('stat', [
       "-"

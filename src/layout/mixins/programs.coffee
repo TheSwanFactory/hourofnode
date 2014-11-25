@@ -14,8 +14,8 @@
 # * track and return next command
 # * advance counter (or fault)
 
-{my} = require '../my'
-{make} = require '../render/make'
+{my} = require '../../my'
+{make} = require '../../render/make' # TODO: find better path-ing
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {

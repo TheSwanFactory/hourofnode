@@ -1,6 +1,6 @@
 {my} = require '../my'
 {sprites} = require './sprites'
-{law} = require './grid/law'
+{law} = require './mixins/law'
 
 exports.grid = (level_dict) -> {
   _LABEL: "grid"

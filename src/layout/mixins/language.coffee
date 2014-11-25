@@ -10,8 +10,8 @@
 #   * update the current behavior
 #
 
-{my} = require '../my'
-{make} = require '../render/make'
+{my} = require '../../my'
+{make} = require '../../render/make'
   
 exports.language = (sprite) ->
   language = sprite.get('language')

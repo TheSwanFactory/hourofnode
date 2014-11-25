@@ -2,7 +2,7 @@
 # http://jsfiddle.net/55Kfu/
 # 
 
-{my} = require '../my'
+{my} = require '../../my'
 
 beep = ->
   context = new(window.audioContext || window.webkitAudioContext)

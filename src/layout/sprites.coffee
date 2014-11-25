@@ -10,7 +10,6 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
-{law} = require './grid/law'
 
 transform = (world) ->
   center = world.get('cell_size') / 2
