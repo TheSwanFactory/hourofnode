@@ -1,6 +1,6 @@
 {my} = require '../my'
 {make} = require '../render/make'
-{events} = require '../god/events'
+{events} = require './mixins/events'
 
 exports.controls = (level_dict) ->
   buttons = make.buttons(
