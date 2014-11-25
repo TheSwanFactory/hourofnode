@@ -13,9 +13,9 @@
 # * apply command events to the selected program
 # * send next commmand on step events
 
-{my} = require '../my'
-{make} = require '../render/make'
-{programs} = require './mixins/programs'
+{my} = require '../../my'
+{make} = require '../../render/make'
+{programs} = require './programs'
 
 # TODO: Editing Issues
 # * add new programs

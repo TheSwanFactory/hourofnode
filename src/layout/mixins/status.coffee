@@ -6,8 +6,8 @@
 # Responsibility: populate status pane of sprite inspector
 #
 
-{my} = require '../my'
-{make} = require '../render/make'
+{my} = require '../../my'
+{make} = require '../../render/make'
 
 add_paths = (dict, sprite) ->
   paths = sprite.get('paths').all()

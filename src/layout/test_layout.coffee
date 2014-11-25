@@ -8,7 +8,7 @@
 {grid} = require './grid'
 {sprites} = require './sprites'
 
-{behavior} = require './behavior'
+{behavior} = require './mixins/behavior'
 
 exports.test_layout = (test, rx) ->
   game_dict = game({name: 'example', level: 1})
