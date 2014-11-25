@@ -49,13 +49,16 @@ exports.sprites = {
       world.send 'inspect', child
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get('inspected')
-  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
   # defaults
+  
   position:  [0,0]
   next_position: null
   direction: [1,0]
   obstruction: true
+
+  # geometry
+  
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
@@ -64,6 +67,12 @@ exports.sprites = {
     translate = "translate(#{world.get('x')},#{world.get('y')})"
     rotate = "rotate(#{world.get('angle')} #{center} #{center})"
     "#{translate} #{rotate}"
+  name_style: (world) ->
+    cell_size = world.get 'cell_size'
+    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+
+  # behavior
+
   behavior:
     first:     []
     repeat:    []
@@ -71,9 +80,7 @@ exports.sprites = {
 
   running: 'first'
 
-  name_style: (world) ->
-    cell_size = world.get 'cell_size'
-    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
   prepare: (world, args) ->
     word = world.get('language')[args]
