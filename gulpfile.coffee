@@ -18,6 +18,10 @@ handler = (err) -> throw err if err
 
 branch = -> git.revParse 'HEAD', {args: "--abbrev-ref"}, handler
 
+handleError = (error) ->
+  console.log error.toString()
+  @emit 'end'
+
 # Create bundles using browserify
 
 bundle = (name) ->
@@ -28,6 +32,7 @@ bundle = (name) ->
     debug: true # source maps
   })
     .bundle()
+    .on('error', handleError)
     .pipe(source("#{name}.js"))
     .pipe(buffer())
     .pipe(sourcemaps.init loadMaps: true)
@@ -51,7 +56,7 @@ gulp.task 'sync', -> sync_to dest
 
 # Watch and resync
 
-all_src = ['src/*', 'src/*/*', './../reactive-coffee/src/*']
+all_src = ['src/**/*', './../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds
 

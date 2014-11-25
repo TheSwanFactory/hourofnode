@@ -9,7 +9,7 @@
 #
 # Role: create and run a single program
 #
-# Responsibility: 
+# Responsibility:
 # * create behavior row
 # * track and return next command
 # * advance counter (or fault)
@@ -22,18 +22,42 @@ exports.programs = (sprite) ->
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
+    _EXPORTS: ['tick', 'collision']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
-    
-    next_index: 0
-    next_command: (world) ->
-      program = world.get 'running_program'
 
-    step: (world, args) ->
+    next_index: 0
+    reset_index: (world) -> world.put 'next_index', 0
+    next_command: (world) ->
+      current_index = world.get('next_index')
+      next_index = current_index + 1
+
+      instructions = world.find_child('instructions').find_children()
+
+      # if this is our last instruction
+      if instructions.length <= next_index
+        next_index = 0
+        sprite.put 'running', 'repeat'
+
+      world.put 'next_index', next_index
+
+      instructions[current_index]
+
+    tick: (world, args) ->
       return unless world.get 'selected'
       action = world.get 'next_command'
-      valid_action = sprite.call 'perform', action
-    
+      sprite.call 'prepare', action.get('value') if action
+
+    collision: (world, args) ->
+      [proposing_sprite, collision_subject, coordinates] = args
+      return unless proposing_sprite == sprite # if this is my sprite to handle
+
+      if collision_subject.get('obstruction')
+        world.call 'reset_index'
+        sprite.put 'running', 'interrupt'
+      else
+        sprite.call 'commit', coordinates
+
     apply: (world, args) ->
       return unless world.get 'editable'
       {target, action} = args
@@ -43,15 +67,14 @@ exports.programs = (sprite) ->
   program_row = (name, contents) ->
     program = make.columns name, [
       { _LABEL: 'program_name', name: name }
-      make.buttons("instructions", contents, my.command)
+      make.buttons("instruction", contents, my.command)
     ]
     my.extend program, program_behavior()
 
   behavior = sprite.get('behavior')
   my.assert _.isObject(behavior), "#{sprite} has no behavior property"
-  
+
   children = []
   for name, contents of behavior
     children.push program_row(name, contents)
   children
-  

@@ -10,7 +10,7 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  behavior: {first: [], repeat: ['forward']}
+  behavior: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
   editable: true
 }
 
@@ -18,6 +18,7 @@ yu = my.dup me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
+  behavior: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {
@@ -26,7 +27,8 @@ exit = {
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
-  behavior: {turtle: ['victory']}
+  behavior: {interrupt: ['_victory']}
+  obstruction: false
 }  
 
 exports.game = {
@@ -37,8 +39,8 @@ exports.game = {
   language: {
     # Admin commands have '_'
     # TODO: hide Admin commands if not in design mode
-    _victory: ['.send', 'done',  1]
-    _failure: ['.send', 'done', -1]
+    _victory: ['send', 'done',  1].join ' '
+    _failure: ['send', 'done', -1].join ' '
   }
 
   shapes: {
@@ -50,7 +52,7 @@ exports.game = {
   levels: [
     {
       name: 'Move the Turtle to the Exit'
-      sprites: [me, exit]
+      sprites: [exit, me]
       goal: {
         clicks: 1
         ticks: 4
@@ -59,7 +61,7 @@ exports.game = {
     }
     {
       name: 'Double Time'
-      sprites: [me, yu, exit]
+      sprites: [exit, me, yu]
       goal: {
         clicks: 10
         ticks: 8

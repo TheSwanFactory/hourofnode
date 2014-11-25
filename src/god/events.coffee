@@ -22,14 +22,19 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['stop', 'run', 'error']
+  _EXPORTS: ['stop', 'run', 'error', 'step']
+  step: (world, args) ->
+    console.log 'stepping'
+    world.send 'prepare'
+    world.send 'tick'
+    world.send 'decide'
   stop: (world, args) -> world.put('speed', 0)
   run: (world, args) ->
     world.put('speed', 1)
     step_and_repeat = (self) ->
       speed = world.get_plain('speed')
       if speed > 0
-        delay = world.get_plain('interval') / speed 
+        delay = world.get_plain('interval') / speed
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)

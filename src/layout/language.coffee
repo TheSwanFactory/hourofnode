@@ -32,6 +32,7 @@ exports.language = (sprite) ->
     (button, args) ->
       if sprite.get 'editable'
         send_message button.get('value')
+        button.send 'decide'
       else
         button.send 'error', "#{sprite} not editable"
   )

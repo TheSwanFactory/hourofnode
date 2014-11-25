@@ -1,11 +1,13 @@
 {my} = require '../my'
 {sprites} = require './sprites'
+{law} = require './grid/law'
 
 exports.grid = (level_dict) -> {
   _LABEL: "grid"
   height: (world) -> world.get('grid_size')
   width: (world) -> world.get('grid_size')
   paths: []
+  obstruction: true
   _CHILDREN: [
     {
       _LABEL: "background"
@@ -27,5 +29,6 @@ exports.grid = (level_dict) -> {
         [path] 
     }
     sprites
+    law
   ]
 }
