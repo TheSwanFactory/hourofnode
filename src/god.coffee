@@ -16,5 +16,5 @@ class GOD
 exports.god = (rx, doc) ->
   god = new GOD()
   root = world(god, rx, doc)
-  root.put 'events', root.make_world(events)
+  #root.put 'events', root.make_world(events)
   root
