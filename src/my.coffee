@@ -99,7 +99,4 @@ exports.my = {
     label: '_LABEL'
     setup: '_SETUP'
   }
-  kind: {
-    wall: '_WALL'
-  }
 }
