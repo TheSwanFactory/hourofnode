@@ -15,10 +15,8 @@
 
 {my} = require '../my'
 {make} = require '../render/make'
-# {processor} = require './processor'
 {programs} = require './programs'
 
-# 
 # TODO: Editing Issues
 # * add new programs
 # * rename events
@@ -26,15 +24,6 @@
 # * reorder commmands within and between programs
 # * drag commands from above into a program
 # * drag programs into the commands view!
-# 
-# TODO: Behavior Issues
-# * step through a program
-# * send next command to sprite
-# * detect and handle interruptions
-#   * hitting boundaries
-#   * collisions
-#   * finishing levels
-# 
 
 exports.behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
@@ -42,9 +31,7 @@ exports.behavior = (sprite) ->
   my.assert default_program, "no default_program"
 
   initial_label = default_program._LABEL
-  my.extend rows, # processor(initial_label, sprite),
-    {
-#      _EXPORTS: ['step']
-      y: (world) -> world.index * my.row.spacing
-      class: 'program'
-    }
+  my.extend rows, {
+    y: (world) -> world.index * my.row.spacing
+    class: 'program'
+  }
