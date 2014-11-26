@@ -14,6 +14,7 @@
 
 game_files = {
   geometry: require("./game/geometry").game
+  shapes: require("./game/shapes").game
   baseline: require("./game/baseline").game
   example: require("./game/example").game
 }
