@@ -82,6 +82,7 @@ exports.sprites = {
     interrupt: []
 
   running: 'first'
+  editing: 'first'
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
@@ -117,7 +118,7 @@ exports.sprites = {
 
   # TODO: remove this if unused
   apply: (world, args) ->
-    {target, action} = args
+    {target, action, key} = args
     console.log "apply #{action}: world #{world} =? target #{target}"
     world.call('perform', action) if world == target
 
