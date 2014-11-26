@@ -62,11 +62,14 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       return unless world.get 'editable'
+      console.log 'programs apply'
+      
       {target, action} = args
       world.call('store', action) if world == target
 
     store: (world, action) ->
       instructions_container = world.find_child('instructions')
+      # instructions_container.add_child action
   }
 
   program_row = (name, contents) ->

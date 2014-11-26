@@ -92,7 +92,6 @@ exports.sprites = {
     # this is bad. it should be getting this from language.coffee
     action = phrase.split " "
     action[2] = parseInt action[2]
-
     world.call 'perform', action
 
   perform: (world, action) ->
@@ -118,6 +117,7 @@ exports.sprites = {
 
   # TODO: remove this if unused
   apply: (world, args) ->
+    console.log 'sprite apply'
     {target, action} = args
 #    console.log "apply world #{world}, target #{target}"
     world.call('perform', action) if world == target

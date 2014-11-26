@@ -22,8 +22,8 @@ exports.language = (sprite) ->
     action = language[word].split " "
     action[2] = parseInt action[2]
     message = { target: sprite, name: word, action: action }
-    console.log 'send_message',message, sprite
-    sprite.call('apply', message)
+    console.log 'send_message', message, sprite
+    sprite.send 'apply', message
   
   buttons = make.buttons(
     'command',
