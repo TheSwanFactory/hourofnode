@@ -1,5 +1,4 @@
 {my} = require '../my'
-{vector} = require '../god/vector'
 
 SCALE = my.cell_width
 RADIUS = 0.9 * SCALE
@@ -27,8 +26,6 @@ exports.game = {
        a#{RADIUS},#{RADIUS} 0 1,1 -#{INSET},0
        "
     ]
-    
-    
   }
   
 }

@@ -23,7 +23,7 @@ yu = my.dup me, {
 
 exit = {
   name: 'exit'
-  shape: 'circle'
+  shape: 'diamond'
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
