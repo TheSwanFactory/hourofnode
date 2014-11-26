@@ -26,7 +26,6 @@ exports.events = {
   
   step: (world, args) ->
     console.log 'stepping'
-    world.send 'prepare' # TODO: remove this if unused
     world.send 'tick'
     world.send 'decide'
     
