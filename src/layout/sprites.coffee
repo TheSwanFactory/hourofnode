@@ -117,14 +117,12 @@ exports.sprites = {
 
   # TODO: remove this if unused
   apply: (world, args) ->
-    console.log 'sprite apply'
     {target, action} = args
-#    console.log "apply world #{world}, target #{target}"
+    console.log "apply #{action}: world #{world} =? target #{target}"
     world.call('perform', action) if world == target
 
   reset: (world, args) ->
     ['position', 'direction'].map (key) -> world.put key, undefined
-
 
   step: (world, args) ->
     local = world.get('programs')

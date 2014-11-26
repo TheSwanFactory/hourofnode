@@ -26,10 +26,10 @@ exports.programs = (sprite) ->
     return 0
     
   program_behavior = (name) -> {
+    _EXPORTS: ['tick', 'collision', 'apply']
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
-    _EXPORTS: ['tick', 'collision']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
@@ -61,8 +61,8 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
+      console.log 'programs apply', world
       return unless world.get 'editable'
-      console.log 'programs apply'
       
       {target, action} = args
       world.call('store', action) if world == target
