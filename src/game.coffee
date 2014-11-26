@@ -41,12 +41,18 @@ exports.game = (rx, query) ->
   game_dict = find_game query.name
   level = query.level or 0
   my.assert game_dict.levels and _.isArray(game_dict.levels)
+  world = god(rx, game_dict)
+  
   level_dict = game_dict.levels[level]
   level_dict.level_index = level
   level_dict.level_count = game_dict.levels.length
   level_dict.game = game_dict.name 
-  game_dict[my.key.children] = [level_dict]
+  
   level_dict._CHILDREN = []
   for child in layout
     level_dict._CHILDREN.push child(level_dict)
-  world = god(rx, game_dict)
+  
+  level_world = world.add_child level_dict
+  world.send(my.key.setup)
+  
+  world
