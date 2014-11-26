@@ -49,7 +49,7 @@ exports.game = (rx, query) ->
   world = god(rx, game_dict)
   
   level = query.level or 0
-  level_dict = create_level(game_dict.levels, level)
+  level_dict = create_level(world.get('levels').all(), level)
   level_dict.game = game_dict.name 
   level_world = world.add_child level_dict
   for child in layout
