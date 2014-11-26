@@ -1,8 +1,6 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 
-SCALE = my.cell_width
-
 exports.game = {
   name: "The Hour of Node"
   assume: 'shapes'

@@ -2,6 +2,9 @@
 {vector} = require '../god/vector'
 
 SCALE = my.cell_width
+RADIUS = 0.9 * SCALE
+OFFSET = SCALE / 6
+INSET = 2 * RADIUS
 
 exports.game = {
   name: "Shapes"
@@ -15,6 +18,17 @@ exports.game = {
     diamond: [
       "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"
     ]
+    square: [
+      "M#{OFFSET},#{OFFSET} h#{INSET} v#{INSET} h-#{INSET} v-#{INSET}"
+    ]
+    circle: [
+      "M#{OFFSET},#{RADIUS+OFFSET}
+       a#{RADIUS},#{RADIUS} 0 1,1 #{INSET},0
+       a#{RADIUS},#{RADIUS} 0 1,1 -#{INSET},0
+       "
+    ]
+    
+    
   }
   
 }
