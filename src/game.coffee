@@ -1,3 +1,4 @@
+#
 # game.coffee
 #
 # Role: concisely capture the unique properties of a game

@@ -6,16 +6,6 @@ SCALE = my.cell_width
 exports.game = {
   name: "The Hour of Node"
   based_on: 'geometry'
-
-  # Geometry
-  screen: my.page_dimensions
-  width: my.page_dimensions[vector.size.width]
-  fill: 'white'
-  name_style: {font_size: 36}
-  
-  grid_size: my.column_1_width
-  cell_count: 8
-  cell_size: (world) -> world.get('grid_size') / world.get('cell_count')
   goal: {
     clicks: 0
     ticks: 0
