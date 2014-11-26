@@ -30,5 +30,5 @@ exports.layout = (level_dict) ->
     header(level_dict)
     controls(level_dict)
     grid(level_dict)
-    inspector
+    inspector()
   ]

@@ -2,7 +2,7 @@
 {sprites} = require './sprites'
 {law} = require './mixins/law'
 
-exports.grid = (level_dict) -> {
+exports.grid = () -> {
   _LABEL: "grid"
   height: (world) -> world.get('grid_size')
   width: (world) -> world.get('grid_size')

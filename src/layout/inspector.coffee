@@ -29,26 +29,27 @@ make_inspector = (world, sprite) ->
   sprite.put 'inspector', inspector
   inspector
   
-exports.inspector = {
-  _LABEL: 'inspector'
-  _EXPORTS: ['inspect']
-  inspect: (world, sprite) ->
-    world.reset_children()
-    inspector = sprite.get_plain('inspector') or make_inspector(world, sprite)
-    world.add_child inspector 
+exports.inspector = () ->
+  {
+    _LABEL: 'inspector'
+    _EXPORTS: ['inspect']
+    inspect: (world, sprite) ->
+      world.reset_children()
+      inspector = sprite.get_plain('inspector') or make_inspector(world, sprite)
+      world.add_child inspector 
 
-  width: (world) -> world.up.get('width') - 4 * my.margin
-  x: (world) -> world.up.get('width') + my.margin
-  y: 2*my.margin
-  position: 'absolute'
-  height: (world) -> world.get('screen').at vector.size.height
-  stroke: my.color.line
-  fill: my.color.background
+    width: (world) -> world.up.get('width') - 4 * my.margin
+    x: (world) -> world.up.get('width') + my.margin
+    y: 2*my.margin
+    position: 'absolute'
+    height: (world) -> world.get('screen').at vector.size.height
+    stroke: my.color.line
+    fill: my.color.background
 
-# TODO: Simplify by adding private _members
-  _AUTHORITY: {
-    x: () -> 0
-    height: () -> 0
-    class: 'inspector'
+  # TODO: Simplify by adding private _members
+    _AUTHORITY: {
+      x: () -> 0
+      height: () -> 0
+      class: 'inspector'
+    }
   }
-}

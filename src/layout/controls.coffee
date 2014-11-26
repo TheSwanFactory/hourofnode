@@ -2,7 +2,7 @@
 {make} = require '../render/make'
 {events} = require './mixins/events'
 
-exports.controls = (level_dict) ->
+exports.controls = () ->
   buttons = make.buttons(
     'control',
     ["step", "run", "stop", "reset"],
