@@ -61,13 +61,14 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
-      console.log 'programs apply', world
-      return unless world.get 'editable'
-      
       {target, action} = args
-      world.call('store', action) if world == target
+      console.log "programs apply: #{world}, {#{target}, #{action}}"
+      console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
+      return unless world.get 'editable'      
+      world.call('store', action) if sprite == target
 
     store: (world, action) ->
+      console.log "programs store: #{world}, {#{action}}"
       instructions_container = world.find_child('instructions')
       # instructions_container.add_child action
   }

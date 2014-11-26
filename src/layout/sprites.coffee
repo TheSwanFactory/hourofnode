@@ -82,6 +82,7 @@ exports.sprites = {
     interrupt: []
 
   running: 'first'
+  editing: 'first'
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
