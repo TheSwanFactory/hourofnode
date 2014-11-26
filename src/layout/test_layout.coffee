@@ -11,22 +11,17 @@
 {behavior} = require './mixins/behavior'
 
 exports.test_layout = (test, rx) ->
-  game_dict = game({name: 'example', level: 1})
-  config = layout(game_dict)
-  world = god(rx, config)
+  world = game(rx, {name: 'example', level: 1})
   level = world.find_child()
   grid = level.find_child('grid')
   all_sprites = grid.find_child('sprites')
   sprite = all_sprites.find_children()[1]
 
-  test "layout config", (t) ->
-    t.ok game_dict, 'game_dict'
+  test "layout", (t) ->
     t.ok header, 'header'
     t.ok controls, 'controls'
-    t.ok config, 'config'
     t.ok grid, 'grid'
     t.ok world, 'world'
-    console.log 'game config', config, world
     t.end()
   
   test "layout properties", (t) ->
