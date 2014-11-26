@@ -36,16 +36,23 @@ load_game = (name) ->
   result = merge find_game(basis), new_game
   game_cache[name] = result
   result
-
+  
 create_level = (game_levels, level) ->
   level_dict = game_levels.at(level)
   level_dict.level_index = level
   level_dict.level_count = game_levels.length()
   level_dict
+
+create_game = (file) ->
+  ""
   
 exports.game = (rx, query) ->
+  root = god(rx, {})
+  world = create_game(root, query.file)
+  
   game_dict = find_game query.file
   world = god(rx, game_dict)
+  
   game_levels = world.get('levels')
   my.assert game_levels and world.is_array(game_levels)
   
