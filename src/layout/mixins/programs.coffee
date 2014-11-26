@@ -18,9 +18,10 @@
 {make} = require '../../render/make' # TODO: find better path-ing
 
 exports.programs = (sprite) ->
-  get_next_index = (current_index, length) ->
+  
+  get_next_index = (current_index, count) ->
     next_index = current_index + 1
-    return next_index if next_index < length
+    return next_index if next_index < count
     sprite.put 'running', 'repeat'
     return 0
     
@@ -35,11 +36,11 @@ exports.programs = (sprite) ->
     next_index: 0
     reset_index: (world) -> world.put 'next_index', 0
     next_instruction: (world) ->
-      instructions = world.find_child('instructions').find_children()
       current_index = world.get 'next_index'
+      instructions = world.find_child('instructions').find_children()
 
-      next_index = get_next_index(current_index, instructions.length)
-      world.put 'next_index', next_index 
+      count = instructions.length
+      world.put 'next_index', get_next_index(current_index, count) 
 
       instructions[current_index]
 
