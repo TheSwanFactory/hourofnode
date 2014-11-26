@@ -12,7 +12,7 @@ exports.game = {
     _AUTHORITY: {width: 'auto'}
   }
   
-  based_on: 'geometry'
+  assume: 'geometry'
   goal: {
     clicks: 0
     ticks: 0

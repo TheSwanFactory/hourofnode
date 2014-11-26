@@ -33,7 +33,7 @@ exit = {
 
 exports.game = {
   name: "Example Game"
-  based_on: 'baseline'
+  assume: 'baseline'
   comment: "For testing purposes only"
 
   language: {

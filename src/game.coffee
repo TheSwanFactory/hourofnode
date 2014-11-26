@@ -33,7 +33,7 @@ find_game = (name) -> game_cache[name] or load_game(name)
 load_game = (name) ->
   new_game = game_files[name]
   my.assert new_game, "Can not load game #{name}"
-  basis = new_game.based_on
+  basis = new_game.assume
   return new_game unless basis
   console.log "load_game basis #{basis}"
   result = merge find_game(basis), new_game
