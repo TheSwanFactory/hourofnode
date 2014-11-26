@@ -25,22 +25,9 @@
 #       sprite2...
 #     inspector
 
-setup_geometry = (dict) ->
-  my.extend dict, {
-    margin: my.margin
-    outer_width: (world) -> world.get('width') + 2 * world.get('padding')
-    inner_width: (world) -> world.get('width') - 2 * world.get('margin')
-    offset: (world) -> world.index * world.get('outer_width')
-    available_width: (world) ->
-      world.up.get('inner_width') - 2 * world.get('padding')
-    set_outer_width: (world, outer_width) ->
-      world.put 'width', outer_width - 2 * world.get('padding')
-  }
-
 set_font_size = (dict, size) -> dict.name_style = {font_size: size}
 
 exports.layout = (game_dict) ->
-  # setup_geometry(game_dict)
   level_dict = game_dict[my.key.children][0]
 #  console.log "!! layout level_dict", level_dict
   set_font_size(level_dict, 24)
