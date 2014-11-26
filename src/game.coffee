@@ -12,6 +12,7 @@
 {my} = require './my'
 
 game_files = {
+  geometry: require("./game/geometry").game
   baseline: require("./game/baseline").game
   example: require("./game/example").game
 }
@@ -33,6 +34,7 @@ load_game = (name) ->
   my.assert new_game, "Can not load game #{name}"
   basis = new_game.based_on
   return new_game unless basis
+  console.log "load_game basis #{basis}"
   result = merge find_game(basis), new_game
   game_cache[name] = result
   result

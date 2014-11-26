@@ -5,6 +5,7 @@ SCALE = my.cell_width
 
 exports.game = {
   name: "The Hour of Node"
+  based_on: 'geometry'
 
   # Geometry
   screen: my.page_dimensions
