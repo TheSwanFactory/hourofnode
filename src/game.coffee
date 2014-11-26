@@ -37,17 +37,20 @@ load_game = (name) ->
   game_cache[name] = result
   result
 
+create_level = (game_dict, level) ->
+  level_dict = game_dict.levels[level]
+  level_dict.level_index = level
+  level_dict.level_count = game_dict.levels.length
+  level_dict.game = game_dict.name 
+  level_dict
+  
 exports.game = (rx, query) ->
   game_dict = find_game query.name
   level = query.level or 0
   my.assert game_dict.levels and _.isArray(game_dict.levels)
   world = god(rx, game_dict)
   
-  level_dict = game_dict.levels[level]
-  level_dict.level_index = level
-  level_dict.level_count = game_dict.levels.length
-  level_dict.game = game_dict.name 
-  
+  level_dict = create_level(game_dict, level)
   level_world = world.add_child level_dict
   for child in layout
     level_world.add_child child(level_dict)
