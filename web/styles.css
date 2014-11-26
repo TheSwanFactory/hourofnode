@@ -13,6 +13,12 @@ span.text {
   padding: 2px;
 }
 
+button.selected {
+  border: 'gold';
+  border_width: 2;
+  border_style: 'solid';
+}
+
 text {
   text-anchor: middle;
 }
