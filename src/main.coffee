@@ -32,10 +32,7 @@ sys = require 'sys'
 {layout} = require './layout'
 {render} = require './render'
 
-game_dict = game({name: 'example', level: 1})
-config = layout(game_dict)
-world = god(rx, config)
-#console.log "root world", my.inspect(world)
+world = game(rx, {name: 'example', level: 1})
 
 main = ->
   $('body').append(

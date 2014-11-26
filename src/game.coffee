@@ -11,6 +11,8 @@
 # * return the game dictionary 
 
 {my} = require './my'
+{god} = require './god'
+{layout} = require './layout'
 {game_files} = require './game/game_files'
 
 game_cache = {}
@@ -35,7 +37,7 @@ load_game = (name) ->
   game_cache[name] = result
   result
 
-exports.game = (query) ->
+exports.game = (rx, query) ->
   game_dict = find_game query.name
   level = query.level or 0
   my.assert game_dict.levels and _.isArray(game_dict.levels)
@@ -44,4 +46,6 @@ exports.game = (query) ->
   level_dict.level_count = game_dict.levels.length
   level_dict.game = game_dict.name 
   game_dict[my.key.children] = [level_dict]
-  game_dict
+  
+  config = layout(game_dict)
+  world = god(rx, config)
