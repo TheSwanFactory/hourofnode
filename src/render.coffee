@@ -26,6 +26,7 @@ create_attrs = (world, style) ->
   klass = [label, "#{labels.length}_#{label}"]
   klass.push world.get_local_plain('class') ? ''
   klass.push world.get_local_plain(my.key.kind) ? ''
+  klass.push 'selected' if world.get 'selected'
   attrs = {
     id: "#{labels.length}_#{labels.join '_'}"
     class: klass
