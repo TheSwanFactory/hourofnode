@@ -85,12 +85,12 @@ exports.sprites = {
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
-  prepare: (world, args) ->
-    word = world.get('language')[args]
-    console.log args
+  prepare: (world, key) ->
+    console.log key
+    phrase = world.get('language')[key]
     # TODO: use language.coffee
     # this is bad. it should be getting this from language.coffee
-    action = word.split " "
+    action = phrase.split " "
     action[2] = parseInt action[2]
 
     world.call 'perform', action
