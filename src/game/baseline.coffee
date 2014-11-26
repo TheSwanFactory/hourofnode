@@ -8,6 +8,8 @@ exports.game = {
   name_style: {font_size: 24}
   _AUTHORITY: {
     name_style: {font_size: 18}
+    width: (world) -> world.get('column_width')
+    _AUTHORITY: {width: 'auto'}
   }
   
   based_on: 'geometry'

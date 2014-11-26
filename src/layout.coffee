@@ -27,8 +27,6 @@
 
 exports.layout = (game_dict) ->
   level_dict = game_dict[my.key.children][0]
-  level_dict.width = game_dict.width / 2
-  level_dict['stroke-width'] = 1
   
   level_dict._CHILDREN = [
     header(level_dict)
