@@ -25,10 +25,9 @@
 #       sprite2...
 #     inspector
 
-exports.layout = (level_dict) ->
-  [
-    header(level_dict)
-    controls(level_dict)
-    grid(level_dict)
-    inspector()
+exports.layout = [
+    header
+    controls
+    grid
+    inspector
   ]

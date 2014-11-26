@@ -46,5 +46,7 @@ exports.game = (rx, query) ->
   level_dict.level_count = game_dict.levels.length
   level_dict.game = game_dict.name 
   game_dict[my.key.children] = [level_dict]
-  level_dict._CHILDREN = layout(level_dict)
+  level_dict._CHILDREN = []
+  for child in layout
+    level_dict._CHILDREN.push child(level_dict)
   world = god(rx, game_dict)
