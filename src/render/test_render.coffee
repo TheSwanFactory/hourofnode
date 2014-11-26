@@ -23,7 +23,7 @@ exports.test_render = (test, rx) ->
     contents = god(rx, dict)
     render(contents)
 
-  get_label = (tag) -> tag.attr.class.split(" ")[0]
+  get_label = (tag) -> tag.attr.class[0]
 
   test "rx_mock exists", (t) ->
     t.ok world.T, 'Has HTML Tags'
