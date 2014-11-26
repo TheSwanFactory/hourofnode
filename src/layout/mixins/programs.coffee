@@ -18,6 +18,12 @@
 {make} = require '../../render/make' # TODO: find better path-ing
 
 exports.programs = (sprite) ->
+  get_next_index = (current_index, length) ->
+    next_index = current_index + 1
+    return next_index if next_index < length
+    sprite.put 'running', 'repeat'
+    return 0
+    
   program_behavior = (name) -> {
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
@@ -28,24 +34,18 @@ exports.programs = (sprite) ->
 
     next_index: 0
     reset_index: (world) -> world.put 'next_index', 0
-    next_command: (world) ->
-      current_index = world.get('next_index')
-      next_index = current_index + 1
-
+    next_instruction: (world) ->
       instructions = world.find_child('instructions').find_children()
+      current_index = world.get 'next_index'
 
-      # if this is our last instruction
-      if instructions.length <= next_index
-        next_index = 0
-        sprite.put 'running', 'repeat'
-
-      world.put 'next_index', next_index
+      next_index = get_next_index(current_index, instructions.length)
+      world.put 'next_index', next_index 
 
       instructions[current_index]
 
     tick: (world, args) ->
       return unless world.get 'selected'
-      action = world.get 'next_command'
+      action = world.get 'next_instruction'
       sprite.call 'prepare', action.get('value') if action
 
     collision: (world, args) ->
