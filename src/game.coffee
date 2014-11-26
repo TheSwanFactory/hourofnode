@@ -38,20 +38,19 @@ load_game = (name) ->
   result
 
 create_level = (game_levels, level) ->
-  level_dict = game_levels[level]
+  level_dict = game_levels.at(level)
   level_dict.level_index = level
-  level_dict.level_count = game_levels.length
+  level_dict.level_count = game_levels.length()
   level_dict
   
 exports.game = (rx, query) ->
-  game_dict = find_game query.name
+  game_dict = find_game query.file
   world = god(rx, game_dict)
   game_levels = world.get('levels')
   my.assert game_levels and world.is_array(game_levels)
   
   level = query.level or 0
-  level_dict = create_level(game_levels.all(), level)
-  level_dict.game = game_dict.name 
+  level_dict = create_level(game_levels, level)
   level_world = world.add_child level_dict
   for child in layout
     level_world.add_child child(level_dict)
