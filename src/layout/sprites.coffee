@@ -90,10 +90,10 @@ exports.sprites = {
     console.log args
     # TODO: use language.coffee
     # this is bad. it should be getting this from language.coffee
-    signal = word.split " "
-    signal[2] = parseInt signal[2]
+    action = word.split " "
+    action[2] = parseInt action[2]
 
-    world.call 'perform', signal
+    world.call 'perform', action
 
   perform: (world, action) ->
     [method, key, value] = action
