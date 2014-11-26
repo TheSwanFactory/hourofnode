@@ -44,7 +44,6 @@ exports.events = {
   error: (world, message) ->
     console.error message
     beep(my.duration.tone, 2)
-    
 
   done: (world, args) ->
     success = args > 0
