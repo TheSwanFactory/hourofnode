@@ -45,11 +45,12 @@ create_level = (game_levels, level) ->
   
 exports.game = (rx, query) ->
   game_dict = find_game query.name
-  my.assert game_dict.levels and _.isArray(game_dict.levels)
   world = god(rx, game_dict)
+  game_levels = world.get('levels')
+  my.assert game_levels and world.is_array(game_levels)
   
   level = query.level or 0
-  level_dict = create_level(world.get('levels').all(), level)
+  level_dict = create_level(game_levels.all(), level)
   level_dict.game = game_dict.name 
   level_world = world.add_child level_dict
   for child in layout
