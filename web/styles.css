@@ -19,7 +19,7 @@ div .selected {
   border_style: 'solid';
 }
 
-div .editing {
+div .editable {
   background: 'white';
 }
 
