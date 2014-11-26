@@ -25,12 +25,10 @@
 #       sprite2...
 #     inspector
 
-exports.layout = (game_dict) ->
-  level_dict = game_dict[my.key.children][0]
-  level_dict._CHILDREN = [
+exports.layout = (level_dict) ->
+  [
     header(level_dict)
     controls(level_dict)
     grid(level_dict)
     inspector
   ]
-  game_dict
