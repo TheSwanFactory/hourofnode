@@ -43,12 +43,6 @@ exports.game = {
     _failure: ['send', 'done', -1].join ' '
   }
 
-  shapes: {
-    diamond: [
-      "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"
-    ]
-  }
-
   levels: [
     {
       name: 'Move the Turtle to the Exit'
