@@ -18,40 +18,42 @@
 {make} = require '../../render/make' # TODO: find better path-ing
 
 exports.programs = (sprite) ->
+  
+  get_next_index = (current_index, count) ->
+    next_index = current_index + 1
+    return next_index if next_index < count
+    sprite.put 'running', 'repeat'
+    return 0
+    
   program_behavior = (name) -> {
+    _EXPORTS: ['tick', 'collision', 'apply']
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
-    _EXPORTS: ['tick', 'collision']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
     next_index: 0
     reset_index: (world) -> world.put 'next_index', 0
-    next_command: (world) ->
-      current_index = world.get('next_index')
-      next_index = current_index + 1
-
+    next_instruction: (world) ->
+      current_index = world.get 'next_index'
       instructions = world.find_child('instructions').find_children()
 
-      # if this is our last instruction
-      if instructions.length <= next_index
-        next_index = 0
-        sprite.put 'running', 'repeat'
-
-      world.put 'next_index', next_index
+      count = instructions.length
+      world.put 'next_index', get_next_index(current_index, count) 
 
       instructions[current_index]
 
     tick: (world, args) ->
       return unless world.get 'selected'
-      action = world.get 'next_command'
-      sprite.call 'prepare', action.get('value') if action
+      instruction = world.get 'next_instruction'
+      sprite.call 'prepare', instruction.get('value') if instruction
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
-      return unless proposing_sprite == sprite # if this is my sprite to handle
-
+      return unless proposing_sprite == sprite
+      
+      # if this is my sprite to handle
       if collision_subject.get('obstruction')
         world.call 'reset_index'
         sprite.put 'running', 'interrupt'
@@ -59,9 +61,15 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
+      console.log 'programs apply', world
       return unless world.get 'editable'
+      
       {target, action} = args
       world.call('store', action) if world == target
+
+    store: (world, action) ->
+      instructions_container = world.find_child('instructions')
+      # instructions_container.add_child action
   }
 
   program_row = (name, contents) ->

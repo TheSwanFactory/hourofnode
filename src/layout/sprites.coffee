@@ -85,15 +85,14 @@ exports.sprites = {
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
-  prepare: (world, args) ->
-    word = world.get('language')[args]
-    console.log args
+  prepare: (world, key) ->
+    console.log key
+    phrase = world.get('language')[key]
     # TODO: use language.coffee
     # this is bad. it should be getting this from language.coffee
-    signal = word.split " "
-    signal[2] = parseInt signal[2]
-
-    world.call 'perform', signal
+    action = phrase.split " "
+    action[2] = parseInt action[2]
+    world.call 'perform', action
 
   perform: (world, action) ->
     [method, key, value] = action
@@ -119,12 +118,11 @@ exports.sprites = {
   # TODO: remove this if unused
   apply: (world, args) ->
     {target, action} = args
-#    console.log "apply world #{world}, target #{target}"
+    console.log "apply #{action}: world #{world} =? target #{target}"
     world.call('perform', action) if world == target
 
   reset: (world, args) ->
     ['position', 'direction'].map (key) -> world.put key, undefined
-
 
   step: (world, args) ->
     local = world.get('programs')
