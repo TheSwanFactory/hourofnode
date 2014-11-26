@@ -118,7 +118,7 @@ exports.sprites = {
 
   # TODO: remove this if unused
   apply: (world, args) ->
-    {target, action} = args
+    {target, action, key} = args
     console.log "apply #{action}: world #{world} =? target #{target}"
     world.call('perform', action) if world == target
 
