@@ -48,9 +48,10 @@ exports.events = {
 
   done: (world, args) ->
     success = args > 0
-    if success 
-      alert 'victory'
-    else
-      alert 'failure'
+    message = if success then 'victory' else 'failure'
+    alert message
+    # TODO: Make this a full-fledged dialog
+    # Add retry, next level, select levels, select game
+    # And maybe share, find our more, sign up, etc.
 
 }
