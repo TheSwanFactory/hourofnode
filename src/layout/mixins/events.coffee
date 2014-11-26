@@ -22,7 +22,7 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'run', 'error']
+  _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
   
   step: (world, args) ->
     console.log 'stepping'
@@ -44,4 +44,13 @@ exports.events = {
   error: (world, message) ->
     console.error message
     beep(my.duration.tone, 2)
+    
+
+  done: (world, args) ->
+    success = args > 0
+    if success 
+      alert 'victory'
+    else
+      alert 'failure'
+
 }
