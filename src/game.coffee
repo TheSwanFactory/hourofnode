@@ -37,11 +37,10 @@ load_game = (name) ->
   game_cache[name] = result
   result
 
-create_level = (game_dict, level) ->
-  level_dict = game_dict.levels[level]
+create_level = (game_levels, level) ->
+  level_dict = game_levels[level]
   level_dict.level_index = level
-  level_dict.level_count = game_dict.levels.length
-  level_dict.game = game_dict.name 
+  level_dict.level_count = game_levels.length
   level_dict
   
 exports.game = (rx, query) ->
@@ -50,7 +49,8 @@ exports.game = (rx, query) ->
   world = god(rx, game_dict)
   
   level = query.level or 0
-  level_dict = create_level(game_dict, level)
+  level_dict = create_level(game_dict.levels, level)
+  level_dict.game = game_dict.name 
   level_world = world.add_child level_dict
   for child in layout
     level_world.add_child child(level_dict)
