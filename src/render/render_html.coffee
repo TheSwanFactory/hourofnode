@@ -12,10 +12,6 @@ exports.render_html = (world) ->
     tag: tag
     name_tag: name_tag(T, tag_name)
     style: {
-#      border: world.get 'stroke'
-#      border_width: world.get 'stroke-width' if has_border
-#      border_style: 'solid' if has_border
-      background: world.get_local 'fill'
       margin: world.get 'margin'
       padding: world.get 'padding'
       position: world.get_local 'position'
