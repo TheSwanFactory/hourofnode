@@ -5,6 +5,11 @@ SCALE = my.cell_width
 
 exports.game = {
   name: "The Hour of Node"
+  name_style: {font_size: 24}
+  _AUTHORITY: {
+    name_style: {font_size: 18}
+  }
+  
   based_on: 'geometry'
   goal: {
     clicks: 0

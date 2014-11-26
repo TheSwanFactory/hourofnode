@@ -25,13 +25,8 @@
 #       sprite2...
 #     inspector
 
-set_font_size = (dict, size) -> dict.name_style = {font_size: size}
-
 exports.layout = (game_dict) ->
   level_dict = game_dict[my.key.children][0]
-#  console.log "!! layout level_dict", level_dict
-  set_font_size(level_dict, 24)
-  set_font_size(level_dict._AUTHORITY = {}, 18)
   level_dict.width = game_dict.width / 2
   level_dict['stroke-width'] = 1
   
