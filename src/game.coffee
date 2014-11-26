@@ -11,13 +11,7 @@
 # * return the game dictionary 
 
 {my} = require './my'
-
-game_files = {
-  geometry: require("./game/geometry").game
-  shapes: require("./game/shapes").game
-  baseline: require("./game/baseline").game
-  example: require("./game/example").game
-}
+{game_files} = require './game/game_files'
 
 game_cache = {}
 
