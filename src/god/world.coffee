@@ -277,5 +277,5 @@ exports.world = (up, rx, doc) ->
   root.put RX, rx
   root.put HANDLERS, rx.map()
   root.import_dict(doc)
-  root.send(my.key.setup)
+#  root.send(my.key.setup)
   root
