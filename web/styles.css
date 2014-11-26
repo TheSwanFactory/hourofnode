@@ -13,10 +13,26 @@ span.text {
   padding: 2px;
 }
 
-button.selected {
+div .selected {
+  border: 'yellow';
+  border_width: 1;
+  border_style: 'solid';
+}
+
+div .editing {
+  background: 'white';
+}
+
+button .selected {
   border: 'gold';
   border_width: 2;
   border_style: 'solid';
+}
+
+button .selected .uneditable {
+  border: 'grey';
+  border_width: 2;
+  border_style: 'dot';
 }
 
 text {
