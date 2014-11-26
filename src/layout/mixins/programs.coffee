@@ -46,13 +46,14 @@ exports.programs = (sprite) ->
 
     tick: (world, args) ->
       return unless world.get 'selected'
-      action = world.get 'next_instruction'
-      sprite.call 'prepare', action.get('value') if action
+      instruction = world.get 'next_instruction'
+      sprite.call 'prepare', instruction.get('value') if instruction
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
-      return unless proposing_sprite == sprite # if this is my sprite to handle
-
+      return unless proposing_sprite == sprite
+      
+      # if this is my sprite to handle
       if collision_subject.get('obstruction')
         world.call 'reset_index'
         sprite.put 'running', 'interrupt'
@@ -63,6 +64,9 @@ exports.programs = (sprite) ->
       return unless world.get 'editable'
       {target, action} = args
       world.call('store', action) if world == target
+
+    store: (world, action) ->
+      instructions_container = world.find_child('instructions')
   }
 
   program_row = (name, contents) ->
