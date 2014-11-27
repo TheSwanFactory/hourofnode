@@ -15,7 +15,7 @@
 {layout} = require './layout'
 {game_files} = require './game/game_files'
 
-globals = ['shapes', 'words']
+globals = ['shapes', 'actions']
   
 create_level = (game_levels, level) ->
   level_dict = game_levels.at(level)
