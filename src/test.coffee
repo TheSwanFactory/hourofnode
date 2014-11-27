@@ -16,7 +16,7 @@ undo = require('tap-browser-color')()
 {test_god} = require './god/test_god'
 {test_world} = require './god/test_world'
 {test_render} = require './render/test_render'
-{test_game} = require './game/test_load'
+{test_game} = require './game/test_game'
 {test_layout} = require './layout/test_layout'
 
 run_tests = (rx) ->

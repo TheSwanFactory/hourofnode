@@ -1,11 +1,11 @@
 {god} = require('../god')
-{game} = require('../load')
+{load} = require('../load')
 
 exports.test_game = (test, rx) ->
-  example = game(rx, {file: 'example', level: 1})
+  example = load(rx, {file: 'example', level: 1})
 
   test 'game load', (t) ->
-    t.ok game, 'load'
+    t.ok load, 'load'
     t.ok example, 'example'
     t.end()
 
