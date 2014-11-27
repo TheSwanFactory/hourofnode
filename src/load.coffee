@@ -14,6 +14,9 @@
 {god} = require './god'
 {layout} = require './layout'
 {game_files} = require './load/game_files'
+{games} = require './games'
+
+my.extend game_files, games
 
 globals = ['shapes', 'actions']
   
