@@ -91,18 +91,20 @@ exports.sprites = {
   apply: (world, args) ->
    {target, action, instruction} = args
    console.log "apply #{action}: world #{world} =? target #{target}"
-   world.call('perform', instruction) if world == target
+   world.call('perform', action) if world == target
 
-  prepare: (world, key) ->
-    console.log key
-    phrase = world.get('actions').get(key)
+  prepare: (world, action) ->
+    console.log action
+    world.call 'perform', action
+
+  perform: (world, action) ->
+
+    phrase = world.get('actions').get(action)
     # TODO: use actions.coffee
     # this is bad. it should be getting this from actions.coffee
     instruction = phrase.split " "
     instruction[2] = parseInt instruction[2]
-    world.call 'perform', instruction
 
-  perform: (world, instruction) ->
     [method, key, value] = instruction
     my.assert world[method], "#{world.label()}: no '#{method}' property"
     world[method](key, value)
