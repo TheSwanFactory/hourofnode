@@ -61,11 +61,11 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
-      {target, action, name} = args
+      {target, action, instruction} = args
       console.log "programs apply: #{world}, {#{target}, #{action}}"
       console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
       return unless world.get 'editable'      
-      world.call('store', name) if sprite == target
+      world.call('store', action) if sprite == target
 
     store: (world, action) ->
       console.log "programs store: #{world}, {#{action}}"
