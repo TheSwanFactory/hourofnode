@@ -13,7 +13,7 @@
 {my} = require './my'
 {god} = require './god'
 {layout} = require './layout'
-{game_files} = require './game/game_files'
+{game_files} = require './load/game_files'
 
 globals = ['shapes', 'actions']
   
