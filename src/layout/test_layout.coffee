@@ -71,15 +71,15 @@ exports.test_layout = (test, rx) ->
     test_position t, [1,1]
     
     t.notOk sprite.call('apply', {target: grid}), "only apply to self"
-    t.ok forward = sprite.get('words').get('forward'), 'forward'
+    t.ok forward = sprite.get('actions').get('forward'), 'forward'
     # TODO: redo as behavior
     t.end()
 
-  test "find words", (t) ->
+  test "find actions", (t) ->
     #t.ok inspector = sprite.get('inspector'), 'made inspector'
-    t.ok words = sprite.get('words'), 'words'
-    t.ok words = words.keys([]), 'words'
-    t.ok "forward" in words, 'has a command'
+    t.ok actions = sprite.get('actions'), 'actions'
+    t.ok actions = actions.keys([]), 'actions'
+    t.ok "forward" in actions, 'has a command'
     t.end()
 
   test "behavior dict", (t) ->

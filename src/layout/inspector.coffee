@@ -10,7 +10,7 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 {status} = require './mixins/status'
-{words} = require './mixins/words'
+{actions} = require './mixins/actions'
 {behavior} = require './mixins/behavior'
 
 sprite_inspector = (sprite) ->
@@ -19,7 +19,7 @@ sprite_inspector = (sprite) ->
     _LABEL: "inspector_#{sprite.get_plain 'name'}"
     _CHILDREN: [
       status(sprite)
-      words(sprite)
+      actions(sprite)
       behavior(sprite)
     ]
   }

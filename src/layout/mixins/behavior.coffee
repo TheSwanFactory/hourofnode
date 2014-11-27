@@ -2,7 +2,7 @@
 # behavior.coffee
 #
 # A Behavior is a dictionary of Words and Actions
-# Actions can be either a list of words (array)
+# Actions can be either a list of actions (array)
 # or a sentence (string)
 #
 # Role: create and display program objects

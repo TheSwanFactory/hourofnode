@@ -1,5 +1,5 @@
 #
-# words.coffee
+# actions.coffee
 #
 # Role: show commands available for this turtle
 #
@@ -13,13 +13,13 @@
 {my} = require '../../my'
 {make} = require '../../render/make'
   
-exports.words = (sprite) ->
-  words = sprite.get('words')
-  words = words.keys([])
-  words = words.filter (x) -> x[0] != '_' unless my.design
+exports.actions = (sprite) ->
+  actions = sprite.get('actions')
+  actions = actions.keys([])
+  actions = actions.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
-    action = words[word].split " "
+    action = actions[word].split " "
     action[2] = parseInt action[2]
     message = { target: sprite, name: word, action: action }
     console.log 'send_message', message, sprite
@@ -27,7 +27,7 @@ exports.words = (sprite) ->
   
   buttons = make.buttons(
     'command',
-    words,
+    actions,
     my.command,
     (button, args) ->
       if sprite.get 'editable'

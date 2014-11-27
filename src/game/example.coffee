@@ -36,7 +36,7 @@ exports.game = {
   assume: 'baseline'
   comment: "For testing purposes only"
 
-  words: {
+  actions: {
     # Admin commands have '_'
     # TODO: hide Admin commands if not in design mode
     _victory: ['send', 'done',  1].join ' '

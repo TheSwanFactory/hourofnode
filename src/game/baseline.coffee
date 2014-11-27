@@ -3,7 +3,7 @@
 
 exports.game = {
   name: "The Hour of Node"
-  assume: 'words'
+  assume: 'actions'
 
   name_style: {font_size: 24}
   _AUTHORITY: {
@@ -20,8 +20,8 @@ exports.game = {
 
   # TODO: rename as behavior
   # have sprite behavior extend this
-  # bind words at run-time
-  words: {
+  # bind actions at run-time
+  actions: {
     # String of operation, key, number
     forward: ['call', 'go', vector.to.front].join " "
     reverse: ['call', 'go', vector.to.back].join " "
