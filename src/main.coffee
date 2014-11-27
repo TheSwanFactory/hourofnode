@@ -15,6 +15,7 @@
 
 {my} = require './my'
 sys = require 'sys'
+queryString = require 'query-string'
 
 if not my.online
   rx = require './render/rx_mock'
@@ -31,7 +32,10 @@ else
 {game} = require './game'
 {render} = require './render'
 
-world = game(rx, {file: 'example', level: 0})
+default_query = {file: 'example', level: 0}
+parsed_query = queryString.parse(location.search)
+
+world = game rx, my.extend(default_query, parsed_query)
 
 main = ->
   $('body').append(
