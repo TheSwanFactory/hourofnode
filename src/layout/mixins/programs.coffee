@@ -5,7 +5,7 @@
 # A Program is a sequence of Commands
 # A Command is a word in the Language
 # A Language is a dictionary of Commands and Actions
-# An Action is a method-key-value triplet (instruction, signal)
+# An Action is a method-key-value triplet (action, signal)
 #
 # Role: create and run a single program
 #
@@ -35,19 +35,17 @@ exports.programs = (sprite) ->
 
     next_index: 0
     reset_index: (world) -> world.put 'next_index', 0
-    next_instruction: (world) ->
+    next_action: (world) ->
       current_index = world.get 'next_index'
-      instructions = world.find_child('instructions').find_children()
-
-      count = instructions.length
+      actions = world.find_child('actions').find_children()
+      count = actions.length
       world.put 'next_index', get_next_index(current_index, count) 
-
-      instructions[current_index]
+      actions[current_index]
 
     tick: (world, args) ->
       return unless world.get 'selected'
-      instruction = world.get 'next_instruction'
-      sprite.call 'prepare', instruction.get('value') if instruction
+      action = world.get 'next_action'
+      sprite.call 'prepare', action.get('value') if action
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
@@ -61,7 +59,7 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
-      {target, action, instruction} = args
+      {target, action, action} = args
       console.log "programs apply: #{world}, {#{target}, #{action}}"
       console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
       return unless world.get 'editable'      
@@ -69,14 +67,14 @@ exports.programs = (sprite) ->
 
     store: (world, action) ->
       console.log "programs store: #{world}, {#{action}}"
-      instructions_container = world.find_child('instructions')
-      instructions_container.add_child action
+      actions_container = world.find_child('actions')
+      actions_container.add_child action
   }
 
   program_row = (name, contents) ->
     program = make.columns name, [
       { _LABEL: 'program_name', name: name }
-      make.buttons("instruction", contents, my.command)
+      make.buttons("action", contents, my.command)
     ]
     my.extend program, program_behavior()
 
