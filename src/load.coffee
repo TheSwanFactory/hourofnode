@@ -15,6 +15,7 @@
 {layout} = require './layout'
 {game_files} = require './load/game_files'
 {games} = require './games'
+{make} = require './render/make'
 
 my.extend game_files, games
 

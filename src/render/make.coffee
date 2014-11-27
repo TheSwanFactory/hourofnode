@@ -16,6 +16,15 @@ exports.make = {
   rows: (label, items, options) -> group label, items, 'div', options
   columns: (label, items) ->
     group label, items, 'span'
+    
+  dialog: (label, items) -> {
+    name: label
+    tag_name: 'ol'
+    authority: {
+      tag_name: 'li'
+    }
+    _CHILDREN: items
+  }
 
   buttons: (kind, items, my_kind, action) ->
     label = "#{kind}s"
