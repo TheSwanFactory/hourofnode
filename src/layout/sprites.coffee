@@ -86,6 +86,13 @@ exports.sprites = {
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
+  # perform
+ 
+  apply: (world, args) ->
+   {target, name, action} = args
+   console.log "apply #{action}: world #{world} =? target #{target}"
+   world.call('perform', action) if world == target
+
   prepare: (world, key) ->
     console.log key
     phrase = world.get('actions').get(key)
@@ -103,7 +110,7 @@ exports.sprites = {
   commit: (world, args) ->
     world.put 'position', world.get('determine_next_position') # proposed coordinates
 
-  # sprite methods
+  # direct actions
   
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
@@ -115,12 +122,6 @@ exports.sprites = {
     my.assert dir?, "expects dir"
     world.put 'direction', vector.turn(world.get('direction'), dir)
     true # always a valid move
-
-  # TODO: remove this if unused
-  apply: (world, args) ->
-    {target, action, key} = args
-    console.log "apply #{action}: world #{world} =? target #{target}"
-    world.call('perform', action) if world == target
 
   reset: (world, args) ->
     ['position', 'direction'].map (key) -> world.put key, undefined
