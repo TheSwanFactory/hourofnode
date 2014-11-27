@@ -7,7 +7,7 @@
 # * require all valid game files 
 # * load a game based on the query 
 # * merge properties from baseline
-# * set current level as the game's child
+# * set current level as the load's child
 # * return the game dictionary 
 
 {my} = require './my'
@@ -44,7 +44,7 @@ create_game = (root, file) ->
   parent = create_game(root, basis)
   extend_game(parent, game_dict)
   
-exports.game = (rx, query) ->
+exports.load = (rx, query) ->
   root = god(rx, {})
   for key in globals
     root.put key, root.make_world({})

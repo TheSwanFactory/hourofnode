@@ -29,7 +29,7 @@ else
 
 # Dependencies
 
-{game} = require './game'
+{game} = require './load'
 {render} = require './render'
 
 default_query = {file: 'example', level: 1}
