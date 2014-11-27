@@ -18,9 +18,14 @@
 globals = ['shapes', 'actions']
   
 create_level = (game_levels, level) ->
-  level_dict = game_levels.at(level)
-  level_dict.level_index = level
-  level_dict.level_count = game_levels.length()
+  level_count = game_levels.length()
+  level_at = parseInt(level) - 1
+  level_at = 0 if level_at < 0
+  level_at = level_count - 1 unless level_at < level_count
+
+  level_dict = game_levels.at(level_at)
+  level_dict.level_index = level_at + 1
+  level_dict.level_count = level_count 
   level_dict
 
 extend_game = (root, dict) ->
@@ -48,7 +53,7 @@ exports.game = (rx, query) ->
   game_levels = world.get('levels')
   my.assert game_levels and world.is_array(game_levels)
   
-  level = query.level or 0
+  level = query.level
   level_dict = create_level(game_levels, level)
   level_world = world.add_child level_dict
   for child in layout

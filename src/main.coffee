@@ -32,7 +32,7 @@ else
 {game} = require './game'
 {render} = require './render'
 
-default_query = {file: 'example', level: 0}
+default_query = {file: 'example', level: 1}
 parsed_query = queryString.parse(location.search)
 
 world = game rx, my.extend(default_query, parsed_query)
