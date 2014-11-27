@@ -90,7 +90,7 @@ exports.sprites = {
 
   prepare: (world, key) ->
     console.log key
-    phrase = world.get('words')[key]
+    phrase = world.get('words').get(key)
     # TODO: use words.coffee
     # this is bad. it should be getting this from words.coffee
     action = phrase.split " "

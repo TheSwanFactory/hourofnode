@@ -15,7 +15,7 @@
   
 exports.words = (sprite) ->
   words = sprite.get('words')
-  words = Object.keys words
+  words = words.keys([])
   words = words.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
