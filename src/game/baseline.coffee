@@ -21,7 +21,7 @@ exports.game = {
   # TODO: rename as behavior
   # have sprite behavior extend this
   # bind words at run-time
-  language: {
+  words: {
     # String of operation, key, number
     forward: ['call', 'go', vector.to.front].join " "
     reverse: ['call', 'go', vector.to.back].join " "

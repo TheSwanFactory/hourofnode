@@ -24,7 +24,7 @@ cell_position = (world, axis) ->
 
 set_shape = (sprite_dict, shapes) ->
   shape = sprite_dict.shape
-  paths = shapes[shape]
+  paths = shapes.get(shape).all()
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
 
@@ -88,9 +88,9 @@ exports.sprites = {
 
   prepare: (world, key) ->
     console.log key
-    phrase = world.get('language')[key]
-    # TODO: use language.coffee
-    # this is bad. it should be getting this from language.coffee
+    phrase = world.get('words').get(key)
+    # TODO: use words.coffee
+    # this is bad. it should be getting this from words.coffee
     action = phrase.split " "
     action[2] = parseInt action[2]
     world.call 'perform', action

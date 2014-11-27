@@ -63,6 +63,14 @@ exports.test_world = (test, rx) ->
     t.ok world.is_world(child), "child is a world"
     t.end()
 
+  test 'world returns keys', (t) ->
+    new_world = world.make_world {a: 1, b:2, _CHILDREN:[{c:3}]}
+    t.equal new_world.keys().toString(), ['a', 'b'].toString(), 'my keys'
+    new_child = new_world.find_child()
+    t.equal new_child.keys().toString(), ['c'].toString(), 'child keys'
+    t.equal new_child.keys([]).toString(), ['a', 'b', 'c'].toString(), 'all keys'
+    t.end()
+
   test 'world has a label', (t) ->
     t.equal world.label(), "root", "label"
     t.equal "#{world}", "World_root", "toString"

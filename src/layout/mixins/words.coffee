@@ -1,5 +1,5 @@
 #
-# language.coffee
+# words.coffee
 #
 # Role: show commands available for this turtle
 #
@@ -13,13 +13,13 @@
 {my} = require '../../my'
 {make} = require '../../render/make'
   
-exports.language = (sprite) ->
-  language = sprite.get('language')
-  words = Object.keys language
+exports.words = (sprite) ->
+  words = sprite.get('words')
+  words = words.keys([])
   words = words.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
-    action = language[word].split " "
+    action = words[word].split " "
     action[2] = parseInt action[2]
     message = { target: sprite, name: word, action: action }
     console.log 'send_message', message, sprite

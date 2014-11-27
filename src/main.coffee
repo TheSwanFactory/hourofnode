@@ -32,7 +32,7 @@ sys = require 'sys'
 {layout} = require './layout'
 {render} = require './render'
 
-world = game(rx, {name: 'example', level: 1})
+world = game(rx, {file: 'example', level: 1})
 
 main = ->
   $('body').append(
