@@ -89,7 +89,7 @@ exports.sprites = {
   # perform
  
   apply: (world, args) ->
-   {target, action, instruction} = args
+   {target, action} = args
    console.log "apply #{action}: world #{world} =? target #{target}"
    world.call('perform', action) if world == target
 
