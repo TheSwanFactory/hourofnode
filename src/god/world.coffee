@@ -39,7 +39,7 @@ class World
     @doc.put my.key.children, cache_rx.array()
     @doc.put(RX, rx) if rx?
     # this property is just for debugging. it's helpful in the console to see
-    # what world you are dealing with as other properties are not immediately
+    # which world you are dealing with as other properties are not immediately
     # available
     @uid = _.uniqueId()
     
@@ -49,11 +49,13 @@ class World
   SVG: () -> @rx().rxt.svg_tags
   bind: () -> @rx().bind
   
-  keys: () -> 
+  keys: (all) -> 
     keys = Object.keys @doc.x
     keys.splice keys.indexOf(my.key.label), 1
     keys.splice keys.indexOf(my.key.children), 1
-    keys
+    return keys unless all?
+    result = keys.concat all
+    if @up.doc.has(RX) then result else @up.keys(result)
     
   put: (key, value) ->
     value = @rx().array value if _.isArray(value)
