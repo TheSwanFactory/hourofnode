@@ -59,7 +59,7 @@ exports.programs = (sprite) ->
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
-      {target, action, action} = args
+      {target, action} = args
       console.log "programs apply: #{world}, {#{target}, #{action}}"
       console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
       return unless world.get 'editable'      
