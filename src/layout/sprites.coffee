@@ -90,9 +90,9 @@ exports.sprites = {
 
   prepare: (world, key) ->
     console.log key
-    phrase = world.get('language')[key]
-    # TODO: use language.coffee
-    # this is bad. it should be getting this from language.coffee
+    phrase = world.get('words')[key]
+    # TODO: use words.coffee
+    # this is bad. it should be getting this from words.coffee
     action = phrase.split " "
     action[2] = parseInt action[2]
     world.call 'perform', action

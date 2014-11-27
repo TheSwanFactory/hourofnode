@@ -17,7 +17,7 @@
 
 game_cache = {}
 
-extensible = ['language', 'shapes']
+extensible = ['words', 'shapes']
 globals = ['shapes', 'words']
 
 merge = (stock, custom) ->
