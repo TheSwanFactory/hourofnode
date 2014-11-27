@@ -23,6 +23,17 @@ exports.actions = (sprite) ->
     console.log 'send_message', message, sprite
     sprite.send 'apply', message
   
+  # TODO: everyone should step on direct action
+  # Implies button should:
+  # * move current buffer to the end
+  # * append action
+  # * step everyone
+  # 
+  # which implies the programs buffer should
+  # * not wrap next_pointer until beforehand
+  # * have explicit repeats after first and repeat
+  # * move up to just before calling repeat (?)
+  
   buttons = make.buttons(
     'command',
     actions,
