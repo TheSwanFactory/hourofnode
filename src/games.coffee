@@ -5,5 +5,5 @@
 #
 
 exports.games = {
-#  example: require("./games/example").game
+  example: require("./games/example").game
 }

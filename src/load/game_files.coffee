@@ -9,5 +9,4 @@ exports.game_files = {
   shapes: require("./shapes").game
   actions: require("./actions").game
   baseline: require("./baseline").game
-  example: require("./example").game
 }
