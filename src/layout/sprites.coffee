@@ -24,7 +24,9 @@ cell_position = (world, axis) ->
 
 set_shape = (sprite_dict, shapes) ->
   shape = sprite_dict.shape
-  paths = shapes[shape]
+#  paths = shapes[shape]
+  console.log 'set_shape', shapes, shape
+  paths = shapes.get(shape).all()
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
 
