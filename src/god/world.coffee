@@ -49,6 +49,12 @@ class World
   SVG: () -> @rx().rxt.svg_tags
   bind: () -> @rx().bind
   
+  keys: () -> 
+    keys = Object.keys @doc.x
+    keys.splice keys.indexOf(my.key.label), 1
+    keys.splice keys.indexOf(my.key.children), 1
+    keys
+    
   put: (key, value) ->
     value = @rx().array value if _.isArray(value)
     @doc.put(key, value)
