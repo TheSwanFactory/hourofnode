@@ -7,6 +7,7 @@
 exports.game_files = {
   geometry: require("./geometry").game
   shapes: require("./shapes").game
+  words: require("./words").game
   baseline: require("./baseline").game
   example: require("./example").game
 }

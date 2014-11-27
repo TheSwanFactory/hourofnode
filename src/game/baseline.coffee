@@ -3,7 +3,7 @@
 
 exports.game = {
   name: "The Hour of Node"
-  assume: 'shapes'
+  assume: 'words'
 
   name_style: {font_size: 24}
   _AUTHORITY: {
