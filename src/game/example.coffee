@@ -1,9 +1,6 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 
-# TODO: Normalize to 100 or 1.00
-SCALE = 30
-
 me = {
   name: 'me'
   shape: 'turtle'
@@ -35,13 +32,6 @@ exports.game = {
   name: "Example Game"
   assume: 'baseline'
   comment: "For testing purposes only"
-
-  actions: {
-    # Admin commands have '_'
-    # TODO: hide Admin commands if not in design mode
-    _victory: ['send', 'done',  1].join ' '
-    _failure: ['send', 'done', -1].join ' '
-  }
 
   levels: [
     {
