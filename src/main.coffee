@@ -14,22 +14,21 @@
 # TODO: server-side include underscore, underscore.string, jquery
 
 {my} = require './my'
-if my.online
+sys = require 'sys'
+
+if not my.online
+  rx = require './render/rx_mock'
+else
   _.mixin(_.str.exports())
   if my.reactive_debug
     rx = require '../../reactive-coffee/src/reactive'
     console.log "WARNING: Loading local copy of reactive-coffee"
   else
     rx = require 'reactive-coffee'
-else
-  rx = require './render/rx_mock'
-sys = require 'sys'
 
 # Dependencies
 
-{god} = require './god'
 {game} = require './game'
-{layout} = require './layout'
 {render} = require './render'
 
 world = game(rx, {file: 'example', level: 0})
