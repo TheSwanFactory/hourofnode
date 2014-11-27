@@ -49,11 +49,11 @@ create_game = (root, file) ->
   
 exports.load = (rx, query) ->
   root = god(rx, {})
-  for key in globals
-    root.put key, root.make_world({})
-  world = create_game(root, query.file)
+  globals.map (key) -> root.put key, root.make_world({})
+  world = create_game root, query.file
+  #world.put 'games', Object.keys games
   
-  game_levels = world.get('levels')
+  game_levels = world.get 'levels'
   my.assert game_levels and world.is_array(game_levels)
   
   level = query.level
