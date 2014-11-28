@@ -70,8 +70,8 @@ exports.test_layout = (test, rx) ->
     sprite.call 'commit'
     test_position t, [1,1]
     
-    t.notOk sprite.call('apply', {target: grid}), "only apply to self"
-    t.ok forward = sprite.get('actions').get('forward'), 'forward'
+    #t.notOk sprite.call('apply', {target: grid}), "only apply to self"
+    #t.ok forward = sprite.get('actions').get('forward'), 'forward'
     # TODO: redo as behavior
     t.end()
 

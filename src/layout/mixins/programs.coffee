@@ -48,8 +48,8 @@ exports.programs = (sprite) ->
       world.call 'perform', action.get('value') if action
       
     perform: (world, action) ->
-      phrase = sprite.get('actions').get(action)
-      instruction = phrase.split " "
+      contents = sprite.get('actions').get(action)
+      instruction = contents.split " "
       instruction[2] = parseInt instruction[2]
 
       [method, key, value] = instruction
