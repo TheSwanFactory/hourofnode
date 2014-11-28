@@ -15,7 +15,7 @@
 
 {my} = require './my'
 sys = require 'sys'
-queryString = require 'query-string' #https://github.com/sindresorhus/query-string
+queryString = require 'query-string'
 
 if not my.online
   rx = require './render/rx_mock'
