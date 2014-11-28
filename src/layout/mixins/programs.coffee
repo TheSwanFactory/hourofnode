@@ -76,6 +76,7 @@ exports.programs = (sprite) ->
       { _LABEL: 'program_name', name: name }
       make.buttons "action", contents, my.command, (button, args) ->
         button.up.remove_child(button)
+        button.send 'click'
         button.send 'brick', -1
 
     ]

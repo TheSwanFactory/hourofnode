@@ -23,14 +23,17 @@ clicker = (world) ->
 create_attrs = (world, style) ->
   labels = world.labels()
   label = labels[0]
-  klass = [label, "#{labels.length}_#{label}"]
+  level_label = "#{labels.length}_#{label}"
+  index_label = "#{label}_#{world.uid}"
+  klass = [label, level_label]
   klass.push world.get_local_plain('class') ? ''
   klass.push world.get_local_plain(my.key.kind) ? ''
   klass.push 'selected' if world.get 'selected'
   klass.push 'editable' if world.get 'editable'
   attrs = {
-    id: "#{labels.length}_#{labels.join '_'}"
+    id: index_label
     class: klass
+    href: world.get 'href'
     style: world.bind() -> style
     click: clicker(world)
     # TODO: add touch events that do not mess up mutation
