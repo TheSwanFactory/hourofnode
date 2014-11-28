@@ -61,7 +61,7 @@ exports.load = (rx, query) ->
   level_dict = create_level(game_levels, level)
   level_world = world.add_child level_dict
   for child in layout
-    level_world.add_child child(level_dict)
+    level_world.add_child child(level_world)
     
   # world.add_child dialog
 

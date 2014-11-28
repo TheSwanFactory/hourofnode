@@ -44,7 +44,7 @@ exports.sprites = {
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
-      # hild.handle_event 'apply'
+      # child.handle_event 'apply'
       world.send 'inspect', child
 
   # selection
