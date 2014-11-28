@@ -33,6 +33,7 @@ create_attrs = (world, style) ->
   attrs = {
     id: index_label
     class: klass
+    href: world.get 'href'
     style: world.bind() -> style
     click: clicker(world)
     # TODO: add touch events that do not mess up mutation
