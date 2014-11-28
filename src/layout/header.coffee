@@ -5,7 +5,9 @@ exports.header = (level_dict) ->
   track = (event, key) ->
     dict = { _LABEL: key, _EXPORTS: [event], name: (world) -> world.get(key) }
     dict[key] = 0
-    dict[event] = (world, args) -> world.put key, world.get(key) + 1
+    dict[event] = (world, args) ->
+      offset = if (args == -1) then -1 else 1
+      world.put key, world.get(key) + offset
     dict
   metric = (event) ->
     key = "#{event}s"

@@ -43,6 +43,7 @@ exports.actions = (sprite) ->
         send_message button.get('value')
         button.send 'decide'
         button.send 'click'
+        button.send 'brick'
       else
         button.send 'error', "#{sprite} not editable"
   )
