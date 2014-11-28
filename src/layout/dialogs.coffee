@@ -15,6 +15,7 @@ exports.dialogs = (level) ->
   console.log 'dialogs', end_of_game, next_level 
   if next_level > end_of_game
     anchor("[next game]", {file: 'tutorial', level: 1})
+    # TODO: call up game chooser instead, if we do not replace entirely
   else
     anchor("[next level]", {file: file, level: next_level})
     
