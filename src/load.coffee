@@ -61,8 +61,6 @@ exports.load = (rx, query) ->
   level_world = world.add_child create_level(game_levels, level)
   for child in layout
     level_world.add_child child(level_world)
-    
-  # world.add_child dialog
 
   world.send(my.key.setup)
   world
