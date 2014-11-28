@@ -151,8 +151,12 @@ exports.test_world = (test, rx) ->
   test 'world removes child at index', (t) ->
     a = world.add_child('a')
     b = world.add_child('b')
+    world.map_children (child) ->
+      "just to set index"
     count = world._child_count()
     t.ok count
+    t.ok a.index
+    t.ok b.index
     t.end()
     
   test 'world has authorities', (t) ->
