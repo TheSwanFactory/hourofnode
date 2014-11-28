@@ -203,6 +203,12 @@ class World
   
   # TODO: Compare performance of emptying vs. replacement
   reset_children: -> @put my.key.children, @rx().array()
+
+  remove_child: (child) ->
+    index = child.index
+    target = @_child_array()[index]
+    return console.error("remove_child failed: not present #{child}") unless child == target
+    @_children().removeAt(index)
     
   add_child: (value) ->
     child = @make_world value

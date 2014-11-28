@@ -69,6 +69,12 @@ exports.programs = (sprite) ->
       console.log "programs store: #{world}, {#{action}}"
       actions_container = world.find_child('actions')
       actions_container.add_child action
+
+    clear: (world, action) ->
+      console.log "programs clear: #{world}, {#{action}}"
+      actions_container = world.find_child('actions')
+      index = action.index
+      #actions_container.remove_child(index)
   }
 
   program_row = (name, contents) ->

@@ -147,6 +147,13 @@ exports.test_world = (test, rx) ->
       t.equal index, count, "#{child} should have index #{count}, not #{index}"
       count = count + 1
     t.end()
+
+  test 'world removes child at index', (t) ->
+    a = world.add_child('a')
+    b = world.add_child('b')
+    count = world._child_count()
+    t.ok count
+    t.end()
     
   test 'world has authorities', (t) ->
     comply = world._spawn_world("compliant")
