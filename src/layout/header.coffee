@@ -1,5 +1,6 @@
 {my} = require '../my'
 {make} = require '../render/make'
+{dialogs} = require './dialogs'
 
 exports.header = (level) ->
   
@@ -22,7 +23,7 @@ exports.header = (level) ->
   make.rows 'header', [
     make.columns 'progress', [
       "Level #{level.get('level_index')} of #{level.get('level_count')}"
-      #dialogs(level)
+      dialogs(level)
     ]
     make.columns 'stats', [
       metric 'click'
