@@ -37,14 +37,15 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['inspect', 'reset']
   _SETUP: (world) ->
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
-      # child.handle_event 'apply'
+      child.put 'dict', sprite_dict
+      child.handle_event 'reset'
+      child.handle_event 'inspect'
       world.send 'inspect', child
 
   # selection
@@ -103,5 +104,7 @@ exports.sprites = {
     true # always a valid move
 
   reset: (world, args) ->
-    ['position', 'direction'].map (key) -> world.put key, undefined
+    dict = world.get 'dict'
+    ['position', 'direction'].map (key) ->
+      world.put key, dict[key]
 }
