@@ -69,17 +69,12 @@ exports.test_layout = (test, rx) ->
     sprite.call('go', -1)
     sprite.call 'commit'
     test_position t, [1,1]
-    
-    #t.notOk sprite.call('apply', {target: grid}), "only apply to self"
-    #t.ok forward = sprite.get('actions').get('forward'), 'forward'
-    # TODO: redo as behavior
     t.end()
 
   test "find actions", (t) ->
-    #t.ok inspector = sprite.get('inspector'), 'made inspector'
     t.ok actions = sprite.get('actions'), 'actions'
-    t.ok actions = actions.keys([]), 'actions'
-    t.ok "forward" in actions, 'has a command'
+    t.ok commands = actions.keys([]), 'actions'
+    t.ok "forward" in commands, 'has a command'
     t.end()
 
   test "behavior dict", (t) ->
