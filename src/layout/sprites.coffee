@@ -86,29 +86,6 @@ exports.sprites = {
 
   determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
 
-  # perform
- 
-  apply: (world, args) ->
-   {target, action} = args
-   console.log "apply #{action}: world #{world} =? target #{target}"
-   world.call('perform', action) if world == target
-
-  prepare: (world, action) ->
-    console.log action
-    world.call 'perform', action
-
-  perform: (world, action) ->
-
-    phrase = world.get('actions').get(action)
-    # TODO: use actions.coffee
-    # this is bad. it should be getting this from actions.coffee
-    instruction = phrase.split " "
-    instruction[2] = parseInt instruction[2]
-
-    [method, key, value] = instruction
-    my.assert world[method], "#{world.label()}: no '#{method}' property"
-    world[method](key, value)
-
   commit: (world, args) ->
     world.put 'position', world.get('determine_next_position') # proposed coordinates
 

@@ -45,7 +45,16 @@ exports.programs = (sprite) ->
     tick: (world, args) ->
       return unless world.get 'selected'
       action = world.get 'next_action'
-      sprite.call 'prepare', action.get('value') if action
+      world.call 'perform', action.get('value') if action
+      
+    perform: (world, action) ->
+      phrase = sprite.get('actions').get(action)
+      instruction = phrase.split " "
+      instruction[2] = parseInt instruction[2]
+
+      [method, key, value] = instruction
+      my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
+      sprite[method](key, value)
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
