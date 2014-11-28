@@ -58,8 +58,7 @@ exports.load = (rx, query) ->
   my.assert game_levels and world.is_array(game_levels)
   
   level = query.level
-  level_dict = create_level(game_levels, level)
-  level_world = world.add_child level_dict
+  level_world = world.add_child create_level(game_levels, level)
   for child in layout
     level_world.add_child child(level_world)
     
