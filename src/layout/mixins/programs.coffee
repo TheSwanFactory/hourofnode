@@ -60,13 +60,10 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       {target, action} = args
-      console.log "programs apply: #{world}, {#{target}, #{action}}"
-      console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
       return unless world.get 'editable'      
       world.call('store', action) if sprite == target
 
     store: (world, action) ->
-      console.log "programs store: #{world}, {#{action}}"
       actions_container = world.find_child('actions')
       actions_container.add_child action
   }
