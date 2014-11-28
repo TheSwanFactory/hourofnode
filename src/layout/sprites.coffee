@@ -104,10 +104,4 @@ exports.sprites = {
 
   reset: (world, args) ->
     ['position', 'direction'].map (key) -> world.put key, undefined
-
-  step: (world, args) ->
-    local = world.get('programs')
-    return unless world.is_world local
-    my.assert signal = local.call('next'), "No next signal"
-    world.call 'perform', signal
 }
