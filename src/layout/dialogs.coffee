@@ -5,8 +5,16 @@ queryString = require 'query-string' #https://github.com/sindresorhus/query-stri
 anchor = (name, dict) -> {
   tag_name: 'a'
   name: name
-  href: "#{location.href}?#{queryString.stringify(dict)}"
+  href: "/?#{queryString.stringify(dict)}"
 }
   
 exports.dialogs = (level) ->
-  anchor("[next]", {level: 2})
+  file = level.get 'file'
+  end_of_game = level.get 'level_count'
+  next_level = 1 + level.get 'level_index'
+  console.log 'dialogs', end_of_game, next_level 
+  if next_level > end_of_game
+    anchor("[next game]", {file: 'tutorial', level: 1})
+  else
+    anchor("[next level]", {file: file, level: next_level})
+    

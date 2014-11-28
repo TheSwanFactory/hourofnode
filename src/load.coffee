@@ -43,6 +43,7 @@ extend_game = (root, dict) ->
 create_game = (root, file) ->
   game_dict = game_files[file]
   my.assert game_dict, "Can not load game #{file}"
+  game_dict.file = file
   basis = game_dict.assume
   return extend_game(root, game_dict) unless basis
   parent = create_game(root, basis)
