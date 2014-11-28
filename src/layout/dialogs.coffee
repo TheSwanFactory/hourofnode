@@ -2,11 +2,11 @@
 {make} = require '../render/make'
 queryString = require 'query-string' #https://github.com/sindresorhus/query-string
 
-anchor = (name, query) -> {
+anchor = (name, dict) -> {
   tag_name: 'a'
   name: name
-  href: "#{location.href}#{query}"
+  href: "#{location.href}?#{queryString.stringify(dict)}"
 }
   
 exports.dialogs = (level) ->
-  anchor("[next]", "?level=2")
+  anchor("[next]", {level: 2})
