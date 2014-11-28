@@ -11,6 +11,7 @@ exports.render_html = (world) ->
   {
     tag: tag
     name_tag: name_tag(T, tag_name)
+    href: world.get 'href'
     style: {
       margin: world.get 'margin'
       padding: world.get 'padding'
@@ -22,12 +23,9 @@ exports.render_html = (world) ->
     }
   }
 
+# TODO: find a way to draw an SVG icon based on the name
 name_tag = (T, tag_name) ->
   if tag_name is 'button'
-    (attrs, content) ->
-      if _.isString(content)
-        content
-      else
-        content.get()
+    (attrs, content) -> if _.isString(content) then content else content.get()
   else
     T.span
