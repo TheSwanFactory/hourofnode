@@ -62,6 +62,8 @@ exports.load = (rx, query) ->
   level_world = world.add_child level_dict
   for child in layout
     level_world.add_child child(level_dict)
+    
+  # world.add_child dialog
 
   world.send(my.key.setup)
   world

@@ -2,10 +2,18 @@
 {make} = require '../render/make'
 
 exports.header = (level_dict) ->
-  metric = (key) ->
+  report = (event, key) ->
+    dict = { _LABEL: key, _EXPORTS: [event], name: (world) -> world.get(key) }
+    dict[key] = 0
+    dict[event] = (world, args) ->
+      console.log "log event #{event}", world.get(key)
+      world.put key, world.get(key) + 1
+    dict
+  metric = (event) ->
+    key = "#{event}s"
     make.columns key, [
       _.capitalize "#{key}: "
-      {_LABEL: key, name: (world) -> world.get(key) or 0}
+      report(event, key)
       "/"
       "#{level_dict.goal[key]}"
     ]
@@ -17,8 +25,8 @@ exports.header = (level_dict) ->
       "#{level_dict.level_count}"
     ]
     make.columns 'stats', [
-      metric 'ticks'
-      metric 'clicks'
-      metric 'bricks'
+      metric 'click'
+      metric 'brick'
+      metric 'tick'
     ]
   ]
