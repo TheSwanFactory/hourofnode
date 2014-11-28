@@ -37,6 +37,7 @@ exports.game = {
     {
       name: 'Move the Turtle to the Exit'
       sprites: [exit, me]
+      bricks: 7
       goal: {
         clicks: 1
         ticks: 4

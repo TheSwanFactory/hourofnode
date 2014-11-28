@@ -74,7 +74,9 @@ exports.programs = (sprite) ->
   program_row = (name, contents) ->
     program = make.columns name, [
       { _LABEL: 'program_name', name: name }
-      make.buttons "action", contents, my.command, (button, args) -> button.up.remove_child(button)
+      make.buttons "action", contents, my.command, (button, args) ->
+        button.up.remove_child(button)
+        button.send 'brick', -1
 
     ]
     my.extend program, program_behavior()
