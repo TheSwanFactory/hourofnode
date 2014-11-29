@@ -22,7 +22,7 @@ queryString = require 'query-string' #https://github.com/sindresorhus/query-stri
 
 my.extend game_files, games
 
-globals = ['shapes', 'actions']
+globals = ['kinds', 'shapes', 'actions']
 
 set_shape = (sprite_dict) ->
   shapes = sprite_dict.shapes

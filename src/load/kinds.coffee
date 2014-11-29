@@ -6,8 +6,8 @@ OFFSET = SCALE / 6
 INSET = 2 * RADIUS
 
 exports.game = {
-  name: "Shapes"
-  assume: 'kinds'
+  name: "Kinds"
+  assume: 'geometry'
   
   shapes: {
     turtle: [
