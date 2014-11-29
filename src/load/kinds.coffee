@@ -11,6 +11,7 @@ exports.game = {
   
   kinds: {
     turtle: {
+      name: 'me'
       editable: true
       obstruction: true
       position: [0,0]
@@ -21,18 +22,20 @@ exports.game = {
       ]
     }
     wall: {
+      name: 'wall'
       editable: false
       obstruction: true
-      position: [4,0]
+      position: [7,0]
       fill: 'brown'
       paths: [
         "M#{OFFSET},#{OFFSET} h#{INSET} v#{INSET} h-#{INSET} v-#{INSET}"
       ]
     }
     egg: {
+      name: 'egg'
       editable: true
       obstruction: false
-      position: [0,4]
+      position: [0,7]
       fill: 'yellow'
       paths: [
         "M#{OFFSET},#{RADIUS+OFFSET}
@@ -41,9 +44,10 @@ exports.game = {
       ]
     }
     gate: {
+      name: 'gate'
       editable: false
       obstruction: false
-      position: [4,4]
+      position: [7,7]
       fill: 'red'
       paths: [
         "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"
