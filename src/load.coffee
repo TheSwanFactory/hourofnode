@@ -13,6 +13,7 @@
 {my} = require './my'
 {god} = require './god'
 {layout} = require './layout'
+{list} = require './load/list'
 {game_files} = require './load/game_files'
 {games} = require './games'
 {make} = require './render/make'
@@ -20,10 +21,6 @@
 queryString = require 'query-string' #https://github.com/sindresorhus/query-string
 
 my.extend game_files, games
-
-create_listing = (root) ->
-  for key, value of games
-    console.log "game", key, value
 
 globals = ['shapes', 'actions']
 
@@ -48,12 +45,12 @@ create_level = (game_levels, level) ->
   my.extend game_levels.at(level_at), {
     level_index: level_index
     level_count: level_count
-    next_url: (world) ->
+    next_url: (world) -> make.anchor(world.get 'next_params').href
+    next_params: (world) ->
       if level_index < level_count 
-        dict = {game: world.get('game'), level: level_index + 1}
+        {game: world.get('game'), level: level_index + 1}
       else 
-        dict = {list: 'all'}
-      "/?#{queryString.stringify(dict)}"
+        {list: 'all'}
   }
 
 extend_globals = (root, dict) ->
@@ -77,7 +74,7 @@ create_game = (root, game) ->
   
 exports.load = (rx, query) ->
   root = god(rx, {})
-  return create_listing(root) if query.list
+  return list(root, games) if query.list
   
   globals.map (key) -> root.put key, root.make_world({})
   world = create_game root, query.game
