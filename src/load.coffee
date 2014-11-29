@@ -21,7 +21,8 @@ my.extend game_files, games
 
 globals = ['shapes', 'actions']
 
-set_shape = (sprite_dict, shapes) ->
+set_shape = (sprite_dict) ->
+  shapes = sprite_dict.shapes
   shape = sprite_dict.shape
   paths = shapes.get(shape).all()
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
@@ -38,13 +39,15 @@ create_level = (game_levels, level) ->
   level_dict.level_count = level_count 
   level_dict
 
-extend_world = (root, dict) ->
+extend_globals = (root, dict) ->
   for key in globals
-    if value = dict[key] # TODO: use 'where'?
-      parent = root.get key
-      dict[key] = parent.add_child value
-  world = root.add_child dict
-  world 
+    parent = root.get key
+    value = dict[key] or {}
+    dict[key] = parent.add_child(value)
+
+extend_world = (root, dict) ->
+  extend_globals(root, dict)
+  root.add_child dict
   
 create_game = (root, file) ->
   game_dict = game_files[file]
@@ -73,7 +76,8 @@ exports.load = (rx, query) ->
   shapes = level_world.get 'shapes'
   sprites = level_world.get 'sprites'
   for sprite_dict in sprites.all()
-    set_shape(sprite_dict, shapes)
+    extend_globals(level_world, sprite_dict)
+    set_shape(sprite_dict)
     level_world.send 'make_sprite', sprite_dict
 
   world.send(my.key.setup)

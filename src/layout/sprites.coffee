@@ -39,6 +39,7 @@ exports.sprites = {
     child.handle_event 'inspect'
     world.send 'inspect', child
 
+  actions: (world) -> world.get 'behavior'
   # selection
   
   inspect: (world, sprite) -> world.put 'inspected', sprite
@@ -67,11 +68,6 @@ exports.sprites = {
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
 
   # behavior defaults
-
-  behavior:
-    first:     []
-    repeat:    []
-    interrupt: []
 
   running: 'first'
   editing: 'first'
