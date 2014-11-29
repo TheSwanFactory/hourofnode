@@ -46,6 +46,7 @@ law =
   proposals: (world, args) ->
     world.up.find_child('sprites').map_children (sprite) ->
       { sprite: sprite, coordinates: sprite.get('determine_next_position').all() }
+  # TODO: Replace with loosely-coupled world.send 'proposal'
 
   decide: (world, args) ->
     console.log 'law decide'
@@ -54,6 +55,7 @@ law =
     grid = world.up
     collision_check proposals, cell_count, grid
 
+  # TODO: remove if not used
   resolve: (world, args) ->
     proposals = world.get_local 'proposals'
     _.each proposals, (proposal) ->

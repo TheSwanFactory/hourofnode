@@ -50,8 +50,9 @@ exports.events = {
     message = if success then 'victory' else 'failure'
     world.send 'stop'
     alert message
+    window.open world.get('next_url')
     # TODO: Make this a full-fledged dialog
     # Add retry, next level, select levels, select game
-    # And maybe share, find our more, sign up, etc.
+    # And maybe share, find out more, sign up, etc.
 
 }
