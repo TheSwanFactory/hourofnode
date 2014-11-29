@@ -4,7 +4,6 @@
 exports.game = {
   name: "Words"
   assume: 'shapes'
-  # TODO: integrate behavior
   actions: {
     # String of operation, key, parameter
     wait:    "call go 0"
@@ -15,5 +14,7 @@ exports.game = {
     # color: "call drop dir"
     _victory: "send done 1"
     _failure: "send done -1"
+    first: []
+    interrupt: []
   }
 }

@@ -17,12 +17,20 @@
 {my} = require '../../my'
 {make} = require '../../render/make' # TODO: find better path-ing
 
+# method, key, integer
+extract_instruction = (contents) ->
+  instruction = contents.split " "
+  instruction[2] = parseInt instruction[2]
+  instruction
+  
 exports.programs = (sprite) ->
+
+  load_program = (key) -> sprite.put 'running', key
   
   get_next_index = (current_index, count) ->
     next_index = current_index + 1
     return next_index if next_index < count
-    sprite.put 'running', 'repeat'
+    load_program 'repeat'
     return 0
     
   program_behavior = (name) -> {
@@ -45,28 +53,34 @@ exports.programs = (sprite) ->
     tick: (world, args) ->
       return unless world.get 'selected'
       action = world.get 'next_action'
-      sprite.call 'prepare', action.get('value') if action
+      world.call 'perform', action.get('value') if action
+      
+    perform: (world, key) ->
+      contents = sprite.get('actions').get(key)
+      return load_program(key) unless _.isString contents
+      world.call 'perform_instruction', contents
+
+    perform_instruction: (world, contents) ->
+      [method, key, value] = extract_instruction contents
+      my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
+      sprite[method](key, value)
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
       return unless proposing_sprite == sprite
-      
       # if this is my sprite to handle
       if collision_subject.get('obstruction')
         world.call 'reset_index'
-        sprite.put 'running', 'interrupt'
+        load_program 'interrupt'
       else
         sprite.call 'commit', coordinates
 
     apply: (world, args) ->
       {target, action} = args
-      console.log "programs apply: #{world}, {#{target}, #{action}}"
-      console.log "edit: #{sprite.get 'editing'} -> #{world.get 'editable'}"
       return unless world.get 'editable'      
       world.call('store', action) if sprite == target
 
     store: (world, action) ->
-      console.log "programs store: #{world}, {#{action}}"
       actions_container = world.find_child('actions')
       actions_container.add_child action
   }

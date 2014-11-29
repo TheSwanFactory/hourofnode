@@ -37,20 +37,21 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['inspect', 'reset']
-  _SETUP: (world) ->
+  _SETUP: (world) -> # TODO: find alternative; this is the only SETUP
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
     for sprite_dict in sprites.all()
       set_shape(sprite_dict, shapes)
       child = world.add_child sprite_dict
-      # child.handle_event 'apply'
+      child.put 'dict', sprite_dict
+      child.handle_event 'reset'
+      child.handle_event 'inspect'
       world.send 'inspect', child
 
   # selection
   
   inspect: (world, sprite) -> world.put 'inspected', sprite
-  selected: (world) -> world == world.get('inspected')
+  selected: (world) -> world == world.get 'inspected'
   click: (world, args) -> world.send 'inspect', world
 
   # defaults
@@ -74,7 +75,7 @@ exports.sprites = {
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
 
-  # behavior
+  # behavior defaults
 
   behavior:
     first:     []
@@ -84,35 +85,14 @@ exports.sprites = {
   running: 'first'
   editing: 'first'
 
-  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
-
-  # perform
- 
-  apply: (world, args) ->
-   {target, action} = args
-   console.log "apply #{action}: world #{world} =? target #{target}"
-   world.call('perform', action) if world == target
-
-  prepare: (world, action) ->
-    console.log action
-    world.call 'perform', action
-
-  perform: (world, action) ->
-
-    phrase = world.get('actions').get(action)
-    # TODO: use actions.coffee
-    # this is bad. it should be getting this from actions.coffee
-    instruction = phrase.split " "
-    instruction[2] = parseInt instruction[2]
-
-    [method, key, value] = instruction
-    my.assert world[method], "#{world.label()}: no '#{method}' property"
-    world[method](key, value)
+  determine_next_position: (world, args) ->
+    world.get('next_position') || world.get('position')
 
   commit: (world, args) ->
-    world.put 'position', world.get('determine_next_position') # proposed coordinates
+    world.put 'position', world.get('determine_next_position') 
+    # proposed coordinates
 
-  # direct actions
+  # direct actions (instructions)
   
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
@@ -126,11 +106,6 @@ exports.sprites = {
     true # always a valid move
 
   reset: (world, args) ->
-    ['position', 'direction'].map (key) -> world.put key, undefined
-
-  step: (world, args) ->
-    local = world.get('programs')
-    return unless world.is_world local
-    my.assert signal = local.call('next'), "No next signal"
-    world.call 'perform', signal
+    dict = world.get 'dict'
+    ['position', 'direction'].map (key) -> world.put key, dict[key]
 }
