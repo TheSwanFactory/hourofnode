@@ -24,11 +24,13 @@ extract_instruction = (contents) ->
   instruction
   
 exports.programs = (sprite) ->
+
+  load_program = (key) -> sprite.put 'running', key
   
   get_next_index = (current_index, count) ->
     next_index = current_index + 1
     return next_index if next_index < count
-    sprite.put 'running', 'repeat'
+    load_program 'repeat'
     return 0
     
   program_behavior = (name) -> {
@@ -55,17 +57,13 @@ exports.programs = (sprite) ->
       
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
-      if _.isString contents
-        world.call 'perform_instruction', contents
-      else
-        world.call 'load_program', key
+      return load_program(key) if _.isArray contents 
+      world.call 'perform_instruction', contents
 
     perform_instruction: (world, contents) ->
       [method, key, value] = extract_instruction contents
       my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
-
-    load_program: (world, key) -> sprite.put 'running', key
 
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
