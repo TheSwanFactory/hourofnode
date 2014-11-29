@@ -13,6 +13,6 @@ exports.list = (root, games) ->
     console.log "game", key, value
     break unless value
     dict = {game: key, level: 1}
-    rows.push make.anchor " • #{value.name}", dict
+    rows.push make.anchor value.name, dict
   list.add_child make.rows('games', rows)
   root
