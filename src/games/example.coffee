@@ -4,6 +4,7 @@
 me = {
   name: 'me'
   shape: 'turtle'
+  kind: 'turtle'
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
@@ -21,6 +22,7 @@ yu = my.dup me, {
 exit = {
   name: 'exit'
   shape: 'diamond'
+  kind: 'gate'
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
