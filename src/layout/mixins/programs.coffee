@@ -55,17 +55,21 @@ exports.programs = (sprite) ->
       
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
-      world.call 'perform_instruction', contents
+      if _.isString contents
+        world.call 'perform_instruction', contents
+      else
+        world.call 'load_program', key
 
-    perform_instruction : (world, contents) ->
+    perform_instruction: (world, contents) ->
       [method, key, value] = extract_instruction contents
       my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
 
+    load_program: (world, key) -> sprite.put 'running', key
+
     collision: (world, args) ->
       [proposing_sprite, collision_subject, coordinates] = args
       return unless proposing_sprite == sprite
-      
       # if this is my sprite to handle
       if collision_subject.get('obstruction')
         world.call 'reset_index'
