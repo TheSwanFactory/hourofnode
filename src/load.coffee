@@ -17,6 +17,8 @@
 {games} = require './games'
 {make} = require './render/make'
 
+queryString = require 'query-string' #https://github.com/sindresorhus/query-string
+
 my.extend game_files, games
 
 globals = ['shapes', 'actions']
@@ -28,16 +30,27 @@ set_shape = (sprite_dict) ->
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
   
-create_level = (game_levels, level) ->
-  level_count = game_levels.length()
+parse_level = (level, level_count) ->
   level_at = parseInt(level) - 1
   level_at = 0 if level_at < 0
   level_at = level_count - 1 unless level_at < level_count
+  level_at
+  
+create_level = (game_levels, level) ->
+  level_count = game_levels.length()
+  level_at = parse_level(level, level_count)
+  level_index = level_at + 1
 
-  level_dict = game_levels.at(level_at)
-  level_dict.level_index = level_at + 1
-  level_dict.level_count = level_count 
-  level_dict
+  my.extend game_levels.at(level_at), {
+    level_index: level_index
+    level_count: level_count
+    next_url: (world) ->
+      if level_index < level_count 
+        dict = { file: world.get('file'), level: level_index + 1 }
+        "/?#{queryString.stringify(dict)}"
+      else 
+        "/games"
+  }
 
 extend_globals = (root, dict) ->
   for key in globals
