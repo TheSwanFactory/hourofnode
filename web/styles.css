@@ -13,26 +13,26 @@ span.text {
   padding: 2px;
 }
 
-div .selected {
-  border: 'yellow';
-  border_width: 1;
-  border_style: 'solid';
+div.selected {
+  border-color: yellow;
+  border-width: 1;
+  border-style: 'solid';
 }
 
-div .editable {
-  background: 'white';
+div.editable {
+  background: white;
 }
 
-button .selected {
-  border: 'gold';
-  border_width: 2;
-  border_style: 'solid';
+button.selected {
+  border-color: gold;
+  border-width: 2;
+  border-style: solid;
 }
 
-button .selected .uneditable {
-  border: 'grey';
-  border_width: 2;
-  border_style: 'dot';
+button.selected.uneditable {
+  border-color: grey;
+  border-width: 2;
+  border-style: dot;
 }
 
 text {
