@@ -92,13 +92,11 @@ exports.programs = (sprite) ->
         button.up.remove_child(button)
         button.send 'click'
         button.send 'brick', -1
-
     ]
     my.extend program, program_behavior()
 
   actions = sprite.get 'actions'
   my.assert sprite.is_world(actions), "#{sprite} has no actions world"
-  my.assert actions.keys(), "#{sprite} has action keys"
 
   children = []
   actions.keys().map (key) ->

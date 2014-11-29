@@ -22,12 +22,6 @@ cell_position = (world, axis) ->
   position = world.get 'position'
   cell_size * position.at(axis)
 
-set_shape = (sprite_dict, shapes) ->
-  shape = sprite_dict.shape
-  paths = shapes.get(shape).all()
-  my.assert paths, "No paths for #{shape} of #{sprite_dict}"
-  sprite_dict.paths = paths
-
 combine = (a, b, dir) ->
   if dir > 0 then vector.add(a, b) else vector.subtract(a, b)
 
@@ -37,16 +31,13 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _SETUP: (world) -> # TODO: find alternative; this is the only SETUP
-    shapes = world.get 'shapes'
-    sprites = world.get 'sprites'
-    for sprite_dict in sprites.all()
-      set_shape(sprite_dict, shapes)
-      child = world.add_child sprite_dict
-      child.put 'dict', sprite_dict
-      child.handle_event 'reset'
-      child.handle_event 'inspect'
-      world.send 'inspect', child
+  _EXPORTS: ['make_sprite']
+  make_sprite: (world, sprite_dict) ->
+    child = world.add_child sprite_dict
+    child.put 'dict', sprite_dict
+    child.handle_event 'reset'
+    child.handle_event 'inspect'
+    world.send 'inspect', child
 
   # selection
   

@@ -20,6 +20,12 @@
 my.extend game_files, games
 
 globals = ['shapes', 'actions']
+
+set_shape = (sprite_dict, shapes) ->
+  shape = sprite_dict.shape
+  paths = shapes.get(shape).all()
+  my.assert paths, "No paths for #{shape} of #{sprite_dict}"
+  sprite_dict.paths = paths
   
 create_level = (game_levels, level) ->
   level_count = game_levels.length()
@@ -32,12 +38,12 @@ create_level = (game_levels, level) ->
   level_dict.level_count = level_count 
   level_dict
 
-extend_game = (root, dict) ->
-  world = root.add_child dict
+extend_world = (root, dict) ->
   for key in globals
     if value = dict[key] # TODO: use 'where'?
       parent = root.get key
-      world.put(key, parent.add_child value)
+      dict[key] = parent.add_child value
+  world = root.add_child dict
   world 
   
 create_game = (root, file) ->
@@ -45,9 +51,9 @@ create_game = (root, file) ->
   my.assert game_dict, "Can not load game #{file}"
   game_dict.file = file
   basis = game_dict.assume
-  return extend_game(root, game_dict) unless basis
+  return extend_world(root, game_dict) unless basis
   parent = create_game(root, basis)
-  extend_game(parent, game_dict)
+  extend_world(parent, game_dict)
   
 exports.load = (rx, query) ->
   root = god(rx, {})
@@ -59,9 +65,16 @@ exports.load = (rx, query) ->
   my.assert game_levels and world.is_array(game_levels)
   
   level = query.level
-  level_world = world.add_child create_level(game_levels, level)
+  level_world = extend_world world, create_level(game_levels, level)
+  console.log 'level_world', level_world.get('actions').doc.x
   for child in layout
     level_world.add_child child(level_world)
+
+  shapes = level_world.get 'shapes'
+  sprites = level_world.get 'sprites'
+  for sprite_dict in sprites.all()
+    set_shape(sprite_dict, shapes)
+    level_world.send 'make_sprite', sprite_dict
 
   world.send(my.key.setup)
   world
