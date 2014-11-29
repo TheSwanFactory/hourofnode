@@ -3,7 +3,6 @@
 
 me = {
   kind: 'turtle'
-  shape: 'turtle'
   actions:{first: []}
 }
 

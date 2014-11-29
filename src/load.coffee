@@ -38,7 +38,7 @@ set_kind = (sprite_dict) ->
   return unless kind
   authority = kinds.get(kind)
   my.assert authority, "No kind #{kind} for #{sprite_dict}"
-  sprite_dict[my.key.authority] = authority
+  sprite_dict.authority = authority
   
 parse_level = (level, level_count) ->
   level_at = parseInt(level) - 1
@@ -98,7 +98,6 @@ exports.load = (rx, query) ->
   for child in layout
     level_world.add_child child(level_world)
 
-  shapes = level_world.get 'shapes'
   sprites = level_world.get 'sprites'
   for sprite_dict in sprites.all()
     extend_globals(level_world, sprite_dict)

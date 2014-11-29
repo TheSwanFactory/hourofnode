@@ -37,7 +37,9 @@ exports.sprites = {
     child.put 'dict', sprite_dict
     child.handle_event 'reset'
     child.handle_event 'inspect'
+    child.put my.key.authority, world.make_world sprite_dict.authority
     world.send 'inspect', child
+
   # selection
   
   inspect: (world, sprite) -> world.put 'inspected', sprite
