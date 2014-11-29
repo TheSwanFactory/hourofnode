@@ -96,10 +96,12 @@ exports.programs = (sprite) ->
     ]
     my.extend program, program_behavior()
 
-  behavior = sprite.get('behavior')
-  my.assert _.isObject(behavior), "#{sprite} has no behavior property"
+  actions = sprite.get 'actions'
+  my.assert sprite.is_world(actions), "#{sprite} has no actions world"
+  my.assert actions.keys(), "#{sprite} has action keys"
 
   children = []
-  for name, contents of behavior
-    children.push program_row(name, contents)
+  actions.keys().map (key) ->
+    contents = actions.get(key)
+    children.push program_row(key, contents) unless _.isString(contents)
   children
