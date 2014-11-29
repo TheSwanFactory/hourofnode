@@ -92,14 +92,14 @@ exports.programs = (sprite) ->
         button.up.remove_child(button)
         button.send 'click'
         button.send 'brick', -1
-
     ]
     my.extend program, program_behavior()
 
-  behavior = sprite.get('behavior')
-  my.assert _.isObject(behavior), "#{sprite} has no behavior property"
+  actions = sprite.get 'actions'
+  my.assert sprite.is_world(actions), "#{sprite} has no actions world"
 
   children = []
-  for name, contents of behavior
-    children.push program_row(name, contents)
+  actions.keys().map (key) ->
+    contents = actions.get(key)
+    children.push program_row(key, contents.all()) unless _.isString(contents)
   children

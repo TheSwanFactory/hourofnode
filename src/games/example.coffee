@@ -7,7 +7,7 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  behavior: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
+  actions: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
   editable: true
 }
 
@@ -15,7 +15,7 @@ yu = my.dup me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
-  behavior: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
+  actions: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {
@@ -24,7 +24,7 @@ exit = {
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
-  behavior: {interrupt: ['_victory']}
+  actions: {interrupt: ['_victory']}
   obstruction: false
 }  
 

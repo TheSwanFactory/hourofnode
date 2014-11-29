@@ -54,7 +54,7 @@ class World
     keys.splice keys.indexOf(my.key.label), 1
     keys.splice keys.indexOf(my.key.children), 1
     return keys unless all?
-    result = keys.concat all
+    result = _.uniq keys.concat(all)
     if @up.doc.has(RX) then result else @up.keys(result)
     
   put: (key, value) ->

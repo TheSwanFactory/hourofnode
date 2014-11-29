@@ -15,8 +15,9 @@
   
 exports.actions = (sprite) ->
   actions = sprite.get('actions')
-  actions = actions.keys([])
-  actions = actions.filter (x) -> x[0] != '_' unless my.design
+  my.assert sprite.is_world(actions), "#{sprite} actions not a world"
+  names = actions.keys([])
+  names = names.filter (x) -> x[0] != '_' unless my.design
   
   send_message = (word) ->
     message = { target: sprite, action: word }
@@ -25,7 +26,7 @@ exports.actions = (sprite) ->
     
   buttons = make.buttons(
     'command',
-    actions,
+    names,
     my.command,
     (button, args) ->
       if sprite.get 'editable'
