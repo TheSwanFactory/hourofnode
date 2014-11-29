@@ -57,8 +57,7 @@ exports.programs = (sprite) ->
       
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
-      return load_program(key) if _.isArray contents 
-
+      return load_program(key) unless _.isString contents
       world.call 'perform_instruction', contents
 
     perform_instruction: (world, contents) ->
