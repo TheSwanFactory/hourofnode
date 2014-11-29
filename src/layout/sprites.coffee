@@ -38,8 +38,6 @@ exports.sprites = {
     child.handle_event 'reset'
     child.handle_event 'inspect'
     world.send 'inspect', child
-
-  actions: (world) -> world.get 'behavior'
   # selection
   
   inspect: (world, sprite) -> world.put 'inspected', sprite
