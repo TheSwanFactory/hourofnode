@@ -21,6 +21,10 @@ queryString = require 'query-string' #https://github.com/sindresorhus/query-stri
 
 my.extend game_files, games
 
+create_listing = (root) ->
+  for key, value of games
+    console.log "game", key, value
+
 globals = ['shapes', 'actions']
 
 set_shape = (sprite_dict) ->
@@ -47,9 +51,9 @@ create_level = (game_levels, level) ->
     next_url: (world) ->
       if level_index < level_count 
         dict = {game: world.get('game'), level: level_index + 1}
-        "/?#{queryString.stringify(dict)}"
       else 
-        "/games"
+        dict = {list: 'all'}
+      "/?#{queryString.stringify(dict)}"
   }
 
 extend_globals = (root, dict) ->
@@ -73,6 +77,8 @@ create_game = (root, game) ->
   
 exports.load = (rx, query) ->
   root = god(rx, {})
+  return create_listing(root) if query.list
+  
   globals.map (key) -> root.put key, root.make_world({})
   world = create_game root, query.game
   world.put 'games', Object.keys games
