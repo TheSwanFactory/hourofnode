@@ -58,6 +58,7 @@ exports.programs = (sprite) ->
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
       return load_program(key) if _.isArray contents 
+
       world.call 'perform_instruction', contents
 
     perform_instruction: (world, contents) ->
@@ -71,7 +72,7 @@ exports.programs = (sprite) ->
       # if this is my sprite to handle
       if collision_subject.get('obstruction')
         world.call 'reset_index'
-        sprite.put 'running', 'interrupt'
+        load_program 'interrupt'
       else
         sprite.call 'commit', coordinates
 
