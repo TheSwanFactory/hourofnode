@@ -46,7 +46,7 @@ create_level = (game_levels, level) ->
     level_count: level_count
     next_url: (world) ->
       if level_index < level_count 
-        dict = { file: world.get('file'), level: level_index + 1 }
+        dict = {game: world.get('game'), level: level_index + 1}
         "/?#{queryString.stringify(dict)}"
       else 
         "/games"
@@ -62,10 +62,10 @@ extend_world = (root, dict) ->
   extend_globals(root, dict)
   root.add_child dict
   
-create_game = (root, file) ->
-  game_dict = game_files[file]
-  my.assert game_dict, "Can not load game #{file}"
-  game_dict.file = file
+create_game = (root, game) ->
+  game_dict = game_files[game]
+  my.assert game_dict, "Can not load game #{game}"
+  game_dict.game = game
   basis = game_dict.assume
   return extend_world(root, game_dict) unless basis
   parent = create_game(root, basis)
@@ -74,7 +74,7 @@ create_game = (root, file) ->
 exports.load = (rx, query) ->
   root = god(rx, {})
   globals.map (key) -> root.put key, root.make_world({})
-  world = create_game root, query.file
+  world = create_game root, query.game
   world.put 'games', Object.keys games
   
   game_levels = world.get 'levels'
