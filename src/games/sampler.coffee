@@ -2,9 +2,9 @@
 {vector} = require '../god/vector'
 
 me = {
-  name: 'me'
+  kind: 'turtle'
   shape: 'turtle'
-  editable: true
+  actions:{first: []}
 }
 
 exports.game = {

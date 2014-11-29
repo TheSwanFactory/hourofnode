@@ -27,9 +27,18 @@ globals = ['kinds', 'shapes', 'actions']
 set_shape = (sprite_dict) ->
   shapes = sprite_dict.shapes
   shape = sprite_dict.shape
+  return unless shape
   paths = shapes.get(shape).all()
   my.assert paths, "No paths for #{shape} of #{sprite_dict}"
   sprite_dict.paths = paths
+
+set_kind = (sprite_dict) ->
+  kinds = sprite_dict.kinds
+  kind = sprite_dict.kind
+  return unless kind
+  authority = kinds.get(kind)
+  my.assert authority, "No kind #{kind} for #{sprite_dict}"
+  sprite_dict[my.key.authority] = authority
   
 parse_level = (level, level_count) ->
   level_at = parseInt(level) - 1
@@ -94,6 +103,7 @@ exports.load = (rx, query) ->
   for sprite_dict in sprites.all()
     extend_globals(level_world, sprite_dict)
     set_shape(sprite_dict)
+    set_kind(sprite_dict)
     level_world.send 'make_sprite', sprite_dict
 
   world.send(my.key.setup)

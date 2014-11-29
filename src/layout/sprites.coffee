@@ -33,13 +33,10 @@ exports.sprites = {
   _KIND: 'sprite'
   _EXPORTS: ['make_sprite']
   make_sprite: (world, sprite_dict) ->
-    kinds = world.get 'kinds'
-    kind = sprite_dict.kind
     child = world.add_child sprite_dict
     child.put 'dict', sprite_dict
     child.handle_event 'reset'
     child.handle_event 'inspect'
-    child.authority = kinds.get(kind) if kind
     world.send 'inspect', child
   # selection
   
