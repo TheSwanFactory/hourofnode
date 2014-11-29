@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/TheSwanFactory/hourofnode.png?label=ready&title=Ready)](https://waffle.io/TheSwanFactory/hourofnode)
 # The Hour of Node
 
 ## Turning event-driven programming into child's play
