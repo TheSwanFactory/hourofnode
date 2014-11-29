@@ -1,5 +1,6 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
+queryString = require 'query-string'
 
 group = (label, items, tag_name, options = {}) ->
   my.extend({},
@@ -15,6 +16,12 @@ group = (label, items, tag_name, options = {}) ->
 exports.make = {
   rows: (label, items, options) -> group label, items, 'div', options
   columns: (label, items) -> group label, items, 'span'
+  anchor: (name, params) -> {
+    tag_name: 'a'
+    name: name
+    href: "/?#{queryString.stringify(params)}"
+  }
+  
   buttons: (kind, items, my_kind, action) ->
     label = "#{kind}s"
     authority = {

@@ -11,7 +11,7 @@
 {behavior} = require './mixins/behavior'
 
 exports.test_layout = (test, rx) ->
-  world = load(rx, {file: 'example', level: 1})
+  world = load(rx, {game: 'example', level: 1})
   level = world.find_child()
   grid = level.find_child('grid')
   all_sprites = grid.find_child('sprites')

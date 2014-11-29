@@ -7,4 +7,5 @@
 exports.games = {
   example: require("./games/example").game
   tutorial: require("./games/tutorial").game
+  sampler: require("./games/sampler").game
 }

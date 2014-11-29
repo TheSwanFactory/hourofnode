@@ -2,7 +2,7 @@
 {load} = require('../load')
 
 exports.test_game = (test, rx) ->
-  example = load(rx, {file: 'example', level: 1})
+  example = load(rx, {game: 'example', level: 1})
 
   test 'game load', (t) ->
     t.ok load, 'load'
