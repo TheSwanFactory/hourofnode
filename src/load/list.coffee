@@ -11,8 +11,8 @@ exports.list = (root, games) ->
   rows = []
   for key, value of games
     console.log "game", key, value
-    break unless value
+    continue unless value
     dict = {game: key, level: 1}
-    rows.push make.anchor value.name, dict
+    rows.push {_CHILDREN: [make.anchor value.name, dict]}
   list.add_child make.rows('games', rows)
   root
