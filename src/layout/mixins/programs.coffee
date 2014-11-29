@@ -30,7 +30,7 @@ exports.programs = (sprite) ->
   get_next_index = (current_index, count) ->
     next_index = current_index + 1
     return next_index if next_index < count
-    load_program 'repeat'
+    load_program 'first'
     return 0
     
   program_behavior = (name) -> {

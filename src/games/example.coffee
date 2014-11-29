@@ -7,14 +7,14 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  actions: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
+  actions: { first: ['left', 'forward'], interrupt: ['reverse', 'right'] }
 }
 
 yu = my.dup me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
-  actions: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
+  actions: { first: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {
