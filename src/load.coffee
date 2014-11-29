@@ -39,6 +39,7 @@ set_kind = (sprite_dict) ->
   authority = kinds.get(kind)
   my.assert authority, "No kind #{kind} for #{sprite_dict}"
   sprite_dict.authority = authority
+  # TODO: cache world-ified kinds here instead of creating one for each sprite
   
 parse_level = (level, level_count) ->
   level_at = parseInt(level) - 1
