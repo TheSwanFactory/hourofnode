@@ -3,7 +3,6 @@
 
 me = {
   kind: 'turtle'
-  actions:{first: []}
 }
 
 exports.game = {

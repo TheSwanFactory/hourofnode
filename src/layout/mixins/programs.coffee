@@ -99,7 +99,7 @@ exports.programs = (sprite) ->
   my.assert sprite.is_world(actions), "#{sprite} has no actions world"
 
   children = []
-  actions.keys().map (key) ->
+  actions.keys([]).map (key) ->
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
   children
