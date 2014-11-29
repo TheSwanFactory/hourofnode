@@ -38,6 +38,7 @@ exports.sprites = {
     child.handle_event 'reset'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world sprite_dict.authority
+    #child.call 'reset'
     world.send 'inspect', child
 
   # selection
@@ -94,5 +95,8 @@ exports.sprites = {
 
   reset: (world, args) ->
     dict = world.get 'dict'
-    ['position', 'direction'].map (key) -> world.put key, dict[key]
+    kind = world.get my.key.authority
+    ['position', 'direction'].map (key) ->
+      value = dict[key] or kind.get key
+      world.put key, value
 }

@@ -13,7 +13,11 @@ exports.game = {
         {kind: 'gate'}
         {kind: 'egg'}
         {kind: 'wall'}
-        {kind: 'turtle',actions: {first: ['forward']} }
+        {
+          kind: 'turtle'
+          position: [1,1]
+          actions: { first: ['forward'] }
+        }
       ]
       goal: {
         clicks: 1
