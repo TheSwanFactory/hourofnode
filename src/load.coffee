@@ -47,21 +47,24 @@ parse_level = (level, level_count) ->
   level_at = level_count - 1 unless level_at < level_count
   level_at
   
-create_level = (game_levels, level) ->
+create_level = (world, level) ->
+  game_levels = world.get 'levels'
+  my.assert game_levels and world.is_array(game_levels)
   level_count = game_levels.length()
   level_at = parse_level(level, level_count)
   level_index = level_at + 1
 
-  my.extend game_levels.at(level_at), {
+  world.import_dict {
     level_index: level_index
     level_count: level_count
-    next_url: (world) -> make.anchor(world.get 'next_params').href
+    next_url: (world) -> make.anchor('a', world.get 'next_params').href
     next_params: (world) ->
       if level_index < level_count 
         {game: world.get('game'), level: level_index + 1}
       else 
         {list: 'all'}
   }
+  game_levels.at(level_at)
 
 extend_globals = (root, dict) ->
   for key in globals
@@ -90,11 +93,8 @@ exports.load = (rx, query) ->
   world = create_game root, query.game
   world.put 'games', Object.keys games
   
-  game_levels = world.get 'levels'
-  my.assert game_levels and world.is_array(game_levels)
-  
   level = query.level
-  level_world = extend_world world, create_level(game_levels, level)
+  level_world = extend_world world, create_level(world, level)
   console.log 'level_world', level_world.get('actions').doc.x
   for child in layout
     level_world.add_child child(level_world)

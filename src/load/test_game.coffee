@@ -14,8 +14,9 @@ exports.test_game = (test, rx) ->
     t.ok example.is_world(list), 'list  is world'
     t.end()
 
-  test 'game levels', (t) ->
+  test 'game next_params', (t) ->
     t.ok params = example.get 'next_params'
-    t.equal params.level, '2'
+    t.equal params.level, 2, "level"
+    t.ok url = example.get 'next_url'
     t.end()
   
