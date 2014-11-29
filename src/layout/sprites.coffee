@@ -37,7 +37,7 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _SETUP: (world) ->
+  _SETUP: (world) -> # TODO: find alternative; this is the only SETUP
     shapes = world.get 'shapes'
     sprites = world.get 'sprites'
     for sprite_dict in sprites.all()
@@ -51,7 +51,7 @@ exports.sprites = {
   # selection
   
   inspect: (world, sprite) -> world.put 'inspected', sprite
-  selected: (world) -> world == world.get('inspected')
+  selected: (world) -> world == world.get 'inspected'
   click: (world, args) -> world.send 'inspect', world
 
   # defaults
@@ -75,7 +75,7 @@ exports.sprites = {
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
 
-  # behavior
+  # behavior defaults
 
   behavior:
     first:     []
@@ -85,12 +85,14 @@ exports.sprites = {
   running: 'first'
   editing: 'first'
 
-  determine_next_position: (world, args) -> world.get('next_position') || world.get('position')
+  determine_next_position: (world, args) ->
+    world.get('next_position') || world.get('position')
 
   commit: (world, args) ->
-    world.put 'position', world.get('determine_next_position') # proposed coordinates
+    world.put 'position', world.get('determine_next_position') 
+    # proposed coordinates
 
-  # direct actions
+  # direct actions (instructions)
   
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
@@ -105,6 +107,5 @@ exports.sprites = {
 
   reset: (world, args) ->
     dict = world.get 'dict'
-    ['position', 'direction'].map (key) ->
-      world.put key, dict[key]
+    ['position', 'direction'].map (key) -> world.put key, dict[key]
 }
