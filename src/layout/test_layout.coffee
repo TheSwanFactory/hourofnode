@@ -77,14 +77,8 @@ exports.test_layout = (test, rx) ->
     t.ok "forward" in commands, 'has a command'
     t.end()
 
-  test "behavior dict", (t) ->
-    t.ok behavior = sprite.get('behavior'), 'behavior'
-    t.skip ->
-      t.ok dict = behavior(sprite)
-      t.equal dict.running, 'first', 'running program'    
-      t.ok inspect = god(rx, dict), 'create inspector world'
-      t.equal inspect.get('running'), 'first', 'running label'
-      t.ok program = inspect.get('running_program'), 'get running_program'
-      t.ok program.get('is_running'), 'is-running'
+  test "find sequences", (t) ->
+    t.ok actions = sprite.get('actions'), 'actions'
+    t.ok sequences = actions.keys(), 'actions'
+    console.log 'sequences', sequences 
     t.end()
-
