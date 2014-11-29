@@ -17,6 +17,12 @@
 {my} = require '../../my'
 {make} = require '../../render/make' # TODO: find better path-ing
 
+# method, key, integer
+extract_instruction = (contents) ->
+  instruction = contents.split " "
+  instruction[2] = parseInt instruction[2]
+  instruction
+  
 exports.programs = (sprite) ->
   
   get_next_index = (current_index, count) ->
@@ -47,12 +53,12 @@ exports.programs = (sprite) ->
       action = world.get 'next_action'
       world.call 'perform', action.get('value') if action
       
-    perform: (world, action) ->
-      contents = sprite.get('actions').get(action)
-      instruction = contents.split " "
-      instruction[2] = parseInt instruction[2]
+    perform: (world, key) ->
+      contents = sprite.get('actions').get(key)
+      world.call 'perform_instruction', contents
 
-      [method, key, value] = instruction
+    perform_instruction : (world, contents) ->
+      [method, key, value] = extract_instruction contents
       my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
 
