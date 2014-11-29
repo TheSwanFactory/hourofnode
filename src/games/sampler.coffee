@@ -13,7 +13,12 @@ exports.game = {
   levels: [
     {
       name: 'One of Everything'
-      sprites: [me]
+      sprites: [
+        {kind: 'turtle'}
+        {kind: 'wall'}
+        {kind: 'egg'}
+        {kind: 'gate'}
+      ]
       bricks: 7
       goal: {
         clicks: 1
