@@ -3,13 +3,11 @@
 
 me = {
   name: 'me'
-  shape: 'turtle'
   kind: 'turtle'
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
   actions: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
-  editable: true
 }
 
 yu = my.dup me, {
@@ -21,13 +19,11 @@ yu = my.dup me, {
 
 exit = {
   name: 'exit'
-  shape: 'diamond'
   kind: 'gate'
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
   actions: {interrupt: ['_victory']}
-  obstruction: false
 }  
 
 exports.game = {
