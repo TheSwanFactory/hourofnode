@@ -3,29 +3,27 @@
 
 me = {
   name: 'me'
-  shape: 'turtle'
+  kind: 'turtle'
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  actions: { first: ['left', 'forward'], repeat: ['forward', 'forward', 'right'], interrupt: ['reverse', 'right'] }
-  editable: true
+  actions: { first: ['left', 'forward'], interrupt: ['reverse', 'right'] }
 }
 
 yu = my.dup me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
-  actions: { first: [], repeat: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
+  actions: { first: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {
   name: 'exit'
-  shape: 'diamond'
+  kind: 'gate'
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'
   actions: {interrupt: ['_victory']}
-  obstruction: false
 }  
 
 exports.game = {

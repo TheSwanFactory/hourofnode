@@ -27,10 +27,6 @@
 
 exports.behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
-  default_program = rows._CHILDREN[0]
-  my.assert default_program, "no default_program"
-
-  initial_label = default_program._LABEL
   my.extend rows, {
     y: (world) -> world.index * my.row.spacing
     class: 'program'

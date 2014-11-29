@@ -1,12 +1,6 @@
 {my} = require '../my'
 {vector} = require '../god/vector'
 
-me = {
-  name: 'me'
-  shape: 'turtle'
-  editable: true
-}
-
 exports.game = {
   name: "Sampler Levels"
   assume: 'baseline'
@@ -15,8 +9,16 @@ exports.game = {
   levels: [
     {
       name: 'One of Everything'
-      sprites: [me]
-      bricks: 7
+      sprites: [
+        {kind: 'gate'}
+        {kind: 'egg'}
+        {kind: 'wall'}
+        {
+          kind: 'turtle'
+          position: [1,1]
+          actions: { first: ['forward'] }
+        }
+      ]
       goal: {
         clicks: 1
         ticks: 4

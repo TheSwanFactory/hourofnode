@@ -5,12 +5,18 @@ exports.test_game = (test, rx) ->
   example = load(rx, {game: 'example', level: 1})
 
   test 'game load', (t) ->
-    t.ok load, 'load'
     t.ok example, 'example'
+    t.ok example.is_world(example), 'is world'
     t.end()
 
-  test 'game world', (t) ->
-    t.ok example
-    t.ok shapes = example.get('shapes'), 'shapes'
+  test 'game list', (t) ->
+    t.ok list = load(rx, {list: 'all'}), 'list'
+    t.ok example.is_world(list), 'list  is world'
+    t.end()
+
+  test 'game next_params', (t) ->
+    t.ok params = example.get 'next_params'
+    t.equal params.level, 2, "level"
+    t.ok url = example.get 'next_url'
     t.end()
   

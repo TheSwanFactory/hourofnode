@@ -7,7 +7,7 @@ INSET = 2 * RADIUS
 
 exports.game = {
   name: "Shapes"
-  assume: 'geometry'
+  assume: 'kinds'
   
   shapes: {
     turtle: [

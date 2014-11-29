@@ -30,7 +30,7 @@ exports.programs = (sprite) ->
   get_next_index = (current_index, count) ->
     next_index = current_index + 1
     return next_index if next_index < count
-    load_program 'repeat'
+    load_program 'first'
     return 0
     
   program_behavior = (name) -> {
@@ -99,7 +99,7 @@ exports.programs = (sprite) ->
   my.assert sprite.is_world(actions), "#{sprite} has no actions world"
 
   children = []
-  actions.keys().map (key) ->
+  actions.keys([]).map (key) ->
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
   children
