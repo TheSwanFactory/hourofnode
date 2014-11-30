@@ -18,59 +18,21 @@ exports.game = {
       }
       sprites: [
         {kind: 'gate'}
-        {kind: 'wall'}
-         {
+        {
           kind: 'turtle'
           position: [0,0]
           actions: { first: ['forward'] }
         }
-         {
-          kind: 'wall'
-          position: [0,2]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [2,2]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [2,1]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [2,0]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [2,5]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [1,5]
-          actions: { first: ['forward'] }
-        }
-
-         {
-          kind: 'wall'
-          position: [3,5]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [4,5]
-          actions: { first: ['forward'] }
-        }
-         {
-          kind: 'wall'
-          position: [5,5]
-          actions: { first: ['forward'] }
-        }
-
+        {kind: 'wall'}
+        {kind: 'wall', position: [0,2]}
+        {kind: 'wall', position: [2,2]}
+        {kind: 'wall', position: [2,1]}
+        {kind: 'wall', position: [2,0]}
+        {kind: 'wall', position: [2,5]}
+        {kind: 'wall', position: [1,5]}
+        {kind: 'wall', position: [3,5]}
+        {kind: 'wall', position: [4,5]}
+        {kind: 'wall', position: [5,5]}
       ]
     }
   ]
