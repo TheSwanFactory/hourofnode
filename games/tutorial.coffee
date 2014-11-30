@@ -1,13 +1,21 @@
 exports.game = {
-  name: "Tutorial Game"
+  name: 'Tutorial Level'
   assume: 'baseline'
   comment: "The world's first NodeScript program"
-  author: {name: 'David Huffman', email: 'david@theswanfactory.com'}
-  license: 'Creative Commons'
+  author: {name: 'David Huffman', url: 'mailto:david@theswanfactory.com'}
+  license: {
+    name: 'Creative Commons Attribution 4.0 International'
+    url: 'http://creativecommons.org/licenses/by/4.0/'
+  }
 
   levels: [
     {
-      name: 'One of Everything'
+      name: 'A Complex Maze'
+      goal: {
+        clicks: 6
+        ticks: 20
+        bricks: 6
+      }
       sprites: [
         {kind: 'gate'}
         {kind: 'wall'}
@@ -64,11 +72,6 @@ exports.game = {
         }
 
       ]
-      goal: {
-        clicks: 1
-        ticks: 4
-        bricks: 1
-      }
     }
   ]
 }
