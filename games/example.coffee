@@ -1,6 +1,3 @@
-{my} = require '../my'
-{vector} = require '../god/vector'
-
 me = {
   name: 'me'
   kind: 'turtle'

@@ -1,6 +1,3 @@
-{my} = require '../my'
-{vector} = require '../god/vector'
-
 exports.game = {
   name: "Sampler Levels"
   assume: 'baseline'
