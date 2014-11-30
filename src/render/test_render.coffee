@@ -99,24 +99,22 @@ exports.test_render = (test, rx) ->
     t.end()
 
   test "name tag not button", (t) ->
-    t.ok body = render_real name: 'me'
-    t.equal body.find('span').length, 1
+    t.ok body = render_real(name: 'me'), 'render_real'
+    t.equal body.find('span').length, 1, 'render_real as span'
     t.end()
 
   test "render non-mock", (t) ->
     svg_dict = {paths: ['M0,0'], name: 'ME', width: 100, height:100}
     t.ok body  = render_real(svg_dict), "real svg"
     t.ok group = body.find('g'), 'has group'
-    t.equal group.find('> path').attr('d'), svg_dict.paths[0]
-    t.equal group.find('> text').text(), svg_dict.name
+    t.equal group.find('> path').attr('d'), svg_dict.paths[0], 'svg_dict.paths'
+    t.equal group.find('> text').text(), svg_dict.name, 'svg_dict.name'
     t.end()
 
   test "render selection", (t) ->
     t.end()
 
   test "render class attribute", (t) ->
-    t.ok body = render_real
-      name: 'ME'
-      class: 'testclass'
-    t.equal body.find('.testclass').length, 1
+    t.ok body = render_real(name: 'ME', class: 'testclass'), 'render real class'
+    t.equal body.find('.testclass').length, 1, 'class length'
     t.end()

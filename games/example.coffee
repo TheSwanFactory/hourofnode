@@ -7,7 +7,7 @@ me = {
   actions: { first: ['left', 'forward'], interrupt: ['reverse', 'right'] }
 }
 
-yu = _.extend me, {
+yu = _.extend {}, me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'

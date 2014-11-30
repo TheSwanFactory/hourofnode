@@ -11,12 +11,12 @@ exports.test_game = (test, rx) ->
 
   test 'game list', (t) ->
     t.ok list = load(rx, {list: 'all'}), 'list'
-    t.ok example.is_world(list), 'list  is world'
+    t.ok example.is_world(list), 'list is world'
     t.end()
 
   test 'game next_params', (t) ->
-    t.ok params = example.get 'next_params'
-    t.equal params.level, 2, "level"
-    t.ok url = example.get 'next_url'
+    t.ok params = example.get('next_params'), 'next_params'
+    t.equal params.level, 2, 'level'
+    t.ok url = example.get('next_url'), 'next_url'
     t.end()
   
