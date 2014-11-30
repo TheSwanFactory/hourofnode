@@ -1,6 +1,3 @@
-{my} = require '../my'
-{vector} = require '../god/vector'
-
 me = {
   name: 'me'
   kind: 'turtle'
@@ -10,7 +7,7 @@ me = {
   actions: { first: ['left', 'forward'], interrupt: ['reverse', 'right'] }
 }
 
-yu = my.dup me, {
+yu = _.extend me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'

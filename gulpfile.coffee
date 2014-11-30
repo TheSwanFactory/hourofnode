@@ -56,7 +56,7 @@ gulp.task 'sync', -> sync_to dest
 
 # Watch and resync
 
-all_src = ['src/**/*', './../reactive-coffee/src/*']
+all_src = ['src/**/*', 'games/*', './../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds
 
