@@ -37,6 +37,7 @@ exports.test_layout = (test, rx) ->
   
   test "layout world", (t) ->
     t.ok level, 'active level'
+    t.equal world.get('game'), "example", "game file"
     t.ok grid, 'grid'
     t.ok all_sprites, 'sprites'
     t.ok sprite, 'sprite'
