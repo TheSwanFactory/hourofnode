@@ -21,42 +21,43 @@ it's the law
 ###
 
 same_position = (mover, checker) ->
-  _.isEqual mover.get('proposed_position'), checker.get('proposed_position')
+  _.isEqual mover.get('proposed_position').all(), checker.get('proposed_position').all()
 
 resolve_collision = (mover, checker) ->
-  blocked = true 
+  blocked = true
   if checker.get 'obstruction'
     mover.call 'collision', checker
-    return blocked 
+    return blocked
   return not blocked
-  
+
 ###
 #  RESOLUTION RULES:
   - no obstruction -> no problem
-    not blocked if 
+    not blocked if
   - one obstruction -> non-obstruction gets interrupted
   - both obstructions -> the moving object gets interrupted
 ###
-  
+
 collision_check = (sprites, cell_count, grid) ->
   _.each sprites, (mover, mover_index) ->
     my.assert mover, "moving sprite"
-    
+
+    blocked = false
+
     # 1. Check if out of bounds; if so, collide with edge
-    if not vector.inside(proposal.coordinates, cell_count)
-      mover.call 'collission', grid
-      continue
+    if not vector.inside(mover.get 'proposed_position', cell_count)
+      mover.call 'collision', grid
+      return
 
     # 2. Check every other sprite whether in same position
-      # obstacles = []
-      _.each sprites, (checker, checker_index) ->
-        if checker != mover and same_position(mover, checker)
-           blocked = resolve_collision(mover, checker)
-           # obstacles.push checker unless blocked
+    # obstacles = []
+    _.each sprites, (checker, checker_index) ->
+      if checker != mover and same_position(mover, checker)
+         blocked = resolve_collision(mover, checker)
+         # obstacles.push checker unless blocked
 
-      if not blocked
-        mover.call 'commit'
-        # obstacles.map (obstacle) -> obstacle.call 'collision', mover
+    mover.call 'commit' if not blocked
+    # obstacles.map (obstacle) -> obstacle.call 'collision', mover
 
 law =
   _EXPORTS:  ['decide']
