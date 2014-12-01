@@ -20,7 +20,6 @@ it's the law
 collision_check = (proposals, cell_count, grid) ->
   _.each proposals, (proposal, index) ->
     return unless proposal
-    my.assert proposal, "No proposal at #{index}"
     sprite            = proposal.sprite
     collision_subject = null
 
