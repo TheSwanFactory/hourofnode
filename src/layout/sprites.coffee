@@ -73,12 +73,19 @@ exports.sprites = {
   running: 'first'
   editing: 'first'
 
-  determine_next_position: (world, args) ->
+  proposed_position: (world, args) ->
     world.get('next_position') || world.get('position')
+  
+  load_program: (world, key) ->
+    # TODO: reset program counter somewhere
+    world.put 'running', key
+  
+  collision: (world, obstruction) ->
+    key = 'interrupt' # TODO: make inheritable
+    world.call 'load_program', key
 
   commit: (world, args) ->
-    world.put 'position', world.get('determine_next_position') 
-    # proposed coordinates
+    world.put 'position', world.get('proposed_position') 
 
   # direct actions (instructions)
   

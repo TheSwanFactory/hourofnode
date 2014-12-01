@@ -12,49 +12,62 @@ it's the law
 2. decide
   - check to make sure that the proposed movements don't cause collisions. if
     any do, call 'collision' on the offending sprite
+
+
 3. resolve
   - tell sprites they are free to perform their proposed action
 
+
 ###
 
-collision_check = (proposals, cell_count, grid) ->
-  _.each proposals, (proposal, index) ->
-    return unless proposal
-    sprite            = proposal.sprite
-    collision_subject = null
+same_position = (mover, checker) ->
+  _.isEqual mover.get('proposed_position'), checker.get('proposed_position')
 
-    # check for collisions
-    # compare this proposal's coordinates to all the other proposals
-    _.each _.rest(proposals, index + 1), (other_proposal, inner_index) ->
-      # if we're about to collide, say no
-      if _.isEqual(proposal.coordinates, other_proposal.coordinates)
-        drop_index = index + inner_index + 1
-        other_proposal.sprite.send 'collision', [other_proposal.sprite, proposal.sprite, other_proposal.coordinates]
-        proposals.splice drop_index, 1 # remove this from the chain to be considered
-
-        collision_subject = other_proposal.sprite
-
+resolve_collision = (mover, checker) ->
+  blocked = true 
+  if checker.get 'obstruction'
+    mover.call 'collision', checker
+    return blocked 
+  return not blocked
+  
+###
+#  RESOLUTION RULES:
+  - no obstruction -> no problem
+    not blocked if 
+  - one obstruction -> non-obstruction gets interrupted
+  - both obstructions -> the moving object gets interrupted
+###
+  
+collision_check = (sprites, cell_count, grid) ->
+  _.each sprites, (mover, mover_index) ->
+    my.assert mover, "moving sprite"
+    
+    # 1. Check if out of bounds; if so, collide with edge
     if not vector.inside(proposal.coordinates, cell_count)
-      collision_subject = grid
+      mover.call 'collission', grid
+      continue
 
-    if collision_subject? # proposal.sprite ran into something
-      proposal.sprite.send 'collision', [proposal.sprite, collision_subject, proposal.coordinates]
-    else
-      proposal.sprite.call 'commit', proposal.coordinates
+    # 2. Check every other sprite whether in same position
+      # obstacles = []
+      _.each sprites, (checker, checker_index) ->
+        if checker != mover and same_position(mover, checker)
+           blocked = resolve_collision(mover, checker)
+           # obstacles.push checker unless blocked
+
+      if not blocked
+        mover.call 'commit'
+        # obstacles.map (obstacle) -> obstacle.call 'collision', mover
 
 law =
   _EXPORTS:  ['decide']
-  proposals: (world, args) ->
-    world.up.find_child('sprites').map_children (sprite) ->
-      { sprite: sprite, coordinates: sprite.get('determine_next_position').all() }
-  # TODO: Replace with loosely-coupled world.send 'proposal'
+  sprite_list: (world, args) ->   world.up.find_child('sprites').find_children()
 
   decide: (world, args) ->
     console.log 'law decide'
-    proposals = world.get_plain 'proposals'
-    cell_count = world.get_plain 'cell_count'
+    sprites = world.get 'sprite_list'
+    cell_count = world.get 'cell_count'
     grid = world.up
-    collision_check proposals, cell_count, grid
+    collision_check sprites, cell_count, grid
 
   # TODO: remove if not used
   resolve: (world, args) ->
