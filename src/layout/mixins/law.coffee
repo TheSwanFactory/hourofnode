@@ -50,14 +50,11 @@ collision_check = (sprites, cell_count, grid) ->
       return
 
     # 2. Check every other sprite whether in same position
-    # obstacles = []
     _.each sprites, (checker, checker_index) ->
       if checker != mover and same_position(mover, checker)
          blocked = resolve_collision(mover, checker)
-         # obstacles.push checker unless blocked
 
     mover.call 'commit' if not blocked
-    # obstacles.map (obstacle) -> obstacle.call 'collision', mover
 
 law =
   _EXPORTS:  ['decide']
