@@ -9,7 +9,7 @@ it's the law
 
 1. propose
   - sprites broadcast what they would like to do
-2. decide
+2. execute
   - check to make sure that the proposed movements don't cause collisions. if
     any do, call 'collision' on the offending sprite
 
@@ -57,11 +57,11 @@ collision_check = (sprites, cell_count, grid) ->
     mover.call 'commit' if not blocked
 
 law =
-  _EXPORTS:  ['decide']
+  _EXPORTS:  ['execute']
   sprite_list: (world, args) ->   world.up.find_child('sprites').find_children()
 
-  decide: (world, args) ->
-    console.log 'law decide'
+  execute: (world, args) ->
+    console.log 'law execute'
     sprites = world.get 'sprite_list'
     cell_count = world.get 'cell_count'
     grid = world.up
