@@ -18,11 +18,6 @@ exports.game = {
       }
       sprites: [
         {kind: 'gate'}
-        {
-          kind: 'turtle'
-          position: [0,0]
-          actions: { run: ['forward'] }
-        }
         {kind: 'wall'}
         {kind: 'wall', position: [0,2]}
         {kind: 'wall', position: [2,2]}
@@ -33,6 +28,11 @@ exports.game = {
         {kind: 'wall', position: [3,5]}
         {kind: 'wall', position: [4,5]}
         {kind: 'wall', position: [5,5]}
+        {
+          kind: 'turtle'
+          position: [0,0]
+          actions: { run: ['forward'] }
+        }
       ]
     }
   ]
