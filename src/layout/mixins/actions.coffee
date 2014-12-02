@@ -31,7 +31,6 @@ exports.actions = (sprite) ->
     (button, args) ->
       if sprite.get 'editable'
         send_message button.get('value')
-        button.send 'decide'
         button.send 'click'
         button.send 'brick'
       else
