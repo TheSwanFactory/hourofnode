@@ -18,7 +18,7 @@ normalize = (paths) ->
 
 clicker = (world) ->
   action = world.get_raw 'click'
-  return -> action(world) if action? and !world.has_children()
+  return (event) -> action(world, event) if action? and !world.has_children()
 
 class_attrs = (world) ->
   labels = world.labels()

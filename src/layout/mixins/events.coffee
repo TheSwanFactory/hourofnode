@@ -31,7 +31,6 @@ exports.events = {
     world.send 'execute'
     world.send 'prefetch'
 
-
   stop: (world, button) ->
     button.put 'name', 'run'
     world.put 'speed', 0
