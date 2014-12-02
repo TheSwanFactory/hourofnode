@@ -5,8 +5,10 @@
 exports.controls = () ->
   buttons = make.buttons(
     'control',
-    ["step", "run", "stop", "reset"],
+    ["step", "run", "reset", "edit"],
     my.control,
-    (world, args) -> world.send world.get('value')
+    (world, args) ->
+      console.log 'control send', world.get('name')
+      world.send world.get('name'), world
   )
   _.extend buttons, events

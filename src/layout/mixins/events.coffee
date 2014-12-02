@@ -24,17 +24,21 @@ exports.events = {
   speed: 0
   _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
 
-  step: (world, args) ->
+  step: (world, button) ->
     console.log 'stepping'
     world.send 'tick'
     world.send 'fetch'
     world.send 'execute'
     world.send 'prefetch'
 
-  stop: (world, args) -> world.put('speed', 0)
 
-  run: (world, args) ->
-    world.put('speed', 1)
+  stop: (world, button) ->
+    button.put 'name', 'run'
+    world.put 'speed', 0
+
+  run: (world, button) ->
+    button.put 'name', 'stop'
+    world.put 'speed', 1
     step_and_repeat = (self) ->
       speed = world.get('speed')
       if speed > 0
