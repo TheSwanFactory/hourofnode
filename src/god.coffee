@@ -7,8 +7,6 @@ class GOD
     return world.up if key == "up"
     console.log "key '#{key}' not found: #{world.label()}" if @debug
     undefined
-  get_raw_plain: (key, world) ->
-    @get_raw(key, world)
   label: -> "GOD"
   toString: -> @label()
     

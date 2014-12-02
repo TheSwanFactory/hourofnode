@@ -22,42 +22,61 @@ extract_instruction = (contents) ->
   instruction = contents.split " "
   instruction[2] = parseInt instruction[2]
   instruction
-  
-exports.programs = (sprite) ->
 
-  load_program = (key) -> sprite.put 'running', key
-  
-  get_next_index = (current_index, count) ->
-    next_index = current_index + 1
-    return next_index if next_index < count
-    load_program 'first'
-    return 0
-    
+exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['tick', 'collision', 'apply']
-    _AUTHORITY: {
-      selected: (world) -> world.index == world.get('next_index')
-    }
+    _EXPORTS: ['fetch', 'prefetch', 'apply', 'reset']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
-    next_index: 0
-    reset_index: (world) -> world.put 'next_index', 0
-    next_action: (world) ->
-      current_index = world.get 'next_index'
-      actions = world.find_child('actions').find_children()
-      count = actions.length
-      world.put 'next_index', get_next_index(current_index, count) 
-      actions[current_index]
+    # Index
 
-    tick: (world, args) ->
+    next_index:    0
+    reset:   (world) -> world.call 'fetch_program', 'run'
+
+    reset_index:   (world) -> world.put 'next_index', 0
+    advance_index: (world) ->
+      next_index = world.get 'next_index'
+      world.put 'next_index', next_index + 1
+
+    # Action
+
+    find_action:   (world) ->
+      actions = world.find_child('actions').find_children()
+      actions[world.get('next_index')]
+    next_action: (world) ->
+      action = world.call 'find_action'
+      world.call 'advance_index'
+      action
+
+    fetch: (world, args) ->
       return unless world.get 'selected'
-      action = world.get 'next_action'
-      world.call 'perform', action.get('value') if action
-      
+      action = world.call 'next_action'
+      console.log 'fetch', "#{sprite.get 'name'} #{sprite.get 'running'} #{action} ->", sprite.get('interrupt')?.length()
+      world.call 'perform', action.get 'value' if action
+
+    prefetch: (world) ->
+      return unless world.get 'selected'
+      console.log 'prefetch', "#{sprite.get 'name'} #{sprite.get 'running'} #{world.get('find_action')} ->", sprite.get('interrupt')?.length()
+      if interrupt = sprite.get('interrupt')
+        key = world.call 'find_interrupt', interrupt.all()
+        sprite.put 'interrupt', undefined
+        return world.call('fetch_program', key)
+      world.call 'fetch_program', 'run' unless world.get('find_action')
+
+    fetch_program: (world, key) ->
+      sprite.put 'running', key
+      p = world.up.find_child(key)
+      p.call 'reset_index'
+
+    find_interrupt: (world, keys) ->
+      console.log 'find_interrupt', keys
+      # TODO: put real logic here
+      'interrupt'
+
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
-      return load_program(key) unless _.isString contents
+      return fetch_program(key) unless _.isString contents
       world.call 'perform_instruction', contents
 
     perform_instruction: (world, contents) ->
@@ -65,19 +84,9 @@ exports.programs = (sprite) ->
       my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
 
-    collision: (world, args) ->
-      [proposing_sprite, collision_subject, coordinates] = args
-      return unless proposing_sprite == sprite
-      # if this is my sprite to handle
-      if collision_subject.get('obstruction')
-        world.call 'reset_index'
-        load_program 'interrupt'
-      else
-        sprite.call 'commit', coordinates
-
     apply: (world, args) ->
       {target, action} = args
-      return unless world.get 'editable'      
+      return unless world.get 'editable'
       world.call('store', action) if sprite == target
 
     store: (world, action) ->
@@ -90,20 +99,31 @@ exports.programs = (sprite) ->
   }
 
   program_row = (name, contents) ->
-    program = make.columns name, [
-      { _LABEL: 'program_name', name: name }
-      make.buttons "action", contents, my.command, (button, args) ->
+    program = make.rows name, [
+      {
+        _LABEL: 'program_name'
+        name: name
+        selected: (world) -> name == sprite.get 'editing'
+        click: -> sprite.put 'editing', name
+      }
+       make.buttons "action", contents, my.action, ((button, args) ->
+        # TODO: add some kind of confirmation
         button.up.remove_child(button)
         button.send 'click'
         button.send 'brick', -1
+        ), {
+          selected: (world) -> world.index == world.get('next_index')
+        }
     ]
-    my.extend program, program_behavior()
+    _.extend program, program_behavior()
 
   actions = sprite.get 'actions'
   my.assert sprite.is_world(actions), "#{sprite} has no actions world"
 
   children = []
   actions.keys([]).map (key) ->
+    # if contents is a string, it is a primitive function.
+    # if contents is an RxArray, it is a list of commands.
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
   children

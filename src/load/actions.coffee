@@ -14,7 +14,7 @@ exports.game = {
     # color: "call drop dir"
     _victory: "send done 1"
     _failure: "send done -1"
-    first: []
+    run: []
     interrupt: []
   }
 }

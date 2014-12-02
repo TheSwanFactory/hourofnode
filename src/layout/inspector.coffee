@@ -16,7 +16,7 @@
 sprite_inspector = (sprite) ->
   {
     height: 'auto'
-    _LABEL: "inspector_#{sprite.get_plain 'name'}"
+    _LABEL: "inspector_#{sprite.get 'name'}"
     _CHILDREN: [
       status(sprite)
       actions(sprite)
@@ -35,7 +35,7 @@ exports.inspector = () ->
     _EXPORTS: ['inspect']
     inspect: (world, sprite) ->
       world.reset_children()
-      inspector = sprite.get_plain('inspector') or make_inspector(world, sprite)
+      inspector = sprite.get('inspector') or make_inspector(world, sprite)
       world.add_child inspector 
 
     width: (world) -> world.up.get('width') - 4 * my.margin

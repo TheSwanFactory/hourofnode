@@ -3,7 +3,7 @@
 
 exports.render_html = (world) ->
   T = world.T()
-  tag_name = world.get_plain('tag_name') or 'div'
+  tag_name = world.get('tag_name') or 'div'
   tag = T[tag_name]
   my.assert tag, "No tag for #{tag_name} in #{world}"
   has_position = world.get('x') or world.get('y')

@@ -9,4 +9,4 @@ exports.controls = () ->
     my.control,
     (world, args) -> world.send world.get('value')
   )
-  my.extend buttons, events
+  _.extend buttons, events

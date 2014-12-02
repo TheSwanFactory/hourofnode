@@ -31,11 +31,12 @@ exports.actions = (sprite) ->
     (button, args) ->
       if sprite.get 'editable'
         send_message button.get('value')
+        button.send 'execute'
         button.send 'click'
         button.send 'brick'
       else
         button.send 'error', "#{sprite} not editable"
   )
   
-  my.extend buttons, {
+  _.extend buttons, {
   }

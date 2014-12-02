@@ -26,7 +26,7 @@ exports.game = {
           shape: 'turtle'
           position: [0,0]
           color: 'limegreen'
-          actions: {first: []}
+          actions: {run: []}
           editable: true
         }
       ]
