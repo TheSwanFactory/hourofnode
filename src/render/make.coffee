@@ -3,7 +3,7 @@
 queryString = require 'query-string'
 
 group = (label, items, tag_name, options = {}) ->
-  my.extend({},
+  _.extend({},
     {
       _KIND: label
       _AUTHORITY: {tag_name: tag_name}
@@ -21,10 +21,10 @@ exports.make = {
     name: name
     href: "/?#{queryString.stringify(params)}"
   }
-  
-  buttons: (kind, items, my_kind, action) ->
+
+  buttons: (kind, items, my_kind, action, more_authority={}) ->
     label = "#{kind}s"
-    authority = {
+    base_authority = {
       tag_name: 'button'
       _KIND: kind
       padding: my_kind.padding
@@ -43,7 +43,7 @@ exports.make = {
     }
     {
       _KIND: label
-      _AUTHORITY: authority
+      _AUTHORITY: _.extend base_authority, more_authority
       _LABEL: label
       _CHILDREN: children
       stroke: my.color.line

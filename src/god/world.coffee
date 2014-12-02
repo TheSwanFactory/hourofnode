@@ -9,7 +9,7 @@
 #  * Distirbute events among child worlds
 #  * Locate child and parent worlds
 #
-#  TODO: break this into roles use my.extend
+#  TODO: break this into roles use _.extend
 #  * properties
 #  * event handling
 #  * import
@@ -31,7 +31,7 @@ class World
     my.assert up, "up always exists"
     my.assert _.isObject(up), "up is an object"
     @up = up
-    cache_rx = rx or @up.get_raw_plain(RX)
+    cache_rx = rx or @up.get_raw(RX)
     my.assert cache_rx, "cache_rx"
     @doc = cache_rx.map()
     my.assert _.isString(label), "label not a string: #{label}"
@@ -44,7 +44,7 @@ class World
     @uid = _.uniqueId()
     
   # reactive-coffee tags and binding
-  rx: () -> @get_plain(RX)
+  rx: () -> @get(RX)
   T: () -> @rx().rxt.tags
   SVG: () -> @rx().rxt.svg_tags
   bind: () -> @rx().bind
@@ -80,23 +80,6 @@ class World
 
   get: (key) ->
     value = @get_raw(key)
-    return value(@,{}) if _.isFunction(value)
-    value
-
-  get_local_plain: (key) ->
-    @doc.x[key]
-
-  get_raw_plain: (key, world) ->
-    value = @get_local_plain(key)
-    return value if value?
-    authority = @get_local_plain(my.key.authority)
-    if authority
-      value = authority.get_raw_plain(key, @)
-      return value if value?
-    @up.get_raw_plain(key, world or @)
-
-  get_plain: (key) ->
-    value = @get_raw_plain(key)
     return value(@,{}) if _.isFunction(value)
     value
 
@@ -267,8 +250,8 @@ class World
       index += 1
     result
   
-  label: -> @get_plain(my.key.label)
-  kind:  -> @get_plain(my.key.kind) or "World"
+  label: -> @get(my.key.label)
+  kind:  -> @get(my.key.kind) or "World"
 
   labels: (starter = []) ->
     starter.push @label()

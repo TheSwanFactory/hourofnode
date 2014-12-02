@@ -20,7 +20,7 @@
 
 queryString = require 'query-string' #https://github.com/sindresorhus/query-string
 
-my.extend game_files, games
+_.extend game_files, games
 
 globals = ['kinds', 'shapes', 'actions']
 

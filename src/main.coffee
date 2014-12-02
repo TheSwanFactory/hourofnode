@@ -36,7 +36,7 @@ else
 default_query = {game: 'tutorial', level: 1}
 parsed_query = queryString.parse(location.search)
 
-world = load rx, my.extend(default_query, parsed_query)
+world = load rx, _.extend(default_query, parsed_query)
 
 main = ->
   $('body').append(

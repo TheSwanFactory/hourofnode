@@ -11,4 +11,4 @@ exports.controls = () ->
       console.log 'control send', world.get('name')
       world.send world.get('name'), world
   )
-  my.extend buttons, events
+  _.extend buttons, events

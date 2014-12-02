@@ -15,20 +15,25 @@ span.text {
 
 div.selected {
   border-color: yellow;
-  border-width: 1;
-  border-style: 'solid';
+  border-width: 1px;
+  border-style: solid;
 }
 
 div.editable {
   background: white;
 }
 
-button.selected {
+.program .selected button.selected {
   border-color: gold;
   border-width: 2;
   border-style: solid;
 }
 
+button.selected {
+  border-color: gold;
+  border-width: 2;
+  border-style: dotted;
+}
 button.selected.uneditable {
   border-color: grey;
   border-width: 2;

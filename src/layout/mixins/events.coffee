@@ -27,7 +27,10 @@ exports.events = {
   step: (world, button) ->
     console.log 'stepping'
     world.send 'tick'
-    world.send 'decide'
+    world.send 'fetch'
+    world.send 'execute'
+    world.send 'prefetch'
+
 
   stop: (world, button) ->
     button.put 'name', 'run'
@@ -37,9 +40,9 @@ exports.events = {
     button.put 'name', 'stop'
     world.put 'speed', 1
     step_and_repeat = (self) ->
-      speed = world.get_plain('speed')
+      speed = world.get('speed')
       if speed > 0
-        delay = world.get_plain('interval') / speed
+        delay = world.get('interval') / speed
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)

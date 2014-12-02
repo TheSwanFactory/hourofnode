@@ -27,7 +27,7 @@
 
 exports.behavior = (sprite) ->
   rows = make.rows 'behavior', programs(sprite)
-  my.extend rows, {
+  _.extend rows, {
     y: (world) -> world.index * my.row.spacing
     class: 'program'
   }

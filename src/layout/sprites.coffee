@@ -3,7 +3,7 @@
 #
 # Role: Draw and control objects that live in the grid
 #
-# Responsibility: 
+# Responsibility:
 # * create sprites from game description
 # * associate with a path and state representation
 # * define actions the sprite can perform
@@ -26,7 +26,7 @@ combine = (a, b, dir) ->
   if dir > 0 then vector.add(a, b) else vector.subtract(a, b)
 
 get_location_for_move = (world, dir) ->
-  combine world.get_plain('position'), world.get_plain('direction'), dir
+  combine world.get('position'), world.get('direction'), dir
 
 exports.sprites = {
   _LABEL: 'sprites'
@@ -42,20 +42,20 @@ exports.sprites = {
     world.send 'inspect', child
 
   # selection
-  
+
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get 'inspected'
   click: (world, args) -> world.send 'inspect', world
 
   # defaults
-  
+
   position:  [0,0]
   next_position: null
   direction: [1,0]
   obstruction: true
 
   # geometry
-  
+
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
@@ -70,20 +70,24 @@ exports.sprites = {
 
   # behavior defaults
 
-  running: 'first'
-  editing: 'first'
+  running: 'run'
+  editing: 'run'
 
-  determine_next_position: (world, args) ->
+  proposed_position: (world, args) ->
     world.get('next_position') || world.get('position')
 
+  collision: (world, obstruction) ->
+    console.log "collision", world.get('name'), obstruction.get('name')
+    world.put 'interrupt', obstruction.labels()
+
   commit: (world, args) ->
-    world.put 'position', world.get('determine_next_position') 
-    # proposed coordinates
+    world.put 'position', world.get('proposed_position')
+    world.put('next_position', null)
 
   # direct actions (instructions)
-  
+
   go: (world, dir) ->
-    cell_count = world.get_plain('cell_count')
+    cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
     sum = get_location_for_move world, dir
     world.put 'next_position', sum
