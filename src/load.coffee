@@ -24,15 +24,6 @@ _.extend game_files, games
 
 globals = ['kinds', 'shapes', 'actions']
 
-set_kind = (sprite_dict) ->
-  kinds = sprite_dict.kinds
-  kind = sprite_dict.kind
-  return unless kind
-  authority = kinds.get(kind)
-  my.assert authority, "No kind #{kind} for #{sprite_dict}"
-  sprite_dict.authority = authority
-  # TODO: cache world-ified kinds here instead of creating one for each sprite
-
 parse_level = (level, level_count) ->
   level_at = parseInt(level) - 1
   level_at = 0 if level_at < 0
@@ -93,8 +84,8 @@ exports.load = (rx, query) ->
 
   sprites = level_world.get 'sprites'
   for sprite_dict in sprites.all()
+    level_world.put 'kinds', sprite_dict.kinds
     extend_globals(level_world, sprite_dict)
-    set_kind(sprite_dict)
     level_world.send 'make_sprite', sprite_dict
 
   world.send(my.key.setup)

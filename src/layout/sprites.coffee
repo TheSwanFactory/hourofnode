@@ -11,6 +11,14 @@
 {my} = require '../my'
 {vector} = require('../god/vector')
 
+get_kind_authority = (sprite_dict, kinds) ->
+  kind = sprite_dict.kind
+  return unless kind
+  authority = kinds.get(kind)
+  my.assert authority, "No kind #{kind} for #{sprite_dict}"
+  authority
+  # TODO: cache world-ified kinds instead of creating one for each sprite
+
 transform = (world) ->
   center = world.get('cell_size') / 2
   translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
@@ -37,7 +45,7 @@ exports.sprites = {
     child.put 'dict', sprite_dict
     child.handle_event 'reset'
     child.handle_event 'inspect'
-    child.put my.key.authority, world.make_world sprite_dict.authority
+    child.put my.key.authority, world.make_world get_kind_authority(sprite_dict, world.get 'kinds')
     #child.call 'reset'
     world.send 'inspect', child
 
