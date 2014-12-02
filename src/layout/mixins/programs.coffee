@@ -26,16 +26,13 @@ extract_instruction = (contents) ->
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
     _EXPORTS: ['fetch', 'prefetch', 'apply']
-    _AUTHORITY: {
-      selected: (world) -> world.index == world.get('next_index')
-    }
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
     # Index
 
     next_index:    0
-    reset_index:   (world) -> world.put 'next_index', 0
+    reset:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->
       next_index = world.get 'next_index'
       world.put 'next_index', next_index + 1
@@ -67,7 +64,7 @@ exports.programs = (sprite) ->
     fetch_program: (world, key) ->
       sprite.put 'running', key
       p = world.up.find_child(key)
-      p.call 'reset_index'
+      p.call 'reset'
 
     find_interrupt: (world, key) ->
       console.log 'find_interrupt', key
@@ -101,11 +98,14 @@ exports.programs = (sprite) ->
   program_row = (name, contents) ->
     program = make.columns name, [
       { _LABEL: 'program_name', name: name }
-      make.buttons "action", contents, my.command, (button, args) ->
+       make.buttons "action", contents, my.command, ((button, args) ->
         # TODO: add some kind of confirmation
         button.up.remove_child(button)
         button.send 'click'
         button.send 'brick', -1
+        ), {
+          selected: (world) -> world.index == world.get('next_index')
+        }
     ]
     _.extend program, program_behavior()
 
