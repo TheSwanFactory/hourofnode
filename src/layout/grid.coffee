@@ -16,7 +16,13 @@ exports.grid = () -> {
     world.put 'editing', false
   click: (world, event) ->
     is_editing = world.get 'editing'
-    console.log 'click', world.label(), event, is_editing
+    scale = world.get('cell_size')
+    x = event.offsetX / scale
+    y = event.offsetY / scale
+    position = [Math.floor(x), Math.floor(y)]
+    console.log 'click', world.label(), position, is_editing
+    # world.send 'make_sprite', {kind: "wall", position: position}
+
   paths: []
   obstruction: true
   _CHILDREN: [
