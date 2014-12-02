@@ -32,36 +32,48 @@ exports.programs = (sprite) ->
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
+    # Index
+
     next_index:    0
-    next_action:   (world) ->
-      actions = world.find_child('actions').find_children()
-      actions[world.get('next_index')]
     reset_index:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->
       next_index = world.get 'next_index'
       world.put 'next_index', next_index + 1
 
+    # Action
+
+    find_action:   (world) ->
+      actions = world.find_child('actions').find_children()
+      actions[world.get('next_index')]
+    next_action: (world) ->
+      action = world.call 'find_action'
+      world.call 'advance_index'
+      action
+
     fetch: (world, args) ->
       return unless world.get 'selected'
-      action = null
-
-      if interrupt = sprite.get('interrupt')
-        key = world.call 'find_interrupt', interrupt
-        action = world.call 'fetch_program', key
-      if !action && action = world.get 'next_action'
-        world.call 'advance_index'
-      action ?= world.call 'fetch_program', 'first'
+      action = world.call 'fetch_action'
 
       world.call 'perform', action.get 'value' if action
 
+    fetch_action: (world) ->
+      if interrupt = sprite.get('interrupt')
+        key = world.call 'find_interrupt', interrupt
+        sprite.put 'interrupt', null
+        return world.call('fetch_program', key)
+      if action = world.get 'next_action'
+        return action
+
+      world.call 'fetch_program', 'run'
+
     fetch_program: (world, key) ->
-      world.up.find_child(sprite.get 'running').call 'reset_index'
       sprite.put 'running', key
       p = world.up.find_child(key)
       p.call 'reset_index'
       p.call 'next_action'
 
     find_interrupt: (world, key) ->
+      console.log 'find_interrupt', key
       # TODO: put real logic here
       'interrupt'
 
