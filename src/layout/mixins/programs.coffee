@@ -52,12 +52,12 @@ exports.programs = (sprite) ->
     fetch: (world, args) ->
       return unless world.get 'selected'
       action = world.call 'next_action'
-      console.log 'fetch', "#{sprite} #{sprite.get 'running'} #{action} -> #{sprite.get('interrupt')}"
+      console.log 'fetch', "#{sprite.get 'name'} #{sprite.get 'running'} #{action} ->", sprite.get('interrupt')
       world.call 'perform', action.get 'value' if action
 
     prefetch: (world) ->
       return unless world.get 'selected'
-      console.log 'prefetch', "#{sprite} #{sprite.get 'running'} #{world.get('find_action')} -> #{sprite.get('interrupt')}"
+      console.log 'prefetch', "#{sprite.get 'name'} #{sprite.get 'running'} #{world.get('find_action')} ->", sprite.get('interrupt')
       if interrupt = sprite.get('interrupt')
         key = world.call 'find_interrupt', interrupt
         sprite.put 'interrupt', null

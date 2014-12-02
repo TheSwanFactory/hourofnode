@@ -4,7 +4,7 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  actions: { run: ['left', 'forward'], interrupt: ['reverse', 'right'] }
+  actions: { run: ['left', 'forward'], interrupt: ['reverse'] }
 }
 
 yu = _.extend {}, me, {
@@ -21,7 +21,7 @@ exit = {
   stroke: 'maroon'
   fill: 'red'
   actions: {interrupt: ['_victory']}
-}  
+}
 
 exports.game = {
   name: "Example Game"
