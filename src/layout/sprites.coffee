@@ -82,7 +82,7 @@ exports.sprites = {
 
   commit: (world, args) ->
     world.put 'position', world.get('proposed_position')
-    world.put('proposed_position', undefined)
+    world.put('next_position', null)
 
   # direct actions (instructions)
 
