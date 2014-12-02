@@ -30,8 +30,10 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
 
 ** Notes **
   *  npm is now included with node.js' installer; installing node.js should install and configure npm on your system.
-  *  Items marked by a '+' are npm modules and are installed with the npm command:  npm -install [module name]
-
+  *  Items under npm are modules  installed with the `npm` command:
+```  
+     npm -install [module name]
+```
 
 ### Installation Steps (Prerequisite Software/Utilties) ###
 
@@ -49,52 +51,70 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
   * Use the "Clone in Desktop" button
 
 4.) Launch a terminal
-  Mac OS: Utilities
-  Windows: CMD Prompt or CYGWIN
+
+  * Mac OS: Utilities
+  * Windows: CMD Prompt or CYGWIN
 
 5.) Create a directory [on the partition] where you'd like The Hour of Node web-application to reside and be served-up from.
 
 6.) Unzip the downloaded The Hour Of Node .zip file to that directory (Step 5)
 
 The following steps will be done inside the terminal
+
 7.) Install gulp (via npm)
-    --> npm -g install gulp
-
+```
+--> npm -g install gulp
+```
 8.) Install CoffeeScript (via npm)
-    --> npm -g install coffee-script
-
+```
+--> npm -g install coffee-script
+```
 9.) Install Reactive-Coffee (via npm)
-    --> npm -g install reactive-coffee
+```
+--> npm -g install reactive-coffee
+```
 
 10.) Install the 'underscore' module (via npm
-    --> npm install underscore
+```
+--> npm install underscore
+```
 
 11.) You **may** need to download and unzip reactive-coffee from here:
-http://yang.github.io/reactive-coffee
-Either click the ".zip file" link (Windows), or click the ".tar.gz file" (Apple OS/UNIX) link
-  Unzip the zipped file's contents into the parent directory that contains The Hour of Node's install directory.  
 
-Unix Example:
+http://yang.github.io/reactive-coffee
+
+Either click the ".zip file" link (Windows), or click the ".tar.gz file" (Apple OS/UNIX) link
+
+Unzip the zipped file's contents into the parent directory that contains The Hour of Node's install directory.  
+
+** Unix Example: **
+
 If The Hour of Node web-app was unzipped into /opt/hourofnode
 Then reactive-coffee's tar.gz file's contents should be gunzipped into: /opt/reactive-coffee
 
-Windows Example:
+** Windows Example: **
+
 If The Hour of Node web-app was unzipped into C:\temp\hourofnode
 Then reactive-coffee's .zip file's contents should be unzipped into: C:\temp\reactive-coffee
 
 12.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
-    --> npm update
+```
+--> npm update
+```
 
 ### Launching The Hour of Node web-app ###
 In the terminal (or Windows CMD prompt):
 1.) Change directory to the top directory where The Hour of Node resides
-(i.e. Unix: /opt/hourofnode)
-(i.e. Windows: C:\temp\hourofnode)
+
+  * (i.e. Unix: /opt/hourofnode)
+  * (i.e. Windows: C:\temp\hourofnode)
 
 2.) Type the command: gulp
+```
     --> gulp
-
+```
 A successful start-up of The Hour of Node web-app should result in lines similar to these (in the terminal):
+```
     [20:09:00] Requiring external module coffee-script/register
     [20:09:04] Using gulpfile c:\Temp\hourofnode\gulpfile.coffee
     [20:09:04] Starting 'main'...
@@ -109,10 +129,10 @@ A successful start-up of The Hour of Node web-app should result in lines similar
     [20:09:06] Finished 'main' after 2.57 s
     [20:09:06] Starting 'default'...
     [20:09:06] Finished 'default' after 8.55 µs
-
+```
 And a web browser should pop-up displaying the local instance of The Hour of Node web-app.
 
-For Windows systems, the web-app is automatically served-up at:
+The web-app is automatically served-up at:
 `http://localhost:3000`
 
 
