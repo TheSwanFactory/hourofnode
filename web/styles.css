@@ -13,7 +13,7 @@ span.text {
   padding: 2px;
 }
 
-.behavior > .selected {
+div.selected {
   border-color: yellow;
   border-width: 1px;
   border-style: solid;
@@ -29,6 +29,11 @@ div.editable {
   border-style: solid;
 }
 
+button.selected {
+  border-color: gold;
+  border-width: 2;
+  border-style: dotted;
+}
 button.selected.uneditable {
   border-color: grey;
   border-width: 2;
