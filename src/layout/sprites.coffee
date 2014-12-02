@@ -3,7 +3,7 @@
 #
 # Role: Draw and control objects that live in the grid
 #
-# Responsibility: 
+# Responsibility:
 # * create sprites from game description
 # * associate with a path and state representation
 # * define actions the sprite can perform
@@ -42,20 +42,20 @@ exports.sprites = {
     world.send 'inspect', child
 
   # selection
-  
+
   inspect: (world, sprite) -> world.put 'inspected', sprite
   selected: (world) -> world == world.get 'inspected'
   click: (world, args) -> world.send 'inspect', world
 
   # defaults
-  
+
   position:  [0,0]
   next_position: null
   direction: [1,0]
   obstruction: true
 
   # geometry
-  
+
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
@@ -77,10 +77,12 @@ exports.sprites = {
     world.get('next_position') || world.get('position')
 
   collision: (world, obstruction) ->
+    console.log "collision", world.get('name'), obstruction.get('name')
     world.put 'interrupt', obstruction.labels()
 
   commit: (world, args) ->
     world.put 'position', world.get('proposed_position')
+    world.put('proposed_position', undefined)
 
   # direct actions (instructions)
 
