@@ -1,6 +1,6 @@
 # http://stackoverflow.com/questions/879152/ how-do-i-make-javascript-beep
 # http://jsfiddle.net/55Kfu/
-# 
+#
 
 {my} = require '../../my'
 
@@ -23,16 +23,19 @@ exports.events = {
   interval: my.duration.step
   speed: 0
   _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
-  
-  step: (world, args) ->
+
+  step: (world, button) ->
     console.log 'stepping'
     world.send 'tick'
     world.send 'decide'
-    
-  stop: (world, args) -> world.put('speed', 0)
-  
-  run: (world, args) ->
-    world.put('speed', 1)
+
+  stop: (world, button) ->
+    button.put 'name', 'run'
+    world.put 'speed', 0
+
+  run: (world, button) ->
+    button.put 'name', 'stop'
+    world.put 'speed', 1
     step_and_repeat = (self) ->
       speed = world.get_plain('speed')
       if speed > 0
@@ -40,7 +43,7 @@ exports.events = {
         world.send 'step'
         setTimeout((-> self(self)), delay)
     step_and_repeat(step_and_repeat)
-    
+
   error: (world, message) ->
     console.error message
     beep(my.duration.tone, 2)
