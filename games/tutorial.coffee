@@ -21,7 +21,7 @@ exports.game = {
         {
           kind: 'turtle'
           position: [0,0]
-          actions: { first: ['forward'] }
+          actions: { run: ['forward'] }
         }
         {kind: 'wall'}
         {kind: 'wall', position: [0,2]}

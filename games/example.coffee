@@ -4,14 +4,14 @@ me = {
   position: [1,1]
   stroke: 'black'
   fill: 'blue'
-  actions: { first: ['left', 'forward'], interrupt: ['reverse', 'right'] }
+  actions: { run: ['left', 'forward'], interrupt: ['reverse', 'right'] }
 }
 
 yu = _.extend {}, me, {
   name: 'yu'
   position: [3,1]
   fill: 'green'
-  actions: { first: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
+  actions: { run: ['forward', 'forward', 'right', 'forward', 'forward'], interrupt: ['right']}
 }
 
 exit = {

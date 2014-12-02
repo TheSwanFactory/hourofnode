@@ -70,8 +70,8 @@ exports.sprites = {
 
   # behavior defaults
 
-  running: 'first'
-  editing: 'first'
+  running: 'run'
+  editing: 'run'
 
   proposed_position: (world, args) ->
     world.get('next_position') || world.get('position')

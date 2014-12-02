@@ -13,7 +13,7 @@ exports.game = {
         {
           kind: 'turtle'
           position: [1,1]
-          actions: { first: ['forward'] }
+          actions: { run: ['forward'] }
         }
       ]
       goal: {
