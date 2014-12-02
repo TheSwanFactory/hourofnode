@@ -34,7 +34,7 @@ exports.programs = (sprite) ->
     return 0
     
   program_behavior = (name) -> {
-    _EXPORTS: ['tick', 'collision', 'apply']
+    _EXPORTS: ['tick', 'apply']
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
@@ -65,16 +65,6 @@ exports.programs = (sprite) ->
       my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
 
-    collision: (world, args) ->
-      [proposing_sprite, collision_subject, coordinates] = args
-      return unless proposing_sprite == sprite
-      # if this is my sprite to handle
-      if collision_subject.get('obstruction')
-        world.call 'reset_index'
-        load_program 'interrupt'
-      else
-        sprite.call 'commit', coordinates
-
     apply: (world, args) ->
       {target, action} = args
       return unless world.get 'editable'      
@@ -93,6 +83,7 @@ exports.programs = (sprite) ->
     program = make.columns name, [
       { _LABEL: 'program_name', name: name }
       make.buttons "action", contents, my.command, (button, args) ->
+        # TODO: add some kind of confirmation
         button.up.remove_child(button)
         button.send 'click'
         button.send 'brick', -1
@@ -104,6 +95,8 @@ exports.programs = (sprite) ->
 
   children = []
   actions.keys([]).map (key) ->
+    # if contents is a string, it is a primitive function.
+    # if contents is an RxArray, it is a list of commands.
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
   children
