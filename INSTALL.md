@@ -58,16 +58,16 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
 
 The following steps will be done inside the terminal
 7.) Install gulp (via npm)
---> npm -g install gulp
+    --> npm -g install gulp
 
 8.) Install CoffeeScript (via npm)
---> npm -g install coffee-script
+    --> npm -g install coffee-script
 
 9.) Install Reactive-Coffee (via npm)
---> npm -g install reactive-coffee
+    --> npm -g install reactive-coffee
 
 10.) Install the 'underscore' module (via npm
---> npm install underscore
+    --> npm install underscore
 
 11.) You **may** need to download and unzip reactive-coffee from here:
 http://yang.github.io/reactive-coffee
@@ -83,7 +83,7 @@ If The Hour of Node web-app was unzipped into C:\temp\hourofnode
 Then reactive-coffee's .zip file's contents should be unzipped into: C:\temp\reactive-coffee
 
 12.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
---> npm update
+    --> npm update
 
 ### Launching The Hour of Node web-app ###
 In the terminal (or Windows CMD prompt):
@@ -92,28 +92,28 @@ In the terminal (or Windows CMD prompt):
 (i.e. Windows: C:\temp\hourofnode)
 
 2.) Type the command: gulp
---> gulp
+    --> gulp
 
 A successful start-up of The Hour of Node web-app should result in lines similar to these (in the terminal):
-[20:09:00] Requiring external module coffee-script/register
-[20:09:04] Using gulpfile c:\Temp\hourofnode\gulpfile.coffee
-[20:09:04] Starting 'main'...
-[20:09:04] Starting 'sync'...
-[20:09:04] Finished 'sync' after 67 ms
-[20:09:04] Starting 'watch'...
-[20:09:04] Finished 'watch' after 55 ms
-[BS] Local URL: http://localhost:3000
-[BS] Serving files from: web
-[BS] Watching files...
-[BS] File changed: c:\Temp\hourofnode\web\main.js
-[20:09:06] Finished 'main' after 2.57 s
-[20:09:06] Starting 'default'...
-[20:09:06] Finished 'default' after 8.55 µs
+    [20:09:00] Requiring external module coffee-script/register
+    [20:09:04] Using gulpfile c:\Temp\hourofnode\gulpfile.coffee
+    [20:09:04] Starting 'main'...
+    [20:09:04] Starting 'sync'...
+    [20:09:04] Finished 'sync' after 67 ms
+    [20:09:04] Starting 'watch'...
+    [20:09:04] Finished 'watch' after 55 ms
+    [BS] Local URL: http://localhost:3000
+    [BS] Serving files from: web
+    [BS] Watching files...
+    [BS] File changed: c:\Temp\hourofnode\web\main.js
+    [20:09:06] Finished 'main' after 2.57 s
+    [20:09:06] Starting 'default'...
+    [20:09:06] Finished 'default' after 8.55 µs
 
 And a web browser should pop-up displaying the local instance of The Hour of Node web-app.
 
 For Windows systems, the web-app is automatically served-up at:
-http://localhost:3000
+`http://localhost:3000`
 
 
 ### Wrapping Up - And Other Useful Info###
