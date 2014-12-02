@@ -23,7 +23,7 @@ inspect = (world, n=1) ->
   return unless is_local
   result = "\n#{Array(n+1).join '!'} inspect #{world}:"
   result = "#{result}\n#{sys.inspect world.doc.x}"
-  
+
   children = world._child_array() or []
   for child in children
     result = "#{result}\n #{inspect(child, n+1)}"
@@ -71,6 +71,12 @@ exports.my = {
     padding: MARGIN
     margin: MARGIN
     class: 'command'
+  }
+  action: {
+    size: TOUCH * 3 / 4
+    padding: MARGIN
+    margin: MARGIN
+    class: 'action'
   }
   control: {
     size: CONTROL
