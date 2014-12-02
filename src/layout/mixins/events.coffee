@@ -26,7 +26,7 @@ exports.events = {
   
   step: (world, args) ->
     console.log 'stepping'
-    world.send 'tick'
+    world.send 'fetch'
     world.send 'decide'
     
   stop: (world, args) -> world.put('speed', 0)

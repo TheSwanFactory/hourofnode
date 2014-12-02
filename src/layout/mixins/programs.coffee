@@ -25,7 +25,7 @@ extract_instruction = (contents) ->
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['tick', 'apply']
+    _EXPORTS: ['fetch', 'apply']
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
@@ -41,7 +41,7 @@ exports.programs = (sprite) ->
       next_index = world.get 'next_index'
       world.put 'next_index', next_index + 1
 
-    tick: (world, args) ->
+    fetch: (world, args) ->
       return unless world.get 'selected'
       action = null
 
