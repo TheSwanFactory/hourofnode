@@ -24,7 +24,7 @@ class_attrs = (world) ->
   labels = world.labels()
   label = labels[0]
   level_label = "#{labels.length}_#{label}"
-  klass = world.rx().array [label, level_label]
+  klass = [label, level_label]
   klass.push world.get_local('class') ? ''
   klass.push world.get_local(my.key.kind) ? ''
   klass.push 'selected' if world.get 'selected'
@@ -32,10 +32,9 @@ class_attrs = (world) ->
   klass
 
 create_attrs = (world, style) ->
-  klass = class_attrs(world)
   attrs = {
     id: "#{world.label()}_#{world.uid}"
-    class: world.bind() -> klass.all()
+    class: world.bind() -> class_attrs(world)
     style: world.bind() -> style
     click: clicker(world)
     # TODO: add touch events that do not mess up mutation
