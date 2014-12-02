@@ -99,8 +99,13 @@ exports.programs = (sprite) ->
   }
 
   program_row = (name, contents) ->
-    program = make.columns name, [
-      { _LABEL: 'program_name', name: name, click: -> sprite.put 'editing', name }
+    program = make.rows name, [
+      {
+        _LABEL: 'program_name'
+        name: name
+        selected: (world) -> name == sprite.get 'editing'
+        click: -> sprite.put 'editing', name
+      }
        make.buttons "action", contents, my.action, ((button, args) ->
         # TODO: add some kind of confirmation
         button.up.remove_child(button)
