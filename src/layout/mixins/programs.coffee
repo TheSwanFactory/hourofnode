@@ -25,7 +25,7 @@ extract_instruction = (contents) ->
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['fetch', 'apply']
+    _EXPORTS: ['fetch', 'prefetch', 'apply']
     _AUTHORITY: {
       selected: (world) -> world.index == world.get('next_index')
     }
@@ -52,25 +52,22 @@ exports.programs = (sprite) ->
 
     fetch: (world, args) ->
       return unless world.get 'selected'
-      action = world.call 'fetch_action'
+      action = world.call 'next_action'
 
       world.call 'perform', action.get 'value' if action
 
-    fetch_action: (world) ->
+    prefetch: (world) ->
       if interrupt = sprite.get('interrupt')
         key = world.call 'find_interrupt', interrupt
         sprite.put 'interrupt', null
         return world.call('fetch_program', key)
-      if action = world.get 'next_action'
-        return action
 
-      world.call 'fetch_program', 'run'
+      world.call 'fetch_program', 'run' unless world.get('find_action')
 
     fetch_program: (world, key) ->
       sprite.put 'running', key
       p = world.up.find_child(key)
       p.call 'reset_index'
-      p.call 'next_action'
 
     find_interrupt: (world, key) ->
       console.log 'find_interrupt', key
@@ -110,7 +107,7 @@ exports.programs = (sprite) ->
         button.send 'click'
         button.send 'brick', -1
     ]
-    my.extend program, program_behavior()
+    _.extend program, program_behavior()
 
   actions = sprite.get 'actions'
   my.assert sprite.is_world(actions), "#{sprite} has no actions world"

@@ -49,7 +49,6 @@ exports.my = {
   online: _?
   inspect: inspect
   assert: assert
-  extend: if $? then $.extend else (a,b,c) -> b
   dup: (a, b) -> if $? then $.extend({}, a, b) else a
   page_dimensions: PAGE
   column_1_width: HALF

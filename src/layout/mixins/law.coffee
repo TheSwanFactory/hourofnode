@@ -74,6 +74,6 @@ law =
       proposal.sprite.call 'approve', proposal.coordinates
 
   coordinates: (world, args) ->
-    world.get_local_plain('proposals').all().map (p) -> p.coordinates
+    world.get_local('proposals').all().map (p) -> p.coordinates
 
 exports.law = law

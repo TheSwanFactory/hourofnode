@@ -26,7 +26,7 @@ combine = (a, b, dir) ->
   if dir > 0 then vector.add(a, b) else vector.subtract(a, b)
 
 get_location_for_move = (world, dir) ->
-  combine world.get_plain('position'), world.get_plain('direction'), dir
+  combine world.get('position'), world.get('direction'), dir
 
 exports.sprites = {
   _LABEL: 'sprites'
@@ -85,7 +85,7 @@ exports.sprites = {
   # direct actions (instructions)
 
   go: (world, dir) ->
-    cell_count = world.get_plain('cell_count')
+    cell_count = world.get('cell_count')
     my.assert dir?, "expects dir"
     sum = get_location_for_move world, dir
     world.put 'next_position', sum

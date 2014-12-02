@@ -38,5 +38,5 @@ exports.actions = (sprite) ->
         button.send 'error', "#{sprite} not editable"
   )
   
-  my.extend buttons, {
+  _.extend buttons, {
   }

@@ -11,7 +11,7 @@
 
 add_paths = (dict, sprite) ->
   paths = sprite.get('paths').all()
-  my.extend dict, {
+  _.extend dict, {
     _CHILDREN: [{
       transform: 'translate(0,0) scale(0.5)'
       paths: paths

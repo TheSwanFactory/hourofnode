@@ -17,7 +17,7 @@ normalize = (paths) ->
   paths
 
 clicker = (world) ->
-  action = world.get_raw_plain 'click'
+  action = world.get_raw 'click'
   return -> action(world) if action? and !world.has_children()
 
 create_attrs = (world, style) ->
@@ -26,8 +26,8 @@ create_attrs = (world, style) ->
   level_label = "#{labels.length}_#{label}"
   index_label = "#{label}_#{world.uid}"
   klass = [label, level_label]
-  klass.push world.get_local_plain('class') ? ''
-  klass.push world.get_local_plain(my.key.kind) ? ''
+  klass.push world.get_local('class') ? ''
+  klass.push world.get_local(my.key.kind) ? ''
   klass.push 'selected' if world.get 'selected'
   klass.push 'editable' if world.get 'editable'
   attrs = {
@@ -50,7 +50,7 @@ text_attrs = (world) ->
 render_children = (world, dict) ->
   #console.log "render_children #{world}", dict
   paths = normalize dict.path_tags
-  if world.get_local_plain('name')?
+  if world.get_local('name')?
     tag = dict.name_tag text_attrs(world), world.bind() -> world.get('name')
     paths.push tag 
   children = world.map_children (child) -> render_world(child)

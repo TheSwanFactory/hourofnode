@@ -3,7 +3,7 @@
 queryString = require 'query-string'
 
 group = (label, items, tag_name, options = {}) ->
-  my.extend({},
+  _.extend({},
     {
       _KIND: label
       _AUTHORITY: {tag_name: tag_name}
