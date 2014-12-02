@@ -25,14 +25,15 @@ extract_instruction = (contents) ->
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['fetch', 'prefetch', 'apply']
+    _EXPORTS: ['fetch', 'prefetch', 'apply', 'reset']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
     # Index
 
     next_index:    0
-    reset:   (world) -> world.put 'next_index', 0
+    reset:   (world) -> world.call 'fetch_program', 'run'
+    reset_index:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->
       next_index = world.get 'next_index'
       world.put 'next_index', next_index + 1
@@ -50,21 +51,21 @@ exports.programs = (sprite) ->
     fetch: (world, args) ->
       return unless world.get 'selected'
       action = world.call 'next_action'
-
+      console.log 'fetch', "#{sprite} #{sprite.get 'running'} #{action} -> #{sprite.get('interrupt')}"
       world.call 'perform', action.get 'value' if action
 
     prefetch: (world) ->
+      console.log 'prefetch', "#{sprite} #{sprite.get 'running'} #{world.get('find_action')} -> #{sprite.get('interrupt')}"
       if interrupt = sprite.get('interrupt')
         key = world.call 'find_interrupt', interrupt
         sprite.put 'interrupt', null
         return world.call('fetch_program', key)
-
       world.call 'fetch_program', 'run' unless world.get('find_action')
 
     fetch_program: (world, key) ->
       sprite.put 'running', key
       p = world.up.find_child(key)
-      p.call 'reset'
+      p.call 'reset_index'
 
     find_interrupt: (world, key) ->
       console.log 'find_interrupt', key
