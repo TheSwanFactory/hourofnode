@@ -22,17 +22,8 @@ extract_instruction = (contents) ->
   instruction = contents.split " "
   instruction[2] = parseInt instruction[2]
   instruction
-  
-exports.programs = (sprite) ->
 
-  load_program = (key) -> sprite.put 'running', key
-  
-  get_next_index = (current_index, count) ->
-    next_index = current_index + 1
-    return next_index if next_index < count
-    load_program 'first'
-    return 0
-    
+exports.programs = (sprite) ->
   program_behavior = (name) -> {
     _EXPORTS: ['tick', 'apply']
     _AUTHORITY: {
@@ -41,23 +32,42 @@ exports.programs = (sprite) ->
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
-    next_index: 0
-    reset_index: (world) -> world.put 'next_index', 0
-    next_action: (world) ->
-      current_index = world.get 'next_index'
+    next_index:    0
+    next_action:   (world) ->
       actions = world.find_child('actions').find_children()
-      count = actions.length
-      world.put 'next_index', get_next_index(current_index, count) 
-      actions[current_index]
+      actions[world.get('next_index')]
+    reset_index:   (world) -> world.put 'next_index', 0
+    advance_index: (world) ->
+      next_index = world.get 'next_index'
+      world.put 'next_index', next_index + 1
 
     tick: (world, args) ->
       return unless world.get 'selected'
-      action = world.get 'next_action'
-      world.call 'perform', action.get('value') if action
-      
+      action = null
+
+      if interrupt = sprite.get('interrupt')
+        key = world.call 'find_interrupt', interrupt
+        action = world.call 'fetch_program', key
+      if !action && action = world.get 'next_action'
+        world.call 'advance_index'
+      action ?= world.call 'fetch_program', 'first'
+
+      world.call 'perform', action.get 'value' if action
+
+    fetch_program: (world, key) ->
+      world.up.find_child(sprite.get 'running').call 'reset_index'
+      sprite.put 'running', key
+      p = world.up.find_child(key)
+      p.call 'reset_index'
+      p.call 'next_action'
+
+    find_interrupt: (world, key) ->
+      # TODO: put real logic here
+      'interrupt'
+
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
-      return load_program(key) unless _.isString contents
+      return fetch_program(key) unless _.isString contents
       world.call 'perform_instruction', contents
 
     perform_instruction: (world, contents) ->
@@ -67,7 +77,7 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       {target, action} = args
-      return unless world.get 'editable'      
+      return unless world.get 'editable'
       world.call('store', action) if sprite == target
 
     store: (world, action) ->

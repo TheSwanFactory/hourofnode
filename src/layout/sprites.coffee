@@ -75,20 +75,15 @@ exports.sprites = {
 
   proposed_position: (world, args) ->
     world.get('next_position') || world.get('position')
-  
-  load_program: (world, key) ->
-    # TODO: reset program counter somewhere
-    world.put 'running', key
-  
+
   collision: (world, obstruction) ->
-    key = 'interrupt' # TODO: make inheritable
-    world.call 'load_program', key
+    world.put 'interrupt', obstruction.labels()
 
   commit: (world, args) ->
-    world.put 'position', world.get('proposed_position') 
+    world.put 'position', world.get('proposed_position')
 
   # direct actions (instructions)
-  
+
   go: (world, dir) ->
     cell_count = world.get_plain('cell_count')
     my.assert dir?, "expects dir"
