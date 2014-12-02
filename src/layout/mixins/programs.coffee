@@ -33,6 +33,7 @@ exports.programs = (sprite) ->
 
     next_index:    0
     reset:   (world) -> world.call 'fetch_program', 'run'
+
     reset_index:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->
       next_index = world.get 'next_index'
@@ -55,6 +56,7 @@ exports.programs = (sprite) ->
       world.call 'perform', action.get 'value' if action
 
     prefetch: (world) ->
+      return unless world.get 'selected'
       console.log 'prefetch', "#{sprite} #{sprite.get 'running'} #{world.get('find_action')} -> #{sprite.get('interrupt')}"
       if interrupt = sprite.get('interrupt')
         key = world.call 'find_interrupt', interrupt
