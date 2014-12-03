@@ -1,6 +1,6 @@
 {
   "name": "hourofnode",
-  "version": "0.4.12",
+  "version": "0.5.0",
   "description": "Turning event-driven programming into child's play",
   "main": "web/main.js",
   "dependencies": {
