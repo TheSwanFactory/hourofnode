@@ -20,6 +20,11 @@ clicker = (world) ->
   action = world.get_raw 'click'
   return (event) -> action(world, event) if action? and !world.has_children()
 
+initializer = (world) ->
+  action = world.get_local 'init'
+  # this is the local jQuery object
+  return (event) -> action(world, this) if action?
+
 class_attrs = (world) ->
   labels = world.labels()
   label = labels[0]
@@ -37,6 +42,7 @@ create_attrs = (world, style) ->
     class: world.bind() -> class_attrs(world)
     style: world.bind() -> style
     click: clicker(world)
+    init: initializer(world)
     # TODO: add touch events that do not mess up mutation
     # touchend: clicker(world)
   }

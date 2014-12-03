@@ -96,9 +96,36 @@ exports.programs = (sprite) ->
         return world.send 'error', 'action limit reached'
 
       actions_container.add_child action
+
+    # Drag & Drop Sorting
+
+    sort_start: (world, args) ->
+      [event, ui] = args
+      index = ui.item.index()
+      world.put 'sort_start_index', index
+
+    sort_update: (world, args) ->
+      [event, ui] = args
+      index = ui.item.index()
+      world.move_child world.get('sort_start_index'), index
   }
 
   program_row = (name, contents) ->
+    buttons = make.buttons "action", contents, my.action, ((button, args) ->
+        # TODO: add some kind of confirmation
+        button.up.remove_child(button)
+        button.send 'click'
+        button.send 'brick', -1
+      ), {
+        selected: (world) -> world.index == world.get('next_index')
+      }
+    extensions = {}
+    if sprite.get 'editable'
+      extensions.init = (world, element) ->
+          $(element).sortable
+            cancel: 'a' # so that you can move buttons
+            start:  (event, ui) -> world.call 'sort_start',  [event, ui]
+            update: (event, ui) -> world.call 'sort_update', [event, ui]
     program = make.rows name, [
       {
         _LABEL: 'program_name'
@@ -106,14 +133,7 @@ exports.programs = (sprite) ->
         selected: (world) -> name == sprite.get 'editing'
         click: -> sprite.put 'editing', name
       }
-       make.buttons "action", contents, my.action, ((button, args) ->
-        # TODO: add some kind of confirmation
-        button.up.remove_child(button)
-        button.send 'click'
-        button.send 'brick', -1
-        ), {
-          selected: (world) -> world.index == world.get('next_index')
-        }
+      _.extend buttons, extensions
     ]
     _.extend program, program_behavior()
 
