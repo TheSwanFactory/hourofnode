@@ -193,12 +193,20 @@ class World
     return console.error("remove_child failed: not present #{child}") unless child == target
     @_children().removeAt(index)
     
-  add_child: (value) ->
+  add_child: (value, index = null) ->
     child = @make_world value
     my.assert child, "add_child"
     my.assert !_.isFunction @get_raw(my.key.children)
-    @get(my.key.children).push(child)
+    children = @_children()
+    index ?= children.length()
+    children.insert child, index
     child
+
+  move_child: (current_position, new_position) ->
+    child = @_children().at(current_position)
+    @remove_child child
+    @add_child child, new_position
+
     
   find_children: (label) ->
     return @_child_array() unless label?
