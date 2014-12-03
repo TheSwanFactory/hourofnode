@@ -1,3 +1,9 @@
+# Gate by default should send _victory action when interrupted
+
+# TODO:
+# Implicitly add: assume, per-level turtle and gate (if absent)
+# Check and send 'done -1' if infinite loop (e.g., no interrupt)
+
 exports.game = {
   name: 'The Hour of Node'
   assume: 'baseline'
@@ -10,15 +16,50 @@ exports.game = {
 
   levels: [
     {
-      name: 'Use "Run" to Move Turtle to Exit'
-      goal: { clicks: 1, ticks: 5, bricks: 1 }
+      name: 'Use "Run" Program to Move Turtle to Exit'
+      bricks: 1
+      goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
-        { kind: 'gate', position: [4,0] }
-        { kind: 'turtle', position: [0,0], actions: {run: ['forward']} }
+        { kind: 'gate', position: [5,0] }
+        { kind: 'turtle', actions: {run: ['forward']} }
       ]
     }
     {
-      name: 'A Complex Maze'
+      name: 'Create Program Bricks Using Blue Ovals'
+      goal: { clicks: 1, ticks: 4, bricks: 1 }
+      sprites: [
+        { kind: 'gate', position: [5,0] }
+        { kind: 'turtle', actions: {} }
+      ]
+    }
+    {
+      name: 'Use "Forward" and "Right" for Diagonals'
+      goal: { clicks: 2, ticks: 6, bricks: 2 }
+      sprites: [
+        { kind: 'gate', position: [4,4] }
+        { kind: 'turtle', actions: {} }
+      ]
+    }
+    {
+      name: 'Use "Interrupt" Program to Bounce Off Walls'
+      goal: { clicks: 0, ticks: 8, bricks: 1 }
+      bricks: 1
+      sprites: [
+        { kind: 'wall', position: [5,0] }
+        { kind: 'gate', position: [4,4] }
+        { kind: 'turtle', actions: {interrupt: ['right']} }
+      ]
+    }
+    {
+      name: 'Click "Interrupt" to Add Bricks to that Program'
+      goal: { clicks: 1, ticks: 5, bricks: 2 }
+      sprites: [
+        { kind: 'gate' }
+        { kind: 'turtle', actions: {interrupt: []} }
+      ]
+    }
+    {
+      name: 'Can You Solve the Final Complex Maze?'
       goal: {
         clicks: 6
         ticks: 20
