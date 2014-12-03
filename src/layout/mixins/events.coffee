@@ -32,7 +32,7 @@ exports.events = {
     world.send 'prefetch'
 
   stop: (world, button) ->
-    button.put 'name', 'run'
+    button.put 'name', 'run' if button
     world.put 'speed', 0
 
   run: (world, button) ->
