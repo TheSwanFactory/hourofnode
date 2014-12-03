@@ -1,4 +1,5 @@
 # Gate by default should send _victory action when interrupted
+# Turtle defaults to reverse on interrupt, to avoid invisible loop
 
 # TODO:
 # Implicitly add: assume, per-level turtle and gate (if absent)
@@ -8,7 +9,7 @@ exports.game = {
   name: 'The Hour of Node'
   assume: 'baseline'
   comment: "The world's first NodeScript program"
-  author: {name: 'David Huffman', url: 'mailto:david@theswanfactory.com'}
+  author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
@@ -42,7 +43,7 @@ exports.game = {
     }
     {
       name: 'Use "Interrupt" Program to Bounce Off Walls'
-      goal: { clicks: 0, ticks: 8, bricks: 1 }
+      goal: { clicks: 1, ticks: 10, bricks: 1 }
       bricks: 1
       sprites: [
         { kind: 'wall', position: [5,0] }
@@ -52,9 +53,10 @@ exports.game = {
     }
     {
       name: 'Click "Interrupt" to Add Bricks to that Program'
-      goal: { clicks: 1, ticks: 5, bricks: 2 }
+      goal: { clicks: 2, ticks: 10, bricks: 2 }
       sprites: [
-        { kind: 'gate' }
+        { kind: 'wall', position: [5,0] }
+        { kind: 'gate', position: [4,4] }
         { kind: 'turtle', actions: {interrupt: []} }
       ]
     }
@@ -82,6 +84,15 @@ exports.game = {
           position: [0,0]
           actions: { run: ['forward'], interrupt: ['right'] }
         }
+      ]
+    }
+    {
+      name: 'Replay Levels to Enable Edit Mode. Click to Add Walls.'
+      edit_mode: true
+      goal: { clicks: 2, ticks: 10, bricks: 2 }
+      sprites: [
+        { kind: 'gate' }
+        { kind: 'turtle' }
       ]
     }
   ]
