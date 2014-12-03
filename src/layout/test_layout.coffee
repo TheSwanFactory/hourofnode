@@ -138,3 +138,27 @@ exports.test_layout = (test, rx) ->
     t.equal sprite.get('running'), 'run'
     t.equal gate.get('running'), 'interrupt'
     t.end()
+
+  test 'law - collision with wall', (t) ->
+    sprite.put 'interrupt', null
+
+    edge = [7, 7]
+    sprite.put 'next_position', edge
+    sprite.send 'execute'
+
+    t.deepEqual sprite.get('position').all(), edge, 'should move to edge'
+
+    out_of_x_bounds = [8, 0]
+    sprite.put 'next_position', _.clone(out_of_x_bounds)
+    sprite.send 'execute'
+    t.notEqual sprite.get('position').all(), out_of_x_bounds, 'should not move off grid'
+    t.true("grid" in sprite.get('interrupt').all(), 'interrupted by grid')
+
+    sprite.put 'interrupt', null
+
+    out_of_y_bounds = [0, 8]
+    sprite.put 'next_position', _.clone(out_of_y_bounds)
+    sprite.send 'execute'
+    t.notEqual sprite.get('position').all(), out_of_y_bounds, 'should not move off grid'
+    t.true("grid" in sprite.get('interrupt').all(), 'interrupted by grid')
+    t.end()
