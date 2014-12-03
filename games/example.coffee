@@ -23,6 +23,11 @@ exit = {
   actions: {interrupt: ['_victory']}
 }
 
+wall = {
+  name: 'wall',
+  kind: 'wall'
+}
+
 exports.game = {
   name: "Example Game"
   assume: 'baseline'
@@ -31,7 +36,7 @@ exports.game = {
   levels: [
     {
       name: 'Move the Turtle to the Exit'
-      sprites: [exit, me]
+      sprites: [exit, me, wall]
       bricks: 7
       goal: {
         clicks: 1
