@@ -4,9 +4,9 @@
 
 {my} = require '../../my'
 
-beep = ->
+beep = do ->
   context = new(window.audioContext || window.webkitAudioContext)
-  return (duration, type, on_end) ->
+  (duration, type, on_end) ->
     duration = +duration
     type = (type % 5) || 0 # Only 0-4 are valid types.
     on_end = () -> "beep" unless _.isFunction on_end

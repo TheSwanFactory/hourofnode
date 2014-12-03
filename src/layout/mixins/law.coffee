@@ -38,14 +38,15 @@ resolve_collision = (mover, checker) ->
   - both obstructions -> the moving object gets interrupted
 ###
 
-collision_check = (sprites, cell_count, grid) ->
+collision_check = (sprites, grid) ->
+  cell_count = grid.get 'cell_count'
   _.each sprites, (mover, mover_index) ->
     my.assert mover, "moving sprite"
 
     blocked = false
 
     # 1. Check if out of bounds; if so, collide with edge
-    if not vector.inside(mover.get 'proposed_position', cell_count)
+    if not vector.inside(mover.get('proposed_position'), cell_count)
       mover.call 'collision', grid
       return
 
@@ -63,9 +64,8 @@ law =
   execute: (world, args) ->
     console.log 'law execute'
     sprites = world.get 'sprite_list'
-    cell_count = world.get 'cell_count'
     grid = world.up
-    collision_check sprites, cell_count, grid
+    collision_check sprites, grid
 
   # TODO: remove if not used
   resolve: (world, args) ->

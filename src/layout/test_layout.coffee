@@ -12,10 +12,13 @@
 
 exports.test_layout = (test, rx) ->
   world = load(rx, {game: 'example', level: 1})
+  window.bl = world
   level = world.find_child()
   grid = level.find_child('grid')
   all_sprites = grid.find_child('sprites')
-  sprite = all_sprites.find_children()[1]
+  gate = all_sprites.find_children()[0]
+  sprite = all_sprites.find_children()[1] # me
+  wall = all_sprites.find_children()[2]
 
   test "layout", (t) ->
     t.ok header, 'header'
@@ -83,4 +86,79 @@ exports.test_layout = (test, rx) ->
     t.ok actions = sprite.get('actions'), 'actions'
     t.ok sequences = actions.keys(), 'actions'
     console.log 'sequences', sequences 
+    t.end()
+
+  test 'law - collision with obstruction', (t) ->
+    # set up a collision
+    sprite.put 'next_position', wall.get('position')
+    t.equal sprite.get('proposed_position'),
+            wall.get('proposed_position'),
+            'impending collision'
+
+    sprite.send 'fetch'
+    sprite.send 'execute'
+
+    t.equal sprite.get('next_position'),
+            undefined,
+            'sprite next position should clear'
+    t.notEqual sprite.get('position'),
+               wall.get('position'),
+               'sprite did not move onto the wall'
+    t.ok sprite.get('interrupt'), 'sprite was interrupted'
+
+    sprite.send 'prefetch'
+
+    t.equal sprite.get('running'), 'interrupt', 'sprite runs interrupt'
+    t.false sprite.get('interrupt'), 'sprite interrupt gets cleared'
+
+    sprite.send 'step'
+
+    t.equal sprite.get('running'), 'run', 'sprite returns to run after one action'
+
+    t.end()
+
+  test 'law - collision with non-obstruction', (t) ->
+    # sprite moves onto gate
+    sprite.put 'next_position', gate.get('position')
+    t.equal gate.get('proposed_position'), gate.get('position')
+    t.equal sprite.get('proposed_position'),
+            gate.get('proposed_position'),
+            'impending collision'
+
+    sprite.send 'execute'
+
+    t.equal sprite.get('position'),
+            gate.get('position'),
+            'sprite moved onto gate'
+    t.notOk sprite.get('interrupt'), 'sprite was not interrupted'
+    t.ok gate.get('interrupt'), 'gate was interrupted'
+
+    sprite.send 'prefetch'
+
+    t.equal sprite.get('running'), 'run'
+    t.equal gate.get('running'), 'interrupt'
+    t.end()
+
+  test 'law - collision with wall', (t) ->
+    sprite.put 'interrupt', null
+
+    edge = [7, 7]
+    sprite.put 'next_position', edge
+    sprite.send 'execute'
+
+    t.deepEqual sprite.get('position').all(), edge, 'should move to edge'
+
+    out_of_x_bounds = [8, 0]
+    sprite.put 'next_position', _.clone(out_of_x_bounds)
+    sprite.send 'execute'
+    t.notEqual sprite.get('position').all(), out_of_x_bounds, 'should not move off grid'
+    t.true("grid" in sprite.get('interrupt').all(), 'interrupted by grid')
+
+    sprite.put 'interrupt', null
+
+    out_of_y_bounds = [0, 8]
+    sprite.put 'next_position', _.clone(out_of_y_bounds)
+    sprite.send 'execute'
+    t.notEqual sprite.get('position').all(), out_of_y_bounds, 'should not move off grid'
+    t.true("grid" in sprite.get('interrupt').all(), 'interrupted by grid')
     t.end()

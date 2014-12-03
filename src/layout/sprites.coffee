@@ -86,6 +86,7 @@ exports.sprites = {
 
   collision: (world, obstruction) ->
     console.log "collision", world.get('name'), obstruction.get('name')
+    world.put 'next_position', null
     world.put 'interrupt', obstruction.labels()
 
   commit: (world, args) ->
