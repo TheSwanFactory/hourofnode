@@ -21,7 +21,7 @@ exports.game = {
       bricks: 1
       goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
-        { kind: 'gate', position: [5,0] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
         { kind: 'turtle', actions: {run: ['forward']} }
       ]
     }
@@ -29,7 +29,7 @@ exports.game = {
       name: 'Create Program Bricks Using Blue Ovals'
       goal: { clicks: 1, ticks: 4, bricks: 1 }
       sprites: [
-        { kind: 'gate', position: [5,0] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -37,7 +37,7 @@ exports.game = {
       name: 'Use "Forward" and "Right" for Diagonals'
       goal: { clicks: 2, ticks: 6, bricks: 2 }
       sprites: [
-        { kind: 'gate', position: [4,4] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -47,7 +47,7 @@ exports.game = {
       bricks: 1
       sprites: [
         { kind: 'wall', position: [5,0] }
-        { kind: 'gate', position: [4,4] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         { kind: 'turtle', actions: {interrupt: ['right']} }
       ]
     }
@@ -56,7 +56,7 @@ exports.game = {
       goal: { clicks: 2, ticks: 10, bricks: 2 }
       sprites: [
         { kind: 'wall', position: [5,0] }
-        { kind: 'gate', position: [4,4] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         { kind: 'turtle', actions: {interrupt: []} }
       ]
     }
@@ -68,7 +68,7 @@ exports.game = {
         bricks: 6
       }
       sprites: [
-        {kind: 'gate'}
+        {kind: 'gate', actions: {interrupt: ['_victory']}}
         {kind: 'wall'}
         {kind: 'wall', position: [0,2]}
         {kind: 'wall', position: [2,2]}
@@ -91,7 +91,7 @@ exports.game = {
       edit_mode: true
       goal: { clicks: 2, ticks: 10, bricks: 2 }
       sprites: [
-        { kind: 'gate' }
+        { kind: 'gate', actions: {interrupt: ['_victory']} }
         { kind: 'turtle' }
       ]
     }
