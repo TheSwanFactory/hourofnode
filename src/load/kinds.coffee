@@ -8,7 +8,7 @@ INSET = 2 * RADIUS
 exports.game = {
   name: "Kinds"
   assume: 'geometry'
-  
+
   kinds: {
     turtle: {
       name: 'me'
@@ -49,10 +49,12 @@ exports.game = {
       obstruction: false
       position: [7,7]
       fill: 'red'
+      actions: {interrupt: ['_victory']}
       paths: [
         "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"
       ]
+
     }
   }
-  
+
 }

@@ -1,5 +1,5 @@
 exports.game = {
-  name: 'Tutorial Level'
+  name: 'The Hour of Node'
   assume: 'baseline'
   comment: "The world's first NodeScript program"
   author: {name: 'David Huffman', url: 'mailto:david@theswanfactory.com'}
@@ -9,6 +9,14 @@ exports.game = {
   }
 
   levels: [
+    {
+      name: 'Use "Run" to Move Turtle to Exit'
+      goal: { clicks: 1, ticks: 5, bricks: 1 }
+      sprites: [
+        { kind: 'gate', position: [4,0] }
+        { kind: 'turtle', position: [0,0], actions: {run: ['forward']} }
+      ]
+    }
     {
       name: 'A Complex Maze'
       goal: {
