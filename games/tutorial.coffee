@@ -82,7 +82,6 @@ exports.game = {
         {
           kind: 'turtle'
           position: [0,0]
-          actions: { run: ['forward'], interrupt: ['right'] }
         }
       ]
     }
