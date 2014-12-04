@@ -19,12 +19,6 @@ get_kind_authority = (sprite_dict, kinds) ->
   authority
   # TODO: cache world-ified kinds instead of creating one for each sprite
 
-transform = (world) ->
-  center = world.get('cell_size') / 2
-  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
-  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
-  "#{translate} #{rotate || ''}"
-
 cell_position = (world, axis) ->
   cell_size = world.get 'cell_size'
   position = world.get 'position'
@@ -41,11 +35,14 @@ exports.sprites = {
   _KIND: 'sprite'
   _EXPORTS: ['make_sprite']
   make_sprite: (world, sprite_dict) ->
-    child = world.add_child sprite_dict
-    child.put 'dict', sprite_dict
+    kind_authority = get_kind_authority sprite_dict, world.get('kinds')
+    console.log 'makes', kind_authority, sprite_dict
+    dict = $.extend true, {}, kind_authority, sprite_dict
+    child = world.add_child dict
+    child.put 'dict', dict
     child.handle_event 'reset'
     child.handle_event 'inspect'
-    child.put my.key.authority, world.make_world get_kind_authority(sprite_dict, world.get 'kinds')
+    child.put my.key.authority, world.make_world kind_authority
     #child.call 'reset'
     world.send 'inspect', child
 
@@ -89,6 +86,7 @@ exports.sprites = {
     world.put 'interrupt', obstruction.labels()
 
   commit: (world, args) ->
+    return unless world.get 'next_position'
     world.put 'position', world.get('proposed_position')
     world.put('next_position', null)
 
