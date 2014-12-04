@@ -46,7 +46,7 @@ exports.game = {
       ]
     }
     gate: {
-      name: 'gate'
+      name: 'exit'
       editable: false
       obstruction: false
       position: [7,7]
