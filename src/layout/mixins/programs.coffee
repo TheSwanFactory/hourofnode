@@ -109,10 +109,10 @@ exports.programs = (sprite) ->
 
   program_row = (name, contents) ->
     buttons = make.buttons "action", contents, my.action, ((button, args) ->
-        # TODO: add some kind of confirmation
-        button.up.remove_child(button)
-        button.send 'click'
-        button.send 'brick', -1
+        if sprite.get('editable') and confirm('Are you sure?')
+          button.up.remove_child(button)
+          button.send 'click'
+          button.send 'brick', -1
       ), {
         selected: (world) -> world.index == world.get('next_index')
       }
