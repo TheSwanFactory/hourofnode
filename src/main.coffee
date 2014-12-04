@@ -17,16 +17,13 @@
 sys = require 'sys'
 queryString = require 'query-string'
 
-if not my.online
-  rx = require './render/rx_mock'
-else
-  _.mixin(_.str.exports())
-  if my.reactive_debug
+_.mixin(_.str.exports())
+rx = require 'reactive-coffee'
+###
     rx = require '../../reactive-coffee/src/reactive'
     console.log "WARNING: Loading local copy of reactive-coffee"
-  else
-    rx = require 'reactive-coffee'
-
+###
+        
 # Dependencies
 
 {load} = require './load'
