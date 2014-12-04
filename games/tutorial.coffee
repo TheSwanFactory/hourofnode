@@ -34,8 +34,16 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Forward" and "Right" for Diagonals'
-      goal: { clicks: 2, ticks: 6, bricks: 2 }
+      name: 'Click on Program Brick to Remove'
+      goal: { clicks: 1, ticks: 4, bricks: 1 }
+      sprites: [
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
+        { kind: 'turtle', actions: {run: ['forward', 'right']} }
+      ]
+    }
+    {
+      name: 'Use Bricks to Move Diagonally'
+      goal: { clicks: 2, ticks: 12, bricks: 4 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         { kind: 'turtle', actions: {} }
@@ -48,7 +56,11 @@ exports.game = {
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
-        { kind: 'turtle', actions: {interrupt: ['right']} }
+        { 
+          kind: 'turtle'
+          actions: { run: ['forward'], interrupt: ['right'] }
+          editable: false
+        }
       ]
     }
     {
@@ -92,6 +104,19 @@ exports.game = {
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']} }
         { kind: 'turtle' }
+      ]
+    }
+    {
+      name: 'Click on Pond to Add Walls'
+      goal: { clicks: 1, ticks: 10, bricks: 1 }
+      bricks: 1
+      sprites: [
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
+        { 
+          kind: 'turtle'
+          actions: { run: ['forward'], interrupt: ['right'] }
+          editable: false
+        }
       ]
     }
   ]
