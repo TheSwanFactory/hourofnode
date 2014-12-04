@@ -8,7 +8,7 @@
 exports.game = {
   name: 'The Hour of NODE'
   assume: 'baseline'
-  comment: "The world's first Hour of NODE program"
+  comment: "The world's first Hour of NODE game"
   author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
@@ -17,11 +17,17 @@ exports.game = {
 
   levels: [
     {
-      name: 'Click Play to Move Turtle to Pad'
+      name: 'Click Play to Move Turtle to Exit Pad'
+      comment: '
+      Teach kids to use a run loop rather than direct manipulation.
+      They can also play with the other control buttons.
+      Everything else is disabled to avoid confusion.
+      '
       bricks: 1
+      action_limit: 1
       goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [3,0] }
         { kind: 'turtle', actions: {run: ['forward']}, editable: false }
       ]
     }
