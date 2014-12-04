@@ -39,8 +39,8 @@ exports.inspector = () ->
       world.add_child inspector 
 
     width: (world) -> world.up.get('width') - 4 * my.margin
-    x: (world) -> world.up.get('width') + my.margin
-    y: 2*my.margin
+    x: (world) -> world.up.get('width')
+    y: 0
     position: 'absolute'
     height: (world) -> world.get('screen').at vector.size.height
     stroke: my.color.line
