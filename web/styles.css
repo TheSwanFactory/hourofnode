@@ -67,8 +67,8 @@ text {
 
 .render_svg[class^="render_svg stat"] {
   position: absolute;
-  left: 35px;
-  top: 23px; }
+  left: 33px;
+  top: 15px; }
 
 .commands button {
   text-transform: capitalize; }
