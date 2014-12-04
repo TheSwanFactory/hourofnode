@@ -19,12 +19,6 @@ get_kind_authority = (sprite_dict, kinds) ->
   authority
   # TODO: cache world-ified kinds instead of creating one for each sprite
 
-transform = (world) ->
-  center = world.get('cell_size') / 2
-  translate = "translate(#{world.get('x') || 0},#{world.get('y') || 0})"
-  rotate = world.get('angle') && center? && "rotate(#{world.get('angle')} #{center} #{center})"
-  "#{translate} #{rotate || ''}"
-
 cell_position = (world, axis) ->
   cell_size = world.get 'cell_size'
   position = world.get 'position'
@@ -90,6 +84,7 @@ exports.sprites = {
     world.put 'interrupt', obstruction.labels()
 
   commit: (world, args) ->
+    return unless world.get 'next_position'
     world.put 'position', world.get('proposed_position')
     world.put('next_position', null)
 

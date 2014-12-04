@@ -19,7 +19,7 @@ exports.render_svg = (world) ->
     paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    attrs['transform'] = world.get('transform') || ''
+    attrs['transform'] = world.bind() (-> world.get('transform') || '')
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
