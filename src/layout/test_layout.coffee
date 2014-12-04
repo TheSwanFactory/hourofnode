@@ -85,7 +85,6 @@ exports.test_layout = (test, rx) ->
   test "find sequences", (t) ->
     t.ok actions = sprite.get('actions'), 'actions'
     t.ok sequences = actions.keys(), 'actions'
-    console.log 'sequences', sequences 
     t.end()
 
   test 'law - collision with obstruction', (t) ->
