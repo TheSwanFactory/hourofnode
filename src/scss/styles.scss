@@ -141,3 +141,23 @@ text {
   content: "";
 }
 
+.reset:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.play:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.stop:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.step:before {
+  @extend .icon-button;
+  content: "";
+}
+

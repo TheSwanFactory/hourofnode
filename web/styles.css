@@ -76,7 +76,7 @@ text {
 .actions button {
   font-size: 0; }
 
-.icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before {
+.icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before, .reset:before, .play:before, .stop:before, .step:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block; }
@@ -95,3 +95,15 @@ text {
 
 .wait:before {
   content: ""; }
+
+.reset:before {
+  content: ""; }
+
+.play:before {
+  content: ""; }
+
+.stop:before {
+  content: ""; }
+
+.step:before {
+  content: ""; }
