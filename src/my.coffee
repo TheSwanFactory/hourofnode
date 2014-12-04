@@ -16,8 +16,6 @@ assert = require 'assert'
 
 is_local = window.location.hostname == 'localhost'
 
-console.log 'window.location.hostname', window.location.hostname, window.location
-
 inspect = (world, n=1) ->
   console.log "inspect #{world} #{n}"
   return unless is_local

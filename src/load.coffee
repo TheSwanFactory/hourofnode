@@ -78,7 +78,6 @@ exports.load = (rx, query) ->
 
   level = query.level
   level_world = extend_world world, create_level(world, level)
-  console.log 'level_world', level_world.get('actions').doc.x
   for child in layout
     level_world.add_child child(level_world)
 

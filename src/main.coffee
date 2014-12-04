@@ -21,7 +21,7 @@ _.mixin(_.str.exports())
 rx = require 'reactive-coffee'
 ###
     rx = require '../../reactive-coffee/src/reactive'
-    console.log "WARNING: Loading local copy of reactive-coffee"
+    console.warn "Loading local copy of reactive-coffee"
 ###
         
 # Dependencies

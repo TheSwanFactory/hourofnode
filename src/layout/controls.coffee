@@ -8,7 +8,6 @@ exports.controls = () ->
     ["step", "run", "reset", "edit"],
     my.control,
     (world, args) ->
-      console.log 'control send', world.get('name')
       world.send world.get('name'), world
   )
   _.extend buttons, events

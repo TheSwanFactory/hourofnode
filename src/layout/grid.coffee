@@ -20,7 +20,6 @@ exports.grid = () -> {
     x = event.offsetX / scale
     y = event.offsetY / scale
     position = [Math.floor(x), Math.floor(y)]
-    console.log 'click', world.label(), position, is_editing
     world.send 'make_sprite', {kind: "wall", position: position}
 
   paths: []

@@ -21,7 +21,6 @@ exports.actions = (sprite) ->
   
   send_message = (word) ->
     message = { target: sprite, action: word }
-    console.log 'send_message', message, sprite
     sprite.send 'apply', message
     
   buttons = make.buttons(

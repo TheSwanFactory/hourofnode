@@ -62,7 +62,6 @@ law =
   sprite_list: (world, args) ->   world.up.find_child('sprites').find_children()
 
   execute: (world, args) ->
-    console.log 'law execute'
     sprites = world.get 'sprite_list'
     grid = world.up
     collision_check sprites, grid

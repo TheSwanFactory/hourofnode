@@ -84,7 +84,6 @@ exports.test_world = (test, rx) ->
 
     result = world.find_children("root")
     t.equal result.length, 0, "0 child"
-    console.log 'find children', world, world._child_array()
     result = world.find_children("root-0")
     t.equal result.length, 1, "1 child"
     t.end()

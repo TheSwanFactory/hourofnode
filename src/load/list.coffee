@@ -10,7 +10,6 @@ exports.list = (root, games) ->
    
   rows = []
   for key, value of games
-    console.log "game", key, value
     continue unless value
     dict = {game: key, level: 1}
     rows.push {_CHILDREN: [make.anchor value.name, dict]}
