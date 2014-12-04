@@ -78,7 +78,8 @@ exports.programs = (sprite) ->
 
     perform_instruction: (world, contents) ->
       [method, key, value] = extract_instruction contents
-      my.assert sprite[method], "#{sprite.label()}: no '#{method}' property"
+      if not sprite[method]
+        return console.log "#{sprite.label()}: no '#{method}' property"
       sprite[method](key, value)
 
     apply: (world, args) ->
