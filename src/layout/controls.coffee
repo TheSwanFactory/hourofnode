@@ -5,7 +5,7 @@
 exports.controls = () ->
   buttons = make.buttons(
     'control',
-    ["step", "run", "reset", "edit"],
+    ["reset",  "play", "step",  "edit"],
     my.control,
     (world, args) ->
       world.send world.get('name'), world

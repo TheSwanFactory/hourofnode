@@ -32,10 +32,10 @@ exports.events = {
     world.send 'prefetch'
 
   stop: (world, button) ->
-    button.put 'name', 'run' if button
+    button.put 'name', 'play' if button
     world.put 'speed', 0
 
-  run: (world, button) ->
+  play: (world, button) ->
     button.put 'name', 'stop'
     world.put 'speed', 1
     step_and_repeat = (self) ->
