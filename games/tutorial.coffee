@@ -6,9 +6,9 @@
 # Check and send 'done -1' if infinite loop (e.g., no interrupt)
 
 exports.game = {
-  name: 'The Hour of Node'
+  name: 'The Hour of NODE'
   assume: 'baseline'
-  comment: "The world's first Hour of Node program"
+  comment: "The world's first Hour of NODE program"
   author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
