@@ -35,11 +35,14 @@ exports.sprites = {
   _KIND: 'sprite'
   _EXPORTS: ['make_sprite']
   make_sprite: (world, sprite_dict) ->
-    child = world.add_child sprite_dict
-    child.put 'dict', sprite_dict
+    kind_authority = get_kind_authority sprite_dict, world.get('kinds')
+    console.log 'makes', kind_authority, sprite_dict
+    dict = $.extend true, {}, kind_authority, sprite_dict
+    child = world.add_child dict
+    child.put 'dict', dict
     child.handle_event 'reset'
     child.handle_event 'inspect'
-    child.put my.key.authority, world.make_world get_kind_authority(sprite_dict, world.get 'kinds')
+    child.put my.key.authority, world.make_world kind_authority
     #child.call 'reset'
     world.send 'inspect', child
 
