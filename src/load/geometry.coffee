@@ -22,7 +22,6 @@ exports.game = {
   cell_count: 8
   cell_size: (world) -> world.get('grid_size') / world.get('cell_count')
 
-  margin: my.margin
   outer_width: (world) -> world.get('width') + 2 * world.get('padding')
   inner_width: (world) -> world.get('width') - 2 * world.get('margin')
 

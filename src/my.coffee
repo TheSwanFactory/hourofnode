@@ -60,25 +60,21 @@ exports.my = {
   button: {
     size: TOUCH
     padding: MARGIN
-    margin: MARGIN
     class: 'button'
   }
   command: {
     size: TOUCH
     padding: MARGIN
-    margin: MARGIN
     class: 'command'
   }
   action: {
     size: TOUCH * 3 / 4
     padding: MARGIN
-    margin: MARGIN
     class: 'action'
   }
   control: {
     size: CONTROL
     padding: MARGIN
-    margin: 2*MARGIN
     color: BUTTON_COLOR
     class: 'control'
   }

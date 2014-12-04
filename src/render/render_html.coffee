@@ -13,7 +13,6 @@ exports.render_html = (world) ->
     name_tag: name_tag(T, tag_name)
     href: world.get 'href'
     style: {
-      margin: world.get 'margin'
       padding: world.get 'padding'
       position: world.get_local 'position'
       height: world.get 'height'

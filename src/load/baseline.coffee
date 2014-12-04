@@ -1,7 +1,6 @@
 {my} = require '../my'
 
 exports.game = {
-  _LABEL: 'page_title'
   name: "The Hour of Node"
   assume: 'actions'
 

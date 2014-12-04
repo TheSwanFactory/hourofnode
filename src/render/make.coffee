@@ -28,7 +28,6 @@ exports.make = {
       tag_name: 'button'
       _KIND: kind
       padding: my_kind.padding
-      margin: my_kind.margin
       height: my_kind.size - 4 * my_kind.padding
       width: my_kind.size + 2 * my_kind.padding
       x: (button) -> button.get 'offset'
