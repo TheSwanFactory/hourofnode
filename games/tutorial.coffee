@@ -17,10 +17,10 @@ exports.game = {
 
   levels: [
     {
-      name: 'Click Play to Move Turtle to Exit Pad'
+      name: 'Click "Play" to Move Turtle to Exit Pad'
       comment: '
       Teach kids to use a run loop rather than direct manipulation.
-      They can also play with the other control buttons.
+      They can also experiment with the other control buttons.
       Everything else is disabled to avoid confusion.
       '
       bricks: 1
@@ -28,14 +28,19 @@ exports.game = {
       goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [3,0] }
-        { kind: 'turtle', actions: {run: ['forward']}, editable: false }
+        { kind: 'turtle', actions: {run: ['forward', 'forward']}, editable: false }
       ]
     }
     {
-      name: 'Create Program Bricks Using Blue Action Rectangles'
-      goal: { clicks: 1, ticks: 4, bricks: 1 }
+      name: 'Add "Forward" Brick to Run Program'
+      comment: '
+      Start using program bricks to create their own programs.
+      Limit actions to
+      '
+      goal: { clicks: 1, ticks: 8, bricks: 1 }
+      action_limit: 2
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
       ]
     }
