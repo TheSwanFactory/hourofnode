@@ -48,6 +48,7 @@ for build in all_builds
 gulp.task 'css', ->
   gulp.src('./src/scss/styles.scss')
     .pipe(sass())
+    .on('error', handleError)
     .pipe(prefix())
     .pipe(gulp.dest "./#{dest}/")
 

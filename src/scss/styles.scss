@@ -4,7 +4,6 @@ div#root {
   position: absolute;
   background-color: #fff;
 }
-
 div.inspector div div {
   overflow: auto;
 }
@@ -23,10 +22,12 @@ div.editable {
   background: white;
 }
 
-.program .selected button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: solid;
+.program {
+  .selected button.selected {
+    border-color: gold;
+    border-width: 2;
+    border-style: solid;
+  }
 }
 
 button.selected {
@@ -40,17 +41,13 @@ button.selected.uneditable {
   border-style: dot;
 }
 
+// SVG
 text {
   text-anchor: middle;
 }
 
 .inspector {
   float: right;
-}
-
-.program-name {
-  font-size: 1.2em;
-  color: white;
 }
 
 .inspector,
@@ -62,29 +59,26 @@ text {
   border-radius: 50%;
 }
 
-.commands .command,
-.control {
+.blue-button {
   font-size: 1em;
   color: #ffffff;
   background: #3498db;
-  -webkit-border-radius: 4;
-  -moz-border-radius: 4;
   border-radius: 4px;
   border: 1px solid #3498db;
+  outline: none;
   border-bottom-color: #1970a9;
   border-top-color: #44a8eb;
   box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
   background-image: linear-gradient(to bottom, #3498db, #2980b9);
-}
-.commands .command:hover,
-.control:hover {
-  background: #3cb0fd;
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-}
 
-.commands .command:active,
-.control:active {
-  box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.3);
+  &:hover {
+    background: #3cb0fd;
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  }
+
+  &:active {
+    box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .render_svg[class^="render_svg stat"] {
@@ -93,13 +87,57 @@ text {
   top: 23px;
 }
 
-.right:before {
-  content: "";
-  font-family: FontAwesome;
-  font-size: 14px;
+.controls {
+  button {
+    @extend .blue-button;
+  }
 }
 
-.actions .right {
+// Command buttons
+
+.commands {
+  button {
+    @extend .blue-button;
+    text-transform: capitalize;
+  }
+}
+
+// Program Actions
+
+.actions button {
   font-size: 0;
+}
+
+// ICONS
+
+.icon-button {
+  font-family: FontAwesome;
+  font-size: 14px;
+  display: block;
+}
+
+.right:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.left:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.forward:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.reverse:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.wait:before {
+  @extend .icon-button;
+  content: "";
 }
 
