@@ -8,7 +8,7 @@
 exports.game = {
   name: 'The Hour of Node'
   assume: 'baseline'
-  comment: "The world's first NodeScript program"
+  comment: "The world's first Hour of Node program"
   author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
@@ -56,7 +56,7 @@ exports.game = {
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
-        { 
+        {
           kind: 'turtle'
           actions: { run: ['forward'], interrupt: ['right'] }
           editable: false
@@ -112,7 +112,7 @@ exports.game = {
       bricks: 1
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
-        { 
+        {
           kind: 'turtle'
           actions: { run: ['forward'], interrupt: ['right'] }
           editable: false
