@@ -17,16 +17,16 @@ exports.game = {
 
   levels: [
     {
-      name: 'Use "Run" Program to Move Turtle to Exit'
+      name: 'Click Play to Move Turtle to Pad'
       bricks: 1
       goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
-        { kind: 'turtle', actions: {run: ['forward']} }
+        { kind: 'turtle', actions: {run: ['forward']}, editable: false }
       ]
     }
     {
-      name: 'Create Program Bricks Using Blue Ovals'
+      name: 'Create Program Bricks Using Blue Action Rectangles'
       goal: { clicks: 1, ticks: 4, bricks: 1 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
