@@ -22,7 +22,7 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
+  _EXPORTS: ['step', 'stop', 'play', 'error', 'done']
 
   step: (world, button) ->
     console.log 'stepping'
