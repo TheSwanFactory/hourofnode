@@ -71,7 +71,7 @@ exports.sprites = {
     "#{translate} #{rotate}"
   name_style: (world) ->
     cell_size = world.get 'cell_size'
-    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+    {x: 0.5 * cell_size, y: 0.5 * cell_size}
 
   # behavior defaults
 
