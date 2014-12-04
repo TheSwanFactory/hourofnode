@@ -4,8 +4,6 @@
 exports.list = (root, games) ->
   list = root.add_child {
     name: 'Game Listings'
-    name_style: {font_size: 24}
-    _AUTHORITY: {name_style: {font_size: 18}}
   }
    
   rows = []

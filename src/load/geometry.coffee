@@ -17,7 +17,6 @@ exports.game = {
   width: width
   column_width: width / 2
   fill: 'white'
-  name_style: {font_size: 36}
   
   grid_size: my.column_1_width
   cell_count: 8

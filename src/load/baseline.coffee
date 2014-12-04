@@ -1,12 +1,11 @@
 {my} = require '../my'
 
 exports.game = {
+  _LABEL: 'page_title'
   name: "The Hour of Node"
   assume: 'actions'
 
-  name_style: {font_size: 24}
   _AUTHORITY: {
-    name_style: {font_size: 18}
     width: (world) -> world.get('column_width')
     _AUTHORITY: {width: 'auto'}
   }
