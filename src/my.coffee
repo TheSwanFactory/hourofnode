@@ -85,7 +85,7 @@ exports.my = {
   color: {
     button: BUTTON_COLOR
     row: BUTTON_BACKGROUND
-    grid: '#ccffcc' # pale_green
+    grid: '#cceeff' # pale blue
     gridline: 'white'
     command: COMMAND_COLOR
     line: 'black'
