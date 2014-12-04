@@ -47,7 +47,5 @@ exports.make = {
       _LABEL: label
       _CHILDREN: children
       stroke: my.color.line
-      height: my_kind.size
-      width: (button) -> button.get('available_width')
     }
 }
