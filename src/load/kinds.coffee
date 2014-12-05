@@ -15,7 +15,7 @@ exports.game = {
       editable: true
       obstruction: true
       position: [0,0]
-      fill: 'green'
+      fill: 'lime'
       actions: {interrupt: ['reverse']}
       direction: [1,0]
       paths: [
@@ -46,11 +46,11 @@ exports.game = {
       ]
     }
     gate: {
-      name: 'gate'
+      name: 'exit'
       editable: false
       obstruction: false
       position: [7,7]
-      fill: 'red'
+      fill: 'green'
       actions: {interrupt: ['_victory']}
       paths: [
         "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"

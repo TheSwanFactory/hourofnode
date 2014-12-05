@@ -88,6 +88,7 @@ exports.sprites = {
   commit: (world, args) ->
     return unless world.get 'next_position'
     world.put 'position', world.get('proposed_position')
+    # TODO: drop a colored sprite to mark trail
     world.put('next_position', null)
 
   # direct actions (instructions)
