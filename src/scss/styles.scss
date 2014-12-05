@@ -105,15 +105,20 @@ div#root {
 
   // a program
   .program > div {
-    padding: $basic-padding;
-    background-color: white;
+    padding:          $basic-padding;
+    background-color: darken($header-bg-color, 7%);
+    border:           2px solid transparent;
+    transition:       all 0.2s;
 
     &.selected {
-      border: 2px solid $selected-color;
+      background-color: $header-bg-color;
     }
 
     &.editable {
-      background: white;
+      border: 2px solid $selected-color;
+
+      .program_name {
+      }
     }
 
     &.run .program_name:before {
@@ -130,6 +135,7 @@ div#root {
 
     .program_name {
       text-transform: capitalize;
+      cursor:         pointer;
     }
 
     .actions {

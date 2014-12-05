@@ -62,11 +62,14 @@ div#root {
     height: 50px; }
   .inspector .program > div {
     padding: 5px;
-    background-color: white; }
+    background-color: #e8e8e8;
+    border: 2px solid transparent;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s; }
     .inspector .program > div.selected {
-      border: 2px solid gold; }
+      background-color: #fafafa; }
     .inspector .program > div.editable {
-      background: white; }
+      border: 2px solid gold; }
     .inspector .program > div.run .program_name:before {
       content: "";
       font-family: FontAwesome;
@@ -76,7 +79,8 @@ div#root {
       font-family: FontAwesome;
       margin-right: 5px; }
     .inspector .program > div .program_name {
-      text-transform: capitalize; }
+      text-transform: capitalize;
+      cursor: pointer; }
     .inspector .program > div .actions {
       min-height: 48px; }
       .inspector .program > div .actions button {
