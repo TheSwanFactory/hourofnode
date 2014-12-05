@@ -55,12 +55,14 @@ exports.test_layout = (test, rx) ->
   test "layout sprite", (t) ->
     size = 64
     c = size / 2
-    transform_result = "translate(#{size},#{size}) rotate(0 #{c} #{c})"
+    transform_result =
+      transform:        "translate(#{size}px,#{size}px) rotate(0deg)"
+      transform_origin: "#{c}px #{c}px"
 
     test_position t, [1,1]
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
-    t.equal sprite.get('transform'), transform_result , 'transform'
+    t.deepEqual sprite.get('transform'), transform_result , 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
     t.end()

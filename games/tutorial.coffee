@@ -52,7 +52,7 @@ exports.game = {
       bricks: 2
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
-        { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
+        { kind: 'turtle', actions: {run: ['forward', 'right']} }
       ]
     }
     # TODO: add a level explaining how/why to rearrange bricks

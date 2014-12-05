@@ -1,93 +1,168 @@
+* {
+  box-sizing: border-box; }
+
 div#root {
   left: 0;
   top: 0;
   position: absolute;
-  background-color: #fff;
-}
+  background-color: #fafafa;
+  color: #1a1a1a;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
-div.inspector div div {
-  overflow: auto;
-}
-span.text {
-  text-align: center;
-  padding: 2px;
-}
+.page_title-0 > .name, .page_title-0-0 > .name {
+  font-weight: 200;
+  font-size: 1.6em;
+  margin: 0.2em 5px;
+  display: block;
+  text-align: center; }
 
-div.selected {
-  border-color: yellow;
-  border-width: 1px;
-  border-style: solid;
-}
+.page_title-0-0 > .name {
+  font-size: 1.4em;
+  font-weight: normal; }
 
-div.editable {
-  background: white;
-}
+.header {
+  text-align: center; }
+  .header div {
+    padding: 5px; }
+  .header .Level.of {
+    margin-right: 0.3em; }
+  .header .level_progress {
+    border-top: 1px solid #e1e1e1;
+    font-size: 1.1em; }
+  .header .stats > span {
+    margin-right: 25px; }
 
-.program .selected button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: solid;
-}
+.grid svg g {
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s; }
 
-button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: dotted;
-}
-button.selected.uneditable {
-  border-color: grey;
-  border-width: 2;
-  border-style: dot;
-}
+.inspector {
+  padding: 5px;
+  background: #e1e1e1; }
+  .inspector div {
+    margin-bottom: 10px; }
+  .inspector .stat {
+    background-color: #f0f0f0; }
+    .inspector .stat .sprite svg {
+      margin-top: 7px;
+      height: 32px;
+      width: 32px; }
+    .inspector .stat div {
+      display: inline-block;
+      float: left;
+      line-height: 1.4em;
+      text-align: center;
+      padding: 5px;
+      margin: 5px; }
+    .inspector .stat:after {
+      content: ' ';
+      clear: both;
+      display: block;
+      font-size: 1px; }
+  .inspector .commands button {
+    margin-right: 5px;
+    font-size: 0.8em;
+    width: 60px;
+    height: 50px; }
+  .inspector .program > div {
+    padding: 5px;
+    background-color: #e8e8e8;
+    border: 2px solid transparent;
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s; }
+    .inspector .program > div.selected {
+      background-color: #fafafa; }
+    .inspector .program > div.editable {
+      border: 2px solid gold; }
+    .inspector .program > div.run .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: 5px; }
+    .inspector .program > div.interrupt .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: 5px; }
+    .inspector .program > div .program_name {
+      text-transform: capitalize;
+      cursor: pointer; }
+    .inspector .program > div .actions {
+      min-height: 48px; }
+      .inspector .program > div .actions button {
+        font-size: 0;
+        margin-right: 5px;
+        outline: none;
+        background-color: #9f0000;
+        color: white;
+        border: none;
+        height: 48px;
+        width: 48px; }
+        .inspector .program > div .actions button.selected {
+          border-color: gold;
+          border-width: 2px;
+          border-style: dotted; }
+          .inspector .program > div .actions button.selected.uneditable {
+            border-color: grey; }
+
+.controls {
+  padding: 5px;
+  background: #e1e1e1; }
+  .controls button {
+    margin-right: 5px;
+    width: 90px;
+    height: 60px;
+    font-size: 1em; }
 
 text {
   text-anchor: middle;
-}
+  font-family: sans-serif;
+  font-weight: 100;
+  text-shadow: 1px 1px black;
+  fill: white; }
 
-.inspector {
-  float: right;
-}
-
-.program-name {
-  font-size: 1.2em;
-  color: white;
-}
-
-.inspector,
-.controls {
-  background-color: darkgrey;
-}
-
-.button {
-  border-radius: 50%;
-}
-
-.commands .command,
-.control {
-  font-size: 1em;
-  color: #ffffff;
-  background: #3498db;
-  -webkit-border-radius: 4;
-  -moz-border-radius: 4;
+.blue-button, .inspector .commands button, .controls button {
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  background-image: -webkit-linear-gradient(top, #fefefe, #f0f0f0);
+  background-image: linear-gradient(to bottom, #fefefe, #f0f0f0);
   border-radius: 4px;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-}
-.commands .command:hover,
-.control:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-}
+  border: 1px solid #ccc;
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s; }
+  .blue-button:hover, .inspector .commands button:hover, .controls button:hover {
+    background-image: -webkit-linear-gradient(top, #fff, #fafafa);
+    background-image: linear-gradient(to bottom, #fff, #fafafa);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+  .blue-button:active, .inspector .commands button:active, .controls button:active {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
-.render_svg[class^="render_svg stat"] {
-  position: absolute;
-  left: 35px;
-  top: 23px;
-}
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.play:before, button.stop:before, button.step:before, button.edit:before, button.run:before, button.interrupt:before {
+  font-family: FontAwesome;
+  font-size: 14px;
+  display: block;
+  margin: 3px 0; }
+
+button.right:before {
+  content: ""; }
+button.left:before {
+  content: ""; }
+button.forward:before {
+  content: ""; }
+button.reverse:before {
+  content: ""; }
+button.wait:before {
+  content: ""; }
+button.reset:before {
+  content: ""; }
+button.play:before {
+  content: ""; }
+button.stop:before {
+  content: ""; }
+button.step:before {
+  content: ""; }
+button.edit:before {
+  content: ""; }
+button.run:before {
+  content: ""; }
+button.interrupt:before {
+  content: ""; }

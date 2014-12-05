@@ -66,12 +66,14 @@ exports.sprites = {
   angle: (world) -> vector.angle world.get('direction')
   transform: (world) ->
     my.assert center = world.get('cell_size') / 2
-    translate = "translate(#{world.get('x')},#{world.get('y')})"
-    rotate = "rotate(#{world.get('angle')} #{center} #{center})"
-    "#{translate} #{rotate}"
+    translate = "translate(#{world.get('x')}px,#{world.get('y')}px)"
+    rotate = "rotate(#{world.get('angle')}deg)"
+    origin = "#{center}px #{center}px"
+    transform = "#{translate} #{rotate}"
+    { transform: transform, transform_origin: origin }
   name_style: (world) ->
     cell_size = world.get 'cell_size'
-    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+    {x: 0.5 * cell_size, y: 0.5 * cell_size}
 
   # behavior defaults
 

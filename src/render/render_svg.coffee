@@ -12,14 +12,14 @@ exports.render_svg = (world) ->
     if world.get('selected')
       dict['stroke']= my.color.selection
       dict['stroke-width'] = 3
-    dict 
+    dict
 
   path_tags = (paths) ->
     return [] unless paths
     paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    attrs['transform'] = world.bind() (-> world.get('transform') || '')
+    attrs.style = world.bind() (-> world.get('transform') || '')
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
