@@ -105,44 +105,33 @@ text {
   left: 33px;
   top: 15px; }
 
-.icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before, .reset:before, .play:before, .stop:before, .step:before, .edit:before, .run:before, .interrupt:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.play:before, button.stop:before, button.step:before, button.edit:before, button.run:before, button.interrupt:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
   margin: 3px 0; }
 
-.right:before {
+button.right:before {
   content: ""; }
-
-.left:before {
+button.left:before {
   content: ""; }
-
-.forward:before {
+button.forward:before {
   content: ""; }
-
-.reverse:before {
+button.reverse:before {
   content: ""; }
-
-.wait:before {
+button.wait:before {
   content: ""; }
-
-.reset:before {
+button.reset:before {
   content: ""; }
-
-.play:before {
+button.play:before {
   content: ""; }
-
-.stop:before {
+button.stop:before {
   content: ""; }
-
-.step:before {
+button.step:before {
   content: ""; }
-
-.edit:before {
+button.edit:before {
   content: ""; }
-
-.run:before {
+button.run:before {
   content: ""; }
-
-.interrupt:before {
+button.interrupt:before {
   content: ""; }

@@ -176,63 +176,64 @@ text {
   margin: 3px 0;
 }
 
-.right:before {
-  @extend .icon-button;
-  content: "";
-}
+button {
+  &.right:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.left:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.left:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.forward:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.forward:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.reverse:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.reverse:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.wait:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.wait:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.reset:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.reset:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.play:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.play:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.stop:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.stop:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.step:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.step:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.edit:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.edit:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.run:before {
-  @extend .icon-button;
-  content: "";
-}
+  &.run:before {
+    @extend .icon-button;
+    content: "";
+  }
 
-.interrupt:before {
-  @extend .icon-button;
-  content: "";
+  &.interrupt:before {
+    @extend .icon-button;
+    content: "";
+  }
 }
-
