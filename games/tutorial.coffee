@@ -43,7 +43,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click "Right" Program Brick to Remove It From "Run".'
+      name: 'Click "Right" Program Brick to Remove It'
       comment: '
       Introduce kids to the concept of an editable program buffer.
       This is an example of debugging an existing program.
@@ -75,7 +75,7 @@ exports.game = {
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
       '
-      goal: { clicks: 3, bricks: 3, ticks: 6 }
+      goal: { clicks: 4, bricks: 4, ticks: 8 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [2,2] }
         { kind: 'turtle', actions: {} }
@@ -112,11 +112,12 @@ exports.game = {
       - programs.coffee : prefetch
       - sprites.coffee : collision
       '
-      goal: { clicks: 2, bricks: 2, ticks: 12 }
+      goal: { clicks: 1, bricks: 2, ticks: 12 }
+      bricks: 1
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
-        { kind: 'turtle', actions: {interrupt: []} }
+        { kind: 'turtle', actions: {run: ['forward'], interrupt: []} }
       ]
     }
     {
