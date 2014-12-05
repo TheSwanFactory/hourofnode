@@ -9,32 +9,52 @@ div#root {
   color: #1a1a1a;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
-.page_title-0 > .name {
+.page_title-0 > .name, .page_title-0-0 > .name {
   font-weight: 200;
   font-size: 1.6em;
-  display: inline-block;
-  margin: 0.2em 5px; }
+  margin: 0.2em 5px;
+  display: block;
+  text-align: center; }
 
 .page_title-0-0 > .name {
   font-size: 1.4em;
-  display: inline-block;
-  margin: 0.2em 5px; }
+  font-weight: normal; }
 
-.header div {
-  padding: 5px; }
-.header .Level.of {
-  margin-right: 0.3em; }
-.header .level_progress {
-  border-top: 1px solid #e1e1e1;
-  font-size: 1.1em; }
-.header .stats > span {
-  margin-right: 5px; }
+.header {
+  text-align: center; }
+  .header div {
+    padding: 5px; }
+  .header .Level.of {
+    margin-right: 0.3em; }
+  .header .level_progress {
+    border-top: 1px solid #e1e1e1;
+    font-size: 1.1em; }
+  .header .stats > span {
+    margin-right: 25px; }
 
 .inspector {
   padding: 5px;
   background: #e1e1e1; }
   .inspector div {
     margin-bottom: 10px; }
+  .inspector .stat {
+    background-color: #f0f0f0; }
+    .inspector .stat .sprite svg {
+      margin-top: 7px;
+      height: 32px;
+      width: 32px; }
+    .inspector .stat div {
+      display: inline-block;
+      float: left;
+      line-height: 1.4em;
+      text-align: center;
+      padding: 5px;
+      margin: 5px; }
+    .inspector .stat:after {
+      content: ' ';
+      clear: both;
+      display: block;
+      font-size: 1px; }
   .inspector .commands button {
     margin-right: 5px;
     font-size: 0.8em;
@@ -107,11 +127,6 @@ text {
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
   .blue-button:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
-
-.render_svg[class^="render_svg stat"] {
-  position: absolute;
-  left: 33px;
-  top: 15px; }
 
 .icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.play:before, button.stop:before, button.step:before, button.edit:before, button.run:before, button.interrupt:before {
   font-family: FontAwesome;

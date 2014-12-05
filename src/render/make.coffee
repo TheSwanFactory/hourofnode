@@ -15,7 +15,7 @@ group = (label, items, tag_name, options = {}) ->
 
 exports.make = {
   rows: (label, items, options) -> group label, items, 'div', options
-  columns: (label, items) -> group label, items, 'span'
+  columns: (label, items, options) -> group label, items, 'span', options
   anchor: (name, params) -> {
     tag_name: 'a'
     name: name

@@ -18,22 +18,25 @@ div#root {
 }
 
 // page title
-.page_title-0 > .name {
+.page_title-0 > .name,
+.page_title-0-0 > .name {
   font-weight: 200;
   font-size: 1.6em;
-  display: inline-block;
   margin: 0.2em 5px;
+  display: block;
+  text-align: center;
 }
 
 // level name
 
 .page_title-0-0 > .name {
   font-size: 1.4em;
-  display: inline-block;
-  margin: 0.2em 5px;
+  font-weight: normal;
 }
 
 .header {
+  text-align: center;
+
   div {
     padding: $basic-padding;
   }
@@ -49,7 +52,7 @@ div#root {
 
   .stats {
     > span {
-      margin-right: $basic-padding;
+      margin-right: $basic-padding * 5;
     }
   }
 }
@@ -60,6 +63,34 @@ div#root {
 
   div {
     margin-bottom: 10px;
+  }
+
+  .stat {
+    background-color: lighten($control-bg-color, 6%);
+
+    .sprite {
+      svg {
+        margin-top: 7px;
+        height: 32px;
+        width:  32px;
+      }
+    }
+
+    div {
+      display:     inline-block;
+      float:       left;
+      line-height: 1.4em;
+      text-align:  center;
+      padding:     $basic-padding;
+      margin:      $basic-padding;
+    }
+
+    &:after {
+      content: ' ';
+      clear: both;
+      display: block;
+      font-size: 1px;
+    }
   }
 
   .commands {
@@ -169,15 +200,6 @@ text {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
 }
-
-.render_svg[class^="render_svg stat"] {
-  position: absolute;
-  left: 33px;
-  top: 15px;
-}
-
-// Program Actions
-
 
 // ICONS
 
