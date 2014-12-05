@@ -56,25 +56,32 @@ We recommend doing this as a Git clone:
   * Windows: CMD Prompt or CYGWIN
 
 The following steps will be done inside the terminal/CMD prompt ...
-
-5.) Install gulp (via npm)
+5.) Install npm
+```
+--> npm install
+```
+6.) Install gulp
 ```
 --> npm -g install gulp
 ```
-6.) Install CoffeeScript (via npm)
+7.) Install CoffeeScript [##TODO: Investigate this step - don't think this has to be done]
 ```
 --> npm -g install coffee-script
 ```
-7.) Install Reactive-Coffee (via npm)
+8.) Install Reactive-Coffee  [##TODO: This step is under question - will investigate]
 ```
 --> npm -g install reactive-coffee
 ```
-8.) Install the 'underscore' module (via npm
+9.) Install jQuery
+```
+--> npm -g install jquery
+```
+10.) Install the 'underscore' module
 ```
 --> npm install underscore
 ```
 
-9.) You **may** need to download and unzip reactive-coffee from here:
+11.) You **may** need to download and unzip reactive-coffee from here:
 
 http://yang.github.io/reactive-coffee
 
@@ -92,7 +99,7 @@ Then reactive-coffee's tar.gz file's contents should be gunzipped into: /opt/rea
 If The Hour of Node web-app was unzipped into C:\temp\hourofnode
 Then reactive-coffee's .zip file's contents should be unzipped into: C:\temp\reactive-coffee
 
-10.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
+12.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
 ```
 --> npm update
 ```
