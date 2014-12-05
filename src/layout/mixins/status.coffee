@@ -15,7 +15,7 @@ add_paths = (sprite) ->
     tag_name: 'div'
     class:    'sprite'
     _CHILDREN: [{
-      transform: 'translate(0,0) scale(0.5)'
+      transform: 'transform: translate(0,0) scale(0.5)'
       paths: paths
       fill: sprite.get 'fill'
     }]

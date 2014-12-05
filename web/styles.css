@@ -32,6 +32,10 @@ div#root {
   .header .stats > span {
     margin-right: 25px; }
 
+.grid svg g {
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s; }
+
 .inspector {
   padding: 5px;
   background: #e1e1e1; }

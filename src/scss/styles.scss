@@ -57,6 +57,10 @@ div#root {
   }
 }
 
+.grid svg g {
+  transition: all 0.2s;
+}
+
 .inspector {
   padding: $basic-padding;
   background: $control-bg-color;
