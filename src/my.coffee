@@ -64,16 +64,13 @@ exports.my = {
   }
   command: {
     size: TOUCH
-    padding: MARGIN
     class: 'command'
   }
   action: {
-    size: TOUCH * 3 / 4
     padding: MARGIN
     class: 'action'
   }
   control: {
-    size: CONTROL
     padding: MARGIN
     color: BUTTON_COLOR
     class: 'control'

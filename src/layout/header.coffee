@@ -17,7 +17,7 @@ exports.header = (level) ->
     make.columns key, [
       _.capitalize "#{key}: "
       track(event, key)
-      "/ #{level.get('goal')[key]}"
+      " / #{level.get('goal')[key]}"
     ]
 
   make.rows 'header', [
@@ -25,7 +25,7 @@ exports.header = (level) ->
       "Level #{level.get('level_index')} of #{level.get('level_count')}"
       dialogs(level)
     ]
-    { name: 'Progress', _LABEL: 'level_progress' }
+    { name: 'Level Progress', _LABEL: 'level_progress' }
     make.columns 'stats', [
       metric 'click'
       metric 'brick'

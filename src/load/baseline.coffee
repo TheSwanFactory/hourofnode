@@ -1,6 +1,7 @@
 {my} = require '../my'
 
 exports.game = {
+  _LABEL: 'page_title'
   name: "The Hour of Node"
   assume: 'actions'
 
@@ -8,7 +9,7 @@ exports.game = {
     width: (world) -> world.get('column_width')
     _AUTHORITY: {width: 'auto'}
   }
-  
+
   goal: {
     clicks: 0
     ticks: 0
