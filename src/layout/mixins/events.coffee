@@ -5,14 +5,18 @@
 {my} = require '../../my'
 
 beep = do ->
-  context = new(window.audioContext || window.webkitAudioContext)
+  context = window.audioContext || window.webkitAudioContext
+  return ((duration, type, on_end) -> on_end()) unless context
+
+  context = new context
   (duration, type, on_end) ->
     duration = +duration
     type = (type % 5) || 0 # Only 0-4 are valid types.
     on_end = (-> "beep") unless _.isFunction on_end
 
     speaker = context.createOscillator()
-    speaker.type = type
+    speaker.type = 'custom'
+    speaker.frequency.value = 540
     speaker.connect context.destination
     speaker.noteOn 0
     turn_off = ->

@@ -54,7 +54,7 @@ exports.my = {
   device: IPAD
   margin: MARGIN
   grid: {size: HALF, split: 8}
-  duration: {step: 1000, tone: 500}
+  duration: {step: 1000, tone: 150}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 4
   button: {
