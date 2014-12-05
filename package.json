@@ -8,6 +8,7 @@
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
     "jquery": "^2.1.1",
+    "mime": "^1.2.11",
     "query-string": "^1.0.0",
     "reactive-coffee": "git://github.com/TheSwanFactory/reactive-coffee",
     "underscore": "^1.7.0"
