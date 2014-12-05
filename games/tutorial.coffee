@@ -71,7 +71,11 @@ exports.game = {
     }
     {
       name: 'Use Multiple Bricks to Move Diagonally'
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
+      comment: '
+      Create a multi-stage program.
+      Can get top score by using run loop to avoid final "Forward"s
+      '
+      goal: { clicks: 3, bricks: 3, ticks: 6 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [2,2] }
         { kind: 'turtle', actions: {} }
@@ -79,8 +83,13 @@ exports.game = {
     }
     {
       name: 'Use "Interrupt" Program to Bounce Off Walls'
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
-      bricks: 1
+      comment: '
+      Shows the power of reactive programming.
+      Introduces concept of an interrupt handler.
+      '
+      goal: { clicks: 0, bricks: 2, ticks: 11 }
+      action_limit: 2
+      bricks: 2
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
