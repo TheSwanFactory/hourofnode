@@ -8,16 +8,18 @@
 
 {my} = require '../../my'
 {make} = require '../../render/make'
+{utils} = require '../../utils'
 
 add_paths = (sprite) ->
   paths = sprite.get('paths').all()
+  transform = utils.prefix_style transform: 'translate(0,0) scale(0.5)'
   {
     tag_name: 'div'
     class:    'sprite'
     _CHILDREN: [{
-      transform: 'transform: translate(0,0) scale(0.5)'
-      paths: paths
-      fill: sprite.get 'fill'
+      transform: transform
+      paths:     paths
+      fill:      sprite.get('fill')
     }]
   }
 
