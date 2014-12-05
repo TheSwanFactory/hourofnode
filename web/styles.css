@@ -1,38 +1,80 @@
+* {
+  box-sizing: border-box; }
+
 div#root {
   left: 0;
   top: 0;
   position: absolute;
-  background-color: #fff; }
+  background-color: #fafafa;
+  color: #1a1a1a;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
-div.inspector div div {
-  overflow: auto; }
+.page_title-0 > .name {
+  font-weight: 200;
+  font-size: 1.6em;
+  display: inline-block;
+  margin: 0.2em 5px; }
 
-span.text {
-  text-align: center;
-  padding: 2px; }
+.page_title-0-0 > .name {
+  font-size: 1.4em;
+  display: inline-block;
+  margin: 0.2em 5px; }
 
-div.selected {
-  border-color: yellow;
-  border-width: 1px;
-  border-style: solid; }
+.header div {
+  padding: 5px; }
+.header .Level.of {
+  margin-right: 0.3em; }
+.header .level_progress {
+  border-top: 1px solid #e1e1e1;
+  font-size: 1.1em; }
+.header .stats > span {
+  margin-right: 5px; }
 
-div.editable {
-  background: white; }
+.inspector {
+  padding: 5px;
+  background: #e1e1e1; }
+  .inspector div {
+    margin-bottom: 10px; }
+  .inspector .commands button {
+    margin-right: 5px;
+    font-size: 0.8em;
+    width: 60px;
+    height: 50px; }
+  .inspector .program > div {
+    padding: 5px;
+    background-color: white; }
+    .inspector .program > div.selected {
+      border: 2px solid gold; }
+    .inspector .program > div.editable {
+      background: white; }
+    .inspector .program > div .program_name {
+      text-transform: capitalize; }
+    .inspector .program > div .actions {
+      min-height: 48px; }
+      .inspector .program > div .actions button {
+        font-size: 0;
+        margin-right: 5px;
+        outline: none;
+        background-color: #9f0000;
+        color: white;
+        border: none;
+        height: 48px;
+        width: 48px; }
+        .inspector .program > div .actions button.selected {
+          border-color: gold;
+          border-width: 2px;
+          border-style: dotted; }
+          .inspector .program > div .actions button.selected.uneditable {
+            border-color: grey; }
 
-.program .selected button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: solid; }
-
-button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: dotted; }
-
-button.selected.uneditable {
-  border-color: grey;
-  border-width: 2;
-  border-style: dot; }
+.controls {
+  padding: 5px;
+  background: #e1e1e1; }
+  .controls button {
+    margin-right: 5px;
+    width: 90px;
+    height: 60px;
+    font-size: 1em; }
 
 text {
   text-anchor: middle;
@@ -40,49 +82,27 @@ text {
   font-weight: 100;
   text-shadow: 1px 1px black; }
 
-.inspector {
-  float: right; }
-
-.inspector, .controls {
-  background-color: darkgrey; }
-
-.button {
-  border-radius: 50%; }
-
-.blue-button, .controls button, .commands button {
-  font-size: 1em;
-  color: #ffffff;
-  background: #3498db;
-  border-radius: 4px;
-  border: 1px solid #3498db;
+.blue-button, .inspector .commands button, .controls button {
+  text-transform: capitalize;
+  border: none;
   outline: none;
-  border-bottom-color: #1970a9;
-  border-top-color: #44a8eb;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9); }
-  .blue-button:hover, .controls button:hover, .commands button:hover {
-    background: #3cb0fd;
-    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-    background-image: linear-gradient(to bottom, #3cb0fd, #3498db); }
-  .blue-button:active, .controls button:active, .commands button:active {
-    box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.3); }
+  background-image: -webkit-linear-gradient(top, #fff, #f0f0f0);
+  background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+  border-radius: 4px;
+  border: 1px solid #ccc; }
+  .blue-button:active, .inspector .commands button:active, .controls button:active {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
 .render_svg[class^="render_svg stat"] {
   position: absolute;
   left: 33px;
   top: 15px; }
 
-.commands button {
-  text-transform: capitalize; }
-
-.actions button {
-  font-size: 0; }
-
 .icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before, .reset:before, .play:before, .stop:before, .step:before {
   font-family: FontAwesome;
   font-size: 14px;
-  display: block; }
+  display: block;
+  margin: 3px 0; }
 
 .right:before {
   content: ""; }

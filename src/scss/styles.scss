@@ -1,44 +1,133 @@
+$basic-padding:   5px;
+$header-bg-color: #fafafa;
+$control-bg-color: darken($header-bg-color, 10%);
+$selected-color: gold;
+
+* {
+  box-sizing: border-box;
+}
+
 div#root {
   left: 0;
   top: 0;
   position: absolute;
-  background-color: #fff;
-}
-div.inspector div div {
-  overflow: auto;
-}
-span.text {
-  text-align: center;
-  padding: 2px;
+  background-color: $header-bg-color;
+  color: lighten(#000, 10%);
+
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-div.selected {
-  border-color: yellow;
-  border-width: 1px;
-  border-style: solid;
+// page title
+.page_title-0 > .name {
+  font-weight: 200;
+  font-size: 1.6em;
+  display: inline-block;
+  margin: 0.2em 5px;
 }
 
-div.editable {
-  background: white;
+// level name
+
+.page_title-0-0 > .name {
+  font-size: 1.4em;
+  display: inline-block;
+  margin: 0.2em 5px;
 }
 
-.program {
-  .selected button.selected {
-    border-color: gold;
-    border-width: 2;
-    border-style: solid;
+.header {
+  div {
+    padding: $basic-padding;
+  }
+
+  .Level.of {
+    margin-right: 0.3em;
+  }
+
+  .level_progress {
+    border-top: 1px solid $control-bg-color;
+    font-size: 1.1em;
+  }
+
+  .stats {
+    > span {
+      margin-right: $basic-padding;
+    }
   }
 }
 
-button.selected {
-  border-color: gold;
-  border-width: 2;
-  border-style: dotted;
+.inspector {
+  padding: $basic-padding;
+  background: $control-bg-color;
+
+  div {
+    margin-bottom: 10px;
+  }
+
+  .commands {
+    button {
+      @extend       .blue-button;
+      margin-right: $basic-padding;
+      font-size:    0.8em;
+      width:        60px;
+      height:       50px;
+    }
+  }
+
+  // a program
+  .program > div {
+    padding: $basic-padding;
+    background-color: white;
+
+    &.selected {
+      border: 2px solid $selected-color;
+    }
+
+    &.editable {
+      background: white;
+    }
+
+    .program_name {
+      text-transform: capitalize;
+    }
+
+    .actions {
+      $button-height: 48px;
+      min-height: $button-height;
+
+      button {
+        font-size:        0;
+        margin-right:     $basic-padding;
+        outline:          none;
+        background-color: lighten(darkred, 4%);
+        color:            white;
+        border:           none;
+        height:           $button-height;
+        width:            $button-height;
+
+        &.selected {
+          border-color: $selected-color;
+          border-width: 2px;
+          border-style: dotted;
+
+          &.uneditable {
+            border-color: grey;
+          }
+        }
+      }
+    }
+  }
 }
-button.selected.uneditable {
-  border-color: grey;
-  border-width: 2;
-  border-style: dot;
+
+.controls {
+  padding: $basic-padding;
+  background: $control-bg-color;
+
+  button {
+    @extend .blue-button;
+    margin-right:     $basic-padding;
+    width:            90px;
+    height:           60px;
+    font-size:        1em;
+  }
 }
 
 // SVG
@@ -49,38 +138,16 @@ text {
   text-shadow: 1px 1px black;
 }
 
-.inspector {
-  float: right;
-}
-
-.inspector,
-.controls {
-  background-color: darkgrey;
-}
-
-.button {
-  border-radius: 50%;
-}
-
 .blue-button {
-  font-size: 1em;
-  color: #ffffff;
-  background: #3498db;
-  border-radius: 4px;
-  border: 1px solid #3498db;
-  outline: none;
-  border-bottom-color: #1970a9;
-  border-top-color: #44a8eb;
-  box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-
-  &:hover {
-    background: #3cb0fd;
-    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  }
+  text-transform:   capitalize;
+  border:           none;
+  outline:          none;
+  background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+  border-radius:    4px;
+  border:           1px solid #ccc;
 
   &:active {
-    box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -90,26 +157,8 @@ text {
   top: 15px;
 }
 
-.controls {
-  button {
-    @extend .blue-button;
-  }
-}
-
-// Command buttons
-
-.commands {
-  button {
-    @extend .blue-button;
-    text-transform: capitalize;
-  }
-}
-
 // Program Actions
 
-.actions button {
-  font-size: 0;
-}
 
 // ICONS
 
@@ -117,6 +166,7 @@ text {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
+  margin: 3px 0;
 }
 
 .right:before {
