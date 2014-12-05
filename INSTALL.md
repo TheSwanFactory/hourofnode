@@ -45,42 +45,36 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
 *Note*: MS Windows installs: a reboot of the system is required, after installing node.js, for *npm* to be accessible via the CMD prompt. 
 
 ### Installation Steps (The Hour of Node web-app) ###
-3.) Download The Hour of Node web-application as a ZIP file
-  Downlod it from here: https://github.com/TheSwanFactory/hourofnode/archive/master.zip
-  Other downloading options are:
-  * Forking the project: "Fork" button on upper right of this page: https://github.com/TheSwanFactory/hourofnode/
-  * Use the "Clone in Desktop" button
-
+3.) Download and install The Hour of Node project
+We recommend doing this as a Git clone:
+```
+--> git clone https://github.com/TheSwanFactory/hourofnode.git
+```
 4.) Launch a terminal
 
   * Mac OS: Utilities
   * Windows: CMD Prompt or CYGWIN
 
-5.) Create a directory [on the partition] where you'd like The Hour of Node web-application to reside and be served-up from.
+The following steps will be done inside the terminal/CMD prompt ...
 
-6.) Unzip the downloaded The Hour Of Node .zip file to that directory (Step 5)
-
-The following steps will be done inside the terminal
-
-7.) Install gulp (via npm)
+5.) Install gulp (via npm)
 ```
 --> npm -g install gulp
 ```
-8.) Install CoffeeScript (via npm)
+6.) Install CoffeeScript (via npm)
 ```
 --> npm -g install coffee-script
 ```
-9.) Install Reactive-Coffee (via npm)
+7.) Install Reactive-Coffee (via npm)
 ```
 --> npm -g install reactive-coffee
 ```
-
-10.) Install the 'underscore' module (via npm
+8.) Install the 'underscore' module (via npm
 ```
 --> npm install underscore
 ```
 
-11.) You **may** need to download and unzip reactive-coffee from here:
+9.) You **may** need to download and unzip reactive-coffee from here:
 
 http://yang.github.io/reactive-coffee
 
@@ -98,7 +92,7 @@ Then reactive-coffee's tar.gz file's contents should be gunzipped into: /opt/rea
 If The Hour of Node web-app was unzipped into C:\temp\hourofnode
 Then reactive-coffee's .zip file's contents should be unzipped into: C:\temp\reactive-coffee
 
-12.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
+10.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
 ```
 --> npm update
 ```
