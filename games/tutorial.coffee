@@ -146,7 +146,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click "Edit" to Modify. Add Sprites By Clicking Pond.'
+      name: 'Click "Edit" to Modify. Click Sprite to Modify.'
       comment: '
       Now students know enough to start designing their own levels.
       - Click "Edit" to enable design mode.
