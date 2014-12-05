@@ -27,8 +27,17 @@ exports.game = {
       action_limit: 1
       goal: { clicks: 0, ticks: 4, bricks: 1 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [3,0] }
-        { kind: 'turtle', actions: {run: ['forward', 'forward']}, editable: false }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [1,1] }
+        { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
+      ]
+    }
+    {
+      name: 'Click "Right" Program Brick to Remove It From "Run".'
+      goal: { clicks: 1, ticks: 4, bricks: 0 }
+      bricks: 1
+      sprites: [
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
+        { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
       ]
     }
     {
@@ -44,14 +53,7 @@ exports.game = {
         { kind: 'turtle', actions: {} }
       ]
     }
-    {
-      name: 'Click on Program Brick to Remove'
-      goal: { clicks: 1, ticks: 4, bricks: 1 }
-      sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
-        { kind: 'turtle', actions: {run: ['forward', 'right']} }
-      ]
-    }
+
     {
       name: 'Use Bricks to Move Diagonally'
       goal: { clicks: 2, ticks: 12, bricks: 4 }
