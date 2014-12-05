@@ -34,7 +34,7 @@ exports.actions = (sprite) ->
         button.send 'click'
         button.send 'brick'
       else
-        button.send 'error', "#{sprite} not editable"
+        button.send 'error', "#{sprite.get('name')} is not editable"
   )
   
   _.extend buttons, {
