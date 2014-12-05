@@ -36,13 +36,14 @@ class_attrs = (world) ->
   klass.push 'editable' if world.get 'editable'
   klass
 
-create_attrs = (world, style) ->
+create_attrs = (world, dict) ->
   attrs = {
     id: "#{world.label()}_#{world.uid}"
     class: world.bind() -> class_attrs(world)
-    style: world.bind() -> style
+    style: world.bind() -> dict.style
     click: clicker(world)
     init: initializer(world)
+    href: dict.href
     # TODO: add touch events that do not mess up mutation
     # touchend: clicker(world)
   }
@@ -68,7 +69,7 @@ render_children = (world, dict) ->
 render_world = (world) ->
   is_svg = world.get('paths')?
   dict = if is_svg then render_svg(world) else render_html(world)
-  attrs = create_attrs(world, dict.style)
+  attrs = create_attrs(world, dict)
   dict.tag attrs, world.bind() -> render_children(world, dict)
 
 exports.render = (root) ->
