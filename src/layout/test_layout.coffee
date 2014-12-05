@@ -62,7 +62,8 @@ exports.test_layout = (test, rx) ->
     test_position t, [1,1]
     t.ok sprite.get('x') > 0, 'non-zero x'
     t.ok sprite.get('y') > 0, 'non-zero y'
-    t.deepEqual sprite.get('transform'), transform_result , 'transform'
+    t.equal sprite.get('transform').transform, transform_result.transform, 'transform'
+    t.equal sprite.get('transform').transform_origin, transform_result.transform_origin, 'transform'
     t.equal sprite.get('stroke'), 'black', 'stroke'
     t.equal sprite.get('fill'), 'blue', 'fill'
     t.end()

@@ -10,6 +10,7 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
+{utils} = require '../utils'
 
 get_kind_authority = (sprite_dict, kinds) ->
   kind = sprite_dict.kind
@@ -70,7 +71,7 @@ exports.sprites = {
     rotate = "rotate(#{world.get('angle')}deg)"
     origin = "#{center}px #{center}px"
     transform = "#{translate} #{rotate}"
-    { transform: transform, transform_origin: origin }
+    utils.prefix_style { transform: transform, transform_origin: origin }
   name_style: (world) ->
     cell_size = world.get 'cell_size'
     {x: 0.5 * cell_size, y: 0.5 * cell_size}
