@@ -136,6 +136,7 @@ text {
   font-family: sans-serif;
   font-weight: 100;
   text-shadow: 1px 1px black;
+  fill:        white;
 }
 
 .blue-button {
@@ -218,5 +219,20 @@ text {
 .step:before {
   @extend .icon-button;
   content: "";
+}
+
+.edit:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.run:before {
+  @extend .icon-button;
+  content: "";
+}
+
+.interrupt:before {
+  @extend .icon-button;
+  content: "";
 }
 

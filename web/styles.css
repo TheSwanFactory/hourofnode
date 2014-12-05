@@ -80,7 +80,8 @@ text {
   text-anchor: middle;
   font-family: sans-serif;
   font-weight: 100;
-  text-shadow: 1px 1px black; }
+  text-shadow: 1px 1px black;
+  fill: white; }
 
 .blue-button, .inspector .commands button, .controls button {
   text-transform: capitalize;
@@ -104,7 +105,7 @@ text {
   left: 33px;
   top: 15px; }
 
-.icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before, .reset:before, .play:before, .stop:before, .step:before {
+.icon-button, .right:before, .left:before, .forward:before, .reverse:before, .wait:before, .reset:before, .play:before, .stop:before, .step:before, .edit:before, .run:before, .interrupt:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -136,3 +137,12 @@ text {
 
 .step:before {
   content: ""; }
+
+.edit:before {
+  content: ""; }
+
+.run:before {
+  content: ""; }
+
+.interrupt:before {
+  content: ""; }
