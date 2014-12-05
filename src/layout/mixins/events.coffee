@@ -41,19 +41,26 @@ exports.events = {
     if button
       button.put 'name',       'play'
       button.put my.key.label, 'play'
-    world.put 'speed', 0
+    world.put 'running', false
 
   play: (world, button) ->
     button.put 'name',       'stop'
     button.put my.key.label, 'stop'
-    world.put 'speed', 1
-    step_and_repeat = (self) ->
-      speed = world.get('speed')
-      if speed > 0
-        delay = world.get('interval') / speed
-        world.send 'step'
-        setTimeout((-> self(self)), delay)
-    step_and_repeat(step_and_repeat)
+
+    has_run_before = world.get('running')?
+
+    world.send 'reset'
+    world.put 'running', true
+    speed = my.speed
+    delay = world.get('interval') / speed
+
+    step_and_repeat = ->
+      running = world.get('running')
+      return unless running
+      world.send 'step'
+      setTimeout step_and_repeat, delay
+
+    setTimeout(step_and_repeat, if has_run_before then delay * 1.5 else 0)
 
   error: (world, message) ->
     beep my.duration.tone, 3, -> alert("Error: #{message}")

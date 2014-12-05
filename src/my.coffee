@@ -57,6 +57,7 @@ exports.my = {
   duration: {step: 1000, tone: 150}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 4
+  speed: 1
   button: {
     size: TOUCH
     padding: MARGIN
