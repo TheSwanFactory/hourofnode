@@ -33,7 +33,11 @@ exports.game = {
     }
     {
       name: 'Click "Right" Program Brick to Remove It From "Run".'
-      goal: { clicks: 1, ticks: 4, bricks: 0 }
+      comment: '
+      Introduce kids to the concept of an editable program buffer.
+      This is a gentle introduction to the art of debugging.
+      '
+      goal: { clicks: 1, ticks: 6, bricks: 0 }
       bricks: 1
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
@@ -44,7 +48,7 @@ exports.game = {
       name: 'Add "Forward" Brick to Run Program'
       comment: '
       Start using program bricks to create their own programs.
-      Limit actions to
+      Limit actions to 2 to avoid brute force non-run-loop solutions.
       '
       goal: { clicks: 1, ticks: 8, bricks: 1 }
       action_limit: 2
