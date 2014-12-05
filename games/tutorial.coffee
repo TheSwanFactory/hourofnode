@@ -62,8 +62,7 @@ exports.game = {
       Start using program bricks to create their own programs.
       Limit actions to 2 to avoid brute force non-run-loop solutions.
       '
-      goal: { clicks: 1, bricks: 1, ticks: 6 }
-      goal: { clicks: 1, ticks: 8, bricks: 1 }
+      goal: { clicks: 1, bricks: 1, ticks: 8 }
       action_limit: 2
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [7,0] }
@@ -80,7 +79,7 @@ exports.game = {
     }
     {
       name: 'Use "Interrupt" Program to Bounce Off Walls'
-      goal: { clicks: 1, ticks: 10, bricks: 1 }
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       bricks: 1
       sprites: [
         { kind: 'wall', position: [5,0] }
@@ -94,7 +93,7 @@ exports.game = {
     }
     {
       name: 'Click "Interrupt" to Add Bricks to that Program'
-      goal: { clicks: 2, ticks: 10, bricks: 2 }
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
@@ -103,11 +102,7 @@ exports.game = {
     }
     {
       name: 'Can You Solve the Final Complex Maze?'
-      goal: {
-        clicks: 6
-        ticks: 20
-        bricks: 6
-      }
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       sprites: [
         {kind: 'gate', actions: {interrupt: ['_victory']}}
         {kind: 'wall'}
@@ -129,7 +124,7 @@ exports.game = {
     {
       name: 'Replay Levels to Enable Edit Mode. Click to Add Walls.'
       edit_mode: true
-      goal: { clicks: 2, ticks: 10, bricks: 2 }
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']} }
         { kind: 'turtle' }
@@ -137,7 +132,7 @@ exports.game = {
     }
     {
       name: 'Click on Pond to Add Walls'
-      goal: { clicks: 1, ticks: 10, bricks: 1 }
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       bricks: 1
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
