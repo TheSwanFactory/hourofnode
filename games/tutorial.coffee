@@ -102,7 +102,6 @@ exports.game = {
     }
     {
       name: 'Click "Interrupt" to Add Bricks to that Program'
-      goal: { clicks: 2, bricks: 2, ticks: 12 }
       comment: '
       Get students to create an interrupt handler!!!
 
@@ -113,6 +112,7 @@ exports.game = {
       - programs.coffee : prefetch
       - sprites.coffee : collision
       '
+      goal: { clicks: 2, bricks: 2, ticks: 12 }
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
@@ -120,8 +120,12 @@ exports.game = {
       ]
     }
     {
-      name: 'Can You Solve the Final Complex Maze?'
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
+      name: 'Can You Solve the Ultimate Maze?'
+      comment: '
+      The simplest solution is the same as the last one!
+      Imagine trying to solve this procedurally, as in other tutorials.
+      '
+      goal: { clicks: 2, bricks: 2, ticks: 29 }
       sprites: [
         {kind: 'gate', actions: {interrupt: ['_victory']}}
         {kind: 'wall'}
@@ -141,26 +145,19 @@ exports.game = {
       ]
     }
     {
-      name: 'Replay Levels to Enable Edit Mode. Click to Add Walls.'
+      name: 'Click "Edit" to Modify. Add Sprites By Clicking Pond.'
       edit_mode: true
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
-      sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']} }
-        { kind: 'turtle' }
-      ]
-    }
-    {
-      name: 'Click on Pond to Add Walls'
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
-      bricks: 1
+      bricks: 2
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
           actions: { run: ['forward'], interrupt: ['right'] }
-          editable: false
         }
       ]
     }
+    # TODO: change the kind of sprite
+    # TODO: replace level and game description 
   ]
 }
