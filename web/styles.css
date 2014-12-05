@@ -47,6 +47,14 @@ div#root {
       border: 2px solid gold; }
     .inspector .program > div.editable {
       background: white; }
+    .inspector .program > div.run .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: 5px; }
+    .inspector .program > div.interrupt .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: 5px; }
     .inspector .program > div .program_name {
       text-transform: capitalize; }
     .inspector .program > div .actions {

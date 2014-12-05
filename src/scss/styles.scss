@@ -85,6 +85,18 @@ div#root {
       background: white;
     }
 
+    &.run .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: $basic-padding;
+    }
+
+    &.interrupt .program_name:before {
+      content: "";
+      font-family: FontAwesome;
+      margin-right: $basic-padding;
+    }
+
     .program_name {
       text-transform: capitalize;
     }
