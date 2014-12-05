@@ -142,9 +142,15 @@ text {
   text-transform:   capitalize;
   border:           none;
   outline:          none;
-  background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+  background-image: linear-gradient(to bottom, #fefefe, #f0f0f0);
   border-radius:    4px;
   border:           1px solid #ccc;
+  transition:       all 0.2s;
+
+  &:hover {
+    background-image: linear-gradient(to bottom, #fff, #fafafa);
+    box-shadow:       0px 0px 2px rgba(0, 0, 0, 0.2);
+  }
 
   &:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
