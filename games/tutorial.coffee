@@ -5,6 +5,17 @@
 # Implicitly add: assume, per-level turtle and gate (if absent)
 # Check and send 'done -1' if infinite loop (e.g., no interrupt)
 
+# COMMENT
+# Scores for each level are based on analogs of real-world metrics
+# - clicks (programmer hours)
+# - bricks (lines of code)
+# - ticks (execution time)
+# [with apologies to Dr. Seuss and "Fox in Socks"]
+#
+# Advanced players seeking to optimize their score will need to make
+# similar tradeoffs to what we faced in writing this app!
+#
+
 exports.game = {
   name: 'The Hour of NODE'
   assume: 'baseline'
@@ -25,7 +36,7 @@ exports.game = {
       '
       bricks: 1
       action_limit: 1
-      goal: { clicks: 0, ticks: 4, bricks: 1 }
+      goal: { clicks: 0, bricks: 1, ticks: 4 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [1,1] }
         { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
@@ -37,7 +48,7 @@ exports.game = {
       Introduce kids to the concept of an editable program buffer.
       This is an example of debugging an existing program.
       '
-      goal: { clicks: 1, ticks: 6, bricks: 1 }
+      goal: { clicks: 1, bricks: 1, ticks: 6 }
       bricks: 2
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
@@ -51,6 +62,7 @@ exports.game = {
       Start using program bricks to create their own programs.
       Limit actions to 2 to avoid brute force non-run-loop solutions.
       '
+      goal: { clicks: 1, bricks: 1, ticks: 6 }
       goal: { clicks: 1, ticks: 8, bricks: 1 }
       action_limit: 2
       sprites: [
@@ -58,12 +70,11 @@ exports.game = {
         { kind: 'turtle', actions: {} }
       ]
     }
-
     {
-      name: 'Use Bricks to Move Diagonally'
-      goal: { clicks: 2, ticks: 12, bricks: 4 }
+      name: 'Use Multiple Bricks to Move Diagonally'
+      goal: { clicks: 3, bricks: 4, ticks: 12 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [2,2] }
         { kind: 'turtle', actions: {} }
       ]
     }
