@@ -102,7 +102,17 @@ exports.game = {
     }
     {
       name: 'Click "Interrupt" to Add Bricks to that Program'
-      goal: { clicks: 3, bricks: 4, ticks: 12 }
+      goal: { clicks: 2, bricks: 2, ticks: 12 }
+      comment: '
+      Get students to create an interrupt handler!!!
+
+      Notice how natural such an advanced concept feels in this environment.
+      Developed during Ship Week 1.2 on the AwesomeStuffBadly YouTube Channel
+      For implementation details, see files in src/layout/mixins
+      - events.coffee : step
+      - programs.coffee : prefetch
+      - sprites.coffee : collision
+      '
       sprites: [
         { kind: 'wall', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
