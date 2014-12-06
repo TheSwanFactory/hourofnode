@@ -90,7 +90,7 @@ exports.programs = (sprite) ->
     store: (world, action) ->
       actions_container = world.find_child('actions')
 
-      if actions_container._child_count() >= my.action_limit
+      if actions_container._child_count() >= world.get('action_limit')
         return world.send 'error', 'action limit reached'
 
       actions_container.add_child action
