@@ -31,7 +31,6 @@ exports.events = {
   _EXPORTS: ['step', 'stop', 'play', 'error', 'done']
 
   step: (world, button) ->
-    console.log 'stepping'
     world.send 'tick'
     world.send 'fetch'
     world.send 'execute'
@@ -67,11 +66,12 @@ exports.events = {
 
   done: (world, args) ->
     success = args > 0
-    message = if success then 'victory' else 'failure'
+    title = if success then "Victory" else "Failure"
     world.send 'stop'
-    alert message
-    window.open world.get('next_url'), '_self'
-    # TODO: Make this a full-fledged dialog
+    if success
+      $('.done_dialog').dialog
+        title: title
+        modal: true
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 

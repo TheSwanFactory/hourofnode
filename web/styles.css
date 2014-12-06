@@ -31,6 +31,8 @@ div#root {
     font-size: 1.1em; }
   .header .stats > span {
     margin-right: 25px; }
+  .header .done_dialog {
+    display: none; }
 
 .grid svg g {
   -webkit-transition: all 0.2s;

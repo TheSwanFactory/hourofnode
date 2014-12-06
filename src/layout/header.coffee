@@ -1,15 +1,16 @@
 {my} = require '../my'
 {make} = require '../render/make'
 {dialogs} = require './dialogs'
+{done_dialog} = require './done_dialog'
 
 exports.header = (level) ->
 
   track = (event, key) ->
-    dict = { _LABEL: key, _EXPORTS: [event], name: (world) -> world.get(key) }
-    dict[key] = level.get(key) or 0
+    dict = { _LABEL: key, _EXPORTS: [event], name: -> level.get(key) }
+    level.get(key) || level.put(key, 0)
     dict[event] = (world, args) ->
       offset = if (args == -1) then -1 else 1
-      world.put key, world.get(key) + offset
+      level.put key, level.get(key) + offset
     dict
 
   metric = (event) ->
@@ -31,4 +32,5 @@ exports.header = (level) ->
       metric 'brick'
       metric 'tick'
     ]
+    done_dialog(level)
   ]
