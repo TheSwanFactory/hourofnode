@@ -32,7 +32,6 @@ share_dialog = ->
     networks:
       facebook:
         app_id:  1510955112514265
-        caption: text
       email:
         description: text + "\n\nCheck it out here!: " + document.location.href
 
