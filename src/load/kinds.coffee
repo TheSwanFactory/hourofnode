@@ -25,14 +25,14 @@ exports.game = {
         "M10,#{SCALE} a3,2 0 1,0 42,0 a3,2 0 1,0 -42,0z"
       ]
     }
-    wall: {
-      name: 
+    log: {
+      name: 'log'
       editable: false
       obstruction: true
       position: [7,0]
       fill: 'brown'
       paths: [
-        "M#{OFFSET},#{OFFSET} h#{INSET} v#{INSET} h-#{INSET} v-#{INSET}"
+        "M#{OFFSET+ INSET/2},#{OFFSET} h#{INSET/2} v#{INSET} h-#{INSET/2} v-#{INSET}"
       ]
     }
     egg: {
