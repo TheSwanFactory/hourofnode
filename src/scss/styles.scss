@@ -55,10 +55,34 @@ div#root {
       margin-right: $basic-padding * 5;
     }
   }
+}
 
-  .done_dialog {
-    display: none;
+.done_dialog {
+  display:    none;
+  text-align: center;
+
+  .stars {
+    font-family: FontAwesome;
+    font-size:   2.4em;
+    color:       gold;
   }
+
+  button {
+    @extend .blue-button;
+    padding: $basic-padding * 2;
+    margin:  $basic-padding;
+  }
+
+  .hint {
+    font-size: 0.7em;
+  }
+}
+
+// Share button
+@import 'share';
+
+.share-button {
+  margin: $basic-padding * 3 auto;
 }
 
 .grid svg g {
