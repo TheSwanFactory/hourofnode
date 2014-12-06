@@ -69,7 +69,7 @@ create_game = (root, game) ->
   extend_world(parent, game_dict)
 
 exports.load = (rx, query) ->
-  root = god(rx, {})
+  root = god(rx, my)
   return list(root, games) if query.list
 
   globals.map (key) -> root.put key, root.make_world({})
