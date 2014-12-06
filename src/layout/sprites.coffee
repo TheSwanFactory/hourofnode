@@ -10,6 +10,7 @@
 
 {my} = require '../my'
 {vector} = require('../god/vector')
+{utils} = require '../utils'
 
 get_kind_authority = (sprite_dict, kinds) ->
   kind = sprite_dict.kind
@@ -64,14 +65,41 @@ exports.sprites = {
   x: (world) -> cell_position(world, vector.axis.x)
   y: (world) -> cell_position(world, vector.axis.y)
   angle: (world) -> vector.angle world.get('direction')
+  center: (world) ->
+    world.get('cell_size') / 2
+
+  # transform
+  transform_base: (world) ->
+    my.assert center = world.get('center')
+
+    translate = [world.get('x'), world.get('y')]
+    rotate    = world.get('angle')
+    origin    = [center, center]
+
+    { translate: translate, rotate: rotate, origin: origin }
+
   transform: (world) ->
-    my.assert center = world.get('cell_size') / 2
-    translate = "translate(#{world.get('x')},#{world.get('y')})"
-    rotate = "rotate(#{world.get('angle')} #{center} #{center})"
+    base = world.get 'transform_base'
+
+    translate = "translate(#{base.translate[0]}px,#{base.translate[1]}px)"
+    rotate    = "rotate(#{base.rotate}deg)"
+    transform = "#{translate} #{rotate}"
+
+    transform_origin = base.origin.map((o) -> "#{o}px").join ' '
+
+    utils.prefix_style { transform: transform, transform_origin: transform_origin }
+
+  ie_transform: (world) ->
+    base = world.get 'transform_base'
+
+    translate = "translate(#{base.translate[0]},#{base.translate[1]})"
+    rotate    = "rotate(#{base.rotate}, #{base.origin[0]}, #{base.origin[1]})"
+
     "#{translate} #{rotate}"
+
   name_style: (world) ->
     cell_size = world.get 'cell_size'
-    {x: 0.5 * cell_size, y: 0.5 * cell_size, fill: "white", stroke: "white"}
+    {x: 0.5 * cell_size, y: 0.5 * cell_size}
 
   # behavior defaults
 

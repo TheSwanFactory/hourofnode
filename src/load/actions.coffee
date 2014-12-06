@@ -6,7 +6,7 @@ exports.game = {
   assume: 'shapes'
   actions: {
     # String of operation, key, parameter
-    wait:    "call go 0"
+    wait:    ""
     forward: "call go #{vector.to.front}"
     reverse: "call go #{vector.to.back}"
     left:    "call turn #{vector.to.left}"

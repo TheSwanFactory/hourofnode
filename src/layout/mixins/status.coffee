@@ -8,40 +8,55 @@
 
 {my} = require '../../my'
 {make} = require '../../render/make'
+{utils} = require '../../utils'
 
-add_paths = (dict, sprite) ->
+add_paths = (sprite) ->
   paths = sprite.get('paths').all()
-  _.extend dict, {
+  transform = utils.prefix_style transform: 'scale(0.5)'
+  {
+    tag_name: 'div'
+    class:    'sprite'
     _CHILDREN: [{
-      transform: 'translate(0,0) scale(0.5)'
-      paths: paths
-      fill: sprite.get 'fill'
+      transform:    transform
+      ie_transform: "scale(0.5)"
+      paths:        paths
+      fill:         sprite.get('fill')
     }]
   }
+
 extract = (sprite, button) ->
-  key = button.get 'value'
+  key = button.get my.key.label
   value = sprite.get key
   value = value.all() if sprite.is_array(value)
-  "#{value}"
-  
+  value = switch value
+    when true  then 'yes'
+    when false then 'no'
+    else value
+  # FIXME: this is a real bad cheat
+  sprite.rx().rxt.rawHtml "<span><b>#{_.capitalize key}</b><br/>#{_.capitalize value}</span>"
+
 exports.status = (sprite) ->
 
-  status_buttons = make.buttons('stat', [
+  status_buttons = make.columns('stat', [
       "-"
+      "kind"
       "name"
       "fill"
-      "position"
-      "direction"
-    ], my.button,
-    (button, args) -> button.editing = true
+      "editable"
+      "obstruction"
+    ],
+    { height: '' }
     # TODO: Implement editable status
   )
 
-  for dict in status_buttons._CHILDREN
-    key = dict.value
-    if dict.value == '-'
-      add_paths dict, sprite
+  status_buttons._CHILDREN = status_buttons._CHILDREN.map (key) ->
+    if key == '-'
+      add_paths sprite
     else
-      dict.name = (button) -> extract(sprite, button) # run time
+      {
+        _LABEL: key
+        name: (button) -> extract(sprite, button)
+        tag_name: 'div'
+      }
 
   status_buttons
