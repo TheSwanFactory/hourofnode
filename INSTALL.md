@@ -99,8 +99,9 @@ The web-app is automatically served-up at:
 
 
 ### Wrapping Up - And Other Useful Info###
-Microsoft Windows - Detailed Instructions
-For **detailed instructions** of installing The Hour of Node web-app on **Microsoft Windows** systems please see this document:  ##TODO - include link to document out on the WordPress site##
+**Microsoft Windows - Detailed Instructions**
+For *detailed* instructions of installing The Hour of Node web-app on **Microsoft Windows** systems please go this link to view the WordPress blog post:
+http://theswanfactory.com/2014/12/06/installation-instructions-ms-windows/
 
 
 For further information, be sure to checkout our various websites:
