@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>INSTALL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* This file is deliberately empty */
+</style>
+</head>
+<body>
+<h3>Installation Instructions</h3>
+
+<p>The Hour of Node web application can be accessed and used online (http://hourofnode.org) or it can be locally installed on a system.  </p>
+
+<p><strong>Document's Purpose</strong><br />
+This document explains the steps necessary for downloading, installing, configuring, and running The Hour of Node web-application locally.</p>
+
+<p><strong>Why install it locally?</strong><br />
+Installing the web-app locally (as opposed to using it from hourofnode.org) allows you to make customized changes to the web-app and to design your own games via game description files.</p>
+
+<p>So ... let's get the installation process started.</p>
+
+<p><strong>Supported Operating Systems</strong><br />
+Any operating system that git, node.js, npm, and CoffeeScript supports should work for The Hour of Node project; as a locally installed web-application.  Such common operating systems are:</p>
+
+<ul>
+<li>Apple OS X</li>
+<li>Linux - Ubuntu, RedHat, Debian, etc.</li>
+<li>Microsoft Windows</li>
+</ul>
+
+<p><strong>Required Software/Modules</strong><br />
+(for administering The Hour of Node web-app)</p>
+
+<ul>
+<li>git</li>
+<li>node.js</li>
+<li>npm<br />
+<ul><br />
+<li>gulp</li><br />
+<li>CoffeeScript</li><br />
+<li>Reactive-Coffee</li><br />
+<li>underscore.js</li><br />
+</ul></li>
+</ul>
+
+<p><em>* Notes *</em><br />
+  *  npm is now included with node.js' installer; installing node.js should install and configure npm on your system.<br />
+  *  Items under npm are modules  installed with the <code>npm</code> command:<br />
+<code><br />
+     npm -install [module name]<br />
+</code></p>
+
+<h3>Installation Steps (Prerequisite Software/Utilties)</h3>
+
+<p>1.) Install Git<br />
+  Download it from here: http://git-scm.com/downloads</p>
+
+<p>2.) Install node.js<br />
+  Download it from here: http://nodejs.org/download/<br />
+<em>Note</em>: MS Windows installs: a reboot of the system is required, after installing node.js, for <em>npm</em> to be accessible via the CMD prompt. </p>
+
+<h3>Installation Steps (The Hour of Node web-app)</h3>
+
+<p>3.) Download and install The Hour of Node project<br />
+We recommend doing this as a Git clone:<br />
+<code><br />
+--&gt; git clone https://github.com/TheSwanFactory/hourofnode.git<br />
+</code><br />
+4.) Launch a terminal</p>
+
+<ul>
+<li>Mac OS: Utilities</li>
+<li>Windows: CMD Prompt or CYGWIN</li>
+</ul>
+
+<p>The following steps will be done inside the terminal/CMD prompt ...<br />
+5.) Install npm<br />
+<code><br />
+--&gt; npm install<br />
+</code><br />
+6.) Install gulp<br />
+<code><br />
+--&gt; npm -g install gulp<br />
+</code></p>
+
+<h3>Launching The Hour of Node web-app</h3>
+
+<p>In the terminal (or Windows CMD prompt):<br />
+1.) Change directory to the top directory where The Hour of Node resides</p>
+
+<ul>
+<li>(i.e. Unix: /opt/hourofnode)</li>
+<li>(i.e. Windows: C:\temp\hourofnode)</li>
+</ul>
+
+<p>2.) Type the command: gulp<br />
+<code><br />
+    --&gt; gulp<br />
+</code><br />
+A successful start-up of The Hour of Node web-app should result in lines similar to these (in the terminal):<br />
+<code><br />
+    [20:09:00] Requiring external module coffee-script/register<br />
+    [20:09:04] Using gulpfile c:\Temp\hourofnode\gulpfile.coffee<br />
+    [20:09:04] Starting 'main'...<br />
+    [20:09:04] Starting 'sync'...<br />
+    [20:09:04] Finished 'sync' after 67 ms<br />
+    [20:09:04] Starting 'watch'...<br />
+    [20:09:04] Finished 'watch' after 55 ms<br />
+    [BS] Local URL: http://localhost:3000<br />
+    [BS] Serving files from: web<br />
+    [BS] Watching files...<br />
+    [BS] File changed: c:\Temp\hourofnode\web\main.js<br />
+    [20:09:06] Finished 'main' after 2.57 s<br />
+    [20:09:06] Starting 'default'...<br />
+    [20:09:06] Finished 'default' after 8.55 µs<br />
+</code><br />
+And a web browser should pop-up displaying the local instance of The Hour of Node web-app.</p>
+
+<p>The web-app is automatically served-up at:<br />
+<code>http://localhost:3000</code></p>
+
+<h3>Wrapping Up - And Other Useful Info</h3>
+
+<p><strong>Microsoft Windows - Detailed Instructions</strong><br />
+For <em>detailed</em> instructions of installing The Hour of Node web-app on <strong>Microsoft Windows</strong> systems please go this link to view the WordPress blog post:<br />
+http://theswanfactory.com/2014/12/06/installation-instructions-ms-windows/</p>
+
+<p>For further information, be sure to checkout our various websites:</p>
+
+<ul>
+<li>http://hourofnode.org</li>
+<li>http://theswanfactory.wordpress.com</li>
+<li>https://www.facebook.com/HourOfNode</li>
+<li>https://twitter.com/theswanfactory</li>
+<li>https://www.youtube.com/user/AwesomeStuffBadly</li>
+<li>https://github.com/TheSwanFactory</li>
+<li>https://github.com/TheSwanFactory/hourofnode&lt;</li>
+</ul>
+
+<h2>Happy Hour-of-Noding :-)</h2>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

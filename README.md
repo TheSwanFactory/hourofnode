@@ -19,14 +19,16 @@ We believe this is the first comprehensive programming environment -- GUI, game 
 
 The application is available live on the web at http://hourofnode.org/.
 
-If you wish to run it locally using this GitHub project, please see `INSTALL.md`.
+If you wish to run it locally using this GitHub project, please see `INSTALL.md`, `INSTALL.pdf` or `INSTALL.html`.
+
+For MS Windows users, there's detailed steps for installing The Hour of Node, as a GitHub project, here:
+http://theswanfactory.com/2014/12/06/installation-instructions-ms-windows/
 
 Additional documentation for developers is in the `doc/` directory.
 
 We recommend the cross-platform [Komodo Edit](http://komodoide.com/komodo-edit) editor for viewing and modifying the `.coffee` [CoffeeScript](http://blog.teamtreehouse.com/the-absolute-beginners-guide-to-coffeescript) source files and `.md` [MarkDown](https://help.github.com/articles/markdown-basics/) documentation files.
 
 ### History
-gi
 We began development on October 1st, 2014, and plan to launch on December 8th, 2014 for CS Education Week (aka [The Hour of Code](http://code.org)).
 
 We live-cast, and store podcasts of, our coding sessions at:
