@@ -15,7 +15,7 @@ group = (label, items, tag_name, options = {}) ->
 
 exports.make = {
   rows: (label, items, options) -> group label, items, 'div', options
-  columns: (label, items) -> group label, items, 'span'
+  columns: (label, items, options) -> group label, items, 'span', options
   anchor: (name, params) -> {
     tag_name: 'a'
     name: name
@@ -28,7 +28,6 @@ exports.make = {
       tag_name: 'button'
       _KIND: kind
       padding: my_kind.padding
-      margin: my_kind.margin
       height: my_kind.size - 4 * my_kind.padding
       width: my_kind.size + 2 * my_kind.padding
       x: (button) -> button.get 'offset'
@@ -47,7 +46,5 @@ exports.make = {
       _LABEL: label
       _CHILDREN: children
       stroke: my.color.line
-      height: my_kind.size
-      width: (button) -> button.get('available_width')
     }
 }

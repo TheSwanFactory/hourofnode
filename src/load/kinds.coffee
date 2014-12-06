@@ -12,6 +12,8 @@ exports.game = {
   kinds: {
     turtle: {
       name: 'me'
+      running: 'run'
+      editing: 'run'
       editable: true
       obstruction: true
       position: [0,0]

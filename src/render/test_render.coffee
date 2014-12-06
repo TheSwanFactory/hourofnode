@@ -92,7 +92,6 @@ exports.test_render = (test, rx) ->
     button = buttons[0] 
     t.equal button.tag, 'button', 'button span'
     t.ok style = button.attr.style, 'button style'
-    t.ok style.margin, 'button margin'
 
     child = button.body[0]
     t.equal child, 'a', 'button renders just text'
