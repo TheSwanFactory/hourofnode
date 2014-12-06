@@ -34,6 +34,7 @@ exports.game = {
       They can also experiment with the other control buttons.
       Everything else is disabled to avoid confusion.
       '
+      message: 'You did it!'
       bricks: 1
       action_limit: 1
       goal: { clicks: 0, bricks: 1, ticks: 4 }
@@ -62,6 +63,7 @@ exports.game = {
       Start using program bricks to create their own programs.
       Limit actions to 2 to avoid brute force non-run-loop solutions.
       '
+      message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
       action_limit: 2
       sprites: [
