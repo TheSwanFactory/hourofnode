@@ -43,26 +43,27 @@ exports.done_dialog = (level) ->
     'Next'
   ], {}, dialogAction
 
-  messages = [{
-    _LABEL: 'stars'
+  messages = []
+
+  messages.push
+    class: 'stars'
     name:   star_string
-  }]
 
   if level.get('message')?
     messages.push
-      _LABEL: 'message'
+      class: 'message'
       name:   level.get('message')
 
   messages.push
-    _LABEL: 'share-button'
+    class: 'share-button'
     name:   -> "I got #{star_count()} stars on the Hour of Node. See if you can beat my score!"
 
   messages.push
-    _LABEL: 'hint'
+    class: 'hint'
     name:   'Hint: Use fewer clicks, bricks, or ticks to improve your score'
 
   {
-    _LABEL: 'done_dialog',
+    class: 'done_dialog',
     _CHILDREN: [make.rows '', [].concat(messages, buttons)]
     width: ''
   }

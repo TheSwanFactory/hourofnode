@@ -78,12 +78,11 @@ exports.events = {
 
   done: (world, args) ->
     success = args > 0
-    title = if success then "Victory" else "Failure"
     world.send 'stop'
     if success
       $('.done_dialog').dialog
-        title: title
         modal: true
+        title: 'Level Complete'
         open:  share_dialog
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.

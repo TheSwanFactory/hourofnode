@@ -37,7 +37,7 @@ div#root {
   text-align: center; }
   .done_dialog .stars {
     font-family: FontAwesome;
-    font-size: 2em;
+    font-size: 2.4em;
     color: gold; }
   .done_dialog button {
     padding: 10px;
@@ -199,14 +199,14 @@ div#root {
   opacity: 1; }
 
 .share-button.sharer-0 .social.active.top {
-  -ms-transform: scale(1) translateY(-10px);
-  -webkit-transform: scale(1) translateY(-10px);
-  transform: scale(1) translateY(-10px); }
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1); }
 
 .share-button.sharer-0 .social.active.bottom {
-  -ms-transform: scale(1) translateY(15px);
-  -webkit-transform: scale(1) translateY(15px);
-  transform: scale(1) translateY(15px); }
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1); }
 
 .share-button.sharer-0 .social.active.middle.right {
   -ms-transform: scale(1) translateX(10px);
@@ -242,7 +242,7 @@ div#root {
   position: relative;
   text-align: center;
   width: 60px;
-  z-index: 2; }
+  z-index: 10000; }
 
 .share-button.sharer-0 .social ul li:hover {
   color: rgba(0, 0, 0, 0.5); }
