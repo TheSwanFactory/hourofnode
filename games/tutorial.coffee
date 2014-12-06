@@ -43,6 +43,8 @@ exports.game = {
         { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
       ]
     }
+    # TODO Explain Left-Right
+    # TODO Explain Limits
     {
       name: 'Click "Right" Program Brick to Remove It'
       comment: '
@@ -72,7 +74,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Multiple Bricks to Move Diagonally'
+      name: 'Use Only Four Bricks to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
@@ -84,7 +86,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Interrupt" Program to Bounce Off Walls'
+      name: 'Use "Interrupt" Program to Bounce Off Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
