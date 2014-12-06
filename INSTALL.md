@@ -42,39 +42,41 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
 
 2.) Install node.js
   Download it from here: http://nodejs.org/download/
+*Note*: MS Windows installs: a reboot of the system is required, after installing node.js, for *npm* to be accessible via the CMD prompt. 
 
 ### Installation Steps (The Hour of Node web-app) ###
-3.) Download The Hour of Node web-application as a ZIP file
-  Downlod it from here: https://github.com/TheSwanFactory/hourofnode/archive/master.zip
-  Other downloading options are:
-  * Forking the project: "Fork" button on upper right of this page: https://github.com/TheSwanFactory/hourofnode/
-  * Use the "Clone in Desktop" button
-
+3.) Download and install The Hour of Node project
+We recommend doing this as a Git clone:
+```
+--> git clone https://github.com/TheSwanFactory/hourofnode.git
+```
 4.) Launch a terminal
 
   * Mac OS: Utilities
   * Windows: CMD Prompt or CYGWIN
 
-5.) Create a directory [on the partition] where you'd like The Hour of Node web-application to reside and be served-up from.
-
-6.) Unzip the downloaded The Hour Of Node .zip file to that directory (Step 5)
-
-The following steps will be done inside the terminal
-
-7.) Install gulp (via npm)
+The following steps will be done inside the terminal/CMD prompt ...
+5.) Install npm
+```
+--> npm install
+```
+6.) Install gulp
 ```
 --> npm -g install gulp
 ```
-8.) Install CoffeeScript (via npm)
+7.) Install CoffeeScript [##TODO: Investigate this step - don't think this has to be done]
 ```
 --> npm -g install coffee-script
 ```
-9.) Install Reactive-Coffee (via npm)
+8.) Install Reactive-Coffee  [##TODO: This step is under question - will investigate]
 ```
 --> npm -g install reactive-coffee
 ```
-
-10.) Install the 'underscore' module (via npm
+9.) Install jQuery
+```
+--> npm -g install jquery
+```
+10.) Install the 'underscore' module
 ```
 --> npm install underscore
 ```
