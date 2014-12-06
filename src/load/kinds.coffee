@@ -30,9 +30,9 @@ exports.game = {
       editable: false
       obstruction: true
       position: [7,0]
-      fill: 'brown'
+      fill: 'burlywood'
       paths: [
-        "M#{OFFSET+ INSET/2},#{OFFSET} h#{INSET/2} v#{INSET} h-#{INSET/2} v-#{INSET}"
+        "M#{OFFSET+ INSET/4},#{OFFSET} h#{INSET/2} v#{INSET} h-#{INSET/2} v-#{INSET}"
       ]
     }
     egg: {
