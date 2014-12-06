@@ -15,7 +15,7 @@ exports.done_dialog = (level) ->
   next = (world) ->
     window.open world.get('next_url'), '_self'
 
-  score = ->
+  star_count = ->
     ticks_diff  = level.get('ticks')  - goals.ticks
     clicks_diff = level.get('clicks') - goals.clicks
     bricks_diff = level.get('bricks') - goals.bricks
@@ -24,14 +24,20 @@ exports.done_dialog = (level) ->
     extra_moves = [ticks_diff, clicks_diff, bricks_diff].reduce (sum, diff) ->
       sum + if diff < 0 then 0 else diff
 
-    stars = if extra_moves == 0
+    if extra_moves == 0
       3
     else if extra_moves <= 3
       2
     else
       1
 
-    "Stars: #{stars}"
+  star_string = ->
+    stars = star_count()
+
+    empty_stars = 3 - stars
+    star_string = Array(stars + 1).join("") + Array(empty_stars + 1).join("")
+
+    star_string
 
   buttons = make.buttons 'dialog', [
     'Retry',
@@ -60,4 +66,5 @@ exports.done_dialog = (level) ->
   {
     class: 'done_dialog',
     _CHILDREN: [make.rows '', [].concat(messages, buttons)]
+    width: ''
   }
