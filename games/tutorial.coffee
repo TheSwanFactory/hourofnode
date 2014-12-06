@@ -43,6 +43,8 @@ exports.game = {
         { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
       ]
     }
+    # TODO Explain Left-Right
+    # TODO Explain Limits
     {
       name: 'Click "Right" Program Brick to Remove It'
       comment: '
@@ -72,7 +74,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Multiple Bricks to Move Diagonally'
+      name: 'Use Only Four Bricks to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
@@ -84,7 +86,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Interrupt" Program to Bounce Off Walls'
+      name: 'Use "Interrupt" Program to Bounce Off Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
@@ -93,7 +95,7 @@ exports.game = {
       action_limit: 2
       bricks: 2
       sprites: [
-        { kind: 'wall', position: [5,0] }
+        { kind: 'log', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
@@ -117,7 +119,7 @@ exports.game = {
       goal: { clicks: 1, bricks: 2, ticks: 12 }
       bricks: 1
       sprites: [
-        { kind: 'wall', position: [5,0] }
+        { kind: 'log', position: [5,0] }
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
         { kind: 'turtle', actions: {run: ['forward'], interrupt: []} }
       ]
@@ -131,16 +133,16 @@ exports.game = {
       goal: { clicks: 2, bricks: 2, ticks: 29 }
       sprites: [
         {kind: 'gate', actions: {interrupt: ['_victory']}}
-        {kind: 'wall'}
-        {kind: 'wall', position: [0,2]}
-        {kind: 'wall', position: [2,2]}
-        {kind: 'wall', position: [2,1]}
-        {kind: 'wall', position: [2,0]}
-        {kind: 'wall', position: [2,5]}
-        {kind: 'wall', position: [1,5]}
-        {kind: 'wall', position: [3,5]}
-        {kind: 'wall', position: [4,5]}
-        {kind: 'wall', position: [5,5]}
+        {kind: 'log'}
+        {kind: 'log', position: [0,2]}
+        {kind: 'log', position: [2,2]}
+        {kind: 'log', position: [2,1]}
+        {kind: 'log', position: [2,0]}
+        {kind: 'log', position: [2,5]}
+        {kind: 'log', position: [1,5]}
+        {kind: 'log', position: [3,5]}
+        {kind: 'log', position: [4,5]}
+        {kind: 'log', position: [5,5]}
         {
           kind: 'turtle'
           position: [0,0]
