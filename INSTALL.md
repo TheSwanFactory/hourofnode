@@ -64,46 +64,6 @@ The following steps will be done inside the terminal/CMD prompt ...
 ```
 --> npm -g install gulp
 ```
-7.) Install CoffeeScript [##TODO: Investigate this step - don't think this has to be done]
-```
---> npm -g install coffee-script
-```
-8.) Install Reactive-Coffee  [##TODO: This step is under question - will investigate]
-```
---> npm -g install reactive-coffee
-```
-9.) Install jQuery
-```
---> npm -g install jquery
-```
-10.) Install the 'underscore' module
-```
---> npm install underscore
-```
-
-11.) You **may** need to download and unzip reactive-coffee from here:
-
-http://yang.github.io/reactive-coffee
-
-Either click the ".zip file" link (Windows), or click the ".tar.gz file" (Apple OS/UNIX) link
-
-Unzip the zipped file's contents into the parent directory that contains The Hour of Node's install directory.  
-
-** Unix Example: **
-
-If The Hour of Node web-app was unzipped into /opt/hourofnode
-Then reactive-coffee's tar.gz file's contents should be gunzipped into: /opt/reactive-coffee
-
-** Windows Example: **
-
-If The Hour of Node web-app was unzipped into C:\temp\hourofnode
-Then reactive-coffee's .zip file's contents should be unzipped into: C:\temp\reactive-coffee
-
-12.) npm packages **may** need to be updated - try doing this if errors occur when attempting to serve-up The Hour of Node web-app with 'gulp' 
-```
---> npm update
-```
-
 ### Launching The Hour of Node web-app ###
 In the terminal (or Windows CMD prompt):
 1.) Change directory to the top directory where The Hour of Node resides
@@ -142,9 +102,6 @@ The web-app is automatically served-up at:
 Microsoft Windows - Detailed Instructions
 For **detailed instructions** of installing The Hour of Node web-app on **Microsoft Windows** systems please see this document:  ##TODO - include link to document out on the WordPress site##
 
-User's Guide
-The Hour of Node User's Guide can be found here:
-  ##TODO - include link to the User's Guide document##
 
 For further information, be sure to checkout our various websites:
 
