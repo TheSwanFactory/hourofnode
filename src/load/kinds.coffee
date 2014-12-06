@@ -26,7 +26,7 @@ exports.game = {
       ]
     }
     wall: {
-      name: 'wall'
+      name: 
       editable: false
       obstruction: true
       position: [7,0]

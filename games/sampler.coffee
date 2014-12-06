@@ -9,7 +9,7 @@ exports.game = {
       sprites: [
         {kind: 'gate'}
         {kind: 'egg'}
-        {kind: 'wall'}
+        {kind: 'log'}
         {
           kind: 'turtle'
           position: [1,1]

@@ -24,8 +24,8 @@ exit = {
 }
 
 wall = {
-  name: 'wall',
-  kind: 'wall'
+  name: 'log',
+  kind: 'log'
 }
 
 exports.game = {
