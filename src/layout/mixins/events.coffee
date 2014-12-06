@@ -24,6 +24,18 @@ beep = do ->
       on_end()
     setTimeout turn_off, duration
 
+share_dialog = ->
+  share = '.share-button'
+  text  = $(share).text()
+  new Share share,
+    description: text
+    networks:
+      facebook:
+        app_id:  1510955112514265
+        caption: text
+      email:
+        description: text + "\n\nCheck it out here!: " + document.location.href
+
 exports.events = {
   _LABEL: "events"
   interval: my.duration.step
@@ -72,6 +84,7 @@ exports.events = {
       $('.done_dialog').dialog
         title: title
         modal: true
+        open:  share_dialog
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 

@@ -15,7 +15,7 @@ exports.done_dialog = (level) ->
   next = (world) ->
     window.open world.get('next_url'), '_self'
 
-  score = ->
+  star_count = ->
     ticks_diff  = level.get('ticks')  - goals.ticks
     clicks_diff = level.get('clicks') - goals.clicks
     bricks_diff = level.get('bricks') - goals.bricks
@@ -24,32 +24,45 @@ exports.done_dialog = (level) ->
     extra_moves = [ticks_diff, clicks_diff, bricks_diff].reduce (sum, diff) ->
       sum + if diff < 0 then 0 else diff
 
-    stars = if extra_moves == 0
+    if extra_moves == 0
       3
     else if extra_moves <= 3
       2
     else
       1
+  star_string = ->
+    stars = star_count()
 
-    "Stars: #{stars}"
+    empty_stars = 3 - stars
+    star_string = Array(stars + 1).join("") + Array(empty_stars + 1).join("")
+
+    star_string
 
   buttons = make.buttons 'dialog', [
     'Retry',
     'Next'
   ], {}, dialogAction
 
-  messages = [
-    #{ name: -> "Ticks: #{level.get('ticks')} / #{goals.ticks}" }
-    #{ name: -> "Clicks: #{level.get('clicks')} / #{goals.clicks}" }
-    #{ name: -> "Bricks: #{level.get('bricks')} / #{goals.bricks}" }
-    { name: score }
-    'Use fewer clicks, bricks, or ticks to improve your score'
-  ]
+  messages = [{
+    _LABEL: 'stars'
+    name:   star_string
+  }]
 
   if level.get('message')?
-    messages.push level.get('message')
+    messages.push
+      _LABEL: 'message'
+      name:   level.get('message')
+
+  messages.push
+    _LABEL: 'share-button'
+    name:   -> "I got #{star_count()} stars on the Hour of Node. See if you can beat my score!"
+
+  messages.push
+    _LABEL: 'hint'
+    name:   'Hint: Use fewer clicks, bricks, or ticks to improve your score'
 
   {
     _LABEL: 'done_dialog',
     _CHILDREN: [make.rows '', [].concat(messages, buttons)]
+    width: ''
   }
