@@ -24,6 +24,18 @@ beep = do ->
       on_end()
     setTimeout turn_off, duration
 
+share_dialog = ->
+  share = '.share-button'
+  text  = $(share).text()
+  new Share share,
+    description: text
+    networks:
+      facebook:
+        app_id:  1510955112514265
+        caption: text
+      email:
+        description: text + "\n\nCheck it out here!: " + document.location.href
+
 exports.events = {
   _LABEL: "events"
   interval: my.duration.step
@@ -31,7 +43,6 @@ exports.events = {
   _EXPORTS: ['step', 'stop', 'play', 'error', 'done']
 
   step: (world, button) ->
-    console.log 'stepping'
     world.send 'tick'
     world.send 'fetch'
     world.send 'execute'
@@ -67,11 +78,12 @@ exports.events = {
 
   done: (world, args) ->
     success = args > 0
-    message = if success then 'victory' else 'failure'
     world.send 'stop'
-    alert message
-    window.open world.get('next_url'), '_self'
-    # TODO: Make this a full-fledged dialog
+    if success
+      $('.done_dialog').dialog
+        modal: true
+        title: 'Level Complete'
+        open:  share_dialog
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 
