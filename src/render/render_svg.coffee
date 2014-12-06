@@ -1,4 +1,5 @@
-{my} = require '../my'
+{my}    = require '../my'
+{utils} = require '../utils'
 
 exports.render_svg = (world) ->
   SVG = world.SVG()
@@ -19,7 +20,10 @@ exports.render_svg = (world) ->
     paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    attrs.style = world.bind() (-> world.get('transform') || '')
+    if utils.is_ie()
+      attrs.transform = world.bind() (-> world.get('ie_transform') || '')
+    else
+      attrs.style = world.bind() (-> world.get('transform') || '')
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"
