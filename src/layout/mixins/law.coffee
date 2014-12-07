@@ -34,8 +34,8 @@ resolve_collision = (mover, checker) ->
 #  RESOLUTION RULES:
   - no obstruction -> no problem
     not blocked if
-  - one obstruction -> non-obstruction gets interrupted
-  - both obstructions -> the moving object gets interrupted
+  - one obstruction -> non-obstruction gets bumped
+  - both obstructions -> the moving object gets bumped
 ###
 
 collision_check = (sprites, grid) ->

@@ -159,7 +159,7 @@ div#root {
       margin-right: $basic-padding;
     }
 
-    &.interrupt .program_name:before {
+    &.bump .program_name:before {
       content: "";
       font-family: FontAwesome;
       margin-right: $basic-padding;
@@ -279,7 +279,7 @@ button {
     content: "";
   }
 
-  &.play:before {
+  &.run:before {
     @extend .icon-button;
     content: "";
   }
@@ -304,7 +304,7 @@ button {
     content: "";
   }
 
-  &.interrupt:before {
+  &.bump:before {
     @extend .icon-button;
     content: "";
   }

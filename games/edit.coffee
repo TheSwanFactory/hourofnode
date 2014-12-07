@@ -29,10 +29,10 @@ exports.game = {
       bricks: 2
       goal: { clicks: 1, bricks: 2, ticks: 11 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
-          actions: { run: ['forward'], interrupt: ['right'] }
+          actions: { run: ['forward'], bump: ['right'] }
         }
       ]
     }
