@@ -90,9 +90,13 @@ exports.programs = (sprite) ->
     store: (world, action) ->
       actions_container = world.find_child('actions')
 
+      limit = world.get('action_limit')
+      s = if limit == 1 then '' else 's'
+      message = "Sorry, you can only have #{limit} brick#{s} per program"
       if actions_container._child_count() >= world.get('action_limit')
-        return world.send 'error', 'action limit reached'
+        return world.send 'error', message
 
+      world.send 'brick'
       actions_container.add_child action
 
     # Drag & Drop Sorting
