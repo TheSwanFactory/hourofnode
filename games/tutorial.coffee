@@ -60,7 +60,7 @@ exports.game = {
       Teach kids to use a run loop rather than brute force.
       Introduce the idea of action bricks.
       '
-      message: 'You did it!'
+      message: 'Awesome!'
       bricks: 4
       goal: { clicks: 0, bricks: 4, ticks: 12 }
       sprites: [
@@ -78,7 +78,6 @@ exports.game = {
       name: 'Click "Forward" Brick to Create "Run" Program'
       comment: '
       Start using program bricks to create their own programs.
-      Limit actions to 2 to avoid brute force non-run-loop solutions.
       '
       message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
@@ -87,8 +86,23 @@ exports.game = {
         { kind: 'turtle', actions: {} }
       ]
     }
+    {
+      name: 'Use Just One Brick to Get All The Gold Stars'
+      comment: '
+      Encourage more concise code.
+      Humans can usually only handle 7+-2 items in short-term memory.
+      Well-factored programs typically only have 7 lines per method, so
+      we limit programs to length 7 (length 1, here, for teaching purposes).
+      '
+      message: 'Way to go!'
+      action_limit: 1
+      goal: { clicks: 1, bricks: 1, ticks: 8 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
+        { kind: 'turtle', actions: {} }
+      ]
+    }
     # TODO Explain Left-Right
-    # TODO Explain Limits
     {
       name: 'Click "Right" Program Brick to Remove It'
       comment: '
