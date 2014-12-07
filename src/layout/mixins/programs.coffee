@@ -114,7 +114,7 @@ exports.programs = (sprite) ->
 
   program_row = (name, contents) ->
     buttons = make.buttons "action", contents, my.action, ((button, args) ->
-        if sprite.get('editable') and confirm('Are you sure you want to remove that action?')
+        if sprite.get('editable') #and confirm('Are you sure you want to remove that action?')
           button.up.remove_child(button)
           button.send 'click'
           button.send 'brick', -1

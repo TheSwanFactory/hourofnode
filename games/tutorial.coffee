@@ -102,7 +102,6 @@ exports.game = {
         { kind: 'turtle', actions: {} }
       ]
     }
-    # TODO Explain Left-Right
     {
       name: 'Click "Right" Program Brick to Remove It'
       comment: '
@@ -117,8 +116,9 @@ exports.game = {
       ]
     }
     # TODO: add a level explaining how/why to rearrange bricks
+    # TODO Explain Left-Right
     {
-      name: 'Use Only Four Bricks to Move Diagonally'
+      name: 'Alternate Left and Right to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
