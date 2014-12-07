@@ -9,7 +9,7 @@
 # * run button
 # * action bricks (forward, right, left)
 # * run program (run loop)
-# * bump program (bump handler)
+# * bump program (interrupt handler)
 
 # TODO:
 # Gate by default should send _victory action when bumped
@@ -99,7 +99,7 @@ exports.game = {
       name: 'Use "Bump" Program to Bounce Off Logs'
       comment: '
       Shows the power of reactive programming.
-      Introduces concept of an bump handler.
+      Introduces concept of an interrupt handler.
       '
       goal: { clicks: 0, bricks: 2, ticks: 11 }
       bricks: 2
@@ -116,7 +116,7 @@ exports.game = {
     {
       name: 'Click "Bump" to Add Bricks to that Program'
       comment: '
-      Get students to create an bump handler!!!
+      Get students to create their own interrupt handler!!!
 
       Notice how natural such an advanced concept feels in this environment.
       Developed during Ship Week 1.2 on the AwesomeStuffBadly YouTube Channel
