@@ -158,26 +158,5 @@ exports.game = {
         }
       ]
     }
-    {
-      name: 'Click "Edit" to Modify. Click Sprite to Modify.'
-      comment: '
-      Now students know enough to start designing their own levels.
-      - Click "Edit" to enable design mode.
-      - Click on the Blue Grid to create more sprites.
-      NOTE: edit mode is usually disabled the first time through a level
-      '
-      edit_mode: true
-      bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 11 }
-      sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
-        {
-          kind: 'turtle'
-          actions: { run: ['forward'], bump: ['right'] }
-        }
-      ]
-    }
-    # TODO: change the kind of sprite
-    # TODO: replace level and game description
   ]
 }
