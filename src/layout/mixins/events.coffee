@@ -39,7 +39,7 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'play', 'error', 'done']
+  _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
 
   step: (world, button) ->
     world.send 'tick'
@@ -49,11 +49,11 @@ exports.events = {
 
   stop: (world, button) ->
     if button
-      button.put 'name',       'play'
-      button.put my.key.label, 'play'
+      button.put 'name',       'run'
+      button.put my.key.label, 'run'
     world.put 'running', false
 
-  play: (world, button) ->
+  run: (world, button) ->
     button.put 'name',       'stop'
     button.put my.key.label, 'stop'
 
