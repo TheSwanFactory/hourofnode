@@ -29,10 +29,10 @@
 #
 
 exports.game = {
-  name: 'The Hour of NODE'
+  name: 'Use "Edit" to Modify Level'
   assume: 'baseline'
-  comment: "The original Hour of NODE tutorial"
-  author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
+  comment: "The followup Hour of NODE tutorial"
+  author: {name: 'Ernest Prabhakar', url: 'https://github.com/drernie'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
