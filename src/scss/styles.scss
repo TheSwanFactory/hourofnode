@@ -279,7 +279,7 @@ button {
     content: "";
   }
 
-  &.play:before {
+  &.run:before {
     @extend .icon-button;
     content: "";
   }

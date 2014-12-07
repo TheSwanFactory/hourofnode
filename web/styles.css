@@ -374,7 +374,7 @@ text {
   .blue-button:active, .done_dialog button:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.play:before, button.stop:before, button.step:before, button.edit:before, button.run:before, button.interrupt:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.interrupt:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -392,7 +392,7 @@ button.wait:before {
   content: ""; }
 button.reset:before {
   content: ""; }
-button.play:before {
+button.run:before {
   content: ""; }
 button.stop:before {
   content: ""; }
