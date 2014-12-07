@@ -73,7 +73,7 @@ exports.events = {
     setTimeout(step_and_repeat, if has_run_before then delay * 1.5 else 0)
 
   error: (world, message) ->
-    beep my.duration.tone, 3, -> alert("Error: #{message}")
+    beep my.duration.tone, 3, -> alert("Oops! #{message}")
 
   done: (world, args) ->
     success = args > 0

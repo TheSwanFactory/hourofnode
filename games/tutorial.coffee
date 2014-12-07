@@ -40,18 +40,51 @@ exports.game = {
 
   levels: [
     {
-      name: 'Click "Play" to Move Turtle to Exit Pad'
+      name: 'Click "Run" Button to Move Turtle to Exit Pad'
       comment: '
-      Teach kids to use a run loop rather than direct manipulation.
+      Explain the use of the "Run" Control.
       They can also experiment with the other control buttons.
       Everything else is disabled to avoid confusion.
       '
       message: 'You did it!'
-      bricks: 1
-      goal: { clicks: 0, bricks: 1, ticks: 4 }
+      bricks: 2
+      goal: { clicks: 0, bricks: 2, ticks: 4 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [1,1] }
         { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
+      ]
+    }
+    {
+      name: 'Watch "Run" Program Loop Over Action Bricks'
+      comment: '
+      Teach kids to use a run loop rather than brute force.
+      Introduce the idea of action bricks.
+      '
+      message: 'You did it!'
+      bricks: 4
+      goal: { clicks: 0, bricks: 4, ticks: 12 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [3,3] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward', 'right', 'forward', 'left']
+            bump: ['right'] }
+          editable: false
+        }
+      ]
+    }
+    {
+      name: 'Click "Forward" Brick to Create "Run" Program'
+      comment: '
+      Start using program bricks to create their own programs.
+      Limit actions to 2 to avoid brute force non-run-loop solutions.
+      '
+      message: 'Great job!'
+      goal: { clicks: 1, bricks: 1, ticks: 8 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
+        { kind: 'turtle', actions: {} }
       ]
     }
     # TODO Explain Left-Right
@@ -70,19 +103,6 @@ exports.game = {
       ]
     }
     # TODO: add a level explaining how/why to rearrange bricks
-    {
-      name: 'Click "Forward" Brick to Create A Run Program'
-      comment: '
-      Start using program bricks to create their own programs.
-      Limit actions to 2 to avoid brute force non-run-loop solutions.
-      '
-      message: 'Great job!'
-      goal: { clicks: 1, bricks: 1, ticks: 8 }
-      sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
-        { kind: 'turtle', actions: {} }
-      ]
-    }
     {
       name: 'Use Only Four Bricks to Move Diagonally'
       comment: '
