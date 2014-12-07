@@ -48,7 +48,6 @@ exports.game = {
       '
       message: 'You did it!'
       bricks: 1
-      action_limit: 1
       goal: { clicks: 0, bricks: 1, ticks: 4 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [1,1] }
@@ -79,7 +78,6 @@ exports.game = {
       '
       message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
-      action_limit: 2
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
@@ -104,7 +102,6 @@ exports.game = {
       Introduces concept of an interrupt handler.
       '
       goal: { clicks: 0, bricks: 2, ticks: 11 }
-      action_limit: 2
       bricks: 2
       sprites: [
         { kind: 'log', position: [5,0] }
