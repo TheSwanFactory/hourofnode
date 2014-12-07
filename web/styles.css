@@ -316,7 +316,7 @@ div#root {
       content: "";
       font-family: FontAwesome;
       margin-right: 5px; }
-    .inspector .program > div.interrupt .program_name:before {
+    .inspector .program > div.bump .program_name:before {
       content: "";
       font-family: FontAwesome;
       margin-right: 5px; }
@@ -374,7 +374,7 @@ text {
   .blue-button:active, .done_dialog button:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.interrupt:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reset:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -402,5 +402,5 @@ button.edit:before {
   content: ""; }
 button.run:before {
   content: ""; }
-button.interrupt:before {
+button.bump:before {
   content: ""; }

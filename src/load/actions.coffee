@@ -15,6 +15,6 @@ exports.game = {
     _victory: "send done 1"
     _failure: "send done -1"
     run: []
-    interrupt: []
+    bump: []
   }
 }

@@ -56,9 +56,9 @@ exports.programs = (sprite) ->
 
     prefetch: (world) ->
       return unless world.get 'selected'
-      if interrupt = sprite.get('interrupt')
-        key = world.call 'find_interrupt', interrupt.all()
-        sprite.put 'interrupt', undefined
+      if bump = sprite.get('bump')
+        key = world.call 'find_bump', bump.all()
+        sprite.put 'bump', undefined
         return world.call('fetch_program', key)
       world.call 'fetch_program', 'run' unless world.get('find_action')
 
@@ -67,9 +67,9 @@ exports.programs = (sprite) ->
       p = world.up.find_child(key)
       p.call 'reset_index'
 
-    find_interrupt: (world, keys) ->
+    find_bump: (world, keys) ->
       # TODO: put real logic here
-      'interrupt'
+      'bump'
 
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)

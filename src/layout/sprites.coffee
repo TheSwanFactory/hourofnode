@@ -111,7 +111,7 @@ exports.sprites = {
 
   collision: (world, obstruction) ->
     world.put 'next_position', null
-    world.put 'interrupt', obstruction.labels()
+    world.put 'bump', obstruction.labels()
 
   commit: (world, args) ->
     return unless world.get 'next_position'
