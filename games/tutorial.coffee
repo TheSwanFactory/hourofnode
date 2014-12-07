@@ -1,15 +1,27 @@
-# Gate by default should send _victory action when interrupted
-# Turtle defaults to reverse on interrupt, to avoid invisible loop
+#
+# tutorial.coffee
+#
+# The Primary Hour of Node Tutorial
+#
+# Role: explain how to use the interface to program turtles to reach the exit
+#
+# Key Interface Elements:
+# * run button
+# * action bricks (forward, right, left)
+# * run program (run loop)
+# * bump program (interrupt handler)
 
 # TODO:
+# Gate by default should send _victory action when interrupted
+# Turtle defaults to reverse on interrupt, to avoid invisible loop
 # Implicitly add: assume, per-level turtle and gate (if absent)
 # Check and send 'done -1' if infinite loop (e.g., no interrupt)
 
 # COMMENT
 # Scores for each level are based on analogs of real-world metrics
-# - clicks (programmer hours)
-# - bricks (lines of code)
-# - ticks (execution time)
+# - Clicks (programmer hours)
+# - Bricks (lines of code)
+# - Ticks (execution time)
 # [with apologies to Dr. Seuss and "Fox in Socks"]
 #
 # Advanced players seeking to optimize their score will need to make
@@ -19,8 +31,8 @@
 exports.game = {
   name: 'The Hour of NODE'
   assume: 'baseline'
-  comment: "The world's first Hour of NODE game"
-  author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
+  comment: "The original Hour of NODE tutorial"
+  author: {name: 'David Huffman', url: 'https://github.com/drernie'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
@@ -36,7 +48,6 @@ exports.game = {
       '
       message: 'You did it!'
       bricks: 1
-      action_limit: 1
       goal: { clicks: 0, bricks: 1, ticks: 4 }
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [1,1] }
@@ -67,7 +78,6 @@ exports.game = {
       '
       message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
-      action_limit: 2
       sprites: [
         { kind: 'gate', actions: {interrupt: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
@@ -92,7 +102,6 @@ exports.game = {
       Introduces concept of an interrupt handler.
       '
       goal: { clicks: 0, bricks: 2, ticks: 11 }
-      action_limit: 2
       bricks: 2
       sprites: [
         { kind: 'log', position: [5,0] }
