@@ -9,13 +9,13 @@
 # * run button
 # * action bricks (forward, right, left)
 # * run program (run loop)
-# * bump program (interrupt handler)
+# * bump program (bump handler)
 
 # TODO:
-# Gate by default should send _victory action when interrupted
-# Turtle defaults to reverse on interrupt, to avoid invisible loop
+# Gate by default should send _victory action when bumped
+# Turtle defaults to reverse on bump, to avoid invisible loop
 # Implicitly add: assume, per-level turtle and gate (if absent)
-# Check and send 'done -1' if infinite loop (e.g., no interrupt)
+# Check and send 'done -1' if infinite loop (e.g., no bump)
 
 # COMMENT
 # Scores for each level are based on analogs of real-world metrics
@@ -50,7 +50,7 @@ exports.game = {
       bricks: 1
       goal: { clicks: 0, bricks: 1, ticks: 4 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [1,1] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [1,1] }
         { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
       ]
     }
@@ -65,7 +65,7 @@ exports.game = {
       goal: { clicks: 1, bricks: 1, ticks: 6 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [5,0] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [5,0] }
         { kind: 'turtle', actions: {run: ['forward', 'right']} }
       ]
     }
@@ -79,7 +79,7 @@ exports.game = {
       message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [7,0] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -91,32 +91,32 @@ exports.game = {
       '
       goal: { clicks: 4, bricks: 4, ticks: 8 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [2,2] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [2,2] }
         { kind: 'turtle', actions: {} }
       ]
     }
     {
-      name: 'Use "Interrupt" Program to Bounce Off Logs'
+      name: 'Use "Bump" Program to Bounce Off Logs'
       comment: '
       Shows the power of reactive programming.
-      Introduces concept of an interrupt handler.
+      Introduces concept of an bump handler.
       '
       goal: { clicks: 0, bricks: 2, ticks: 11 }
       bricks: 2
       sprites: [
         { kind: 'log', position: [5,0] }
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
-          actions: { run: ['forward'], interrupt: ['right'] }
+          actions: { run: ['forward'], bump: ['right'] }
           editable: false
         }
       ]
     }
     {
-      name: 'Click "Interrupt" to Add Bricks to that Program'
+      name: 'Click "Bump" to Add Bricks to that Program'
       comment: '
-      Get students to create an interrupt handler!!!
+      Get students to create an bump handler!!!
 
       Notice how natural such an advanced concept feels in this environment.
       Developed during Ship Week 1.2 on the AwesomeStuffBadly YouTube Channel
@@ -129,8 +129,8 @@ exports.game = {
       bricks: 1
       sprites: [
         { kind: 'log', position: [5,0] }
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
-        { kind: 'turtle', actions: {run: ['forward'], interrupt: []} }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'turtle', actions: {run: ['forward'], bump: []} }
       ]
     }
     {
@@ -141,7 +141,7 @@ exports.game = {
       '
       goal: { clicks: 2, bricks: 2, ticks: 29 }
       sprites: [
-        {kind: 'gate', actions: {interrupt: ['_victory']}}
+        {kind: 'gate', actions: {bump: ['_victory']}}
         {kind: 'log'}
         {kind: 'log', position: [0,2]}
         {kind: 'log', position: [2,2]}
@@ -170,10 +170,10 @@ exports.game = {
       bricks: 2
       goal: { clicks: 1, bricks: 2, ticks: 11 }
       sprites: [
-        { kind: 'gate', actions: {interrupt: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
-          actions: { run: ['forward'], interrupt: ['right'] }
+          actions: { run: ['forward'], bump: ['right'] }
         }
       ]
     }
