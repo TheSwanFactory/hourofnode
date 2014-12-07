@@ -1,15 +1,27 @@
-# Gate by default should send _victory action when interrupted
-# Turtle defaults to reverse on interrupt, to avoid invisible loop
+#
+# tutorial.coffee
+#
+# The Primary Hour of Node Tutorial
+#
+# Role: explain how to use the interface to program turtles to reach the exit
+#
+# Key Interface Elements:
+# * run button
+# * action bricks (forward, right, left)
+# * run program (run loop)
+# * bump program (interrupt handler)
 
 # TODO:
+# Gate by default should send _victory action when interrupted
+# Turtle defaults to reverse on interrupt, to avoid invisible loop
 # Implicitly add: assume, per-level turtle and gate (if absent)
 # Check and send 'done -1' if infinite loop (e.g., no interrupt)
 
 # COMMENT
 # Scores for each level are based on analogs of real-world metrics
-# - clicks (programmer hours)
-# - bricks (lines of code)
-# - ticks (execution time)
+# - Clicks (programmer hours)
+# - Bricks (lines of code)
+# - Ticks (execution time)
 # [with apologies to Dr. Seuss and "Fox in Socks"]
 #
 # Advanced players seeking to optimize their score will need to make
@@ -19,7 +31,7 @@
 exports.game = {
   name: 'The Hour of NODE'
   assume: 'baseline'
-  comment: "The world's first Hour of NODE game"
+  comment: "The original Hour of NODE tutorial"
   author: {name: 'David Huffman', url: 'mailto:david%40theswanfactory.com'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
