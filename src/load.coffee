@@ -62,8 +62,9 @@ get_custom_level = ->
   return unless custom?
 
   try
-    custom = atob custom
-    JSON.parse custom
+    custom = decodeURIComponent custom
+    custom = JSON.parse custom
+    custom
   catch
     console.error 'unable to read custom JSON'
     null
