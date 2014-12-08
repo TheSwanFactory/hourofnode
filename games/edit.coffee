@@ -8,12 +8,14 @@
 # Responsible to Teach:
 #
 # - Edit / Save Controls
-# - Renaming Game or Level
-# - Selecting a Sprite
-# - Clicking to create new Sprites
-# - Changing the Kinds
-# - Customizing Name and Color
-# - Editable and Obstruction Checkboxes
+# - Renaming the Level
+# - Select a Sprite
+# - Click to Create a Sprite
+# - Customize Name and Color
+#
+# TODO:
+# - Changing the Kinds [popup]
+# - Editable and Obstruction [checkbox]
 
 exports.game = {
   name: 'BETA: Use "Edit" to Modify Levels'
@@ -27,16 +29,16 @@ exports.game = {
 
   levels: [
     {
-      name: 'Click "Edit" to Modify and "Save" when Done.'
+      name: '"Save" then Solve in order to Share'
       comment: '
-      Now students know enough to start designing their own levels.
-      - Click "Edit" to enable design mode.
-      - Click on the Blue Grid to create more sprites.
-      NOTE: edit mode is usually disabled the first time through a level
+      Can edit the level name, sprite name, and sprite color. (DEVELOP)
+      Must first solve the puzzle to validate it. (TEST)
+      Can then share it from the post-level splash screen. (DEPLOY)
+      Affirms the importance of good integration testing!
       '
       edit_mode: true
       bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
         {
@@ -45,7 +47,28 @@ exports.game = {
         }
       ]
     }
-    # TODO: change the kind of sprite
-    # TODO: replace level and game description
+    {
+      name: 'Click Turtle You Want to Program'
+      comment: '
+      Can select multiple turtles which act independently.
+      This is a primitive form of parallel processing.
+      Optimal solution is to move the blocking turtle.
+      '
+      edit_mode: true
+      bricks: 2
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          name: 'yu'
+          actions: { run: [], bump: [] }
+        }
+        {
+          kind: 'turtle'
+          actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
   ]
 }
