@@ -46,6 +46,7 @@ exports.my = {
   online: _?
   inspect: inspect
   assert: assert
+  feedback_url: 'http://goo.gl/forms/ooN2bE7aFZ'
   dup: (a, b) -> if $? then $.extend({}, a, b) else a
   page_dimensions: PAGE
   column_1_width: HALF
