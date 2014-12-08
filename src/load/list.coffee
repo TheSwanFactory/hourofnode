@@ -2,7 +2,7 @@
 {make} = require '../render/make'
 
 exports.list = (root, games, filter) ->
-  window.open my.feedback_url if my.beta unless filter == "test"
+  window.open my.feedback_url, '_self' if my.beta unless filter == "test"
 
   list = root.add_child {
     name: 'Game Listings'
