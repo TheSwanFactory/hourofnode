@@ -5,9 +5,18 @@
 #
 # Role: explain how to create and share your own levels
 #
+# Responsible to Teach:
+#
+# - Edit / Save Controls
+# - Renaming Game or Level
+# - Selecting a Sprite
+# - Clicking to create new Sprites
+# - Changing the Kinds
+# - Customizing Name and Color
+# - Editable and Obstruction Checkboxes
 
 exports.game = {
-  name: 'Use "Edit" to Modify Levels'
+  name: 'BETA: Use "Edit" to Modify Levels'
   assume: 'baseline'
   comment: "The followup Hour of NODE tutorial"
   author: {name: 'Ernest Prabhakar', url: 'https://github.com/drernie'}
