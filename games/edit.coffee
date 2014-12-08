@@ -19,7 +19,7 @@
 # - Display and Change Direction [popup] N/S/E/W
 
 exports.game = {
-  name: 'BETA: Use "Edit" to Modify Levels'
+  name: 'BETA: Click "Edit" to Modify Levels'
   assume: 'baseline'
   comment: "The followup Hour of NODE tutorial"
   author: {name: 'Ernest Prabhakar', url: 'https://github.com/drernie'}
@@ -76,13 +76,13 @@ exports.game = {
     }
     {
       name: 'Click Blue Pond to Add and Select Logs'
+      editing: true
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
       goal: { clicks: 1, bricks: 2, ticks: 11 }
       bricks: 1
       sprites: [
-        { kind: 'log', position: [5,0] }
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
@@ -101,7 +101,7 @@ exports.game = {
       After completion, can share via email or social media.
       Will run on our app via a custom URL.
       '
-      goal: { clicks: 0, bricks: 0, ticks: 0 }
+      goal: { clicks: 99, bricks: 99, ticks: 99 }
       bricks: 2
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [7,7] }
