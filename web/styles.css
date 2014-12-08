@@ -374,6 +374,14 @@ text {
   .blue-button:active, .done_dialog button:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
+/*
+ * ICONS
+ *
+ * To add an icon
+ * - copy one of the icons with your new class
+ * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
+ * - copy and paste the character as `content:`
+ */
 .icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.rewind:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before {
   font-family: FontAwesome;
   font-size: 14px;
@@ -406,3 +414,5 @@ button.run:before {
   content: ""; }
 button.bump:before {
   content: ""; }
+button.rewind:before {
+  content: ""; }
