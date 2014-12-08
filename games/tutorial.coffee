@@ -163,7 +163,7 @@ exports.game = {
       - programs.coffee : prefetch
       - sprites.coffee : collision
       '
-      goal: { clicks: 1, bricks: 2, ticks: 12 }
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
       bricks: 1
       sprites: [
         { kind: 'log', position: [5,0] }
