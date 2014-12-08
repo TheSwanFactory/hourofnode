@@ -30,6 +30,7 @@
 
 exports.game = {
   name: 'The Hour of NODE'
+  description: 'Learn the basic controls while solving simple puzzles.'
   assume: 'baseline'
   comment: "The original Hour of NODE tutorial"
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
