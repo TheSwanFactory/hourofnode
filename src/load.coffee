@@ -52,7 +52,21 @@ create_level = (world, level) ->
       else
         {list: 'all'}
   }
-  game_levels.at(level_at)
+  level = game_levels.at(level_at)
+  $.extend true, level, get_custom_level()
+
+get_custom_level = ->
+  query  = queryString.parse(location.search)
+  custom = query.custom
+
+  return unless custom?
+
+  try
+    custom = atob custom
+    JSON.parse custom
+  catch
+    console.error 'unable to read custom JSON'
+    null
 
 extend_globals = (root, dict) ->
   for key in globals
