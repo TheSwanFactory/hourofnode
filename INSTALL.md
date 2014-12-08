@@ -8,7 +8,7 @@ This document explains the steps necessary for downloading, installing, configur
 **Why install it locally?**
 Installing the web-app locally (as opposed to using it from hourofnode.org) allows you to make customized changes to the web-app and to design your own games via game description files.
 
-So ... let's get the installation process started.
+So ... let's get the installation process started.  We also have more detailed instructions available for [installing on Microsoft Windows](http://theswanfactory.com/2014/12/06/installation-instructions-ms-windows/).
 
 **Supported Operating Systems**
 Any operating system that git, node.js, npm, and CoffeeScript supports should work for The Hour of Node project; as a locally installed web-application.  Such common operating systems are:
