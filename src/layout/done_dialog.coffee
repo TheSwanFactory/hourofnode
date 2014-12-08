@@ -44,6 +44,7 @@ exports.done_dialog = (level) ->
     'Next'
   ], {}, dialogAction
 
+  # TODO: refactor messages into an explicit array with conditional elements?
   messages = []
 
   messages.push
