@@ -31,7 +31,6 @@ exports.header = (level) ->
       " Level #{level.get('level_index')} of #{level.get('level_count')}"
       anchor ">", 'next_params'
     ]
-    { name: 'Level Progress', _LABEL: 'level_progress' }
     make.columns 'stats', [
       metric 'click'
       metric 'brick'
