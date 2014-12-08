@@ -14,6 +14,7 @@
 sys = require 'sys'
 assert = require 'assert'
 
+SURVEY='https://docs.google.com/forms/d/1ovfw26rDoWGoxEGLV8HjPxmVmBMpuJIpi9ZExIfvRCU/viewform?usp=send_form'
 is_local = window.location.hostname == 'localhost'
 
 inspect = (world, n=1) ->
@@ -47,8 +48,9 @@ exports.my = {
   online: _?
   inspect: inspect
   assert: assert
-  feedback_url: 'http://goo.gl/forms/ooN2bE7aFZ'
+  feedback_url: SURVEY
   dup: (a, b) -> if $? then $.extend({}, a, b) else a
+  not_editable: (sprite) ->  "Sprite '#{sprite.get('name')}' is not currently editable."
   page_dimensions: PAGE
   column_1_width: HALF
   column_2_width: HALF
@@ -60,6 +62,7 @@ exports.my = {
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 7
   speed: 1
+  
   button: {
     size: TOUCH
     padding: MARGIN

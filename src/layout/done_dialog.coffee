@@ -24,7 +24,7 @@ exports.done_dialog = (level) ->
     extra_moves = [ticks_diff, clicks_diff, bricks_diff].reduce (sum, diff) ->
       sum + if diff < 0 then 0 else diff
 
-    if extra_moves == 0
+    if extra_moves <= 0
       3
     else if extra_moves <= 3
       2

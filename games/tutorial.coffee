@@ -131,19 +131,22 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Bump" Program to Bounce Off Edge and Logs'
+      name: '"Bump" Program Bounces Off Edge and Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
       '
-      goal: { clicks: 0, bricks: 2, ticks: 11 }
-      bricks: 2
+      goal: { clicks: 0, bricks: 6, ticks: 13 }
+      bricks: 6
       sprites: [
-        { kind: 'log', position: [5,0] }
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'log', position: [0,2] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,2] }
         {
           kind: 'turtle'
-          actions: { run: ['forward'], bump: ['right'] }
+          actions: {
+            run: ['forward', 'left', 'forward']
+            bump: ['reverse', 'reverse', 'reverse']
+          }
           editable: false
         }
       ]
@@ -160,7 +163,7 @@ exports.game = {
       - programs.coffee : prefetch
       - sprites.coffee : collision
       '
-      goal: { clicks: 1, bricks: 2, ticks: 12 }
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
       bricks: 1
       sprites: [
         { kind: 'log', position: [5,0] }
@@ -169,7 +172,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Can You Solve the Ultimate Maze?'
+      name: 'Use "Run" and "Bump" to Solve the Final Maze'
       comment: '
       The simplest solution is the same as the last one!
       Imagine trying to solve this procedurally, as in other tutorials.
