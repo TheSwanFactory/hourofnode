@@ -24,16 +24,21 @@ add_paths = (sprite) ->
     }]
   }
 
-extract = (sprite, button) ->
-  key = button.get my.key.label
-  value = sprite.get key
-  value = value.all() if sprite.is_array(value)
-  value = switch value
-    when true  then 'yes'
-    when false then 'no'
-    else value
-  # FIXME: this is a real bad cheat
-  sprite.rx().rxt.rawHtml "<span><b>#{_.capitalize key}</b><br/>#{_.capitalize value}</span>"
+get = (sprite, key) ->
+  ->
+    value = sprite.get key
+    value = value.all() if sprite.is_array(value)
+    value = switch value
+      when true  then 'yes'
+      when false then 'no'
+      else value
+    value
+
+extract = (sprite, key) ->
+  [
+    { tag_name: 'span', class: 'key',   name: key }
+    { tag_name: 'span', class: 'value', name: get(sprite, key) }
+  ]
 
 exports.status = (sprite) ->
 
@@ -54,9 +59,10 @@ exports.status = (sprite) ->
       add_paths sprite
     else
       {
-        _LABEL: key
-        name: (button) -> extract(sprite, button)
-        tag_name: 'div'
+        _LABEL:    key
+        _CHILDREN: extract(sprite, key)
+        tag_name:  'div'
+        class:     'attribute'
       }
 
   status_buttons

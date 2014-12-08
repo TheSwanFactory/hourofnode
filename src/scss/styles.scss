@@ -109,12 +109,18 @@ div#root {
     }
 
     div {
-      display:     inline-block;
-      float:       left;
-      line-height: 1.4em;
-      text-align:  center;
-      padding:     $basic-padding;
-      margin:      $basic-padding;
+      display:        inline-block;
+      float:          left;
+      line-height:    1.4em;
+      text-align:     center;
+      padding:        $basic-padding;
+      margin:         $basic-padding;
+      text-transform: capitalize;
+
+      .key {
+        font-weight: bold;
+        display: block;
+      }
     }
 
     &:after {

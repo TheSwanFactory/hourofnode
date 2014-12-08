@@ -291,7 +291,11 @@ div#root {
       line-height: 1.4em;
       text-align: center;
       padding: 5px;
-      margin: 5px; }
+      margin: 5px;
+      text-transform: capitalize; }
+      .inspector .stat div .key {
+        font-weight: bold;
+        display: block; }
     .inspector .stat:after {
       content: ' ';
       clear: both;
