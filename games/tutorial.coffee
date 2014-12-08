@@ -88,7 +88,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Just One Brick to Get All The Gold Stars'
+      name: 'Use Just One Brick to Three Gold Stars'
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
