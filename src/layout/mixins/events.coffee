@@ -24,26 +24,42 @@ beep = do ->
       on_end()
     setTimeout turn_off, duration
 
+share_dialog = ->
+  share = '.share-button'
+  text  = $(share).text()
+  new Share share,
+    description: text
+    networks:
+      facebook:
+        app_id:  1510955112514265
+      email:
+        description: text + "\n\nCheck it out here!: " + document.location.href
+
+finished = false
+
 exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'play', 'error', 'done']
+  _EXPORTS: ['reload', 'step', 'stop', 'run', 'error', 'done']
+
+  reload: (world, button) ->
+    location.reload()
 
   step: (world, button) ->
-    console.log 'stepping'
     world.send 'tick'
     world.send 'fetch'
+    return if finished
     world.send 'execute'
     world.send 'prefetch'
 
   stop: (world, button) ->
     if button
-      button.put 'name',       'play'
-      button.put my.key.label, 'play'
+      button.put 'name',       'run'
+      button.put my.key.label, 'run'
     world.put 'running', false
 
-  play: (world, button) ->
+  run: (world, button) ->
     button.put 'name',       'stop'
     button.put my.key.label, 'stop'
 
@@ -63,15 +79,17 @@ exports.events = {
     setTimeout(step_and_repeat, if has_run_before then delay * 1.5 else 0)
 
   error: (world, message) ->
-    beep my.duration.tone, 3, -> alert("Error: #{message}")
+    beep my.duration.tone, 3, -> alert("Oops! #{message}")
 
   done: (world, args) ->
     success = args > 0
-    message = if success then 'victory' else 'failure'
     world.send 'stop'
-    alert message
-    window.open world.get('next_url'), '_self'
-    # TODO: Make this a full-fledged dialog
+    finished = true
+    if success
+      $('.done_dialog').dialog
+        modal: true
+        title: 'Level Complete'
+        open:  share_dialog
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 

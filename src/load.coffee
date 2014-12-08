@@ -41,6 +41,11 @@ create_level = (world, level) ->
     level_index: level_index
     level_count: level_count
     next_url: (world) -> make.anchor('a', world.get 'next_params').href
+    previous_params: (world) ->
+      if level_index > 1
+        {game: world.get('game'), level: level_index - 1}
+      else
+        {list: 'all'}
     next_params: (world) ->
       if level_index < level_count
         {game: world.get('game'), level: level_index + 1}
@@ -69,8 +74,8 @@ create_game = (root, game) ->
   extend_world(parent, game_dict)
 
 exports.load = (rx, query) ->
-  root = god(rx, {})
-  return list(root, games) if query.list
+  root = god(rx, my)
+  return list(root, games, query.list) if query.list
 
   globals.map (key) -> root.put key, root.make_world({})
   world = create_game root, query.game

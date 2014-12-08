@@ -12,14 +12,15 @@
 
 add_paths = (sprite) ->
   paths = sprite.get('paths').all()
-  transform = utils.prefix_style transform: 'translate(0,0) scale(0.5)'
+  transform = utils.prefix_style transform: 'scale(0.5)'
   {
     tag_name: 'div'
     class:    'sprite'
     _CHILDREN: [{
-      transform: transform
-      paths:     paths
-      fill:      sprite.get('fill')
+      transform:    transform
+      ie_transform: "scale(0.5)"
+      paths:        paths
+      fill:         sprite.get('fill')
     }]
   }
 

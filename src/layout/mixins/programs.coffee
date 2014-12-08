@@ -56,9 +56,9 @@ exports.programs = (sprite) ->
 
     prefetch: (world) ->
       return unless world.get 'selected'
-      if interrupt = sprite.get('interrupt')
-        key = world.call 'find_interrupt', interrupt.all()
-        sprite.put 'interrupt', undefined
+      if bump = sprite.get('bump')
+        key = world.call 'find_bump', bump.all()
+        sprite.put 'bump', undefined
         return world.call('fetch_program', key)
       world.call 'fetch_program', 'run' unless world.get('find_action')
 
@@ -67,9 +67,9 @@ exports.programs = (sprite) ->
       p = world.up.find_child(key)
       p.call 'reset_index'
 
-    find_interrupt: (world, keys) ->
+    find_bump: (world, keys) ->
       # TODO: put real logic here
-      'interrupt'
+      'bump'
 
     perform: (world, key) ->
       contents = sprite.get('actions').get(key)
@@ -90,9 +90,13 @@ exports.programs = (sprite) ->
     store: (world, action) ->
       actions_container = world.find_child('actions')
 
-      if actions_container._child_count() >= my.action_limit
-        return world.send 'error', 'action limit reached'
+      limit = world.get('action_limit')
+      s = if limit == 1 then '' else 's'
+      message = "Sorry, you can only have #{limit} brick#{s} per program"
+      if actions_container._child_count() >= world.get('action_limit')
+        return world.send 'error', message
 
+      world.send 'brick'
       actions_container.add_child action
 
     # Drag & Drop Sorting
@@ -110,7 +114,7 @@ exports.programs = (sprite) ->
 
   program_row = (name, contents) ->
     buttons = make.buttons "action", contents, my.action, ((button, args) ->
-        if sprite.get('editable') and confirm('Are you sure you want to remove that action?')
+        if sprite.get('editable') #and confirm('Are you sure you want to remove that action?')
           button.up.remove_child(button)
           button.send 'click'
           button.send 'brick', -1

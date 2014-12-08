@@ -18,21 +18,21 @@ exports.game = {
       obstruction: true
       position: [0,0]
       fill: 'lime'
-      actions: {interrupt: ['reverse']}
+      actions: {bump: ['reverse']}
       direction: [1,0]
       paths: [
         "M37,#{SCALE} l7,-21 a1,2 0 1,0 -7,21z m-7,0m7,0 l7,21 a1,2 0 1,1 -7,-21z m-7,0m-7,0 l7,-21 a1,2 0 1,0 -7,21z m7,0m-7,0 l7,21 a1,2 0 1,1 -7,-21z m7,0m17.5,0 a3,2 0 0,0 14,0 a3,2 0 0,0 -14,0 z m-24.5,0"
         "M10,#{SCALE} a3,2 0 1,0 42,0 a3,2 0 1,0 -42,0z"
       ]
     }
-    wall: {
-      name: 'wall'
+    log: {
+      name: 'log'
       editable: false
       obstruction: true
       position: [7,0]
-      fill: 'brown'
+      fill: 'burlywood'
       paths: [
-        "M#{OFFSET},#{OFFSET} h#{INSET} v#{INSET} h-#{INSET} v-#{INSET}"
+        "M#{OFFSET+ INSET/4},#{OFFSET} h#{INSET/2} v#{INSET} h-#{INSET/2} v-#{INSET}"
       ]
     }
     egg: {
@@ -53,7 +53,7 @@ exports.game = {
       obstruction: false
       position: [7,7]
       fill: 'green'
-      actions: {interrupt: ['_victory']}
+      actions: {bump: ['_victory']}
       paths: [
         "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"
       ]
