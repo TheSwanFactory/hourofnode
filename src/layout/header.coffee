@@ -6,7 +6,8 @@
 exports.header = (level) ->
 
   anchor = (label, key) ->
-    make.anchor label, level.get key
+    href = level.get key
+    if href then make.anchor(label, href) else " "
 
   track = (event, key) ->
     dict = { _LABEL: key, _EXPORTS: [event], name: -> level.get(key) }
@@ -28,6 +29,7 @@ exports.header = (level) ->
     make.columns 'progress', [
       "Level #{level.get('level_index')} of #{level.get('level_count')}"
       anchor "skip", 'next_params'
+      anchor "back", 'previous_params'
     ]
     { name: 'Level Progress', _LABEL: 'level_progress' }
     make.columns 'stats', [
