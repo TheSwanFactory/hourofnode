@@ -48,7 +48,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click to Select Turtle Being Programmed'
+      name: 'Click Turtle You Want To Program'
       comment: '
       Can select multiple turtles which act independently.
       This is a primitive form of parallel processing.
