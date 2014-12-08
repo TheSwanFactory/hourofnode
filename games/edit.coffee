@@ -9,13 +9,14 @@
 #
 # - Edit / Save Controls
 # - Renaming the Level
+# - Customize Name and Color
 # - Select a Sprite
 # - Click to Create a Sprite
-# - Customize Name and Color
 #
 # TODO:
 # - Changing the Kinds [popup]
 # - Editable and Obstruction [checkbox]
+# - Display and Change Direction [popup] N/S/E/W
 
 exports.game = {
   name: 'BETA: Use "Edit" to Modify Levels'
@@ -70,6 +71,46 @@ exports.game = {
         {
           kind: 'turtle'
           actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
+    {
+      name: 'Click Blue Pond to Add and Select Logs'
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      bricks: 1
+      sprites: [
+        { kind: 'log', position: [5,0] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
+      name: 'Create and Share Your Own Level'
+      comment: '
+      Encourage students to express themselves.
+      Track the solution and use that for the new goal metrics.
+      After completion, can share via email or social media.
+      Will run on our app via a custom URL.
+      '
+      goal: { clicks: 0, bricks: 0, ticks: 0 }
+      bricks: 2
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,7] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
         }
       ]
     }
