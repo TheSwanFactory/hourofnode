@@ -32,7 +32,7 @@ exports.programs = (sprite) ->
     # Index
 
     next_index:    0
-    reset:   (world) -> world.call 'fetch_program', 'run'
+    rewind:   (world) -> world.call 'fetch_program', 'run'
 
     reset_index:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->

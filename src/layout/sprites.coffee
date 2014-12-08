@@ -132,7 +132,7 @@ exports.sprites = {
     world.put 'direction', vector.turn(world.get('direction'), dir)
     true # always a valid move
 
-  reset: (world, args) ->
+  rewind: (world, args) ->
     dict = world.get 'dict'
     kind = world.get my.key.authority
     ['position', 'direction'].map (key) ->
