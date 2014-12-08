@@ -172,7 +172,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Can You Solve the Ultimate Maze?'
+      name: 'Use "Run" and "Bump" to Solve the Final Maze'
       comment: '
       The simplest solution is the same as the last one!
       Imagine trying to solve this procedurally, as in other tutorials.
