@@ -32,7 +32,7 @@ exports.game = {
   name: 'The Hour of NODE'
   assume: 'baseline'
   comment: "The original Hour of NODE tutorial"
-  author: {name: 'David Huffman', url: 'https://github.com/drernie'}
+  author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
