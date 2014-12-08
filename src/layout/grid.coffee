@@ -30,7 +30,7 @@ exports.grid = () -> {
   _CHILDREN: [
     {
       _LABEL: "background"
-      fill: my.color.grid
+      color: my.color.grid
       stroke: "black"
       paths: (world) ->
         size = world.get('grid_size')

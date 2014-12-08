@@ -20,7 +20,7 @@ add_paths = (sprite) ->
       transform:    transform
       ie_transform: "scale(0.5)"
       paths:        paths
-      fill:         sprite.get('fill')
+      color:        sprite.get('color')
     }]
   }
 
@@ -46,7 +46,7 @@ exports.status = (sprite) ->
       "-"
       "kind"
       "name"
-      "fill"
+      "color"
       "editable"
       "obstruction"
     ],

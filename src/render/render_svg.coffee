@@ -8,7 +8,7 @@ exports.render_svg = (world) ->
     dict = {
       d: path
       stroke: world.get('stroke')
-      fill: world.get('fill')
+      fill: world.get('color')
     }
     if world.get('selected')
       dict['stroke']= my.color.selection
