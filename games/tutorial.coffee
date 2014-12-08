@@ -88,12 +88,12 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Just One Brick to Three Gold Stars'
+      name: 'Use Just One Brick to Get Three Gold Stars'
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
       Well-factored programs typically only have 7 lines per method, so
-      we limit programs to length 7 (length 1, here, for teaching purposes).
+      we limit programs to length 7 (1 here, for teaching purposes).
       '
       message: 'Way to go!'
       action_limit: 1
@@ -131,7 +131,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Bump" Program to Bounce Off Logs'
+      name: 'Use "Bump" Program to Bounce Off Edge and Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
