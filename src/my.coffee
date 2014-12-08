@@ -42,10 +42,12 @@ COMMAND_COLOR = 'beige'
 COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
+  beta: true
   test: is_local
   online: _?
   inspect: inspect
   assert: assert
+  feedback_url: 'http://goo.gl/forms/ooN2bE7aFZ'
   dup: (a, b) -> if $? then $.extend({}, a, b) else a
   page_dimensions: PAGE
   column_1_width: HALF
@@ -54,7 +56,7 @@ exports.my = {
   device: IPAD
   margin: MARGIN
   grid: {size: HALF, split: 8}
-  duration: {step: 1000, tone: 150}
+  duration: {step: 750, tone: 150}
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 7
   speed: 1

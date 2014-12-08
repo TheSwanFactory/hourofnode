@@ -35,15 +35,21 @@ share_dialog = ->
       email:
         description: text + "\n\nCheck it out here!: " + document.location.href
 
+finished = false
+
 exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
+  _EXPORTS: ['reload', 'step', 'stop', 'run', 'error', 'done']
+
+  reload: (world, button) ->
+    location.reload()
 
   step: (world, button) ->
     world.send 'tick'
     world.send 'fetch'
+    return if finished
     world.send 'execute'
     world.send 'prefetch'
 
@@ -78,6 +84,7 @@ exports.events = {
   done: (world, args) ->
     success = args > 0
     world.send 'stop'
+    finished = true
     if success
       $('.done_dialog').dialog
         modal: true

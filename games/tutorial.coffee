@@ -30,9 +30,10 @@
 
 exports.game = {
   name: 'The Hour of NODE'
+  description: 'Learn the basic controls while solving simple puzzles.'
   assume: 'baseline'
   comment: "The original Hour of NODE tutorial"
-  author: {name: 'David Huffman', url: 'https://github.com/drernie'}
+  author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
@@ -87,12 +88,12 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Just One Brick to Get All The Gold Stars'
+      name: 'Use Just One Brick to Get Three Gold Stars'
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
       Well-factored programs typically only have 7 lines per method, so
-      we limit programs to length 7 (length 1, here, for teaching purposes).
+      we limit programs to length 7 (1 here, for teaching purposes).
       '
       message: 'Way to go!'
       action_limit: 1
@@ -130,7 +131,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Bump" Program to Bounce Off Logs'
+      name: 'Use "Bump" Program to Bounce Off Edge and Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
