@@ -168,7 +168,17 @@ exports.game = {
       sprites: [
         { kind: 'log', position: [5,0] }
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
-        { kind: 'turtle', actions: {run: ['forward'], bump: []} }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: []
+          }
+          solution: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
       ]
     }
     {

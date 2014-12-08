@@ -25,14 +25,14 @@ extract_instruction = (contents) ->
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['fetch', 'prefetch', 'apply', 'reset']
+    _EXPORTS: ['fetch', 'prefetch', 'apply', 'rewind']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 
     # Index
 
     next_index:    0
-    reset:   (world) -> world.call 'fetch_program', 'run'
+    rewind:   (world) -> world.call 'fetch_program', 'run'
 
     reset_index:   (world) -> world.put 'next_index', 0
     advance_index: (world) ->

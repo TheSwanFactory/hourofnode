@@ -41,10 +41,10 @@ exports.sprites = {
     dict = $.extend true, {}, kind_authority, sprite_dict
     child = world.add_child dict
     child.put 'dict', dict
-    child.handle_event 'reset'
+    child.handle_event 'rewind'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world kind_authority
-    #child.call 'reset'
+    #child.call 'rewind'
     world.send 'inspect', child
 
   # selection
@@ -132,7 +132,7 @@ exports.sprites = {
     world.put 'direction', vector.turn(world.get('direction'), dir)
     true # always a valid move
 
-  reset: (world, args) ->
+  rewind: (world, args) ->
     dict = world.get 'dict'
     kind = world.get my.key.authority
     ['position', 'direction'].map (key) ->

@@ -8,7 +8,9 @@ exports.grid = () -> {
   width: (world) -> world.get('grid_size')
 
   _EXPORTS: ['edit', 'save']
+  # TODO: make button name dyammic based on 'editing' property
   edit: (world, button) ->
+    console.log 'edit', button, world
     button.put 'name', 'save'
     world.put 'editing', true
   save: (world, button) ->
@@ -21,7 +23,7 @@ exports.grid = () -> {
     y = event.offsetY / scale
     position = [Math.floor(x), Math.floor(y)]
     world.send 'click'
-    world.send 'make_sprite', {kind: "wall", position: position}
+    world.send 'make_sprite', {kind: 'log', position: position}
 
   paths: []
   obstruction: true
