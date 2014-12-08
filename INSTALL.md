@@ -37,41 +37,43 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
 
 ### Installation Steps (Prerequisite Software/Utilties) ###
 
-1.) Install Git
+1. Install Git
   Download it from here: http://git-scm.com/downloads
 
-2.) Install node.js
+2. Install node.js
   Download it from here: http://nodejs.org/download/
 *Note*: MS Windows installs: a reboot of the system is required, after installing node.js, for *npm* to be accessible via the CMD prompt. 
 
 ### Installation Steps (The Hour of Node web-app) ###
-3.) Download and install The Hour of Node project
+
+1. Download and install The Hour of Node project
 We recommend doing this as a Git clone:
 ```
---> git clone https://github.com/TheSwanFactory/hourofnode.git
+     --> git clone https://github.com/TheSwanFactory/hourofnode.git
 ```
-4.) Launch a terminal
+2. Launch a terminal
 
   * Mac OS: Utilities
   * Windows: CMD Prompt or CYGWIN
 
-The following steps will be done inside the terminal/CMD prompt ...
-5.) Install npm
+3. Install npm
 ```
---> npm install
+     --> npm install
 ```
-6.) Install gulp
+4. Install gulp
 ```
---> npm -g install gulp
+     --> npm -g install gulp
 ```
+
 ### Launching The Hour of Node web-app ###
 In the terminal (or Windows CMD prompt):
-1.) Change directory to the top directory where The Hour of Node resides
 
+1. Change directory to the top directory where The Hour of Node resides
+```
   * (i.e. Unix: /opt/hourofnode)
   * (i.e. Windows: C:\temp\hourofnode)
-
-2.) Type the command: gulp
+```
+2. Type the command: gulp
 ```
     --> gulp
 ```
@@ -112,7 +114,7 @@ For further information, be sure to checkout our various websites:
   * https://twitter.com/theswanfactory
   * https://www.youtube.com/user/AwesomeStuffBadly
   * https://github.com/TheSwanFactory
-  * https://github.com/TheSwanFactory/hourofnode<
+  * https://github.com/TheSwanFactory/hourofnode
 
 
 ## Happy Hour-of-Noding :-) ##
