@@ -75,7 +75,7 @@ create_game = (root, game) ->
 
 exports.load = (rx, query) ->
   root = god(rx, my)
-  return list(root, games) if query.list
+  return list(root, games, query.list) if query.list
 
   globals.map (key) -> root.put key, root.make_world({})
   world = create_game root, query.game
