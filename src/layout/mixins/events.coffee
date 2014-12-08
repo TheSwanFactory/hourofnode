@@ -41,7 +41,10 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['step', 'stop', 'run', 'error', 'done']
+  _EXPORTS: ['reload', 'step', 'stop', 'run', 'error', 'done']
+
+  reload: (world, button) ->
+    location.reload()
 
   step: (world, button) ->
     world.send 'tick'

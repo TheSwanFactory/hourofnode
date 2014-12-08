@@ -274,9 +274,14 @@ button {
     content: "";
   }
 
-  &.reset:before {
+  &.reload:before {
     @extend .icon-button;
     content: "";
+  }
+
+  &.rewind:before {
+    @extend .icon-button;
+    content: "|<";
   }
 
   &.run:before {
