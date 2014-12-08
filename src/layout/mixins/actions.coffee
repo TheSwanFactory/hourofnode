@@ -33,5 +33,5 @@ exports.actions = (sprite) ->
         button.send 'execute'
         button.send 'click'
       else
-        button.send 'error', "Sprite '#{sprite.get('name')}' is not currently editable."
+        button.send 'error', my.not_editable(sprite)
   )
