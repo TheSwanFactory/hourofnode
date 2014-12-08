@@ -113,7 +113,7 @@ In the terminal (or Windows CMD prompt):
 
 2.) Type the command: gulp
 ```
-    --> gulp
+    --> gulp &
 ```
 A successful start-up of The Hour of Node web-app should result in lines similar to these (in the terminal):
 ```
@@ -137,6 +137,9 @@ And a web browser should pop-up displaying the local instance of The Hour of Nod
 The web-app is automatically served-up at:
 `http://localhost:3000`
 
+TODO: 
+  - On UNIX this will run Gulp in the background
+  - Need a way to do that on Windows
 
 ### Wrapping Up - And Other Useful Info###
 Microsoft Windows - Detailed Instructions
