@@ -131,19 +131,22 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Bump" Program to Bounce Off Edge and Logs'
+      name: '"Bump" Program Bounces Off Edge and Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
       '
-      goal: { clicks: 0, bricks: 2, ticks: 11 }
-      bricks: 2
+      goal: { clicks: 0, bricks: 6, ticks: 13 }
+      bricks: 6
       sprites: [
-        { kind: 'log', position: [5,0] }
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'log', position: [0,2] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,2] }
         {
           kind: 'turtle'
-          actions: { run: ['forward'], bump: ['right'] }
+          actions: {
+            run: ['forward', 'left', 'forward']
+            bump: ['reverse', 'reverse', 'reverse']
+          }
           editable: false
         }
       ]

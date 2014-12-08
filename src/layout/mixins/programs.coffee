@@ -84,8 +84,8 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       {target, action} = args
-      return unless world.get 'editable'
-      world.call('store', action) if sprite == target
+      return unless sprite == target
+      world.call 'store', action
 
     store: (world, action) ->
       actions_container = world.find_child('actions')

@@ -23,7 +23,7 @@ exports.actions = (sprite) ->
     message = { target: sprite, action: word }
     sprite.send 'apply', message
 
-  buttons = make.buttons(
+  make.buttons(
     'command',
     names,
     my.command,
@@ -33,8 +33,5 @@ exports.actions = (sprite) ->
         button.send 'execute'
         button.send 'click'
       else
-        button.send 'error', "#{sprite.get('name')} is not editable"
+        button.send 'error', "Sprite '#{sprite.get('name')}' is not currently editable."
   )
-
-  _.extend buttons, {
-  }
