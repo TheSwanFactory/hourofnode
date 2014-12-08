@@ -239,7 +239,14 @@ text {
   }
 }
 
-// ICONS
+/*
+ * ICONS
+ *
+ * To add an icon
+ * - copy one of the icons with your new class
+ * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
+ * - copy and paste the character as `content:`
+ */
 
 .icon-button {
   font-family: FontAwesome;
@@ -312,5 +319,10 @@ button {
   &.bump:before {
     @extend .icon-button;
     content: "";
+  }
+
+  &.rewind:before {
+    @extend .icon-button;
+    content: "";
   }
 }
