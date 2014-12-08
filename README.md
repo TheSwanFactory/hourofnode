@@ -9,7 +9,7 @@ The Hour of Node is a web application designed to teach the basics of computer p
 
 It includes:
 
- * **TurtleVerse 2D**, a simple yet extensible game engine
+ * **SwanKit**, a simple yet extensible game engine
  * A **Graphical Command Interface** (GCI) that seamlessly incorporates both playing and programming the game engine
  * A **Tutorial** that teaches kids how to interact with and program the game engine
 
