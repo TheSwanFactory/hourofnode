@@ -40,7 +40,7 @@ exports.game = {
       bricks: 2
       goal: { clicks: 1, bricks: 2, ticks: 5 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
         {
           kind: 'turtle'
           actions: { run: ['forward'], bump: ['right'] }
@@ -48,7 +48,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click Turtle You Want to Program'
+      name: 'Click to Select Turtle Being Programmed'
       comment: '
       Can select multiple turtles which act independently.
       This is a primitive form of parallel processing.
@@ -56,12 +56,15 @@ exports.game = {
       '
       edit_mode: true
       bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      goal: { clicks: 1, bricks: 3, ticks: 5 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
         {
           kind: 'turtle'
           name: 'yu'
+          position: [2,0]
+          direction: [0, 1]
+          fill: 'purple'
           actions: { run: [], bump: [] }
         }
         {
