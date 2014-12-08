@@ -174,6 +174,10 @@ exports.game = {
             run: ['forward']
             bump: []
           }
+          solution: {
+            run: ['forward']
+            bump: ['right']
+          }
         }
       ]
     }
