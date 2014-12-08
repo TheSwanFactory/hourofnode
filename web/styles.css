@@ -382,7 +382,7 @@ text {
  * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
  * - copy and paste the character as `content:`
  */
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.rewind:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -400,8 +400,6 @@ button.wait:before {
   content: ""; }
 button.reload:before {
   content: ""; }
-button.rewind:before {
-  content: "|<"; }
 button.run:before {
   content: ""; }
 button.stop:before {

@@ -286,11 +286,6 @@ button {
     content: "";
   }
 
-  &.rewind:before {
-    @extend .icon-button;
-    content: "|<";
-  }
-
   &.run:before {
     @extend .icon-button;
     content: "";
