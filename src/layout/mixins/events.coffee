@@ -65,7 +65,7 @@ exports.events = {
 
     has_run_before = world.get('running')?
 
-    world.send 'reset'
+    world.send 'rewind'
     world.put 'running', true
     speed = my.speed
     delay = world.get('interval') / speed

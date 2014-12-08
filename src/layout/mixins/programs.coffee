@@ -25,7 +25,7 @@ extract_instruction = (contents) ->
 
 exports.programs = (sprite) ->
   program_behavior = (name) -> {
-    _EXPORTS: ['fetch', 'prefetch', 'apply', 'reset']
+    _EXPORTS: ['fetch', 'prefetch', 'apply', 'rewind']
     selected: (world) -> world.label() == sprite.get 'running'
     editable: (world) -> world.label() == sprite.get 'editing'
 

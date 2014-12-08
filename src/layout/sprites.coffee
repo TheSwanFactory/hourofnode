@@ -41,10 +41,10 @@ exports.sprites = {
     dict = $.extend true, {}, kind_authority, sprite_dict
     child = world.add_child dict
     child.put 'dict', dict
-    child.handle_event 'reset'
+    child.handle_event 'rewind'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world kind_authority
-    #child.call 'reset'
+    #child.call 'rewind'
     world.send 'inspect', child
 
   # selection
