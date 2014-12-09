@@ -39,11 +39,15 @@ sprite_index = 0
 make_sprite = (world, sprite_dict) ->
   level = get_level_copy()
 
+  index  = sprite_index++
   sprite =
     kind:     sprite_dict.kind
     position: sprite_dict.position
 
-  $.extend level.sprites[sprite_index++], sprite
+  if level.sprites[index]?
+    $.extend level.sprites[index], sprite
+  else
+    level.sprites.push sprite
 
   custom_level.set level
 
