@@ -28,8 +28,8 @@
 
 exports.layout = [
     header
+    changelog.world
     controls
     grid
     inspector
-    changelog.world
   ]
