@@ -19,19 +19,18 @@ exports.utils =
     false
 
   editable_field: (dict) ->
-    #dict._EXPORTS = ['edit', 'save']
-    dict.tag_name = (world) ->
-      if dict.editing(world) then 'input' else 'span'
-    #dict.edit = (world) ->
-      #world.put '_tag_name', world.get('tag_name')
-      #world.put 'tag_name', 'input'
-      #dict.after_edit(world) if dict.after_edit?
-    #dict.save = (world) ->
-      #value = $(world.element).val()
-      #world.put 'tag_name', world.get('_tag_name')
+    dict._EXPORTS = ['save']
+    dict.tag_name = ->
+      if dict.editing() then 'input' else 'span'
+    dict.init = (world, element) ->
+      return unless dict.editing()
 
-      #return if !world.element? or value == world.get('name') # no change
+      $(element).on 'change', -> world.put('value', $(@).val())
+    dict.save = (world) ->
+      value = world.get 'value'
 
-      #world.put 'name', value
-      #dict.after_save(world, value) if dict.after_save?
+      return if !value? or value == world.get('name') # no change
+
+      world.put 'name', value
+      dict.after_save(world, value) if dict.after_save?
     dict

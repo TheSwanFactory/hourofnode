@@ -42,7 +42,6 @@ get = (sprite, key) ->
 
 basic_field = (sprite, key) ->
   tag_name:   'span'
-  _tag_name:  'span'
   class:      'value'
   name:       get(sprite, key)
 
