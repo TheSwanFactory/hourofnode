@@ -1,6 +1,5 @@
 {my} = require '../my'
 {make} = require '../render/make'
-{done_dialog} = require './done_dialog'
 
 
 exports.header = (level) ->
@@ -36,5 +35,4 @@ exports.header = (level) ->
       metric 'brick'
       metric 'tick'
     ]
-    done_dialog(level)
   ]

@@ -44,7 +44,7 @@ create_attrs = (world, dict) ->
     click: clicker(world)
     init: initializer(world)
     href: dict.href
-    value: world.get('name')
+    value: world.bind() -> world.get('name')
     # TODO: add touch events that do not mess up mutation
     # touchend: clicker(world)
   }
