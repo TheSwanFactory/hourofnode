@@ -1,6 +1,11 @@
 queryString = require 'query-string'
 rx = require 'reactive-coffee'
 
+custom_level = rx.cell({ sprites: [] })
+
+get_level_copy = ->
+  $.extend {}, custom_level.get()
+
 index_of_conditional = (list, condition) ->
   index = -1
   for item, i in list
@@ -8,18 +13,37 @@ index_of_conditional = (list, condition) ->
 
   index
 
-custom_level = rx.cell({ sprites: [] })
+get_sprite_index = (sprite) ->
+  index_of_conditional sprite.up.find_children(), (s) ->
+    s.uid == sprite.uid
 
 log_sprite_change = (world, args) ->
   [sprite, key, value] = args
 
-  level_sprite_index = index_of_conditional sprite.up.find_children(), (s) ->
-    s.uid == sprite.uid
+  level_sprite_index = get_sprite_index sprite
 
   return unless level_sprite_index > -1
 
-  level = $.extend {}, custom_level.get()
+  level = get_level_copy()
   level.sprites[level_sprite_index][key] = value
+
+  custom_level.set level
+
+sprite_created = (world, sprite) ->
+  return unless level_sprite_index > -1
+
+  level = get_level_copy()
+  level.sprites[level_sprite_index]
+
+sprite_index = 0
+make_sprite = (world, sprite_dict) ->
+  level = get_level_copy()
+
+  sprite =
+    kind:     sprite_dict.kind
+    position: sprite_dict.position
+
+  $.extend level.sprites[sprite_index++], sprite
 
   custom_level.set level
 
@@ -30,14 +54,10 @@ url = ->
 
 exports.changelog =
   world: (level) ->
-    sprites = []
-    sprites.push({}) for [1..level.get('sprites').length()]
-
-    $.extend true, custom_level.get().sprites, sprites
-
     {
-      _EXPORTS:          ['log_sprite_change']
+      _EXPORTS:          ['log_sprite_change', 'make_sprite']
       log_sprite_change: log_sprite_change
+      make_sprite:       make_sprite
       tag_name:          'a'
       name:              'custom level'
       href:              rx.bind url
