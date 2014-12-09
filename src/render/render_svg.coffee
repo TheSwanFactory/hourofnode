@@ -20,7 +20,7 @@ exports.render_svg = (world) ->
     paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    if utils.is_ie()
+    if utils.no_css_transforms()
       attrs.transform = world.bind() (-> world.get('ie_transform') || '')
     else
       attrs.style = world.bind() (-> world.get('transform') || '')
