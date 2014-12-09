@@ -12,10 +12,11 @@
 # * bump program (interrupt handler)
 
 # TODO:
-# Gate by default should send _victory action when bumped
-# Turtle defaults to reverse on bump, to avoid invisible loop
-# Implicitly add: assume, per-level turtle and gate (if absent)
-# Check and send 'done -1' if infinite loop (e.g., no bump)
+# - Gate by default should send _victory action when bumped
+# - Turtle defaults to reverse on bump, to avoid invisible loop
+# - Implicitly add: assume, per-level turtle and gate (if absent)
+# - Check and send 'done -1' if infinite loop (e.g., no bump)
+# - Edit Level Name and non-text status items
 
 # COMMENT
 # Scores for each level are based on analogs of real-world metrics
@@ -207,25 +208,6 @@ exports.game = {
       ]
     }
     {
-      name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
-      comment: '
-      Can edit the level name, sprite name, and sprite color. (DEVELOP)
-      Must first solve the puzzle to validate it. (TEST)
-      Can then share it from the post-level splash screen. (DEPLOY)
-      Affirms the importance of good integration testing!
-      '
-      edit_mode: true
-      bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 5 }
-      sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
-        {
-          kind: 'turtle'
-          actions: { run: ['forward'], bump: ['right'] }
-        }
-      ]
-    }
-    {
       name: 'Click Turtle You Want To Program'
       comment: '
       Can select multiple turtles which act independently.
@@ -251,6 +233,26 @@ exports.game = {
         }
       ]
     }
+    {
+      name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
+      comment: '
+      Can edit the level name, sprite name, and sprite color. (DEVELOP)
+      Must first solve the puzzle to validate it. (TEST)
+      Can then share it from the post-level splash screen. (DEPLOY)
+      Affirms the importance of good integration testing!
+      '
+      edit_mode: true
+      bricks: 2
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        {
+          kind: 'turtle'
+          actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
+
     {
       name: 'Click Blue Pond to Add and Select Logs'
       editing: true
