@@ -12,7 +12,7 @@
 
 # get editing property direct from the grid
 editing = (sprite) ->
-  sprite.up.up.doc.get 'editing'
+  sprite.up.up.get 'editing'
 
 # Small sprite
 add_paths = (sprite) ->
