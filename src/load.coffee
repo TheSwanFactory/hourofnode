@@ -17,6 +17,7 @@
 {game_files} = require './load/game_files'
 {games} = require './games'
 {make} = require './render/make'
+{changelog} = require './layout/changelog'
 
 queryString = require 'query-string' #https://github.com/sindresorhus/query-string
 
@@ -64,6 +65,7 @@ get_custom_level = ->
   try
     custom = decodeURIComponent custom
     custom = JSON.parse custom
+    changelog.set_custom custom
     custom
   catch
     console.error 'unable to read custom JSON'

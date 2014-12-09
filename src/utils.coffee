@@ -26,7 +26,7 @@ exports.utils =
       value = $(world.element).val()
       world.put 'tag_name', world.get('_tag_name')
 
-      return unless world.element?
+      return if !world.element? or value == world.get('name') # no change
 
       world.put 'name', value
       dict.after_save(world, value) if dict.after_save?
