@@ -109,12 +109,24 @@ div#root {
     }
 
     div {
-      display:     inline-block;
-      float:       left;
-      line-height: 1.4em;
-      text-align:  center;
-      padding:     $basic-padding;
-      margin:      $basic-padding;
+      display:        inline-block;
+      float:          left;
+      line-height:    1.4em;
+      text-align:     center;
+      padding:        $basic-padding;
+      margin:         $basic-padding;
+      text-transform: capitalize;
+
+      .key {
+        font-weight: bold;
+        display: block;
+      }
+
+      .value {
+        font-size:  1em;
+        text-align: center;
+        max-width:  50px;
+      }
     }
 
     &:after {
@@ -319,5 +331,10 @@ button {
   &.rewind:before {
     @extend .icon-button;
     content: "";
+  }
+
+  &._victory:before {
+    @extend .icon-button;
+    content: "";
   }
 }

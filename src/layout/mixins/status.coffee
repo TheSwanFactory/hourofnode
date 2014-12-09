@@ -20,28 +20,49 @@ add_paths = (sprite) ->
       transform:    transform
       ie_transform: "scale(0.5)"
       paths:        paths
-      fill:         sprite.get('fill')
+      color:        sprite.bind() -> sprite.get('color')
     }]
   }
 
-extract = (sprite, button) ->
-  key = button.get my.key.label
-  value = sprite.get key
-  value = value.all() if sprite.is_array(value)
-  value = switch value
-    when true  then 'yes'
-    when false then 'no'
-    else value
-  # FIXME: this is a real bad cheat
-  sprite.rx().rxt.rawHtml "<span><b>#{_.capitalize key}</b><br/>#{_.capitalize value}</span>"
+get = (sprite, key) ->
+  ->
+    value = sprite.get key
+    value = value.all() if sprite.is_array(value)
+    value = switch value
+      when true  then 'yes'
+      when false then 'no'
+      else value
+    value
+
+basic_field = (sprite, key) ->
+  tag_name:   'span'
+  class:      'value'
+  name:       get(sprite, key)
+
+extract = (sprite, key, editable) ->
+  label = { tag_name: 'span', class: 'key',   name: key }
+
+  field = basic_field sprite, key
+
+  if editable
+    field.after_save = (world, value) ->
+      sprite.put(key, value)
+    utils.editable_field field
+
+  [label, field]
+
+key_and_value = (sprite, key, editable) ->
+  _LABEL:    key
+  _CHILDREN: extract(sprite, key, editable)
+  tag_name:  'div'
+  class:     'attribute'
 
 exports.status = (sprite) ->
-
   status_buttons = make.columns('stat', [
       "-"
       "kind"
       "name"
-      "fill"
+      "color"
       "editable"
       "obstruction"
     ],
@@ -53,10 +74,6 @@ exports.status = (sprite) ->
     if key == '-'
       add_paths sprite
     else
-      {
-        _LABEL: key
-        name: (button) -> extract(sprite, button)
-        tag_name: 'div'
-      }
+      key_and_value(sprite, key, key in ['name', 'color'])
 
   status_buttons

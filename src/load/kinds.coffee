@@ -17,7 +17,7 @@ exports.game = {
       editable: true
       obstruction: true
       position: [0,0]
-      fill: 'lime'
+      color: 'lime'
       actions: {bump: ['reverse']}
       direction: [1,0]
       paths: [
@@ -30,7 +30,7 @@ exports.game = {
       editable: false
       obstruction: true
       position: [7,0]
-      fill: 'burlywood'
+      color: 'burlywood'
       paths: [
         "M#{OFFSET+ INSET/4},#{OFFSET} h#{INSET/2} v#{INSET} h-#{INSET/2} v-#{INSET}"
       ]
@@ -40,7 +40,7 @@ exports.game = {
       editable: true
       obstruction: false
       position: [0,7]
-      fill: 'yellow'
+      color: 'yellow'
       paths: [
         "M#{OFFSET},#{RADIUS+OFFSET}
          a#{RADIUS},#{RADIUS} 0 1,1 #{INSET},0
@@ -52,7 +52,7 @@ exports.game = {
       editable: false
       obstruction: false
       position: [7,7]
-      fill: 'green'
+      color: 'green'
       actions: {bump: ['_victory']}
       paths: [
         "M0,#{SCALE} l#{SCALE},#{SCALE} l#{SCALE},-#{SCALE} l-#{SCALE},-#{SCALE} Z"

@@ -291,7 +291,15 @@ div#root {
       line-height: 1.4em;
       text-align: center;
       padding: 5px;
-      margin: 5px; }
+      margin: 5px;
+      text-transform: capitalize; }
+      .inspector .stat div .key {
+        font-weight: bold;
+        display: block; }
+      .inspector .stat div .value {
+        font-size: 1em;
+        text-align: center;
+        max-width: 50px; }
     .inspector .stat:after {
       content: ' ';
       clear: both;
@@ -382,7 +390,7 @@ text {
  * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
  * - copy and paste the character as `content:`
  */
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before, button._victory:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -414,3 +422,5 @@ button.bump:before {
   content: ""; }
 button.rewind:before {
   content: ""; }
+button._victory:before {
+  content: ""; }

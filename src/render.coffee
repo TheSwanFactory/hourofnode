@@ -44,6 +44,7 @@ create_attrs = (world, dict) ->
     click: clicker(world)
     init: initializer(world)
     href: dict.href
+    value: world.bind() -> world.get('name')
     # TODO: add touch events that do not mess up mutation
     # touchend: clicker(world)
   }
@@ -70,7 +71,7 @@ render_world = (world) ->
   is_svg = world.get('paths')?
   dict = if is_svg then render_svg(world) else render_html(world)
   attrs = create_attrs(world, dict)
-  dict.tag attrs, world.bind() -> render_children(world, dict)
+  world.element = dict.tag attrs, world.bind() -> render_children(world, dict)
 
 exports.render = (root) ->
   root.T().div {id: 'root'}, render_world(root)

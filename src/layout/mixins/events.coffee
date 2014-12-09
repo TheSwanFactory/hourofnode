@@ -3,6 +3,7 @@
 #
 
 {my} = require '../../my'
+{done_dialog} = require './done_dialog'
 
 beep = do ->
   context = window.audioContext || window.webkitAudioContext
@@ -86,6 +87,7 @@ exports.events = {
     world.send 'stop'
     finished = true
     if success
+      world.up.add_child done_dialog(world)
       $('.done_dialog').dialog
         modal: true
         title: 'Level Complete'

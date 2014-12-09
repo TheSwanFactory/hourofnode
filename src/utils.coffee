@@ -15,3 +15,19 @@ exports.utils =
       return true
       # parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)))
     false
+
+  editable_field: (dict) ->
+    dict._EXPORTS = ['edit', 'save']
+    dict.edit = (world) ->
+      world.put '_tag_name', world.get('tag_name')
+      world.put 'tag_name', 'input'
+      dict.after_edit(world) if dict.after_edit?
+    dict.save = (world) ->
+      value = $(world.element).val()
+      world.put 'tag_name', world.get('_tag_name')
+
+      return unless world.element?
+
+      world.put 'name', value
+      dict.after_save(world, value) if dict.after_save?
+    dict
