@@ -10,6 +10,10 @@
 {make} = require '../../render/make'
 {utils} = require '../../utils'
 
+# get editing property direct from the grid
+editing = (sprite) ->
+  sprite.up.up.doc.get 'editing'
+
 # Small sprite
 add_paths = (sprite) ->
   paths = sprite.get('paths').all()
@@ -51,6 +55,8 @@ extract = (sprite, key, editable) ->
     field.after_save = (world, value) ->
       sprite.send 'log_sprite_change', [sprite, key, value]
       sprite.put(key, value)
+    field.editing = ->
+      editing sprite
     utils.editable_field field
 
   [label, field]
@@ -64,9 +70,11 @@ key_and_value = (sprite, key, editable) ->
 # delete button
 
 delete_button = (sprite) ->
+  class:    'delete'
   tag_name: 'button'
   name:     'delete'
   click:    -> sprite.send 'delete_sprite', sprite
+  selected: -> editing sprite
 
 exports.status = (sprite) ->
   status_buttons = make.columns('stat', [

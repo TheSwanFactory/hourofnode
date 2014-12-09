@@ -129,6 +129,14 @@ div#root {
       }
     }
 
+    .delete {
+      display: none;
+
+      &.selected {
+        display: inline-block;
+      }
+    }
+
     &:after {
       content: ' ';
       clear: both;
