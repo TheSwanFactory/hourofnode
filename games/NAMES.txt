@@ -1,0 +1,26 @@
+# These are names to localize for the Hour of Node Tutorial
+# Please send me a file like this with translations of each ‘name’
+
+Controls: 'reload', 'rewind', 'run', 'step', 'edit'
+
+Metrics: ‘click’, ‘brick’, tick
+
+Property: ‘kind’, ‘name’, ‘color’, ‘editable’, ‘obstruction’
+
+Level Names
+
+0. ’The Hour of NODE'
+1. ’Click "Run" Button to Move Turtle to Exit Pad'
+2. ’Watch "Run" Program Loop Over Action Bricks'
+3. ’Click "Forward" Brick to Create "Run" Program'
+4. ’Use Just One Brick to Get Three Gold Stars'
+5. ’Click "Right" Program Brick to Remove It'
+6. ’Alternate Left and Right to Move Diagonally'
+7. ’”Bump" Program Bounces Off Edge and Logs'
+8. ’Click "Bump" to Add Bricks to that Program'
+9.  'Use "Run" and "Bump" to Solve the Final Maze'
+10. ’Click Turtle You Want To Program'
+11. ’Click "Edit" to Modify; "Save" and "Run" to Share'
+12. ’Click "Edit" & Blue Pond to Add & Select Logs'
+13. ’Create, Test, and Share Your Own Level'
+
