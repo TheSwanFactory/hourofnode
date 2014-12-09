@@ -254,7 +254,7 @@ exports.game = {
     }
 
     {
-      name: 'Click Blue Pond to Add and Select Logs'
+      name: 'Click "Edit" & Blue Pond to Add & Select Logs'
       editing: true
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
