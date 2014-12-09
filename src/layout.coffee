@@ -14,6 +14,7 @@
 {controls} = require './layout/controls'
 {grid} = require './layout/grid'
 {inspector} = require './layout/inspector'
+{changelog} = require './layout/changelog'
 
 # Desired Structure
 # game
@@ -27,6 +28,7 @@
 
 exports.layout = [
     header
+    changelog.world
     controls
     grid
     inspector

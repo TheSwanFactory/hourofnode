@@ -10,7 +10,6 @@ exports.grid = () -> {
   _EXPORTS: ['edit', 'save']
   # TODO: make button name dyammic based on 'editing' property
   edit: (world, button) ->
-    console.log 'edit', button, world
     button.put 'name', 'save'
     world.put 'editing', true
   save: (world, button) ->

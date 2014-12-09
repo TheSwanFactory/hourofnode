@@ -46,6 +46,7 @@ extract = (sprite, key, editable) ->
 
   if editable
     field.after_save = (world, value) ->
+      sprite.send 'log_sprite_change', [sprite, key, value]
       sprite.put(key, value)
     utils.editable_field field
 
