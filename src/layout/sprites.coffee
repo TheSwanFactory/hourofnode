@@ -34,7 +34,7 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['make_sprite']
+  _EXPORTS: ['make_sprite', 'delete_sprite']
   make_sprite: (world, sprite_dict) ->
     kind_authority = get_kind_authority sprite_dict, world.get('kinds')
     console.log 'makes', kind_authority, sprite_dict
@@ -46,6 +46,9 @@ exports.sprites = {
     child.put my.key.authority, world.make_world kind_authority
     #child.call 'rewind'
     world.send 'inspect', child
+
+  delete_sprite: (world, sprite) ->
+    world.remove_child sprite
 
   # selection
 
