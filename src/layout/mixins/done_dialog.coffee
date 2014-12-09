@@ -1,4 +1,4 @@
-{make} = require '../render/make'
+{make} = require '../../render/make'
 
 exports.done_dialog = (level) ->
   goals = level.get 'goal'

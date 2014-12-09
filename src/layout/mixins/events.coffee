@@ -3,7 +3,7 @@
 #
 
 {my} = require '../../my'
-{done_dialog} = require '../../layout/done_dialog'
+{done_dialog} = require './done_dialog'
 
 beep = do ->
   context = window.audioContext || window.webkitAudioContext
