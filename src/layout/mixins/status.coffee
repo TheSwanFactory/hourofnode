@@ -10,6 +10,11 @@
 {make} = require '../../render/make'
 {utils} = require '../../utils'
 
+# get editing property direct from the grid
+editing = (sprite) ->
+  sprite.up.up.get 'editing'
+
+# Small sprite
 add_paths = (sprite) ->
   paths = sprite.get('paths').all()
   transform = utils.prefix_style transform: 'scale(0.5)'
@@ -24,6 +29,7 @@ add_paths = (sprite) ->
     }]
   }
 
+# Other buttons
 get = (sprite, key) ->
   ->
     value = sprite.get key
@@ -48,6 +54,8 @@ extract = (sprite, key, editable) ->
     field.after_save = (world, value) ->
       sprite.send 'log_sprite_change', [sprite, key, value]
       sprite.put(key, value)
+    field.editing = ->
+      editing sprite
     utils.editable_field field
 
   [label, field]
@@ -58,6 +66,15 @@ key_and_value = (sprite, key, editable) ->
   tag_name:  'div'
   class:     'attribute'
 
+# delete button
+
+delete_button = (sprite) ->
+  class:    'delete'
+  tag_name: 'button'
+  name:     'delete'
+  click:    -> sprite.send 'delete_sprite', sprite
+  selected: -> editing sprite
+
 exports.status = (sprite) ->
   status_buttons = make.columns('stat', [
       "-"
@@ -66,6 +83,7 @@ exports.status = (sprite) ->
       "color"
       "editable"
       "obstruction"
+      "delete"
     ],
     { height: '' }
     # TODO: Implement editable status
@@ -74,6 +92,8 @@ exports.status = (sprite) ->
   status_buttons._CHILDREN = status_buttons._CHILDREN.map (key) ->
     if key == '-'
       add_paths sprite
+    else if key == 'delete'
+      delete_button sprite
     else
       key_and_value(sprite, key, key in ['name', 'color'])
 

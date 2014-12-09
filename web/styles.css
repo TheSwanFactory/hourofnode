@@ -300,6 +300,10 @@ div#root {
         font-size: 1em;
         text-align: center;
         max-width: 90px; }
+    .inspector .stat .delete {
+      display: none; }
+      .inspector .stat .delete.selected {
+        display: inline-block; }
     .inspector .stat:after {
       content: ' ';
       clear: both;
