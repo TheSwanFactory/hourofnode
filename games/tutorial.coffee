@@ -12,10 +12,11 @@
 # * bump program (interrupt handler)
 
 # TODO:
-# Gate by default should send _victory action when bumped
-# Turtle defaults to reverse on bump, to avoid invisible loop
-# Implicitly add: assume, per-level turtle and gate (if absent)
-# Check and send 'done -1' if infinite loop (e.g., no bump)
+# - Gate by default should send _victory action when bumped
+# - Turtle defaults to reverse on bump, to avoid invisible loop
+# - Implicitly add: assume, per-level turtle and gate (if absent)
+# - Check and send 'done -1' if infinite loop (e.g., no bump)
+# - Edit Level Name and non-text status items
 
 # COMMENT
 # Scores for each level are based on analogs of real-world metrics
@@ -203,6 +204,92 @@ exports.game = {
         {
           kind: 'turtle'
           position: [0,0]
+        }
+      ]
+    }
+    {
+      name: 'Click Turtle You Want To Program'
+      comment: '
+      Can select multiple turtles which act independently.
+      This is a primitive form of parallel processing.
+      Optimal solution is to move the blocking turtle.
+      '
+      edit_mode: true
+      bricks: 2
+      goal: { clicks: 1, bricks: 3, ticks: 5 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        {
+          kind: 'turtle'
+          name: 'yu'
+          position: [2,0]
+          direction: [0, 1]
+          color: 'red'
+          actions: { run: [], bump: [] }
+        }
+        {
+          kind: 'turtle'
+          actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
+    {
+      name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
+      comment: '
+      Can edit the level name, sprite name, and sprite color. (DEVELOP)
+      Must first solve the puzzle to validate it. (TEST)
+      Can then share it from the post-level splash screen. (DEPLOY)
+      Affirms the importance of good integration testing!
+      '
+      edit_mode: true
+      bricks: 2
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        {
+          kind: 'turtle'
+          actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
+
+    {
+      name: 'Click "Edit" & Blue Pond to Add & Select Logs'
+      editing: true
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      bricks: 1
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
+      name: 'Create, Test, and Share Your Own Level'
+      comment: '
+      Encourage students to express themselves.
+      Track the solution and use that for the new goal metrics.
+      After completion, can share via email or social media.
+      Will run on our app via a custom URL.
+      '
+      goal: { clicks: 99, bricks: 99, ticks: 99 }
+      bricks: 2
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,7] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
         }
       ]
     }
