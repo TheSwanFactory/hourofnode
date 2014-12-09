@@ -20,7 +20,7 @@ add_paths = (sprite) ->
       transform:    transform
       ie_transform: "scale(0.5)"
       paths:        paths
-      color:        sprite.get('color')
+      color:        sprite.bind() -> sprite.get('color')
     }]
   }
 
@@ -34,14 +34,30 @@ get = (sprite, key) ->
       else value
     value
 
-extract = (sprite, key) ->
-  [
-    { tag_name: 'span', class: 'key',   name: key }
-    { tag_name: 'span', class: 'value', name: get(sprite, key) }
-  ]
+basic_field = (sprite, key) ->
+  tag_name:   'span'
+  class:      'value'
+  name:       get(sprite, key)
+
+extract = (sprite, key, editable) ->
+  label = { tag_name: 'span', class: 'key',   name: key }
+
+  field = basic_field sprite, key
+
+  if editable
+    field.after_save = (world, value) ->
+      sprite.put(key, value)
+    utils.editable_field field
+
+  [label, field]
+
+key_and_value = (sprite, key, editable) ->
+  _LABEL:    key
+  _CHILDREN: extract(sprite, key, editable)
+  tag_name:  'div'
+  class:     'attribute'
 
 exports.status = (sprite) ->
-
   status_buttons = make.columns('stat', [
       "-"
       "kind"
@@ -58,11 +74,6 @@ exports.status = (sprite) ->
     if key == '-'
       add_paths sprite
     else
-      {
-        _LABEL:    key
-        _CHILDREN: extract(sprite, key)
-        tag_name:  'div'
-        class:     'attribute'
-      }
+      key_and_value(sprite, key, key in ['name', 'color'])
 
   status_buttons
