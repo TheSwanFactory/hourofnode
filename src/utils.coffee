@@ -10,12 +10,25 @@ exports.utils =
       style["-moz-transform-origin"]    = style.transform_origin
     style
 
-  is_ie: ->
+  no_css_transforms: ->
+    @ie_version() || @iOS_version() && iOS_version() < 6
+
+  # http://stackoverflow.com/a/14223920
+  iOS_version: ->
+    return false unless /iP(hone|od|ad)/.test(navigator.platform)
+    # supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+    v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/)
+    [
+      parseInt(v[1], 10)
+      parseInt(v[2], 10)
+      parseInt(v[3] or 0, 10)
+    ]
+
+  ie_version: ->
     ua = window.navigator.userAgent
     msie = ua.indexOf("MSIE ")
     if msie > 0 or !!navigator.userAgent.match(/Trident.*rv\:11\./) # If Internet Explorer, return version number
-      return true
-      # parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)))
+      return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)))
     false
 
   editable_field: (dict) ->
