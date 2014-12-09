@@ -30,7 +30,7 @@ exports.game = {
 
   levels: [
     {
-      name: '"Save" then Solve in order to Share'
+      name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
       comment: '
       Can edit the level name, sprite name, and sprite color. (DEVELOP)
       Must first solve the puzzle to validate it. (TEST)
