@@ -8,9 +8,9 @@
 # * associate with a path and state representation
 # * define actions the sprite can perform
 
-{my} = require '../my'
-{vector} = require('../god/vector')
-{utils} = require '../utils'
+{my}        = require '../my'
+{vector}    = require '../god/vector'
+{utils}     = require '../utils'
 
 get_kind_authority = (sprite_dict, kinds) ->
   kind = sprite_dict.kind
