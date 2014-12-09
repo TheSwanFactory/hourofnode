@@ -108,7 +108,7 @@ div#root {
       }
     }
 
-    div {
+    > * {
       display:        inline-block;
       float:          left;
       line-height:    1.4em;
@@ -116,6 +116,7 @@ div#root {
       padding:        $basic-padding;
       margin:         $basic-padding;
       text-transform: capitalize;
+      height:         55px;
 
       .key {
         font-weight: bold;
@@ -125,15 +126,19 @@ div#root {
       .value {
         font-size:  1em;
         text-align: center;
-        max-width:  90px;
+        max-width:  80px;
       }
     }
 
     .delete {
-      display: none;
+      @extend    .blue-button;
+      padding:   $basic-padding;
+      display:   none;
+      font-size: 0.8em;
+      width:     75px;
 
-      &.selected {
-        display: inline-block;
+      &.editable {
+        display: inline;
       }
     }
 
@@ -344,5 +349,10 @@ button {
   &._victory:before {
     @extend .icon-button;
     content: "";
+  }
+
+  &.delete:before {
+    @extend .icon-button;
+    content: "";
   }
 }

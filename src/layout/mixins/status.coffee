@@ -73,7 +73,7 @@ delete_button = (sprite) ->
   tag_name: 'button'
   name:     'delete'
   click:    -> sprite.send 'delete_sprite', sprite
-  selected: -> editing sprite
+  editable: -> editing sprite
 
 exports.status = (sprite) ->
   status_buttons = make.columns('stat', [
