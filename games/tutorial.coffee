@@ -224,7 +224,7 @@ exports.game = {
           name: 'yu'
           position: [2,0]
           direction: [0, 1]
-          fill: 'purple'
+          color: 'red'
           actions: { run: [], bump: [] }
         }
         {
