@@ -27,6 +27,8 @@ exports.game = {
     }
     log: {
       name: 'log'
+      running: 'run'
+      editing: 'run'
       editable: false
       obstruction: true
       position: [7,0]
@@ -49,6 +51,8 @@ exports.game = {
     }
     gate: {
       name: 'exit'
+      running: 'run'
+      editing:  'run'
       editable: false
       obstruction: false
       position: [7,7]
