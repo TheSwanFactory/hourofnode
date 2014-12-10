@@ -23,7 +23,7 @@ rx = require 'reactive-coffee'
     rx = require '../../reactive-coffee/src/reactive'
     console.warn "Loading local copy of reactive-coffee"
 ###
-        
+
 # Dependencies
 
 {load} = require './load'
@@ -36,7 +36,7 @@ parsed_query = queryString.parse(location.search)
 world = load rx, _.extend(default_query, parsed_query)
 
 main = ->
-  $('body').append(
+  $('#contents').append(
     render(world) if my.online
   )
 
