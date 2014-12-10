@@ -28,7 +28,7 @@ exports.actions = (sprite) ->
     names,
     my.command,
     (button, args) ->
-      if sprite.get 'editable'
+      if sprite.get('editable') || sprite.get('edit_mode')
         send_message button.get('value')
         button.send 'execute'
         button.send 'click'
