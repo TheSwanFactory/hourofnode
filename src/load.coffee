@@ -83,6 +83,7 @@ extend_level = (level, level_index) ->
       $(body).dialog
         modal:   true
         buttons: [{text: 'Ok', click: -> $(this).dialog('close')}]
+        width:   400
 
 
 get_custom_level = ->
