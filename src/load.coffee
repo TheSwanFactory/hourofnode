@@ -54,7 +54,12 @@ create_level = (world, level) ->
         {list: 'all'}
   }
   level = game_levels.at(level_at)
+  rename_properties level
   $.extend true, level, get_custom_level()
+
+rename_properties = (level) ->
+  level.level_name = level.name
+  delete level.name
 
 get_custom_level = ->
   query  = queryString.parse(location.search)

@@ -9,14 +9,14 @@ div#root {
   color: #1a1a1a;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
-.page_title-0 > .name, .page_title-0-0 > .name {
+.page_title-0 > .name, .level_name {
   font-weight: 200;
   font-size: 1.6em;
   margin: 0.2em 5px;
   display: block;
   text-align: center; }
 
-.page_title-0-0 > .name {
+.level_name {
   font-size: 1.4em;
   font-weight: normal; }
 

@@ -25,6 +25,7 @@ exports.header = (level) ->
     ]
 
   make.rows 'header', [
+    { _LABEL: 'level_name', name: level.get('level_name') }
     make.columns 'progress', [
       anchor "<", 'previous_params'
       " Level #{level.get('level_index')} of #{level.get('level_count')}"
