@@ -371,12 +371,14 @@ div#root {
         background-color: #9f0000;
         color: white;
         border: none;
+        -webkit-transition: all 0.2s;
+                transition: all 0.2s;
+        -webkit-transition-delay: 0.3s;
+                transition-delay: 0.3s;
         height: 48px;
         width: 48px; }
         .inspector .program > div .actions button.selected {
-          border-color: gold;
-          border-width: 2px;
-          border-style: solid; }
+          background-color: gold; }
           .inspector .program > div .actions button.selected.uneditable {
             border-color: grey; }
 

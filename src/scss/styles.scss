@@ -243,13 +243,13 @@ div#root {
         background-color: lighten(darkred, 4%);
         color:            white;
         border:           none;
+        transition:       all 0.2s;
+        transition-delay: 0.3s;
         height:           $button-height;
         width:            $button-height;
 
         &.selected {
-          border-color: $selected-color;
-          border-width: 2px;
-          border-style: solid;
+          background-color: $selected-color;
 
           &.uneditable {
             border-color: grey;
