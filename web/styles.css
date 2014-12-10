@@ -376,8 +376,8 @@ div#root {
         background-color: #9f0000;
         color: white;
         border: none;
-        -webkit-transition: all 0.2s;
-                transition: all 0.2s;
+        -webkit-transition: background-color 0.2s, color 0.2s;
+                transition: background-color 0.2s, color 0.2s;
         -webkit-transition-delay: 0.3s;
                 transition-delay: 0.3s;
         height: 48px;
