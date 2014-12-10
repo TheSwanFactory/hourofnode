@@ -202,6 +202,11 @@ div#root {
     background-color: darken($header-bg-color, 7%);
     border:           2px solid transparent;
     transition:       all 0.2s;
+    transition-delay: 0.3s;
+
+    &:hover {
+      transition-delay: 0;
+    }
 
     &.selected {
       background-color: #6494BF;
@@ -243,13 +248,14 @@ div#root {
         background-color: lighten(darkred, 4%);
         color:            white;
         border:           none;
+        transition:       all 0.2s;
+        transition-delay: 0.3s;
         height:           $button-height;
         width:            $button-height;
 
         &.selected {
-          border-color: $selected-color;
-          border-width: 2px;
-          border-style: solid;
+          background-color: $selected-color;
+          color:            $almost-black;
 
           &.uneditable {
             border-color: grey;
