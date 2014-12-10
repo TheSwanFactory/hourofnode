@@ -10,7 +10,7 @@
 {make} = require '../../render/make'
 {utils} = require '../../utils'
 
-# get editing property direct from the grid
+# get editing property from level (above sprites)
 editing = (sprite) ->
   sprite.up.up.get 'editing'
 

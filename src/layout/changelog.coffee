@@ -6,6 +6,11 @@ custom_level = rx.cell({ sprites: [] })
 get_level_copy = ->
   $.extend {}, custom_level.get()
 
+update_level = (change) ->
+  level = get_level_copy()
+  change level
+  custom_level.set level
+
 index_of_conditional = (list, condition) ->
   index = -1
   for item, i in list
@@ -24,16 +29,8 @@ log_sprite_change = (world, args) ->
 
   return unless level_sprite_index > -1
 
-  level = get_level_copy()
-  level.sprites[level_sprite_index][key] = value
-
-  custom_level.set level
-
-sprite_created = (world, sprite) ->
-  return unless level_sprite_index > -1
-
-  level = get_level_copy()
-  level.sprites[level_sprite_index]
+  update_level (level) ->
+    level.sprites[level_sprite_index][key] = value
 
 sprite_index = 0
 make_sprite = (world, sprite_dict) ->
@@ -44,22 +41,27 @@ make_sprite = (world, sprite_dict) ->
     kind:     sprite_dict.kind
     position: sprite_dict.position
 
-  if level.sprites[index]?
-    $.extend level.sprites[index], sprite
-  else
-    level.sprites.push sprite
-
-  custom_level.set level
+  update_level (level) ->
+    if level.sprites[index]?
+      $.extend level.sprites[index], sprite
+    else
+      level.sprites.push sprite
 
 delete_sprite = (world, sprite) ->
   level_sprite_index = get_sprite_index sprite
 
   return unless level_sprite_index > -1
 
-  level = get_level_copy()
-  level.sprites.splice level_sprite_index, 1
+  update_level (level) ->
+    level.sprites.splice level_sprite_index, 1
 
-  custom_level.set level
+level_change = (world, args) ->
+  [key, value] = args
+
+  return unless key? and value?
+
+  update_level (level) ->
+    level[key] = value
 
 url = ->
   search = queryString.parse location.search
@@ -69,10 +71,11 @@ url = ->
 exports.changelog =
   world: (level) ->
     {
-      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite']
+      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite', 'level_change']
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
       delete_sprite:     delete_sprite
+      level_change:      level_change
       tag_name:          'a'
       name:              'custom level'
       href:              rx.bind url

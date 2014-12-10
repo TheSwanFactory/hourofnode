@@ -6,16 +6,13 @@ exports.grid = () -> {
   _LABEL: "grid"
   height: (world) -> world.get('grid_size')
   width: (world) -> world.get('grid_size')
-  editing: false
 
   _EXPORTS: ['edit', 'save']
   # TODO: make button name dyammic based on 'editing' property
   edit: (world, button) ->
     button.put 'name', 'save'
-    world.put 'editing', true
   save: (world, button) ->
     button.put 'name', 'edit'
-    world.put 'editing', false
   click: (world, event) ->
     return unless is_editing = world.get 'editing'
     scale = world.get('cell_size')
