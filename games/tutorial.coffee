@@ -43,9 +43,9 @@ exports.game = {
   Thanks for playing through the Hour of NODE tutorial.<br/>
   We encourage you to continue creating and sharing your own levels.
   You can publish and find new levels, plus ask questions, at
-  <a href='#{more_puzzles}'>support site</a>.<br/>
+  <a href='#{more_puzzles}' target='_blank'>support site</a>.<br/>
   Please help us improve the app by
-  <a href='#{SURVEY}'>answering a few questions</a> about your experience.
+  <a href='#{SURVEY}' target='_blank'>answering a few questions</a> about your experience.
   Thanks!
   "
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
