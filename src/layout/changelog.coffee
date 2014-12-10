@@ -55,7 +55,13 @@ delete_sprite = (world, sprite) ->
   update_level (level) ->
     level.sprites.splice level_sprite_index, 1
 
-  custom_level.set level
+level_change = (world, args) ->
+  [key, value] = args
+
+  return unless key? and value?
+
+  update_level (level) ->
+    level[key] = value
 
 url = ->
   search = queryString.parse location.search
@@ -65,10 +71,11 @@ url = ->
 exports.changelog =
   world: (level) ->
     {
-      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite']
+      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite', 'level_change']
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
       delete_sprite:     delete_sprite
+      level_change:      level_change
       tag_name:          'a'
       name:              'custom level'
       href:              rx.bind url

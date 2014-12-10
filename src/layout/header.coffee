@@ -24,10 +24,14 @@ exports.header = (level) ->
       " / #{level.get('goal')[key]}"
     ]
 
+  level_name_key = 'level_name'
   level_name = utils.editable_field
-    _LABEL:  'level_name'
-    name:    level.get('level_name')
+    _LABEL:  level_name_key
+    name:    level.get level_name_key
     editing: -> level.get 'editing'
+    after_save: (world, value) ->
+      world.send 'level_change', [level_name_key, value]
+      level.put level_name_key, value
 
   make.rows 'header', [
     level_name
