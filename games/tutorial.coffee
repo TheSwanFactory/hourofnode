@@ -30,12 +30,24 @@
 #
 # TODO: Use Markdown instead of embedded HTML
 
+more_puzzles = 'http://support.hourofnode.org/questions/10/where-can-i-find-additional-hour-of-node-puzzles.html'
+SURVEY='https://docs.google.com/forms/d/1ovfw26rDoWGoxEGLV8HjPxmVmBMpuJIpi9ZExIfvRCU/viewform?usp=send_form'
+
 exports.game = {
   assume: 'baseline'
   name: 'The Hour of NODE'
   comment: "The original Hour of NODE tutorial for CS Education Week 2014"
-  description: 'Welcome to Hour of NODE, part of the <a href="http://code.org/">
-  CS Education Week</a> efforts to teach programming to kids.'
+  description: 'Welcome to Hour of NODE, part of <a href="http://code.org/">
+  CS Education Week</a> efforts to teach programming to kids of all ages.'
+  completion: "
+  Thanks for playing through the Hour of NODE tutorial.<br/>
+  We encourage you to continue creating and sharing your own levels.
+  You can publish and find new levels, plus ask questions, at
+  <a href='#{more_puzzles}'>support site</a>.<br/>
+  Please help us improve the app by
+  <a href='#{SURVEY}'>answering a few questions</a> about your experience.
+  Thanks!
+  "
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
