@@ -25,10 +25,11 @@ beep = do ->
       on_end()
     setTimeout turn_off, duration
 
+# TODO: Merge into done-dialog
 share_dialog = ->
   share = '.share-button'
   text  = $(share).text()
-  new Share share,
+  new Share share, #External Library included from the web page
     description: text
     networks:
       facebook:
