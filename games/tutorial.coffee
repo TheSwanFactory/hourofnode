@@ -67,7 +67,7 @@ exports.game = {
       goal: { clicks: 0, bricks: 2, ticks: 4 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [1,1] }
-        { kind: 'turtle', actions: {run: ['forward', 'right']}, editable: false }
+        { kind: 'turtle', actions: {run: ['forward', 'right']} }
       ]
     }
     {
