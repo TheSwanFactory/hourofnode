@@ -45,6 +45,11 @@ div#root {
   .done_dialog .hint {
     font-size: 0.7em; }
 
+.splash div {
+  margin-bottom: 10px; }
+  .splash div:last-child {
+    margin-bottom: 0; }
+
 .share-button.sharer-0 {
   -khtml-user-select: none;
   -moz-user-select: none;

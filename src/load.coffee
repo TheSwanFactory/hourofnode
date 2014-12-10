@@ -54,10 +54,10 @@ create_level = (world, level) ->
         {list: 'all'}
   }
   level = game_levels.at(level_at)
-  extend_level world, level, level_at
+  extend_level level, level_at
   $.extend true, level, get_custom_level()
 
-extend_level = (world, level, level_index) ->
+extend_level = (level, level_index) ->
   level.level_name = level.name
   delete level.name
 
@@ -71,10 +71,17 @@ extend_level = (world, level, level_index) ->
   level.save    = (world, args) ->
     world.put 'editing', false
 
-  if level_index == 0 and world.get('description', false)?
-    level.init = ->
-      $("<div>#{world.get 'description', false}</div>").dialog
-        modal: true
+  level.init = (world) ->
+    body = $('<div class="splash">')
+    if level_index == 0 && world.get('description', false)?
+      body.append "<div>#{world.get 'description', false}</div>"
+    if world.get('level_name', false)?
+      body.append "<div>#{world.get 'level_name', false}</div>"
+
+    if body.children().length > 0
+      $(body).dialog
+        modal:   true
+        buttons: [{text: 'Ok', click: -> $(this).dialog('close')}]
 
 
 get_custom_level = ->
