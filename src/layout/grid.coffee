@@ -14,7 +14,7 @@ exports.grid = () -> {
   save: (world, button) ->
     button.put 'name', 'edit'
   click: (world, event) ->
-    return unless is_editing = world.get 'editing'
+    return unless is_editing = world.get 'edit_mode'
     scale = world.get('cell_size')
     x = event.offsetX / scale
     y = event.offsetY / scale

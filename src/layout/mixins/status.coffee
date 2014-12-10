@@ -10,9 +10,9 @@
 {make} = require '../../render/make'
 {utils} = require '../../utils'
 
-# get editing property from level (above sprites)
-editing = (sprite) ->
-  sprite.up.up.get 'editing'
+# get edit_mode property from level (above sprites)
+edit_mode = (sprite) ->
+  sprite.get 'edit_mode'
 
 # Small sprite
 add_paths = (sprite) ->
@@ -54,8 +54,8 @@ extract = (sprite, key, editable) ->
     field.after_save = (world, value) ->
       sprite.send 'log_sprite_change', [sprite, key, value]
       sprite.put(key, value)
-    field.editing = ->
-      editing sprite
+    field.edit_mode = ->
+      edit_mode sprite
     utils.editable_field field
 
   [label, field]
@@ -73,7 +73,7 @@ delete_button = (sprite) ->
   tag_name: 'button'
   name:     'delete'
   click:    -> sprite.send 'delete_sprite', sprite
-  editable: -> editing sprite
+  editable: -> edit_mode sprite
 
 exports.status = (sprite) ->
   status_buttons = make.columns('stat', [

@@ -66,11 +66,11 @@ extend_level = (level, level_index) ->
   level._EXPORTS.push 'edit'
   level._EXPORTS.push 'save'
 
-  level.editing = false
-  level.edit    = (world, args) ->
-    world.put 'editing', true
-  level.save    = (world, args) ->
-    world.put 'editing', false
+  level.edit_mode = false
+  level.edit      = (world, args) ->
+    world.put 'edit_mode', true
+  level.save      = (world, args) ->
+    world.put 'edit_mode', false
 
   level.init = (world) ->
     body = $('<div class="splash">')

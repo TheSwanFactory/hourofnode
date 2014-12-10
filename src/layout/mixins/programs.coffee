@@ -84,7 +84,7 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       {target, action} = args
-      return unless world.get 'editable'
+      return unless world.get('editable') || world.get('edit_mode')
       world.call('store', action) if sprite == target
 
     store: (world, action) ->
@@ -114,23 +114,22 @@ exports.programs = (sprite) ->
 
   program_row = (name, contents) ->
     buttons = make.buttons "action", contents, my.action, ((button, args) ->
-        if sprite.get('editable')
+        if sprite.get('editable') || sprite.get('edit_mode')
           button.up.remove_child(button)
           button.send 'click'
           button.send 'brick', -1
         else
           button.send 'error', my.not_editable(sprite)
-          
       ), {
         selected: (world) -> world.index == world.get('next_index')
       }
-    extensions = {}
-    if sprite.get 'editable'
-      extensions.init = (world, element) ->
-          $(element).sortable
-            cancel: 'a' # so that you can move buttons
-            start:  (event, ui) -> world.call 'sort_start',  [event, ui]
-            update: (event, ui) -> world.call 'sort_update', [event, ui]
+    buttons.init = (world, element) ->
+      $(element).sortable
+        cancel: 'a' # so that you can move buttons
+        start:  (event, ui) -> world.call 'sort_start',  [event, ui]
+        update: (event, ui) -> world.call 'sort_update', [event, ui]
+      unless sprite.get('editable') or sprite.get('edit_mode')
+        $(element).sortable 'disable'
     program = make.rows name, [
       {
         _LABEL: 'program_name'
@@ -138,7 +137,7 @@ exports.programs = (sprite) ->
         selected: (world) -> name == sprite.get 'editing'
         click: -> sprite.put 'editing', name
       }
-      _.extend buttons, extensions
+      buttons
     ]
     _.extend program, program_behavior()
 
