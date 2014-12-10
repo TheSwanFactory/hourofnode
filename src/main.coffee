@@ -26,7 +26,8 @@ rx = require 'reactive-coffee'
 
 # Dependencies
 
-{load} = require './load'
+{my}     = require './my'
+{load}   = require './load'
 {render} = require './render'
 
 # default_query = {game: 'sampler', level: 1}
@@ -36,7 +37,7 @@ parsed_query = queryString.parse(location.search)
 world = load rx, _.extend(default_query, parsed_query)
 
 main = ->
-  $('#contents').append(
+  $('#contents').css(height: my.page_dimensions[1]).append(
     render(world) if my.online
   )
 
