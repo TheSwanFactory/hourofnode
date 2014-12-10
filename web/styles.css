@@ -325,7 +325,8 @@ div#root {
     -webkit-transition: all 0.2s;
             transition: all 0.2s; }
     .inspector .program > div.selected {
-      background-color: #fafafa; }
+      background-color: #6494BF;
+      color: #fafafa; }
     .inspector .program > div.editable {
       border: 2px solid gold; }
     .inspector .program > div.run .program_name:before {
@@ -353,7 +354,7 @@ div#root {
         .inspector .program > div .actions button.selected {
           border-color: gold;
           border-width: 2px;
-          border-style: dotted; }
+          border-style: solid; }
           .inspector .program > div .actions button.selected.uneditable {
             border-color: grey; }
 
