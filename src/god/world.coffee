@@ -61,25 +61,31 @@ class World
     value = @rx().array value if _.isArray(value)
     @doc.put(key, value)
 
-  get_local: (key) ->
-    if @has_local(key) then @doc.get(key) else null
+  get_local: (key, bound = true) ->
+    if @has_local(key)
+      if bound
+        @doc.get(key)
+      else
+        @doc.x[key]
+    else
+      null
 
   has_local: (key) ->
     @doc.has key
 
   # TODO: make @up a list
-  get_raw: (key, world) ->
-    value = @get_local(key)
+  get_raw: (key, world, bound = true) ->
+    value = @get_local(key, bound)
     return value if value?
-    authority = @get_local(my.key.authority)
+    authority = @get_local(my.key.authority, bound)
     if authority
       #console.log "Find #{key} in #{authority}"
-      value = authority.get_raw(key, @)
+      value = authority.get_raw(key, world, bound)
       return value if value?
-    @up.get_raw(key, world or @)
+    @up.get_raw(key, world or this, bound)
 
-  get: (key) ->
-    value = @get_raw(key)
+  get: (key, bound = true) ->
+    value = @get_raw(key, this, bound)
     return value(@,{}) if _.isFunction(value)
     value
 
