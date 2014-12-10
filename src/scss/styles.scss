@@ -1,5 +1,7 @@
 $basic-padding:   5px;
 $header-bg-color: #fafafa;
+$almost-white: $header-bg-color;
+$almost-black: lighten(#000, 10%);
 $control-bg-color: darken($header-bg-color, 10%);
 $selected-color: gold;
 
@@ -76,6 +78,28 @@ div#root {
   .hint {
     font-size: 0.7em;
   }
+}
+
+// Dialog styles
+
+.ui-widget.ui-dialog {
+  background-color: $almost-white;
+  background-image: none;
+
+  .ui-widget-header {
+    background-color: #ddd;
+    background-image: none;
+    border:           none;
+    color:            $almost-black;
+  }
+  .ui-widget-content {
+    background-color: transparent;
+    background-image: none;
+  }
+}
+
+.ui-widget-overlay {
+  background-image: none !important;
 }
 
 // Splash Screen
