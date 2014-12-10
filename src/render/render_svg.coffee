@@ -20,10 +20,8 @@ exports.render_svg = (world) ->
     paths.map (path) -> SVG.path path_dict(path)
 
   svg_tag = (attrs, body) ->
-    if utils.no_css_transforms()
-      attrs.transform = world.bind() (-> world.get('ie_transform') || '')
-    else
-      attrs.style = world.bind() (-> world.get('transform') || '')
+    attrs.transform = world.bind() (-> world.get('ie_transform') || '')
+    attrs.style = world.bind() (-> world.get('transform') || '')
     SVG.svg {
       xmlns: "http://www.w3.org/2000/svg"
       "xmlns:xlink": "http://www.w3.org/1999/xlink"

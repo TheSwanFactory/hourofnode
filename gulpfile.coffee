@@ -77,3 +77,4 @@ gulp.task 'default', ['main', 'css', 'watch']
 # Tag and upload new feature
 
 gulp.task 'upload', shell.task ['node aws/upload.js']
+gulp.task 'upload:dev', shell.task ['node aws/upload.js dev']
