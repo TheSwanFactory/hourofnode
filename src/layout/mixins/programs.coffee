@@ -84,7 +84,7 @@ exports.programs = (sprite) ->
 
     apply: (world, args) ->
       {target, action} = args
-      return unless world.get('editable') || world.get('edit_mode')
+      return unless world.get('editable')
       world.call('store', action) if sprite == target
 
     store: (world, action) ->
