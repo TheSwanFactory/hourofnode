@@ -3,7 +3,7 @@
 #
 
 {my} = require '../../my'
-{done_dialog} = require './done_dialog'
+done_dialog = require './done_dialog'
 
 beep = do ->
   context = window.audioContext || window.webkitAudioContext
@@ -24,18 +24,6 @@ beep = do ->
       speaker.noteOff 0
       on_end()
     setTimeout turn_off, duration
-
-# TODO: Merge into done-dialog
-share_dialog = ->
-  share = '.share-button'
-  text  = $(share).text()
-  new Share share, #External Library included from the web page
-    description: text
-    networks:
-      facebook:
-        app_id:  1510955112514265
-      email:
-        description: text + "\n\nCheck it out here!: " + document.location.href
 
 finished = false
 
@@ -88,11 +76,11 @@ exports.events = {
     world.send 'stop'
     finished = true
     if success
-      world.up.add_child done_dialog(world)
+      world.up.add_child done_dialog.world(world)
       $('.done_dialog').dialog
         modal: true
         title: 'Level Complete'
-        open:  share_dialog
+        open:  done_dialog.share_dialog
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 
