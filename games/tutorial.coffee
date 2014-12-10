@@ -28,18 +28,32 @@
 # Advanced players seeking to optimize their score will need to make
 # similar tradeoffs to what we faced in writing this app!
 #
+# TODO: Use Markdown instead of embedded HTML
+
+more_puzzles = 'http://support.hourofnode.org/questions/10/where-can-i-find-additional-hour-of-node-puzzles.html'
+SURVEY='https://docs.google.com/forms/d/1ovfw26rDoWGoxEGLV8HjPxmVmBMpuJIpi9ZExIfvRCU/viewform?usp=send_form'
 
 exports.game = {
-  name: 'The Hour of NODE'
-  description: 'Learn the basic controls while solving simple puzzles.'
   assume: 'baseline'
-  comment: "The original Hour of NODE tutorial"
+  name: 'The Hour of NODE'
+  comment: "The original Hour of NODE tutorial for CS Education Week 2014"
+  description: 'Welcome to Hour of NODE, part of <a href="http://code.org/">
+  CS Education Week</a> efforts to teach programming to kids of all ages.'
+  completion: "
+  Thanks for playing through the Hour of NODE tutorial.<br/>
+  We encourage you to continue creating and sharing your own levels.
+  You can publish and find new levels, plus ask questions, at
+  <a href='#{more_puzzles}'>support site</a>.<br/>
+  Please help us improve the app by
+  <a href='#{SURVEY}'>answering a few questions</a> about your experience.
+  Thanks!
+  "
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
   }
-
+  message: 'Congratulations!'
   levels: [
     {
       name: 'Click "Run" Button to Move Turtle to Exit Pad'
@@ -118,7 +132,7 @@ exports.game = {
       ]
     }
     # TODO: add a level explaining how/why to rearrange bricks
-    # TODO Explain Left-Right
+    # TODO: Explain Left-Right
     {
       name: 'Alternate Left and Right to Move Diagonally'
       comment: '
@@ -208,7 +222,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click Turtle You Want To Program'
+      name: 'Click Other Turtles To Program Them'
       comment: '
       Can select multiple turtles which act independently.
       This is a primitive form of parallel processing.
@@ -216,7 +230,7 @@ exports.game = {
       '
       edit_mode: true
       bricks: 2
-      goal: { clicks: 1, bricks: 3, ticks: 5 }
+      goal: { clicks: 1, bricks: 2, ticks: 3 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
         {
@@ -225,6 +239,14 @@ exports.game = {
           position: [2,0]
           direction: [0, 1]
           color: 'red'
+          actions: { run: [], bump: [] }
+        }
+        {
+          kind: 'turtle'
+          name: 'us'
+          position: [6,0]
+          direction: [-1, 0]
+          color: 'blue'
           actions: { run: [], bump: [] }
         }
         {
@@ -252,17 +274,36 @@ exports.game = {
         }
       ]
     }
-
     {
-      name: 'Click "Edit" & Blue Pond to Add & Select Logs'
+      name: 'Click "Edit" & Blue Area to Add & Select Logs'
       editing: true
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
       goal: { clicks: 1, bricks: 2, ticks: 11 }
-      bricks: 1
+      bricks: 2
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
+      name: 'Click "Edit", "log", then "delete" to Remove'
+      editing: true
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      bricks: 2
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'log', position: [2,0] }
         {
           kind: 'turtle'
           actions: {
