@@ -1,6 +1,19 @@
-{make} = require '../../render/make'
+{make}      = require '../../render/make'
+{changelog} = require '../changelog'
 
-exports.done_dialog = (level) ->
+module.exports.share_dialog = ->
+  selector = '.share-button'
+  text = $(selector).text()
+  new Share selector, #External Library included from the web page
+    description: text
+    url:         changelog.url()
+    networks:
+      facebook:
+        app_id:  1510955112514265
+      email:
+        description: text + "\n\nCheck it out here!: " + document.location.href
+
+module.exports.world = (level) ->
   goals = level.get 'goal'
 
   dialogAction = (world) ->
