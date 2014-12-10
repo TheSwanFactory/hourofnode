@@ -31,11 +31,11 @@
 # TODO: Use Markdown instead of embedded HTML
 
 exports.game = {
+  assume: 'baseline'
   name: 'The Hour of NODE'
+  comment: "The original Hour of NODE tutorial for CS Education Week 2014"
   description: 'Welcome to Hour of NODE, part of the <a href="http://code.org/">
   CS Education Week</a> efforts to teach programming to kids.'
-  assume: 'baseline'
-  comment: "The original Hour of NODE tutorial"
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
   license: {
     name: 'Creative Commons Attribution 4.0 International'
