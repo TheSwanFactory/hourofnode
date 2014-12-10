@@ -314,7 +314,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Create, Test, and Share Your Own Level'
+      name: 'Use "Edit" to Create, Test & Share Your Own Level'
       comment: '
       Encourage students to express themselves.
       Track the solution and use that for the new goal metrics.
