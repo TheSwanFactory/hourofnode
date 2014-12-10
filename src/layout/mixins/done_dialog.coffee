@@ -11,7 +11,7 @@ module.exports.share_dialog = ->
       facebook:
         app_id:  1510955112514265
       email:
-        description: text + "\n\nCheck it out here!: " + changelog.url()
+        description: text + "\n\nCheck it out here!: " + encodeURIComponent(changelog.url())
 
 module.exports.world = (level) ->
   goals = level.get 'goal'
