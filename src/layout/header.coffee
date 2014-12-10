@@ -1,6 +1,6 @@
-{my} = require '../my'
-{make} = require '../render/make'
-
+{my}    = require '../my'
+{make}  = require '../render/make'
+{utils} = require '../utils'
 
 exports.header = (level) ->
 
@@ -24,8 +24,13 @@ exports.header = (level) ->
       " / #{level.get('goal')[key]}"
     ]
 
+  level_name = utils.editable_field
+    _LABEL:  'level_name'
+    name:    level.get('level_name')
+    editing: -> level.get 'editing'
+
   make.rows 'header', [
-    { _LABEL: 'level_name', name: level.get('level_name') }
+    level_name
     make.columns 'progress', [
       anchor "<", 'previous_params'
       " Level #{level.get('level_index')} of #{level.get('level_count')}"
