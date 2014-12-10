@@ -2,28 +2,9 @@
 # http://jsfiddle.net/55Kfu/
 #
 
-{my} = require '../../my'
+{my}        = require '../../my'
+{beep}      = require './beep'
 done_dialog = require './done_dialog'
-
-beep = do ->
-  context = window.audioContext || window.webkitAudioContext
-  return ((duration, type, on_end) -> on_end()) unless context
-
-  context = new context
-  (duration, type, on_end) ->
-    duration = +duration
-    type = (type % 5) || 0 # Only 0-4 are valid types.
-    on_end = (-> "beep") unless _.isFunction on_end
-
-    speaker = context.createOscillator()
-    speaker.type = 'custom'
-    speaker.frequency.value = 540
-    speaker.connect context.destination
-    speaker.noteOn 0
-    turn_off = ->
-      speaker.noteOff 0
-      on_end()
-    setTimeout turn_off, duration
 
 finished = false
 
@@ -69,7 +50,8 @@ exports.events = {
     setTimeout(step_and_repeat, if has_run_before then delay * 1.5 else 0)
 
   error: (world, message) ->
-    beep my.duration.tone, 3, -> alert("Oops! #{message}")
+    beep()
+    alert "Uh-oh! #{message}"
 
   done: (world, args) ->
     success = args > 0
