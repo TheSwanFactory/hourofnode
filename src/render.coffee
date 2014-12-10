@@ -18,7 +18,7 @@ normalize = (paths) ->
 
 clicker = (world) ->
   action = world.get_raw 'click'
-  return (event) -> action(world, event) if action? and !world.has_children()
+  return (event) -> action(world, jQuery.event.fix(event)) if action? and !world.has_children()
 
 initializer = (world) ->
   action = world.get_local 'init'
