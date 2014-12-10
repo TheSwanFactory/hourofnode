@@ -132,7 +132,7 @@ exports.game = {
       ]
     }
     # TODO: add a level explaining how/why to rearrange bricks
-    # TODO Explain Left-Right
+    # TODO: Explain Left-Right
     {
       name: 'Alternate Left and Right to Move Diagonally'
       comment: '
@@ -222,7 +222,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Click Turtle You Want To Program'
+      name: 'Click Other Turtles To Program Them'
       comment: '
       Can select multiple turtles which act independently.
       This is a primitive form of parallel processing.
@@ -230,7 +230,7 @@ exports.game = {
       '
       edit_mode: true
       bricks: 2
-      goal: { clicks: 1, bricks: 3, ticks: 5 }
+      goal: { clicks: 1, bricks: 2, ticks: 3 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
         {
@@ -239,6 +239,14 @@ exports.game = {
           position: [2,0]
           direction: [0, 1]
           color: 'red'
+          actions: { run: [], bump: [] }
+        }
+        {
+          kind: 'turtle'
+          name: 'us'
+          position: [6,0]
+          direction: [-1, 0]
+          color: 'blue'
           actions: { run: [], bump: [] }
         }
         {
@@ -266,17 +274,36 @@ exports.game = {
         }
       ]
     }
-
     {
-      name: 'Click "Edit" & Blue Pond to Add & Select Logs'
+      name: 'Click "Edit" & Blue Area to Add & Select Logs'
       editing: true
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
       goal: { clicks: 1, bricks: 2, ticks: 11 }
-      bricks: 1
+      bricks: 2
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
+      name: 'Click "Edit", "log", then "delete" to Remove'
+      editing: true
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      bricks: 2
+      sprites: [
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'log', position: [2,0] }
         {
           kind: 'turtle'
           actions: {
