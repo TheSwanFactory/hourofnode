@@ -63,6 +63,7 @@ exports.events = {
         modal: true
         title: 'Level Complete'
         open:  done_dialog.share_dialog
+        width: 400
     # Add retry, next level, select levels, select game
     # And maybe share, find out more, sign up, etc.
 
