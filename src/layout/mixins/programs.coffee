@@ -120,16 +120,16 @@ exports.programs = (sprite) ->
           button.send 'brick', -1
         else
           button.send 'error', my.not_editable(sprite)
-          
       ), {
         selected: (world) -> world.index == world.get('next_index')
       }
-    if sprite.get('editable') || sprite.get('edit_mode')
-      buttons.init = (world, element) ->
-          $(element).sortable
-            cancel: 'a' # so that you can move buttons
-            start:  (event, ui) -> world.call 'sort_start',  [event, ui]
-            update: (event, ui) -> world.call 'sort_update', [event, ui]
+    buttons.init = (world, element) ->
+      $(element).sortable
+        cancel: 'a' # so that you can move buttons
+        start:  (event, ui) -> world.call 'sort_start',  [event, ui]
+        update: (event, ui) -> world.call 'sort_update', [event, ui]
+      unless sprite.get('editable') or sprite.get('edit_mode')
+        $(element).sortable 'disable'
     program = make.rows name, [
       {
         _LABEL: 'program_name'
