@@ -9,7 +9,7 @@ var upload = function(file) {
     console.log("Read", file);
     var params = {
       Bucket: bucket,
-      Key: file,
+      Key: path + file,
       Body: data,
       ACL: 'public-read',
       ContentType: mimeType
@@ -34,9 +34,12 @@ var uploadAll = function(err, files) {
   files.forEach(upload)
 };
 
+var devMode = process.argv[2] == 'dev';
 AWS.config.region = 'us-west-1';
 var s3 = new AWS.S3();
 var bucket = 'hourofnode.org';
+var path = '';
+if (devMode) path += 'dev/';
 var dir = 'web';
 
 fs.readdir(dir, uploadAll)
