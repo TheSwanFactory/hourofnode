@@ -345,7 +345,12 @@ div#root {
     background-color: #e8e8e8;
     border: 2px solid transparent;
     -webkit-transition: all 0.2s;
-            transition: all 0.2s; }
+            transition: all 0.2s;
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s; }
+    .inspector .program > div:hover {
+      -webkit-transition-delay: 0;
+              transition-delay: 0; }
     .inspector .program > div.selected {
       background-color: #6494BF;
       color: #fafafa; }
@@ -378,7 +383,8 @@ div#root {
         height: 48px;
         width: 48px; }
         .inspector .program > div .actions button.selected {
-          background-color: gold; }
+          background-color: gold;
+          color: #1a1a1a; }
           .inspector .program > div .actions button.selected.uneditable {
             border-color: grey; }
 
