@@ -285,25 +285,29 @@ div#root {
       margin-top: 7px;
       height: 32px;
       width: 32px; }
-    .inspector .stat div {
+    .inspector .stat > * {
       display: inline-block;
       float: left;
       line-height: 1.4em;
       text-align: center;
       padding: 5px;
       margin: 5px;
-      text-transform: capitalize; }
-      .inspector .stat div .key {
+      text-transform: capitalize;
+      height: 55px; }
+      .inspector .stat > * .key {
         font-weight: bold;
         display: block; }
-      .inspector .stat div .value {
+      .inspector .stat > * .value {
         font-size: 1em;
         text-align: center;
-        max-width: 90px; }
+        max-width: 80px; }
     .inspector .stat .delete {
-      display: none; }
-      .inspector .stat .delete.selected {
-        display: inline-block; }
+      padding: 5px;
+      display: none;
+      font-size: 0.8em;
+      width: 75px; }
+      .inspector .stat .delete.editable {
+        display: inline; }
     .inspector .stat:after {
       content: ' ';
       clear: both;
@@ -321,7 +325,8 @@ div#root {
     -webkit-transition: all 0.2s;
             transition: all 0.2s; }
     .inspector .program > div.selected {
-      background-color: #fafafa; }
+      background-color: #6494BF;
+      color: #fafafa; }
     .inspector .program > div.editable {
       border: 2px solid gold; }
     .inspector .program > div.run .program_name:before {
@@ -349,7 +354,7 @@ div#root {
         .inspector .program > div .actions button.selected {
           border-color: gold;
           border-width: 2px;
-          border-style: dotted; }
+          border-style: solid; }
           .inspector .program > div .actions button.selected.uneditable {
             border-color: grey; }
 
@@ -369,7 +374,7 @@ text {
   text-shadow: 1px 1px black;
   fill: white; }
 
-.blue-button, .done_dialog button, .inspector .commands button, .controls button {
+.blue-button, .done_dialog button, .inspector .stat .delete, .inspector .commands button, .controls button {
   text-transform: capitalize;
   border: none;
   outline: none;
@@ -379,11 +384,11 @@ text {
   border: 1px solid #ccc;
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
-  .blue-button:hover, .done_dialog button:hover, .inspector .commands button:hover, .controls button:hover {
+  .blue-button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
     background-image: -webkit-linear-gradient(top, #fff, #fafafa);
     background-image: linear-gradient(to bottom, #fff, #fafafa);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
-  .blue-button:active, .done_dialog button:active, .inspector .commands button:active, .controls button:active {
+  .blue-button:active, .done_dialog button:active, .inspector .stat .delete:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
 /*
@@ -394,7 +399,7 @@ text {
  * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
  * - copy and paste the character as `content:`
  */
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before, button._victory:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before, button._victory:before, button.delete:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -428,3 +433,5 @@ button.rewind:before {
   content: ""; }
 button._victory:before {
   content: ""; }
+button.delete:before {
+  content: ""; }
