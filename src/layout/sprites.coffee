@@ -37,7 +37,6 @@ exports.sprites = {
   _EXPORTS: ['make_sprite', 'delete_sprite', 'inspect']
   make_sprite: (world, sprite_dict) ->
     kind_authority = get_kind_authority sprite_dict, world.get('kinds')
-    console.log 'makes', kind_authority, sprite_dict
     dict = $.extend true, {}, kind_authority, sprite_dict
     child = world.add_child dict
     child.put 'dict', dict
