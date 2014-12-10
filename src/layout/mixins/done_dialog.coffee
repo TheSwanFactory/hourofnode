@@ -69,6 +69,11 @@ module.exports.world = (level) ->
       class: 'message'
       name:   level.get('message')
 
+  if level.get('completion', false)? && level.get('last_level')
+    messages.push
+      class: 'completion'
+      name:  level.rx().rxt.rawHtml("<p>#{level.get 'completion', false}</p>")
+
   messages.push
     class: 'share-button'
     name:   -> "I got #{star_count()} stars on the Hour of Node. See if you can beat my score!"

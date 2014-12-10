@@ -41,6 +41,7 @@ create_level = (world, level) ->
   world.import_dict {
     level_index: level_index
     level_count: level_count
+    last_level:  level_index >= level_count
     next_url: (world) -> make.anchor('a', world.get 'next_params').href
     previous_params: (world) ->
       if level_index > 1
