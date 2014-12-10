@@ -45,10 +45,10 @@
 
 // div containing all social icons
 .share-button.sharer-0 .social {
-  -webkit-transition: all .4s ease;
-  transition:         all .4s ease;
+  transition:  visibility 0s, opacity .4s ease;
   margin-left: -15px;
   opacity: 0;
+  visibility: hidden;
 }
 
 // Transform origins for top-anchored networks
@@ -200,6 +200,7 @@
   transition:         all .4s ease;
   -webkit-transition: all .4s ease;
   opacity: 1;
+  visibility: visible;
 }
 
 // top-positioned transition
