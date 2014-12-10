@@ -34,9 +34,9 @@ exports.utils =
   editable_field: (dict) ->
     dict._EXPORTS = ['save']
     dict.tag_name = ->
-      if dict.editing() then 'input' else 'span'
+      if dict.edit_mode() then 'input' else 'span'
     dict.init = (world, element) ->
-      return unless dict.editing()
+      return unless dict.edit_mode()
 
       $(element).on 'change', -> world.put('value', $(@).val())
     dict.save = (world) ->

@@ -50,7 +50,7 @@ exports.my = {
   assert: assert
   feedback_url: SURVEY
   dup: (a, b) -> if $? then $.extend({}, a, b) else a
-  not_editable: (sprite) ->  "Sprite '#{sprite.get('name')}' is not currently editable."
+  not_editable: (sprite) ->  "'#{sprite.get('name')}' is not currently editable. Click 'edit' to enter edit mode and edit all objects"
   page_dimensions: PAGE
   column_1_width: HALF
   column_2_width: HALF
