@@ -28,10 +28,12 @@
 # Advanced players seeking to optimize their score will need to make
 # similar tradeoffs to what we faced in writing this app!
 #
+# TODO: Use Markdown instead of embedded HTML
 
 exports.game = {
   name: 'The Hour of NODE'
-  description: 'Learn the basic controls while solving simple puzzles.'
+  description: 'Welcome to Hour of NODE, part of the <a href="http://code.org/">
+  CS Education Week</a> efforts to teach programming to kids.'
   assume: 'baseline'
   comment: "The original Hour of NODE tutorial"
   author: {name: 'David Huffman', url: 'https://github.com/huffmande'}
