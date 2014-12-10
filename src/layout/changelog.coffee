@@ -1,7 +1,7 @@
 queryString = require 'query-string'
 rx = require 'reactive-coffee'
 
-custom_level = rx.cell({ sprites: [] })
+custom_level = rx.cell({ sprites: [], goal: {} })
 
 get_level_copy = ->
   $.extend {}, custom_level.get()
@@ -63,6 +63,14 @@ level_change = (world, args) ->
   update_level (level) ->
     level[key] = value
 
+metrics = {}
+for metric in ['click', 'tick', 'brick']
+  do (metric) ->
+    plural = "#{metric}s"
+    metrics[metric] = (world) ->
+      update_level (level) ->
+        level.goal[plural] = world.get plural, false
+
 url = ->
   search = queryString.parse location.search
   search.custom = JSON.stringify custom_level.get()
@@ -71,11 +79,14 @@ url = ->
 exports.changelog =
   world: (level) ->
     {
-      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite', 'level_change']
+      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite', 'level_change', 'click', 'tick', 'brick']
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
       delete_sprite:     delete_sprite
       level_change:      level_change
+      click:             metrics.click
+      tick:              metrics.tick
+      brick:             metrics.brick
       tag_name:          'a'
       name:              'custom level'
       href:              rx.bind url
