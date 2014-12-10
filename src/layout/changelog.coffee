@@ -87,11 +87,10 @@ exports.changelog =
       click:             metrics.click
       tick:              metrics.tick
       brick:             metrics.brick
-      tag_name:          'a'
-      name:              'custom level'
-      href:              rx.bind url
     }
 
   set_custom: (custom) ->
     custom_level.set custom
+
+  url: url
 
