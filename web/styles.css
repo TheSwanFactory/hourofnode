@@ -45,6 +45,21 @@ div#root {
   .done_dialog .hint {
     font-size: 0.7em; }
 
+.ui-widget.ui-dialog {
+  background-color: #fafafa;
+  background-image: none; }
+  .ui-widget.ui-dialog .ui-widget-header {
+    background-color: #ddd;
+    background-image: none;
+    border: none;
+    color: #1a1a1a; }
+  .ui-widget.ui-dialog .ui-widget-content {
+    background-color: transparent;
+    background-image: none; }
+
+.ui-widget-overlay {
+  background-image: none !important; }
+
 .splash div {
   margin-bottom: 10px; }
   .splash div:last-child {
