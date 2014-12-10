@@ -39,7 +39,7 @@ exports.game = {
     name: 'Creative Commons Attribution 4.0 International'
     url: 'http://creativecommons.org/licenses/by/4.0/'
   }
-
+  message: 'Congratulations!'
   levels: [
     {
       name: 'Click "Run" Button to Move Turtle to Exit Pad'
