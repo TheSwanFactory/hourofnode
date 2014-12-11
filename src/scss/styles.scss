@@ -106,7 +106,6 @@ div#root {
   }
 
   button {
-    @extend .blue-button;
     padding: $basic-padding * 2;
     margin:  $basic-padding;
   }
@@ -339,6 +338,8 @@ div.program_name.focus,
         margin-right:     $basic-padding;
         outline:          none;
         background-color: lighten(darkred, 4%);
+        background-image: none;
+        border-radius:    0;
         color:            white;
         border:           none;
         transition:       background-color 0.2s, color 0.2s;
@@ -381,6 +382,7 @@ text {
   fill:        white;
 }
 
+button,
 .blue-button {
   text-transform:   capitalize;
   border:           none;
@@ -389,6 +391,7 @@ text {
   border-radius:    4px;
   border:           1px solid #ccc;
   transition:       background 0.2s, box-shadow 0.2s;
+  padding:          $basic-padding;
 
   &:hover {
     background-image: linear-gradient(to bottom, #fff, #fafafa);
