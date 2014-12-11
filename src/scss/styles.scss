@@ -334,7 +334,6 @@ div.program_name.focus,
       min-height: $button-height;
 
       button {
-        font-size:        0;
         margin-right:     $basic-padding;
         outline:          none;
         background-color: lighten(darkred, 4%);
@@ -346,6 +345,7 @@ div.program_name.focus,
         transition-delay: 0.3s;
         height:           $button-height;
         width:            $button-height;
+        float:            left;
 
         &.selected {
           background-color: $selected-color;
@@ -369,7 +369,7 @@ div.program_name.focus,
     margin-right:     $basic-padding;
     width:            90px;
     height:           60px;
-    font-size:        1em;
+    font-size:        1em !important;
   }
 }
 
@@ -419,80 +419,74 @@ button,
   margin: 3px 0;
 }
 
+@mixin icon-button($icon) {
+  font-size: 0;
+
+  &:before {
+    @extend .icon-button;
+    content: $icon;
+  }
+}
+
 button {
-  &.right:before {
-    @extend .icon-button;
-    content: "";
+  &.right {
+    @include icon-button("");
   }
 
-  &.left:before {
-    @extend .icon-button;
-    content: "";
+  &.left {
+    @include icon-button("");
   }
 
-  &.forward:before {
-    @extend .icon-button;
-    content: "";
+  &.forward {
+    @include icon-button("");
   }
 
-  &.reverse:before {
-    @extend .icon-button;
-    content: "";
+  &.reverse {
+    @include icon-button("");
   }
 
-  &.wait:before {
-    @extend .icon-button;
-    content: "";
+  &.wait {
+    @include icon-button("");
   }
 
-  &.reload:before {
-    @extend .icon-button;
-    content: "";
+  &.reload {
+    @include icon-button("");
   }
 
-  &.run:before {
-    @extend .icon-button;
-    content: "";
+  &.run {
+    @include icon-button("");
   }
 
-  &.stop:before {
-    @extend .icon-button;
-    content: "";
+  &.stop {
+    @include icon-button("");
   }
 
-  &.step:before {
-    @extend .icon-button;
-    content: "";
+  &.step {
+    @include icon-button("");
   }
 
-  &.edit:before {
-    @extend .icon-button;
-    content: "";
+  &.edit {
+    @include icon-button("");
   }
 
-  &.run:before {
-    @extend .icon-button;
-    content: "";
+  &.run {
+    @include icon-button("");
   }
 
-  &.bump:before {
-    @extend .icon-button;
-    content: "";
+  &.bump {
+    @include icon-button("");
   }
 
-  &.rewind:before {
-    @extend .icon-button;
-    content: "";
+  &.rewind {
+    @include icon-button("");
   }
 
-  &._victory:before {
-    @extend .icon-button;
-    content: "";
+  &._victory {
+    @include icon-button("");
   }
 
-  &.delete:before {
-    @extend .icon-button;
-    content: "";
+  &.delete {
+    @include icon-button("");
   }
 }
 

@@ -447,7 +447,6 @@ div#root {
     .inspector .program > div .actions {
       min-height: 48px; }
       .inspector .program > div .actions button {
-        font-size: 0;
         margin-right: 5px;
         outline: none;
         background-color: #9f0000;
@@ -460,7 +459,8 @@ div#root {
         -webkit-transition-delay: 0.3s;
                 transition-delay: 0.3s;
         height: 48px;
-        width: 48px; }
+        width: 48px;
+        float: left; }
         .inspector .program > div .actions button.selected {
           background-color: gold;
           color: #1a1a1a; }
@@ -474,7 +474,7 @@ div#root {
     margin-right: 5px;
     width: 90px;
     height: 60px;
-    font-size: 1em; }
+    font-size: 1em !important; }
 
 text {
   text-anchor: middle;
@@ -515,51 +515,63 @@ button, .blue-button, .header .custom_level button, .inspector .stat .delete, .i
   display: block;
   margin: 3px 0; }
 
-button.right:before {
-  content: ""; }
-button.left:before {
-  content: ""; }
-button.forward:before {
-  content: ""; }
-button.reverse:before {
-  content: ""; }
-button.wait:before {
-  content: ""; }
-button.reload:before {
-  content: ""; }
-button.run:before {
-  content: ""; }
-button.stop:before {
-  content: ""; }
-button.step:before {
-  content: ""; }
-button.edit:before {
-  content: ""; }
-button.run:before {
-  content: ""; }
-button.bump:before {
-  content: ""; }
-button.rewind:before {
-  content: ""; }
-button._victory:before {
-  content: ""; }
-button.delete:before {
-  content: ""; }
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
+button.right {
+  font-size: 0; }
+  button.right:before {
+    content: ""; }
+button.left {
+  font-size: 0; }
+  button.left:before {
+    content: ""; }
+button.forward {
+  font-size: 0; }
+  button.forward:before {
+    content: ""; }
+button.reverse {
+  font-size: 0; }
+  button.reverse:before {
+    content: ""; }
+button.wait {
+  font-size: 0; }
+  button.wait:before {
+    content: ""; }
+button.reload {
+  font-size: 0; }
+  button.reload:before {
+    content: ""; }
+button.run {
+  font-size: 0; }
+  button.run:before {
+    content: ""; }
+button.stop {
+  font-size: 0; }
+  button.stop:before {
+    content: ""; }
+button.step {
+  font-size: 0; }
+  button.step:before {
+    content: ""; }
+button.edit {
+  font-size: 0; }
+  button.edit:before {
+    content: ""; }
+button.run {
+  font-size: 0; }
+  button.run:before {
+    content: ""; }
+button.bump {
+  font-size: 0; }
+  button.bump:before {
+    content: ""; }
+button.rewind {
+  font-size: 0; }
+  button.rewind:before {
+    content: ""; }
+button._victory {
+  font-size: 0; }
+  button._victory:before {
+    content: ""; }
+button.delete {
+  font-size: 0; }
+  button.delete:before {
+    content: ""; }
