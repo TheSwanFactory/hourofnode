@@ -88,7 +88,8 @@ exports.my = {
     gridline: 'white'
     command: COMMAND_COLOR
     line: 'black'
-    selection: 'gold'
+    selection: 'black'
+    unselected: 'grey'
   }
   program: {
     class: 'program'
