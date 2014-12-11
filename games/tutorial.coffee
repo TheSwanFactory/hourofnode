@@ -108,7 +108,7 @@ exports.game = {
     }
     {
       name: 'Click Just One Brick to Get Three Gold Stars'
-      focus: 'forward'
+      # focus: 'forward' -- creates ambiguity with run
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
