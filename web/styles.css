@@ -36,8 +36,18 @@ div#root {
   .header .stats > span {
     margin-right: 25px; }
   .header .custom_level {
-    text-align: left;
-    font-size: 0.9em; }
+    font-size: 0.9em;
+    border-top: 1px solid #e1e1e1; }
+    .header .custom_level > .name {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 0;
+      font-size: 1.1em; }
+    .header .custom_level > * {
+      margin: 5px; }
+    .header .custom_level input {
+      width: 300px; }
 
 .done_dialog {
   display: none;
@@ -63,6 +73,8 @@ div#root {
   .ui-widget.ui-dialog .ui-widget-content {
     background-color: transparent;
     background-image: none; }
+  .ui-widget.ui-dialog.view_source pre {
+    font-size: 0.9em; }
 
 .ui-widget-overlay {
   background-image: none !important; }
@@ -411,7 +423,7 @@ text {
   text-shadow: 1px 1px black;
   fill: white; }
 
-.blue-button, .done_dialog button, .inspector .stat .delete, .inspector .commands button, .controls button {
+.blue-button, .header .custom_level button, .done_dialog button, .inspector .stat .delete, .inspector .commands button, .controls button {
   text-transform: capitalize;
   border: none;
   outline: none;
@@ -421,11 +433,11 @@ text {
   border: 1px solid #ccc;
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
-  .blue-button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
+  .blue-button:hover, .header .custom_level button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
     background-image: -webkit-linear-gradient(top, #fff, #fafafa);
     background-image: linear-gradient(to bottom, #fff, #fafafa);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
-  .blue-button:active, .done_dialog button:active, .inspector .stat .delete:active, .inspector .commands button:active, .controls button:active {
+  .blue-button:active, .header .custom_level button:active, .done_dialog button:active, .inspector .stat .delete:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
 /*

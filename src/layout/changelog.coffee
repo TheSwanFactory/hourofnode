@@ -76,6 +76,9 @@ url = ->
   search.custom = JSON.stringify custom_level.get()
   "#{location.origin}#{location.pathname}?#{queryString.stringify search}"
 
+pretty_source = ->
+  JSON.stringify custom_level.get(), null, 4
+
 exports.changelog =
   world: (level) ->
     {
@@ -92,5 +95,6 @@ exports.changelog =
   set_custom: (custom) ->
     custom_level.set custom
 
-  url: url
+  url:           url
+  pretty_source: pretty_source
 
