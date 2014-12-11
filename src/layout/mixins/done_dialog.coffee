@@ -46,11 +46,12 @@ module.exports.world = (level) ->
 
   star_string = ->
     stars = star_count()
-
     empty_stars = 3 - stars
-    star_string = Array(stars + 1).join("") + Array(empty_stars + 1).join("")
-
-    star_string
+    star = {
+      fill: ""
+      empty: ""
+    }
+    Array(stars + 1).join(star.fill) + Array(empty_stars + 1).join(star.empty)
 
   buttons = make.buttons 'dialog', [
     'Retry',
