@@ -381,7 +381,7 @@ div#root {
       background-color: #6494BF;
       color: #fafafa; }
     .inspector .program > div.editable {
-      border: 2px solid gold; }
+      border: 4px solid maroon; }
     .inspector .program > div.run .program_name:before {
       content: "";
       font-family: FontAwesome;

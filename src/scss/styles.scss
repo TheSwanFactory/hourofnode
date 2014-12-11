@@ -4,6 +4,7 @@ $almost-white: $header-bg-color;
 $almost-black: lighten(#000, 10%);
 $control-bg-color: darken($header-bg-color, 10%);
 $selected-color: gold;
+$selected-border: maroon;
 
 * {
   box-sizing: border-box;
@@ -254,7 +255,7 @@ div#root {
     }
 
     &.editable {
-      border: 2px solid $selected-color;
+      border: 4px solid $selected-border;
 
       .program_name {
       }
