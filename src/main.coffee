@@ -40,6 +40,7 @@ main = ->
   $('#contents').css(height: my.page_dimensions[1]).append(
     render(world) if my.online
   )
+  $('#version').append "1.0"
 
 # Instantiate our main view
 $(main)
