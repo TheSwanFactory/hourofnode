@@ -16,6 +16,7 @@
 {my} = require './my'
 sys = require 'sys'
 queryString = require 'query-string'
+package_json = require '../package.json'
 
 _.mixin(_.str.exports())
 rx = require 'reactive-coffee'
@@ -40,6 +41,7 @@ main = ->
   $('#contents').css(height: my.page_dimensions[1]).append(
     render(world) if my.online
   )
+  $('#version').append package_json.version
 
 # Instantiate our main view
 $(main)
