@@ -49,6 +49,9 @@ div#root {
     .header .custom_level input {
       width: 300px; }
 
+#footer {
+  text-align: center;
+}
 .done_dialog {
   display: none;
   text-align: center; }
