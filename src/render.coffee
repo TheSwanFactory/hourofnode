@@ -34,6 +34,7 @@ class_attrs = (world) ->
   klass.push world.get_local(my.key.kind) ? ''
   klass.push 'selected' if world.get 'selected'
   klass.push 'editable' if world.get 'editable'
+  klass.push 'hidden'   if world.get 'hidden'
   klass
 
 create_attrs = (world, dict) ->
