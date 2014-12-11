@@ -25,10 +25,10 @@ div#root {
 .page_title-0 > .name,
 .level_name {
   font-weight: 200;
-  font-size: 1.6em;
-  margin: 0.2em 5px;
-  display: block;
-  text-align: center;
+  font-size:   1.6em;
+  margin:      0.2em 5px;
+  display:     block;
+  text-align:  center;
 }
 
 // level name
@@ -36,6 +36,7 @@ div#root {
 .level_name {
   font-size: 1.4em;
   font-weight: normal;
+  width: 100%;
 }
 
 .header {
@@ -58,6 +59,11 @@ div#root {
     > span {
       margin-right: $basic-padding * 5;
     }
+  }
+
+  .custom_level {
+    text-align: left;
+    font-size:  0.9em;
   }
 }
 

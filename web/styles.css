@@ -21,7 +21,8 @@ div#root {
 
 .level_name {
   font-size: 1.4em;
-  font-weight: normal; }
+  font-weight: normal;
+  width: 100%; }
 
 .header {
   text-align: center; }
@@ -34,6 +35,9 @@ div#root {
     font-size: 1.1em; }
   .header .stats > span {
     margin-right: 25px; }
+  .header .custom_level {
+    text-align: left;
+    font-size: 0.9em; }
 
 .done_dialog {
   display: none;
