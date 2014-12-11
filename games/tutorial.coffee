@@ -264,6 +264,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
+      focus: 'edit'
       comment: '
       Can edit the level name, sprite name, and sprite color. (DEVELOP)
       Must first solve the puzzle to validate it. (TEST)
@@ -283,7 +284,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit" & Blue Area to Add & Select Logs'
-      editing: true
+      focus: 'edit'
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
@@ -302,7 +303,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit", "log", then "delete" to Remove'
-      editing: true
+      focus: 'edit'
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
@@ -322,6 +323,7 @@ exports.game = {
     }
     {
       name: 'Use "Edit" to Create, Test & Share Your Level'
+      focus: 'edit'
       comment: '
       Encourage students to express themselves.
       Track the solution and use that for the new goal metrics.
