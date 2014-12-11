@@ -47,3 +47,11 @@ exports.utils =
       world.put 'name', value
       dict.after_save(world, value) if dict.after_save?
     dict
+
+  add_offset_to_event: (world, event) ->
+    return if event.offsetX?
+
+    element = $ world.element
+    offset  = element.offset()
+    event.offsetX = event.pageX - offset.left
+    event.offsetY = event.pageY - offset.top
