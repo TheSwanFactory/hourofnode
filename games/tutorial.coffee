@@ -146,7 +146,7 @@ exports.game = {
       ]
     }
     {
-      name: '"Bump" Program Bounces Off Edge and Logs'
+      name: 'Watch "Bump" Bounce Off Edge and Logs'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
@@ -210,11 +210,11 @@ exports.game = {
         {kind: 'log', position: [2,2]}
         {kind: 'log', position: [2,1]}
         {kind: 'log', position: [2,0]}
-        {kind: 'log', position: [2,5]}
-        {kind: 'log', position: [1,5]}
-        {kind: 'log', position: [3,5]}
-        {kind: 'log', position: [4,5]}
-        {kind: 'log', position: [5,5]}
+        {kind: 'log', position: [2,5], color: 'brown', direction: [0,1]}
+        {kind: 'log', position: [1,5], color: 'brown', direction: [0,1]}
+        {kind: 'log', position: [3,5], color: 'brown', direction: [0,1]}
+        {kind: 'log', position: [4,5], color: 'brown', direction: [0,1]}
+        {kind: 'log', position: [5,5], color: 'brown', direction: [0,1]}
         {
           kind: 'turtle'
           position: [0,0]
@@ -226,11 +226,11 @@ exports.game = {
       comment: '
       Can select multiple turtles which act independently.
       This is a primitive form of parallel processing.
-      Optimal solution is to move the blocking turtle.
+      Optimal solution is to move the distant turtle.
       '
       edit_mode: true
       bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 3 }
+      goal: { clicks: 1, bricks: 3, ticks: 3 }
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
         {
@@ -299,7 +299,7 @@ exports.game = {
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
-      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
       bricks: 2
       sprites: [
         { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
@@ -314,7 +314,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Use "Edit" to Create, Test & Share Your Own Level'
+      name: 'Use "Edit" to Create, Test & Share Your Level'
       comment: '
       Encourage students to express themselves.
       Track the solution and use that for the new goal metrics.
@@ -324,13 +324,14 @@ exports.game = {
       goal: { clicks: 99, bricks: 99, ticks: 99 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,7] }
+        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,3] }
         {
           kind: 'turtle'
           actions: {
             run: ['forward']
             bump: ['right']
           }
+          position: [0,3]
         }
       ]
     }
