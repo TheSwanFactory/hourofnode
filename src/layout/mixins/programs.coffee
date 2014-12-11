@@ -130,10 +130,11 @@ exports.programs = (sprite) ->
         update: (event, ui) -> world.call 'sort_update', [event, ui]
       unless sprite.get('editable') or sprite.get('edit_mode')
         $(element).sortable 'disable'
+
     program = make.rows name, [
       {
         _LABEL: 'program_name'
-        name: name
+        name: "on #{name}"
         selected: (world) -> name == sprite.get 'editing'
         click: -> sprite.put 'editing', name
       }
