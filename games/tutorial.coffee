@@ -37,8 +37,9 @@ exports.game = {
   assume: 'baseline'
   name: 'The Hour of NODE'
   comment: "The original Hour of NODE tutorial for CS Education Week 2014"
-  description: 'Welcome to Hour of NODE, part of <a href="http://code.org/">
-  CS Education Week</a> efforts to teach programming to kids of all ages.'
+  description: 'Welcome to <b>Hour of NODE</b>, the hackable way
+  to learn event-driven programming
+  as part of <a href="http://code.org/">CS Education Week</a>.'
   completion: "
   Thanks for playing through the Hour of NODE tutorial.<br/>
   We encourage you to continue creating and sharing your own levels.
