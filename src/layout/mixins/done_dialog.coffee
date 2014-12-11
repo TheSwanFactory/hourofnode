@@ -11,7 +11,7 @@ module.exports.share_dialog = ->
       facebook:
         app_id:  1510955112514265
       email:
-        description: text + "\n\nCheck it out here!: " + encodeURIComponent(changelog.url())
+        description: text + "\n\nClick: " + encodeURIComponent(changelog.url())
 
 module.exports.world = (level) ->
   goals = level.get 'goal'
@@ -76,8 +76,7 @@ module.exports.world = (level) ->
 
   messages.push
     class: 'share-button'
-    name:   -> "I got #{star_count()} stars on the Hour of Node. See if you can beat my score!"
-
+    name:   -> "I programmed a turtle to get #{star_count()} stars on the Hour of Node. Can you solve this puzzle and beat my score?"
   messages.push
     class: 'hint'
     name:   'Hint: Use fewer clicks, bricks, or ticks to improve your score'
