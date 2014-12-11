@@ -43,7 +43,7 @@ COMMAND_COLOR = 'beige'
 COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
-  beta: true
+  beta: false
   test: false #is_local
   online: _?
   inspect: inspect
