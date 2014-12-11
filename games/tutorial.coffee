@@ -73,7 +73,7 @@ exports.game = {
       ]
     }
     {
-      name: 'Watch "Run" Program Loop Over Action Bricks'
+      name: 'Watch "On Run" Program Loop Over Bricks'
       focus: 'run'
       comment: '
       Teach kids to use a run loop rather than brute force.
@@ -139,7 +139,7 @@ exports.game = {
     # TODO: add a level explaining how/why to rearrange bricks
     # TODO: Explain Left-Right
     {
-      name: 'Use Both Left and Right to Move Diagonally'
+      name: 'Use Both "Left" & "Right" to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
@@ -151,7 +151,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Watch "Bump" Bounce Off Edge and Logs'
+      name: 'Watch "On Bump" Bounce Off Edge and Logs'
+      focus: 'run'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
@@ -172,7 +173,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Click "Bump" to Add Bricks to that Program'
+      name: 'Click "On Bump" to Add Bricks to that Program'
+      focus: 'on bump'
       comment: '
       Get students to create their own interrupt handler!!!
 
