@@ -1,6 +1,7 @@
-{my} = require '../my'
+{my}      = require '../my'
 {sprites} = require './sprites'
-{law} = require './mixins/law'
+{law}     = require './mixins/law'
+{utils}   = require '../utils'
 
 exports.grid = () -> {
   _LABEL: "grid"
@@ -16,6 +17,7 @@ exports.grid = () -> {
   click: (world, event) ->
     return unless is_editing = world.get 'edit_mode'
     scale = world.get('cell_size')
+    utils.add_offset_to_event world, event
     x = event.offsetX / scale
     y = event.offsetY / scale
     position = [Math.floor(x), Math.floor(y)]
