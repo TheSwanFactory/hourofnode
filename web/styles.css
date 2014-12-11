@@ -318,6 +318,10 @@ div#root {
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
 
+.controls button.focus {
+  border: solid;
+  border-color: red; }
+
 .inspector {
   padding: 5px;
   background: #e1e1e1; }
