@@ -16,6 +16,8 @@
 {my} = require './my'
 sys = require 'sys'
 queryString = require 'query-string'
+package_json = require '../package.json'
+console.log "package_json", package_json
 
 _.mixin(_.str.exports())
 rx = require 'reactive-coffee'
