@@ -50,8 +50,8 @@ div#root {
       width: 300px; }
 
 #footer {
-  text-align: center;
-}
+  text-align: center; }
+
 .done_dialog {
   display: none;
   text-align: center; }
