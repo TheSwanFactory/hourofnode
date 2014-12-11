@@ -63,6 +63,7 @@ exports.game = {
       They can also experiment with the other control buttons.
       Everything else is disabled to avoid confusion.
       '
+      focus: 'run'
       message: 'You did it!'
       bricks: 2
       goal: { clicks: 0, bricks: 2, ticks: 4 }
