@@ -151,4 +151,11 @@ exports.programs = (sprite) ->
     # if contents is an RxArray, it is a list of commands.
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
+
+  created_programs = 0
+  base_position    = children.length
+  base_letter      = 'A'.charCodeAt 0
+  children.push make.button 'New Program', (world, event) ->
+    world.add_sibling program_row(String.fromCharCode(base_letter + created_programs), []), base_position + created_programs
+    created_programs += 1
   children
