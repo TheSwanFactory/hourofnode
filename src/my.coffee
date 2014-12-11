@@ -44,7 +44,7 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   beta: true
-  test: is_local
+  test: false #is_local
   online: _?
   inspect: inspect
   assert: assert
@@ -62,7 +62,7 @@ exports.my = {
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 7
   speed: 1
-  
+
   button: {
     size: TOUCH
     padding: MARGIN
