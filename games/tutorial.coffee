@@ -58,12 +58,12 @@ exports.game = {
   levels: [
     {
       name: 'Click "Run" Button to Move Turtle to Exit Pad'
+      focus: 'run'
       comment: '
       Explain the use of the "Run" Control.
       They can also experiment with the other control buttons.
       Everything else is disabled to avoid confusion.
       '
-      focus: 'run'
       message: 'You did it!'
       bricks: 2
       goal: { clicks: 0, bricks: 2, ticks: 4 }
@@ -74,6 +74,7 @@ exports.game = {
     }
     {
       name: 'Watch "Run" Program Loop Over Action Bricks'
+      focus: 'run'
       comment: '
       Teach kids to use a run loop rather than brute force.
       Introduce the idea of action bricks.
@@ -94,6 +95,7 @@ exports.game = {
     }
     {
       name: 'Click "Forward" Brick to Create "Run" Program'
+      focus: 'forward'
       comment: '
       Start using program bricks to create their own programs.
       '
@@ -105,7 +107,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Just One Brick to Get Three Gold Stars'
+      name: 'Click Just One Brick to Get Three Gold Stars'
+      focus: 'forward'
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
@@ -136,7 +139,7 @@ exports.game = {
     # TODO: add a level explaining how/why to rearrange bricks
     # TODO: Explain Left-Right
     {
-      name: 'Alternate Left and Right to Move Diagonally'
+      name: 'Use Both Left and Right to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s

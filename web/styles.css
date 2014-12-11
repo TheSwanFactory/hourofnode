@@ -318,7 +318,7 @@ div#root {
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
 
-.controls button.focus {
+.controls button.focus, .inspector .commands button.focus {
   border: solid;
   border-color: red; }
 
