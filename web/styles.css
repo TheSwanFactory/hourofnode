@@ -50,8 +50,8 @@ div#root {
       width: 300px; }
 
 #footer {
-  text-align: center;
-}
+  text-align: center; }
+
 .done_dialog {
   display: none;
   text-align: center; }
@@ -318,6 +318,10 @@ div#root {
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
 
+.controls button.focus, div.program_name.focus {
+  border: solid;
+  border-color: red; }
+
 .inspector {
   padding: 5px;
   background: #e1e1e1; }
@@ -377,7 +381,7 @@ div#root {
       background-color: #6494BF;
       color: #fafafa; }
     .inspector .program > div.editable {
-      border: 2px solid gold; }
+      border: 4px solid maroon; }
     .inspector .program > div.run .program_name:before {
       content: "";
       font-family: FontAwesome;

@@ -3,7 +3,7 @@
 #
 # Role: display and modify sprite state
 #
-# Responsibility: 
+# Responsibility:
 # * create inspector panes for each sprite
 # * load the current inspector
 
@@ -24,12 +24,12 @@ sprite_inspector = (sprite) ->
       behavior(sprite)
     ]
   }
-  
+
 make_inspector = (world, sprite) ->
   inspector = world.make_world sprite_inspector(sprite)
   sprite.put 'inspector', inspector
   inspector
-  
+
 exports.inspector = () ->
   {
     _LABEL: 'inspector'
@@ -37,13 +37,13 @@ exports.inspector = () ->
     inspect: (world, sprite) ->
       world.reset_children()
       inspector = sprite.get('inspector') or make_inspector(world, sprite)
-      world.add_child inspector 
+      world.add_child inspector
 
     width: (world) -> world.up.get('width') - 4 * my.margin
     x: (world) -> world.up.get('width')
     y: 0
     position: 'absolute'
-    height: (world) -> world.get('screen').at vector.size.height
+    height: (world) -> world.get('screen').at(vector.size.height) - 2*my.margin
     stroke: my.color.line
     fill: my.color.background
 

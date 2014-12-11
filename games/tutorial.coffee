@@ -58,6 +58,7 @@ exports.game = {
   levels: [
     {
       name: 'Click "Run" Button to Move Turtle to Exit Pad'
+      focus: 'run'
       comment: '
       Explain the use of the "Run" Control.
       They can also experiment with the other control buttons.
@@ -72,7 +73,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Watch "Run" Program Loop Over Action Bricks'
+      name: 'Watch "On Run" Program Loop Over Bricks'
+      focus: 'run'
       comment: '
       Teach kids to use a run loop rather than brute force.
       Introduce the idea of action bricks.
@@ -93,6 +95,7 @@ exports.game = {
     }
     {
       name: 'Click "Forward" Brick to Create "Run" Program'
+      focus: 'forward'
       comment: '
       Start using program bricks to create their own programs.
       '
@@ -104,7 +107,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Use Just One Brick to Get Three Gold Stars'
+      name: 'Click Just One Brick to Get Three Gold Stars'
+      # focus: 'forward' -- creates ambiguity with run
       comment: '
       Encourage more concise code.
       Humans can usually only handle 7+-2 items in short-term memory.
@@ -135,7 +139,7 @@ exports.game = {
     # TODO: add a level explaining how/why to rearrange bricks
     # TODO: Explain Left-Right
     {
-      name: 'Alternate Left and Right to Move Diagonally'
+      name: 'Use Both "Left" & "Right" to Move Diagonally'
       comment: '
       Create a multi-stage program.
       Can get top score by using run loop to avoid final "Forward"s
@@ -147,7 +151,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Watch "Bump" Bounce Off Edge and Logs'
+      name: 'Watch "On Bump" Bounce Off Edge and Logs'
+      focus: 'run'
       comment: '
       Shows the power of reactive programming.
       Introduces concept of an interrupt handler.
@@ -168,7 +173,8 @@ exports.game = {
       ]
     }
     {
-      name: 'Click "Bump" to Add Bricks to that Program'
+      name: 'Click "On Bump" to Add Bricks to that Program'
+      focus: 'on bump'
       comment: '
       Get students to create their own interrupt handler!!!
 
@@ -258,6 +264,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
+      focus: 'edit'
       comment: '
       Can edit the level name, sprite name, and sprite color. (DEVELOP)
       Must first solve the puzzle to validate it. (TEST)
@@ -277,7 +284,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit" & Blue Area to Add & Select Logs'
-      editing: true
+      focus: 'edit'
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
@@ -296,7 +303,7 @@ exports.game = {
     }
     {
       name: 'Click "Edit", "log", then "delete" to Remove'
-      editing: true
+      focus: 'edit'
       comment: '
       Can create arbitrary sprites and program them if in edit mode.
       '
@@ -316,6 +323,7 @@ exports.game = {
     }
     {
       name: 'Use "Edit" to Create, Test & Share Your Level'
+      focus: 'edit'
       comment: '
       Encourage students to express themselves.
       Track the solution and use that for the new goal metrics.

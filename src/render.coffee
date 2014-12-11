@@ -18,12 +18,18 @@ normalize = (paths) ->
 
 clicker = (world) ->
   action = world.get_raw 'click'
-  return (event) -> action(world, jQuery.event.fix(event)) if action? and !world.has_children()
+  return (event) ->
+    action(world, jQuery.event.fix(event)) if action? and !world.has_children()
 
 initializer = (world) ->
   action = world.get_local 'init'
   # this is the local jQuery object
   return (event) -> action(world, this) if action?
+
+is_focus = (world) ->
+  focus = world.get 'focus'
+  return false unless focus
+  focus == world.get_local 'name'
 
 class_attrs = (world) ->
   labels = world.labels()
@@ -35,6 +41,7 @@ class_attrs = (world) ->
   klass.push 'selected' if world.get 'selected'
   klass.push 'editable' if world.get 'editable'
   klass.push 'hidden'   if world.get 'hidden'
+  klass.push 'focus' if is_focus(world)
   klass
 
 create_attrs = (world, dict) ->
