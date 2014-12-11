@@ -47,6 +47,7 @@ exports.sprites = {
     world.send 'inspect', child
 
   delete_sprite: (world, sprite) ->
+    world.send 'click'
     world.remove_child sprite
 
   # selection
