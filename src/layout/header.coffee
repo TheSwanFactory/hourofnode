@@ -1,6 +1,7 @@
-{my}    = require '../my'
-{make}  = require '../render/make'
-{utils} = require '../utils'
+{my}           = require '../my'
+{make}         = require '../render/make'
+{utils}        = require '../utils'
+{custom_level} = require './mixins/custom_level'
 
 exports.header = (level) ->
 
@@ -45,4 +46,5 @@ exports.header = (level) ->
       metric 'brick'
       metric 'tick'
     ]
-  ]
+    custom_level(level)
+  ], { width: '' }
