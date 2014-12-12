@@ -1,5 +1,6 @@
 {make}      = require '../../render/make'
 {my}        = require '../../my'
+{beep}      = require './beep'
 {changelog} = require '../changelog'
 
 module.exports.share_dialog = ->
@@ -49,12 +50,23 @@ module.exports.world = (level) ->
     'Next'
   ], {}, dialogAction
 
-  publish = make.button 'Publish', ->
-    $.ajax
+  publish = make.button 'Publish', ((world) ->
+    $element = $ world.element
+    $.ajax(
       url: "#{my.level_server}/levels"
       type: 'POST'
       data:
         url: changelog.url()
+    ).success(->
+      $element.removeClass('loading').addClass('success')
+    ).error(->
+      $element.removeClass('loading').addClass('error')
+      beep()
+      alert 'Uh-oh! There was an error. Please click on "Get Help" at the bottom of the page and report it'
+    )
+
+    $element.addClass('changed').addClass('loading').attr('disabled', 'disabled')
+  ), { class: 'publish' }
 
   share_message = "I programmed a turtle to solve this level on the Hour of NODE. Can you?"
 

@@ -106,6 +106,30 @@ div#root {
     margin:  $basic-padding;
   }
 
+  .publish {
+    &.changed {
+      transition-delay: 0.2s;
+      font-size: 0;
+
+      &:before {
+        font-family: FontAwesome;
+        font-size: 16px;
+      }
+    }
+    &.loading:before {
+      content:   "";
+      animation: spin 1s infinite linear;
+    }
+    &.success:before {
+      content: "";
+      color:   green;
+    }
+    &.error:before {
+      content: "";
+      color:   red;
+    }
+  }
+
   .hint {
     font-size: 0.7em;
   }
@@ -336,7 +360,7 @@ text {
   background-image: linear-gradient(to bottom, #fefefe, #f0f0f0);
   border-radius:    4px;
   border:           1px solid #ccc;
-  transition:       all 0.2s;
+  transition:       background 0.2s, box-shadow 0.2s;
 
   &:hover {
     background-image: linear-gradient(to bottom, #fff, #fafafa);
@@ -439,4 +463,9 @@ button {
     @extend .icon-button;
     content: "";
   }
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
