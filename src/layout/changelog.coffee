@@ -4,6 +4,15 @@ rx          = require 'reactive-coffee'
 
 custom_level = rx.cell({ sprites: [], goal: {} })
 
+actions_to_object = (actions) ->
+  keys   = actions.keys()
+  object = {}
+
+  for key in keys
+    object[key] = actions.get(key).all()
+
+  object
+
 get_level_copy = ->
   $.extend {}, custom_level.get()
 
@@ -41,6 +50,7 @@ make_sprite = (world, sprite_dict) ->
   sprite =
     kind:     sprite_dict.kind
     position: sprite_dict.position
+    actions:  actions_to_object(sprite_dict.actions)
 
   update_level (level) ->
     if level.sprites[index]?
@@ -88,6 +98,21 @@ store_action = (world, args) ->
 
     program_actions.push action
 
+remove_action = (world, args) ->
+  [sprite, program, action] = args
+
+  level_sprite_index = get_sprite_index sprite
+
+  return unless level_sprite_index > -1
+
+  update_level (level) ->
+    sprite  = level.sprites[level_sprite_index]
+
+    program_actions = sprite.actions[program]
+    program_action_index = get_sprite_index action
+
+    program_actions.splice program_actions, 1
+
 url = ->
   search = queryString.parse location.search
   search.custom = JSON.stringify custom_level.get()
@@ -108,6 +133,7 @@ exports.changelog =
         'tick'
         'brick'
         'store_action'
+        'remove_action'
       ]
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
@@ -117,6 +143,7 @@ exports.changelog =
       tick:              metrics.tick
       brick:             metrics.brick
       store_action:      store_action
+      remove_action:     remove_action
     }
 
   set_custom: (custom) ->

@@ -120,6 +120,7 @@ exports.programs = (sprite) ->
           button.up.remove_child(button)
           button.send 'click'
           button.send 'brick', -1
+          button.send 'remove_action', [sprite, name, button]
         else
           button.send 'error', my.not_editable(sprite)
       ), {
