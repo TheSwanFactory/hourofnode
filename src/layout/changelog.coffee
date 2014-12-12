@@ -1,5 +1,6 @@
 queryString = require 'query-string'
-rx = require 'reactive-coffee'
+rx          = require 'reactive-coffee'
+{my}        = require '../my'
 
 custom_level = rx.cell({ sprites: [], goal: {} })
 
@@ -71,6 +72,22 @@ for metric in ['click', 'tick', 'brick']
       update_level (level) ->
         level.goal[plural] = world.get plural, false
 
+store_action = (world, args) ->
+  [sprite, program, action] = args
+
+  level_sprite_index = get_sprite_index sprite
+
+  return unless level_sprite_index > -1
+
+  update_level (level) ->
+    sprite  = level.sprites[level_sprite_index]
+    program = program.get my.key.label
+
+    sprite_actions  = sprite.actions ?= {}
+    program_actions = sprite.actions[program] ?= []
+
+    program_actions.push action
+
 url = ->
   search = queryString.parse location.search
   search.custom = JSON.stringify custom_level.get()
@@ -82,7 +99,16 @@ pretty_source = ->
 exports.changelog =
   world: (level) ->
     {
-      _EXPORTS:          ['log_sprite_change', 'make_sprite', 'delete_sprite', 'level_change', 'click', 'tick', 'brick']
+      _EXPORTS: [
+        'log_sprite_change'
+        'make_sprite'
+        'delete_sprite'
+        'level_change'
+        'click'
+        'tick'
+        'brick'
+        'store_action'
+      ]
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
       delete_sprite:     delete_sprite
@@ -90,6 +116,7 @@ exports.changelog =
       click:             metrics.click
       tick:              metrics.tick
       brick:             metrics.brick
+      store_action:      store_action
     }
 
   set_custom: (custom) ->

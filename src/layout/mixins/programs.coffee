@@ -97,6 +97,7 @@ exports.programs = (sprite) ->
         return world.send 'error', message
 
       world.send 'brick'
+      world.send 'store_action', [sprite, world, action]
       actions_container.add_child action
 
     # Drag & Drop Sorting
