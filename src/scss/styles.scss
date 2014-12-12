@@ -166,7 +166,7 @@ div#root {
   transition: all 0.2s;
 }
 
-.controls button.focus, div.program_name.focus {
+.controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus {
   border: solid;
   border-color: red;
 }
