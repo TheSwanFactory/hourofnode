@@ -47,4 +47,11 @@ exports.make = {
       _CHILDREN: children
       stroke: my.color.line
     }
+
+  button: (name, action, options = {}) ->
+    _.extend {
+      tag_name: 'button'
+      name:     name
+      click:    action
+    }, options
 }
