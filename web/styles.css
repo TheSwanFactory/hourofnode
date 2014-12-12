@@ -339,9 +339,36 @@ div#root {
   -webkit-transition: all 0.2s;
           transition: all 0.2s; }
 
-.controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus, .commands .focus {
-  border: solid;
-  border-color: red !important; }
+.controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus {
+  -webkit-animation-name: pulse-gold;
+          animation-name: pulse-gold;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background-size: 1px 100px;
+  box-shadow: 0px 0px 10px 1px gold;
+  background-image: -webkit-linear-gradient(top, yellow, gold);
+  background-image: linear-gradient(to bottom, yellow, gold); }
+  .controls button.focus:hover, div.program_name.focus:hover, .inspector .stat .delete.editable.focus:hover {
+    -webkit-animation-name: none;
+            animation-name: none;
+    background-image: -webkit-linear-gradient(top, #fafa00, #fad300);
+    background-image: linear-gradient(to bottom, #fafa00, #fad300); }
+
+@-webkit-keyframes pulse-gold {
+  0% {
+    background-position-y: 0; }
+
+  50% {
+    background-position-y: -30px; } }
+
+@keyframes pulse-gold {
+  0% {
+    background-position-y: 0; }
+
+  50% {
+    background-position-y: -30px; } }
 
 .inspector {
   padding: 5px;
