@@ -1,5 +1,9 @@
 {changelog} = require '../changelog'
 {make}      = require '../../render/make'
+rx          = require 'reactive-coffee'
+
+dialog_open = rx.cell(false)
+dialog      = null
 
 exports.custom_level = (level) ->
   make.columns 'custom_level', [
@@ -22,6 +26,18 @@ exports.custom_level = (level) ->
     }
   ],
   {
-    name:   'Custom Level'
-    hidden: -> !(level.get('level_edited') && !level.get('edit_mode'))
+    _EXPORTS: ['save', 'edit']
+    save:     (world) ->
+      dialog = $(world.element).dialog
+        width:    400
+        title:    'Custom Level'
+        position:
+          my: 'right bottom'
+          at: 'right bottom'
+          of: $('.inspector')
+      dialog_open.set true
+    edit:    (world) ->
+      return unless dialog_open.get()
+
+      dialog.dialog 'destroy'
   }

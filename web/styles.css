@@ -39,6 +39,7 @@ div#root {
   .header .stats > span {
     margin-right: 25px; }
   .header .custom_level {
+    display: none;
     font-size: 0.9em;
     border-top: 1px solid #e1e1e1; }
     .header .custom_level > .name {
