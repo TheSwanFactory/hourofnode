@@ -62,6 +62,7 @@ exports.my = {
   row: {size: TOUCH + 2*MARGIN, spacing: TOUCH + 4*MARGIN}
   action_limit: 7
   speed: 1
+  level_server: 'http://hourofnode-games.herokuapp.com'
 
   button: {
     size: TOUCH

@@ -1,4 +1,5 @@
 {make}      = require '../../render/make'
+{my}        = require '../../my'
 {changelog} = require '../changelog'
 
 module.exports.share_dialog = ->
@@ -48,6 +49,12 @@ module.exports.world = (level) ->
     'Next'
   ], {}, dialogAction
 
+  publish = make.button 'Publish', ->
+    $.ajax
+      url: "#{my.level_server}/levels"
+      type: 'POST'
+      data:
+        url: changelog.url()
 
   share_message = "I programmed a turtle to solve this level on the Hour of NODE. Can you?"
 
@@ -56,7 +63,7 @@ module.exports.world = (level) ->
     { class: 'metrics', name: metrics.join ' | ' }
     { class: 'message', name: level.get('message') }
     { class: 'share-button', name: share_message }
-    { class: 'publish' }
+    publish
   ]
 
   if star_count() < metrics.length
