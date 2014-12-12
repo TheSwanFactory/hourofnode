@@ -18,7 +18,7 @@ exports.test_layout = (test, rx) ->
   all_sprites = grid.find_child('sprites')
   pad = all_sprites.find_children()[0]
   sprite = all_sprites.find_children()[1] # me
-  wall = all_sprites.find_children()[2]
+  log = all_sprites.find_children()[2]
 
   test "layout", (t) ->
     t.ok header, 'header'
@@ -26,7 +26,7 @@ exports.test_layout = (test, rx) ->
     t.ok grid, 'grid'
     t.ok world, 'world'
     t.end()
-  
+
   test "layout properties", (t) ->
     t.ok shapes = world.get('shapes'), 'shapes'
     t.ok levels = world.get('levels'), 'levels'
@@ -37,7 +37,7 @@ exports.test_layout = (test, rx) ->
     t.ok world.is_array(sprites), 'sprites rx_array'
     t.ok sprite_dict = sprites.at(0), 'sprite'
     t.end()
-  
+
   test "layout world", (t) ->
     t.ok level, 'active level'
     t.equal world.get('game'), 'example', 'game file'
@@ -90,11 +90,11 @@ exports.test_layout = (test, rx) ->
     t.ok sequences = actions.keys(), 'actions'
     t.end()
 
-  test 'law - collision with obstruction', (t) ->
+  test 'law - moving into obstruction', (t) ->
     # set up a collision
-    sprite.put 'next_position', wall.get('position')
+    sprite.put 'next_position', log.get('position')
     t.equal sprite.get('proposed_position'),
-            wall.get('proposed_position'),
+            log.get('proposed_position'),
             'impending collision'
 
     sprite.send 'fetch'
@@ -104,9 +104,10 @@ exports.test_layout = (test, rx) ->
             undefined,
             'sprite next position should clear'
     t.notEqual sprite.get('position'),
-               wall.get('position'),
-               'sprite did not move onto the wall'
+               log.get('position'),
+               'sprite did not move onto the log'
     t.ok sprite.get('bump'), 'sprite was bumped'
+    t.notOk log.get('bump'), 'log was not bumped'
 
     sprite.send 'prefetch'
 
@@ -116,13 +117,14 @@ exports.test_layout = (test, rx) ->
     sprite.send 'step'
 
     t.equal sprite.get('running'), 'run', 'sprite returns to run after one action'
-
     t.end()
 
-  test 'law - collision with non-obstruction', (t) ->
+  test 'law - moving into non-obstruction', (t) ->
     # sprite moves onto pad
     sprite.put 'next_position', pad.get('position')
-    t.equal pad.get('proposed_position'), pad.get('position')
+    t.equal pad.get('proposed_position'),
+            pad.get('position'),
+            'pad not moving'
     t.equal sprite.get('proposed_position'),
             pad.get('proposed_position'),
             'impending collision'
@@ -137,11 +139,12 @@ exports.test_layout = (test, rx) ->
 
     sprite.send 'prefetch'
 
-    t.equal sprite.get('running'), 'run'
-    t.equal pad.get('running'), 'bump'
+    t.equal sprite.get('running'), 'run', 'sprite running'
+    console.log 'pad', pad.doc.x
+    t.equal pad.get('running'), 'bump', 'pad bumping'
     t.end()
 
-  test 'law - collision with wall', (t) ->
+  test 'law - collision with edge of grid', (t) ->
     sprite.put 'bump', null
 
     edge = [7, 7]

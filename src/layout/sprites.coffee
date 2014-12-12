@@ -43,7 +43,10 @@ exports.sprites = {
     child.handle_event 'rewind'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world kind_authority
-    world.send('inspect', child) if child.get 'editable'
+    if child.get 'editable'
+      world.send 'inspect', child
+    else
+      world.send 'make_inspector', child
 
   delete_sprite: (world, sprite) ->
     world.send 'click'

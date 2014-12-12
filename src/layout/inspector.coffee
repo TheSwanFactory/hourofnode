@@ -33,11 +33,13 @@ make_inspector = (world, sprite) ->
 exports.inspector = () ->
   {
     _LABEL: 'inspector'
-    _EXPORTS: ['inspect']
+    _EXPORTS: ['inspect', 'make_inspector']
+    make_inspector: (world, sprite) ->
+      sprite.get('inspector') or make_inspector(world, sprite)
+
     inspect: (world, sprite) ->
       world.reset_children()
-      inspector = sprite.get('inspector') or make_inspector(world, sprite)
-      world.add_child inspector
+      world.add_child world.call('make_inspector', sprite)
 
     width: (world) -> world.up.get('width') - 4 * my.margin
     x: (world) -> world.up.get('width')
