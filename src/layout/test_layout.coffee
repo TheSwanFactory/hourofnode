@@ -18,7 +18,7 @@ exports.test_layout = (test, rx) ->
   all_sprites = grid.find_child('sprites')
   pad = all_sprites.find_children()[0]
   sprite = all_sprites.find_children()[1] # me
-  wall = all_sprites.find_children()[2]
+  log = all_sprites.find_children()[2]
 
   test "layout", (t) ->
     t.ok header, 'header'
@@ -92,9 +92,9 @@ exports.test_layout = (test, rx) ->
 
   test 'law - moving into obstruction', (t) ->
     # set up a collision
-    sprite.put 'next_position', wall.get('position')
+    sprite.put 'next_position', log.get('position')
     t.equal sprite.get('proposed_position'),
-            wall.get('proposed_position'),
+            log.get('proposed_position'),
             'impending collision'
 
     sprite.send 'fetch'
@@ -104,9 +104,10 @@ exports.test_layout = (test, rx) ->
             undefined,
             'sprite next position should clear'
     t.notEqual sprite.get('position'),
-               wall.get('position'),
-               'sprite did not move onto the wall'
+               log.get('position'),
+               'sprite did not move onto the log'
     t.ok sprite.get('bump'), 'sprite was bumped'
+    t.notOk log.get('bump'), 'log was not bumped'
 
     sprite.send 'prefetch'
 
