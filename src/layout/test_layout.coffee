@@ -139,6 +139,7 @@ exports.test_layout = (test, rx) ->
     sprite.send 'prefetch'
 
     t.equal sprite.get('running'), 'run', 'sprite running'
+    console.log 'pad', pad.doc.x
     t.equal pad.get('running'), 'bump', 'pad bumping'
     t.end()
 
