@@ -43,9 +43,7 @@ exports.sprites = {
     child.handle_event 'rewind'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world kind_authority
-    #child.call 'rewind'
-    # TODO: only if editable?
-    world.send 'inspect', child
+    world.send('inspect', child) if child.get 'editable'
 
   delete_sprite: (world, sprite) ->
     world.send 'click'
