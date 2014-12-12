@@ -40,6 +40,10 @@ div#root {
   width: 100%;
 }
 
+.editing {
+  color: red;
+}
+
 .header {
   text-align: center;
 
@@ -186,7 +190,7 @@ div#root {
   transition: all 0.2s;
 }
 
-.controls button.focus, div.program_name.focus {
+.controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus {
   border: solid;
   border-color: red;
 }

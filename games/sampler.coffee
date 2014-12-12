@@ -7,7 +7,7 @@ exports.game = {
     {
       name: 'One of Everything'
       sprites: [
-        {kind: 'gate'}
+        {kind: 'pad'}
         {kind: 'egg'}
         {kind: 'log'}
         {

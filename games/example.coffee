@@ -16,7 +16,7 @@ yu = _.extend {}, me, {
 
 exit = {
   name: 'exit'
-  kind: 'gate'
+  kind: 'pad'
   position: [5,1]
   stroke: 'maroon'
   fill: 'red'

@@ -38,6 +38,13 @@ exports.header = (level) ->
     level_name
     make.columns 'progress', [
       anchor "<", 'previous_params'
+      {
+        _LABEL: 'edit-status'
+        class: 'editing'
+        name: ->
+          return " " unless level.get 'edit_mode'
+          " [editing]"
+      }
       " Level #{level.get('level_index')} of #{level.get('level_count')}"
       anchor ">", 'next_params'
     ]

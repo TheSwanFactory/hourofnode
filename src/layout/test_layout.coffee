@@ -16,7 +16,7 @@ exports.test_layout = (test, rx) ->
   level = world.find_child()
   grid = level.find_child('grid')
   all_sprites = grid.find_child('sprites')
-  gate = all_sprites.find_children()[0]
+  pad = all_sprites.find_children()[0]
   sprite = all_sprites.find_children()[1] # me
   wall = all_sprites.find_children()[2]
 
@@ -120,25 +120,25 @@ exports.test_layout = (test, rx) ->
     t.end()
 
   test 'law - collision with non-obstruction', (t) ->
-    # sprite moves onto gate
-    sprite.put 'next_position', gate.get('position')
-    t.equal gate.get('proposed_position'), gate.get('position')
+    # sprite moves onto pad
+    sprite.put 'next_position', pad.get('position')
+    t.equal pad.get('proposed_position'), pad.get('position')
     t.equal sprite.get('proposed_position'),
-            gate.get('proposed_position'),
+            pad.get('proposed_position'),
             'impending collision'
 
     sprite.send 'execute'
 
     t.equal sprite.get('position'),
-            gate.get('position'),
-            'sprite moved onto gate'
+            pad.get('position'),
+            'sprite moved onto pad'
     t.notOk sprite.get('bump'), 'sprite was not bumped'
-    t.ok gate.get('bump'), 'gate was bumped'
+    t.ok pad.get('bump'), 'pad was bumped'
 
     sprite.send 'prefetch'
 
     t.equal sprite.get('running'), 'run'
-    t.equal gate.get('running'), 'bump'
+    t.equal pad.get('running'), 'bump'
     t.end()
 
   test 'law - collision with wall', (t) ->
