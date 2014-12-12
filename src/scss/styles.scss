@@ -291,8 +291,10 @@ div.program_name.focus,
   .program > div {
     padding:          $basic-padding;
     background-color: darken($header-bg-color, 7%);
-    border:           2px solid transparent;
-    transition:       all 0.2s;
+    border-width:     4px;
+    border-style:     solid;
+    border-color:     transparent;
+    transition:       background 0.2s, color 0.2s;
     transition-delay: 0.3s;
 
     &:hover {
@@ -305,7 +307,7 @@ div.program_name.focus,
     }
 
     &.editable {
-      border: 4px solid $selected-border;
+      border-color: $selected-border;
 
       .program_name {
       }
