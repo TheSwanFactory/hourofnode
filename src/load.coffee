@@ -77,9 +77,9 @@ extend_level = (level, level_index) ->
   level.init = (world) ->
     body = $('<div class="splash">')
     if level_index == 0 && world.get('description', false)?
-      body.append "<div>#{world.get 'description', false}</div>"
+      body.append "<div class='description'>#{world.get 'description', false}</div>"
     if world.get('level_name', false)?
-      body.append "<div>#{world.get 'level_name', false}</div>"
+      body.append "<div class='level_name'>#{world.get 'level_name', false}</div>"
 
     if body.children().length > 0
       $(body).dialog
