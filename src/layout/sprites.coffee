@@ -43,7 +43,7 @@ exports.sprites = {
     child.handle_event 'rewind'
     child.handle_event 'inspect'
     child.put my.key.authority, world.make_world kind_authority
-    if child.get 'editable'
+    if dict.kind? && dict.kind == 'turtle'
       world.send 'inspect', child
     else
       world.send 'make_inspector', child
