@@ -62,6 +62,23 @@ div#root {
   .done_dialog button {
     padding: 10px;
     margin: 5px; }
+  .done_dialog .publish.changed {
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+    font-size: 0; }
+    .done_dialog .publish.changed:before {
+      font-family: FontAwesome;
+      font-size: 16px; }
+  .done_dialog .publish.loading:before {
+    content: "";
+    -webkit-animation: spin 1s infinite linear;
+            animation: spin 1s infinite linear; }
+  .done_dialog .publish.success:before {
+    content: "";
+    color: green; }
+  .done_dialog .publish.error:before {
+    content: "";
+    color: red; }
   .done_dialog .hint {
     font-size: 0.7em; }
 
@@ -438,8 +455,8 @@ text {
   background-image: linear-gradient(to bottom, #fefefe, #f0f0f0);
   border-radius: 4px;
   border: 1px solid #ccc;
-  -webkit-transition: all 0.2s;
-          transition: all 0.2s; }
+  -webkit-transition: background 0.2s, box-shadow 0.2s;
+          transition: background 0.2s, box-shadow 0.2s; }
   .blue-button:hover, .header .custom_level button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
     background-image: -webkit-linear-gradient(top, #fff, #fafafa);
     background-image: linear-gradient(to bottom, #fff, #fafafa);
@@ -491,3 +508,21 @@ button._victory:before {
   content: ""; }
 button.delete:before {
   content: ""; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }

@@ -1,4 +1,6 @@
 {make}      = require '../../render/make'
+{my}        = require '../../my'
+{beep}      = require './beep'
 {changelog} = require '../changelog'
 
 module.exports.share_dialog = ->
@@ -29,6 +31,12 @@ module.exports.world = (level) ->
 
   next = (world) -> window.open world.get('next_url'), '_self'
 
+  star_count = ->
+    metrics
+      .map((key) -> level.get(key) <= goals[key])
+      .filter((key) -> key == true)
+      .length
+
   star_for = (key) ->
     return star.empty if level.get(key) > goals[key]
     star.fill
@@ -42,17 +50,38 @@ module.exports.world = (level) ->
     'Next'
   ], {}, dialogAction
 
+  publish = make.button 'Publish', ((world) ->
+    $element = $ world.element
+    $.ajax(
+      url: "#{my.level_server}/levels"
+      type: 'POST'
+      data:
+        url: changelog.url()
+    ).success(->
+      $element.removeClass('loading').addClass('success')
+      setTimeout (-> window.location = changelog.url()), 500
+    ).error(->
+      $element.removeClass('loading').addClass('error')
+      beep()
+      alert 'Uh-oh! There was an error. Please click on "Get Help" at the bottom of the page and report it'
+    )
+
+    $element.addClass('changed').addClass('loading').attr('disabled', 'disabled')
+  ), { class: 'publish' }
 
   share_message = "I programmed a turtle to solve this level on the Hour of NODE. Can you?"
 
-  hint = 'Hint: Use fewer clicks, bricks, or ticks to improve your score'
   messages = [
     { class: 'stars', name: star_string() }
     { class: 'metrics', name: metrics.join ' | ' }
     { class: 'message', name: level.get('message') }
     { class: 'share-button', name: share_message }
-    { class: 'hint', hint }
+    publish
   ]
+
+  if star_count() < metrics.length
+    hint = 'Hint: Use fewer clicks, bricks, or ticks to improve your score'
+    messages.push class: 'hint', name: hint
 
   if level.get('completion', false)? && level.get('last_level')
     messages.push
