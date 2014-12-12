@@ -59,6 +59,7 @@ module.exports.world = (level) ->
         url: changelog.url()
     ).success(->
       $element.removeClass('loading').addClass('success')
+      setTimeout (-> window.location = changelog.url()), 500
     ).error(->
       $element.removeClass('loading').addClass('error')
       beep()
