@@ -229,6 +229,65 @@ exports.game = {
       ]
     }
     {
+      name: 'Click "Edit" to Change This, "Save" When Done'
+      focus: 'edit'
+      comment: '
+      Can edit the level name, sprite name, and sprite color. (DEVELOP)
+      Must first solve the puzzle to validate it. (TEST)
+      Can then share it from the post-level splash screen. (DEPLOY)
+      Affirms the importance of good integration testing!
+      '
+      edit_mode: true
+      bricks: 2
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
+      sprites: [
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
+        {
+          kind: 'turtle'
+          actions: { run: ['forward'], bump: ['right'] }
+        }
+      ]
+    }
+    {
+      name: 'Click "Edit" and Blue Area to Add Logs'
+      focus: 'edit'
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 11 }
+      bricks: 2
+      sprites: [
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,4] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
+      name: 'Click "Edit", "log", then "delete" to Remove'
+      focus: 'delete'
+      comment: '
+      Can create arbitrary sprites and program them if in edit mode.
+      '
+      goal: { clicks: 1, bricks: 2, ticks: 5 }
+      bricks: 2
+      sprites: [
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'log', position: [2,0] }
+        {
+          kind: 'turtle'
+          actions: {
+            run: ['forward']
+            bump: ['right']
+          }
+        }
+      ]
+    }
+    {
       name: 'Click Other Turtles To Program Them'
       comment: '
       Can select multiple turtles which act independently.
@@ -262,66 +321,7 @@ exports.game = {
         }
       ]
     }
-    {
-      name: 'Click "Edit" to Modify; "Save" and "Run" to Share'
-      focus: 'edit'
-      comment: '
-      Can edit the level name, sprite name, and sprite color. (DEVELOP)
-      Must first solve the puzzle to validate it. (TEST)
-      Can then share it from the post-level splash screen. (DEPLOY)
-      Affirms the importance of good integration testing!
-      '
-      edit_mode: true
-      bricks: 2
-      goal: { clicks: 1, bricks: 2, ticks: 5 }
-      sprites: [
-        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
-        {
-          kind: 'turtle'
-          actions: { run: ['forward'], bump: ['right'] }
-        }
-      ]
-    }
-    {
-      name: 'Click "Edit" & Blue Area to Add & Select Logs'
-      focus: 'edit'
-      comment: '
-      Can create arbitrary sprites and program them if in edit mode.
-      '
-      goal: { clicks: 1, bricks: 2, ticks: 11 }
-      bricks: 2
-      sprites: [
-        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,4] }
-        {
-          kind: 'turtle'
-          actions: {
-            run: ['forward']
-            bump: ['right']
-          }
-        }
-      ]
-    }
-    {
-      name: 'Click "Edit", "log", then "delete" to Remove'
-      focus: 'edit'
-      comment: '
-      Can create arbitrary sprites and program them if in edit mode.
-      '
-      goal: { clicks: 1, bricks: 2, ticks: 5 }
-      bricks: 2
-      sprites: [
-        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
-        { kind: 'log', position: [2,0] }
-        {
-          kind: 'turtle'
-          actions: {
-            run: ['forward']
-            bump: ['right']
-          }
-        }
-      ]
-    }
-    {
+   {
       name: 'Use "Edit" to Create, Test & Share Your Level'
       focus: 'edit'
       comment: '
