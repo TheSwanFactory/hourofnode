@@ -49,7 +49,7 @@ exports.game = {
          a#{RADIUS},#{RADIUS} 0 1,1 -#{INSET},0"
       ]
     }
-    gate: {
+    pad: {
       name: 'exit'
       running: 'run'
       editing:  'run'

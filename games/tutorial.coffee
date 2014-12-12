@@ -12,9 +12,9 @@
 # * bump program (interrupt handler)
 
 # TODO:
-# - Gate by default should send _victory action when bumped
+# - Pad by default should send _victory action when bumped
 # - Turtle defaults to reverse on bump, to avoid invisible loop
-# - Implicitly add: assume, per-level turtle and gate (if absent)
+# - Implicitly add: assume, per-level turtle and pad (if absent)
 # - Check and send 'done -1' if infinite loop (e.g., no bump)
 # - Edit Level Name and non-text status items
 
@@ -68,7 +68,7 @@ exports.game = {
       bricks: 2
       goal: { clicks: 0, bricks: 2, ticks: 4 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [1,1] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [1,1] }
         { kind: 'turtle', actions: {run: ['forward', 'right']} }
       ]
     }
@@ -83,7 +83,7 @@ exports.game = {
       bricks: 4
       goal: { clicks: 0, bricks: 4, ticks: 12 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [3,3] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [3,3] }
         {
           kind: 'turtle'
           actions: {
@@ -102,7 +102,7 @@ exports.game = {
       message: 'Great job!'
       goal: { clicks: 1, bricks: 1, ticks: 8 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -119,7 +119,7 @@ exports.game = {
       action_limit: 1
       goal: { clicks: 1, bricks: 1, ticks: 8 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [7,0] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -132,7 +132,7 @@ exports.game = {
       goal: { clicks: 1, bricks: 1, ticks: 6 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [5,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [5,0] }
         { kind: 'turtle', actions: {run: ['forward', 'right']} }
       ]
     }
@@ -146,7 +146,7 @@ exports.game = {
       '
       goal: { clicks: 4, bricks: 4, ticks: 8 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [2,2] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [2,2] }
         { kind: 'turtle', actions: {} }
       ]
     }
@@ -161,7 +161,7 @@ exports.game = {
       bricks: 6
       sprites: [
         { kind: 'log', position: [0,2] }
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,2] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,2] }
         {
           kind: 'turtle'
           actions: {
@@ -189,7 +189,7 @@ exports.game = {
       bricks: 1
       sprites: [
         { kind: 'log', position: [5,0] }
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
           actions: {
@@ -211,7 +211,7 @@ exports.game = {
       '
       goal: { clicks: 2, bricks: 2, ticks: 29 }
       sprites: [
-        {kind: 'gate', actions: {bump: ['_victory']}}
+        {kind: 'pad', actions: {bump: ['_victory']}}
         {kind: 'log'}
         {kind: 'log', position: [0,2]}
         {kind: 'log', position: [2,2]}
@@ -239,7 +239,7 @@ exports.game = {
       bricks: 2
       goal: { clicks: 1, bricks: 3, ticks: 3 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
         {
           kind: 'turtle'
           name: 'yu'
@@ -275,7 +275,7 @@ exports.game = {
       bricks: 2
       goal: { clicks: 1, bricks: 2, ticks: 5 }
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
         {
           kind: 'turtle'
           actions: { run: ['forward'], bump: ['right'] }
@@ -291,7 +291,7 @@ exports.game = {
       goal: { clicks: 1, bricks: 2, ticks: 11 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,4] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,4] }
         {
           kind: 'turtle'
           actions: {
@@ -310,7 +310,7 @@ exports.game = {
       goal: { clicks: 1, bricks: 2, ticks: 5 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [4,0] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [4,0] }
         { kind: 'log', position: [2,0] }
         {
           kind: 'turtle'
@@ -333,7 +333,7 @@ exports.game = {
       goal: { clicks: 99, bricks: 99, ticks: 99 }
       bricks: 2
       sprites: [
-        { kind: 'gate', actions: {bump: ['_victory']}, position: [7,3] }
+        { kind: 'pad', actions: {bump: ['_victory']}, position: [7,3] }
         {
           kind: 'turtle'
           actions: {
