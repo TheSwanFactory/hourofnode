@@ -44,7 +44,7 @@ COMMAND_BACKGROUND = 'lightgrey'
 
 exports.my = {
   beta: false
-  test: false #is_local
+  test: is_local
   online: _?
   inspect: inspect
   assert: assert
