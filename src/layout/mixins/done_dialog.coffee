@@ -29,6 +29,12 @@ module.exports.world = (level) ->
 
   next = (world) -> window.open world.get('next_url'), '_self'
 
+  star_count = ->
+    metrics
+      .map((key) -> level.get(key) <= goals[key])
+      .filter((key) -> key == true)
+      .length
+
   star_for = (key) ->
     return star.empty if level.get(key) > goals[key]
     star.fill
@@ -45,14 +51,17 @@ module.exports.world = (level) ->
 
   share_message = "I programmed a turtle to solve this level on the Hour of NODE. Can you?"
 
-  hint = 'Hint: Use fewer clicks, bricks, or ticks to improve your score'
   messages = [
     { class: 'stars', name: star_string() }
     { class: 'metrics', name: metrics.join ' | ' }
     { class: 'message', name: level.get('message') }
     { class: 'share-button', name: share_message }
-    { class: 'hint', hint }
+    { class: 'publish' }
   ]
+
+  if star_count() < metrics.length
+    hint = 'Hint: Use fewer clicks, bricks, or ticks to improve your score'
+    messages.push class: 'hint', name: hint
 
   if level.get('completion', false)? && level.get('last_level')
     messages.push
