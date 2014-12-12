@@ -55,3 +55,7 @@ exports.utils =
     offset  = element.offset()
     event.offsetX = event.pageX - offset.left
     event.offsetY = event.pageY - offset.top
+
+# IE fix for location.origin
+unless window.location.origin?
+  window.location.origin = window.location.protocol + "//" + window.location.hostname + (if window.location.port then ':' + window.location.port else '');
