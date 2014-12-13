@@ -12,7 +12,8 @@ exports.events = {
   _LABEL: "events"
   interval: my.duration.step
   speed: 0
-  _EXPORTS: ['reload', 'step', 'stop', 'run', 'error', 'done']
+  _EXPORTS: ['reload', 'step', 'stop', 'run', 'error', 'done', 'click']
+  running: false
 
   reload: (world, button) ->
     location.reload()
@@ -25,15 +26,9 @@ exports.events = {
     world.send 'prefetch'
 
   stop: (world, button) ->
-    if button
-      button.put 'name',       'run'
-      button.put my.key.label, 'run'
     world.put 'running', false
 
   run: (world, button) ->
-    button.put 'name',       'stop'
-    button.put my.key.label, 'stop'
-
     has_run_before = world.get('running')?
 
     world.send 'rewind'
@@ -48,6 +43,9 @@ exports.events = {
       setTimeout step_and_repeat, delay
 
     setTimeout(step_and_repeat, if has_run_before then delay * 1.5 else 0)
+
+  click: (world, args) ->
+    world.send 'stop'
 
   error: (world, message) ->
     beep()

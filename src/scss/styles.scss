@@ -439,9 +439,10 @@ button {
     content: "";
   }
 
-  &.stop:before {
+  &.stop:before,
+  &[value="stop"]:before {
     @extend .icon-button;
-    content: "";
+    content: "" !important;
   }
 
   &.step:before {
