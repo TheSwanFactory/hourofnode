@@ -12,7 +12,10 @@ exports.custom_level = (level) ->
       tag_name: 'input'
       name:     changelog.url
       init:     (world, element) ->
-        $(element).on 'focus', -> $(this).select()
+        $(element).on 'click', (event) -> event.stopPropagation()
+        $(element).on 'focus', (event) ->
+          event.stopPropagation()
+          $(this).select()
     }
     {
       tag_name: 'button'
@@ -28,6 +31,7 @@ exports.custom_level = (level) ->
   {
     _EXPORTS: ['save', 'edit']
     save:     (world) ->
+      $(world.element).find('span').attr('autofocus', 'autofocus')
       dialog = $(world.element).dialog
         width:    400
         title:    'Custom Level'
