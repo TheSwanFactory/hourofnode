@@ -34,12 +34,16 @@ exports.make = {
       y: 0
       click: action
     }
-    children = items.map (item) -> {
-      _LABEL: item
-      name: item
-      value: item
-      class: my_kind.class
-    }
+    children = items.map (item) ->
+      if _.isString item
+        {
+          _LABEL: item
+          name: item
+          value: item
+          class: my_kind.class
+        }
+      else
+        _.extend item, { class: my_kind.class }
     {
       _KIND: label
       _AUTHORITY: _.extend base_authority, more_authority

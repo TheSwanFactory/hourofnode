@@ -493,7 +493,7 @@ text {
  * - find the appropriate icon at http://fortawesome.github.io/Font-Awesome/cheatsheet/
  * - copy and paste the character as `content:`
  */
-.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before, button._victory:before, button.delete:before {
+.icon-button, button.right:before, button.left:before, button.forward:before, button.reverse:before, button.wait:before, button.reload:before, button.run:before, button.stop:before, button[value="stop"]:before, button.step:before, button.edit:before, button.bump:before, button.rewind:before, button._victory:before, button.delete:before {
   font-family: FontAwesome;
   font-size: 14px;
   display: block;
@@ -513,8 +513,8 @@ button.reload:before {
   content: ""; }
 button.run:before {
   content: ""; }
-button.stop:before {
-  content: ""; }
+button.stop:before, button[value="stop"]:before {
+  content: "" !important; }
 button.step:before {
   content: ""; }
 button.edit:before {

@@ -5,7 +5,16 @@
 exports.controls = () ->
   buttons = make.buttons(
     'control',
-    ['reload', 'rewind', 'run', 'step', 'edit'],
+    [
+      'reload'
+      'rewind'
+      {
+        name:   (world) -> if world.get('running') then 'stop' else 'run'
+        _LABEL: 'run'
+      }
+      'step'
+      'edit'
+    ],
     my.control,
     (world, args) ->
       world.send world.get('name'), world
