@@ -38,20 +38,21 @@ div#root {
     font-size: 1.1em; }
   .header .stats > span {
     margin-right: 25px; }
-  .header .custom_level {
-    display: none;
-    font-size: 0.9em;
-    border-top: 1px solid #e1e1e1; }
-    .header .custom_level > .name {
-      display: block;
-      text-align: center;
-      font-weight: bold;
-      margin-top: 0;
-      font-size: 1.1em; }
-    .header .custom_level > * {
-      margin: 5px; }
-    .header .custom_level input {
-      width: 300px; }
+
+.custom_level {
+  display: none;
+  font-size: 0.9em;
+  border-top: 1px solid #e1e1e1; }
+  .custom_level > .name {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
+    font-size: 1.1em; }
+  .custom_level > * {
+    margin: 5px; }
+  .custom_level input {
+    width: 300px; }
 
 #footer {
   text-align: center; }
@@ -340,8 +341,35 @@ div#root {
           transition: all 0.2s; }
 
 .controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus {
-  border: solid;
-  border-color: red; }
+  -webkit-animation-name: pulse-gold;
+          animation-name: pulse-gold;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  background-size: 1px 100px;
+  box-shadow: 0px 0px 10px 1px gold;
+  background-image: -webkit-linear-gradient(top, yellow, gold);
+  background-image: linear-gradient(to bottom, yellow, gold); }
+  .controls button.focus:hover, div.program_name.focus:hover, .inspector .stat .delete.editable.focus:hover {
+    -webkit-animation-name: none;
+            animation-name: none;
+    background-image: -webkit-linear-gradient(top, #fafa00, #fad300);
+    background-image: linear-gradient(to bottom, #fafa00, #fad300); }
+
+@-webkit-keyframes pulse-gold {
+  0% {
+    background-position-y: 0; }
+
+  50% {
+    background-position-y: -30px; } }
+
+@keyframes pulse-gold {
+  0% {
+    background-position-y: 0; }
+
+  50% {
+    background-position-y: -30px; } }
 
 .inspector {
   padding: 5px;
@@ -390,9 +418,11 @@ div#root {
   .inspector .program > div {
     padding: 5px;
     background-color: #e8e8e8;
-    border: 2px solid transparent;
-    -webkit-transition: all 0.2s;
-            transition: all 0.2s;
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent;
+    -webkit-transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s;
     -webkit-transition-delay: 0.3s;
             transition-delay: 0.3s; }
     .inspector .program > div:hover {
@@ -402,7 +432,7 @@ div#root {
       background-color: #6494BF;
       color: #fafafa; }
     .inspector .program > div.editable {
-      border: 4px solid maroon; }
+      border-color: maroon; }
     .inspector .program > div.run .program_name:before {
       content: "";
       font-family: FontAwesome;
@@ -451,7 +481,7 @@ text {
   text-shadow: 1px 1px black;
   fill: white; }
 
-.blue-button, .header .custom_level button, .done_dialog button, .inspector .stat .delete, .inspector .commands button, .controls button {
+.blue-button, .custom_level button, .done_dialog button, .inspector .stat .delete, .inspector .commands button, .controls button {
   text-transform: capitalize;
   border: none;
   outline: none;
@@ -461,11 +491,11 @@ text {
   border: 1px solid #ccc;
   -webkit-transition: background 0.2s, box-shadow 0.2s;
           transition: background 0.2s, box-shadow 0.2s; }
-  .blue-button:hover, .header .custom_level button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
+  .blue-button:hover, .custom_level button:hover, .done_dialog button:hover, .inspector .stat .delete:hover, .inspector .commands button:hover, .controls button:hover {
     background-image: -webkit-linear-gradient(top, #fff, #fafafa);
     background-image: linear-gradient(to bottom, #fff, #fafafa);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
-  .blue-button:active, .header .custom_level button:active, .done_dialog button:active, .inspector .stat .delete:active, .inspector .commands button:active, .controls button:active {
+  .blue-button:active, .custom_level button:active, .done_dialog button:active, .inspector .stat .delete:active, .inspector .commands button:active, .controls button:active {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2); }
 
 /*

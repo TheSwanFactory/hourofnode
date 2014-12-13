@@ -65,29 +65,29 @@ div#root {
       margin-right: $basic-padding * 5;
     }
   }
+}
 
-  .custom_level {
-    display: none;
-    font-size:  0.9em;
-    border-top: 1px solid darken($almost-white, 10%);
+.custom_level {
+  display: none;
+  font-size:  0.9em;
+  border-top: 1px solid darken($almost-white, 10%);
 
-    > .name {
-      display:     block;
-      text-align:  center;
-      font-weight: bold;
-      margin-top:  0;
-      font-size:   1.1em;
-    }
+  > .name {
+    display:     block;
+    text-align:  center;
+    font-weight: bold;
+    margin-top:  0;
+    font-size:   1.1em;
+  }
 
-    > * {
-      margin: $basic-padding;
-    }
+  > * {
+    margin: $basic-padding;
+  }
 
-    input { width: 300px; }
+  input { width: 300px; }
 
-    button {
-      @extend .blue-button;
-    }
+  button {
+    @extend .blue-button;
   }
 }
 
@@ -191,10 +191,31 @@ div#root {
   transition: all 0.2s;
 }
 
-.controls button.focus, div.program_name.focus, .inspector .stat .delete.editable.focus {
-  border: solid;
-  border-color: red;
+.controls button.focus,
+div.program_name.focus,
+.inspector .stat .delete.editable.focus {
+  animation-name: pulse-gold;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  background-size: 1px 100px;
+  box-shadow: 0px 0px 10px 1px gold;
+
+  $bg-top:    yellow;
+  $bg-bottom: gold;
+
+  background-image: linear-gradient(to bottom, $bg-top, $bg-bottom);
+
+  &:hover {
+    animation-name:   none;
+    background-image: linear-gradient(to bottom, darken($bg-top, 1%), darken($bg-bottom, 1%));
+  }
 }
+
+@keyframes pulse-gold {
+  0%   { background-position-y: 0; }
+  50% { background-position-y:  -30px; }
+}
+
 .inspector {
   padding: $basic-padding;
   background: $control-bg-color;
@@ -270,8 +291,10 @@ div#root {
   .program > div {
     padding:          $basic-padding;
     background-color: darken($header-bg-color, 7%);
-    border:           2px solid transparent;
-    transition:       all 0.2s;
+    border-width:     4px;
+    border-style:     solid;
+    border-color:     transparent;
+    transition:       background 0.2s, color 0.2s;
     transition-delay: 0.3s;
 
     &:hover {
@@ -284,7 +307,7 @@ div#root {
     }
 
     &.editable {
-      border: 4px solid $selected-border;
+      border-color: $selected-border;
 
       .program_name {
       }
