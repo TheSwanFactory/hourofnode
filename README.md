@@ -19,7 +19,7 @@ We believe this is the first comprehensive programming environment -- GUI, game 
 
 The application is available live on the web at http://hourofnode.org/.
 
-If you wish to run it locally using this GitHub project, please see `INSTALL.md`.
+If you wish to run it locally using this GitHub project, please see [`INSTALL.md`](./INSTALL.md).
 
 Additional documentation for developers is in the `doc/` directory.
 
