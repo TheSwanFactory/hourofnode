@@ -8,10 +8,9 @@
 # * turn screen green if succesful, red if failed, yellow if not run
 
 test     = require 'tape'
-undo     = require('tap-browser-color')()
 rx       = require 'reactive-coffee'
-window._ = require 'underscore'
-window.$ = require 'jquery'
+global._ = require 'underscore'
+global.$ = require 'jquery'
 _.str    = require 'underscore.string'
 _.mixin(_.str.exports())
 # test.createStream().pipe(process.stdout)

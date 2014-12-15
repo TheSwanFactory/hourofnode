@@ -12,6 +12,7 @@ prefix       = require 'gulp-autoprefixer'
 
 UPLOAD = 'node aws/upload.js'
 dest = 'web'
+exitCode = 0
 
 # TODO: Add gulp test offline test task
 
@@ -22,6 +23,7 @@ branch = -> git.revParse 'HEAD', {args: "--abbrev-ref"}, handler
 
 handleError = (error) ->
   console.log error.toString()
+  exitCode = 1
   @emit 'end'
 
 # Create bundles using browserify
@@ -43,7 +45,7 @@ bundle = (name) ->
 
 all_builds = ['main']
 for build in all_builds
-  gulp.task build, -> bundle build
+  gulp.task build, ['test'], -> bundle build
 
 gulp.task 'css', ->
   gulp.src('./src/scss/styles.scss')
@@ -65,17 +67,21 @@ gulp.task 'sync', -> sync_to dest
 
 # testing
 
-gulp.task 'test', ->
+gulp.task 'test:bundle', (done) ->
   browserify({
     cache: {}, packageCache: {}, fullPaths: true, # watchify
     entries: ["./src/test.coffee"]
     extensions: ['.coffee']
   })
     .bundle()
-    .on('error', handleError)
     .pipe(source 'test.js')
-    .pipe(gulp.dest "./web/")
-    .pipe(shell 'testling -x "/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"')
+    .pipe(gulp.dest './web')
+    .on('end', done)
+  null
+
+gulp.task 'test', ['test:bundle'], ->
+  gulp.src('web/test.js', read: false)
+    .pipe(shell(['cat <%= file.path %> | testling | ./node_modules/.bin/tap-dot']))
 
 # Watch and resync
 
@@ -92,3 +98,6 @@ gulp.task 'default', ['main', 'css', 'watch']
 
 gulp.task 'upload', shell.task ['node aws/upload.js']
 gulp.task 'upload:dev', shell.task ['node aws/upload.js dev']
+
+process.on 'exit', ->
+  process.exit exitCode
