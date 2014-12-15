@@ -26,8 +26,8 @@ Additional documentation for developers is in the `doc/` directory.
 We recommend the cross-platform [Komodo Edit](https://github.com/TheSwanFactory/hourofnode/wiki/Komodo-Edit) editor for viewing and modifying the `.coffee` [CoffeeScript](https://github.com/TheSwanFactory/hourofnode/wiki/CoffeeScript) source files and `.md` [MarkDown](https://help.github.com/articles/markdown-basics/) documentation files.
 
 ### History
-gi
-We began development on October 1st, 2014, and plan to launch on December 8th, 2014 for CS Education Week (aka [The Hour of Code](http://code.org)).
+
+We began development on October 1st, 2014, and launched on December 10th, 2014 for CS Education Week (aka [The Hour of Code](http://code.org)).
 
 We live-cast, and store podcasts of, our coding sessions at:
 <p style=" text-indent: 2em;">
