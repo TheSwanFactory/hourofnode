@@ -63,6 +63,20 @@ sync_to = (dir) ->
 
 gulp.task 'sync', -> sync_to dest
 
+# testing
+
+gulp.task 'test', ->
+  browserify({
+    cache: {}, packageCache: {}, fullPaths: true, # watchify
+    entries: ["./src/test.coffee"]
+    extensions: ['.coffee']
+  })
+    .bundle()
+    .on('error', handleError)
+    .pipe(source 'test.js')
+    .pipe(gulp.dest "./web/")
+    .pipe(shell 'testling -x "/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"')
+
 # Watch and resync
 
 all_src = ['src/**/*.coffee', 'games/*', './../reactive-coffee/src/*']

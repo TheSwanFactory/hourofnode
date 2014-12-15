@@ -9,6 +9,8 @@
 
 test = require 'tape'
 undo = require('tap-browser-color')()
+rx   = require 'reactive-coffee'
+_.mixin(_.str.exports())
 # test.createStream().pipe(process.stdout)
 # undo()
 # Test Modules
@@ -26,7 +28,6 @@ run_tests = (rx) ->
   test_game(test, rx)
   test_layout(test, rx)
 
-exports.test = (rx) ->
-  console.log "Running tests..."
-  run_tests(rx)
-  console.log "...done!"
+console.log "Running tests..."
+run_tests(rx)
+console.log "...done!"

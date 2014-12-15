@@ -1,15 +1,21 @@
-audio = new Audio
-sound = null
-uri   = null
+beep = null
 
-canPlayOgg = !!audio.canPlayType and audio.canPlayType('audio/ogg; codecs="vorbis"') != ''
-
-if canPlayOgg
-  uri = require './beep/ogg'
+if typeof Audio == 'undefined'
+  beep = -> null
 else
-  uri = require './beep/mp3'
+  audio = new Audio
+  sound = null
+  uri   = null
 
-sound = new Audio uri
+  canPlayOgg = !!audio.canPlayType and audio.canPlayType('audio/ogg; codecs="vorbis"') != ''
 
-exports.beep = ->
-  sound.play()
+  if canPlayOgg
+    uri = require './beep/ogg'
+  else
+    uri = require './beep/mp3'
+
+  sound = new Audio uri
+
+  beep = -> sound.play()
+
+exports.beep = beep
