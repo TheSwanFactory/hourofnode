@@ -52,7 +52,7 @@ exports.programs = (sprite) ->
     fetch: (world, args) ->
       return unless world.get 'selected'
       action = world.call 'next_action'
-      world.call 'perform', action.get 'value' if action
+      world.call('perform', action.get 'value') if action
 
     prefetch: (world) ->
       return unless world.get 'selected'
