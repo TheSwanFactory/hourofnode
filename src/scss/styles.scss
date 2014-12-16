@@ -294,7 +294,6 @@ div.program_name.focus,
     border-style:     solid;
     border-color:     transparent;
     transition:       background 0.2s, color 0.2s;
-    transition-delay: 0.3s;
 
     &:hover {
       transition-delay: 0;
@@ -303,13 +302,14 @@ div.program_name.focus,
     &.selected {
       background-color: #6494BF;
       color:            $header-bg-color;
+
+      .actions button {
+        transition-delay: 0.3s;
+      }
     }
 
     &.editable {
       border-color: $selected-border;
-
-      .program_name {
-      }
     }
 
     &.run .program_name:before {
@@ -342,7 +342,6 @@ div.program_name.focus,
         color:            white;
         border:           none;
         transition:       background-color 0.2s, color 0.2s;
-        transition-delay: 0.3s;
         height:           $button-height;
         width:            $button-height;
         float:            left;

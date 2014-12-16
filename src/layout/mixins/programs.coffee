@@ -156,6 +156,8 @@ exports.programs = (sprite) ->
   base_position    = children.length
   base_letter      = 'A'.charCodeAt 0
   children.push make.button 'New Program', (world, event) ->
-    world.add_sibling program_row(String.fromCharCode(base_letter + created_programs), []), base_position + created_programs
+    program_name = String.fromCharCode base_letter + created_programs
+    world.add_sibling program_row(program_name, []), base_position + created_programs
+    world.send 'add_program', [sprite, program_name]
     created_programs += 1
   children
