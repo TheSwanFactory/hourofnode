@@ -45,7 +45,7 @@ bundle = (name) ->
 
 all_builds = ['main']
 for build in all_builds
-  gulp.task build, ['test'], -> bundle build
+  gulp.task build, ["test:#{build}"], -> bundle build
 
 gulp.task 'css', ->
   gulp.src('./src/scss/styles.scss')
@@ -76,10 +76,8 @@ gulp.task 'test:bundle', (done) ->
     .bundle()
     .pipe(source 'test.js')
     .pipe(gulp.dest './web')
-    .on('end', done)
-  null
 
-gulp.task 'test', ['test:bundle'], ->
+gulp.task 'test:main', ['test:bundle'], ->
   gulp.src('web/test.js', read: false)
     .pipe(shell(['cat <%= file.path %> | testling | ./node_modules/.bin/tap-dot']))
 
