@@ -12,11 +12,16 @@ global._      = require 'underscore'
 global.$      = global.jQuery = require 'jquery'
 _.str         = require 'underscore.string'
 _.mixin(_.str.exports())
-rx            = require 'reactive-coffee'
+global.rx     = require 'reactive-coffee'
 global.assert = require 'assert'
 
 assert.notOk = (falsey, message) ->
-  assert.equal falsey, false, message
+  assert.equal !!falsey, false, message
+
+assert.true = (trueey, message) ->
+  assert.ok trueey, message
+
+assert.false = assert.notOk
 
 # test.createStream().pipe(process.stdout)
 # undo()
