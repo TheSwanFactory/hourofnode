@@ -23,6 +23,7 @@ sprite_inspector = (sprite) ->
       actions(sprite)
       behavior(sprite)
     ]
+    sprite: sprite
   }
 
 make_inspector = (world, sprite) ->

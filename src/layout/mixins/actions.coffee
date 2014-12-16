@@ -22,6 +22,8 @@ exports.actions = (sprite) ->
   add_program = (world, args) ->
     [sprite, program_name] = args
 
+    return unless sprite == world.get 'sprite'
+
     world.add_sibling make.button(program_name, click, my.command)
 
   click = (button, args) ->
