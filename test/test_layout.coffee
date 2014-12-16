@@ -1,14 +1,14 @@
-{my} = require '../my'
-{load} = require '../load'
-{god} = require '../god'
+{my} = require '../src/my'
+{load} = require '../src/load'
+{god} = require '../src/god'
 
-{layout} = require '../layout'
-{header} = require './header'
-{controls} = require './controls'
-{grid} = require './grid'
-{sprites} = require './sprites'
+{layout} = require '../src/layout'
+{header} = require '../src/layout/header'
+{controls} = require '../src/layout/controls'
+{grid} = require '../src/layout/grid'
+{sprites} = require '../src/layout/sprites'
 
-{behavior} = require './mixins/behavior'
+{behavior} = require '../src/layout/mixins/behavior'
 
 exports.test_layout = ->
   describe 'Layout', ->

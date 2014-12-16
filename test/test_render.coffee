@@ -1,16 +1,16 @@
 # TODO: Run SVG tests with rx instead of rx_mock
 
-{my} = require '../my'
-{god} = require '../god'
+{my} = require '../src/my'
+{god} = require '../src/god'
 {rx_mock} = require './rx_mock'
-{vector} = require '../god/vector'
-{render} = require '../render'
-{make} = require '../render/make'
+{vector} = require '../src/god/vector'
+{render} = require '../src/render'
+{make} = require '../src/render/make'
 
-{layout} = require '../layout'
-{header} = require '../layout/header'
-{grid} = require '../layout/grid'
-{controls} = require '../layout/controls'
+{layout} = require '../src/layout'
+{header} = require '../src/layout/header'
+{grid} = require '../src/layout/grid'
+{controls} = require '../src/layout/controls'
 
 exports.test_render = ->
   world = god(rx_mock(rx), {})

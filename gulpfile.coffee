@@ -14,8 +14,6 @@ UPLOAD = 'node aws/upload.js'
 dest = 'web'
 exitCode = 0
 
-# TODO: Add gulp test offline test task
-
 # Git functions
 handler = (err) -> throw err if err
 
@@ -43,10 +41,6 @@ bundle = (name) ->
     .pipe(sourcemaps.write())
     .pipe(gulp.dest "./#{dest}/")
 
-all_builds = ['main']
-for build in all_builds
-  gulp.task build, ["test:#{build}"], -> bundle build
-
 gulp.task 'css', ->
   gulp.src('./src/scss/styles.scss')
     .pipe(sass())
@@ -67,29 +61,36 @@ gulp.task 'sync', -> sync_to dest
 
 # testing
 
-gulp.task 'test:bundle', (done) ->
+test_bundle = (build) ->
   browserify({
     cache: {}, packageCache: {}, fullPaths: true, # watchify
-    entries: ["./src/test.coffee"]
+    entries: ["./test/#{build}.coffee"]
     extensions: ['.coffee']
     debug: true
   })
     .bundle()
     .on('error', handleError)
-    .pipe(source("test.js"))
+    .pipe(source("#{build}.js"))
     .pipe(buffer())
     .pipe(sourcemaps.init loadMaps: true)
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest "./#{dest}/")
+    .pipe(gulp.dest "./test/")
 
-gulp.task 'test', ['test:bundle'], shell.task ['mocha-phantomjs web/test.html']
+test = (build) -> shell.task ['mocha-phantomjs web/test.html']
+
+all_builds = ['main']
+for build in all_builds
+  gulp.task build,                  -> bundle build
+  gulp.task "test:#{build}:bundle", -> test_bundle build
+  gulp.task "test:#{build}",        ["test:#{build}:bundle"], test build
 
 # Watch and resync
 
 all_src = ['src/**/*.coffee', 'games/*', './../reactive-coffee/src/*']
+all_src_with_test = all_src.concat ['test/**/*.coffee']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds
-  gulp.watch all_src, ['test']
+  gulp.watch all_src_with_test, all_builds.map((build) -> "test:#{build}")
   gulp.watch ['src/scss/*'], ['css']
 
 # Watch when run

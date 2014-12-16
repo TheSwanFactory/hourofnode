@@ -1,4 +1,4 @@
-{god} = require('../god')
+{god} = require('../src/god')
 
 exports.test_world = ->
   describe 'World', ->

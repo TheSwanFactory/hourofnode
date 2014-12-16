@@ -1,5 +1,5 @@
-{god} = require('../god')
-{load} = require('../load')
+{god} = require('../src/god')
+{load} = require('../src/load')
 
 exports.test_game = ->
   example = load(rx, {game: 'example', level: 1})

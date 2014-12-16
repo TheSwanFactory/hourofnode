@@ -1,5 +1,5 @@
-{god} = require('../god')
-{vector} = require('../god/vector')
+{god} = require('../src/god')
+{vector} = require('../src/god/vector')
 rx = require 'reactive-coffee'
 
 exports.test_god = ->

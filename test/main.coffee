@@ -22,11 +22,11 @@ assert.true = (trueey, message) ->
 
 assert.false = assert.notOk
 
-{test_god} = require './god/test_god'
-{test_world} = require './god/test_world'
-{test_render} = require './render/test_render'
-{test_game} = require './load/test_game'
-{test_layout} = require './layout/test_layout'
+{test_god} = require './test_god'
+{test_world} = require './test_world'
+{test_render} = require './test_render'
+{test_game} = require './test_game'
+{test_layout} = require './test_layout'
 
 test_god()
 test_world()
