@@ -79,7 +79,7 @@ gulp.task 'test:bundle', (done) ->
 
 gulp.task 'test:main', ['test:bundle'], ->
   gulp.src('web/test.js', read: false)
-    .pipe(shell(['cat <%= file.path %> | testling | ./node_modules/.bin/tap-dot']))
+    .pipe(shell(['mocha-phantomjs web/test.html']))
 
 # Watch and resync
 
