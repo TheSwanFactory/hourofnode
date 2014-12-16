@@ -11,14 +11,18 @@
 #
 
 # Preamble
-# TODO: server-side include underscore, underscore.string, jquery
+global._     = require 'underscore'
+global.$     = global.jQuery = require 'jquery'
+_.str        = require 'underscore.string'
 
-{my} = require './my'
-sys = require 'sys'
-queryString = require 'query-string'
-package_json = require '../package.json'
+require 'jquery-ui'
 
 _.mixin(_.str.exports())
+
+{my}         = require './my'
+sys          = require 'sys'
+queryString  = require 'query-string'
+package_json = require '../package.json'
 rx = require 'reactive-coffee'
 ###
     rx = require '../../reactive-coffee/src/reactive'
@@ -45,6 +49,3 @@ main = ->
 
 # Instantiate our main view
 $(main)
-# Run Tests
-{test} = require('./test') if my.test
-test(rx) if my.test
