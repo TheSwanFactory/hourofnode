@@ -86,6 +86,7 @@ gulp.task 'test:main', ['test:bundle'], ->
 all_src = ['src/**/*.coffee', 'games/*', './../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds
+  gulp.watch all_src, ['test:main']
   gulp.watch ['src/scss/*'], ['css']
 
 # Watch when run

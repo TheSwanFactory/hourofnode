@@ -11,7 +11,6 @@
     "jquery-ui": "^1.10.5",
     "query-string": "^1.0.0",
     "reactive-coffee": "git://github.com/TheSwanFactory/reactive-coffee",
-    "testling": "^1.7.1",
     "underscore": "^1.7.0",
     "underscore.string": "^2.4.0"
   },
@@ -27,6 +26,7 @@
     "gulp-shell": "^0.2.10",
     "gulp-sourcemaps": "~1.2",
     "mime": "~1.0",
+    "mocha-phantomjs": "^3.5.2",
     "node-aws": "^0.1.2",
     "tap-browser-color": "^0.1.2",
     "tap-dot": "^0.2.3",
@@ -40,9 +40,6 @@
     "transform": [
       "coffeeify"
     ]
-  },
-  "testling": {
-    "files": "web/test.js"
   },
   "scripts": {
     "test": "browserify --extension='.coffee' src/test.coffee > web/test.js && ./node_modules/.bin/mocha-phantomjs web/test.html"
