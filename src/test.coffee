@@ -8,14 +8,20 @@
 # * turn screen green if succesful, red if failed, yellow if not run
 
 test     = require 'tape'
-rx       = require 'reactive-coffee'
 global._ = require 'underscore'
-global.$ = require 'jquery'
+global.$ = global.jQuery = require 'jquery'
 _.str    = require 'underscore.string'
 _.mixin(_.str.exports())
+rx       = require 'reactive-coffee'
+global.assert   = require 'assert'
 # test.createStream().pipe(process.stdout)
 # undo()
 # Test Modules
+
+describe 'This', ->
+  describe 'that', ->
+    it 'is cool', ->
+      assert.equal 1, 1
 
 {test_god} = require './god/test_god'
 {test_world} = require './god/test_world'

@@ -2,6 +2,14 @@
 {vector} = require('../god/vector')
 
 exports.test_god = (test, rx) ->
+  describe 'God', ->
+    it 'exists', ->
+      assert.ok god
+
+    it 'creates a root world', ->
+      world = god rx, key: 'value'
+      assert.ok world
+      assert.equal world.get('key'), 'value'
   test 'god exists', (t) ->
     t.ok god, "god"
     t.end()

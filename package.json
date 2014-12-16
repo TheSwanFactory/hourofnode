@@ -45,7 +45,7 @@
     "files": "web/test.js"
   },
   "scripts": {
-    "test": "prova test/* -b"
+    "test": "browserify --extension='.coffee' src/test.coffee > web/test.js && ./node_modules/.bin/mocha-phantomjs web/test.html"
   },
   "repository": {
     "type": "git",
