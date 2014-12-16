@@ -72,21 +72,24 @@ gulp.task 'test:bundle', (done) ->
     cache: {}, packageCache: {}, fullPaths: true, # watchify
     entries: ["./src/test.coffee"]
     extensions: ['.coffee']
+    debug: true
   })
     .bundle()
-    .pipe(source 'test.js')
-    .pipe(gulp.dest './web')
+    .on('error', handleError)
+    .pipe(source("test.js"))
+    .pipe(buffer())
+    .pipe(sourcemaps.init loadMaps: true)
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest "./#{dest}/")
 
-gulp.task 'test:main', ['test:bundle'], ->
-  gulp.src('web/test.js', read: false)
-    .pipe(shell(['mocha-phantomjs web/test.html']))
+gulp.task 'test', ['test:bundle'], shell.task ['mocha-phantomjs web/test.html']
 
 # Watch and resync
 
 all_src = ['src/**/*.coffee', 'games/*', './../reactive-coffee/src/*']
 gulp.task 'watch', ['sync'], ->
   gulp.watch all_src, all_builds
-  gulp.watch all_src, ['test:main']
+  gulp.watch all_src, ['test']
   gulp.watch ['src/scss/*'], ['css']
 
 # Watch when run
