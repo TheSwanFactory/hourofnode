@@ -208,6 +208,9 @@ class World
     children.insert child, index
     child
 
+  add_sibling: (child, index = null) ->
+    @up.add_child child, index
+
   move_child: (current_position, new_position) ->
     child = @_children().at(current_position)
     @remove_child child

@@ -106,7 +106,6 @@ div#root {
   }
 
   button {
-    @extend .blue-button;
     padding: $basic-padding * 2;
     margin:  $basic-padding;
   }
@@ -295,7 +294,6 @@ div.program_name.focus,
     border-style:     solid;
     border-color:     transparent;
     transition:       background 0.2s, color 0.2s;
-    transition-delay: 0.3s;
 
     &:hover {
       transition-delay: 0;
@@ -304,13 +302,14 @@ div.program_name.focus,
     &.selected {
       background-color: #6494BF;
       color:            $header-bg-color;
+
+      .actions button {
+        transition-delay: 0.3s;
+      }
     }
 
     &.editable {
       border-color: $selected-border;
-
-      .program_name {
-      }
     }
 
     &.run .program_name:before {
@@ -335,16 +334,17 @@ div.program_name.focus,
       min-height: $button-height;
 
       button {
-        font-size:        0;
         margin-right:     $basic-padding;
         outline:          none;
         background-color: lighten(darkred, 4%);
+        background-image: none;
+        border-radius:    0;
         color:            white;
         border:           none;
         transition:       background-color 0.2s, color 0.2s;
-        transition-delay: 0.3s;
         height:           $button-height;
         width:            $button-height;
+        float:            left;
 
         &.selected {
           background-color: $selected-color;
@@ -368,7 +368,7 @@ div.program_name.focus,
     margin-right:     $basic-padding;
     width:            90px;
     height:           60px;
-    font-size:        1em;
+    font-size:        1em !important;
   }
 }
 
@@ -381,6 +381,7 @@ text {
   fill:        white;
 }
 
+button,
 .blue-button {
   text-transform:   capitalize;
   border:           none;
@@ -389,6 +390,7 @@ text {
   border-radius:    4px;
   border:           1px solid #ccc;
   transition:       background 0.2s, box-shadow 0.2s;
+  padding:          $basic-padding;
 
   &:hover {
     background-image: linear-gradient(to bottom, #fff, #fafafa);
@@ -416,80 +418,74 @@ text {
   margin: 3px 0;
 }
 
+@mixin icon-button($icon) {
+  font-size: 0;
+
+  &:before {
+    @extend .icon-button;
+    content: $icon;
+  }
+}
+
 button {
-  &.right:before {
-    @extend .icon-button;
-    content: "";
+  &.right {
+    @include icon-button("");
   }
 
-  &.left:before {
-    @extend .icon-button;
-    content: "";
+  &.left {
+    @include icon-button("");
   }
 
-  &.forward:before {
-    @extend .icon-button;
-    content: "";
+  &.forward {
+    @include icon-button("");
   }
 
-  &.reverse:before {
-    @extend .icon-button;
-    content: "";
+  &.reverse {
+    @include icon-button("");
   }
 
-  &.wait:before {
-    @extend .icon-button;
-    content: "";
+  &.wait {
+    @include icon-button("");
   }
 
-  &.reload:before {
-    @extend .icon-button;
-    content: "";
+  &.reload {
+    @include icon-button("");
   }
 
-  &.run:before {
-    @extend .icon-button;
-    content: "";
+  &.run {
+    @include icon-button("");
   }
 
-  &.stop:before {
-    @extend .icon-button;
-    content: "";
+  &.stop {
+    @include icon-button("");
   }
 
-  &.step:before {
-    @extend .icon-button;
-    content: "";
+  &.step {
+    @include icon-button("");
   }
 
-  &.edit:before {
-    @extend .icon-button;
-    content: "";
+  &.edit {
+    @include icon-button("");
   }
 
-  &.run:before {
-    @extend .icon-button;
-    content: "";
+  &.run {
+    @include icon-button("");
   }
 
-  &.bump:before {
-    @extend .icon-button;
-    content: "";
+  &.bump {
+    @include icon-button("");
   }
 
-  &.rewind:before {
-    @extend .icon-button;
-    content: "";
+  &.rewind {
+    @include icon-button("");
   }
 
-  &._victory:before {
-    @extend .icon-button;
-    content: "";
+  &._victory {
+    @include icon-button("");
   }
 
-  &.delete:before {
-    @extend .icon-button;
-    content: "";
+  &.delete {
+    @include icon-button("");
   }
 }
 

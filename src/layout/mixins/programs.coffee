@@ -52,7 +52,7 @@ exports.programs = (sprite) ->
     fetch: (world, args) ->
       return unless world.get 'selected'
       action = world.call 'next_action'
-      world.call 'perform', action.get 'value' if action
+      world.call('perform', action.get 'value') if action
 
     prefetch: (world) ->
       return unless world.get 'selected'
@@ -151,4 +151,13 @@ exports.programs = (sprite) ->
     # if contents is an RxArray, it is a list of commands.
     contents = actions.get(key)
     children.push program_row(key, contents.all()) unless _.isString(contents)
+
+  created_programs = 0
+  base_position    = children.length
+  base_letter      = 'A'.charCodeAt 0
+  children.push make.button 'New Program', (world, event) ->
+    program_name = String.fromCharCode base_letter + created_programs
+    world.add_sibling program_row(program_name, []), base_position + created_programs
+    world.send 'add_program', [sprite, program_name]
+    created_programs += 1
   children

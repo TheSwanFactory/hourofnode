@@ -53,5 +53,6 @@ exports.make = {
       tag_name: 'button'
       name:     name
       click:    action
+      value:    name
     }, options
 }
