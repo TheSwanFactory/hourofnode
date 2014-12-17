@@ -109,6 +109,7 @@ exports.programs = (sprite) ->
     sort_update: (world, args) ->
       [event, ui] = args
       index = ui.item.index()
+      wold.send 'click'
       world.move_child world.get('sort_start_index'), index
   }
 
