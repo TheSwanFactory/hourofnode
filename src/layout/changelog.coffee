@@ -28,19 +28,11 @@ index_of_conditional = (list, condition) ->
 
   index
 
-get_sprite_index = (sprite) ->
-  index_of_conditional sprite.up.find_children(), (s) ->
-    s.uid == sprite.uid
-
 log_sprite_change = (world, args) ->
   [sprite, key, value] = args
 
-  level_sprite_index = get_sprite_index sprite
-
-  return unless level_sprite_index > -1
-
   update_level (level) ->
-    level.sprites[level_sprite_index][key] = value
+    level.sprites[sprite.index][key] = value
 
 sprite_index = 0
 make_sprite = (world, sprite_dict) ->
@@ -59,12 +51,8 @@ make_sprite = (world, sprite_dict) ->
       level.sprites.push sprite
 
 delete_sprite = (world, sprite) ->
-  level_sprite_index = get_sprite_index sprite
-
-  return unless level_sprite_index > -1
-
   update_level (level) ->
-    level.sprites.splice level_sprite_index, 1
+    level.sprites.splice sprite.index, 1
 
 level_change = (world, args) ->
   [key, value] = args
@@ -82,16 +70,18 @@ for metric in ['click', 'tick', 'brick']
       update_level (level) ->
         level.goal[plural] = world.get plural, false
 
-store_action = (world, args) ->
+normalize_action_args = (args) ->
   [sprite, program, action] = args
 
-  level_sprite_index = get_sprite_index sprite
+  program = program.get my.key.label if sprite.is_world program
 
-  return unless level_sprite_index > -1
+  [sprite, program, action]
+
+store_action = (world, args) ->
+  [sprite, program, action] = normalize_action_args args
 
   update_level (level) ->
-    sprite  = level.sprites[level_sprite_index]
-    program = program.get my.key.label
+    sprite  = level.sprites[sprite.index]
 
     sprite_actions  = sprite.actions ?= {}
     program_actions = sprite.actions[program] ?= []
@@ -99,19 +89,16 @@ store_action = (world, args) ->
     program_actions.push action
 
 remove_action = (world, args) ->
-  [sprite, program, action] = args
+  [sprite, program, action] = normalize_action_args args
 
-  level_sprite_index = get_sprite_index sprite
-
-  return unless level_sprite_index > -1
+  console.log sprite, action
 
   update_level (level) ->
-    sprite  = level.sprites[level_sprite_index]
+    sprite  = level.sprites[sprite.index]
 
     program_actions = sprite.actions[program]
-    program_action_index = get_sprite_index action
 
-    program_actions.splice program_actions, 1
+    program_actions.splice action.index, 1
 
 url = ->
   search = queryString.parse location.search
