@@ -65,21 +65,18 @@ exports.utils =
   store: (key, value) ->
     return unless @supports_html5_storage()
 
-    if typeof key == 'object'
-      for k, v of key
-        @store k, v
-      return
+    return @store_many(key) if typeof key == 'object'
 
     localStorage[key] = value
+
+  store_many: (properties) ->
+    for key, value of properties
+      @store key, value
 
   fetch: (key) ->
     return unless @supports_html5_storage()
 
-    if _.isArray key
-      values = []
-      for k in key
-        values.push @fetch(k)
-      return values
+    return @fetch_many(key) if _.isArray key
 
     value = localStorage[key]
 
@@ -91,6 +88,12 @@ exports.utils =
       when value.match /^\d+$/     then parseInt value, 10
       when value.match /^[\d\.]+$/ then parseFloat value, 10
       else value
+
+  fetch_many: (keys) ->
+    values = []
+    for key in keys
+      values.push @fetch(key)
+    values
 
 # IE fix for location.origin
 unless window.location.origin?
