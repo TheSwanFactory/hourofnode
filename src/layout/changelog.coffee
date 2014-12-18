@@ -1,6 +1,5 @@
 queryString = require 'query-string'
 rx          = require 'reactive-coffee'
-{my}        = require '../my'
 
 custom_level = rx.cell({ sprites: [], goal: {} })
 
@@ -71,14 +70,14 @@ for metric in ['click', 'tick', 'brick']
         level.goal[plural] = world.get plural, false
 
 normalize_action_args = (args) ->
-  [sprite, program, action] = args
+  [sprite, program] = args
 
-  program = program.get my.key.label if sprite.is_world program
+  args[1] = program.label() if sprite.is_world program
 
-  [sprite, program, action]
+  args
 
 store_action = (world, args) ->
-  [sprite, program, action] = normalize_action_args args
+  [sprite, program, action, index] = normalize_action_args args
 
   update_level (level) ->
     sprite  = level.sprites[sprite.index]
@@ -86,19 +85,31 @@ store_action = (world, args) ->
     sprite_actions  = sprite.actions ?= {}
     program_actions = sprite.actions[program] ?= []
 
-    program_actions.push action
+    index ?= program_actions.length
+
+    program_actions.splice index, 0, action
 
 remove_action = (world, args) ->
-  [sprite, program, action] = normalize_action_args args
-
-  console.log sprite, action
+  [sprite, program, action_or_index] = normalize_action_args args
 
   update_level (level) ->
     sprite  = level.sprites[sprite.index]
 
     program_actions = sprite.actions[program]
 
-    program_actions.splice action.index, 1
+    index = if _.isNumber(action_or_index) then action_or_index else action_or_index.index
+
+    program_actions.splice index, 1
+
+move_action = (world, args) ->
+  [sprite, program, old_index, new_index] = normalize_action_args args
+
+  level_sprite  = custom_level.get().sprites[sprite.index]
+  level_program = level_sprite.actions[program]
+  action        = level_program[old_index]
+
+  remove_action world, [sprite, program, old_index]
+  store_action  world, [sprite, program, action, new_index]
 
 url = ->
   search = queryString.parse location.search
@@ -121,6 +132,7 @@ exports.changelog =
         'brick'
         'store_action'
         'remove_action'
+        'move_action'
       ]
       log_sprite_change: log_sprite_change
       make_sprite:       make_sprite
@@ -131,6 +143,7 @@ exports.changelog =
       brick:             metrics.brick
       store_action:      store_action
       remove_action:     remove_action
+      move_action:       move_action
     }
 
   set_custom: (custom) ->
