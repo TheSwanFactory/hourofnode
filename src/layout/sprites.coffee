@@ -34,7 +34,10 @@ get_location_for_move = (world, dir) ->
 exports.sprites = {
   _LABEL: 'sprites'
   _KIND: 'sprite'
-  _EXPORTS: ['make_sprite', 'delete_sprite', 'inspect']
+
+  # exports
+
+  _EXPORTS: ['make_sprite', 'delete_sprite', 'inspect', 'store_me']
   make_sprite: (world, sprite_dict) ->
     kind_authority = get_kind_authority sprite_dict, world.get('kinds')
     dict = $.extend true, {}, kind_authority, sprite_dict
@@ -51,6 +54,10 @@ exports.sprites = {
   delete_sprite: (world, sprite) ->
     world.send 'click'
     world.remove_child sprite
+
+  store_me: (world, args) ->
+    sprite = _.last world.find_children().filter((s) -> s.get_local 'editable')
+    sprite.put_many args
 
   # selection
 

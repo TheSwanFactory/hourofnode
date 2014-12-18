@@ -75,18 +75,23 @@ extend_level = (level, level_index) ->
     world.put 'level_edited', true
 
   level.init = (world) ->
-    body = $('<div class="splash">')
-    if level_index == 0 && world.get('description', false)?
-      body.append "<div class='description'>#{world.get 'description', false}</div>"
+    $splash = $('<div class="splash">')
+    if level_index == 0
+      if world.get('description', false)?
+        $splash.append "<div class='description'>#{world.get 'description', false}</div>"
+      $splash.append "<input class='name' placeholder='name' /><input class='color' placeholder='color' />"
     if world.get('level_name', false)?
-      body.append "<div class='level_name'>#{world.get 'level_name', false}</div>"
+      $splash.append "<div class='level_name'>#{world.get 'level_name', false}</div>"
 
-    if body.children().length > 0
-      $(body).dialog
+    if $splash.children().length > 0
+      $splash.dialog
         modal:   true
         buttons: [{text: 'Ok', click: -> $(this).dialog('close')}]
         width:   400
-
+        close:   ->
+          name  = $splash.find('.name').val()
+          color = $splash.find('.color').val()
+          world.send 'store_me', name: name, color: color
 
 get_custom_level = ->
   query  = queryString.parse(location.search)
