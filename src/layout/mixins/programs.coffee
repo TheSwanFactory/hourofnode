@@ -97,6 +97,7 @@ exports.programs = (sprite) ->
         return world.send 'error', message
 
       world.send 'brick'
+      world.send 'store_action', [sprite, world, action]
       actions_container.add_child action
 
     # Drag & Drop Sorting
@@ -109,8 +110,10 @@ exports.programs = (sprite) ->
     sort_update: (world, args) ->
       [event, ui] = args
       index = ui.item.index()
-      wold.send 'click'
+      world.send 'click'
       world.move_child world.get('sort_start_index'), index
+      world.send 'move_action',
+                 [sprite, world.up, world.get('sort_start_index'), index]
   }
 
   program_row = (name, contents) ->
@@ -119,6 +122,7 @@ exports.programs = (sprite) ->
           button.up.remove_child(button)
           button.send 'click'
           button.send 'brick', -1
+          button.send 'remove_action', [sprite, name, button]
         else
           button.send 'error', my.not_editable(sprite)
       ), {

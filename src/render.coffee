@@ -29,7 +29,7 @@ initializer = (world) ->
 is_focus = (world) ->
   focus = world.get 'focus'
   return false unless focus
-  focus == world.get_local 'name'
+  focus == world.get 'name'
 
 class_attrs = (world) ->
   labels = world.labels()
