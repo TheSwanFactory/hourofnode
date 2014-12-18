@@ -1,7 +1,20 @@
 queryString = require 'query-string'
 rx          = require 'reactive-coffee'
 
-custom_level = rx.cell({ sprites: [], goal: {} })
+# the real custom level object
+_custom_level = rx.cell({ sprites: [], goal: {} })
+
+# the object we share
+custom_level = ->
+  level = get_level_copy()
+  level.solution = []
+
+  for sprite in level.sprites
+    level.solution.push actions: _.extend({}, sprite.actions)
+    if sprite.editable
+      delete sprite.actions
+
+  level
 
 actions_to_object = (actions) ->
   keys   = actions.keys()
@@ -13,12 +26,12 @@ actions_to_object = (actions) ->
   object
 
 get_level_copy = ->
-  $.extend {}, custom_level.get()
+  $.extend true, {}, _custom_level.get()
 
 update_level = (change) ->
   level = get_level_copy()
   change level
-  custom_level.set level
+  _custom_level.set level
 
 index_of_conditional = (list, condition) ->
   index = -1
@@ -42,6 +55,7 @@ make_sprite = (world, sprite_dict) ->
     kind:     sprite_dict.kind
     position: sprite_dict.position
     actions:  actions_to_object(sprite_dict.actions)
+    editable: sprite_dict.editable
 
   update_level (level) ->
     if level.sprites[index]?
@@ -104,7 +118,7 @@ remove_action = (world, args) ->
 move_action = (world, args) ->
   [sprite, program, old_index, new_index] = normalize_action_args args
 
-  level_sprite  = custom_level.get().sprites[sprite.index]
+  level_sprite  = _custom_level.get().sprites[sprite.index]
   level_program = level_sprite.actions[program]
   action        = level_program[old_index]
 
@@ -113,11 +127,11 @@ move_action = (world, args) ->
 
 url = ->
   search = queryString.parse location.search
-  search.custom = JSON.stringify custom_level.get()
+  search.custom = JSON.stringify custom_level()
   "#{location.origin}#{location.pathname}?#{queryString.stringify search}"
 
 pretty_source = ->
-  JSON.stringify custom_level.get(), null, 4
+  JSON.stringify custom_level(), null, 4
 
 exports.changelog =
   world: (level) ->
@@ -147,7 +161,7 @@ exports.changelog =
     }
 
   set_custom: (custom) ->
-    custom_level.set custom
+    _custom_level.set custom
 
   url:           url
   pretty_source: pretty_source
