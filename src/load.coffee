@@ -10,14 +10,15 @@
 # * set current level as the load's child
 # * return the game dictionary
 
-{my} = require './my'
-{god} = require './god'
-{layout} = require './layout'
-{list} = require './load/list'
+{my}         = require './my'
+{god}        = require './god'
+{layout}     = require './layout'
+{list}       = require './load/list'
 {game_files} = require './load/game_files'
-{games} = require './games'
-{make} = require './render/make'
-{changelog} = require './layout/changelog'
+{games}      = require './games'
+{make}       = require './render/make'
+{changelog}  = require './layout/changelog'
+{utils}      = require './utils'
 
 queryString = require 'query-string' #https://github.com/sindresorhus/query-string
 
@@ -74,12 +75,23 @@ extend_level = (level, level_index) ->
     world.put 'edit_mode',    false
     world.put 'level_edited', true
 
+  add_splash_dialog level, level_index
+  add_stored_properties level
+
+add_splash_dialog = (level, level_index) ->
   level.init = (world) ->
     $splash = $('<div class="splash">')
     if level_index == 0
       if world.get('description', false)?
         $splash.append "<div class='description'>#{world.get 'description', false}</div>"
-      $splash.append "<input class='name' placeholder='name' /><input class='color' placeholder='color' />"
+      $splash.append "
+        <div class='info'>
+          <span>Please enter your</span>
+          <div><input class='name' placeholder='Initials' /></div>
+          <span>and</span>
+          <div><input class='color' placeholder='Favorite Color' /></div>
+        </div>
+      "
     if world.get('level_name', false)?
       $splash.append "<div class='level_name'>#{world.get 'level_name', false}</div>"
 
@@ -91,7 +103,15 @@ extend_level = (level, level_index) ->
         close:   ->
           name  = $splash.find('.name').val()
           color = $splash.find('.color').val()
+          return unless name? and color?
           world.send 'store_me', name: name, color: color
+
+add_stored_properties = (level) ->
+  [name, color] = utils.fetch ['name', 'color']
+  sprite = _.findWhere level.sprites, kind: 'turtle'
+  return unless sprite?
+  sprite.name  = name
+  sprite.color = color
 
 get_custom_level = ->
   query  = queryString.parse(location.search)

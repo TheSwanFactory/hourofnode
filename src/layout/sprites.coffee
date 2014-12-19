@@ -56,8 +56,13 @@ exports.sprites = {
     world.remove_child sprite
 
   store_me: (world, args) ->
-    sprite = _.last world.find_children().filter((s) -> s.get_local 'editable')
+    sprite = world.call 'find_turtle'
+    return unless sprite?
+    utils.store args
     sprite.put_many args
+
+  find_turtle: (world) ->
+    _.last world.find_children().filter((s) -> s.get_local('kind') == 'turtle')
 
   # selection
 
