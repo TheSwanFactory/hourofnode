@@ -177,6 +177,14 @@ div#root {
     &:last-child {
       margin-bottom: 0;
     }
+
+    &.info {
+      text-align: center;
+
+      input {
+        text-align: center;
+      }
+    }
   }
 }
 

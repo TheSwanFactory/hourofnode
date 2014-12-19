@@ -61,6 +61,10 @@ class World
     value = @rx().array value if _.isArray(value)
     @doc.put(key, value)
 
+  put_many: (props) ->
+    for key, val of props
+      @put key, val
+
   get_local: (key, bound = true) ->
     if @has_local(key)
       if bound

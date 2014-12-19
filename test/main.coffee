@@ -33,3 +33,5 @@ test_world()
 test_render()
 test_game()
 test_layout()
+
+require './test_utils'

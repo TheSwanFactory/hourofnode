@@ -56,6 +56,51 @@ exports.utils =
     event.offsetX = event.pageX - offset.left
     event.offsetY = event.pageY - offset.top
 
+  supports_html5_storage: ->
+    try
+      'localStorage' of window && window['localStorage']?
+    catch e
+      false
+
+  store: (key, value) ->
+    return unless @supports_html5_storage()
+
+    return @store_many(key) if typeof key == 'object'
+
+    localStorage[key] = value
+
+  store_many: (properties) ->
+    for key, value of properties
+      @store key, value
+
+  fetch: (key) ->
+    return unless @supports_html5_storage()
+
+    return @fetch_many(key) if _.isArray key
+
+    value = localStorage[key]
+
+    return null unless value?
+
+    switch
+      when value == 'true'         then true
+      when value == 'false'        then false
+      when value.match /^\d+$/     then parseInt value, 10
+      when value.match /^[\d\.]+$/ then parseFloat value, 10
+      else value
+
+  fetch_many: (keys) ->
+    values = []
+    for key in keys
+      values.push @fetch(key)
+    values
+
+  fetch_object: (keys) ->
+    values = {}
+    for key in keys
+      values[key] = @fetch key
+    values
+
 # IE fix for location.origin
 unless window.location.origin?
-  window.location.origin = window.location.protocol + "//" + window.location.hostname + (if window.location.port then ':' + window.location.port else '');
+  window.location.origin = window.location.protocol + "//" + window.location.hostname + (if window.location.port then ':' + window.location.port else '')

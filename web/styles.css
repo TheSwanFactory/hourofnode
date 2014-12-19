@@ -108,6 +108,10 @@ div#root {
   margin-bottom: 10px; }
   .splash div:last-child {
     margin-bottom: 0; }
+  .splash div.info {
+    text-align: center; }
+    .splash div.info input {
+      text-align: center; }
 
 .share-button.sharer-0 {
   -khtml-user-select: none;
