@@ -26,6 +26,12 @@ describe 'Utils', ->
 
         assert.ok _.isEqual(utils.fetch(['key', 'name']), ['value', 'Daniel'])
 
+      it 'fetches object', ->
+        localStorage['key']  = 'value'
+        localStorage['name'] = 'Daniel'
+
+        assert.ok _.isEqual(utils.fetch_object(['key', 'name']), {key: 'value', name: 'Daniel'})
+
     describe 'type casting', ->
       it 'fetches booleans', ->
         utils.store 'happy', true

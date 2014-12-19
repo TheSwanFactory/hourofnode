@@ -95,6 +95,12 @@ exports.utils =
       values.push @fetch(key)
     values
 
+  fetch_object: (keys) ->
+    values = {}
+    for key in keys
+      values[key] = @fetch key
+    values
+
 # IE fix for location.origin
 unless window.location.origin?
   window.location.origin = window.location.protocol + "//" + window.location.hostname + (if window.location.port then ':' + window.location.port else '')
