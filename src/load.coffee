@@ -92,7 +92,7 @@ add_splash_dialog = (level, level_index) ->
           <div><input class='color' placeholder='Favorite Color' /></div>
         </div>
       "
-    if world.get('level_name', false)?
+    if world.get('level_name', false)? && splash_allowed()
       $splash.append "<div class='level_name'>#{world.get 'level_name', false}</div>"
 
     if $splash.children().length > 0
@@ -100,11 +100,30 @@ add_splash_dialog = (level, level_index) ->
         modal:   true
         buttons: [{text: 'Ok', click: -> $(this).dialog('close')}]
         width:   400
-        close:   ->
-          name  = $splash.find('.name').val()
-          color = $splash.find('.color').val()
-          return unless name? and color?
-          world.send 'store_me', name: name, color: color
+        create:  ->
+          $pane = $splash.dialog('widget').find '.ui-dialog-buttonpane'
+          $pane.prepend "
+            <label><small>
+              Don't show hints
+              <input class='dont-show' type='checkbox' />
+            </small></label>"
+        beforeClose: ->
+          store_me  world, $splash
+          dont_show world, $splash
+
+splash_allowed = ->
+  !(utils.fetch('hide_dialogs') || document.referrer == location.toString())
+
+store_me = (world, $splash) ->
+  name  = $splash.find('.name').val()
+  color = $splash.find('.color').val()
+  return unless name? and color?
+  world.send 'store_me', name: name, color: color
+
+dont_show = (world, $splash) ->
+  return unless $splash.dialog('widget').find('.dont-show').is(':checked')
+
+  utils.store hide_dialogs: true
 
 add_stored_properties = (level) ->
   [name, color] = utils.fetch ['name', 'color']
