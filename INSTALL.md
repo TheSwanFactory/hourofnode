@@ -41,7 +41,7 @@ Any operating system that git, node.js, npm, and CoffeeScript supports should wo
   Download it from here: http://git-scm.com/downloads
 
 2.) Install node.js
-  Download it from here: http://nodejs.org/download/
+  Download it from here: http://nodejs.org/en/download/
 *Note*: MS Windows installs: a reboot of the system is required, after installing node.js, for *npm* to be accessible via the CMD prompt. 
 
 ### Installation Steps (The Hour of Node web-app) ###
